@@ -23,6 +23,7 @@ export interface MP {
   seatNumber: number;
   row: number;
   col: number;
+  isActive?: boolean;
   isSubstitute?: boolean; // Mīkstais mandāts
   replacesMpName?: string; // e.g. "Aizvieto Eviku Siliņu"
 }
