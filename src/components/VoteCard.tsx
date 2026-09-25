@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
 import type { Vote, FactionBreakdown } from '../types';
-import { Check, Copy, ChevronRight, FileText, AlertTriangle, RefreshCw, Lock, ExternalLink, MessageSquare, ChevronDown, UserX } from 'lucide-react';
+import {
+  Check,
+  Copy,
+  ChevronDown,
+  ChevronUp,
+  ChevronRight,
+  FileText,
+  RefreshCw,
+  Lock,
+  ExternalLink,
+  MessageSquare,
+  Users
+} from 'lucide-react';
 
 interface VoteCardProps {
   vote: Vote;
@@ -9,7 +21,7 @@ interface VoteCardProps {
 
 export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
   const [copied, setCopied] = useState(false);
-  const [showSummary, setShowSummary] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [showDebates, setShowDebates] = useState(false);
 
   const total = 100;
@@ -20,7 +32,6 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
 
   const isApproved = vote.result === 'PIENEMTS';
   const isQuorumBreak = vote.result === 'NAV_KVORUMA';
-  const isLongSummary = Boolean(vote.summary && vote.summary.length > 180);
 
   const handleCopy = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -44,87 +55,63 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
   return (
     <article
       id={`balsojums-${vote.id}`}
-      className="group relative rounded-xl border border-slate-200/90 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow"
+      className="rounded-xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-2xs transition hover:border-slate-300 hover:shadow-xs"
     >
-      {/* Revote Notice (Edge Case 6) */}
+      {/* Revote Notice (if applicable) */}
       {vote.isRevote && (
-        <div className="mb-3 flex items-center gap-2 rounded border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs text-amber-900">
+        <div className="mb-2.5 flex items-center gap-1.5 rounded-lg border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs text-amber-900">
           <RefreshCw className="h-3.5 w-3.5 flex-shrink-0" />
-          <span>
-            <strong>Pārbalsojums:</strong> {vote.revoteReason || 'Balsojums atkārtots saskaņā ar procedūras pieteikumu vai pults kļūdu.'}
-          </span>
+          <span><strong>Pārbalsojums:</strong> {vote.revoteReason || 'Balsojums atkārtots saskaņā ar pieteikumu.'}</span>
         </div>
       )}
 
-      {/* Top Meta Bar */}
-      <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-100">
-        <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
-          {/* Objective Parliamentary Vote Type Badge */}
-          {vote.voteType === 'likums' && (
-            <span className="inline-flex items-center rounded-md bg-indigo-50 px-2 py-0.5 text-[11px] font-bold text-indigo-700 border border-indigo-200">
-              {vote.readingStage || 'Likums'}
-            </span>
-          )}
-          {vote.voteType === 'priekslikums' && (
-            <span className="inline-flex items-center rounded-md bg-sky-50 px-2 py-0.5 text-[11px] font-bold text-sky-700 border border-sky-200">
-              {vote.readingStage || 'Priekšlikums'}
-            </span>
-          )}
-          {vote.voteType === 'procedura' && (
-            <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-0.5 text-[11px] font-bold text-slate-700 border border-slate-200">
-              {vote.readingStage || 'Procedūra'}
-            </span>
-          )}
+      {/* LEVEL 1: Immediately Visible (Scanning) */}
 
-          <span className="rounded bg-slate-100 px-2 py-0.5 font-medium text-slate-700">
-            {vote.category.label}
-          </span>
+      {/* 1. Monochrome Metadata & Status Pill */}
+      <div className="flex items-center justify-between gap-2 pb-2 text-xs text-slate-500">
+        <div className="flex flex-wrap items-center gap-1.5 font-medium">
+          {/* Objective Tag */}
+          {vote.readingStage ? (
+            <span className="font-semibold text-slate-800">{vote.readingStage}</span>
+          ) : vote.voteType === 'priekslikums' ? (
+            <span className="font-semibold text-slate-800">Priekšlikums</span>
+          ) : vote.voteType === 'procedura' ? (
+            <span className="font-semibold text-slate-800">Procedūra</span>
+          ) : null}
+
+          {vote.readingStage && <span>·</span>}
+          <span>{vote.category.label}</span>
           <span>·</span>
-          <span className="font-mono">{vote.sittingDate}</span>
-          <span>·</span>
-          <span className="font-mono">{vote.sittingTime}</span>
-          <span>·</span>
-          <span>{vote.saeimaTerm}. Saeima</span>
-          {vote.reading && (
+          <span className="font-mono text-slate-600">{vote.sittingDate}, {vote.sittingTime}</span>
+
+          {vote.isUrgent && (
             <>
               <span>·</span>
-              <span className="font-medium text-slate-700">
-                {vote.reading}. lasījums
-              </span>
+              <span className="font-semibold text-amber-700">Steidzams</span>
             </>
           )}
 
-          {/* Urgent tag */}
-          {vote.isUrgent && (
-            <span className="rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800 border border-amber-300">
-              Steidzams{vote.reading === 2 ? ' (Galīgais)' : ''}
-            </span>
-          )}
-
-          {/* Secret ballot */}
           {vote.isSecret && (
-            <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold text-slate-700 border border-slate-300">
-              <Lock className="h-3 w-3" />
-              Aizklāts balsojums
-            </span>
+            <>
+              <span>·</span>
+              <span className="inline-flex items-center gap-0.5 text-slate-600">
+                <Lock className="h-3 w-3" /> Aizklāts
+              </span>
+            </>
           )}
         </div>
 
-        {/* Outcome Badge */}
+        {/* Clean Outcome Pill */}
         {isQuorumBreak ? (
-          <span
-            className="inline-flex items-center gap-1 rounded px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider border border-amber-300 bg-amber-50 text-amber-900"
-            title="Nav kvoruma: balsoja mazāk nekā 50 deputāti (Satversmes 24. pants)"
-          >
-            <AlertTriangle className="h-3 w-3 text-amber-600" />
-            Nav Kvoruma
+          <span className="rounded-md border border-amber-300 bg-amber-50 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-amber-900">
+            Nav kvoruma
           </span>
         ) : (
           <span
-            className={`rounded px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider border ${
+            className={`rounded-md border px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider ${
               isApproved
                 ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
-                : 'border-red-200 bg-red-50 text-red-800'
+                : 'border-rose-200 bg-rose-50 text-rose-800'
             }`}
           >
             {isApproved ? 'Pieņemts' : 'Noraidīts'}
@@ -132,226 +119,261 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         )}
       </div>
 
-      {/* Titles */}
-      <div className="pt-3.5 space-y-1">
+      {/* 2. Core Title */}
+      <div className="pt-1">
         <h3
           onClick={() => onSelect(vote)}
-          className="text-base sm:text-lg font-bold leading-snug text-slate-900 group-hover:text-emerald-800 cursor-pointer transition"
+          className="text-base font-bold leading-snug text-slate-900 hover:text-emerald-800 cursor-pointer transition"
         >
           {vote.simplifiedTitle}
+          {vote.billNumber && (
+            <span className="ml-1.5 font-mono text-xs font-normal text-slate-400">
+              ({vote.billNumber})
+            </span>
+          )}
         </h3>
-        <p className="line-clamp-1 font-mono text-xs text-slate-500">
-          {vote.officialTitle}
-        </p>
       </div>
 
-      {vote.summary && (
-        <div className="mt-3 rounded border border-slate-200/70 bg-slate-50/60 p-3 text-xs leading-relaxed text-slate-600">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5 font-medium text-slate-800">
-              <FileText className="h-3.5 w-3.5 text-slate-500" />
-              <span>Likumprojekta būtība (Saeimas juridiskā anotācija):</span>
-            </div>
-            {isLongSummary && (
-              <button
-                type="button"
-                onClick={() => setShowSummary(!showSummary)}
-                className="text-[11px] font-medium text-emerald-700 hover:underline"
-              >
-                {showSummary ? 'Rādīt mazāk' : 'Lasīt pilno anotāciju'}
-              </button>
-            )}
-          </div>
-          <p className={`mt-1.5 ${isLongSummary && !showSummary ? 'line-clamp-2' : ''}`}>
-            {vote.summary}
-          </p>
-        </div>
-      )}
-
-      {/* Debate / Core Arguments Collapsible */}
-      {vote.debateArguments && (
-        <div className="mt-2.5 rounded border border-slate-200/80 bg-white overflow-hidden text-xs">
-          <button
-            type="button"
-            onClick={() => setShowDebates(!showDebates)}
-            className="flex w-full items-center justify-between p-2.5 text-left text-slate-700 hover:bg-slate-50 transition font-medium"
-          >
-            <div className="flex items-center gap-1.5">
-              <MessageSquare className="h-3.5 w-3.5 text-slate-400" />
-              <span>Galvenie debašu argumenti (Sēdes stenogramma)</span>
-            </div>
-            <ChevronDown className={`h-3.5 w-3.5 text-slate-400 transition-transform ${showDebates ? 'rotate-180' : ''}`} />
-          </button>
-
-          {showDebates && (
-            <div className="border-t border-slate-100 bg-slate-50/50 p-3 space-y-2.5 text-[11px] leading-relaxed">
-              <div>
-                <span className="font-semibold text-slate-800 block mb-0.5">
-                  ✦ Virzītāju argumenti ({vote.debateArguments.rapporteur || 'Atbildīgā komisija'}):
-                </span>
-                <p className="text-slate-600 pl-3 border-l-2 border-emerald-600">
-                  {vote.debateArguments.proponents}
-                </p>
-              </div>
-
-              <div>
-                <span className="font-semibold text-slate-800 block mb-0.5">
-                  ✦ Opozīcijas un debatētāju iebildumi:
-                </span>
-                <p className="text-slate-600 pl-3 border-l-2 border-red-600">
-                  {vote.debateArguments.opponents}
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Aggregate Voting Bar: Pine / Brick / Ochre / Slate */}
-      <div className="mt-4 space-y-2">
+      {/* 3. The Main Ratio Bar (Segmented 100-Seat Bar) */}
+      <div className="mt-3 space-y-1.5">
         <div className="flex justify-between font-mono text-xs font-semibold text-slate-700">
           <span className="flex items-center gap-1.5 text-emerald-700">
-            <span className="h-2 w-2 rounded-sm bg-emerald-700" />
+            <span className="h-2 w-2 rounded-2xs bg-emerald-700" />
             {vote.counts.par} Par
           </span>
-          <span className="flex items-center gap-1.5 text-red-700">
-            <span className="h-2 w-2 rounded-sm bg-red-700" />
+          <span className="flex items-center gap-1.5 text-rose-700">
+            <span className="h-2 w-2 rounded-2xs bg-rose-700" />
             {vote.counts.pret} Pret
           </span>
           <span className="flex items-center gap-1.5 text-amber-700">
-            <span className="h-2 w-2 rounded-sm bg-amber-600" />
+            <span className="h-2 w-2 rounded-2xs bg-amber-600" />
             {vote.counts.atturas} Atturas
           </span>
           <span className="flex items-center gap-1.5 text-slate-500">
-            <span className="h-2 w-2 rounded-sm bg-slate-400" />
+            <span className="h-2 w-2 rounded-2xs bg-slate-400" />
             {vote.counts.nebalso} Nebalsoja
           </span>
         </div>
 
         {/* Stacked Proportional Bar */}
-        <div className="flex h-2 w-full overflow-hidden rounded bg-slate-100 shadow-inner">
+        <div className="flex h-2 w-full overflow-hidden rounded-full bg-slate-100 shadow-2xs">
           <div style={{ width: `${parPct}%` }} className="bg-emerald-700 transition-all duration-300" />
-          <div style={{ width: `${pretPct}%` }} className="bg-red-700 transition-all duration-300" />
+          <div style={{ width: `${pretPct}%` }} className="bg-rose-700 transition-all duration-300" />
           <div style={{ width: `${atturasPct}%` }} className="bg-amber-600 transition-all duration-300" />
           <div style={{ width: `${nebalsoPct}%` }} className="bg-slate-300 transition-all duration-300" />
         </div>
-
-        {/* Legal Calculation & Quorum Status */}
-        <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
-          <span>Kvorums: {vote.counts.totalPresent} / 50 deputāti</span>
-          <span>Pieņemšanai: Par &gt; Pret + Atturas ({vote.counts.pret + vote.counts.atturas})</span>
-        </div>
       </div>
 
-      {/* MP Deviations Callout */}
+      {/* 4. Subtle Deviation Note (Calm micro-typography instead of yellow banner) */}
       {allDeviations.length > 0 && (
-        <div className="mt-3.5 flex flex-wrap items-center gap-2 rounded border border-amber-200 bg-amber-50/70 p-2 text-xs text-amber-900">
-          <UserX className="h-3.5 w-3.5 flex-shrink-0 text-amber-600" />
-          <span className="font-semibold">
-            {allDeviations.length} deputāts balsoja pretēji frakcijas vairākumam:
+        <div className="mt-2 text-[11px] text-slate-500 flex items-center gap-1.5">
+          <span className="text-slate-400">✦</span>
+          <span>
+            <strong className="text-slate-700">{allDeviations.length} {allDeviations.length === 1 ? 'deputāts balsoja' : 'deputāti balsoja'}</strong> pretēji savas frakcijas vairākumam
           </span>
-          <div className="flex flex-wrap items-center gap-1.5 font-mono text-[11px]">
-            {allDeviations.map((dev) => (
-              <span
-                key={dev.mpId}
-                className="rounded bg-white px-1.5 py-0.5 shadow-xs border border-amber-200"
-              >
-                <strong>{dev.name}</strong> ({dev.factionShort}) balsoja <strong>{dev.decision}</strong> (frakcija: {dev.factionLine})
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* The Pure Option 1: Permanently Anchored Faction Ledger Bars */}
-      {!vote.isSecret && sortedFactions.length > 0 && (
-        <div className="mt-4 pt-3.5 border-t border-slate-100 space-y-2.5">
-          <div className="flex items-center justify-between text-[11px] text-slate-400">
-            <span className="font-medium uppercase tracking-wider">Frakciju balsojumi (sakārtoti pēc vietu skaita):</span>
-            <span>Zaļš: Par · Sarkans: Pret · Dzeltens: Atturas · Pelēks: Nebalsoja</span>
-          </div>
-
-          {/* 8-Faction Responsive Grid */}
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 sm:grid-cols-4">
-            {sortedFactions.map((f) => {
-              const fTotal = f.votes.par + f.votes.pret + f.votes.atturas + f.votes.nebalso;
-              const fParPct = fTotal ? (f.votes.par / fTotal) * 100 : 0;
-              const fPretPct = fTotal ? (f.votes.pret / fTotal) * 100 : 0;
-              const fAtturasPct = fTotal ? (f.votes.atturas / fTotal) * 100 : 0;
-              const fNebalsoPct = fTotal ? (f.votes.nebalso / fTotal) * 100 : 0;
-
-              return (
-                <div
-                  key={f.factionId}
-                  className="rounded border border-slate-100 bg-slate-50/50 p-2 flex flex-col gap-1.5"
-                >
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-mono font-bold text-slate-800" style={{ color: f.color }}>
-                      {f.shortName} <span className="text-[10px] text-slate-400 font-normal">({fTotal})</span>
-                    </span>
-                    <span className="font-mono text-[10px] text-slate-500">
-                      {f.votes.par}P · {f.votes.pret}Pr{f.votes.nebalso > 0 ? ` · ${f.votes.nebalso}Nb` : ''}
-                    </span>
-                  </div>
-
-                  {/* 4-Color Proportional Faction Discipline Bar */}
-                  <div className="flex h-1.5 w-full overflow-hidden rounded bg-slate-200">
-                    <div style={{ width: `${fParPct}%` }} className="bg-emerald-700" title={`${f.votes.par} Par`} />
-                    <div style={{ width: `${fPretPct}%` }} className="bg-red-700" title={`${f.votes.pret} Pret`} />
-                    <div style={{ width: `${fAtturasPct}%` }} className="bg-amber-600" title={`${f.votes.atturas} Atturas`} />
-                    <div style={{ width: `${fNebalsoPct}%` }} className="bg-slate-300" title={`${f.votes.nebalso} Nebalsoja`} />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Footer Navigation & Provenance Link */}
-      <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between border-t border-slate-100 pt-3 gap-2 text-xs">
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={handleCopy}
-            className="inline-flex items-center gap-1.5 text-slate-500 hover:text-slate-800 transition"
-          >
-            {copied ? (
-              <>
-                <Check className="h-3.5 w-3.5 text-emerald-600" />
-                <span className="text-emerald-700 font-medium">Nokopēts!</span>
-              </>
-            ) : (
-              <>
-                <Copy className="h-3.5 w-3.5" />
-                <span>Kopīgot</span>
-              </>
-            )}
-          </button>
-
-          {vote.protocolUrl && (
-            <a
-              href={vote.protocolUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-slate-400 hover:text-slate-700 transition"
-              title="Oficiālais Saeimas sēdes protokols un stenogramma"
+          {!isExpanded && (
+            <button
+              type="button"
+              onClick={() => setIsExpanded(true)}
+              className="text-slate-600 hover:text-slate-900 underline font-medium"
             >
-              <span>Avots (saeima.lv)</span>
-              <ExternalLink className="h-3 w-3" />
-            </a>
+              (aplūkot)
+            </button>
           )}
         </div>
+      )}
+
+      {/* 5. Toolbar Actions (Expand accordion & Hemicycle modal) */}
+      <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-2.5 text-xs">
+        <button
+          type="button"
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="inline-flex items-center gap-1 font-semibold text-slate-700 hover:text-slate-900 transition"
+        >
+          {isExpanded ? (
+            <>
+              <ChevronUp className="h-3.5 w-3.5 text-slate-400" />
+              <span>Aizvērt detaļas</span>
+            </>
+          ) : (
+            <>
+              <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
+              <span>Rādīt frakciju sadalījumu un anotāciju</span>
+            </>
+          )}
+        </button>
 
         <button
           type="button"
           onClick={() => onSelect(vote)}
-          className="inline-flex items-center gap-1 font-semibold text-emerald-800 hover:text-emerald-950 transition group/btn self-end sm:self-auto"
+          className="inline-flex items-center gap-1 font-semibold text-emerald-800 hover:text-emerald-950 transition"
         >
-          <span>{vote.isSecret ? 'Skatīt balsojuma detaļas' : 'Skatīt 100 deputātu balsis sēžu zālē'}</span>
-          <ChevronRight className="h-4 w-4 transition transform group-hover/btn:translate-x-0.5" />
+          <Users className="h-3.5 w-3.5 text-emerald-600" />
+          <span>Sēžu zāle (100 vietas)</span>
+          <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
         </button>
       </div>
+
+      {/* LEVEL 2: Progressive Disclosure (Accordion Drawer) */}
+      {isExpanded && (
+        <div className="mt-4 pt-4 border-t border-slate-200/80 space-y-4 text-xs">
+          {/* Detailed Rebel MPs Breakdown */}
+          {allDeviations.length > 0 && (
+            <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+              <div className="font-semibold text-slate-800 mb-1.5">
+                Deputāti, kuri balsoja pret savas frakcijas nostāju:
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {allDeviations.map((dev) => (
+                  <span
+                    key={dev.mpId}
+                    className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-white px-2 py-1 font-mono text-[11px] shadow-2xs"
+                  >
+                    <strong className="text-slate-900">{dev.name}</strong>
+                    <span className="text-slate-400">({dev.factionShort})</span>:
+                    <span className="font-bold text-slate-800">{dev.decision}</span>
+                    <span className="text-slate-400">(frakcija: {dev.factionLine})</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Saeimas Legal Annotation */}
+          {vote.summary && (
+            <div className="rounded-lg border border-slate-200 bg-slate-50/70 p-3 leading-relaxed text-slate-700">
+              <div className="flex items-center gap-1.5 font-bold text-slate-900 mb-1">
+                <FileText className="h-3.5 w-3.5 text-slate-500" />
+                <span>Saeimas juridiskā anotācija:</span>
+              </div>
+              <p className="text-slate-600 text-[11px] leading-normal">{vote.summary}</p>
+              <div className="mt-2 font-mono text-[10px] text-slate-400">
+                Oficiālais nosaukums: {vote.officialTitle}
+              </div>
+            </div>
+          )}
+
+          {/* Core Debate Arguments (if recorded) */}
+          {vote.debateArguments && (
+            <div className="rounded-lg border border-slate-200 bg-white overflow-hidden text-xs">
+              <button
+                type="button"
+                onClick={() => setShowDebates(!showDebates)}
+                className="flex w-full items-center justify-between p-2.5 text-left text-slate-700 hover:bg-slate-50 font-medium"
+              >
+                <div className="flex items-center gap-1.5">
+                  <MessageSquare className="h-3.5 w-3.5 text-slate-400" />
+                  <span>Galvenie debašu argumenti stenogrammā</span>
+                </div>
+                <ChevronDown className={`h-3.5 w-3.5 text-slate-400 transition-transform ${showDebates ? 'rotate-180' : ''}`} />
+              </button>
+
+              {showDebates && (
+                <div className="border-t border-slate-100 bg-slate-50/50 p-3 space-y-2 text-[11px] leading-relaxed">
+                  <div>
+                    <span className="font-semibold text-slate-800 block mb-0.5">
+                      ✦ Virzītāju argumenti ({vote.debateArguments.rapporteur || 'Atbildīgā komisija'}):
+                    </span>
+                    <p className="text-slate-600 pl-2.5 border-l-2 border-emerald-600">
+                      {vote.debateArguments.proponents}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-slate-800 block mb-0.5">
+                      ✦ Opozīcijas un debatētāju iebildumi:
+                    </span>
+                    <p className="text-slate-600 pl-2.5 border-l-2 border-rose-600">
+                      {vote.debateArguments.opponents}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* The 8 Permanently Anchored Faction Ledger Bars */}
+          {!vote.isSecret && sortedFactions.length > 0 && (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-[11px] text-slate-500">
+                <span className="font-bold text-slate-800 uppercase tracking-wider text-[10px]">
+                  Frakciju balsojumu sadalījums:
+                </span>
+                <span className="text-[10px] text-slate-400">
+                  Zaļš: Par · Sarkans: Pret · Dzeltens: Atturas · Pelēks: Nebalsoja
+                </span>
+              </div>
+
+              {/* 8-Faction Responsive Grid */}
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                {sortedFactions.map((f) => {
+                  const fTotal = f.votes.par + f.votes.pret + f.votes.atturas + f.votes.nebalso;
+                  const fParPct = fTotal ? (f.votes.par / fTotal) * 100 : 0;
+                  const fPretPct = fTotal ? (f.votes.pret / fTotal) * 100 : 0;
+                  const fAtturasPct = fTotal ? (f.votes.atturas / fTotal) * 100 : 0;
+                  const fNebalsoPct = fTotal ? (f.votes.nebalso / fTotal) * 100 : 0;
+
+                  return (
+                    <div
+                      key={f.factionId}
+                      className="rounded-lg border border-slate-200/80 bg-slate-50/60 p-2 flex flex-col gap-1"
+                    >
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-mono font-bold text-slate-800" style={{ color: f.color }}>
+                          {f.shortName} <span className="text-[10px] text-slate-400 font-normal">({fTotal})</span>
+                        </span>
+                        <span className="font-mono text-[10px] text-slate-500">
+                          {f.votes.par}P · {f.votes.pret}Pr{f.votes.nebalso > 0 ? ` · ${f.votes.nebalso}Nb` : ''}
+                        </span>
+                      </div>
+
+                      {/* 4-Color Proportional Bar */}
+                      <div className="flex h-1.5 w-full overflow-hidden rounded bg-slate-200">
+                        <div style={{ width: `${fParPct}%` }} className="bg-emerald-700" title={`${f.votes.par} Par`} />
+                        <div style={{ width: `${fPretPct}%` }} className="bg-rose-700" title={`${f.votes.pret} Pret`} />
+                        <div style={{ width: `${fAtturasPct}%` }} className="bg-amber-600" title={`${f.votes.atturas} Atturas`} />
+                        <div style={{ width: `${fNebalsoPct}%` }} className="bg-slate-300" title={`${f.votes.nebalso} Nebalsoja`} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Drawer Actions */}
+          <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-xs text-slate-500">
+            <button
+              type="button"
+              onClick={handleCopy}
+              className="inline-flex items-center gap-1.5 text-slate-600 hover:text-slate-900 transition"
+            >
+              {copied ? (
+                <>
+                  <Check className="h-3.5 w-3.5 text-emerald-600" />
+                  <span className="text-emerald-700 font-medium">Nokopēts saites URL!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="h-3.5 w-3.5" />
+                  <span>Kopīgot balsojuma saiti</span>
+                </>
+              )}
+            </button>
+
+            {vote.protocolUrl && (
+              <a
+                href={vote.protocolUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-slate-500 hover:text-slate-800 transition"
+              >
+                <span>Oficiālais saeima.lv protokols</span>
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            )}
+          </div>
+        </div>
+      )}
     </article>
   );
 };

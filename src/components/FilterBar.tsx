@@ -1,5 +1,5 @@
-import React from 'react';
-import { Search, X, CheckCircle2, XCircle, AlertTriangle, Layers, FileText, SlidersHorizontal, Scale } from 'lucide-react';
+﻿import React from 'react';
+import { Search, X, ChevronDown, RotateCcw } from 'lucide-react';
 
 export type VoteTypeFilter = 'ALL' | 'likums' | 'priekslikums' | 'procedura';
 
@@ -32,190 +32,144 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   onTier1Toggle,
   totalFiltered,
 }) => {
+  const isFiltered =
+    searchQuery.trim() !== '' ||
+    selectedCategory !== 'ALL' ||
+    selectedVoteType !== 'ALL' ||
+    selectedOutcome !== 'ALL' ||
+    tier1Only;
+
+  const handleReset = () => {
+    onSearchChange('');
+    onCategoryChange('ALL');
+    onVoteTypeChange('ALL');
+    onOutcomeChange('ALL');
+    onTier1Toggle(false);
+  };
+
   return (
-    <div className="space-y-4">
-      {/* Primary Vote Type Tabs (100% Objective Parliamentary Typology) */}
-      <div className="flex flex-wrap items-center gap-1.5 border-b border-slate-200 pb-3">
-        <button
-          type="button"
-          onClick={() => onVoteTypeChange('ALL')}
-          className={`flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold transition ${
-            selectedVoteType === 'ALL'
-              ? 'bg-slate-900 text-white shadow-sm ring-1 ring-slate-900'
-              : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
-          }`}
-        >
-          <Layers className="h-3.5 w-3.5" />
-          Visi balsojumi
-        </button>
-
-        <button
-          type="button"
-          onClick={() => onVoteTypeChange('likums')}
-          className={`flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold transition ${
-            selectedVoteType === 'likums'
-              ? 'bg-indigo-600 text-white shadow-sm ring-1 ring-indigo-600'
-              : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
-          }`}
-        >
-          <Scale className="h-3.5 w-3.5 text-indigo-500 group-hover:text-indigo-600" />
-          Likumu pieņemšana
-        </button>
-
-        <button
-          type="button"
-          onClick={() => onVoteTypeChange('priekslikums')}
-          className={`flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold transition ${
-            selectedVoteType === 'priekslikums'
-              ? 'bg-sky-600 text-white shadow-sm ring-1 ring-sky-600'
-              : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
-          }`}
-        >
-          <FileText className="h-3.5 w-3.5 text-sky-500 group-hover:text-sky-600" />
-          Priekšlikumi & labojumi
-        </button>
-
-        <button
-          type="button"
-          onClick={() => onVoteTypeChange('procedura')}
-          className={`flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold transition ${
-            selectedVoteType === 'procedura'
-              ? 'bg-slate-700 text-white shadow-sm ring-1 ring-slate-700'
-              : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
-          }`}
-        >
-          <SlidersHorizontal className="h-3.5 w-3.5 text-slate-500" />
-          Procedūra & darba kārtība
-        </button>
-      </div>
-      {/* Search Bar + Result Type Filters */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        {/* Search */}
-        <div className="relative flex-1">
-          <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Meklēt pēc likuma nosaukuma, numura (piem. Nr. 482) vai atslēgvārda..."
-            className="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-10 text-sm text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
-          />
-          {searchQuery && (
-            <button
-              type="button"
-              onClick={() => onSearchChange('')}
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          )}
-        </div>
-
-        {/* Outcome Toggle (with NAV_KVORUMA) */}
-        <div className="flex flex-wrap items-center gap-1 self-start sm:self-auto rounded-lg border border-slate-200 bg-slate-100/80 p-1">
+    <div className="flex flex-wrap items-center gap-2">
+      {/* 1. Anchor with Search */}
+      <div className="relative min-w-[220px] flex-1">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => onSearchChange(e.target.value)}
+          placeholder="Meklēt likumu vai atslēgvārdu..."
+          className="w-full rounded-lg border border-slate-200 bg-white py-1.5 pl-8.5 pr-8 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400"
+        />
+        {searchQuery && (
           <button
             type="button"
-            onClick={() => onOutcomeChange('ALL')}
-            className={`rounded-md px-2.5 py-1.5 text-xs font-medium transition ${
-              selectedOutcome === 'ALL'
-                ? 'bg-white text-slate-900 shadow-sm'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
+            onClick={() => onSearchChange('')}
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
           >
-            Visi
+            <X className="h-3.5 w-3.5" />
           </button>
-          <button
-            type="button"
-            onClick={() => onOutcomeChange('PIENEMTS')}
-            className={`flex items-center gap-1 rounded-md px-2.5 py-1.5 text-xs font-medium transition ${
-              selectedOutcome === 'PIENEMTS'
-                ? 'bg-emerald-50 text-emerald-800 shadow-sm ring-1 ring-emerald-500/30'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <CheckCircle2 className="h-3 w-3 text-emerald-500" />
-            Pieņemtie
-          </button>
-          <button
-            type="button"
-            onClick={() => onOutcomeChange('NORAIDITS')}
-            className={`flex items-center gap-1 rounded-md px-2.5 py-1.5 text-xs font-medium transition ${
-              selectedOutcome === 'NORAIDITS'
-                ? 'bg-rose-50 text-rose-800 shadow-sm ring-1 ring-rose-500/30'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <XCircle className="h-3 w-3 text-rose-500" />
-            Noraidītie
-          </button>
-          <button
-            type="button"
-            onClick={() => onOutcomeChange('NAV_KVORUMA')}
-            className={`flex items-center gap-1 rounded-md px-2.5 py-1.5 text-xs font-medium transition ${
-              selectedOutcome === 'NAV_KVORUMA'
-                ? 'bg-amber-50 text-amber-800 shadow-sm ring-1 ring-amber-500/30'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <AlertTriangle className="h-3 w-3 text-amber-500" />
-            Nav kvoruma
-          </button>
-        </div>
+        )}
       </div>
 
-      {/* Categories & Filter Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-        {/* Category Pills */}
-        <div className="flex flex-wrap items-center gap-1.5">
-          <button
-            type="button"
-            onClick={() => onCategoryChange('ALL')}
-            className={`rounded-full px-3 py-1 text-xs font-medium transition ${
-              selectedCategory === 'ALL'
-                ? 'bg-slate-900 text-white'
-                : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
-            }`}
-          >
-            Visi temati
-          </button>
-
-          {categories.map((cat) => {
-            const isActive = selectedCategory === cat.id;
-            return (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => onCategoryChange(cat.id)}
-                className={`rounded-full px-3 py-1 text-xs font-medium transition ${
-                  isActive
-                    ? 'bg-emerald-600 text-white shadow-sm'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
-                }`}
-              >
-                {cat.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Significance Toggle & Counter */}
-        <div className="flex items-center gap-4 text-xs">
-          <label className="flex items-center gap-2 cursor-pointer select-none text-slate-600">
-            <input
-              type="checkbox"
-              checked={tier1Only}
-              onChange={(e) => onTier1Toggle(e.target.checked)}
-              className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500"
-            />
-            <span className="font-medium">Tikai gala lēmumi</span>
-            <span className="text-[10px] text-slate-400 hidden sm:inline">(3. lasījumi & steidzamie)</span>
-          </label>
-
-          <span className="font-mono text-slate-400">
-            Atrasti: <strong className="text-slate-800">{totalFiltered}</strong>
-          </span>
-        </div>
+      {/* 2. Vote Type Dropdown */}
+      <div className="relative">
+        <select
+          value={selectedVoteType}
+          onChange={(e) => onVoteTypeChange(e.target.value as VoteTypeFilter)}
+          className={`appearance-none rounded-lg border py-1.5 pl-3 pr-7 text-xs font-medium focus:outline-none cursor-pointer transition ${
+            selectedVoteType !== 'ALL'
+              ? 'border-slate-800 bg-slate-900 text-white'
+              : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
+          }`}
+        >
+          <option value="ALL">Visi balsojumi</option>
+          <option value="likums">Likumu pieņemšana</option>
+          <option value="priekslikums">Priekšlikumi & labojumi</option>
+          <option value="procedura">Procedūra & darba kārtība</option>
+        </select>
+        <ChevronDown
+          className={`pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 ${
+            selectedVoteType !== 'ALL' ? 'text-slate-300' : 'text-slate-400'
+          }`}
+        />
       </div>
+
+      {/* 3. Topic / Category Dropdown */}
+      <div className="relative">
+        <select
+          value={selectedCategory}
+          onChange={(e) => onCategoryChange(e.target.value)}
+          className={`appearance-none rounded-lg border py-1.5 pl-3 pr-7 text-xs font-medium focus:outline-none cursor-pointer transition ${
+            selectedCategory !== 'ALL'
+              ? 'border-slate-800 bg-slate-900 text-white'
+              : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
+          }`}
+        >
+          <option value="ALL">Visi temati</option>
+          {categories.map((c) => (
+            <option key={c.id} value={c.id}>
+              {c.label}
+            </option>
+          ))}
+        </select>
+        <ChevronDown
+          className={`pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 ${
+            selectedCategory !== 'ALL' ? 'text-slate-300' : 'text-slate-400'
+          }`}
+        />
+      </div>
+
+      {/* 4. Outcome Dropdown */}
+      <div className="relative">
+        <select
+          value={selectedOutcome}
+          onChange={(e) => onOutcomeChange(e.target.value as any)}
+          className={`appearance-none rounded-lg border py-1.5 pl-3 pr-7 text-xs font-medium focus:outline-none cursor-pointer transition ${
+            selectedOutcome !== 'ALL'
+              ? 'border-slate-800 bg-slate-900 text-white'
+              : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
+          }`}
+        >
+          <option value="ALL">Visi rezultāti</option>
+          <option value="PIENEMTS">Pieņemtie</option>
+          <option value="NORAIDITS">Noraidītie</option>
+          <option value="NAV_KVORUMA">Nav kvoruma</option>
+        </select>
+        <ChevronDown
+          className={`pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 ${
+            selectedOutcome !== 'ALL' ? 'text-slate-300' : 'text-slate-400'
+          }`}
+        />
+      </div>
+
+      {/* 5. Quick Toggle: Tikai galīgie lēmumi */}
+      <button
+        type="button"
+        onClick={() => onTier1Toggle(!tier1Only)}
+        className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition cursor-pointer ${
+          tier1Only
+            ? 'border-slate-900 bg-slate-900 text-white shadow-2xs'
+            : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50'
+        }`}
+      >
+        Tikai gala lēmumi
+      </button>
+
+      {/* 6. Active Filter Reset / Counter */}
+      {isFiltered ? (
+        <button
+          type="button"
+          onClick={handleReset}
+          className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-100 px-2 py-1.5 text-[11px] font-medium text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition"
+          title="Atiestatīt filtrus"
+        >
+          <RotateCcw className="h-3 w-3" />
+          <span>Notīrīt ({totalFiltered})</span>
+        </button>
+      ) : (
+        <div className="ml-auto hidden text-right text-[11px] text-slate-400 sm:block font-mono">
+          <strong className="text-slate-700">{totalFiltered}</strong> balsojumi
+        </div>
+      )}
     </div>
   );
 };

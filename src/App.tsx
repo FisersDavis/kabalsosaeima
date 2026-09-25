@@ -7,7 +7,7 @@ import { VoteCard } from './components/VoteCard';
 import { HemicycleModal } from './components/HemicycleModal';
 import { CivicInfoModal } from './components/CivicInfoModal';
 import { Footer } from './components/Footer';
-import { BookOpen, AlertCircle, Info, ChevronDown } from 'lucide-react';
+import { AlertCircle, Info, ChevronDown } from 'lucide-react';
 
 const PAGE_SIZE = 30;
 
@@ -131,48 +131,24 @@ export function App() {
         onOpenInfoModal={setCivicModalTab}
       />
 
-      <main className="flex-1 mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 lg:px-8 space-y-6">
-        {/* Sober Civic Header (Valsts pārvaldes & LSM stils) */}
-        <section className="rounded-xl border border-slate-200/90 bg-white p-6 shadow-sm">
-          <div className="max-w-3xl space-y-2">
-            <div className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700 border border-slate-200">
-              <BookOpen className="h-3.5 w-3.5 text-slate-500" />
-              <span>Oficiālais parlamenta lēmumu arhīvs</span>
-            </div>
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
-              Saeimas plenārsēžu balsojumu pārskats
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              Atvērts, neitrāls parlamenta lēmumu reģistrs. Pārbaudiet pieņemtos likumus, salīdziniet koalīcijas un opozīcijas nostāju un aplūkojiet katra no 100 deputātiem reģistrēto balsojumu.
-            </p>
+      <main className="flex-1 mx-auto w-full max-w-5xl px-4 py-4 sm:px-6 lg:px-8 space-y-3.5">
+        {/* Discrete Subheader Counter above FilterBar */}
+        <div className="flex items-center justify-between text-xs text-slate-500 px-1 pt-1">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-slate-900">{activeTermObj?.label || `${selectedTerm}. Saeima`}</span>
+            <span>·</span>
+            <span className="font-mono text-slate-700">{termVotes.length} balsojumi</span>
+            {termVotes.length > 0 && (
+              <>
+                <span className="hidden sm:inline text-slate-300">·</span>
+                <span className="hidden sm:inline text-slate-500 font-mono">Pēdējā sēde: {termVotes[0]?.sittingDate}</span>
+              </>
+            )}
           </div>
-
-          {/* Quick Metrics Bar */}
-          <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4 pt-4 border-t border-slate-100 font-mono text-xs">
-            <div>
-              <div className="text-slate-500 text-[11px]">Pēdējā reģistrētā sēde</div>
-              <div className="font-semibold text-slate-900">
-                {termVotes.length > 0 ? termVotes[0].sittingDate : 'Nav datu'}
-              </div>
-            </div>
-            <div>
-              <div className="text-slate-500 text-[11px]">Pieņemtie likumi</div>
-              <div className="font-semibold text-emerald-700">
-                {termVotes.filter((v) => v.result === 'PIENEMTS').length} likumprojekti
-              </div>
-            </div>
-            <div>
-              <div className="text-slate-500 text-[11px]">Noraidīti / Nav kvoruma</div>
-              <div className="font-semibold text-red-700">
-                {termVotes.filter((v) => v.result === 'NORAIDITS' || v.result === 'NAV_KVORUMA').length} lēmumi
-              </div>
-            </div>
-            <div>
-              <div className="text-slate-500 text-[11px]">Saeimas sastāvs</div>
-              <div className="font-semibold text-slate-900">100 deputāti</div>
-            </div>
+          <div className="font-mono text-[11px] text-slate-400">
+            {activeTermObj?.years}
           </div>
-        </section>
+        </div>
 
         {/* Future / Empty Term Notice */}
         {!loading && termVotes.length === 0 && (
@@ -196,9 +172,9 @@ export function App() {
           </div>
         )}
 
-        {/* Filter Controls */}
+        {/* Filter Controls (Consolidated 1-Row Toolbar) */}
         {termVotes.length > 0 && (
-          <section className="sticky top-14 z-30 -mx-2 rounded-xl bg-white/95 p-3.5 shadow-sm backdrop-blur border border-slate-200/90">
+          <section className="sticky top-[57px] z-30 -mx-1 rounded-xl bg-white/95 p-2 shadow-2xs backdrop-blur-md border border-slate-200">
             <FilterBar
               searchQuery={searchQuery}
               onSearchChange={setSearchQuery}
