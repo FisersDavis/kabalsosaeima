@@ -81,10 +81,10 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
           }`}
         >
-          <option value="ALL">Visi balsojumi</option>
-          <option value="likums">Likumu pieņemšana</option>
-          <option value="priekslikums">Priekšlikumi & labojumi</option>
-          <option value="procedura">Procedūra & darba kārtība</option>
+          <option value="ALL" className="bg-white text-slate-900">Visi balsojumi</option>
+          <option value="likums" className="bg-white text-slate-900">Likumu pieņemšana</option>
+          <option value="priekslikums" className="bg-white text-slate-900">Priekšlikumi & labojumi</option>
+          <option value="procedura" className="bg-white text-slate-900">Procedūra & darba kārtība</option>
         </select>
         <ChevronDown
           className={`pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 ${
@@ -104,9 +104,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
           }`}
         >
-          <option value="ALL">Visi temati</option>
+          <option value="ALL" className="bg-white text-slate-900">Visi temati</option>
           {categories.map((c) => (
-            <option key={c.id} value={c.id}>
+            <option key={c.id} value={c.id} className="bg-white text-slate-900">
               {c.label}
             </option>
           ))}
@@ -129,10 +129,10 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
           }`}
         >
-          <option value="ALL">Visi rezultāti</option>
-          <option value="PIENEMTS">Pieņemtie</option>
-          <option value="NORAIDITS">Noraidītie</option>
-          <option value="NAV_KVORUMA">Nav kvoruma</option>
+          <option value="ALL" className="bg-white text-slate-900">Visi rezultāti</option>
+          <option value="PIENEMTS" className="bg-white text-slate-900">Pieņemtie</option>
+          <option value="NORAIDITS" className="bg-white text-slate-900">Noraidītie</option>
+          <option value="NAV_KVORUMA" className="bg-white text-slate-900">Nav kvoruma</option>
         </select>
         <ChevronDown
           className={`pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 ${

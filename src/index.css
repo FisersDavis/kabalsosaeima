@@ -3,7 +3,16 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
+}
+
+select, option {
+  color-scheme: light;
+}
+
+option {
+  background-color: #ffffff;
+  color: #0f172a;
 }
 
 body {
