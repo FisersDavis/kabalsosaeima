@@ -140,20 +140,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -890,26 +877,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -1639,26 +1607,7 @@
           "atturas": 3,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -2388,20 +2337,7 @@
           "atturas": 2,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -5771,14 +5707,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -6459,26 +6388,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -7838,32 +7748,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -8556,20 +8441,7 @@
           "atturas": 1,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-25",
-            "name": "Didzis Šmits",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -9262,20 +9134,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -11358,26 +11217,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -12744,44 +12584,7 @@
           "atturas": 2,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -13492,20 +13295,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -14133,20 +13923,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -14793,20 +14570,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -15466,26 +15230,7 @@
           "atturas": 1,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -19398,26 +19143,7 @@
           "atturas": 1,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -20086,14 +19812,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -20756,44 +20475,7 @@
           "atturas": 3,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -21487,44 +21169,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-25",
-            "name": "Didzis Šmits",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -26814,20 +26459,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -27527,26 +27159,7 @@
           "atturas": 3,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -28252,26 +27865,7 @@
           "atturas": 4,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -28983,26 +28577,7 @@
           "atturas": 4,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -29702,26 +29277,7 @@
           "atturas": 4,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -30427,26 +29983,7 @@
           "atturas": 4,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -31157,20 +30694,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -31869,14 +31393,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -32544,26 +32061,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -33231,26 +32729,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -35918,26 +35397,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -39658,20 +39118,7 @@
           "atturas": 1,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -40918,26 +40365,7 @@
           "atturas": 1,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -42189,20 +41617,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -42834,26 +42249,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -43584,32 +42980,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -44266,20 +43637,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -49338,20 +48696,7 @@
           "atturas": 3,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -49977,20 +49322,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -51300,26 +50632,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -52627,26 +51940,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -53954,26 +53248,7 @@
           "atturas": 2,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -54618,14 +53893,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -55301,26 +54569,7 @@
           "atturas": 1,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -55958,20 +55207,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -56609,20 +55845,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -58562,26 +57785,7 @@
           "atturas": 3,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -59232,26 +58436,7 @@
           "atturas": 3,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -61908,20 +61093,7 @@
           "atturas": 1,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -62591,20 +61763,7 @@
           "atturas": 1,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -63286,14 +62445,7 @@
           "atturas": 1,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -64521,32 +63673,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -67242,14 +66369,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -67935,26 +67055,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -68634,26 +67735,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -69333,20 +68415,7 @@
           "atturas": 0,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -70038,20 +69107,7 @@
           "atturas": 0,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -70743,26 +69799,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -71454,26 +70491,7 @@
           "atturas": 0,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -75590,32 +74608,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -76999,38 +75992,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -81858,26 +80820,7 @@
           "atturas": 1,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -82607,44 +81550,7 @@
           "atturas": 0,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -83324,26 +82230,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -85419,32 +84306,7 @@
           "atturas": 0,
           "nebalso": 5
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -86143,20 +85005,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -88747,26 +87596,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-130",
-            "name": "Jeļena Kļaviņa",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -89994,14 +88824,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -91217,32 +90040,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -95572,26 +94370,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -96266,26 +95045,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -99110,26 +97870,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -99902,26 +98643,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -100602,14 +99324,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -101301,32 +100016,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-96",
-            "name": "Dmitrijs Kovaļenko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -102068,26 +100758,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -104954,32 +103625,7 @@
           "atturas": 2,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -108289,26 +106935,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-96",
-            "name": "Dmitrijs Kovaļenko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -108970,56 +107597,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-96",
-            "name": "Dmitrijs Kovaļenko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -109715,38 +108293,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -110414,56 +108961,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-96",
-            "name": "Dmitrijs Kovaļenko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -113142,44 +111640,7 @@
           "atturas": 0,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-96",
-            "name": "Dmitrijs Kovaļenko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-130",
-            "name": "Jeļena Kļaviņa",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -115829,56 +114290,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-96",
-            "name": "Dmitrijs Kovaļenko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -116572,32 +114984,7 @@
           "atturas": 2,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-130",
-            "name": "Jeļena Kļaviņa",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -117291,26 +115678,7 @@
           "atturas": 1,
           "nebalso": 5
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -117998,32 +116366,7 @@
           "atturas": 1,
           "nebalso": 7
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -118711,32 +117054,7 @@
           "atturas": 1,
           "nebalso": 8
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -119424,20 +117742,7 @@
           "atturas": 1,
           "nebalso": 10
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -120131,20 +118436,7 @@
           "atturas": 1,
           "nebalso": 10
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -120818,32 +119110,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -121529,26 +119796,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -122108,32 +120356,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -123355,32 +121578,7 @@
           "atturas": 0,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -124030,32 +122228,7 @@
           "atturas": 0,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -140226,14 +138399,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -140969,38 +139135,7 @@
           "atturas": 3,
           "nebalso": 5
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-25",
-            "name": "Didzis Šmits",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -142391,26 +140526,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -143122,26 +141238,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -143845,20 +141942,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -144562,20 +142646,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -145348,26 +143419,7 @@
           "atturas": 1,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -146177,20 +144229,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -148320,20 +146359,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -149037,32 +147063,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -149772,26 +147773,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -150501,26 +148483,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -151225,32 +149188,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -151986,20 +149924,7 @@
           "atturas": 2,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -152710,20 +150635,7 @@
           "atturas": 1,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -153459,26 +151371,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -154183,26 +152076,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -154919,32 +152793,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -155650,26 +153499,7 @@
           "atturas": 2,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -156381,26 +154211,7 @@
           "atturas": 2,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -157093,26 +154904,7 @@
           "atturas": 2,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -157848,26 +155640,7 @@
           "atturas": 3,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -158585,32 +156358,7 @@
           "atturas": 2,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -159296,26 +157044,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -160076,20 +157805,7 @@
           "atturas": 2,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -160723,20 +158439,7 @@
           "atturas": 4,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -161418,20 +159121,7 @@
           "atturas": 4,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -162089,20 +159779,7 @@
           "atturas": 4,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -162771,26 +160448,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -163446,26 +161104,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -167389,20 +165028,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -168109,26 +165735,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -168792,26 +166399,7 @@
           "atturas": 2,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -170763,26 +168351,7 @@
           "atturas": 1,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -171439,26 +169008,7 @@
           "atturas": 1,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -173476,26 +171026,7 @@
           "atturas": 1,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -176211,20 +173742,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -176898,20 +174416,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -177585,20 +175090,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -178266,20 +175758,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -179627,20 +177106,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -180308,20 +177774,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -182343,14 +179796,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -183056,20 +180502,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -184486,32 +181919,7 @@
           "atturas": 3,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -185229,32 +182637,7 @@
           "atturas": 4,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -185960,32 +183343,7 @@
           "atturas": 3,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-25",
-            "name": "Didzis Šmits",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -186691,32 +184049,7 @@
           "atturas": 4,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -187433,32 +184766,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -188183,26 +185491,7 @@
           "atturas": 2,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -188921,26 +186210,7 @@
           "atturas": 2,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -189658,32 +186928,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-25",
-            "name": "Didzis Šmits",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -190407,26 +187652,7 @@
           "atturas": 5,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -191138,32 +188364,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-25",
-            "name": "Didzis Šmits",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -191875,32 +189076,7 @@
           "atturas": 3,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-25",
-            "name": "Didzis Šmits",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -192606,26 +189782,7 @@
           "atturas": 2,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -193318,26 +190475,7 @@
           "atturas": 5,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -194037,26 +191175,7 @@
           "atturas": 2,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-25",
-            "name": "Didzis Šmits",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -194749,20 +191868,7 @@
           "atturas": 5,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -195461,26 +192567,7 @@
           "atturas": 5,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -196179,20 +193266,7 @@
           "atturas": 5,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -196884,26 +193958,7 @@
           "atturas": 5,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -197608,20 +194663,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -201035,14 +198077,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -201742,26 +198777,7 @@
           "atturas": 2,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -202468,20 +199484,7 @@
           "atturas": 2,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-25",
-            "name": "Didzis Šmits",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -203181,26 +200184,7 @@
           "atturas": 3,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-25",
-            "name": "Didzis Šmits",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -204525,14 +201509,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -209239,20 +206216,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-25",
-            "name": "Didzis Šmits",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -211360,26 +208324,7 @@
           "atturas": 2,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -212089,44 +209034,7 @@
           "atturas": 0,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-25",
-            "name": "Didzis Šmits",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -212873,32 +209781,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -213682,20 +210565,7 @@
           "atturas": 1,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -214987,14 +211857,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -215664,14 +212527,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -216345,20 +213201,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -217039,14 +213882,7 @@
           "atturas": 1,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -217789,26 +214625,7 @@
           "atturas": 3,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -218574,20 +215391,7 @@
           "atturas": 1,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -219995,44 +216799,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-25",
-            "name": "Didzis Šmits",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -220706,32 +217473,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -221423,32 +218165,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -223369,38 +220086,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-96",
-            "name": "Dmitrijs Kovaļenko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -224051,20 +220737,7 @@
           "atturas": 0,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -225341,56 +222014,7 @@
           "atturas": 3,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -235152,14 +231776,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -235827,14 +232444,7 @@
           "atturas": 0,
           "nebalso": 5
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -236552,26 +233162,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -237215,14 +233806,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -237872,14 +234456,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -238535,14 +235112,7 @@
           "atturas": 0,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -239198,14 +235768,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -239867,14 +236430,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -240536,14 +237092,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -241205,14 +237754,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -241874,14 +238416,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -242556,26 +239091,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -245333,20 +241849,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -246058,26 +242561,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -246796,20 +243280,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -247471,32 +243942,7 @@
           "atturas": 0,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -248170,26 +244616,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-130",
-            "name": "Jeļena Kļaviņa",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -252173,20 +248600,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -252854,32 +249268,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -253559,32 +249948,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-96",
-            "name": "Dmitrijs Kovaļenko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -254264,32 +250628,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-96",
-            "name": "Dmitrijs Kovaļenko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -255607,32 +251946,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-92",
-            "name": "Iļja Ivanovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-107",
-            "name": "Amils Saļimovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-96",
-            "name": "Dmitrijs Kovaļenko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-93",
-            "name": "Igors Judins",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -257034,32 +253348,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -259900,50 +256189,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-117",
-            "name": "Jekaterina Drelinga",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-91",
-            "name": "Nataļja Marčenko-Jodko",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-99",
-            "name": "Viktorija Pleškāne",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-130",
-            "name": "Jeļena Kļaviņa",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -260747,26 +256993,7 @@
           "atturas": 1,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -261503,26 +257730,7 @@
           "atturas": 2,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -262247,26 +258455,7 @@
           "atturas": 3,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -262940,32 +259129,7 @@
           "atturas": 0,
           "nebalso": 5
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -263663,38 +259827,7 @@
           "atturas": 0,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -264392,32 +260525,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-50",
-            "name": "Skaidrīte Ābrama",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-83",
-            "name": "Oļegs Burovs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-98",
-            "name": "Aleksandrs Kiršteins",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -265109,20 +261217,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -265808,20 +261903,7 @@
           "atturas": 0,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -267897,26 +263979,7 @@
           "atturas": 0,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-90",
-            "name": "Svetlana Čulkova",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-106",
-            "name": "Vilis Sruoģis",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-94",
-            "name": "Jefimijs Klementjevs",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [
@@ -273520,20 +269583,7 @@
           "atturas": 0,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-100",
-            "name": "Andrejs Ceļapīters",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-65",
-            "name": "Igors Rajevs",
-            "decision": "PAR",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       }
     ],
     "mpVotes": [

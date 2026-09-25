@@ -348,9 +348,9 @@ def run_ingestion():
                     counts_list.sort(key=lambda x: x[1], reverse=True)
                     dominant_line = counts_list[0][0] if counts_list[0][1] > 0 else 'NEBALSO'
 
-                    # Find MP deviations
+                    # Find MP deviations (excluding unaffiliated PIEFR/IND which have no faction whip)
                     deviating_mps = []
-                    if dominant_line in ['PAR', 'PRET', 'ATTURAS']:
+                    if dominant_line in ['PAR', 'PRET', 'ATTURAS'] and fid.lower() not in ['piefr', 'ind']:
                         for rec in mp_records:
                             if rec['factionId'] == fid:
                                 if rec['decision'] in ['PAR', 'PRET', 'ATTURAS'] and rec['decision'] != dominant_line:

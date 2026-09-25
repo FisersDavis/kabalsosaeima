@@ -5,7 +5,6 @@ import {
   Copy,
   ChevronDown,
   ChevronUp,
-  FileText,
   RefreshCw,
   Lock,
   ExternalLink,
@@ -44,10 +43,21 @@ function formatFactionTally(votes: { par: number; pret: number; atturas: number;
   return parts.length > 0 ? parts.join(' · ') : '0 balsoja';
 }
 
+function getResponsibleCommittee(summary?: string): string | null {
+  if (!summary) return null;
+  const match = summary.match(/Atbildīgā komisija:\s*([^.]+)/i);
+  if (match && match[1]) {
+    const text = match[1].trim();
+    if (text.toLowerCase().includes('komisija')) {
+      return text;
+    }
+  }
+  return null;
+}
+
 export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
   const [copied, setCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [showAnnotation, setShowAnnotation] = useState(false);
 
   const isApproved = vote.result === 'PIENEMTS';
   const isQuorumBreak = vote.result === 'NAV_KVORUMA';
@@ -66,11 +76,14 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
     return totalB - totalA;
   });
 
-  // Collect all MPs who broke faction discipline
-  const allDeviations = sortedFactions.flatMap((f) =>
-    (f.deviatingMps || []).map((dev) => ({ ...dev, factionShort: f.shortName, factionColor: f.color }))
-  );
+  // Collect all MPs who broke faction discipline (excluding unaffiliated PIEFR/IND which have no faction whip)
+  const allDeviations = sortedFactions
+    .filter((f) => f.shortName.toUpperCase() !== 'PIEFR' && f.factionId.toLowerCase() !== 'piefr' && f.shortName.toUpperCase() !== 'IND' && f.factionId.toLowerCase() !== 'ind')
+    .flatMap((f) =>
+      (f.deviatingMps || []).map((dev) => ({ ...dev, factionShort: f.shortName, factionColor: f.color }))
+    );
 
+  const committee = getResponsibleCommittee(vote.summary);
   const cleanedTitle = cleanVoteTitle(vote.simplifiedTitle || vote.officialTitle);
   const cleanBillNr = vote.billNumber ? vote.billNumber.replace(/^(Nr\.\s*|#)/, '') : '';
 
@@ -137,7 +150,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </div>
       </div>
 
-      {/* Row 3: Subdued Supporting Context (Topic · Date · Stage · Bill Nr) sits quietly underneath */}
+      {/* Row 3: Subdued Supporting Context (Topic · Date · Stage · Bill Nr · Commission) */}
       <div className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[11px] text-slate-400 font-normal">
         <span className="text-slate-600 font-medium">{vote.category.label}</span>
         <span>·</span>
@@ -154,6 +167,13 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
           <>
             <span>·</span>
             <span className="font-mono text-slate-400">Nr. {cleanBillNr}</span>
+          </>
+        )}
+
+        {committee && (
+          <>
+            <span>·</span>
+            <span className="text-slate-500">{committee}</span>
           </>
         )}
 
@@ -182,24 +202,19 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
           className="inline-flex items-center gap-1.5 font-medium text-slate-600 hover:text-slate-900 transition text-xs cursor-pointer"
         >
           {isExpanded ? (
-            <>
-              <ChevronUp className="h-3.5 w-3.5 text-slate-400" />
-              <span>Aizvērt balsojuma detaļas</span>
-            </>
+            <ChevronUp className="h-3.5 w-3.5 text-slate-400" />
           ) : (
-            <>
-              <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
-              <span>Deputātu balsojumi un sēžu zāle</span>
-            </>
+            <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
           )}
+          <span>Deputātu balsojumi un sēžu zāle</span>
         </button>
 
-        {!isExpanded && allDeviations.length > 0 && (
+        {allDeviations.length > 0 && (
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
-              setIsExpanded(true);
+              setIsExpanded(!isExpanded);
             }}
             title="Skatīt deputātus, kuri balsoja pretēji frakcijas vairākumam"
             className="inline-flex items-center gap-1 rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600 hover:bg-slate-100 hover:border-slate-300 hover:text-slate-900 transition cursor-pointer"
@@ -211,10 +226,10 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
 
       {/* LEVEL 2: Progressive Disclosure (Accordion Drawer) */}
       {isExpanded && (
-        <div className="mt-3 pt-3 border-t border-slate-200/90 space-y-3.5 text-xs">
-          {/* TIER 1: The 8 Faction Ledger Bars (Clean 2-Column Table, No Legend) */}
+        <div className="mt-3 pt-3 border-t border-slate-200/90 space-y-2.5 text-xs">
+          {/* TIER 1: The 8 Faction Ledger Bars (Clean 2-Column Table, Tight 8px Row Gap, No Legend) */}
           {!vote.isSecret && sortedFactions.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-2">
               {sortedFactions.map((f) => {
                 const fTotal = f.votes.par + f.votes.pret + f.votes.atturas + f.votes.nebalso;
                 const fParPct = fTotal ? (f.votes.par / fTotal) * 100 : 0;
@@ -246,13 +261,13 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
             </div>
           )}
 
-          {/* TIER 2: Novirzes no frakcijas (Pure Text, No Bulky Tags) */}
+          {/* TIER 2: Novirzes no frakcijas (Pure Text, No Bulky Tags, No Border Tick) */}
           {allDeviations.length > 0 && (
-            <div className="border-t border-slate-100 pt-2.5 text-xs text-slate-600 leading-relaxed">
-              <div className="font-semibold text-slate-800 mb-1">
-                ✦ Novirzes no frakcijas ({allDeviations.length}):
-              </div>
-              <div className="text-[11px] text-slate-600 pl-2.5 border-l-2 border-slate-200">
+            <div className="border-t border-slate-100 pt-2 text-xs text-slate-600 leading-relaxed">
+              <span className="font-semibold text-slate-800 mr-1.5">
+                ✦ {allDeviations.length === 1 ? 'Novirze no frakcijas' : `Novirzes no frakcijas (${allDeviations.length})`}:
+              </span>
+              <span>
                 {allDeviations.map((dev, idx) => {
                   const verb =
                     dev.decision === 'PAR'
@@ -272,45 +287,22 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
                       : 'text-slate-500';
 
                   return (
-                    <span key={dev.mpId} className="inline-block mr-3">
-                      <strong className="font-semibold text-slate-900">{dev.name}</strong>{' '}
-                      <span className="text-slate-400">({dev.factionShort})</span>{' '}
-                      <span className={`font-medium ${verbColor}`}>{verb}</span>
-                      {idx < allDeviations.length - 1 && (
-                        <span className="text-slate-300 ml-3">·</span>
-                      )}
-                    </span>
+                    <React.Fragment key={dev.mpId}>
+                      {idx > 0 && <span className="text-slate-300 mx-2">·</span>}
+                      <span className="inline">
+                        <strong className="font-semibold text-slate-900">{dev.name}</strong>{' '}
+                        <span className="text-slate-400">({dev.factionShort})</span>{' '}
+                        <span className={`font-medium ${verbColor}`}>{verb}</span>
+                      </span>
+                    </React.Fragment>
                   );
                 })}
-              </div>
-            </div>
-          )}
-
-          {/* Saeimas Juridiskā anotācija (Collapsible toggle if available) */}
-          {vote.summary && (
-            <div className="border-t border-slate-100 pt-2">
-              <button
-                type="button"
-                onClick={() => setShowAnnotation(!showAnnotation)}
-                className="inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-500 hover:text-slate-800 transition cursor-pointer"
-              >
-                <FileText className="h-3.5 w-3.5 text-slate-400" />
-                <span>Juridiskā anotācija un atbildīgā komisija</span>
-                <ChevronDown className={`h-3 w-3 transition-transform ${showAnnotation ? 'rotate-180' : ''}`} />
-              </button>
-              {showAnnotation && (
-                <div className="mt-1.5 text-[11px] leading-relaxed text-slate-600 pl-3 border-l-2 border-slate-200">
-                  <p>{vote.summary}</p>
-                  <p className="mt-1 font-mono text-[10px] text-slate-400">
-                    Oficiālais protokols: {vote.officialTitle}
-                  </p>
-                </div>
-              )}
+              </span>
             </div>
           )}
 
           {/* TIER 3: Interactive Exploration & Official Proof */}
-          <div className="border-t border-slate-100 pt-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="border-t border-slate-100 pt-2 flex flex-wrap items-center justify-between gap-3 text-xs">
             <button
               type="button"
               onClick={() => onSelect(vote)}
@@ -321,6 +313,15 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
             </button>
 
             <div className="flex items-center gap-3 text-slate-500 text-[11px]">
+              <button
+                type="button"
+                onClick={() => setIsExpanded(false)}
+                className="inline-flex items-center gap-1 text-slate-500 hover:text-slate-800 transition cursor-pointer"
+              >
+                <ChevronUp className="h-3.5 w-3.5 text-slate-400" />
+                <span>Aizvērt</span>
+              </button>
+              <span className="text-slate-300">·</span>
               <button
                 type="button"
                 onClick={handleCopy}
