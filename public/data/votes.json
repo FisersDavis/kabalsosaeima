@@ -4579,7 +4579,7 @@
         "decision": "NEBALSO"
       },
       {
-        "mpId": "mp-100",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -5221,7 +5221,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-100",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -5905,7 +5905,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-100",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -6565,7 +6565,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-100",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -9850,7 +9850,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-100",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -10553,7 +10553,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-100",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -11255,7 +11255,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-100",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -11970,7 +11970,7 @@
         "decision": "NEBALSO"
       },
       {
-        "mpId": "mp-100",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -15422,7 +15422,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-100",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -16034,7 +16034,7 @@
         "decision": "PRET"
       },
       {
-        "mpId": "mp-100",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -16286,7 +16286,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-104",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -16406,7 +16406,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-107",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -16472,7 +16472,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-108",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -16508,7 +16508,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-109",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -16526,7 +16526,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-110",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -16616,7 +16616,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-112",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -16658,7 +16658,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-112",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -16682,7 +16682,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-113",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "as",
         "decision": "PAR"
@@ -16712,7 +16712,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-138",
         "name": "Roberts Ķipurs",
         "factionId": "na",
         "decision": "PAR"
@@ -16904,7 +16904,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -17024,7 +17024,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -17090,7 +17090,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -17132,7 +17132,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -17150,7 +17150,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -17246,7 +17246,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -17288,7 +17288,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -17312,7 +17312,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "as",
         "decision": "PAR"
@@ -17342,7 +17342,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-138",
         "name": "Roberts Ķipurs",
         "factionId": "na",
         "decision": "PAR"
@@ -17704,7 +17704,7 @@
         "decision": "PRET"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "ATTURAS"
@@ -18034,7 +18034,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PRET"
@@ -18436,7 +18436,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -18766,7 +18766,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -19438,7 +19438,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -20104,7 +20104,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -20740,7 +20740,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -21031,7 +21031,7 @@
             "factionLine": "PAR"
           },
           {
-            "mpId": "mp-116",
+            "mpId": "mp-131",
             "name": "Arnolds Jātnieks",
             "decision": "PRET",
             "factionLine": "PAR"
@@ -21099,7 +21099,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-115",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -21177,7 +21177,7 @@
         "decision": "PRET"
       },
       {
-        "mpId": "mp-116",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -21201,7 +21201,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-116",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -21315,7 +21315,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-116",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "as",
         "decision": "PAR"
@@ -21345,7 +21345,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-116",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -21363,7 +21363,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-116",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -21507,7 +21507,7 @@
         "decision": "PRET"
       },
       {
-        "mpId": "mp-116",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -21525,7 +21525,7 @@
         "decision": "ATTURAS"
       },
       {
-        "mpId": "mp-116",
+        "mpId": "mp-138",
         "name": "Roberts Ķipurs",
         "factionId": "ind",
         "decision": "PAR"
@@ -21591,7 +21591,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-116",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PRET"
@@ -21831,7 +21831,7 @@
     ],
     "mpVotes": [
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -21939,7 +21939,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -21987,7 +21987,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -22029,7 +22029,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -22047,7 +22047,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -22131,7 +22131,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -22173,7 +22173,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -22203,7 +22203,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "as",
         "decision": "PAR"
@@ -22408,7 +22408,7 @@
         "decision": "NEBALSO"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -22552,7 +22552,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -22606,7 +22606,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -22660,7 +22660,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -22678,7 +22678,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -22774,7 +22774,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -22822,7 +22822,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -22852,7 +22852,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "as",
         "decision": "PAR"
@@ -22882,7 +22882,7 @@
         "decision": "NEBALSO"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-138",
         "name": "Roberts Ķipurs",
         "factionId": "ind",
         "decision": "PAR"
@@ -23075,7 +23075,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -23207,7 +23207,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "NEBALSO"
@@ -23261,7 +23261,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -23309,7 +23309,7 @@
         "decision": "NEBALSO"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -23327,7 +23327,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -23435,7 +23435,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "ind",
         "decision": "PAR"
@@ -23489,7 +23489,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -23507,7 +23507,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "ind",
         "decision": "PAR"
@@ -23772,7 +23772,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -23910,7 +23910,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -23964,7 +23964,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -24012,7 +24012,7 @@
         "decision": "NEBALSO"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -24030,7 +24030,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -24138,7 +24138,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "ind",
         "decision": "PAR"
@@ -24192,7 +24192,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -24216,7 +24216,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "ind",
         "decision": "PAR"
@@ -24438,7 +24438,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "ind",
         "decision": "PAR"
@@ -24582,7 +24582,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "NEBALSO"
@@ -24648,7 +24648,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "ind",
         "decision": "PAR"
@@ -24702,7 +24702,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "ind",
         "decision": "PAR"
@@ -24726,7 +24726,7 @@
         "decision": "NEBALSO"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "ind",
         "decision": "PAR"
@@ -24888,7 +24888,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -25128,7 +25128,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "ind",
         "decision": "PAR"
@@ -25278,7 +25278,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "NEBALSO"
@@ -25344,7 +25344,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "ind",
         "decision": "PAR"
@@ -25398,7 +25398,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "ind",
         "decision": "PAR"
@@ -25422,7 +25422,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "ind",
         "decision": "PAR"
@@ -25584,7 +25584,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -25944,7 +25944,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -26214,7 +26214,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -26593,7 +26593,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -26857,7 +26857,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -27248,7 +27248,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -27536,7 +27536,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -27958,7 +27958,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -28252,7 +28252,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -28948,7 +28948,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -29320,7 +29320,7 @@
         "decision": "NEBALSO"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -29632,7 +29632,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -30340,7 +30340,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -31054,7 +31054,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -31342,7 +31342,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -31462,7 +31462,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -31528,7 +31528,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -31582,13 +31582,13 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -31654,7 +31654,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -31714,7 +31714,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -31738,7 +31738,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "as",
         "decision": "PAR"
@@ -31768,7 +31768,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-138",
         "name": "Roberts Ķipurs",
         "factionId": "na",
         "decision": "PAR"
@@ -31990,7 +31990,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -32116,7 +32116,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -32182,7 +32182,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -32236,13 +32236,13 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -32314,7 +32314,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -32374,7 +32374,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -32398,7 +32398,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "as",
         "decision": "PAR"
@@ -32434,7 +32434,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-138",
         "name": "Roberts Ķipurs",
         "factionId": "na",
         "decision": "PAR"
@@ -32630,7 +32630,7 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-117",
+            "mpId": "mp-138",
             "name": "Roberts Ķipurs",
             "decision": "PAR",
             "factionLine": "PRET"
@@ -32682,7 +32682,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -32694,7 +32694,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -32760,7 +32760,7 @@
         "decision": "PRET"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -32808,7 +32808,7 @@
         "decision": "PRET"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "as",
         "decision": "PAR"
@@ -32838,7 +32838,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-138",
         "name": "Roberts Ķipurs",
         "factionId": "ind",
         "decision": "PAR"
@@ -32886,7 +32886,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -32976,7 +32976,7 @@
         "decision": "PRET"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -33204,7 +33204,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -33324,7 +33324,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -33390,7 +33390,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -33444,7 +33444,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -33456,7 +33456,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -33528,7 +33528,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -33576,7 +33576,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -33600,7 +33600,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "as",
         "decision": "PAR"
@@ -33636,7 +33636,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-138",
         "name": "Roberts Ķipurs",
         "factionId": "ind",
         "decision": "PAR"
@@ -33843,7 +33843,7 @@
             "factionLine": "PRET"
           },
           {
-            "mpId": "mp-117",
+            "mpId": "mp-138",
             "name": "Roberts Ķipurs",
             "decision": "PAR",
             "factionLine": "PRET"
@@ -33901,7 +33901,7 @@
         "decision": "NEBALSO"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "NEBALSO"
@@ -33943,7 +33943,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -33997,7 +33997,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -34051,7 +34051,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -34069,7 +34069,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -34147,7 +34147,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -34213,7 +34213,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "as",
         "decision": "PAR"
@@ -34237,7 +34237,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-138",
         "name": "Roberts Ķipurs",
         "factionId": "ind",
         "decision": "PAR"
@@ -34525,7 +34525,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -34639,7 +34639,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -34705,7 +34705,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -34765,7 +34765,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -34783,7 +34783,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -34885,7 +34885,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -34945,7 +34945,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -34969,7 +34969,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "as",
         "decision": "PAR"
@@ -34993,7 +34993,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-138",
         "name": "Roberts Ķipurs",
         "factionId": "na",
         "decision": "PAR"
@@ -35204,7 +35204,7 @@
         "decision": "NEBALSO"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "NEBALSO"
@@ -35222,7 +35222,7 @@
         "decision": "NEBALSO"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "NEBALSO"
@@ -35258,7 +35258,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -35426,7 +35426,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -35474,7 +35474,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -35582,7 +35582,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -35636,7 +35636,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -35660,7 +35660,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "as",
         "decision": "PAR"
@@ -35684,7 +35684,7 @@
         "decision": "ATTURAS"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-138",
         "name": "Roberts Ķipurs",
         "factionId": "na",
         "decision": "PAR"
@@ -35902,7 +35902,7 @@
         "decision": "NEBALSO"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "NEBALSO"
@@ -35968,7 +35968,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -36022,7 +36022,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -36076,7 +36076,7 @@
         "decision": "PRET"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -36094,7 +36094,7 @@
         "decision": "PRET"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -36190,7 +36190,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -36262,7 +36262,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-137",
         "name": "Inga Priede",
         "factionId": "as",
         "decision": "PAR"
@@ -36286,7 +36286,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-138",
         "name": "Roberts Ķipurs",
         "factionId": "na",
         "decision": "PAR"
@@ -36322,7 +36322,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -36538,7 +36538,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-131",
         "name": "Arnolds Jātnieks",
         "factionId": "na",
         "decision": "PAR"
@@ -36640,7 +36640,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-132",
         "name": "Andris Sprūds",
         "factionId": "pro",
         "decision": "PAR"
@@ -36706,7 +36706,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-133",
         "name": "Dāvis Melnalksnis",
         "factionId": "as",
         "decision": "PAR"
@@ -36754,7 +36754,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-134",
         "name": "Raivis Kalējs",
         "factionId": "as",
         "decision": "PAR"
@@ -36766,7 +36766,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-135",
         "name": "Jānis Eglīts",
         "factionId": "na",
         "decision": "PAR"
@@ -36850,7 +36850,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-136",
         "name": "Normunds Dzintars",
         "factionId": "na",
         "decision": "PAR"
@@ -36886,7 +36886,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-130",
         "name": "Jeļena Kļaviņa",
         "factionId": "ind",
         "decision": "PAR"
@@ -36934,7 +36934,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-117",
+        "mpId": "mp-138",
         "name": "Roberts Ķipurs",
         "factionId": "na",
         "decision": "PAR"
@@ -37240,7 +37240,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-121",
+        "mpId": "mp-139",
         "name": "Ģirts Valdis Kristovskis",
         "factionId": "jv",
         "decision": "PAR"
@@ -37901,7 +37901,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-125",
+        "mpId": "mp-139",
         "name": "Ģirts Valdis Kristovskis",
         "factionId": "jv",
         "decision": "PAR"
@@ -38561,7 +38561,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-125",
+        "mpId": "mp-139",
         "name": "Ģirts Valdis Kristovskis",
         "factionId": "jv",
         "decision": "PAR"
@@ -38579,7 +38579,7 @@
         "decision": "NEBALSO"
       },
       {
-        "mpId": "mp-126",
+        "mpId": "mp-140",
         "name": "Viktors Pučka",
         "factionId": "st",
         "decision": "PAR"
@@ -39215,7 +39215,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-126",
+        "mpId": "mp-139",
         "name": "Ģirts Valdis Kristovskis",
         "factionId": "jv",
         "decision": "PAR"
@@ -39233,7 +39233,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-126",
+        "mpId": "mp-140",
         "name": "Viktors Pučka",
         "factionId": "st",
         "decision": "PAR"
@@ -39857,7 +39857,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-126",
+        "mpId": "mp-139",
         "name": "Ģirts Valdis Kristovskis",
         "factionId": "jv",
         "decision": "PAR"
@@ -39875,7 +39875,7 @@
         "decision": "PAR"
       },
       {
-        "mpId": "mp-126",
+        "mpId": "mp-140",
         "name": "Viktors Pučka",
         "factionId": "st",
         "decision": "PRET"
