@@ -88,106 +88,111 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
 
       {/* LEVEL 1: Immediately Visible (Scanning) */}
 
-      {/* 1. Hierarchy: Topic · Date · Procedure/Stage                  Result Pill */}
-      <div className="flex items-center justify-between gap-2 pb-1.5 text-xs text-slate-500">
-        <div className="flex flex-wrap items-center gap-1.5 font-medium">
-          <span className="text-slate-700">{vote.category.label}</span>
-          <span>·</span>
-          <span className="font-mono text-slate-600">{vote.sittingDate}</span>
+      {/* Top Monochrome Metadata: Topic · Date · Stage · Bill Nr */}
+      <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 font-medium pb-1">
+        <span className="text-slate-700">{vote.category.label}</span>
+        <span>·</span>
+        <span className="font-mono text-slate-600">{vote.sittingDate}</span>
 
-          {vote.readingStage ? (
-            <>
-              <span>·</span>
-              <span className="text-slate-600">{vote.readingStage}</span>
-            </>
-          ) : vote.voteType === 'priekslikums' ? (
-            <>
-              <span>·</span>
-              <span className="text-slate-600">Priekšlikums</span>
-            </>
-          ) : vote.voteType === 'procedura' ? (
-            <>
-              <span>·</span>
-              <span className="text-slate-600">Procedūra</span>
-            </>
-          ) : null}
+        {vote.readingStage ? (
+          <>
+            <span>·</span>
+            <span className="text-slate-600">{vote.readingStage}</span>
+          </>
+        ) : vote.voteType === 'priekslikums' ? (
+          <>
+            <span>·</span>
+            <span className="text-slate-600">Priekšlikums</span>
+          </>
+        ) : vote.voteType === 'procedura' ? (
+          <>
+            <span>·</span>
+            <span className="text-slate-600">Procedūra</span>
+          </>
+        ) : null}
 
-          {vote.isUrgent && (
-            <>
-              <span>·</span>
-              <span className="font-semibold text-amber-700">Steidzams</span>
-            </>
-          )}
+        {cleanBillNr && (
+          <>
+            <span>·</span>
+            <span className="font-mono text-slate-400 font-normal">Nr. {cleanBillNr}</span>
+          </>
+        )}
 
-          {vote.isSecret && (
-            <>
-              <span>·</span>
-              <span className="inline-flex items-center gap-0.5 text-slate-600">
-                <Lock className="h-3 w-3" /> Aizklāts
-              </span>
-            </>
-          )}
-        </div>
+        {vote.isUrgent && (
+          <>
+            <span>·</span>
+            <span className="font-semibold text-amber-700">Steidzams</span>
+          </>
+        )}
 
-        {/* Outcome Badge with firm definition and Title Case */}
-        {isQuorumBreak ? (
-          <span className="rounded-md border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-900 shadow-2xs">
-            Nav kvoruma
-          </span>
-        ) : (
-          <span
-            className={`rounded-md border px-2.5 py-0.5 text-xs font-semibold shadow-2xs ${
-              isApproved
-                ? 'border-emerald-300 bg-emerald-50 text-emerald-800'
-                : 'border-rose-300 bg-rose-50 text-rose-800'
-            }`}
-          >
-            {isApproved ? 'Pieņemts' : 'Noraidīts'}
-          </span>
+        {vote.isSecret && (
+          <>
+            <span>·</span>
+            <span className="inline-flex items-center gap-0.5 text-slate-600">
+              <Lock className="h-3 w-3" /> Aizklāts
+            </span>
+          </>
         )}
       </div>
 
-      {/* 2. Core Subject Title (Stripped of "Par likumprojekta...") */}
-      <div className="pt-0.5">
+      {/* 1. Title + 2. Result Docked Together in the Same Visual Fixation */}
+      <div className="flex items-start justify-between gap-3 pt-0.5">
         <h3
           onClick={() => setIsExpanded(!isExpanded)}
-          className="text-base font-bold leading-snug text-slate-900 hover:text-emerald-800 cursor-pointer transition"
+          className="text-base sm:text-lg font-bold leading-snug text-slate-900 hover:text-emerald-800 cursor-pointer transition flex-1"
         >
           {cleanedTitle}
-          {cleanBillNr && (
-            <span className="ml-2 font-mono text-xs font-normal text-slate-400">
-              #{cleanBillNr}
+        </h3>
+
+        {/* 2. Verdict Badge Docked Directly to Title */}
+        <div className="flex-shrink-0 pt-0.5">
+          {isQuorumBreak ? (
+            <span className="inline-flex items-center rounded-md border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-bold text-amber-900 shadow-2xs whitespace-nowrap">
+              Nav kvoruma
+            </span>
+          ) : (
+            <span
+              className={`inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-bold shadow-2xs whitespace-nowrap ${
+                isApproved
+                  ? 'border-emerald-300 bg-emerald-50 text-emerald-800'
+                  : 'border-rose-300 bg-rose-50 text-rose-800'
+              }`}
+            >
+              {isApproved ? 'Pieņemts' : 'Noraidīts'}
             </span>
           )}
-        </h3>
+        </div>
       </div>
 
-      {/* 3. The Main Ratio Bar (Segmented 100-Seat Bar) */}
-      <div className="mt-2.5 space-y-1.5">
-        <div className="flex justify-between font-mono text-xs">
+      {/* 3. The Main Ratio Bar (Quiet Context, Slim 5px Track Capped in Width) */}
+      <div className="mt-2.5 space-y-1 max-w-md">
+        <div className="flex items-center gap-2.5 font-mono text-xs text-slate-600">
           <span>
             <strong className="tabular-nums font-bold text-emerald-700">{vote.counts.par}</strong>{' '}
-            <span className="text-slate-600 font-sans">Par</span>
+            <span className="font-sans text-[11px] text-slate-500">Par</span>
           </span>
+          <span className="text-slate-300">·</span>
           <span>
             <strong className="tabular-nums font-bold text-rose-700">{vote.counts.pret}</strong>{' '}
-            <span className="text-slate-600 font-sans">Pret</span>
+            <span className="font-sans text-[11px] text-slate-500">Pret</span>
           </span>
+          <span className="text-slate-300">·</span>
           <span>
             <strong className="tabular-nums font-bold text-amber-700">{vote.counts.atturas}</strong>{' '}
-            <span className="text-slate-600 font-sans">Atturas</span>
+            <span className="font-sans text-[11px] text-slate-500">Atturas</span>
           </span>
+          <span className="text-slate-300">·</span>
           <span>
-            <strong className="tabular-nums font-bold text-slate-600">{vote.counts.nebalso}</strong>{' '}
-            <span className="text-slate-500 font-sans">Nebalsoja</span>
+            <strong className="tabular-nums font-bold text-slate-500">{vote.counts.nebalso}</strong>{' '}
+            <span className="font-sans text-[11px] text-slate-400">Nebalsoja</span>
           </span>
         </div>
 
-        {/* Stacked Proportional Bar */}
-        <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-slate-100 shadow-2xs">
-          <div style={{ width: `${parPct}%` }} className="bg-emerald-700 transition-all duration-300" />
-          <div style={{ width: `${pretPct}%` }} className="bg-rose-700 transition-all duration-300" />
-          <div style={{ width: `${atturasPct}%` }} className="bg-amber-600 transition-all duration-300" />
+        {/* Slim 5px bar */}
+        <div className="flex h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+          <div style={{ width: `${parPct}%` }} className="bg-emerald-600 transition-all duration-300" />
+          <div style={{ width: `${pretPct}%` }} className="bg-rose-600 transition-all duration-300" />
+          <div style={{ width: `${atturasPct}%` }} className="bg-amber-500 transition-all duration-300" />
           <div style={{ width: `${nebalsoPct}%` }} className="bg-slate-300 transition-all duration-300" />
         </div>
       </div>
