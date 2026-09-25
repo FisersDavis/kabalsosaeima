@@ -88,55 +88,8 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
 
       {/* LEVEL 1: Immediately Visible (Scanning) */}
 
-      {/* Top Monochrome Metadata: Topic · Date · Stage · Bill Nr */}
-      <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-500 font-medium pb-1">
-        <span className="text-slate-700">{vote.category.label}</span>
-        <span>·</span>
-        <span className="font-mono text-slate-600">{vote.sittingDate}</span>
-
-        {vote.readingStage ? (
-          <>
-            <span>·</span>
-            <span className="text-slate-600">{vote.readingStage}</span>
-          </>
-        ) : vote.voteType === 'priekslikums' ? (
-          <>
-            <span>·</span>
-            <span className="text-slate-600">Priekšlikums</span>
-          </>
-        ) : vote.voteType === 'procedura' ? (
-          <>
-            <span>·</span>
-            <span className="text-slate-600">Procedūra</span>
-          </>
-        ) : null}
-
-        {cleanBillNr && (
-          <>
-            <span>·</span>
-            <span className="font-mono text-slate-400 font-normal">Nr. {cleanBillNr}</span>
-          </>
-        )}
-
-        {vote.isUrgent && (
-          <>
-            <span>·</span>
-            <span className="font-semibold text-amber-700">Steidzams</span>
-          </>
-        )}
-
-        {vote.isSecret && (
-          <>
-            <span>·</span>
-            <span className="inline-flex items-center gap-0.5 text-slate-600">
-              <Lock className="h-3 w-3" /> Aizklāts
-            </span>
-          </>
-        )}
-      </div>
-
-      {/* 1. Title + 2. Result Docked Together in the Same Visual Fixation */}
-      <div className="flex items-start justify-between gap-3 pt-0.5">
+      {/* Row 1: Title (1) + Result (2) in the exact same visual fixation */}
+      <div className="flex items-start justify-between gap-3">
         <h3
           onClick={() => setIsExpanded(!isExpanded)}
           className="text-base sm:text-lg font-bold leading-snug text-slate-900 hover:text-emerald-800 cursor-pointer transition flex-1"
@@ -164,8 +117,8 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </div>
       </div>
 
-      {/* 3. Pure Text-First Numeric Record (Zero Chromatic Bar on Default View) */}
-      <div className="mt-2.5 flex items-center justify-between text-xs font-mono">
+      {/* Row 2: Vote Split (3) + Rebel count */}
+      <div className="mt-2 flex items-center justify-between text-xs font-mono">
         <div className="flex items-center gap-2 sm:gap-2.5 text-slate-600">
           <span>
             <strong className="tabular-nums font-bold text-slate-900">{vote.counts.par}</strong>{' '}
@@ -196,12 +149,59 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         )}
       </div>
 
-      {/* 4. Single Expand Action Trigger */}
-      <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
+      {/* Row 3: Subdued Supporting Context (Topic · Date · Stage · Bill Nr) sits quietly underneath */}
+      <div className="mt-2 flex flex-wrap items-center gap-1.5 text-[11px] text-slate-400 font-normal">
+        <span className="text-slate-600 font-medium">{vote.category.label}</span>
+        <span>·</span>
+        <span className="font-mono text-slate-500">{vote.sittingDate}</span>
+
+        {vote.readingStage ? (
+          <>
+            <span>·</span>
+            <span className="text-slate-500">{vote.readingStage}</span>
+          </>
+        ) : vote.voteType === 'priekslikums' ? (
+          <>
+            <span>·</span>
+            <span className="text-slate-500">Priekšlikums</span>
+          </>
+        ) : vote.voteType === 'procedura' ? (
+          <>
+            <span>·</span>
+            <span className="text-slate-500">Procedūra</span>
+          </>
+        ) : null}
+
+        {cleanBillNr && (
+          <>
+            <span>·</span>
+            <span className="font-mono text-slate-400">Nr. {cleanBillNr}</span>
+          </>
+        )}
+
+        {vote.isUrgent && (
+          <>
+            <span>·</span>
+            <span className="font-semibold text-amber-700">Steidzams</span>
+          </>
+        )}
+
+        {vote.isSecret && (
+          <>
+            <span>·</span>
+            <span className="inline-flex items-center gap-0.5 text-slate-500">
+              <Lock className="h-3 w-3" /> Aizklāts
+            </span>
+          </>
+        )}
+      </div>
+
+      {/* Row 4: Single Expand Action Trigger */}
+      <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between">
         <button
           type="button"
           onClick={() => setIsExpanded(!isExpanded)}
-          className="inline-flex items-center gap-1.5 font-medium text-slate-700 hover:text-slate-900 transition text-xs cursor-pointer"
+          className="inline-flex items-center gap-1.5 font-medium text-slate-600 hover:text-slate-900 transition text-xs cursor-pointer"
         >
           {isExpanded ? (
             <>
