@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Vote } from '../types';
+import type { Vote, FactionBreakdown } from '../types';
 import { Check, Copy, ChevronRight, FileText, AlertTriangle, RefreshCw, Lock, ExternalLink, MessageSquare, ChevronDown, UserX } from 'lucide-react';
 
 interface VoteCardProps {
@@ -28,11 +28,15 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const coalition = vote.coalitionSplit?.coalition;
-  const opposition = vote.coalitionSplit?.opposition;
+  // Permanently sort factions by seat size (largest to smallest) for visual anchoring
+  const sortedFactions: FactionBreakdown[] = [...(vote.factionBreakdown || [])].sort((a, b) => {
+    const totalA = a.votes.par + a.votes.pret + a.votes.atturas + a.votes.nebalso;
+    const totalB = b.votes.par + b.votes.pret + b.votes.atturas + b.votes.nebalso;
+    return totalB - totalA;
+  });
 
-  // Collect all MPs who broke faction discipline across all factions
-  const allDeviations = (vote.factionBreakdown || []).flatMap((f) =>
+  // Collect all MPs who broke faction discipline
+  const allDeviations = sortedFactions.flatMap((f) =>
     (f.deviatingMps || []).map((dev) => ({ ...dev, factionShort: f.shortName, factionColor: f.color }))
   );
 
@@ -143,7 +147,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </p>
       </div>
 
-      {/* Tweak 2: Debate / Core Arguments Collapsible */}
+      {/* Debate / Core Arguments Collapsible */}
       {vote.debateArguments && (
         <div className="mt-2.5 rounded border border-slate-200/80 bg-white dark:border-slate-800 dark:bg-slate-900/60 overflow-hidden text-xs">
           <button
@@ -218,42 +222,9 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </div>
       </div>
 
-      {/* Koalīcija vs. Opozīcija Aggregate Breakdown */}
-      {!vote.isSecret && coalition && opposition && (
-        <div className="mt-4 rounded border border-slate-200/80 bg-slate-50/50 p-2.5 text-xs dark:border-slate-800/80 dark:bg-slate-900/50 font-mono">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            <div className="flex items-center justify-between border-b sm:border-b-0 sm:border-r border-slate-200/80 dark:border-slate-800/80 sm:pr-3 pb-1.5 sm:pb-0">
-              <span className="font-sans font-semibold text-slate-800 dark:text-slate-200">
-                Koalīcija ({coalition.total}):
-              </span>
-              <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300 font-medium">
-                <span className="text-emerald-700 dark:text-emerald-400 font-bold">{coalition.par} Par</span>
-                <span>·</span>
-                <span className="text-red-700 dark:text-red-400 font-bold">{coalition.pret} Pret</span>
-                <span>·</span>
-                <span className="text-slate-400">{coalition.nebalso} Nebalso</span>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between sm:pl-3">
-              <span className="font-sans font-semibold text-slate-800 dark:text-slate-200">
-                Opozīcija ({opposition.total}):
-              </span>
-              <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300 font-medium">
-                <span className="text-emerald-700 dark:text-emerald-400 font-bold">{opposition.par} Par</span>
-                <span>·</span>
-                <span className="text-red-700 dark:text-red-400 font-bold">{opposition.pret} Pret</span>
-                <span>·</span>
-                <span className="text-slate-400">{opposition.nebalso} Nebalso</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Tweak 3: MP Deviations Callout */}
+      {/* MP Deviations Callout */}
       {allDeviations.length > 0 && (
-        <div className="mt-3 flex flex-wrap items-center gap-2 rounded border border-amber-200 bg-amber-50/70 p-2 text-xs text-amber-900 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-200">
+        <div className="mt-3.5 flex flex-wrap items-center gap-2 rounded border border-amber-200 bg-amber-50/70 p-2 text-xs text-amber-900 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-200">
           <UserX className="h-3.5 w-3.5 flex-shrink-0 text-amber-600 dark:text-amber-400" />
           <span className="font-semibold">
             {allDeviations.length} deputāts balsoja pretēji frakcijas vairākumam:
@@ -271,16 +242,17 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </div>
       )}
 
-      {/* Tweak 1: Faction Breakdown with P / Pr / Nb Quorum visibility */}
-      {!vote.isSecret && vote.factionBreakdown && (
-        <div className="mt-3.5 pt-3 border-t border-slate-100 dark:border-slate-800/80">
-          <div className="mb-2 flex items-center justify-between text-[11px] text-slate-400">
-            <span className="font-medium uppercase tracking-wider">Frakciju balsojumi:</span>
-            <span>Zaļš: Par · Sarkans: Pret · Pelēks: Nebalsoja</span>
+      {/* The Pure Option 1: Permanently Anchored Faction Ledger Bars */}
+      {!vote.isSecret && sortedFactions.length > 0 && (
+        <div className="mt-4 pt-3.5 border-t border-slate-100 dark:border-slate-800/80 space-y-2.5">
+          <div className="flex items-center justify-between text-[11px] text-slate-400">
+            <span className="font-medium uppercase tracking-wider">Frakciju balsojumi (sakārtoti pēc vietu skaita):</span>
+            <span>Zaļš: Par · Sarkans: Pret · Dzeltens: Atturas · Pelēks: Nebalsoja</span>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-5 gap-y-2 sm:grid-cols-4">
-            {vote.factionBreakdown.map((f) => {
+          {/* 8-Faction Responsive Grid */}
+          <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 sm:grid-cols-4">
+            {sortedFactions.map((f) => {
               const fTotal = f.votes.par + f.votes.pret + f.votes.atturas + f.votes.nebalso;
               const fParPct = fTotal ? (f.votes.par / fTotal) * 100 : 0;
               const fPretPct = fTotal ? (f.votes.pret / fTotal) * 100 : 0;
@@ -288,22 +260,25 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
               const fNebalsoPct = fTotal ? (f.votes.nebalso / fTotal) * 100 : 0;
 
               return (
-                <div key={f.factionId} className="flex flex-col gap-1">
-                  <div className="flex items-center justify-between text-[11px]">
-                    <span className="font-mono font-bold text-slate-700 dark:text-slate-300" style={{ color: f.color }}>
-                      {f.shortName}
+                <div
+                  key={f.factionId}
+                  className="rounded border border-slate-100 bg-slate-50/50 p-2 dark:border-slate-800/70 dark:bg-slate-950/40 flex flex-col gap-1.5"
+                >
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-mono font-bold text-slate-800 dark:text-slate-200" style={{ color: f.color }}>
+                      {f.shortName} <span className="text-[10px] text-slate-400 font-normal">({fTotal})</span>
                     </span>
-                    {/* Tweak 1: Show P / Pr / Nb */}
                     <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400">
-                      {f.votes.par}P / {f.votes.pret}Pr{f.votes.nebalso > 0 ? ` / ${f.votes.nebalso}Nb` : ''}
+                      {f.votes.par}P · {f.votes.pret}Pr{f.votes.nebalso > 0 ? ` · ${f.votes.nebalso}Nb` : ''}
                     </span>
                   </div>
-                  {/* Mini faction split-bar including grey segment for Nebalso */}
-                  <div className="flex h-1.5 w-full overflow-hidden rounded bg-slate-100 dark:bg-slate-800">
-                    <div style={{ width: `${fParPct}%` }} className="bg-emerald-700 dark:bg-emerald-600" />
-                    <div style={{ width: `${fPretPct}%` }} className="bg-red-700 dark:bg-red-600" />
-                    <div style={{ width: `${fAtturasPct}%` }} className="bg-amber-600" />
-                    <div style={{ width: `${fNebalsoPct}%` }} className="bg-slate-300 dark:bg-slate-600" />
+
+                  {/* 4-Color Proportional Faction Discipline Bar */}
+                  <div className="flex h-1.5 w-full overflow-hidden rounded bg-slate-200 dark:bg-slate-800">
+                    <div style={{ width: `${fParPct}%` }} className="bg-emerald-700 dark:bg-emerald-600" title={`${f.votes.par} Par`} />
+                    <div style={{ width: `${fPretPct}%` }} className="bg-red-700 dark:bg-red-600" title={`${f.votes.pret} Pret`} />
+                    <div style={{ width: `${fAtturasPct}%` }} className="bg-amber-600" title={`${f.votes.atturas} Atturas`} />
+                    <div style={{ width: `${fNebalsoPct}%` }} className="bg-slate-300 dark:bg-slate-600" title={`${f.votes.nebalso} Nebalsoja`} />
                   </div>
                 </div>
               );

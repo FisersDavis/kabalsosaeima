@@ -14,7 +14,6 @@ export interface Faction {
   shortName: string;
   color: string;
   seats: number;
-  isCoalition: boolean;
 }
 
 export interface MP {
@@ -49,7 +48,6 @@ export interface FactionBreakdown {
   name: string;
   shortName: string;
   color: string;
-  isCoalition?: boolean;
   votes: {
     par: number;
     pret: number;
@@ -57,19 +55,6 @@ export interface FactionBreakdown {
     nebalso: number;
   };
   deviatingMps?: DeviatingMP[];
-}
-
-export interface BlocSplit {
-  par: number;
-  pret: number;
-  atturas: number;
-  nebalso: number;
-  total: number;
-}
-
-export interface CoalitionOppositionSplit {
-  coalition: BlocSplit;
-  opposition: BlocSplit;
 }
 
 export interface DebateArguments {
@@ -96,7 +81,7 @@ export interface Vote {
   billNumber: string;
   simplifiedTitle: string;
   summary: string;
-  debateArguments?: DebateArguments; // Debate summary
+  debateArguments?: DebateArguments;
   protocolUrl?: string;
   category: {
     id: string;
@@ -110,7 +95,6 @@ export interface Vote {
     nebalso: number;
     totalPresent: number; // par + pret + atturas
   };
-  coalitionSplit?: CoalitionOppositionSplit;
   factionBreakdown: FactionBreakdown[];
   mpVotes: MPVoteRecord[];
 }
