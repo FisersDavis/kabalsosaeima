@@ -31,6 +31,7 @@ jobs:
 
       - name: Fetch and verify Saeima votes
         run: |
+          python scripts/ingest_real_saeima.py
           python scripts/fetch_saeima_votes.py
 
       - name: Commit updated datasets (if any on scheduled run)

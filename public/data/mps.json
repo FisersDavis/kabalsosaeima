@@ -800,5 +800,295 @@
     "seatNumber": 100,
     "row": 4,
     "col": 30
+  },
+  {
+    "id": "mp-101",
+    "name": "Liene Gātere",
+    "factionId": "pro",
+    "seatNumber": 101,
+    "row": 4,
+    "col": 1,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-102",
+    "name": "Edmunds Cepurītis",
+    "factionId": "pro",
+    "seatNumber": 102,
+    "row": 4,
+    "col": 2,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-103",
+    "name": "Ilze Stobova",
+    "factionId": "lpv",
+    "seatNumber": 103,
+    "row": 4,
+    "col": 3,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-104",
+    "name": "Andris Bērziņš",
+    "factionId": "zzs",
+    "seatNumber": 104,
+    "row": 4,
+    "col": 4,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-105",
+    "name": "Inese Kalniņa",
+    "factionId": "jv",
+    "seatNumber": 105,
+    "row": 4,
+    "col": 5,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-106",
+    "name": "Vilis Sruoģis",
+    "factionId": "st",
+    "seatNumber": 106,
+    "row": 4,
+    "col": 6,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-107",
+    "name": "Amils Saļimovs",
+    "factionId": "ind",
+    "seatNumber": 107,
+    "row": 4,
+    "col": 7,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-108",
+    "name": "Selma Teodora Levrence",
+    "factionId": "pro",
+    "seatNumber": 108,
+    "row": 4,
+    "col": 8,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-109",
+    "name": "Edmunds Teirumnieks",
+    "factionId": "na",
+    "seatNumber": 109,
+    "row": 4,
+    "col": 9,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-110",
+    "name": "Didzis Zemmers",
+    "factionId": "zzs",
+    "seatNumber": 110,
+    "row": 4,
+    "col": 10,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-111",
+    "name": "Maija Armaņeva",
+    "factionId": "lpv",
+    "seatNumber": 111,
+    "row": 4,
+    "col": 11,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-112",
+    "name": "Agnese Krasta",
+    "factionId": "jv",
+    "seatNumber": 112,
+    "row": 4,
+    "col": 12,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-113",
+    "name": "Ligita Gintere",
+    "factionId": "zzs",
+    "seatNumber": 113,
+    "row": 4,
+    "col": 13,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-114",
+    "name": "Jānis Vitenbergs",
+    "factionId": "na",
+    "seatNumber": 114,
+    "row": 4,
+    "col": 14,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-115",
+    "name": "Andrejs Svilāns",
+    "factionId": "as",
+    "seatNumber": 115,
+    "row": 4,
+    "col": 15,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-116",
+    "name": "Alīna Gendele",
+    "factionId": "jv",
+    "seatNumber": 116,
+    "row": 4,
+    "col": 16,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-117",
+    "name": "Jekaterina Drelinga",
+    "factionId": "ind",
+    "seatNumber": 117,
+    "row": 4,
+    "col": 17,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-118",
+    "name": "Ilze Vergina",
+    "factionId": "jv",
+    "seatNumber": 118,
+    "row": 4,
+    "col": 18,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-119",
+    "name": "Jānis Zariņš",
+    "factionId": "jv",
+    "seatNumber": 119,
+    "row": 4,
+    "col": 19,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-120",
+    "name": "Jānis Dinevičs",
+    "factionId": "zzs",
+    "seatNumber": 120,
+    "row": 4,
+    "col": 20,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-121",
+    "name": "Viesturs Zariņš",
+    "factionId": "jv",
+    "seatNumber": 121,
+    "row": 4,
+    "col": 21,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-122",
+    "name": "Dāvis Mārtiņš Daugavietis",
+    "factionId": "jv",
+    "seatNumber": 122,
+    "row": 4,
+    "col": 22,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-123",
+    "name": "Linda Matisone",
+    "factionId": "as",
+    "seatNumber": 123,
+    "row": 4,
+    "col": 23,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-124",
+    "name": "Gundars Daudze",
+    "factionId": "zzs",
+    "seatNumber": 124,
+    "row": 4,
+    "col": 24,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-125",
+    "name": "Anda Čakša",
+    "factionId": "jv",
+    "seatNumber": 125,
+    "row": 4,
+    "col": 25,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-126",
+    "name": "Jānis Skrastiņš",
+    "factionId": "jv",
+    "seatNumber": 126,
+    "row": 4,
+    "col": 1,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-127",
+    "name": "Uģis Rotbergs",
+    "factionId": "jv",
+    "seatNumber": 127,
+    "row": 4,
+    "col": 2,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-128",
+    "name": "Edgars Putra",
+    "factionId": "as",
+    "seatNumber": 128,
+    "row": 4,
+    "col": 3,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-129",
+    "name": "Līga Rasnača",
+    "factionId": "pro",
+    "seatNumber": 129,
+    "row": 4,
+    "col": 4,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
   }
 ]
