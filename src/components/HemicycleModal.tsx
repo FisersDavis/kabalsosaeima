@@ -35,6 +35,13 @@ function getInitials(name: string): string {
   return name.slice(0, 2).toUpperCase();
 }
 
+function formatSubstituteLabel(replacesMpName?: string): string {
+  if (!replacesMpName || replacesMpName.includes('demisiju') || replacesMpName.includes('Ministru vai')) {
+    return 'Aizvieto ministru';
+  }
+  return `Aizvieto: ${replacesMpName}`;
+}
+
 // Political seating sector order from parliamentary left to right
 const FACTION_SECTOR_ORDER = ['pro', 'jv', 'zzs', 'as', 'na', 'lpv', 'st', 'ind'];
 
@@ -135,6 +142,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
         x: pos.x,
         y: pos.y,
         decision,
+        chamberSeat: idx + 1,
         isSubstitute: record?.isSubstitute || mp?.isSubstitute,
         replacesMpName: record?.replacesMpName || mp?.replacesMpName,
       };
@@ -323,8 +331,8 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
           </div>
         ) : (
           <div className="flex-1 overflow-hidden flex flex-col lg:flex-row min-h-0">
-            {/* Left Pane: Plenary Hemicycle Diagram */}
-            <div className="lg:w-[48%] xl:w-[50%] p-4 sm:p-5 bg-slate-50/60 border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col min-h-0 overflow-y-auto gap-3">
+            {/* Left Pane: Plenary Hemicycle Diagram (58-60% width) */}
+            <div className="lg:w-[58%] xl:w-[60%] p-4 sm:p-5 bg-slate-50/60 border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col min-h-0 overflow-y-auto gap-3">
               {/* Consolidate Header Tally into a single clean line */}
               <div className="flex items-center justify-between text-xs shrink-0">
                 <div className="flex items-center gap-1.5 flex-wrap">
@@ -346,7 +354,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
               </div>
 
               {/* SVG Hemicycle Diagram: Scaled up to fill column width and target comfortably */}
-              <div className="relative w-full aspect-[640/310] max-w-xl mx-auto shrink-0 my-1">
+              <div className="relative w-full aspect-[640/310] max-w-2xl mx-auto shrink-0 my-1">
                 <svg viewBox="0 0 640 310" className="w-full h-full select-none">
                   {/* 100 Active Voting Seats */}
                   {seatPositions.map(({ mp, x, y, decision }) => {
@@ -364,7 +372,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                             <circle
                               cx={x}
                               cy={y}
-                              r={15}
+                              r={16}
                               fill="none"
                               stroke="#0284c7"
                               strokeWidth="2.5"
@@ -374,7 +382,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                             <circle
                               cx={x}
                               cy={y}
-                              r={12}
+                              r={13}
                               fill="none"
                               stroke="#ffffff"
                               strokeWidth="2"
@@ -385,7 +393,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                         <circle
                           cx={x}
                           cy={y}
-                          r={isHoveredOrSelected ? 10.5 : 7.5}
+                          r={isHoveredOrSelected ? 11 : 8}
                           fill={getDecisionColor(decision)}
                           opacity={isMatchFilter ? 1 : 0.15}
                           className="cursor-pointer transition-all duration-100"
@@ -440,10 +448,12 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                         </div>
                         <div className="text-[11px] text-slate-500 font-mono mt-0.5 truncate">
                           {factionLookup.get(activeSeat.mp.factionId)?.name}
-                          {activeSeat.replacesMpName && (
-                            <span className="ml-1 text-slate-400">· {activeSeat.replacesMpName}</span>
+                          {activeSeat.isSubstitute && (
+                            <span className="ml-1.5 text-amber-700 font-sans">
+                              · {formatSubstituteLabel(activeSeat.replacesMpName)}
+                            </span>
                           )}
-                          <span className="ml-1 text-slate-400">· Vieta #{activeSeat.mp.seatNumber}</span>
+                          <span className="ml-1.5 text-slate-400 font-mono">· Vieta #{activeSeat.chamberSeat}</span>
                         </div>
                       </div>
                     </div>
@@ -463,8 +473,8 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
               </div>
             </div>
 
-            {/* Right Pane: Filterable Audit Table (Isolated scroll area) */}
-            <div className="lg:w-[52%] xl:w-[50%] flex flex-col min-h-0 bg-white">
+            {/* Right Pane: Filterable Audit Table (40-42% width) */}
+            <div className="lg:w-[42%] xl:w-[40%] flex flex-col min-h-0 bg-white">
               {/* Controls bar: Outcome pills + Clean standalone Faction dropdown */}
               <div className="p-3 sm:p-4 border-b border-slate-200 bg-white space-y-2.5 shrink-0">
                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -527,7 +537,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                     </button>
                   </div>
 
-                  {/* Clean Faction selector dropdown without loose text label */}
+                  {/* Clean Faction selector dropdown without duplicate (100) count */}
                   <select
                     id="faction-select"
                     value={filterFaction}
@@ -535,7 +545,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                     aria-label="Filtrēt pēc frakcijas"
                     className="rounded-lg border border-slate-300 bg-white py-1 px-2.5 text-xs text-slate-800 font-medium focus:border-slate-500 focus:outline-none transition shadow-2xs cursor-pointer hover:border-slate-400"
                   >
-                    <option value="ALL">Visas frakcijas (100)</option>
+                    <option value="ALL">Visas frakcijas</option>
                     {factions.map((f) => (
                       <option key={f.id} value={f.id}>
                         {f.shortName} · {f.name}
@@ -545,14 +555,14 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                 </div>
               </div>
 
-              {/* Scrollable Audit Table: fills 100% vertical space without shrinking */}
+              {/* Scrollable Audit Table: compact py-2 padding for ~15-16 visible deputies */}
               <div className="flex-1 overflow-y-auto min-h-0 bg-white">
                 <table className="w-full text-left text-xs border-collapse">
                   <thead className="sticky top-0 z-10 bg-slate-100/95 backdrop-blur-sm text-slate-600 text-[11px] uppercase tracking-wider font-semibold border-b border-slate-200">
                     <tr>
-                      <th className="py-2.5 px-4 text-left">Deputāts</th>
-                      <th className="py-2.5 px-2 text-center w-24">Frakcija</th>
-                      <th className="py-2.5 px-4 text-right w-28">Lēmums</th>
+                      <th className="py-2 px-3 text-left">Deputāts</th>
+                      <th className="py-2 px-2 text-center w-20">Frakcija</th>
+                      <th className="py-2 px-3 text-right w-24">Lēmums</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 font-sans">
@@ -574,13 +584,13 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                           }`}
                         >
                           {/* Deputy name with discreet asterisk for substitute MPs */}
-                          <td className="py-2.5 px-4 font-medium text-slate-900">
+                          <td className="py-2 px-3 font-medium text-slate-900 text-xs">
                             <div className="flex items-center gap-1.5">
                               <span>{mp.name}</span>
                               {isSubstitute && (
                                 <span
-                                  className="text-amber-600 font-bold text-xs cursor-help select-none"
-                                  title={replacesMpName ? `Mīkstais mandāts (${replacesMpName})` : 'Mīkstais mandāts'}
+                                  className="text-amber-600 font-bold text-xs cursor-help select-none shrink-0"
+                                  title={`Mīkstais mandāts (${formatSubstituteLabel(replacesMpName)})`}
                                 >
                                   *
                                 </span>
@@ -589,9 +599,9 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                           </td>
 
                           {/* Abbreviated Faction badge centered with uniform width for razor-sharp column scanning */}
-                          <td className="py-2.5 px-2 text-center w-24">
+                          <td className="py-2 px-2 text-center w-20">
                             <span
-                              className="inline-flex items-center justify-center min-w-[42px] rounded px-1.5 py-0.5 font-mono text-[10px] font-bold text-white shadow-2xs"
+                              className="inline-flex items-center justify-center min-w-[38px] rounded px-1.5 py-0.5 font-mono text-[10px] font-bold text-white shadow-2xs"
                               style={{ backgroundColor: faction?.color || '#64748B' }}
                             >
                               {faction?.shortName || mp.factionId.toUpperCase()}
@@ -599,7 +609,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                           </td>
 
                           {/* Decision badge */}
-                          <td className="py-2.5 px-4 text-right w-28">
+                          <td className="py-2 px-3 text-right w-24">
                             {getDecisionBadge(decision)}
                           </td>
                         </tr>
