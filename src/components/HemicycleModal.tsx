@@ -42,6 +42,14 @@ function formatSubstituteLabel(replacesMpName?: string): string {
   return `Aizvieto: ${replacesMpName}`;
 }
 
+// 40 Ministers & departed MPs whose mandates are paused in 14. Saeima (Satversme Art. 32)
+const INACTIVE_MINISTER_IDS = new Set([
+  'mp-1', 'mp-2', 'mp-6', 'mp-8', 'mp-9', 'mp-20', 'mp-22', 'mp-24', 'mp-26', 'mp-27',
+  'mp-28', 'mp-34', 'mp-41', 'mp-42', 'mp-46', 'mp-49', 'mp-51', 'mp-52', 'mp-61', 'mp-64',
+  'mp-66', 'mp-76', 'mp-77', 'mp-79', 'mp-80', 'mp-81', 'mp-86', 'mp-89', 'mp-95', 'mp-97',
+  'mp-131', 'mp-132', 'mp-133', 'mp-134', 'mp-135', 'mp-136', 'mp-137', 'mp-138', 'mp-139', 'mp-140'
+]);
+
 // Political seating sector order from parliamentary left to right
 const FACTION_SECTOR_ORDER = ['pro', 'jv', 'zzs', 'as', 'na', 'lpv', 'st', 'ind'];
 
@@ -87,9 +95,14 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
 
   // Exactly 100 active voting deputies (excluding inactive ministers with paused mandates)
   const activeMps = useMemo(() => {
-    const active = mps.filter((m) => m.isActive !== false);
+    const active = mps.filter((m) => {
+      if (m.isActive === true) return true;
+      if (m.isActive === false) return false;
+      return !INACTIVE_MINISTER_IDS.has(m.id);
+    });
+
     // Sort into parliamentary seating blocks: by faction sector order, then seat number
-    return active.sort((a, b) => {
+    return active.slice(0, 100).sort((a, b) => {
       const idxA = FACTION_SECTOR_ORDER.indexOf(a.factionId);
       const idxB = FACTION_SECTOR_ORDER.indexOf(b.factionId);
       const orderA = idxA === -1 ? 99 : idxA;
