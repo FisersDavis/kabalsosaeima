@@ -51,13 +51,13 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     <div className="flex flex-wrap items-center gap-2">
       {/* 1. Anchor with Search */}
       <div className="relative min-w-[220px] flex-1">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Meklēt likumu vai atslēgvārdu..."
-          className="w-full rounded-lg border border-slate-200 bg-white py-1.5 pl-8.5 pr-8 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400"
+          className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-10 pr-8 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400"
         />
         {searchQuery && (
           <button

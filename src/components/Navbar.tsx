@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import type { SaeimaTerm } from '../types';
 import { Database, ChevronDown, Check, ExternalLink } from 'lucide-react';
 
@@ -157,25 +157,27 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             {/* Institutional Meta-Navigation */}
-            <div className="flex items-center gap-1.5 border-l border-slate-200 pl-3">
+            <div className="flex items-center gap-1 border-l border-slate-200 pl-3">
               <button
                 type="button"
                 onClick={() => onOpenInfoModal('about')}
-                className="rounded-md px-2 py-1 text-slate-600 hover:bg-slate-100 hover:text-slate-900 font-medium transition"
+                className="rounded px-2 py-1 text-slate-600 hover:text-slate-900 hover:underline font-medium transition"
               >
                 Par projektu
               </button>
+              <span className="text-slate-300">·</span>
               <button
                 type="button"
                 onClick={() => onOpenInfoModal('methodology')}
-                className="rounded-md px-2 py-1 text-slate-600 hover:bg-slate-100 hover:text-slate-900 font-medium transition"
+                className="rounded px-2 py-1 text-slate-600 hover:text-slate-900 hover:underline font-medium transition"
               >
                 Metodoloģija
               </button>
+              <span className="hidden sm:inline text-slate-300">·</span>
               <button
                 type="button"
                 onClick={() => onOpenInfoModal('data')}
-                className="hidden sm:inline-block rounded-md px-2 py-1 text-slate-600 hover:bg-slate-100 hover:text-slate-900 font-medium transition"
+                className="hidden sm:inline-block rounded px-2 py-1 text-slate-600 hover:text-slate-900 hover:underline font-medium transition"
               >
                 Kods un dati
               </button>
@@ -183,10 +185,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
-        {/* Subtitle / Breadcrumb */}
-        <div className="text-[11px] text-slate-500 flex items-center justify-between border-t border-slate-100 pt-1.5">
+        {/* Subtitle / Civic Mission */}
+        <div className="text-[11px] text-slate-500 border-t border-slate-100 pt-1.5">
           <span>Objektīvi dati par katru balsojumu Saeimā · Atvērtā parlamenta reģistrs</span>
-          <span className="hidden sm:inline font-mono text-[10px] text-slate-400">kabalsosaeima.lv</span>
         </div>
       </div>
     </header>
