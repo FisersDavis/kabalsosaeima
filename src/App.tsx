@@ -131,25 +131,7 @@ export function App() {
         onOpenInfoModal={setCivicModalTab}
       />
 
-      <main className="flex-1 mx-auto w-full max-w-5xl px-4 py-4 sm:px-6 lg:px-8 space-y-3.5">
-        {/* Discrete Subheader Counter above FilterBar */}
-        <div className="flex items-center justify-between text-xs text-slate-500 px-1 pt-1">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-slate-900">{activeTermObj?.label || `${selectedTerm}. Saeima`}</span>
-            <span>·</span>
-            <span className="font-mono text-slate-700">{termVotes.length} balsojumi</span>
-            {termVotes.length > 0 && (
-              <>
-                <span className="hidden sm:inline text-slate-300">·</span>
-                <span className="hidden sm:inline text-slate-500 font-mono">Pēdējā sēde: {termVotes[0]?.sittingDate}</span>
-              </>
-            )}
-          </div>
-          <div className="font-mono text-[11px] text-slate-400">
-            {activeTermObj?.years}
-          </div>
-        </div>
-
+      <main className="flex-1 mx-auto w-full max-w-5xl px-4 py-3 sm:px-6 lg:px-8 space-y-3">
         {/* Future / Empty Term Notice */}
         {!loading && termVotes.length === 0 && (
           <div className="rounded-xl border border-slate-300 bg-slate-50 p-6 flex items-start gap-4">

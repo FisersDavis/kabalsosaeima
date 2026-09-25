@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import type { Vote, FactionBreakdown } from '../types';
 import {
   Check,
@@ -17,6 +17,24 @@ import {
 interface VoteCardProps {
   vote: Vote;
   onSelect: (vote: Vote) => void;
+}
+
+// Strips redundant Latvian parliamentary preamble filler from titles
+function cleanVoteTitle(rawTitle: string): string {
+  if (!rawTitle) return '';
+  let t = rawTitle.trim();
+  t = t.replace(/^\s*Par\s+likumprojekta\s+/i, '');
+  t = t.replace(/^\s*Par\s+likumprojektu\s+/i, '');
+  t = t.replace(/^\s*Par\s+lēmuma\s+projektu\s+/i, '');
+  t = t.replace(/^\s*Par\s+lēmuma\s+/i, '');
+  t = t.replace(/^\s*Likumprojekts\s+/i, '');
+  t = t.replace(/^\s*Par\s+priekšlikumu\s+/i, '');
+  t = t.replace(/\s*\(\s*\d+\/[A-Za-z0-9]+\s*\)\s*$/, '');
+  t = t.trim();
+  if (t.length > 0) {
+    return t[0].toUpperCase() + t.slice(1);
+  }
+  return rawTitle;
 }
 
 export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
@@ -52,37 +70,47 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
     (f.deviatingMps || []).map((dev) => ({ ...dev, factionShort: f.shortName, factionColor: f.color }))
   );
 
+  const cleanedTitle = cleanVoteTitle(vote.simplifiedTitle || vote.officialTitle);
+  const cleanBillNr = vote.billNumber ? vote.billNumber.replace(/^(Nr\.\s*|#)/, '') : '';
+
   return (
     <article
       id={`balsojums-${vote.id}`}
-      className="rounded-xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-2xs transition hover:border-slate-300 hover:shadow-xs"
+      className="rounded-xl border border-slate-200/90 bg-white p-4 shadow-2xs transition hover:border-slate-300 hover:shadow-xs"
     >
       {/* Revote Notice (if applicable) */}
       {vote.isRevote && (
         <div className="mb-2.5 flex items-center gap-1.5 rounded-lg border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs text-amber-900">
           <RefreshCw className="h-3.5 w-3.5 flex-shrink-0" />
-          <span><strong>Pārbalsojums:</strong> {vote.revoteReason || 'Balsojums atkārtots saskaņā ar pieteikumu.'}</span>
+          <span><strong>Pārbalsojums:</strong> {vote.revoteReason || 'Balsojums atkārtots saskaņā ar procedūras pieteikumu.'}</span>
         </div>
       )}
 
       {/* LEVEL 1: Immediately Visible (Scanning) */}
 
-      {/* 1. Monochrome Metadata & Status Pill */}
-      <div className="flex items-center justify-between gap-2 pb-2 text-xs text-slate-500">
+      {/* 1. Hierarchy: Topic · Date · Procedure/Stage                  Result Pill */}
+      <div className="flex items-center justify-between gap-2 pb-1.5 text-xs text-slate-500">
         <div className="flex flex-wrap items-center gap-1.5 font-medium">
-          {/* Objective Tag */}
-          {vote.readingStage ? (
-            <span className="font-semibold text-slate-800">{vote.readingStage}</span>
-          ) : vote.voteType === 'priekslikums' ? (
-            <span className="font-semibold text-slate-800">Priekšlikums</span>
-          ) : vote.voteType === 'procedura' ? (
-            <span className="font-semibold text-slate-800">Procedūra</span>
-          ) : null}
-
-          {vote.readingStage && <span>·</span>}
-          <span>{vote.category.label}</span>
+          <span className="text-slate-700">{vote.category.label}</span>
           <span>·</span>
-          <span className="font-mono text-slate-600">{vote.sittingDate}, {vote.sittingTime}</span>
+          <span className="font-mono text-slate-600">{vote.sittingDate}</span>
+
+          {vote.readingStage ? (
+            <>
+              <span>·</span>
+              <span className="text-slate-600">{vote.readingStage}</span>
+            </>
+          ) : vote.voteType === 'priekslikums' ? (
+            <>
+              <span>·</span>
+              <span className="text-slate-600">Priekšlikums</span>
+            </>
+          ) : vote.voteType === 'procedura' ? (
+            <>
+              <span>·</span>
+              <span className="text-slate-600">Procedūra</span>
+            </>
+          ) : null}
 
           {vote.isUrgent && (
             <>
@@ -119,23 +147,23 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         )}
       </div>
 
-      {/* 2. Core Title */}
-      <div className="pt-1">
+      {/* 2. Core Subject Title (Stripped of "Par likumprojekta...") */}
+      <div className="pt-0.5">
         <h3
-          onClick={() => onSelect(vote)}
+          onClick={() => setIsExpanded(!isExpanded)}
           className="text-base font-bold leading-snug text-slate-900 hover:text-emerald-800 cursor-pointer transition"
         >
-          {vote.simplifiedTitle}
-          {vote.billNumber && (
-            <span className="ml-1.5 font-mono text-xs font-normal text-slate-400">
-              ({vote.billNumber})
+          {cleanedTitle}
+          {cleanBillNr && (
+            <span className="ml-2 font-mono text-xs font-normal text-slate-400">
+              #{cleanBillNr}
             </span>
           )}
         </h3>
       </div>
 
       {/* 3. The Main Ratio Bar (Segmented 100-Seat Bar) */}
-      <div className="mt-3 space-y-1.5">
+      <div className="mt-2.5 space-y-1.5">
         <div className="flex justify-between font-mono text-xs font-semibold text-slate-700">
           <span className="flex items-center gap-1.5 text-emerald-700">
             <span className="h-2 w-2 rounded-2xs bg-emerald-700" />
@@ -164,70 +192,61 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </div>
       </div>
 
-      {/* 4. Subtle Deviation Note (Calm micro-typography instead of yellow banner) */}
-      {allDeviations.length > 0 && (
-        <div className="mt-2 text-[11px] text-slate-500 flex items-center gap-1.5">
-          <span className="text-slate-400">✦</span>
-          <span>
-            <strong className="text-slate-700">{allDeviations.length} {allDeviations.length === 1 ? 'deputāts balsoja' : 'deputāti balsoja'}</strong> pretēji savas frakcijas vairākumam
-          </span>
-          {!isExpanded && (
-            <button
-              type="button"
-              onClick={() => setIsExpanded(true)}
-              className="text-slate-600 hover:text-slate-900 underline font-medium"
-            >
-              (aplūkot)
-            </button>
-          )}
-        </div>
-      )}
-
-      {/* 5. Toolbar Actions (Expand accordion & Hemicycle modal) */}
-      <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-2.5 text-xs">
+      {/* 4. Single De-duplicated Action Trigger (Opens details, factions, and hemicycle) */}
+      <div className="mt-3 pt-2.5 border-t border-slate-100">
         <button
           type="button"
           onClick={() => setIsExpanded(!isExpanded)}
-          className="inline-flex items-center gap-1 font-semibold text-slate-700 hover:text-slate-900 transition"
+          className="inline-flex items-center gap-1.5 font-medium text-slate-700 hover:text-slate-900 transition text-xs cursor-pointer"
         >
           {isExpanded ? (
             <>
               <ChevronUp className="h-3.5 w-3.5 text-slate-400" />
-              <span>Aizvērt detaļas</span>
+              <span>Aizvērt balsojuma detaļas</span>
             </>
           ) : (
             <>
               <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
-              <span>Rādīt frakciju sadalījumu un anotāciju</span>
+              <span>
+                Rādīt balsojuma detaļas (frakcijas, sēžu zāle{allDeviations.length > 0 ? `, ${allDeviations.length} atšķirīgie` : ''})
+              </span>
             </>
           )}
-        </button>
-
-        <button
-          type="button"
-          onClick={() => onSelect(vote)}
-          className="inline-flex items-center gap-1 font-semibold text-emerald-800 hover:text-emerald-950 transition"
-        >
-          <Users className="h-3.5 w-3.5 text-emerald-600" />
-          <span>Sēžu zāle (100 vietas)</span>
-          <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
         </button>
       </div>
 
       {/* LEVEL 2: Progressive Disclosure (Accordion Drawer) */}
       {isExpanded && (
-        <div className="mt-4 pt-4 border-t border-slate-200/80 space-y-4 text-xs">
-          {/* Detailed Rebel MPs Breakdown */}
+        <div className="mt-3.5 pt-3.5 border-t border-slate-200/80 space-y-4 text-xs">
+          {/* Quick 100-Seat Hemicycle Launch Banner */}
+          <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-slate-50/80 px-3 py-2">
+            <div className="flex items-center gap-2">
+              <Users className="h-4 w-4 text-emerald-700" />
+              <span className="font-semibold text-slate-900">
+                100 deputātu sēžu zāles shēma
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={() => onSelect(vote)}
+              className="inline-flex items-center gap-1 rounded-md bg-slate-900 px-2.5 py-1 text-xs font-semibold text-white hover:bg-slate-800 transition"
+            >
+              <span>Atvērt zāli</span>
+              <ChevronRight className="h-3.5 w-3.5" />
+            </button>
+          </div>
+
+          {/* Detailed Rebel MPs Breakdown (Tamed and cleanly placed inside drawer) */}
           {allDeviations.length > 0 && (
             <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
-              <div className="font-semibold text-slate-800 mb-1.5">
-                Deputāti, kuri balsoja pret savas frakcijas nostāju:
+              <div className="font-semibold text-slate-800 mb-1.5 flex items-center gap-1.5">
+                <span>✦ Deputāti, kuri balsoja pretēji savas frakcijas vairākumam:</span>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {allDeviations.map((dev) => (
                   <span
                     key={dev.mpId}
-                    className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-white px-2 py-1 font-mono text-[11px] shadow-2xs"
+                    className="inline-flex items-center gap-1 rounded-md border border-slate-200 bg-white px-2 py-0.5 font-mono text-[11px] shadow-2xs"
                   >
                     <strong className="text-slate-900">{dev.name}</strong>
                     <span className="text-slate-400">({dev.factionShort})</span>:
@@ -248,7 +267,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
               </div>
               <p className="text-slate-600 text-[11px] leading-normal">{vote.summary}</p>
               <div className="mt-2 font-mono text-[10px] text-slate-400">
-                Oficiālais nosaukums: {vote.officialTitle}
+                Oficiālais protokola nosaukums: {vote.officialTitle}
               </div>
             </div>
           )}
@@ -340,7 +359,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
             </div>
           )}
 
-          {/* Drawer Actions */}
+          {/* Drawer Actions: Copy & Official saeima.lv protocol */}
           <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-xs text-slate-500">
             <button
               type="button"

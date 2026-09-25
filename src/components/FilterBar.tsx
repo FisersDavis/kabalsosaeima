@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Search, X, ChevronDown, RotateCcw } from 'lucide-react';
 
 export type VoteTypeFilter = 'ALL' | 'likums' | 'priekslikums' | 'procedura';
@@ -154,21 +154,17 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         Tikai gala lēmumi
       </button>
 
-      {/* 6. Active Filter Reset / Counter */}
-      {isFiltered ? (
+      {/* 6. Active Filter Reset */}
+      {isFiltered && (
         <button
           type="button"
           onClick={handleReset}
-          className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-100 px-2 py-1.5 text-[11px] font-medium text-slate-600 hover:bg-slate-200 hover:text-slate-900 transition"
+          className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-[11px] font-medium text-slate-700 hover:bg-slate-200 transition"
           title="Atiestatīt filtrus"
         >
-          <RotateCcw className="h-3 w-3" />
+          <RotateCcw className="h-3 w-3 text-slate-500" />
           <span>Notīrīt ({totalFiltered})</span>
         </button>
-      ) : (
-        <div className="ml-auto hidden text-right text-[11px] text-slate-400 sm:block font-mono">
-          <strong className="text-slate-700">{totalFiltered}</strong> balsojumi
-        </div>
       )}
     </div>
   );
