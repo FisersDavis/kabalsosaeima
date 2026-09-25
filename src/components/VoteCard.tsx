@@ -89,64 +89,55 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
       {/* LEVEL 1: Immediately Visible (Scanning) */}
 
       {/* Row 1: Title (1) + Result (2) in the exact same visual fixation */}
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
         <h3
           onClick={() => setIsExpanded(!isExpanded)}
-          className="text-base sm:text-lg font-bold leading-snug text-slate-900 hover:text-emerald-800 cursor-pointer transition flex-1"
+          className="text-base sm:text-lg font-bold leading-snug text-slate-900 hover:text-emerald-800 cursor-pointer transition"
         >
           {cleanedTitle}
         </h3>
 
         {/* 2. Verdict Badge Docked Directly to Title */}
-        <div className="flex-shrink-0 pt-0.5">
-          {isQuorumBreak ? (
-            <span className="inline-flex items-center rounded-md border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-bold text-amber-900 shadow-2xs whitespace-nowrap">
-              Nav kvoruma
-            </span>
-          ) : (
-            <span
-              className={`inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-bold shadow-2xs whitespace-nowrap ${
-                isApproved
-                  ? 'border-emerald-300 bg-emerald-50 text-emerald-800'
-                  : 'border-rose-300 bg-rose-50 text-rose-800'
-              }`}
-            >
-              {isApproved ? 'Pieņemts' : 'Noraidīts'}
-            </span>
-          )}
-        </div>
+        {isQuorumBreak ? (
+          <span className="inline-flex items-center rounded-md border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-900 shadow-2xs whitespace-nowrap">
+            Nav kvoruma
+          </span>
+        ) : (
+          <span
+            className={`inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold shadow-2xs whitespace-nowrap ${
+              isApproved
+                ? 'border-emerald-300 bg-emerald-50 text-emerald-800'
+                : 'border-rose-300 bg-rose-50 text-rose-800'
+            }`}
+          >
+            {isApproved ? 'Pieņemts' : 'Noraidīts'}
+          </span>
+        )}
       </div>
 
-      {/* Row 2: Vote Split (3) + Rebel count */}
-      <div className="mt-2 flex items-center justify-between text-xs font-mono">
+      {/* Row 2: Vote Split (3) with chromatic typography */}
+      <div className="mt-2 flex items-center text-xs font-mono">
         <div className="flex items-center gap-2 sm:gap-2.5 text-slate-600">
           <span>
-            <strong className="tabular-nums font-bold text-slate-900">{vote.counts.par}</strong>{' '}
+            <strong className="tabular-nums font-bold text-emerald-700">{vote.counts.par}</strong>{' '}
             <span className="font-sans text-[11px] text-slate-500">Par</span>
           </span>
           <span className="text-slate-300">·</span>
           <span>
-            <strong className="tabular-nums font-bold text-slate-900">{vote.counts.pret}</strong>{' '}
+            <strong className="tabular-nums font-bold text-rose-700">{vote.counts.pret}</strong>{' '}
             <span className="font-sans text-[11px] text-slate-500">Pret</span>
           </span>
           <span className="text-slate-300">·</span>
           <span>
-            <strong className="tabular-nums font-bold text-slate-700">{vote.counts.atturas}</strong>{' '}
+            <strong className="tabular-nums font-bold text-amber-700">{vote.counts.atturas}</strong>{' '}
             <span className="font-sans text-[11px] text-slate-500">Atturas</span>
           </span>
           <span className="text-slate-300">·</span>
           <span>
-            <strong className="tabular-nums font-bold text-slate-500">{vote.counts.nebalso}</strong>{' '}
+            <strong className="tabular-nums font-bold text-slate-400">{vote.counts.nebalso}</strong>{' '}
             <span className="font-sans text-[11px] text-slate-400">Nebalsoja</span>
           </span>
         </div>
-
-        {/* Discrete Rebel MPs indicator */}
-        {allDeviations.length > 0 && (
-          <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">
-            {allDeviations.length} pret frakciju
-          </span>
-        )}
       </div>
 
       {/* Row 3: Subdued Supporting Context (Topic · Date · Stage · Bill Nr) sits quietly underneath */}
@@ -155,22 +146,12 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         <span>·</span>
         <span className="font-mono text-slate-500">{vote.sittingDate}</span>
 
-        {vote.readingStage ? (
+        {vote.readingStage && vote.readingStage !== 'Darba kārtība' && vote.readingStage !== 'Procedūra' && (
           <>
             <span>·</span>
             <span className="text-slate-500">{vote.readingStage}</span>
           </>
-        ) : vote.voteType === 'priekslikums' ? (
-          <>
-            <span>·</span>
-            <span className="text-slate-500">Priekšlikums</span>
-          </>
-        ) : vote.voteType === 'procedura' ? (
-          <>
-            <span>·</span>
-            <span className="text-slate-500">Procedūra</span>
-          </>
-        ) : null}
+        )}
 
         {cleanBillNr && (
           <>
@@ -196,7 +177,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         )}
       </div>
 
-      {/* Row 4: Single Expand Action Trigger */}
+      {/* Row 4: Single Expand Action Trigger + Rebel MPs indicator */}
       <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between">
         <button
           type="button"
@@ -215,6 +196,12 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
             </>
           )}
         </button>
+
+        {allDeviations.length > 0 && (
+          <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">
+            {allDeviations.length} pret frakciju
+          </span>
+        )}
       </div>
 
       {/* LEVEL 2: Progressive Disclosure (Accordion Drawer) */}
