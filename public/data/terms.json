@@ -1,0 +1,16 @@
+[
+  {
+    "term": 14,
+    "label": "14. Saeima",
+    "years": "2022–2026",
+    "isActive": true,
+    "description": "Ievēlēta 2022. gada 1. oktobrī"
+  },
+  {
+    "term": 15,
+    "label": "15. Saeima",
+    "years": "2026–2030",
+    "isActive": false,
+    "description": "Vēlēšanas paredzētas 2026. gada rudenī"
+  }
+]

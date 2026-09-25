@@ -1,0 +1,66 @@
+[
+  {
+    "id": "jv",
+    "name": "Jaunā VIENOTĪBA",
+    "shortName": "JV",
+    "color": "#00529B",
+    "seats": 26,
+    "isCoalition": true
+  },
+  {
+    "id": "zzs",
+    "name": "Zaļo un Zemnieku savienība",
+    "shortName": "ZZS",
+    "color": "#1B5E20",
+    "seats": 16,
+    "isCoalition": true
+  },
+  {
+    "id": "pro",
+    "name": "PROGRESĪVIE",
+    "shortName": "PRO",
+    "color": "#C2185B",
+    "seats": 10,
+    "isCoalition": true
+  },
+  {
+    "id": "as",
+    "name": "APVIENOTAIS SARAKSTS",
+    "shortName": "AS",
+    "color": "#00838F",
+    "seats": 15,
+    "isCoalition": false
+  },
+  {
+    "id": "na",
+    "name": "Nacionālā apvienība",
+    "shortName": "NA",
+    "color": "#881337",
+    "seats": 12,
+    "isCoalition": false
+  },
+  {
+    "id": "lpv",
+    "name": "LATVIJA PIRMAJĀ VIETĀ",
+    "shortName": "LPV",
+    "color": "#D97706",
+    "seats": 9,
+    "isCoalition": false
+  },
+  {
+    "id": "st",
+    "name": "Stabilitātei!",
+    "shortName": "S!",
+    "color": "#475569",
+    "seats": 8,
+    "isCoalition": false
+  },
+  {
+    "id": "ind",
+    "name": "Pie frakcijām nepiederošie",
+    "shortName": "PIEFR",
+    "color": "#64748B",
+    "seats": 4,
+    "isCoalition": false
+  }
+]
