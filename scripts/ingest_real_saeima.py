@@ -76,6 +76,30 @@ def detect_category(title, section=""):
                 return {'id': cat['id'], 'label': cat['label']}
     return {'id': 'administracija', 'label': 'Valsts pārvalde'}
 
+SKIP_KEYWORDS = [
+    'priekšlikum', 'steidzamīb', 'izslēgšan', 'iekļaušan', 'darba kārtīb',
+    'termiņ', 'pārtraukum', 'pārbaudi', 'pagarināšan', 'nodošana komisij'
+]
+
+def is_substantive_final_vote(title, motive, reading, is_urgent):
+    m = motive.lower()
+    for kw in SKIP_KEYWORDS:
+        if kw in m:
+            return False
+    # Final 3rd reading of a law
+    if reading == 3:
+        return True
+    # Urgent 2nd reading (final reading for urgent laws in Saeima)
+    if reading == 2 and is_urgent:
+        return True
+    if '3.lasījumā' in m or '3. lasījumā' in m or 'galīgajā lasījumā' in m:
+        return True
+    if ('2.lasījumā' in m or '2. lasījumā' in m) and ('steidzam' in m or is_urgent):
+        return True
+    if ('par likuma' in m or 'par lēmuma' in m or 'konvencij' in m) and ('pieņemšan' in m or 'apstiprināšan' in m):
+        return True
+    return False
+
 def simplify_title(official_title):
     t = official_title.strip()
     t = re.sub(r'^\s*Par\s+likumprojektu\s+', '', t, flags=re.IGNORECASE)
@@ -178,9 +202,12 @@ def run_ingestion():
                 if did:
                     dkp_map[did] = item
 
-            # Process candidate votes in this sitting
+            # Process candidate votes in this sitting (cap at max 2 substantive final votes per sitting)
+            sitting_added = 0
             for cv in candidate_votes:
                 if len(parsed_votes) >= target_count:
+                    break
+                if sitting_added >= 2:
                     break
 
                 did = cv.findtext('dkp_id')
@@ -209,12 +236,11 @@ def run_ingestion():
                 raw_urgency = d_item.findtext('URGENCY') if d_item is not None else 'False'
                 is_urgent = raw_urgency in ['True', '1', True] or 'steidzam' in motive.lower()
 
-                # Prioritize tier 1 decisions (reading 3, urgent reading 2, or substantive adoptions)
-                is_tier1 = (reading == 3) or (reading == 2 and is_urgent) or ('pieņemšan' in motive.lower()) or ('galīg' in motive.lower())
-
-                # If this vote is neither tier 1 nor final, and we already have some, we can skip pure amendment votes
-                if not is_tier1 and ('grozījum' in motive.lower() and 'priekšlikum' in motive.lower()):
+                # Filter strictly for substantive final law adoptions and key decisions
+                if not is_substantive_final_vote(title, motive, reading, is_urgent):
                     continue
+
+                is_tier1 = (reading == 3) or (reading == 2 and is_urgent) or ('pieņemšan' in motive.lower()) or ('galīg' in motive.lower())
 
                 ts = cv.findtext('VOTETIMESTAMP') or ''
                 date_str = ""
@@ -374,6 +400,7 @@ def run_ingestion():
                     'factionBreakdown': faction_breakdowns,
                     'mpVotes': mp_records
                 })
+                sitting_added += 1
                 print(f"      + Added vote: [{outcome}] {bill_number} - {simplify_title(title)[:60]}...")
 
         except Exception as e:

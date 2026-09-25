@@ -1090,5 +1090,115 @@
     "col": 4,
     "isSubstitute": true,
     "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-130",
+    "name": "Jeļena Kļaviņa",
+    "factionId": "ind",
+    "seatNumber": 130,
+    "row": 4,
+    "col": 5,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-131",
+    "name": "Arnolds Jātnieks",
+    "factionId": "na",
+    "seatNumber": 131,
+    "row": 4,
+    "col": 6,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-132",
+    "name": "Andris Sprūds",
+    "factionId": "pro",
+    "seatNumber": 132,
+    "row": 4,
+    "col": 7,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-133",
+    "name": "Dāvis Melnalksnis",
+    "factionId": "as",
+    "seatNumber": 133,
+    "row": 4,
+    "col": 8,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-134",
+    "name": "Raivis Kalējs",
+    "factionId": "as",
+    "seatNumber": 134,
+    "row": 4,
+    "col": 9,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-135",
+    "name": "Jānis Eglīts",
+    "factionId": "na",
+    "seatNumber": 135,
+    "row": 4,
+    "col": 10,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-136",
+    "name": "Normunds Dzintars",
+    "factionId": "na",
+    "seatNumber": 136,
+    "row": 4,
+    "col": 11,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-137",
+    "name": "Inga Priede",
+    "factionId": "as",
+    "seatNumber": 137,
+    "row": 4,
+    "col": 12,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-138",
+    "name": "Roberts Ķipurs",
+    "factionId": "na",
+    "seatNumber": 138,
+    "row": 4,
+    "col": 13,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-139",
+    "name": "Ģirts Valdis Kristovskis",
+    "factionId": "jv",
+    "seatNumber": 139,
+    "row": 4,
+    "col": 14,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
+  },
+  {
+    "id": "mp-140",
+    "name": "Viktors Pučka",
+    "factionId": "st",
+    "seatNumber": 140,
+    "row": 4,
+    "col": 15,
+    "isSubstitute": true,
+    "replacesMpName": "Ministru vai demisiju"
   }
 ]
