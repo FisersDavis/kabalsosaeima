@@ -84,15 +84,16 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
   }, [mps]);
 
   // Generate 100 hemicycle seat coordinates in 4 concentric semi-circular arcs
+  // Scaled up by ~25% to fill column width and provide comfortable click targets
   const seatPositions = useMemo(() => {
     if (vote.isSecret || !vote.mpVotes || vote.mpVotes.length === 0) return [];
 
     // Rows distribution for 100 seats: [18, 24, 28, 30] = 100 seats
     const rows = [
-      { radius: 120, count: 18 },
-      { radius: 170, count: 24 },
-      { radius: 220, count: 28 },
-      { radius: 270, count: 30 },
+      { radius: 130, count: 18 },
+      { radius: 180, count: 24 },
+      { radius: 230, count: 28 },
+      { radius: 280, count: 30 },
     ];
 
     const centerX = 320;
@@ -192,11 +193,12 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
     return seatPositions.find((s) => s.mp.id === hoveredMpId) || null;
   }, [hoveredMpId, seatPositions]);
 
-  const handleDotMouseEnter = (mpId: string) => {
+  // Intentional click on seat: scrolls right-hand table directly to that deputy
+  const handleSeatClick = (mpId: string) => {
     setHoveredMpId(mpId);
     const rowEl = document.getElementById(`mp-row-${mpId}`);
     if (rowEl) {
-      rowEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      rowEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
@@ -205,12 +207,13 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-slate-950/70 backdrop-blur-sm animate-in fade-in duration-150">
+      {/* Locked modal frame with rigid height to prevent layout shifts on filtering */}
       <div
-        className="relative flex flex-col w-full max-w-6xl max-h-[92vh] rounded-xl border border-slate-200 bg-white shadow-2xl overflow-hidden"
+        className="relative flex flex-col w-full max-w-6xl h-[85vh] min-h-[580px] max-h-[760px] rounded-xl border border-slate-200 bg-white shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header toolbar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 px-5 py-3.5 bg-slate-50/80 gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 px-5 py-3.5 bg-slate-50/80 gap-3 shrink-0">
           <div className="min-w-0 pr-2">
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded bg-slate-200 px-2 py-0.5 font-mono text-xs font-semibold text-slate-800">
@@ -251,7 +254,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
-            {/* Search Input in Top Header */}
+            {/* Top Search Bar */}
             {!vote.isSecret && (
               <div className="relative w-44 sm:w-56">
                 <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400" />
@@ -266,7 +269,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setSearchMp('')}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-0.5"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 p-0.5 cursor-pointer"
                   >
                     <X className="h-3 w-3" />
                   </button>
@@ -285,10 +288,10 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
           </div>
         </div>
 
-        {/* Content Body: Side-by-side on desktop (lg+), stacked on mobile */}
+        {/* Content Body: Side-by-side desktop layout, locked vertical height */}
         {vote.isSecret ? (
-          <div className="p-8 sm:p-12 text-center space-y-5">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-slate-700 border border-slate-200">
+          <div className="flex-1 p-8 sm:p-12 text-center space-y-5 flex flex-col items-center justify-center">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-slate-700 border border-slate-200">
               <Lock className="h-7 w-7" />
             </div>
             <div className="max-w-md mx-auto space-y-2">
@@ -313,58 +316,29 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
             {/* Left Pane: Plenary Hemicycle Diagram */}
             <div className="lg:w-[48%] xl:w-[50%] p-4 sm:p-5 bg-slate-50/60 border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col justify-between overflow-y-auto min-h-0">
               <div>
-                {/* Hemicycle Title & Live Summary */}
+                {/* Consolidate Header Tally into a single clean line */}
                 <div className="flex items-center justify-between mb-3 text-xs">
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-slate-800">
-                      Saeimas sēžu zāle (100 vietas):
-                    </span>
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="font-semibold text-slate-800">Sēžu zāle</span>
+                    <span className="text-slate-400">·</span>
+                    <span className="font-medium text-emerald-700">{vote.counts.par} Par</span>
+                    <span className="text-slate-400">·</span>
+                    <span className="font-medium text-rose-700">{vote.counts.pret} Pret</span>
+                    <span className="text-slate-400">·</span>
+                    <span className="font-medium text-amber-700">{vote.counts.atturas} Atturas</span>
+                    <span className="text-slate-400">·</span>
+                    <span className="font-medium text-slate-500">{vote.counts.nebalso} Nebalsoja</span>
                     {!hasQuorum && (
-                      <span className="rounded bg-rose-100 px-1.5 py-0.5 text-[10px] font-bold text-rose-800">
+                      <span className="ml-1 rounded bg-rose-100 px-1.5 py-0.5 text-[10px] font-bold text-rose-800">
                         Nav kvoruma (&lt; 50)
                       </span>
                     )}
                   </div>
-                  <div className="flex items-center gap-3 font-mono text-[11px] font-medium">
-                    <span className="flex items-center gap-1 text-emerald-700">
-                      <span className="h-2 w-2 rounded-full bg-emerald-600" />
-                      {vote.counts.par}
-                    </span>
-                    <span className="flex items-center gap-1 text-rose-700">
-                      <span className="h-2 w-2 rounded-full bg-rose-600" />
-                      {vote.counts.pret}
-                    </span>
-                    <span className="flex items-center gap-1 text-amber-700">
-                      <span className="h-2 w-2 rounded-full bg-amber-600" />
-                      {vote.counts.atturas}
-                    </span>
-                    <span className="flex items-center gap-1 text-slate-500">
-                      <span className="h-2 w-2 rounded-full bg-slate-400" />
-                      {vote.counts.nebalso}
-                    </span>
-                  </div>
                 </div>
 
-                {/* SVG Hemicycle Diagram */}
-                <div className="relative w-full aspect-[640/320] max-w-xl mx-auto">
-                  <svg viewBox="0 0 640 325" className="w-full h-full select-none">
-                    {/* Presidential Tribune Arc */}
-                    <path
-                      d="M255 300 Q320 280 385 300"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      className="text-slate-300"
-                    />
-                    <text
-                      x="320"
-                      y="318"
-                      textAnchor="middle"
-                      className="fill-slate-400 text-[10px] uppercase font-mono tracking-widest font-semibold"
-                    >
-                      Prezidija tribīne
-                    </text>
-
+                {/* SVG Hemicycle Diagram: Scaled up to fill column width and target comfortably */}
+                <div className="relative w-full aspect-[640/310] max-w-xl mx-auto">
+                  <svg viewBox="0 0 640 310" className="w-full h-full select-none">
                     {/* 100 Active Voting Seats */}
                     {seatPositions.map(({ mp, x, y, decision }) => {
                       const isHovered = hoveredMpId === mp.id;
@@ -375,13 +349,13 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
 
                       return (
                         <g key={mp.id}>
-                          {/* Pulse / halo ring on active hover */}
+                          {/* Pulse / halo ring on active hover or selection */}
                           {isHovered && (
                             <>
                               <circle
                                 cx={x}
                                 cy={y}
-                                r={12}
+                                r={14.5}
                                 fill="none"
                                 stroke="#0284c7"
                                 strokeWidth="2.5"
@@ -390,7 +364,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                               <circle
                                 cx={x}
                                 cy={y}
-                                r={9.5}
+                                r={12}
                                 fill="none"
                                 stroke="#ffffff"
                                 strokeWidth="2"
@@ -400,14 +374,15 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                           <circle
                             cx={x}
                             cy={y}
-                            r={isHovered ? 8 : 6}
+                            r={isHovered ? 10 : 7.5}
                             fill={getDecisionColor(decision)}
                             opacity={isMatchFilter ? 1 : 0.15}
                             className="cursor-pointer transition-all duration-150"
                             strokeWidth={isHovered ? 2.5 : 1}
                             stroke={isHovered ? '#0f172a' : '#ffffff'}
-                            onMouseEnter={() => handleDotMouseEnter(mp.id)}
+                            onMouseEnter={() => setHoveredMpId(mp.id)}
                             onMouseLeave={() => setHoveredMpId(null)}
+                            onClick={() => handleSeatClick(mp.id)}
                           />
                         </g>
                       );
@@ -416,8 +391,8 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                 </div>
               </div>
 
-              {/* Inspector Preview Card for Hovered MP */}
-              <div className="mt-4 pt-3 border-t border-slate-200">
+              {/* Inspector Preview Card for Hovered/Clicked MP */}
+              <div className="mt-auto pt-3 border-t border-slate-200">
                 {hoveredSeat ? (
                   <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-3 shadow-xs animate-in fade-in duration-100">
                     <div className="min-w-0 pr-3">
@@ -457,13 +432,13 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                   </div>
                 ) : (
                   <div className="rounded-lg border border-dashed border-slate-200 p-2.5 text-center text-xs text-slate-400">
-                    Uzbrauciet ar kursoru uz deputāta vietas vai saraksta rindas, lai redzētu balsojuma detaļas.
+                    Uzbrauciet ar kursoru uz deputāta vietas, lai skatītu balsojumu.
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Right Pane: Filterable Audit Table */}
+            {/* Right Pane: Filterable Audit Table (Isolated scroll area) */}
             <div className="lg:w-[52%] xl:w-[50%] flex flex-col min-h-0 bg-white">
               {/* Controls bar: Outcome pills + Faction dropdown */}
               <div className="p-3 sm:p-4 border-b border-slate-200 bg-white space-y-2.5 shrink-0">
@@ -536,7 +511,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                       id="faction-select"
                       value={filterFaction}
                       onChange={(e) => setFilterFaction(e.target.value)}
-                      className="rounded-lg border border-slate-300 bg-white py-1 px-2.5 text-xs text-slate-800 font-medium focus:border-slate-500 focus:outline-none transition shadow-2xs"
+                      className="rounded-lg border border-slate-300 bg-white py-1 px-2.5 text-xs text-slate-800 font-medium focus:border-slate-500 focus:outline-none transition shadow-2xs cursor-pointer"
                     >
                       <option value="ALL">Visas frakcijas (100)</option>
                       {factions.map((f) => (
@@ -549,8 +524,8 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                 </div>
               </div>
 
-              {/* Scrollable Audit Table */}
-              <div className="flex-1 overflow-y-auto min-h-0 divide-y divide-slate-100">
+              {/* Scrollable Audit Table: fills 100% vertical space without shrinking */}
+              <div className="flex-1 overflow-y-auto min-h-0 divide-y divide-slate-100 bg-white">
                 <table className="w-full text-left text-xs border-collapse">
                   <thead className="sticky top-0 z-10 bg-slate-100/95 backdrop-blur-sm text-slate-600 text-[11px] uppercase tracking-wider font-semibold border-b border-slate-200">
                     <tr>
@@ -576,32 +551,32 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                               : 'hover:bg-slate-50/80'
                           }`}
                         >
+                          {/* Deputy name with discreet asterisk for substitute MPs */}
                           <td className="py-2.5 px-4 font-medium text-slate-900">
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1.5">
                               <span>{mp.name}</span>
                               {isSubstitute && (
                                 <span
-                                  className="inline-flex items-center rounded bg-amber-50 px-1.5 py-0.2 text-[10px] font-medium text-amber-800 border border-amber-200"
-                                  title={replacesMpName ? `Aizvieto: ${replacesMpName}` : 'Mīkstais mandāts'}
+                                  className="text-amber-600 font-bold text-xs cursor-help select-none"
+                                  title={replacesMpName ? `Mīkstais mandāts (${replacesMpName})` : 'Mīkstais mandāts'}
                                 >
-                                  ✦ Mīkstais mandāts
+                                  *
                                 </span>
                               )}
                             </div>
                           </td>
+
+                          {/* Abbreviated Faction badge only (no full party text to eliminate visual weight & truncation) */}
                           <td className="py-2.5 px-4">
-                            <div className="flex items-center gap-1.5">
-                              <span
-                                className="inline-flex rounded px-1.5 py-0.5 font-mono text-[10px] font-bold text-white shadow-2xs"
-                                style={{ backgroundColor: faction?.color || '#64748B' }}
-                              >
-                                {faction?.shortName || mp.factionId.toUpperCase()}
-                              </span>
-                              <span className="text-slate-600 text-[11px] hidden sm:inline truncate max-w-[130px]">
-                                {faction?.name}
-                              </span>
-                            </div>
+                            <span
+                              className="inline-flex rounded px-1.5 py-0.5 font-mono text-[10px] font-bold text-white shadow-2xs"
+                              style={{ backgroundColor: faction?.color || '#64748B' }}
+                            >
+                              {faction?.shortName || mp.factionId.toUpperCase()}
+                            </span>
                           </td>
+
+                          {/* Decision badge */}
                           <td className="py-2.5 px-4 text-right">
                             {getDecisionBadge(decision)}
                           </td>
@@ -620,9 +595,13 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                 </table>
               </div>
 
-              {/* Table Footer status */}
-              <div className="px-4 py-2 bg-slate-50 border-t border-slate-200 text-[11px] text-slate-500 flex items-center justify-between shrink-0">
-                <span>Rāda: {filteredSeats.length} no 100 deputātiem</span>
+              {/* Table Footer status: locked to bottom */}
+              <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-200 text-[11px] text-slate-500 flex items-center justify-between shrink-0">
+                <div className="flex items-center gap-2">
+                  <span>Rāda: {filteredSeats.length} no 100 deputātiem</span>
+                  <span className="text-slate-300">·</span>
+                  <span className="text-slate-400">* Mīkstais mandāts</span>
+                </div>
                 {filterDecision !== 'ALL' || filterFaction !== 'ALL' || searchMp ? (
                   <button
                     type="button"
