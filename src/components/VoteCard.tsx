@@ -330,7 +330,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
               className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-800 hover:bg-slate-100 hover:border-slate-300 transition cursor-pointer shadow-2xs"
             >
               <Users className="h-3.5 w-3.5 text-emerald-700" />
-              <span>Atvērt 100 vietu sēžu zāli</span>
+              <span>Kā balsoja katrs deputāts</span>
             </button>
 
             {/* Right: Clean secondary link list */}
