@@ -76,29 +76,43 @@ def detect_category(title, section=""):
                 return {'id': cat['id'], 'label': cat['label']}
     return {'id': 'administracija', 'label': 'Valsts pārvalde'}
 
-SKIP_KEYWORDS = [
-    'priekšlikum', 'steidzamīb', 'izslēgšan', 'iekļaušan', 'darba kārtīb',
-    'termiņ', 'pārtraukum', 'pārbaudi', 'pagarināšan', 'nodošana komisij'
-]
-
-def is_substantive_final_vote(title, motive, reading, is_urgent):
+def classify_vote_type(motive, reading, is_urgent):
     m = motive.lower()
-    for kw in SKIP_KEYWORDS:
-        if kw in m:
-            return False
-    # Final 3rd reading of a law
-    if reading == 3:
-        return True
-    # Urgent 2nd reading (final reading for urgent laws in Saeima)
-    if reading == 2 and is_urgent:
-        return True
-    if '3.lasījumā' in m or '3. lasījumā' in m or 'galīgajā lasījumā' in m:
-        return True
-    if ('2.lasījumā' in m or '2. lasījumā' in m) and ('steidzam' in m or is_urgent):
-        return True
-    if ('par likuma' in m or 'par lēmuma' in m or 'konvencij' in m) and ('pieņemšan' in m or 'apstiprināšan' in m):
-        return True
-    return False
+    if 'priekšlikum' in m or 'labojum' in m:
+        return 'priekslikums'
+    if any(k in m for k in ['steidzamīb', 'izslēgšan', 'iekļaušan', 'darba kārtīb', 'termiņ', 'pārtraukum', 'pārbaudi', 'pagarināšan', 'nodošan']):
+        return 'procedura'
+    return 'likums'
+
+def determine_reading_stage(motive, reading, is_urgent, vote_type):
+    m = motive.lower()
+    if vote_type == 'likums':
+        if reading == 3 or '3.lasījum' in m or '3. lasījum' in m or 'galīg' in m:
+            return '3. lasījums (galīgais)'
+        elif (reading == 2 and is_urgent) or (('2.lasījum' in m or '2. lasījum' in m) and ('steidzam' in m or is_urgent)):
+            return '2. lasījums (steidzams)'
+        elif reading == 2 or '2.lasījum' in m or '2. lasījum' in m:
+            return '2. lasījums'
+        elif reading == 1 or '1.lasījum' in m or '1. lasījum' in m:
+            return '1. lasījums'
+        elif 'lēmum' in m:
+            return 'Lēmums'
+        elif 'deklarācij' in m:
+            return 'Deklarācija'
+        return 'Likuma pieņemšana'
+    elif vote_type == 'priekslikums':
+        match = re.search(r'(\d+)\.\s*priekšlikum', m)
+        if match:
+            return f"{match.group(1)}. priekšlikums"
+        return 'Priekšlikums'
+    else:
+        if 'steidzam' in m:
+            return 'Steidzamība'
+        elif 'darba kārtīb' in m:
+            return 'Darba kārtība'
+        elif 'nodošan' in m:
+            return 'Nodošana komisijām'
+        return 'Procedūra'
 
 def simplify_title(official_title):
     t = official_title.strip()
@@ -170,12 +184,12 @@ def run_ingestion():
     parsed_votes = []
     all_seen_deputies = {}
 
-    # Target between 40 and 80 substantive votes
-    target_count = 60
+    # Target last 18 consecutive plenary sittings (100% of all votes ingested)
+    target_sittings = 18
     sittings_scanned = 0
 
     for s_name in reversed(recent_sittings):
-        if len(parsed_votes) >= target_count:
+        if sittings_scanned >= target_sittings:
             break
 
         v_res = vote_resources[s_name]
@@ -202,14 +216,8 @@ def run_ingestion():
                 if did:
                     dkp_map[did] = item
 
-            # Process candidate votes in this sitting (cap at max 2 substantive final votes per sitting)
-            sitting_added = 0
+            # Process 100% of candidate votes in this sitting (Zero-drop objective transparency)
             for cv in candidate_votes:
-                if len(parsed_votes) >= target_count:
-                    break
-                if sitting_added >= 2:
-                    break
-
                 did = cv.findtext('dkp_id')
                 d_item = dkp_map.get(did)
                 motive = (cv.findtext('VOTEMOTIVE') or '').strip()
@@ -236,11 +244,10 @@ def run_ingestion():
                 raw_urgency = d_item.findtext('URGENCY') if d_item is not None else 'False'
                 is_urgent = raw_urgency in ['True', '1', True] or 'steidzam' in motive.lower()
 
-                # Filter strictly for substantive final law adoptions and key decisions
-                if not is_substantive_final_vote(title, motive, reading, is_urgent):
-                    continue
-
-                is_tier1 = (reading == 3) or (reading == 2 and is_urgent) or ('pieņemšan' in motive.lower()) or ('galīg' in motive.lower())
+                # Objective classification based on Saeima procedural record
+                vote_type = classify_vote_type(motive, reading, is_urgent)
+                stage = determine_reading_stage(motive, reading, is_urgent, vote_type)
+                is_tier1 = (vote_type == 'likums')
 
                 ts = cv.findtext('VOTETIMESTAMP') or ''
                 date_str = ""
@@ -381,6 +388,8 @@ def run_ingestion():
                     'reading': reading,
                     'isUrgent': is_urgent,
                     'isTier1': is_tier1,
+                    'voteType': vote_type,
+                    'readingStage': stage,
                     'isSecret': False,
                     'isRevote': False,
                     'officialTitle': title,
@@ -400,13 +409,12 @@ def run_ingestion():
                     'factionBreakdown': faction_breakdowns,
                     'mpVotes': mp_records
                 })
-                sitting_added += 1
-                print(f"      + Added vote: [{outcome}] {bill_number} - {simplify_title(title)[:60]}...")
+                print(f"      + [{vote_type.upper()}] [{outcome}] {bill_number} - {simplify_title(title)[:60]}...")
 
         except Exception as e:
             continue
 
-    print(f"\n[3/4] Successfully ingested {len(parsed_votes)} substantive Saeima votes from {sittings_scanned} sittings.")
+    print(f"\n[3/4] Successfully ingested {len(parsed_votes)} Saeima votes from {sittings_scanned} full sittings.")
 
     # Preserve representative edge-case examples (Quorum break Satversme Art. 24, Secret Ballot, Revote)
     has_quorum_break = any(v['result'] == 'NAV_KVORUMA' for v in parsed_votes)
@@ -421,6 +429,8 @@ def run_ingestion():
             'reading': 2,
             'isUrgent': False,
             'isTier1': True,
+            'voteType': 'likums',
+            'readingStage': '2. lasījums',
             'isSecret': False,
             'isRevote': False,
             'officialTitle': 'Grozījumi Publisko personu finanšu līdzekļu un mantas izšķērdēšanas novēršanas likumā (512/Lp14)',
@@ -454,6 +464,8 @@ def run_ingestion():
             'reading': None,
             'isUrgent': False,
             'isTier1': True,
+            'voteType': 'likums',
+            'readingStage': 'Amatpersonu vēlēšanas',
             'isSecret': True,
             'isRevote': False,
             'officialTitle': 'Latvijas Valsts prezidenta vēlēšanas (3. vēlēšanu kārta)',

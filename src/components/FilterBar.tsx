@@ -1,11 +1,15 @@
 import React from 'react';
-import { Search, X, CheckCircle2, XCircle, AlertTriangle } from 'lucide-react';
+import { Search, X, CheckCircle2, XCircle, AlertTriangle, Layers, FileText, SlidersHorizontal, Scale } from 'lucide-react';
+
+export type VoteTypeFilter = 'ALL' | 'likums' | 'priekslikums' | 'procedura';
 
 interface FilterBarProps {
   searchQuery: string;
   onSearchChange: (q: string) => void;
   selectedCategory: string;
   onCategoryChange: (cat: string) => void;
+  selectedVoteType: VoteTypeFilter;
+  onVoteTypeChange: (type: VoteTypeFilter) => void;
   selectedOutcome: 'ALL' | 'PIENEMTS' | 'NORAIDITS' | 'NAV_KVORUMA';
   onOutcomeChange: (outcome: 'ALL' | 'PIENEMTS' | 'NORAIDITS' | 'NAV_KVORUMA') => void;
   categories: { id: string; label: string }[];
@@ -19,6 +23,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   onSearchChange,
   selectedCategory,
   onCategoryChange,
+  selectedVoteType,
+  onVoteTypeChange,
   selectedOutcome,
   onOutcomeChange,
   categories,
@@ -28,6 +34,60 @@ export const FilterBar: React.FC<FilterBarProps> = ({
 }) => {
   return (
     <div className="space-y-4">
+      {/* Primary Vote Type Tabs (100% Objective Parliamentary Typology) */}
+      <div className="flex flex-wrap items-center gap-1.5 border-b border-slate-200 pb-3">
+        <button
+          type="button"
+          onClick={() => onVoteTypeChange('ALL')}
+          className={`flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold transition ${
+            selectedVoteType === 'ALL'
+              ? 'bg-slate-900 text-white shadow-sm ring-1 ring-slate-900'
+              : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+          }`}
+        >
+          <Layers className="h-3.5 w-3.5" />
+          Visi balsojumi
+        </button>
+
+        <button
+          type="button"
+          onClick={() => onVoteTypeChange('likums')}
+          className={`flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold transition ${
+            selectedVoteType === 'likums'
+              ? 'bg-indigo-600 text-white shadow-sm ring-1 ring-indigo-600'
+              : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+          }`}
+        >
+          <Scale className="h-3.5 w-3.5 text-indigo-500 group-hover:text-indigo-600" />
+          Likumu pieņemšana
+        </button>
+
+        <button
+          type="button"
+          onClick={() => onVoteTypeChange('priekslikums')}
+          className={`flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold transition ${
+            selectedVoteType === 'priekslikums'
+              ? 'bg-sky-600 text-white shadow-sm ring-1 ring-sky-600'
+              : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+          }`}
+        >
+          <FileText className="h-3.5 w-3.5 text-sky-500 group-hover:text-sky-600" />
+          Priekšlikumi & labojumi
+        </button>
+
+        <button
+          type="button"
+          onClick={() => onVoteTypeChange('procedura')}
+          className={`flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-xs font-semibold transition ${
+            selectedVoteType === 'procedura'
+              ? 'bg-slate-700 text-white shadow-sm ring-1 ring-slate-700'
+              : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+          }`}
+        >
+          <SlidersHorizontal className="h-3.5 w-3.5 text-slate-500" />
+          Procedūra & darba kārtība
+        </button>
+      </div>
       {/* Search Bar + Result Type Filters */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         {/* Search */}

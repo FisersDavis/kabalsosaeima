@@ -59,6 +59,23 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
       {/* Top Meta Bar */}
       <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-100">
         <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+          {/* Objective Parliamentary Vote Type Badge */}
+          {vote.voteType === 'likums' && (
+            <span className="inline-flex items-center rounded-md bg-indigo-50 px-2 py-0.5 text-[11px] font-bold text-indigo-700 border border-indigo-200">
+              {vote.readingStage || 'Likums'}
+            </span>
+          )}
+          {vote.voteType === 'priekslikums' && (
+            <span className="inline-flex items-center rounded-md bg-sky-50 px-2 py-0.5 text-[11px] font-bold text-sky-700 border border-sky-200">
+              {vote.readingStage || 'Priekšlikums'}
+            </span>
+          )}
+          {vote.voteType === 'procedura' && (
+            <span className="inline-flex items-center rounded-md bg-slate-100 px-2 py-0.5 text-[11px] font-bold text-slate-700 border border-slate-200">
+              {vote.readingStage || 'Procedūra'}
+            </span>
+          )}
+
           <span className="rounded bg-slate-100 px-2 py-0.5 font-medium text-slate-700">
             {vote.category.label}
           </span>

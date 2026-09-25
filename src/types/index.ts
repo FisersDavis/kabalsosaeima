@@ -77,6 +77,8 @@ export interface Vote {
   isSecret?: boolean;
   isRevote?: boolean;
   revoteReason?: string;
+  voteType?: 'likums' | 'priekslikums' | 'procedura';
+  readingStage?: string;
   officialTitle: string;
   billNumber: string;
   simplifiedTitle: string;

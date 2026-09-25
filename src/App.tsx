@@ -2,11 +2,13 @@ import { useState, useEffect, useMemo } from 'react';
 import type { Vote, MP, Faction, SaeimaTerm } from './types';
 import { isFinalDecisionVote } from './types';
 import { Navbar } from './components/Navbar';
-import { FilterBar } from './components/FilterBar';
+import { FilterBar, type VoteTypeFilter } from './components/FilterBar';
 import { VoteCard } from './components/VoteCard';
 import { HemicycleModal } from './components/HemicycleModal';
 import { Footer } from './components/Footer';
-import { BookOpen, AlertCircle, Info } from 'lucide-react';
+import { BookOpen, AlertCircle, Info, ChevronDown } from 'lucide-react';
+
+const PAGE_SIZE = 30;
 
 export function App() {
   const [terms, setTerms] = useState<SaeimaTerm[]>([
@@ -24,8 +26,15 @@ export function App() {
   const [selectedVote, setSelectedVote] = useState<Vote | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
+  const [selectedVoteType, setSelectedVoteType] = useState<VoteTypeFilter>('ALL');
   const [selectedOutcome, setSelectedOutcome] = useState<'ALL' | 'PIENEMTS' | 'NORAIDITS' | 'NAV_KVORUMA'>('ALL');
-  const [tier1Only, setTier1Only] = useState<boolean>(true);
+  const [tier1Only, setTier1Only] = useState<boolean>(false);
+  const [visibleCount, setVisibleCount] = useState<number>(PAGE_SIZE);
+
+  // Reset pagination when any filter changes
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [searchQuery, selectedCategory, selectedVoteType, selectedOutcome, tier1Only, selectedTerm]);
 
   // Load JSON datasets from public/data/
   useEffect(() => {
@@ -87,6 +96,7 @@ export function App() {
   // Filtered votes within the selected term using edge-case helpers
   const filteredVotes = useMemo(() => {
     return termVotes.filter((v) => {
+      if (selectedVoteType !== 'ALL' && v.voteType !== selectedVoteType) return false;
       if (tier1Only && !isFinalDecisionVote(v)) return false;
       if (selectedOutcome !== 'ALL' && v.result !== selectedOutcome) return false;
       if (selectedCategory !== 'ALL' && v.category?.id !== selectedCategory) return false;
@@ -100,7 +110,11 @@ export function App() {
       }
       return true;
     });
-  }, [termVotes, tier1Only, selectedOutcome, selectedCategory, searchQuery]);
+  }, [termVotes, selectedVoteType, tier1Only, selectedOutcome, selectedCategory, searchQuery]);
+
+  const visibleVotes = useMemo(() => {
+    return filteredVotes.slice(0, visibleCount);
+  }, [filteredVotes, visibleCount]);
 
   const activeTermObj = terms.find((t) => t.term === selectedTerm);
 
@@ -186,6 +200,8 @@ export function App() {
               onSearchChange={setSearchQuery}
               selectedCategory={selectedCategory}
               onCategoryChange={setSelectedCategory}
+              selectedVoteType={selectedVoteType}
+              onVoteTypeChange={setSelectedVoteType}
               selectedOutcome={selectedOutcome}
               onOutcomeChange={setSelectedOutcome}
               categories={categories}
@@ -223,6 +239,7 @@ export function App() {
                 onClick={() => {
                   setSearchQuery('');
                   setSelectedCategory('ALL');
+                  setSelectedVoteType('ALL');
                   setSelectedOutcome('ALL');
                   setTier1Only(false);
                 }}
@@ -233,13 +250,27 @@ export function App() {
             </div>
           )}
 
-          {!loading && !error && filteredVotes.map((vote) => (
+          {!loading && !error && visibleVotes.map((vote) => (
             <VoteCard
               key={vote.id}
               vote={vote}
               onSelect={(v) => setSelectedVote(v)}
             />
           ))}
+
+          {/* Progressive Loading Trigger */}
+          {!loading && !error && visibleCount < filteredVotes.length && (
+            <div className="pt-2 pb-6 text-center">
+              <button
+                type="button"
+                onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-2.5 text-xs font-semibold text-slate-800 shadow-sm hover:bg-slate-50 hover:border-slate-400 transition"
+              >
+                <ChevronDown className="h-4 w-4 text-slate-500" />
+                Rādīt vēl {PAGE_SIZE} balsojumus (atlikuši {filteredVotes.length - visibleCount})
+              </button>
+            </div>
+          )}
         </section>
       </main>
 
