@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { Vote } from '../types';
-import { Check, Copy, ChevronRight, FileText, AlertTriangle, RefreshCw, Lock, ExternalLink } from 'lucide-react';
+import { Check, Copy, ChevronRight, FileText, AlertTriangle, RefreshCw, Lock, ExternalLink, MessageSquare, ChevronDown, UserX } from 'lucide-react';
 
 interface VoteCardProps {
   vote: Vote;
@@ -10,6 +10,7 @@ interface VoteCardProps {
 export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
   const [copied, setCopied] = useState(false);
   const [showSummary, setShowSummary] = useState(false);
+  const [showDebates, setShowDebates] = useState(false);
 
   const total = 100;
   const parPct = (vote.counts.par / total) * 100;
@@ -29,6 +30,11 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
 
   const coalition = vote.coalitionSplit?.coalition;
   const opposition = vote.coalitionSplit?.opposition;
+
+  // Collect all MPs who broke faction discipline across all factions
+  const allDeviations = (vote.factionBreakdown || []).flatMap((f) =>
+    (f.deviatingMps || []).map((dev) => ({ ...dev, factionShort: f.shortName, factionColor: f.color }))
+  );
 
   return (
     <article
@@ -82,7 +88,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
           )}
         </div>
 
-        {/* Outcome Badge: Institutional Sage / Brick / Amber */}
+        {/* Outcome Badge */}
         {isQuorumBreak ? (
           <span
             className="inline-flex items-center gap-1 rounded px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider border border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-800/70 dark:bg-amber-950/40 dark:text-amber-300"
@@ -137,6 +143,45 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </p>
       </div>
 
+      {/* Tweak 2: Debate / Core Arguments Collapsible */}
+      {vote.debateArguments && (
+        <div className="mt-2.5 rounded border border-slate-200/80 bg-white dark:border-slate-800 dark:bg-slate-900/60 overflow-hidden text-xs">
+          <button
+            type="button"
+            onClick={() => setShowDebates(!showDebates)}
+            className="flex w-full items-center justify-between p-2.5 text-left text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-800/50 transition font-medium"
+          >
+            <div className="flex items-center gap-1.5">
+              <MessageSquare className="h-3.5 w-3.5 text-slate-400" />
+              <span>Galvenie debašu argumenti (Sēdes stenogramma)</span>
+            </div>
+            <ChevronDown className={`h-3.5 w-3.5 text-slate-400 transition-transform ${showDebates ? 'rotate-180' : ''}`} />
+          </button>
+
+          {showDebates && (
+            <div className="border-t border-slate-100 bg-slate-50/50 p-3 dark:border-slate-800/70 dark:bg-slate-950/40 space-y-2.5 text-[11px] leading-relaxed">
+              <div>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 block mb-0.5">
+                  ✦ Virzītāju argumenti ({vote.debateArguments.rapporteur || 'Atbildīgā komisija'}):
+                </span>
+                <p className="text-slate-600 dark:text-slate-400 pl-3 border-l-2 border-emerald-600 dark:border-emerald-500">
+                  {vote.debateArguments.proponents}
+                </p>
+              </div>
+
+              <div>
+                <span className="font-semibold text-slate-800 dark:text-slate-200 block mb-0.5">
+                  ✦ Opozīcijas un debatētāju iebildumi:
+                </span>
+                <p className="text-slate-600 dark:text-slate-400 pl-3 border-l-2 border-red-600 dark:border-red-500">
+                  {vote.debateArguments.opponents}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Aggregate Voting Bar: Pine / Brick / Ochre / Slate */}
       <div className="mt-4 space-y-2">
         <div className="flex justify-between font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">
@@ -158,7 +203,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
           </span>
         </div>
 
-        {/* Stacked Proportional Bar with subtle corners */}
+        {/* Stacked Proportional Bar */}
         <div className="flex h-2 w-full overflow-hidden rounded bg-slate-100 shadow-inner dark:bg-slate-800">
           <div style={{ width: `${parPct}%` }} className="bg-emerald-700 dark:bg-emerald-600 transition-all duration-300" />
           <div style={{ width: `${pretPct}%` }} className="bg-red-700 dark:bg-red-600 transition-all duration-300" />
@@ -173,7 +218,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </div>
       </div>
 
-      {/* Koalīcija vs. Opozīcija Aggregate Breakdown (Sober Civic Ledger standard) */}
+      {/* Koalīcija vs. Opozīcija Aggregate Breakdown */}
       {!vote.isSecret && coalition && opposition && (
         <div className="mt-4 rounded border border-slate-200/80 bg-slate-50/50 p-2.5 text-xs dark:border-slate-800/80 dark:bg-slate-900/50 font-mono">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -206,12 +251,32 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </div>
       )}
 
-      {/* Individual Faction Discipline Spectrum */}
+      {/* Tweak 3: MP Deviations Callout */}
+      {allDeviations.length > 0 && (
+        <div className="mt-3 flex flex-wrap items-center gap-2 rounded border border-amber-200 bg-amber-50/70 p-2 text-xs text-amber-900 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-200">
+          <UserX className="h-3.5 w-3.5 flex-shrink-0 text-amber-600 dark:text-amber-400" />
+          <span className="font-semibold">
+            {allDeviations.length} deputāts balsoja pretēji frakcijas vairākumam:
+          </span>
+          <div className="flex flex-wrap items-center gap-1.5 font-mono text-[11px]">
+            {allDeviations.map((dev) => (
+              <span
+                key={dev.mpId}
+                className="rounded bg-white px-1.5 py-0.5 shadow-xs border border-amber-200 dark:bg-slate-900 dark:border-amber-800"
+              >
+                <strong>{dev.name}</strong> ({dev.factionShort}) balsoja <strong>{dev.decision}</strong> (frakcija: {dev.factionLine})
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Tweak 1: Faction Breakdown with P / Pr / Nb Quorum visibility */}
       {!vote.isSecret && vote.factionBreakdown && (
         <div className="mt-3.5 pt-3 border-t border-slate-100 dark:border-slate-800/80">
           <div className="mb-2 flex items-center justify-between text-[11px] text-slate-400">
             <span className="font-medium uppercase tracking-wider">Frakciju balsojumi:</span>
-            <span>Zaļš: Par · Sarkans: Pret</span>
+            <span>Zaļš: Par · Sarkans: Pret · Pelēks: Nebalsoja</span>
           </div>
 
           <div className="grid grid-cols-2 gap-x-5 gap-y-2 sm:grid-cols-4">
@@ -220,6 +285,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
               const fParPct = fTotal ? (f.votes.par / fTotal) * 100 : 0;
               const fPretPct = fTotal ? (f.votes.pret / fTotal) * 100 : 0;
               const fAtturasPct = fTotal ? (f.votes.atturas / fTotal) * 100 : 0;
+              const fNebalsoPct = fTotal ? (f.votes.nebalso / fTotal) * 100 : 0;
 
               return (
                 <div key={f.factionId} className="flex flex-col gap-1">
@@ -227,15 +293,17 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
                     <span className="font-mono font-bold text-slate-700 dark:text-slate-300" style={{ color: f.color }}>
                       {f.shortName}
                     </span>
-                    <span className="font-mono text-[10px] text-slate-400">
-                      {f.votes.par}P / {f.votes.pret}Pr
+                    {/* Tweak 1: Show P / Pr / Nb */}
+                    <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400">
+                      {f.votes.par}P / {f.votes.pret}Pr{f.votes.nebalso > 0 ? ` / ${f.votes.nebalso}Nb` : ''}
                     </span>
                   </div>
-                  {/* Mini faction split-bar */}
+                  {/* Mini faction split-bar including grey segment for Nebalso */}
                   <div className="flex h-1.5 w-full overflow-hidden rounded bg-slate-100 dark:bg-slate-800">
                     <div style={{ width: `${fParPct}%` }} className="bg-emerald-700 dark:bg-emerald-600" />
                     <div style={{ width: `${fPretPct}%` }} className="bg-red-700 dark:bg-red-600" />
                     <div style={{ width: `${fAtturasPct}%` }} className="bg-amber-600" />
+                    <div style={{ width: `${fNebalsoPct}%` }} className="bg-slate-300 dark:bg-slate-600" />
                   </div>
                 </div>
               );
@@ -244,7 +312,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </div>
       )}
 
-      {/* Footer Navigation & Provenance Link ("Avots") */}
+      {/* Footer Navigation & Provenance Link */}
       <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between border-t border-slate-100 pt-3 gap-2 text-xs dark:border-slate-800">
         <div className="flex items-center gap-3">
           <button

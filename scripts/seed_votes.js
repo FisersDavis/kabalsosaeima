@@ -35,6 +35,7 @@ function generateVote({
   billNumber,
   simplifiedTitle,
   summary,
+  debateArguments = null,
   category,
   factionRules
 }) {
@@ -48,7 +49,8 @@ function generateVote({
       shortName: f.shortName,
       color: f.color,
       isCoalition: f.isCoalition,
-      votes: { par: 0, pret: 0, atturas: 0, nebalso: 0 }
+      votes: { par: 0, pret: 0, atturas: 0, nebalso: 0 },
+      deviatingMps: []
     };
   });
 
@@ -89,6 +91,11 @@ function generateVote({
         decisions.push('NEBALSO');
       }
 
+      // Determine faction line (>60% majority)
+      let factionLine = null;
+      if ((rule.par || 0) > fMps.length * 0.6) factionLine = 'PAR';
+      else if ((rule.pret || 0) > fMps.length * 0.6) factionLine = 'PRET';
+
       fMps.forEach((mp, idx) => {
         const decision = decisions[idx] || 'NEBALSO';
         mpVotes.push({
@@ -116,6 +123,16 @@ function generateVote({
           factionMap[fId].votes.nebalso++;
           targetBloc.nebalso++;
           nebalsoCount++;
+        }
+
+        // Detect MP deviation from faction line (e.g. faction voted PAR, MP voted PRET)
+        if (factionLine && (decision === 'PAR' || decision === 'PRET') && decision !== factionLine) {
+          factionMap[fId].deviatingMps.push({
+            mpId: mp.id,
+            name: mp.name,
+            decision,
+            factionLine
+          });
         }
       });
     }
@@ -151,6 +168,7 @@ function generateVote({
     billNumber,
     simplifiedTitle,
     summary,
+    debateArguments,
     category,
     result,
     counts: {
@@ -182,12 +200,17 @@ const votes = [
     billNumber: "Nr. 482/Lp14",
     simplifiedTitle: "PVN reģistrācijas sliekšņa celšana līdz 50 000 EUR un 12% likme augļiem",
     summary: "Likums nosaka PVN reģistrācijas sliekšņa paaugstināšanu mazajiem uzņēmējiem no 40 000 līdz 50 000 eiro gadā, kā arī pagarina samazināto PVN likmi Latvijai raksturīgiem augļiem, ogām un dārzeņiem.",
+    debateArguments: {
+      rapporteur: "Budžeta un finanšu (nodokļu) komisija",
+      proponents: "Samazinātais PVN atbalsta vietējos lauksaimniekus un samazina ēnu ekonomiku augļu un dārzeņu tirdzniecībā, vienlaikus atslogojot mazos uzņēmējus no liekas grāmatvedības.",
+      opponents: "Opozīcijas pārstāvji uzsvēra, ka inflācijas apstākļos likme bija jāsamazina līdz 5% un jāattiecina uz visiem pārtikas pamatproduktiem (maizei, pienam, gaļai), lai reāli palīdzētu iedzīvotājiem."
+    },
     category: { id: "taxes", label: "Nodokļi & Finanses" },
     factionRules: {
       jv: { par: 25, nebalso: 1 },
       zzs: { par: 16 },
       pro: { par: 10 },
-      as: { pret: 13, atturas: 1, nebalso: 1 },
+      as: { pret: 13, par: 1, nebalso: 1 }, // 1 deviation!
       na: { pret: 10, atturas: 2 },
       lpv: { pret: 9 },
       st: { nebalso: 8 },
@@ -209,6 +232,11 @@ const votes = [
     billNumber: "Nr. 512/Lp14",
     simplifiedTitle: "Valsts aizsardzības finansējuma palielināšana līdz 3.5% no IKP (Steidzamības kārtā pieņemts galīgajā lasījumā)",
     summary: "Nostiprina valsts budžeta saistības palielināt militāro un iekšējās drošības finansējumu līdz 3.5% no IKP līdz 2028. gadam. Tā kā likums atzīts par steidzamu, 2. lasījums ir tā galīgā pieņemšana.",
+    debateArguments: {
+      rapporteur: "Aizsardzības, iekšlietu un korupcijas novēršanas komisija",
+      proponents: "Finansējuma kāpums līdz 3.5% IKP ir vitāli svarīgs NBS pretgaisa aizsardzības sistēmu iegādei un Sēlijas poligona infrastruktūras pabeigšanai NATO spēku uzņemšanai.",
+      opponents: "Daļa opozīcijas pauda bažas par straujā pieauguma ietekmi uz valsts parāda apkalpošanas izmaksām un pieprasīja skaidrāku auditu par jau piešķirto līdzekļu izlietojumu."
+    },
     category: { id: "defense", label: "Aizsardzība & Drošība" },
     factionRules: {
       jv: { par: 26 },
@@ -236,6 +264,11 @@ const votes = [
     billNumber: "Nr. 556/Lp14",
     simplifiedTitle: "Nekustamā īpašuma nodokļa pārdale — Kvoruma noraušana ar Nebalso taktiku",
     summary: "Opozīcijas frakcijas izmantoja Satversmes 24. pantā paredzēto kvoruma taktiku: zālē bija reģistrēti 85 deputāti, taču 53 deputāti apzināti nepiespieda nevienu pogu (Nebalsoja). Piedaloties tikai 47 deputātiem, balsojums atzīts par nenotikušu kvoruma trūkuma dēļ.",
+    debateArguments: {
+      rapporteur: "Valsts pārvaldes un pašvaldības komisija",
+      proponents: "Likumprojekts paredzēja taisnīgāku nodokļu ieņēmumu proporciju Pierīgas un reģionu pašvaldībām skolu tīkla uzturēšanai.",
+      opponents: "Opozīcija atteicās piedalīties balsojumā un norāva kvorumu, norādot, ka likumprojekts tika sasteigts bez Pašvaldību savienības saskaņojuma."
+    },
     category: { id: "housing", label: "Mājoklis & Labklājība" },
     factionRules: {
       jv: { par: 25, nebalso: 1 },
@@ -284,6 +317,11 @@ const votes = [
     billNumber: "Nr. 389/Lp14",
     simplifiedTitle: "Atjaunīgās enerģijas un vēja parku attīstības paātrināšana meža zemēs (Atkārtots)",
     summary: "Pēc frakcijas pieprasījuma tika veikts atkārtots balsojums, kurā tika apstiprināti atvieglojumi vēja parku attīstībai Latvijas valsts mežos.",
+    debateArguments: {
+      rapporteur: "Tautsaimniecības, agrārās, vides un reģionālās politikas komisija",
+      proponents: "Enerģētiskā neatkarība un vietējās zaļās enerģijas ražošanas jaudu dubultošana prasa noņemt nesamērīgus birokrātiskos šķēršļus vēja stacijām.",
+      opponents: "Opozīcijas deputāti argumentēja par mežu ekosistēmu aizsardzību un aicināja noteikt stingrākus attāluma ierobežojumus no apdzīvotām viensētām."
+    },
     category: { id: "energy", label: "Vide & Enerģētika" },
     factionRules: {
       jv: { par: 26 },
@@ -311,6 +349,11 @@ const votes = [
     billNumber: "Nr. 201/Lp14",
     simplifiedTitle: "Pilsonības atņemšanas kārtība personām, kas atbalsta agresorvalsts kara noziegumus",
     summary: "Paredz skaidru tiesisku mehānismu Latvijas Republikas pilsonības atņemšanai dubultpilsoņiem, kuri snieguši būtisku finansiālu, materiālu vai propagandas atbalstu starptautisko mieru un teritoriālo neaizskaramību apdraudošām valstīm.",
+    debateArguments: {
+      rapporteur: "Juridiskā komisija",
+      proponents: "Valsts drošības un Satversmes aizsardzības pamatprincipi nosaka, ka Latvijas pilsonība ir lojalitātes saikne; atbalsts genocīdam un kara noziegumiem ir pamats šīs saiknes pārtraukšanai.",
+      opponents: "Debatēs tika uzdots jautājums par tiesu varas kontroli pār lēmumu pieņemšanu un pārsūdzības mehānismiem, lai novērstu patvaļīgu lēmumu risku."
+    },
     category: { id: "justice", label: "Tiesiskums & Valsts" },
     factionRules: {
       jv: { par: 26 },
@@ -326,4 +369,4 @@ const votes = [
 ];
 
 fs.writeFileSync(outputPath, JSON.stringify(votes, null, 2), 'utf8');
-console.log(`Updated ${votes.length} votes with Coalition vs Opposition splits and protocol URLs into ${outputPath}`);
+console.log(`Updated ${votes.length} votes with debate arguments and faction deviations into ${outputPath}`);

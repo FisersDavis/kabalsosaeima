@@ -37,6 +37,13 @@ export interface MPVoteRecord {
   replacesMpName?: string;
 }
 
+export interface DeviatingMP {
+  mpId: string;
+  name: string;
+  decision: VoteDecision;
+  factionLine: VoteDecision;
+}
+
 export interface FactionBreakdown {
   factionId: string;
   name: string;
@@ -49,6 +56,7 @@ export interface FactionBreakdown {
     atturas: number;
     nebalso: number;
   };
+  deviatingMps?: DeviatingMP[];
 }
 
 export interface BlocSplit {
@@ -64,11 +72,17 @@ export interface CoalitionOppositionSplit {
   opposition: BlocSplit;
 }
 
+export interface DebateArguments {
+  proponents: string; // Sponsor / Rapporteur perspective
+  opponents: string;  // Lead opposition debate thesis
+  rapporteur?: string; // Ziņotājs / Atbildīgā komisija
+}
+
 export interface Vote {
   id: string;
   saeimaTerm: number;
-  sessionId?: string; // e.g., "14-sede-48"
-  sessionDate: string; // Official sitting date
+  sessionId?: string;
+  sessionDate: string;
   sittingDate: string;
   sittingTime: string;
   sittingType: string;
@@ -82,7 +96,8 @@ export interface Vote {
   billNumber: string;
   simplifiedTitle: string;
   summary: string;
-  protocolUrl?: string; // Direct link to saeima.lv stenogram / protocol
+  debateArguments?: DebateArguments; // Debate summary
+  protocolUrl?: string;
   category: {
     id: string;
     label: string;
@@ -95,7 +110,7 @@ export interface Vote {
     nebalso: number;
     totalPresent: number; // par + pret + atturas
   };
-  coalitionSplit?: CoalitionOppositionSplit; // Koalīcija vs Opozīcija aggregate breakdown
+  coalitionSplit?: CoalitionOppositionSplit;
   factionBreakdown: FactionBreakdown[];
   mpVotes: MPVoteRecord[];
 }
