@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { FilterBar, type VoteTypeFilter } from './components/FilterBar';
 import { VoteCard } from './components/VoteCard';
 import { HemicycleModal } from './components/HemicycleModal';
+import { CivicInfoModal } from './components/CivicInfoModal';
 import { Footer } from './components/Footer';
 import { BookOpen, AlertCircle, Info, ChevronDown } from 'lucide-react';
 
@@ -24,6 +25,7 @@ export function App() {
   const [error, setError] = useState<string | null>(null);
 
   const [selectedVote, setSelectedVote] = useState<Vote | null>(null);
+  const [civicModalTab, setCivicModalTab] = useState<'about' | 'methodology' | 'data' | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
   const [selectedVoteType, setSelectedVoteType] = useState<VoteTypeFilter>('ALL');
@@ -125,15 +127,17 @@ export function App() {
         terms={terms}
         selectedTerm={selectedTerm}
         onSelectTerm={setSelectedTerm}
+        latestSittingDate={termVotes[0]?.sittingDate}
+        onOpenInfoModal={setCivicModalTab}
       />
 
       <main className="flex-1 mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 lg:px-8 space-y-6">
         {/* Sober Civic Header (Valsts pārvaldes & LSM stils) */}
         <section className="rounded-xl border border-slate-200/90 bg-white p-6 shadow-sm">
           <div className="max-w-3xl space-y-2">
-            <div className="inline-flex items-center gap-1.5 rounded bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700 border border-slate-200">
+            <div className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700 border border-slate-200">
               <BookOpen className="h-3.5 w-3.5 text-slate-500" />
-              <span>{activeTermObj?.label || `${selectedTerm}. Saeima`} ({activeTermObj?.years}) · Balsojumu reģistrs</span>
+              <span>Oficiālais parlamenta lēmumu arhīvs</span>
             </div>
             <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
               Saeimas plenārsēžu balsojumu pārskats
@@ -281,6 +285,14 @@ export function App() {
           mps={mps}
           factions={factions}
           onClose={() => setSelectedVote(null)}
+        />
+      )}
+
+      {/* Civic Information & Methodology Modal */}
+      {civicModalTab && (
+        <CivicInfoModal
+          initialTab={civicModalTab}
+          onClose={() => setCivicModalTab(null)}
         />
       )}
 

@@ -1,12 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import type { SaeimaTerm } from '../types';
-import { Database, ShieldCheck, ChevronDown, Check } from 'lucide-react';
+import { Database, ChevronDown, Check, ExternalLink } from 'lucide-react';
 
 interface NavbarProps {
   totalVotesCount: number;
   terms: SaeimaTerm[];
   selectedTerm: number;
   onSelectTerm: (term: number) => void;
+  latestSittingDate?: string;
+  onOpenInfoModal: (tab: 'about' | 'methodology' | 'data') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -14,6 +16,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   terms,
   selectedTerm,
   onSelectTerm,
+  latestSittingDate,
+  onOpenInfoModal,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -31,42 +35,55 @@ export const Navbar: React.FC<NavbarProps> = ({
   const currentTermObj = terms.find((t) => t.term === selectedTerm) || terms[0];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        {/* Brand & Term Selector */}
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded border border-slate-300 bg-slate-900 text-white shadow-xs">
-            {/* Saeima plenary room minimalist glyph */}
-            <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 20a9 9 0 0 1 18 0" />
-              <path d="M7 20a5 5 0 0 1 10 0" />
-              <circle cx="12" cy="11" r="1.5" fill="currentColor" />
-            </svg>
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="font-sans text-lg font-bold tracking-tight text-slate-900">
-                kābalso<span className="font-extrabold">saeima</span><span className="text-slate-400 font-mono text-sm font-normal">.lv</span>
+    <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md">
+      <div className="mx-auto flex max-w-5xl flex-col gap-2.5 px-4 py-3 sm:px-6 lg:px-8">
+        {/* Main Row */}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          {/* Brand + Term Selector */}
+          <div className="flex items-center gap-3">
+            {/* Logo with proper breathing room (15% padding) */}
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 bg-slate-900 text-white shadow-xs">
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3 20a9 9 0 0 1 18 0" />
+                <path d="M7 20a5 5 0 0 1 10 0" />
+                <circle cx="12" cy="11" r="1.5" fill="currentColor" />
+              </svg>
+            </div>
+
+            {/* Authoritative Title & Term Badge */}
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              <span className="text-base sm:text-lg font-bold tracking-tight text-slate-900">
+                Kā Balso Saeima
               </span>
 
-              {/* Term Selector Dropdown */}
+              {/* Term Selector Dropdown with enriched dates directly */}
               <div className="relative" ref={dropdownRef}>
                 <button
                   type="button"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="inline-flex items-center gap-1.5 rounded border border-slate-300 bg-slate-50 hover:bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700 transition"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-slate-50 hover:bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-800 transition shadow-2xs"
                   title="Izvēlēties Saeimas sasaukumu"
                 >
-                  {currentTermObj?.isActive && (
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+                  {currentTermObj?.isActive ? (
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-2xs" />
+                  ) : (
+                    <span className="h-2 w-2 rounded-full bg-slate-400" />
                   )}
-                  <span>{currentTermObj?.label || `${selectedTerm}. Saeima`}</span>
+                  <span>{currentTermObj?.label} ({currentTermObj?.years})</span>
                   <ChevronDown className={`h-3 w-3 text-slate-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {/* Dropdown Menu */}
                 {isDropdownOpen && (
-                  <div className="absolute left-0 mt-2 w-64 rounded-lg border border-slate-300 bg-white p-1.5 shadow-lg z-50 text-xs">
+                  <div className="absolute left-0 mt-1.5 w-64 rounded-xl border border-slate-300 bg-white p-1.5 shadow-xl z-50 text-xs">
                     <div className="px-3 py-1 font-semibold text-slate-400 uppercase tracking-wider text-[10px]">
                       Saeimas sasaukumi:
                     </div>
@@ -80,7 +97,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                             onSelectTerm(t.term);
                             setIsDropdownOpen(false);
                           }}
-                          className={`flex w-full items-start justify-between rounded p-2 text-left transition ${
+                          className={`flex w-full items-start justify-between rounded-lg p-2 text-left transition ${
                             isSelected
                               ? 'bg-slate-100 text-slate-900 font-semibold'
                               : 'text-slate-700 hover:bg-slate-50'
@@ -111,22 +128,65 @@ export const Navbar: React.FC<NavbarProps> = ({
                 )}
               </div>
             </div>
+          </div>
 
-            <p className="hidden text-xs text-slate-500 sm:block">
-              Objektīvi dati par katru balsojumu Saeimā · Atvērtā parlamenta reģistrs
-            </p>
+          {/* Right Provenance & Civic Links */}
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-slate-600">
+            {/* Provenance strip with tabular numbers */}
+            <div className="flex items-center gap-1.5 text-[11px] sm:text-xs">
+              <span className="hidden md:inline text-slate-400">
+                Atjaunots: <strong className="text-slate-700 font-medium">{latestSittingDate || '25.09.2026'}</strong>
+              </span>
+              <span className="hidden md:inline text-slate-300">·</span>
+              <div className="flex items-center gap-1">
+                <Database className="h-3 w-3 text-slate-400" />
+                <span className="tabular-nums font-mono font-bold text-slate-900">{totalVotesCount}</span>
+                <span className="text-slate-500">balsojumi</span>
+              </div>
+              <span className="text-slate-300">·</span>
+              <a
+                href="https://www.saeima.lv/lv/likumdosana/balsojumi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-0.5 font-medium text-slate-700 hover:text-slate-900 hover:underline"
+                title="Pārbaudīt Saeimas oficiālos protokolus"
+              >
+                <span>saeima.lv</span>
+                <ExternalLink className="h-2.5 w-2.5 text-slate-400" />
+              </a>
+            </div>
+
+            {/* Institutional Meta-Navigation */}
+            <div className="flex items-center gap-1.5 border-l border-slate-200 pl-3">
+              <button
+                type="button"
+                onClick={() => onOpenInfoModal('about')}
+                className="rounded-md px-2 py-1 text-slate-600 hover:bg-slate-100 hover:text-slate-900 font-medium transition"
+              >
+                Par projektu
+              </button>
+              <button
+                type="button"
+                onClick={() => onOpenInfoModal('methodology')}
+                className="rounded-md px-2 py-1 text-slate-600 hover:bg-slate-100 hover:text-slate-900 font-medium transition"
+              >
+                Metodoloģija
+              </button>
+              <button
+                type="button"
+                onClick={() => onOpenInfoModal('data')}
+                className="hidden sm:inline-block rounded-md px-2 py-1 text-slate-600 hover:bg-slate-100 hover:text-slate-900 font-medium transition"
+              >
+                Kods un dati
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Right Status */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 text-xs text-slate-500">
-            <Database className="h-3.5 w-3.5 text-slate-400" />
-            <span><strong className="font-mono text-slate-800">{totalVotesCount}</strong> balsojumi</span>
-            <span>·</span>
-            <ShieldCheck className="h-3.5 w-3.5 text-slate-500" />
-            <span className="hidden sm:inline">saeima.lv protokoli</span>
-          </div>
+        {/* Subtitle / Breadcrumb */}
+        <div className="text-[11px] text-slate-500 flex items-center justify-between border-t border-slate-100 pt-1.5">
+          <span>Objektīvi dati par katru balsojumu Saeimā · Atvērtā parlamenta reģistrs</span>
+          <span className="hidden sm:inline font-mono text-[10px] text-slate-400">kabalsosaeima.lv</span>
         </div>
       </div>
     </header>
