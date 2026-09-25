@@ -20,6 +20,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
 
   const isApproved = vote.result === 'PIENEMTS';
   const isQuorumBreak = vote.result === 'NAV_KVORUMA';
+  const isLongSummary = Boolean(vote.summary && vote.summary.length > 180);
 
   const handleCopy = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -127,25 +128,28 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </p>
       </div>
 
-      {/* Saeima Anotācija / Summary preview */}
-      <div className="mt-3 rounded border border-slate-200/70 bg-slate-50/60 p-3 text-xs leading-relaxed text-slate-600">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1.5 font-medium text-slate-800">
-            <FileText className="h-3.5 w-3.5 text-slate-500" />
-            <span>Likumprojekta būtība (Saeimas juridiskā anotācija):</span>
+      {vote.summary && (
+        <div className="mt-3 rounded border border-slate-200/70 bg-slate-50/60 p-3 text-xs leading-relaxed text-slate-600">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1.5 font-medium text-slate-800">
+              <FileText className="h-3.5 w-3.5 text-slate-500" />
+              <span>Likumprojekta būtība (Saeimas juridiskā anotācija):</span>
+            </div>
+            {isLongSummary && (
+              <button
+                type="button"
+                onClick={() => setShowSummary(!showSummary)}
+                className="text-[11px] font-medium text-emerald-700 hover:underline"
+              >
+                {showSummary ? 'Rādīt mazāk' : 'Lasīt pilno anotāciju'}
+              </button>
+            )}
           </div>
-          <button
-            type="button"
-            onClick={() => setShowSummary(!showSummary)}
-            className="text-[11px] font-medium text-emerald-700 hover:underline"
-          >
-            {showSummary ? 'Rādīt mazāk' : 'Lasīt pilno anotāciju'}
-          </button>
+          <p className={`mt-1.5 ${isLongSummary && !showSummary ? 'line-clamp-2' : ''}`}>
+            {vote.summary}
+          </p>
         </div>
-        <p className={`mt-1.5 ${showSummary ? '' : 'line-clamp-2'}`}>
-          {vote.summary}
-        </p>
-      </div>
+      )}
 
       {/* Debate / Core Arguments Collapsible */}
       {vote.debateArguments && (

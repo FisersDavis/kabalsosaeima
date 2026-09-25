@@ -340,6 +340,11 @@ def run_ingestion():
                 vote_id = cv.findtext('VOTING_ID') or f"vote-{len(parsed_votes)+1}"
                 section = d_item.findtext('DKP_SECTION') if d_item is not None else ''
 
+                comm = (d_item.findtext('NAMESUBMITED') or '').strip() if d_item is not None else ''
+                summary_text = f"Likumprojekts izskatīts Saeimas sēdē. Oficiālais reģistrācijas numurs: {bill_number}."
+                if comm:
+                    summary_text += f" Atbildīgā komisija: {comm}."
+
                 parsed_votes.append({
                     'id': vote_id,
                     'saeimaTerm': 14,
@@ -355,7 +360,7 @@ def run_ingestion():
                     'officialTitle': title,
                     'billNumber': bill_number,
                     'simplifiedTitle': simplify_title(title),
-                    'summary': f"Likumprojekts izskatīts Saeimas sēdē. Oficiālais reģistrācijas numurs: {bill_number}. Atbildīgā komisija: {d_item.findtext('NAMESUBMITED') if d_item is not None else 'Saeimas komisija'}.",
+                    'summary': summary_text,
                     'protocolUrl': f"https://www.saeima.lv/lv/likumdosana/balsojumi",
                     'category': detect_category(title, section),
                     'result': outcome,
