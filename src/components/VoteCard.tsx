@@ -5,7 +5,6 @@ import {
   Copy,
   ChevronDown,
   ChevronUp,
-  ChevronRight,
   FileText,
   RefreshCw,
   Lock,
@@ -195,12 +194,12 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
           )}
         </button>
 
-        {allDeviations.length > 0 && (
+        {!isExpanded && allDeviations.length > 0 && (
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
-              setIsExpanded(!isExpanded);
+              setIsExpanded(true);
             }}
             title="Skatīt deputātus, kuri balsoja pretēji frakcijas vairākumam"
             className="inline-flex items-center gap-1 rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600 hover:bg-slate-100 hover:border-slate-300 hover:text-slate-900 transition cursor-pointer"
@@ -212,74 +211,77 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
 
       {/* LEVEL 2: Progressive Disclosure (Accordion Drawer) */}
       {isExpanded && (
-        <div className="mt-3 pt-3 border-t border-slate-200/90 space-y-3 text-xs">
-          {/* TIER 1: The 8 Faction Ledger Bars (Front and Center) */}
+        <div className="mt-3 pt-3 border-t border-slate-200/90 space-y-3.5 text-xs">
+          {/* TIER 1: The 8 Faction Ledger Bars (Clean 2-Column Table, No Legend) */}
           {!vote.isSecret && sortedFactions.length > 0 && (
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-[11px] text-slate-500">
-                <span className="font-bold text-slate-700 uppercase tracking-wider text-[10px]">
-                  Frakciju balsojums
-                </span>
-                <span className="text-[10px] text-slate-400 font-mono">
-                  Zaļš: Par · Sarkans: Pret · Dzeltens: Att · Pelēks: Nebalsoja
-                </span>
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3">
+              {sortedFactions.map((f) => {
+                const fTotal = f.votes.par + f.votes.pret + f.votes.atturas + f.votes.nebalso;
+                const fParPct = fTotal ? (f.votes.par / fTotal) * 100 : 0;
+                const fPretPct = fTotal ? (f.votes.pret / fTotal) * 100 : 0;
+                const fAtturasPct = fTotal ? (f.votes.atturas / fTotal) * 100 : 0;
+                const fNebalsoPct = fTotal ? (f.votes.nebalso / fTotal) * 100 : 0;
 
-              {/* 8-Faction Clean 2-Column Grid directly on card canvas */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5">
-                {sortedFactions.map((f) => {
-                  const fTotal = f.votes.par + f.votes.pret + f.votes.atturas + f.votes.nebalso;
-                  const fParPct = fTotal ? (f.votes.par / fTotal) * 100 : 0;
-                  const fPretPct = fTotal ? (f.votes.pret / fTotal) * 100 : 0;
-                  const fAtturasPct = fTotal ? (f.votes.atturas / fTotal) * 100 : 0;
-                  const fNebalsoPct = fTotal ? (f.votes.nebalso / fTotal) * 100 : 0;
-
-                  return (
-                    <div key={f.factionId} className="flex flex-col gap-1">
-                      <div className="flex items-baseline justify-between text-xs">
-                        <span className="font-bold text-slate-800">
-                          {f.shortName} <span className="text-[11px] text-slate-400 font-normal">({fTotal})</span>
-                        </span>
-                        <span className="font-mono text-[11px] text-slate-500">
-                          {formatFactionTally(f.votes)}
-                        </span>
-                      </div>
-
-                      {/* 4-Color Proportional Bar */}
-                      <div className="flex h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
-                        {fParPct > 0 && <div style={{ width: `${fParPct}%` }} className="bg-emerald-600" title={`${f.votes.par} Par`} />}
-                        {fPretPct > 0 && <div style={{ width: `${fPretPct}%` }} className="bg-rose-600" title={`${f.votes.pret} Pret`} />}
-                        {fAtturasPct > 0 && <div style={{ width: `${fAtturasPct}%` }} className="bg-amber-500" title={`${f.votes.atturas} Atturas`} />}
-                        {fNebalsoPct > 0 && <div style={{ width: `${fNebalsoPct}%` }} className="bg-slate-300" title={`${f.votes.nebalso} Nebalsoja`} />}
-                      </div>
+                return (
+                  <div key={f.factionId} className="flex flex-col gap-1">
+                    <div className="flex items-baseline gap-2.5 text-xs">
+                      <span className="font-bold text-slate-800 w-16 sm:w-20 flex-shrink-0">
+                        {f.shortName} <span className="text-[11px] text-slate-400 font-normal">({fTotal})</span>
+                      </span>
+                      <span className="font-mono text-[11px] text-slate-600">
+                        {formatFactionTally(f.votes)}
+                      </span>
                     </div>
-                  );
-                })}
-              </div>
+
+                    {/* Muted Hairline 3px Proportional Bar */}
+                    <div className="flex h-[3px] w-full overflow-hidden rounded-full bg-slate-100">
+                      {fParPct > 0 && <div style={{ width: `${fParPct}%` }} className="bg-emerald-600" title={`${f.votes.par} Par`} />}
+                      {fPretPct > 0 && <div style={{ width: `${fPretPct}%` }} className="bg-rose-600" title={`${f.votes.pret} Pret`} />}
+                      {fAtturasPct > 0 && <div style={{ width: `${fAtturasPct}%` }} className="bg-amber-500" title={`${f.votes.atturas} Atturas`} />}
+                      {fNebalsoPct > 0 && <div style={{ width: `${fNebalsoPct}%` }} className="bg-slate-300" title={`${f.votes.nebalso} Nebalsoja`} />}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           )}
 
-          {/* TIER 2: The Rebels & Context (Secondary Signals) */}
+          {/* TIER 2: Novirzes no frakcijas (Pure Text, No Bulky Tags) */}
           {allDeviations.length > 0 && (
-            <div className="border-t border-slate-100 pt-2.5 flex flex-col sm:flex-row sm:items-baseline gap-1.5 text-xs">
-              <span className="font-semibold text-slate-700 flex-shrink-0">
-                ✦ Pretēji frakcijai balsoja:
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {allDeviations.map((dev) => (
-                  <span
-                    key={dev.mpId}
-                    className="inline-flex items-center gap-1 rounded bg-slate-50 border border-slate-200/80 px-2 py-0.5 text-[11px] text-slate-700"
-                  >
-                    <strong className="text-slate-900 font-semibold">{dev.name}</strong>
-                    <span className="text-slate-400">({dev.factionShort})</span>
-                    <span className="text-slate-300">·</span>
-                    <span className={dev.decision === 'PAR' ? 'text-emerald-700 font-bold' : dev.decision === 'PRET' ? 'text-rose-700 font-bold' : dev.decision === 'ATTURAS' ? 'text-amber-700 font-bold' : 'text-slate-400 font-bold'}>
-                      {dev.decision === 'PAR' ? 'Par' : dev.decision === 'PRET' ? 'Pret' : dev.decision === 'ATTURAS' ? 'Atturējās' : 'Nebalsoja'}
+            <div className="border-t border-slate-100 pt-2.5 text-xs text-slate-600 leading-relaxed">
+              <div className="font-semibold text-slate-800 mb-1">
+                ✦ Novirzes no frakcijas ({allDeviations.length}):
+              </div>
+              <div className="text-[11px] text-slate-600 pl-2.5 border-l-2 border-slate-200">
+                {allDeviations.map((dev, idx) => {
+                  const verb =
+                    dev.decision === 'PAR'
+                      ? 'balsoja par'
+                      : dev.decision === 'PRET'
+                      ? 'balsoja pret'
+                      : dev.decision === 'ATTURAS'
+                      ? 'atturējās'
+                      : 'nebalsoja';
+                  const verbColor =
+                    dev.decision === 'PAR'
+                      ? 'text-emerald-700'
+                      : dev.decision === 'PRET'
+                      ? 'text-rose-700'
+                      : dev.decision === 'ATTURAS'
+                      ? 'text-amber-700'
+                      : 'text-slate-500';
+
+                  return (
+                    <span key={dev.mpId} className="inline-block mr-3">
+                      <strong className="font-semibold text-slate-900">{dev.name}</strong>{' '}
+                      <span className="text-slate-400">({dev.factionShort})</span>{' '}
+                      <span className={`font-medium ${verbColor}`}>{verb}</span>
+                      {idx < allDeviations.length - 1 && (
+                        <span className="text-slate-300 ml-3">·</span>
+                      )}
                     </span>
-                    <span className="text-slate-400 text-[10px]">(frakcija: {dev.factionLine === 'PAR' ? 'Par' : dev.factionLine === 'PRET' ? 'Pret' : 'Atturas'})</span>
-                  </span>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
@@ -315,11 +317,10 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
               className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-800 hover:bg-slate-100 hover:border-slate-300 transition cursor-pointer shadow-2xs"
             >
               <Users className="h-3.5 w-3.5 text-emerald-700" />
-              <span>Atvērt 100 deputātu sēžu zāli</span>
-              <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              <span>Atvērt 100 vietu sēžu zāli</span>
             </button>
 
-            <div className="flex items-center gap-3.5 text-slate-500">
+            <div className="flex items-center gap-3 text-slate-500 text-[11px]">
               <button
                 type="button"
                 onClick={handleCopy}
@@ -337,7 +338,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
                   </>
                 )}
               </button>
-
+              <span className="text-slate-300">·</span>
               {vote.protocolUrl && (
                 <a
                   href={vote.protocolUrl}
