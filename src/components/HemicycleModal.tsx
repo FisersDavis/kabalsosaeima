@@ -27,6 +27,14 @@ function cleanVoteTitle(rawTitle: string): string {
   return rawTitle;
 }
 
+function getInitials(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+  return name.slice(0, 2).toUpperCase();
+}
+
 // Political seating sector order from parliamentary left to right
 const FACTION_SECTOR_ORDER = ['pro', 'jv', 'zzs', 'as', 'na', 'lpv', 'st', 'ind'];
 
@@ -37,6 +45,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
   onClose,
 }) => {
   const [hoveredMpId, setHoveredMpId] = useState<string | null>(null);
+  const [selectedMpId, setSelectedMpId] = useState<string | null>(null);
   const [filterDecision, setFilterDecision] = useState<string>('ALL');
   const [filterFaction, setFilterFaction] = useState<string>('ALL');
   const [searchMp, setSearchMp] = useState<string>('');
@@ -84,7 +93,6 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
   }, [mps]);
 
   // Generate 100 hemicycle seat coordinates in 4 concentric semi-circular arcs
-  // Scaled up by ~25% to fill column width and provide comfortable click targets
   const seatPositions = useMemo(() => {
     if (vote.isSecret || !vote.mpVotes || vote.mpVotes.length === 0) return [];
 
@@ -187,14 +195,16 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
     });
   }, [seatPositions, filterDecision, filterFaction, searchMp]);
 
-  // Current hovered MP detail object
-  const hoveredSeat = useMemo(() => {
-    if (!hoveredMpId) return null;
-    return seatPositions.find((s) => s.mp.id === hoveredMpId) || null;
-  }, [hoveredMpId, seatPositions]);
+  // Current active MP for the inspector card (hovered or clicked)
+  const activeSeat = useMemo(() => {
+    const targetId = hoveredMpId || selectedMpId;
+    if (!targetId) return null;
+    return seatPositions.find((s) => s.mp.id === targetId) || null;
+  }, [hoveredMpId, selectedMpId, seatPositions]);
 
-  // Intentional click on seat: scrolls right-hand table directly to that deputy
+  // Intentional click on seat: highlights and scrolls table directly to that deputy
   const handleSeatClick = (mpId: string) => {
+    setSelectedMpId(mpId);
     setHoveredMpId(mpId);
     const rowEl = document.getElementById(`mp-row-${mpId}`);
     if (rowEl) {
@@ -314,125 +324,140 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
         ) : (
           <div className="flex-1 overflow-hidden flex flex-col lg:flex-row min-h-0">
             {/* Left Pane: Plenary Hemicycle Diagram */}
-            <div className="lg:w-[48%] xl:w-[50%] p-4 sm:p-5 bg-slate-50/60 border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col justify-between overflow-y-auto min-h-0">
-              <div>
-                {/* Consolidate Header Tally into a single clean line */}
-                <div className="flex items-center justify-between mb-3 text-xs">
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="font-semibold text-slate-800">Sēžu zāle</span>
-                    <span className="text-slate-400">·</span>
-                    <span className="font-medium text-emerald-700">{vote.counts.par} Par</span>
-                    <span className="text-slate-400">·</span>
-                    <span className="font-medium text-rose-700">{vote.counts.pret} Pret</span>
-                    <span className="text-slate-400">·</span>
-                    <span className="font-medium text-amber-700">{vote.counts.atturas} Atturas</span>
-                    <span className="text-slate-400">·</span>
-                    <span className="font-medium text-slate-500">{vote.counts.nebalso} Nebalsoja</span>
-                    {!hasQuorum && (
-                      <span className="ml-1 rounded bg-rose-100 px-1.5 py-0.5 text-[10px] font-bold text-rose-800">
-                        Nav kvoruma (&lt; 50)
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* SVG Hemicycle Diagram: Scaled up to fill column width and target comfortably */}
-                <div className="relative w-full aspect-[640/310] max-w-xl mx-auto">
-                  <svg viewBox="0 0 640 310" className="w-full h-full select-none">
-                    {/* 100 Active Voting Seats */}
-                    {seatPositions.map(({ mp, x, y, decision }) => {
-                      const isHovered = hoveredMpId === mp.id;
-                      const isMatchFilter =
-                        (filterDecision === 'ALL' || decision === filterDecision) &&
-                        (filterFaction === 'ALL' || mp.factionId === filterFaction) &&
-                        (!searchMp.trim() || mp.name.toLowerCase().includes(searchMp.toLowerCase().trim()));
-
-                      return (
-                        <g key={mp.id}>
-                          {/* Pulse / halo ring on active hover or selection */}
-                          {isHovered && (
-                            <>
-                              <circle
-                                cx={x}
-                                cy={y}
-                                r={14.5}
-                                fill="none"
-                                stroke="#0284c7"
-                                strokeWidth="2.5"
-                                opacity="0.6"
-                              />
-                              <circle
-                                cx={x}
-                                cy={y}
-                                r={12}
-                                fill="none"
-                                stroke="#ffffff"
-                                strokeWidth="2"
-                              />
-                            </>
-                          )}
-                          <circle
-                            cx={x}
-                            cy={y}
-                            r={isHovered ? 10 : 7.5}
-                            fill={getDecisionColor(decision)}
-                            opacity={isMatchFilter ? 1 : 0.15}
-                            className="cursor-pointer transition-all duration-150"
-                            strokeWidth={isHovered ? 2.5 : 1}
-                            stroke={isHovered ? '#0f172a' : '#ffffff'}
-                            onMouseEnter={() => setHoveredMpId(mp.id)}
-                            onMouseLeave={() => setHoveredMpId(null)}
-                            onClick={() => handleSeatClick(mp.id)}
-                          />
-                        </g>
-                      );
-                    })}
-                  </svg>
+            <div className="lg:w-[48%] xl:w-[50%] p-4 sm:p-5 bg-slate-50/60 border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col min-h-0 overflow-y-auto gap-3">
+              {/* Consolidate Header Tally into a single clean line */}
+              <div className="flex items-center justify-between text-xs shrink-0">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="font-semibold text-slate-800">Sēžu zāle</span>
+                  <span className="text-slate-400">·</span>
+                  <span className="font-medium text-emerald-700">{vote.counts.par} Par</span>
+                  <span className="text-slate-400">·</span>
+                  <span className="font-medium text-rose-700">{vote.counts.pret} Pret</span>
+                  <span className="text-slate-400">·</span>
+                  <span className="font-medium text-amber-700">{vote.counts.atturas} Atturas</span>
+                  <span className="text-slate-400">·</span>
+                  <span className="font-medium text-slate-500">{vote.counts.nebalso} Nebalsoja</span>
+                  {!hasQuorum && (
+                    <span className="ml-1 rounded bg-rose-100 px-1.5 py-0.5 text-[10px] font-bold text-rose-800">
+                      Nav kvoruma (&lt; 50)
+                    </span>
+                  )}
                 </div>
               </div>
 
-              {/* Inspector Preview Card for Hovered/Clicked MP */}
-              <div className="mt-auto pt-3 border-t border-slate-200">
-                {hoveredSeat ? (
+              {/* SVG Hemicycle Diagram: Scaled up to fill column width and target comfortably */}
+              <div className="relative w-full aspect-[640/310] max-w-xl mx-auto my-auto shrink-0">
+                <svg viewBox="0 0 640 310" className="w-full h-full select-none">
+                  {/* 100 Active Voting Seats */}
+                  {seatPositions.map(({ mp, x, y, decision }) => {
+                    const isHoveredOrSelected = hoveredMpId === mp.id || selectedMpId === mp.id;
+                    const isMatchFilter =
+                      (filterDecision === 'ALL' || decision === filterDecision) &&
+                      (filterFaction === 'ALL' || mp.factionId === filterFaction) &&
+                      (!searchMp.trim() || mp.name.toLowerCase().includes(searchMp.toLowerCase().trim()));
+
+                    return (
+                      <g key={mp.id}>
+                        {/* Clear Focus Halo on Hover / Click */}
+                        {isHoveredOrSelected && (
+                          <>
+                            <circle
+                              cx={x}
+                              cy={y}
+                              r={15}
+                              fill="none"
+                              stroke="#0284c7"
+                              strokeWidth="2.5"
+                              opacity="0.6"
+                              className="pointer-events-none"
+                            />
+                            <circle
+                              cx={x}
+                              cy={y}
+                              r={12}
+                              fill="none"
+                              stroke="#ffffff"
+                              strokeWidth="2"
+                              className="pointer-events-none"
+                            />
+                          </>
+                        )}
+                        <circle
+                          cx={x}
+                          cy={y}
+                          r={isHoveredOrSelected ? 10.5 : 7.5}
+                          fill={getDecisionColor(decision)}
+                          opacity={isMatchFilter ? 1 : 0.15}
+                          className="cursor-pointer transition-all duration-100"
+                          strokeWidth={isHoveredOrSelected ? 2.5 : 1}
+                          stroke={isHoveredOrSelected ? '#0f172a' : '#ffffff'}
+                          onMouseEnter={() => setHoveredMpId(mp.id)}
+                          onMouseLeave={() => setHoveredMpId(null)}
+                          onClick={() => handleSeatClick(mp.id)}
+                        />
+                      </g>
+                    );
+                  })}
+                </svg>
+              </div>
+
+              {/* Active Inspector Card: Sits directly beneath the hemicycle arc to eliminate vertical gap */}
+              <div className="pt-2 border-t border-slate-200/80 shrink-0">
+                {activeSeat ? (
                   <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-3 shadow-xs animate-in fade-in duration-100">
-                    <div className="min-w-0 pr-3">
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-slate-900 text-sm truncate">
-                          {hoveredSeat.mp.name}
-                        </span>
-                        <span
-                          className="rounded px-1.5 py-0.5 text-[10px] font-mono font-bold text-white shrink-0"
-                          style={{
-                            backgroundColor:
-                              factionLookup.get(hoveredSeat.mp.factionId)?.color || '#64748B',
-                          }}
-                        >
-                          {factionLookup.get(hoveredSeat.mp.factionId)?.shortName ||
-                            hoveredSeat.mp.factionId.toUpperCase()}
-                        </span>
-                        {hoveredSeat.isSubstitute && (
-                          <span className="inline-flex rounded bg-amber-50 px-1.5 py-0.2 text-[10px] font-medium text-amber-800 border border-amber-200 shrink-0">
-                            ✦ Mīkstais mandāts
-                          </span>
-                        )}
+                    <div className="flex items-center gap-3 min-w-0 pr-2">
+                      {/* Initials Avatar Badge */}
+                      <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 select-none border"
+                        style={{
+                          backgroundColor: (factionLookup.get(activeSeat.mp.factionId)?.color || '#64748B') + '18',
+                          borderColor: (factionLookup.get(activeSeat.mp.factionId)?.color || '#64748B') + '40',
+                          color: factionLookup.get(activeSeat.mp.factionId)?.color || '#0f172a',
+                        }}
+                      >
+                        {getInitials(activeSeat.mp.name)}
                       </div>
-                      <div className="text-[11px] text-slate-500 font-mono mt-0.5">
-                        {factionLookup.get(hoveredSeat.mp.factionId)?.name}
-                        {hoveredSeat.replacesMpName && (
-                          <span className="ml-1 text-slate-400">· {hoveredSeat.replacesMpName}</span>
-                        )}
+
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="font-bold text-slate-900 text-sm truncate">
+                            {activeSeat.mp.name}
+                          </span>
+                          <span
+                            className="rounded px-1.5 py-0.5 text-[10px] font-mono font-bold text-white shrink-0"
+                            style={{
+                              backgroundColor: factionLookup.get(activeSeat.mp.factionId)?.color || '#64748B',
+                            }}
+                          >
+                            {factionLookup.get(activeSeat.mp.factionId)?.shortName ||
+                              activeSeat.mp.factionId.toUpperCase()}
+                          </span>
+                          {activeSeat.isSubstitute && (
+                            <span className="inline-flex rounded bg-amber-50 px-1.5 py-0.2 text-[10px] font-medium text-amber-800 border border-amber-200 shrink-0">
+                              ✦ Mīkstais mandāts
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-[11px] text-slate-500 font-mono mt-0.5 truncate">
+                          {factionLookup.get(activeSeat.mp.factionId)?.name}
+                          {activeSeat.replacesMpName && (
+                            <span className="ml-1 text-slate-400">· {activeSeat.replacesMpName}</span>
+                          )}
+                          <span className="ml-1 text-slate-400">· Vieta #{activeSeat.mp.seatNumber}</span>
+                        </div>
                       </div>
                     </div>
+
                     <div className="shrink-0 text-right">
                       <div className="text-[10px] uppercase font-mono text-slate-400 mb-0.5">
                         Balsojums
                       </div>
-                      {getDecisionBadge(hoveredSeat.decision)}
+                      {getDecisionBadge(activeSeat.decision)}
                     </div>
                   </div>
                 ) : (
-                  <div className="rounded-lg border border-dashed border-slate-200 p-2.5 text-center text-xs text-slate-400">
-                    Uzbrauciet ar kursoru uz deputāta vietas, lai skatītu balsojumu.
+                  <div className="rounded-lg border border-dashed border-slate-200 bg-white/70 p-3 text-center text-xs text-slate-400">
+                    Uzbrauciet vai uzklikšķiniet uz deputāta vietas, lai redzētu balsojumu.
                   </div>
                 )}
               </div>
@@ -440,7 +465,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
 
             {/* Right Pane: Filterable Audit Table (Isolated scroll area) */}
             <div className="lg:w-[52%] xl:w-[50%] flex flex-col min-h-0 bg-white">
-              {/* Controls bar: Outcome pills + Faction dropdown */}
+              {/* Controls bar: Outcome pills + Clean standalone Faction dropdown */}
               <div className="p-3 sm:p-4 border-b border-slate-200 bg-white space-y-2.5 shrink-0">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   {/* Decision filter pills */}
@@ -502,42 +527,38 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                     </button>
                   </div>
 
-                  {/* Faction selector dropdown (collapsed from 8 buttons) */}
-                  <div className="flex items-center gap-1.5">
-                    <label htmlFor="faction-select" className="text-xs text-slate-500 font-medium">
-                      Frakcija:
-                    </label>
-                    <select
-                      id="faction-select"
-                      value={filterFaction}
-                      onChange={(e) => setFilterFaction(e.target.value)}
-                      className="rounded-lg border border-slate-300 bg-white py-1 px-2.5 text-xs text-slate-800 font-medium focus:border-slate-500 focus:outline-none transition shadow-2xs cursor-pointer"
-                    >
-                      <option value="ALL">Visas frakcijas (100)</option>
-                      {factions.map((f) => (
-                        <option key={f.id} value={f.id}>
-                          {f.shortName} · {f.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+                  {/* Clean Faction selector dropdown without loose text label */}
+                  <select
+                    id="faction-select"
+                    value={filterFaction}
+                    onChange={(e) => setFilterFaction(e.target.value)}
+                    aria-label="Filtrēt pēc frakcijas"
+                    className="rounded-lg border border-slate-300 bg-white py-1 px-2.5 text-xs text-slate-800 font-medium focus:border-slate-500 focus:outline-none transition shadow-2xs cursor-pointer hover:border-slate-400"
+                  >
+                    <option value="ALL">Visas frakcijas (100)</option>
+                    {factions.map((f) => (
+                      <option key={f.id} value={f.id}>
+                        {f.shortName} · {f.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
               {/* Scrollable Audit Table: fills 100% vertical space without shrinking */}
-              <div className="flex-1 overflow-y-auto min-h-0 divide-y divide-slate-100 bg-white">
+              <div className="flex-1 overflow-y-auto min-h-0 bg-white">
                 <table className="w-full text-left text-xs border-collapse">
                   <thead className="sticky top-0 z-10 bg-slate-100/95 backdrop-blur-sm text-slate-600 text-[11px] uppercase tracking-wider font-semibold border-b border-slate-200">
                     <tr>
-                      <th className="py-2.5 px-4">Deputāts</th>
-                      <th className="py-2.5 px-4">Frakcija</th>
-                      <th className="py-2.5 px-4 text-right">Lēmums</th>
+                      <th className="py-2.5 px-4 text-left">Deputāts</th>
+                      <th className="py-2.5 px-2 text-center w-24">Frakcija</th>
+                      <th className="py-2.5 px-4 text-right w-28">Lēmums</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 font-sans">
                     {filteredSeats.map(({ mp, decision, isSubstitute, replacesMpName }) => {
                       const faction = factionLookup.get(mp.factionId);
-                      const isHovered = hoveredMpId === mp.id;
+                      const isHoveredOrSelected = hoveredMpId === mp.id || selectedMpId === mp.id;
 
                       return (
                         <tr
@@ -545,8 +566,9 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                           key={mp.id}
                           onMouseEnter={() => setHoveredMpId(mp.id)}
                           onMouseLeave={() => setHoveredMpId(null)}
+                          onClick={() => setSelectedMpId(mp.id)}
                           className={`transition-colors cursor-pointer ${
-                            isHovered
+                            isHoveredOrSelected
                               ? 'bg-sky-50 ring-1 ring-inset ring-sky-300'
                               : 'hover:bg-slate-50/80'
                           }`}
@@ -566,10 +588,10 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                             </div>
                           </td>
 
-                          {/* Abbreviated Faction badge only (no full party text to eliminate visual weight & truncation) */}
-                          <td className="py-2.5 px-4">
+                          {/* Abbreviated Faction badge centered with uniform width for razor-sharp column scanning */}
+                          <td className="py-2.5 px-2 text-center w-24">
                             <span
-                              className="inline-flex rounded px-1.5 py-0.5 font-mono text-[10px] font-bold text-white shadow-2xs"
+                              className="inline-flex items-center justify-center min-w-[42px] rounded px-1.5 py-0.5 font-mono text-[10px] font-bold text-white shadow-2xs"
                               style={{ backgroundColor: faction?.color || '#64748B' }}
                             >
                               {faction?.shortName || mp.factionId.toUpperCase()}
@@ -577,7 +599,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                           </td>
 
                           {/* Decision badge */}
-                          <td className="py-2.5 px-4 text-right">
+                          <td className="py-2.5 px-4 text-right w-28">
                             {getDecisionBadge(decision)}
                           </td>
                         </tr>
@@ -593,10 +615,13 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                     )}
                   </tbody>
                 </table>
+
+                {/* Safe bottom spacer so the last row is never cut off or flush against the footer border */}
+                <div className="h-4" />
               </div>
 
               {/* Table Footer status: locked to bottom */}
-              <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-200 text-[11px] text-slate-500 flex items-center justify-between shrink-0">
+              <div className="px-4 py-2.5 bg-slate-50/90 backdrop-blur-xs border-t border-slate-200 text-[11px] text-slate-500 flex items-center justify-between shrink-0 z-10 shadow-[0_-2px_6px_rgba(0,0,0,0.03)]">
                 <div className="flex items-center gap-2">
                   <span>Rāda: {filteredSeats.length} no 100 deputātiem</span>
                   <span className="text-slate-300">·</span>
