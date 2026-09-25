@@ -16,7 +16,7 @@ from datetime import datetime
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-BASE_DIR = 'C:/Users/Dave/.gemini/antigravity/scratch/kabalsosaeima'
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VOTES_FILE = os.path.join(BASE_DIR, 'public', 'data', 'votes.json')
 MPS_FILE = os.path.join(BASE_DIR, 'public', 'data', 'mps.json')
 FACTIONS_FILE = os.path.join(BASE_DIR, 'public', 'data', 'factions.json')
