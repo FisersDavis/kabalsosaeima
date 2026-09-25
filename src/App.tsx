@@ -42,10 +42,10 @@ export function App() {
       try {
         setLoading(true);
         const [votesRes, mpsRes, factionsRes, termsRes] = await Promise.all([
-          fetch('./data/votes.json'),
-          fetch('./data/mps.json'),
-          fetch('./data/factions.json'),
-          fetch('./data/terms.json'),
+          fetch('./data/votes.json', { cache: 'no-cache' }),
+          fetch('./data/mps.json', { cache: 'no-cache' }),
+          fetch('./data/factions.json', { cache: 'no-cache' }),
+          fetch('./data/terms.json', { cache: 'no-cache' }),
         ]);
 
         if (!votesRes.ok || !mpsRes.ok || !factionsRes.ok) {
