@@ -43,6 +43,12 @@ function formatFactionTally(votes: { par: number; pret: number; atturas: number;
   return parts.length > 0 ? parts.join(' · ') : '0 balsoja';
 }
 
+function getEffectiveVoteCategory(decision: string): 'SUPPORT' | 'BLOCK' | 'ABSENT' {
+  if (decision === 'PAR') return 'SUPPORT';
+  if (decision === 'PRET' || decision === 'ATTURAS') return 'BLOCK';
+  return 'ABSENT';
+}
+
 function getResponsibleCommittee(summary?: string): string | null {
   if (!summary) return null;
   const match = summary.match(/Atbildīgā komisija:\s*([^.]+)/i);
@@ -76,12 +82,26 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
     return totalB - totalA;
   });
 
-  // Collect all MPs who broke faction discipline (excluding unaffiliated PIEFR/IND which have no faction whip)
+  // Collect all MPs who broke faction discipline
+  // Under Satversme Art. 24, PAR is SUPPORT, whereas PRET + ATTURAS is BLOCK.
+  // Independent MPs (PIEFR/IND) have no whip and are excluded.
   const allDeviations = sortedFactions
     .filter((f) => f.shortName.toUpperCase() !== 'PIEFR' && f.factionId.toLowerCase() !== 'piefr' && f.shortName.toUpperCase() !== 'IND' && f.factionId.toLowerCase() !== 'ind')
-    .flatMap((f) =>
-      (f.deviatingMps || []).map((dev) => ({ ...dev, factionShort: f.shortName, factionColor: f.color }))
-    );
+    .flatMap((f) => {
+      const support = f.votes.par;
+      const block = f.votes.pret + f.votes.atturas;
+      if (support === block || (support === 0 && block === 0)) return [];
+      const dominantBloc = support > block ? 'SUPPORT' : 'BLOCK';
+
+      return (f.deviatingMps || []).filter((dev) => {
+        const mpBloc = getEffectiveVoteCategory(dev.decision);
+        return mpBloc !== 'ABSENT' && mpBloc !== dominantBloc;
+      }).map((dev) => ({
+        ...dev,
+        factionShort: f.shortName,
+        factionColor: f.color
+      }));
+    });
 
   const committee = getResponsibleCommittee(vote.summary);
   const cleanedTitle = cleanVoteTitle(vote.simplifiedTitle || vote.officialTitle);

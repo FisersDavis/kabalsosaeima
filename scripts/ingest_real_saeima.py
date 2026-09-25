@@ -343,22 +343,31 @@ def run_ingestion():
                     if f_total_recorded < f_meta['seats']:
                         t['nebalso'] += (f_meta['seats'] - f_total_recorded)
 
-                    # Determine dominant faction line among substantive votes
-                    counts_list = [('PAR', t['par']), ('PRET', t['pret']), ('ATTURAS', t['atturas'])]
-                    counts_list.sort(key=lambda x: x[1], reverse=True)
-                    dominant_line = counts_list[0][0] if counts_list[0][1] > 0 else 'NEBALSO'
-
-                    # Find MP deviations (excluding unaffiliated PIEFR/IND which have no faction whip)
+                    # Determine dominant faction line under Satversme Art. 24 substantive outcome:
+                    # 'PAR' is SUPPORT; 'PRET' and 'ATTURAS' are functionally BLOCK.
+                    # PIEFR and IND are administrative groupings of unaffiliated MPs with no whip.
                     deviating_mps = []
-                    if dominant_line in ['PAR', 'PRET', 'ATTURAS'] and fid.lower() not in ['piefr', 'ind']:
+                    support_votes = t['par']
+                    block_votes = t['pret'] + t['atturas']
+
+                    if fid.lower() not in ['piefr', 'ind'] and support_votes != block_votes and (support_votes > 0 or block_votes > 0):
+                        dominant_bloc = 'SUPPORT' if support_votes > block_votes else 'BLOCK'
                         for rec in mp_records:
                             if rec['factionId'] == fid:
-                                if rec['decision'] in ['PAR', 'PRET', 'ATTURAS'] and rec['decision'] != dominant_line:
+                                mp_decision = rec['decision']
+                                if dominant_bloc == 'SUPPORT' and mp_decision in ['PRET', 'ATTURAS']:
                                     deviating_mps.append({
                                         'mpId': rec['mpId'],
                                         'name': rec['name'],
-                                        'decision': rec['decision'],
-                                        'factionLine': dominant_line
+                                        'decision': mp_decision,
+                                        'factionLine': 'PAR'
+                                    })
+                                elif dominant_bloc == 'BLOCK' and mp_decision == 'PAR':
+                                    deviating_mps.append({
+                                        'mpId': rec['mpId'],
+                                        'name': rec['name'],
+                                        'decision': mp_decision,
+                                        'factionLine': 'PRET / ATTURAS'
                                     })
 
                     faction_breakdowns.append({

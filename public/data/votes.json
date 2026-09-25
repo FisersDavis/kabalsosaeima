@@ -711,68 +711,7 @@
           "atturas": 15,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-11",
-            "name": "Anna Rancāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-105",
-            "name": "Inese Kalniņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-121",
-            "name": "Viesturs Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-13",
-            "name": "Gatis Liepiņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -785,14 +724,7 @@
           "atturas": 13,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -805,14 +737,7 @@
           "atturas": 6,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -1466,50 +1391,7 @@
           "atturas": 18,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-121",
-            "name": "Viesturs Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -1535,14 +1417,7 @@
           "atturas": 6,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -2202,44 +2077,7 @@
           "atturas": 19,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-13",
-            "name": "Gatis Liepiņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -2265,14 +2103,7 @@
           "atturas": 6,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -6342,14 +6173,7 @@
           "atturas": 1,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-73",
-            "name": "Ināra Mūrniece",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "lpv",
@@ -8370,26 +8194,7 @@
           "atturas": 10,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-128",
-            "name": "Edgars Putra",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-67",
-            "name": "Lauris Lizbovskis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -9774,20 +9579,7 @@
           "atturas": 11,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-128",
-            "name": "Edgars Putra",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -12492,19 +12284,7 @@
             "mpId": "mp-37",
             "name": "Uldis Augulis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-35",
-            "name": "Līga Kozlovska",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -13211,26 +12991,7 @@
           "atturas": 4,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-43",
-            "name": "Andris Šuvajevs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-108",
-            "name": "Selma Teodora Levrence",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -13776,56 +13537,7 @@
           "atturas": 15,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-3",
-            "name": "Ainars Latkovskis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-121",
-            "name": "Viesturs Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-13",
-            "name": "Gatis Liepiņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-14",
-            "name": "Inga Bērziņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -13843,7 +13555,7 @@
             "mpId": "mp-37",
             "name": "Uldis Augulis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -14422,38 +14134,7 @@
           "atturas": 18,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-121",
-            "name": "Viesturs Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-14",
-            "name": "Inga Bērziņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -14466,14 +14147,7 @@
           "atturas": 11,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -14486,26 +14160,7 @@
           "atturas": 3,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-102",
-            "name": "Edmunds Cepurītis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-47",
-            "name": "Jana Simanovska",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-48",
-            "name": "Leila Rasima",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -15081,38 +14736,7 @@
           "atturas": 19,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-121",
-            "name": "Viesturs Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-14",
-            "name": "Inga Bērziņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -15130,13 +14754,13 @@
             "mpId": "mp-37",
             "name": "Uldis Augulis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-33",
             "name": "Jānis Vucāns",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -15151,14 +14775,7 @@
           "atturas": 6,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -15171,14 +14788,7 @@
           "atturas": 1,
           "nebalso": 13
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-128",
-            "name": "Edgars Putra",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -20403,14 +20013,7 @@
           "atturas": 7,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -21059,32 +20662,7 @@
           "atturas": 10,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-29",
-            "name": "Augusts Brigmanis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-33",
-            "name": "Jānis Vucāns",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-31",
-            "name": "Gunārs Kūtris",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-35",
-            "name": "Līga Kozlovska",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -21110,14 +20688,7 @@
           "atturas": 6,
           "nebalso": 8
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-123",
-            "name": "Linda Matisone",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -27048,20 +26619,7 @@
           "atturas": 21,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -27087,14 +26645,7 @@
           "atturas": 8,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -27748,26 +27299,7 @@
           "atturas": 20,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-3",
-            "name": "Ainars Latkovskis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -27793,14 +27325,7 @@
           "atturas": 8,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -28448,38 +27973,7 @@
           "atturas": 18,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-3",
-            "name": "Ainars Latkovskis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-127",
-            "name": "Uģis Rotbergs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -28505,14 +27999,7 @@
           "atturas": 8,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -29160,26 +28647,7 @@
           "atturas": 20,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -29205,14 +28673,7 @@
           "atturas": 8,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -29860,32 +29321,7 @@
           "atturas": 19,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-13",
-            "name": "Gatis Liepiņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -29911,14 +29347,7 @@
           "atturas": 8,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -30585,38 +30014,7 @@
           "atturas": 5,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-110",
-            "name": "Didzis Zemmers",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-29",
-            "name": "Augusts Brigmanis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-33",
-            "name": "Jānis Vucāns",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-35",
-            "name": "Līga Kozlovska",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -31284,38 +30682,7 @@
           "atturas": 5,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-110",
-            "name": "Didzis Zemmers",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-29",
-            "name": "Augusts Brigmanis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-33",
-            "name": "Jānis Vucāns",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-35",
-            "name": "Līga Kozlovska",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -35262,32 +34629,7 @@
           "atturas": 15,
           "nebalso": 7
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-118",
-            "name": "Ilze Vergina",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-15",
-            "name": "Ingrīda Circene",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-5",
-            "name": "Andrejs Judins",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -35300,26 +34642,7 @@
           "atturas": 6,
           "nebalso": 7
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-113",
-            "name": "Ligita Gintere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -39077,7 +38400,7 @@
             "mpId": "mp-78",
             "name": "Jānis Grasbergs",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -40324,7 +39647,7 @@
             "mpId": "mp-78",
             "name": "Jānis Grasbergs",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -42808,56 +42131,7 @@
           "atturas": 15,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-11",
-            "name": "Anna Rancāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-121",
-            "name": "Viesturs Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-122",
-            "name": "Dāvis Mārtiņš Daugavietis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-10",
-            "name": "Agita Zariņa-Stūre",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-5",
-            "name": "Andrejs Judins",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -42870,20 +42144,7 @@
           "atturas": 2,
           "nebalso": 6
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-37",
-            "name": "Uldis Augulis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-38",
-            "name": "Valdis Maslovskis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -42896,26 +42157,7 @@
           "atturas": 6,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-102",
-            "name": "Edmunds Cepurītis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-108",
-            "name": "Selma Teodora Levrence",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -48579,26 +47821,7 @@
           "atturas": 8,
           "nebalso": 5
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-104",
-            "name": "Andris Bērziņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-31",
-            "name": "Gunārs Kūtris",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -48611,14 +47834,7 @@
           "atturas": 8,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -48646,16 +47862,10 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-74",
-            "name": "Jurģis Klotiņš",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-109",
-            "name": "Edmunds Teirumnieks",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
+            "mpId": "mp-75",
+            "name": "Nauris Puntulis",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -50506,7 +49716,7 @@
             "mpId": "mp-18",
             "name": "Mārtiņš Daģis",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -50521,14 +49731,7 @@
           "atturas": 9,
           "nebalso": 6
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -50559,19 +49762,19 @@
             "mpId": "mp-57",
             "name": "Česlavs Batņa",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-53",
             "name": "Edgars Tavars",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-123",
             "name": "Linda Matisone",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -50586,14 +49789,7 @@
           "atturas": 1,
           "nebalso": 10
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-73",
-            "name": "Ināra Mūrniece",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "lpv",
@@ -51830,14 +51026,7 @@
           "atturas": 9,
           "nebalso": 6
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -51868,25 +51057,25 @@
             "mpId": "mp-57",
             "name": "Česlavs Batņa",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-53",
             "name": "Edgars Tavars",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-123",
             "name": "Linda Matisone",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-128",
             "name": "Edgars Putra",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -53132,20 +52321,7 @@
           "atturas": 8,
           "nebalso": 6
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -53171,32 +52347,7 @@
           "atturas": 4,
           "nebalso": 7
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-62",
-            "name": "Aiva Vīksna",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-128",
-            "name": "Edgars Putra",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-55",
-            "name": "Raimonds Bergmanis",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-56",
-            "name": "Edvards Smiltēns",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -54453,20 +53604,7 @@
           "atturas": 8,
           "nebalso": 6
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -57713,14 +56851,7 @@
           "atturas": 8,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -58364,14 +57495,7 @@
           "atturas": 8,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -60928,74 +60052,7 @@
           "atturas": 12,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-11",
-            "name": "Anna Rancāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-23",
-            "name": "Zane Skujiņa-Rubene",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-18",
-            "name": "Mārtiņš Daģis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-105",
-            "name": "Inese Kalniņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-15",
-            "name": "Ingrīda Circene",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-16",
-            "name": "Irma Kalniņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-121",
-            "name": "Viesturs Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-122",
-            "name": "Dāvis Mārtiņš Daugavietis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-127",
-            "name": "Uģis Rotbergs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -61610,62 +60667,7 @@
           "atturas": 14,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-11",
-            "name": "Anna Rancāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-23",
-            "name": "Zane Skujiņa-Rubene",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-18",
-            "name": "Mārtiņš Daģis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-105",
-            "name": "Inese Kalniņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-16",
-            "name": "Irma Kalniņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-121",
-            "name": "Viesturs Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-122",
-            "name": "Dāvis Mārtiņš Daugavietis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-13",
-            "name": "Gatis Liepiņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-5",
-            "name": "Andrejs Judins",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -62280,74 +61282,7 @@
           "atturas": 11,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-3",
-            "name": "Ainars Latkovskis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-116",
-            "name": "Alīna Gendele",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-118",
-            "name": "Ilze Vergina",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-119",
-            "name": "Jānis Zariņš",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-10",
-            "name": "Agita Zariņa-Stūre",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-12",
-            "name": "Atis Labucis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-126",
-            "name": "Jānis Skrastiņš",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-14",
-            "name": "Inga Bērziņa",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-127",
-            "name": "Uģis Rotbergs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -80714,7 +79649,7 @@
             "mpId": "mp-10",
             "name": "Agita Zariņa-Stūre",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -80729,20 +79664,7 @@
           "atturas": 2,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-37",
-            "name": "Uldis Augulis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-38",
-            "name": "Valdis Maslovskis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -84977,7 +83899,7 @@
             "mpId": "mp-88",
             "name": "Kristaps Krištopans",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -87543,19 +86465,19 @@
             "mpId": "mp-72",
             "name": "Edvīns Šnore",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-109",
             "name": "Edmunds Teirumnieks",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-21",
             "name": "Uģis Mitrevics",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -94257,40 +93179,22 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-39",
-            "name": "Juris Jakovins",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-104",
-            "name": "Andris Bērziņš",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
             "mpId": "mp-37",
             "name": "Uldis Augulis",
             "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-113",
-            "name": "Ligita Gintere",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-32",
             "name": "Harijs Rokpelnis",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-33",
             "name": "Jānis Vucāns",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -94926,46 +93830,34 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-39",
-            "name": "Juris Jakovins",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
             "mpId": "mp-104",
             "name": "Andris Bērziņš",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-37",
             "name": "Uldis Augulis",
             "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-113",
-            "name": "Ligita Gintere",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-32",
             "name": "Harijs Rokpelnis",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-38",
             "name": "Valdis Maslovskis",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-33",
             "name": "Jānis Vucāns",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -97692,62 +96584,7 @@
           "atturas": 15,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-18",
-            "name": "Mārtiņš Daģis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-121",
-            "name": "Viesturs Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-122",
-            "name": "Dāvis Mārtiņš Daugavietis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-13",
-            "name": "Gatis Liepiņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-14",
-            "name": "Inga Bērziņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -97760,32 +96597,7 @@
           "atturas": 12,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-113",
-            "name": "Ligita Gintere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-36",
-            "name": "Līga Kļaviņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -97798,14 +96610,7 @@
           "atturas": 7,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -98459,68 +97264,7 @@
           "atturas": 10,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-105",
-            "name": "Inese Kalniņa",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-116",
-            "name": "Alīna Gendele",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-118",
-            "name": "Ilze Vergina",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-119",
-            "name": "Jānis Zariņš",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-15",
-            "name": "Ingrīda Circene",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-10",
-            "name": "Agita Zariņa-Stūre",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-12",
-            "name": "Atis Labucis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-5",
-            "name": "Andrejs Judins",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -98533,32 +97277,7 @@
           "atturas": 10,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-39",
-            "name": "Juris Jakovins",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-36",
-            "name": "Līga Kļaviņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -98571,14 +97290,7 @@
           "atturas": 7,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -99226,14 +97938,7 @@
           "atturas": 1,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -100636,38 +99341,7 @@
           "atturas": 5,
           "nebalso": 0
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-39",
-            "name": "Juris Jakovins",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-29",
-            "name": "Augusts Brigmanis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-40",
-            "name": "Anita Brakovska",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-124",
-            "name": "Gundars Daudze",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -100680,20 +99354,7 @@
           "atturas": 2,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-108",
-            "name": "Selma Teodora Levrence",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-129",
-            "name": "Līga Rasnača",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -103429,68 +102090,7 @@
           "atturas": 13,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-18",
-            "name": "Mārtiņš Daģis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-118",
-            "name": "Ilze Vergina",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-122",
-            "name": "Dāvis Mārtiņš Daugavietis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-12",
-            "name": "Atis Labucis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-14",
-            "name": "Inga Bērziņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-127",
-            "name": "Uģis Rotbergs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -103503,38 +102103,7 @@
           "atturas": 5,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-104",
-            "name": "Andris Bērziņš",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-37",
-            "name": "Uldis Augulis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-110",
-            "name": "Didzis Zemmers",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-38",
-            "name": "Valdis Maslovskis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-124",
-            "name": "Gundars Daudze",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -103547,20 +102116,7 @@
           "atturas": 5,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-102",
-            "name": "Edmunds Cepurītis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -108173,7 +106729,7 @@
             "mpId": "mp-17",
             "name": "Jānis Patmalnieks",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -108188,14 +106744,7 @@
           "atturas": 13,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -108208,14 +106757,7 @@
           "atturas": 6,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -108233,13 +106775,13 @@
             "mpId": "mp-57",
             "name": "Česlavs Batņa",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-123",
             "name": "Linda Matisone",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -111580,13 +110122,13 @@
             "mpId": "mp-115",
             "name": "Andrejs Svilāns",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-67",
             "name": "Lauris Lizbovskis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -113575,14 +112117,7 @@
           "atturas": 1,
           "nebalso": 9
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-109",
-            "name": "Edmunds Teirumnieks",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "lpv",
@@ -114884,7 +113419,7 @@
             "mpId": "mp-14",
             "name": "Inga Bērziņa",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -114912,14 +113447,7 @@
           "atturas": 6,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -115589,16 +114117,10 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
             "mpId": "mp-129",
             "name": "Līga Rasnača",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -115618,13 +114140,13 @@
             "mpId": "mp-128",
             "name": "Edgars Putra",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-67",
             "name": "Lauris Lizbovskis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -116281,14 +114803,7 @@
           "atturas": 6,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -116306,13 +114821,13 @@
             "mpId": "mp-128",
             "name": "Edgars Putra",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-67",
             "name": "Lauris Lizbovskis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -116969,14 +115484,7 @@
           "atturas": 6,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -116994,13 +115502,13 @@
             "mpId": "mp-128",
             "name": "Edgars Putra",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-67",
             "name": "Lauris Lizbovskis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -117663,14 +116171,7 @@
           "atturas": 6,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -117688,7 +116189,7 @@
             "mpId": "mp-128",
             "name": "Edgars Putra",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -118351,14 +116852,7 @@
           "atturas": 6,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -118376,13 +116870,13 @@
             "mpId": "mp-128",
             "name": "Edgars Putra",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-67",
             "name": "Lauris Lizbovskis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -139009,40 +137503,10 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-39",
-            "name": "Juris Jakovins",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-113",
-            "name": "Ligita Gintere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
             "mpId": "mp-29",
             "name": "Augusts Brigmanis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-31",
-            "name": "Gunārs Kūtris",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -139059,16 +137523,10 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
             "mpId": "mp-129",
             "name": "Līga Rasnača",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -141197,7 +139655,7 @@
             "mpId": "mp-78",
             "name": "Jānis Grasbergs",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -143253,44 +141711,7 @@
           "atturas": 18,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-121",
-            "name": "Viesturs Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-13",
-            "name": "Gatis Liepiņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -143303,26 +141724,7 @@
           "atturas": 10,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-33",
-            "name": "Jānis Vucāns",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-35",
-            "name": "Līga Kozlovska",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -143353,19 +141755,19 @@
             "mpId": "mp-62",
             "name": "Aiva Vīksna",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-59",
             "name": "Juris Viļums",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-67",
             "name": "Lauris Lizbovskis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -144038,62 +142440,7 @@
           "atturas": 16,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-121",
-            "name": "Viesturs Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-13",
-            "name": "Gatis Liepiņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-12",
-            "name": "Atis Labucis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-126",
-            "name": "Jānis Skrastiņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -144106,20 +142453,7 @@
           "atturas": 10,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-33",
-            "name": "Jānis Vucāns",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -144150,25 +142484,25 @@
             "mpId": "mp-63",
             "name": "Andris Kulbergs",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-62",
             "name": "Aiva Vīksna",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-57",
             "name": "Česlavs Batņa",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-123",
             "name": "Linda Matisone",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -144188,7 +142522,7 @@
             "mpId": "mp-72",
             "name": "Edvīns Šnore",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -149073,44 +147407,7 @@
           "atturas": 6,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-39",
-            "name": "Juris Jakovins",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-104",
-            "name": "Andris Bērziņš",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-113",
-            "name": "Ligita Gintere",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-36",
-            "name": "Līga Kļaviņa",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-33",
-            "name": "Jānis Vucāns",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-31",
-            "name": "Gunārs Kūtris",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -149771,44 +148068,7 @@
           "atturas": 19,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-14",
-            "name": "Inga Bērziņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -149821,32 +148081,7 @@
           "atturas": 9,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-37",
-            "name": "Uldis Augulis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -150532,32 +148767,7 @@
           "atturas": 9,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-37",
-            "name": "Uldis Augulis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -151230,38 +149440,7 @@
           "atturas": 20,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-23",
-            "name": "Zane Skujiņa-Rubene",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-5",
-            "name": "Andrejs Judins",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -151274,26 +149453,7 @@
           "atturas": 10,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-37",
-            "name": "Uldis Augulis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -151979,26 +150139,7 @@
           "atturas": 10,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-37",
-            "name": "Uldis Augulis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -152684,38 +150825,7 @@
           "atturas": 8,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-37",
-            "name": "Uldis Augulis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-124",
-            "name": "Gundars Daudze",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -153382,14 +151492,7 @@
           "atturas": 1,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-11",
-            "name": "Anna Rancāne",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -153402,26 +151505,7 @@
           "atturas": 9,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -154094,14 +152178,7 @@
           "atturas": 1,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-11",
-            "name": "Anna Rancāne",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -154114,26 +152191,7 @@
           "atturas": 9,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -154807,26 +152865,7 @@
           "atturas": 9,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -155493,50 +153532,7 @@
           "atturas": 17,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-23",
-            "name": "Zane Skujiņa-Rubene",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-105",
-            "name": "Inese Kalniņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-122",
-            "name": "Dāvis Mārtiņš Daugavietis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-12",
-            "name": "Atis Labucis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -155549,20 +153545,7 @@
           "atturas": 11,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-37",
-            "name": "Uldis Augulis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -156231,16 +154214,10 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-11",
-            "name": "Anna Rancāne",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
             "mpId": "mp-15",
             "name": "Ingrīda Circene",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -156255,32 +154232,7 @@
           "atturas": 9,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-37",
-            "name": "Uldis Augulis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -157651,44 +155603,7 @@
           "atturas": 16,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-105",
-            "name": "Inese Kalniņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-12",
-            "name": "Atis Labucis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -157701,26 +155616,7 @@
           "atturas": 10,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -158292,38 +156188,7 @@
           "atturas": 18,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-122",
-            "name": "Dāvis Mārtiņš Daugavietis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-12",
-            "name": "Atis Labucis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -158336,32 +156201,7 @@
           "atturas": 9,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-124",
-            "name": "Gundars Daudze",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -158962,56 +156802,7 @@
           "atturas": 15,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-3",
-            "name": "Ainars Latkovskis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-12",
-            "name": "Atis Labucis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-14",
-            "name": "Inga Bērziņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -159024,26 +156815,7 @@
           "atturas": 10,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -159650,32 +157422,7 @@
           "atturas": 20,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-119",
-            "name": "Jānis Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-14",
-            "name": "Inga Bērziņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -159688,20 +157435,7 @@
           "atturas": 12,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -160357,20 +158091,7 @@
           "atturas": 10,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -165636,14 +163357,7 @@
           "atturas": 13,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -165720,7 +163434,7 @@
             "mpId": "mp-106",
             "name": "Vilis Sruoģis",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -166306,7 +164020,7 @@
             "mpId": "mp-36",
             "name": "Līga Kļaviņa",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -166339,13 +164053,7 @@
             "mpId": "mp-115",
             "name": "Andrejs Svilāns",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-55",
-            "name": "Raimonds Bergmanis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -168245,13 +165953,7 @@
             "mpId": "mp-7",
             "name": "Zanda Kalniņa-Lukaševica",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-126",
-            "name": "Jānis Skrastiņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -168292,14 +165994,7 @@
           "atturas": 1,
           "nebalso": 7
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-55",
-            "name": "Raimonds Bergmanis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -168949,14 +166644,7 @@
           "atturas": 1,
           "nebalso": 6
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-55",
-            "name": "Raimonds Bergmanis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -170910,20 +168598,7 @@
           "atturas": 2,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-110",
-            "name": "Didzis Zemmers",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-38",
-            "name": "Valdis Maslovskis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -170936,32 +168611,7 @@
           "atturas": 4,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-108",
-            "name": "Selma Teodora Levrence",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-47",
-            "name": "Jana Simanovska",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-48",
-            "name": "Leila Rasima",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-45",
-            "name": "Antoņina Ņenaševa",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -171622,14 +169272,7 @@
           "atturas": 1,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-124",
-            "name": "Gundars Daudze",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -173652,32 +171295,7 @@
           "atturas": 4,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-108",
-            "name": "Selma Teodora Levrence",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-47",
-            "name": "Jana Simanovska",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-48",
-            "name": "Leila Rasima",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-45",
-            "name": "Antoņina Ņenaševa",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -180405,32 +178023,7 @@
           "atturas": 4,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-108",
-            "name": "Selma Teodora Levrence",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-47",
-            "name": "Jana Simanovska",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-48",
-            "name": "Leila Rasima",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-45",
-            "name": "Antoņina Ņenaševa",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -180448,7 +178041,7 @@
             "mpId": "mp-67",
             "name": "Lauris Lizbovskis",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -181814,13 +179407,7 @@
             "mpId": "mp-37",
             "name": "Uldis Augulis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-38",
-            "name": "Valdis Maslovskis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -181848,26 +179435,7 @@
           "atturas": 6,
           "nebalso": 6
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-115",
-            "name": "Andrejs Svilāns",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-67",
-            "name": "Lauris Lizbovskis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -182514,26 +180082,7 @@
           "atturas": 20,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-12",
-            "name": "Atis Labucis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -182572,20 +180121,7 @@
           "atturas": 7,
           "nebalso": 6
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-115",
-            "name": "Andrejs Svilāns",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -183226,26 +180762,7 @@
           "atturas": 20,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-12",
-            "name": "Atis Labucis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -183284,14 +180801,7 @@
           "atturas": 8,
           "nebalso": 6
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -183957,14 +181467,7 @@
           "atturas": 12,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -183990,14 +181493,7 @@
           "atturas": 9,
           "nebalso": 5
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -184689,32 +182185,7 @@
           "atturas": 4,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-58",
-            "name": "Ingmārs Līdaka",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-115",
-            "name": "Andrejs Svilāns",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-53",
-            "name": "Edgars Tavars",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-55",
-            "name": "Raimonds Bergmanis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -185367,20 +182838,7 @@
           "atturas": 21,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-12",
-            "name": "Atis Labucis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -185393,14 +182851,7 @@
           "atturas": 12,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -185426,20 +182877,7 @@
           "atturas": 2,
           "nebalso": 6
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-53",
-            "name": "Edgars Tavars",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-55",
-            "name": "Raimonds Bergmanis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -186092,14 +183530,7 @@
           "atturas": 22,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-11",
-            "name": "Anna Rancāne",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -186112,14 +183543,7 @@
           "atturas": 12,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -186145,20 +183569,7 @@
           "atturas": 9,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-123",
-            "name": "Linda Matisone",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -186824,14 +184235,7 @@
           "atturas": 12,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -186862,19 +184266,7 @@
             "mpId": "mp-115",
             "name": "Andrejs Svilāns",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-67",
-            "name": "Lauris Lizbovskis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -187529,26 +184921,7 @@
           "atturas": 20,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-23",
-            "name": "Zane Skujiņa-Rubene",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-121",
-            "name": "Viesturs Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -187592,13 +184965,7 @@
             "mpId": "mp-115",
             "name": "Andrejs Svilāns",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -188266,14 +185633,7 @@
           "atturas": 12,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -188301,16 +185661,10 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
             "mpId": "mp-128",
             "name": "Edgars Putra",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -188978,14 +186332,7 @@
           "atturas": 12,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -189016,13 +186363,13 @@
             "mpId": "mp-115",
             "name": "Andrejs Svilāns",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-128",
             "name": "Edgars Putra",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -189684,14 +187031,7 @@
           "atturas": 12,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -189722,13 +187062,7 @@
             "mpId": "mp-115",
             "name": "Andrejs Svilāns",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -190416,14 +187750,7 @@
           "atturas": 10,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -191083,14 +188410,7 @@
           "atturas": 1,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-37",
-            "name": "Uldis Augulis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -191116,14 +188436,7 @@
           "atturas": 10,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -191814,7 +189127,7 @@
             "mpId": "mp-115",
             "name": "Andrejs Svilāns",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -192507,13 +189820,7 @@
             "mpId": "mp-115",
             "name": "Andrejs Svilāns",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -193207,14 +190514,7 @@
           "atturas": 9,
           "nebalso": 5
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-59",
-            "name": "Juris Viļums",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -194585,20 +191885,7 @@
           "atturas": 7,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-108",
-            "name": "Selma Teodora Levrence",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -197941,31 +195228,19 @@
             "mpId": "mp-11",
             "name": "Anna Rancāne",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-112",
             "name": "Agnese Krasta",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-118",
             "name": "Ilze Vergina",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-122",
-            "name": "Dāvis Mārtiņš Daugavietis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-13",
-            "name": "Gatis Liepiņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -198037,19 +195312,19 @@
             "mpId": "mp-103",
             "name": "Ilze Stobova",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-87",
             "name": "Edmunds Zivtiņš",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-60",
             "name": "Linda Liepiņa",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -198654,26 +195929,7 @@
           "atturas": 21,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -198686,20 +195942,7 @@
           "atturas": 9,
           "nebalso": 5
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -199348,32 +196591,7 @@
           "atturas": 20,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-23",
-            "name": "Zane Skujiņa-Rubene",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -199386,20 +196604,7 @@
           "atturas": 9,
           "nebalso": 5
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -200055,26 +197260,7 @@
           "atturas": 20,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -200087,26 +197273,7 @@
           "atturas": 8,
           "nebalso": 5
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-110",
-            "name": "Didzis Zemmers",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-120",
-            "name": "Jānis Dinevičs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -201468,7 +198635,7 @@
             "mpId": "mp-75",
             "name": "Nauris Puntulis",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -206166,16 +203333,10 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-74",
-            "name": "Jurģis Klotiņš",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-68",
-            "name": "Raivis Dzintars",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
+            "mpId": "mp-73",
+            "name": "Ināra Mūrniece",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -208159,56 +205320,7 @@
           "atturas": 17,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-18",
-            "name": "Mārtiņš Daģis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-119",
-            "name": "Jānis Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-121",
-            "name": "Viesturs Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-13",
-            "name": "Gatis Liepiņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-10",
-            "name": "Agita Zariņa-Stūre",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-126",
-            "name": "Jānis Skrastiņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-127",
-            "name": "Uģis Rotbergs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -208234,32 +205346,7 @@
           "atturas": 4,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-43",
-            "name": "Andris Šuvajevs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-48",
-            "name": "Leila Rasima",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-44",
-            "name": "Kaspars Briškens",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-45",
-            "name": "Antoņina Ņenaševa",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -209689,19 +206776,19 @@
             "mpId": "mp-37",
             "name": "Uldis Augulis",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-33",
             "name": "Jānis Vucāns",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-124",
             "name": "Gundars Daudze",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -210439,46 +207526,40 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-39",
-            "name": "Juris Jakovins",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
+            "mpId": "mp-29",
+            "name": "Augusts Brigmanis",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           },
           {
-            "mpId": "mp-110",
-            "name": "Didzis Zemmers",
-            "decision": "PRET",
-            "factionLine": "PAR"
+            "mpId": "mp-36",
+            "name": "Līga Kļaviņa",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           },
           {
-            "mpId": "mp-113",
-            "name": "Ligita Gintere",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
+            "mpId": "mp-120",
+            "name": "Jānis Dinevičs",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           },
           {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "PAR"
+            "mpId": "mp-40",
+            "name": "Anita Brakovska",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           },
           {
-            "mpId": "mp-38",
-            "name": "Valdis Maslovskis",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
+            "mpId": "mp-31",
+            "name": "Gunārs Kūtris",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           },
           {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-33",
-            "name": "Jānis Vucāns",
-            "decision": "PRET",
-            "factionLine": "PAR"
+            "mpId": "mp-124",
+            "name": "Gundars Daudze",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -210493,14 +207574,7 @@
           "atturas": 8,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -211208,31 +208282,25 @@
             "mpId": "mp-32",
             "name": "Harijs Rokpelnis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-36",
             "name": "Līga Kļaviņa",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-40",
             "name": "Anita Brakovska",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-31",
             "name": "Gunārs Kūtris",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -211247,14 +208315,7 @@
           "atturas": 6,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -211740,37 +208801,25 @@
             "mpId": "mp-32",
             "name": "Harijs Rokpelnis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-36",
             "name": "Līga Kļaviņa",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-40",
             "name": "Anita Brakovska",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-124",
             "name": "Gundars Daudze",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-35",
-            "name": "Līga Kozlovska",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -211785,14 +208834,7 @@
           "atturas": 8,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -212395,52 +209437,34 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
             "mpId": "mp-29",
             "name": "Augusts Brigmanis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-36",
             "name": "Līga Kļaviņa",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-40",
             "name": "Anita Brakovska",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-31",
             "name": "Gunārs Kūtris",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-124",
             "name": "Gundars Daudze",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-35",
-            "name": "Līga Kozlovska",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -212455,14 +209479,7 @@
           "atturas": 8,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -213841,7 +210858,7 @@
             "mpId": "mp-21",
             "name": "Uģis Mitrevics",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -214477,50 +211494,7 @@
           "atturas": 18,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-23",
-            "name": "Zane Skujiņa-Rubene",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-14",
-            "name": "Inga Bērziņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -214533,14 +211507,7 @@
           "atturas": 11,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -214553,14 +211520,7 @@
           "atturas": 7,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -215244,56 +212204,7 @@
           "atturas": 17,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-23",
-            "name": "Zane Skujiņa-Rubene",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-17",
-            "name": "Jānis Patmalnieks",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-14",
-            "name": "Inga Bērziņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-127",
-            "name": "Uģis Rotbergs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -215319,14 +212230,7 @@
           "atturas": 7,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -219993,7 +216897,7 @@
             "mpId": "mp-5",
             "name": "Andrejs Judins",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -220622,44 +217526,7 @@
           "atturas": 7,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-29",
-            "name": "Augusts Brigmanis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-31",
-            "name": "Gunārs Kūtris",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-124",
-            "name": "Gundars Daudze",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-35",
-            "name": "Līga Kozlovska",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -221942,14 +218809,7 @@
           "atturas": 7,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -233027,14 +229887,7 @@
           "atturas": 1,
           "nebalso": 4
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-3",
-            "name": "Ainars Latkovskis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -233049,40 +229902,16 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-110",
-            "name": "Didzis Zemmers",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
             "mpId": "mp-29",
             "name": "Augusts Brigmanis",
             "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-36",
-            "name": "Līga Kļaviņa",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-120",
             "name": "Jānis Dinevičs",
             "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-31",
-            "name": "Gunārs Kūtris",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -238989,16 +235818,10 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-13",
-            "name": "Gatis Liepiņš",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
             "mpId": "mp-17",
             "name": "Jānis Patmalnieks",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -241717,52 +238540,46 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-39",
-            "name": "Juris Jakovins",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
+            "mpId": "mp-32",
+            "name": "Harijs Rokpelnis",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           },
           {
-            "mpId": "mp-37",
-            "name": "Uldis Augulis",
-            "decision": "PRET",
-            "factionLine": "PAR"
+            "mpId": "mp-36",
+            "name": "Līga Kļaviņa",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           },
           {
-            "mpId": "mp-110",
-            "name": "Didzis Zemmers",
-            "decision": "PRET",
-            "factionLine": "PAR"
+            "mpId": "mp-120",
+            "name": "Jānis Dinevičs",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           },
           {
-            "mpId": "mp-113",
-            "name": "Ligita Gintere",
-            "decision": "PRET",
-            "factionLine": "PAR"
+            "mpId": "mp-40",
+            "name": "Anita Brakovska",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           },
           {
-            "mpId": "mp-29",
-            "name": "Augusts Brigmanis",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
+            "mpId": "mp-31",
+            "name": "Gunārs Kūtris",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           },
           {
-            "mpId": "mp-38",
-            "name": "Valdis Maslovskis",
-            "decision": "ATTURAS",
-            "factionLine": "PAR"
+            "mpId": "mp-124",
+            "name": "Gundars Daudze",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           },
           {
-            "mpId": "mp-30",
-            "name": "Daiga Mieriņa",
-            "decision": "PRET",
-            "factionLine": "PAR"
-          },
-          {
-            "mpId": "mp-33",
-            "name": "Jānis Vucāns",
-            "decision": "PRET",
-            "factionLine": "PAR"
+            "mpId": "mp-35",
+            "name": "Līga Kozlovska",
+            "decision": "PAR",
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -241777,14 +238594,7 @@
           "atturas": 6,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -242420,50 +239230,7 @@
           "atturas": 17,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-18",
-            "name": "Mārtiņš Daģis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-19",
-            "name": "Mārtiņš Felss",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-125",
-            "name": "Anda Čakša",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-127",
-            "name": "Uģis Rotbergs",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -242476,14 +239243,7 @@
           "atturas": 14,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-35",
-            "name": "Līga Kozlovska",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "pro",
@@ -243138,14 +239898,7 @@
           "atturas": 1,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-13",
-            "name": "Gatis Liepiņš",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -243160,40 +239913,28 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-37",
-            "name": "Uldis Augulis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
             "mpId": "mp-32",
             "name": "Harijs Rokpelnis",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-120",
             "name": "Jānis Dinevičs",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-33",
-            "name": "Jānis Vucāns",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-40",
             "name": "Anita Brakovska",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-124",
             "name": "Gundars Daudze",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -243208,14 +239949,7 @@
           "atturas": 6,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -256838,43 +253572,25 @@
             "mpId": "mp-39",
             "name": "Juris Jakovins",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-113",
             "name": "Ligita Gintere",
             "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-29",
-            "name": "Augusts Brigmanis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-36",
             "name": "Līga Kļaviņa",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-31",
             "name": "Gunārs Kūtris",
             "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-35",
-            "name": "Līga Kozlovska",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -256889,14 +253605,7 @@
           "atturas": 7,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -256909,20 +253618,7 @@
           "atturas": 7,
           "nebalso": 6
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-58",
-            "name": "Ingmārs Līdaka",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-128",
-            "name": "Edgars Putra",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "na",
@@ -256935,26 +253631,7 @@
           "atturas": 3,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-72",
-            "name": "Edvīns Šnore",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-114",
-            "name": "Jānis Vitenbergs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-21",
-            "name": "Uģis Mitrevics",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "lpv",
@@ -257579,46 +254256,16 @@
         },
         "deviatingMps": [
           {
-            "mpId": "mp-39",
-            "name": "Juris Jakovins",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-113",
-            "name": "Ligita Gintere",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-32",
-            "name": "Harijs Rokpelnis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-29",
-            "name": "Augusts Brigmanis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
             "mpId": "mp-36",
             "name": "Līga Kļaviņa",
             "decision": "PAR",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           },
           {
             "mpId": "mp-31",
             "name": "Gunārs Kūtris",
             "decision": "PAR",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-35",
-            "name": "Līga Kozlovska",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -257633,14 +254280,7 @@
           "atturas": 7,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
@@ -257666,32 +254306,7 @@
           "atturas": 4,
           "nebalso": 1
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-70",
-            "name": "Ilze Indriksone",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-68",
-            "name": "Raivis Dzintars",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-75",
-            "name": "Nauris Puntulis",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          },
-          {
-            "mpId": "mp-78",
-            "name": "Jānis Grasbergs",
-            "decision": "ATTURAS",
-            "factionLine": "PRET"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "lpv",
@@ -258313,44 +254928,7 @@
           "atturas": 17,
           "nebalso": 3
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-112",
-            "name": "Agnese Krasta",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-7",
-            "name": "Zanda Kalniņa-Lukaševica",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-119",
-            "name": "Jānis Zariņš",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-4",
-            "name": "Edmunds Jurēvics",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-122",
-            "name": "Dāvis Mārtiņš Daugavietis",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          },
-          {
-            "mpId": "mp-14",
-            "name": "Inga Bērziņa",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "zzs",
@@ -258368,7 +254946,7 @@
             "mpId": "mp-36",
             "name": "Līga Kļaviņa",
             "decision": "PAR",
-            "factionLine": "ATTURAS"
+            "factionLine": "PRET / ATTURAS"
           }
         ]
       },
@@ -258383,14 +254961,7 @@
           "atturas": 7,
           "nebalso": 2
         },
-        "deviatingMps": [
-          {
-            "mpId": "mp-101",
-            "name": "Liene Gātere",
-            "decision": "PRET",
-            "factionLine": "ATTURAS"
-          }
-        ]
+        "deviatingMps": []
       },
       {
         "factionId": "as",
