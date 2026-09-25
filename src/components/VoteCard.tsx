@@ -226,10 +226,10 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
 
       {/* LEVEL 2: Progressive Disclosure (Accordion Drawer) */}
       {isExpanded && (
-        <div className="mt-3 pt-3 border-t border-slate-200/90 space-y-2.5 text-xs">
-          {/* TIER 1: The 8 Faction Ledger Bars (Clean 2-Column Table, Tight 8px Row Gap, No Legend) */}
+        <div className="mt-2.5 pt-3.5 border-t border-slate-100 space-y-3 text-xs">
+          {/* TIER 1: The 8 Faction Ledger Bars (Clean 2-Column Table, Tight Row Gap, No Legend) */}
           {!vote.isSecret && sortedFactions.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-2.5">
               {sortedFactions.map((f) => {
                 const fTotal = f.votes.par + f.votes.pret + f.votes.atturas + f.votes.nebalso;
                 const fParPct = fTotal ? (f.votes.par / fTotal) * 100 : 0;
@@ -238,22 +238,22 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
                 const fNebalsoPct = fTotal ? (f.votes.nebalso / fTotal) * 100 : 0;
 
                 return (
-                  <div key={f.factionId} className="flex flex-col gap-1">
+                  <div key={f.factionId} className="w-full flex flex-col justify-start">
                     <div className="flex items-baseline gap-2.5 text-xs">
                       <span className="font-bold text-slate-800 w-16 sm:w-20 flex-shrink-0">
                         {f.shortName} <span className="text-[11px] text-slate-400 font-normal">({fTotal})</span>
                       </span>
-                      <span className="font-mono text-[11px] text-slate-600">
+                      <span className="font-mono text-[11px] text-slate-600 truncate">
                         {formatFactionTally(f.votes)}
                       </span>
                     </div>
 
-                    {/* Muted Hairline 3px Proportional Bar */}
-                    <div className="flex h-[3px] w-full overflow-hidden rounded-full bg-slate-100">
-                      {fParPct > 0 && <div style={{ width: `${fParPct}%` }} className="bg-emerald-600" title={`${f.votes.par} Par`} />}
-                      {fPretPct > 0 && <div style={{ width: `${fPretPct}%` }} className="bg-rose-600" title={`${f.votes.pret} Pret`} />}
-                      {fAtturasPct > 0 && <div style={{ width: `${fAtturasPct}%` }} className="bg-amber-500" title={`${f.votes.atturas} Atturas`} />}
-                      {fNebalsoPct > 0 && <div style={{ width: `${fNebalsoPct}%` }} className="bg-slate-300" title={`${f.votes.nebalso} Nebalsoja`} />}
+                    {/* Uniform Full-Width 4px Bar Track */}
+                    <div className="w-full bg-slate-100 h-1 rounded-full overflow-hidden flex mt-1">
+                      {fParPct > 0 && <div style={{ width: `${fParPct}%` }} className="bg-emerald-600 h-full" title={`${f.votes.par} Par`} />}
+                      {fPretPct > 0 && <div style={{ width: `${fPretPct}%` }} className="bg-rose-600 h-full" title={`${f.votes.pret} Pret`} />}
+                      {fAtturasPct > 0 && <div style={{ width: `${fAtturasPct}%` }} className="bg-amber-500 h-full" title={`${f.votes.atturas} Atturas`} />}
+                      {fNebalsoPct > 0 && <div style={{ width: `${fNebalsoPct}%` }} className="bg-slate-300 h-full" title={`${f.votes.nebalso} Nebalsoja`} />}
                     </div>
                   </div>
                 );
@@ -302,7 +302,8 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
           )}
 
           {/* TIER 3: Interactive Exploration & Official Proof */}
-          <div className="border-t border-slate-100 pt-2 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div className="border-t border-slate-100 pt-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
+            {/* Left: Primary interactive drill-down */}
             <button
               type="button"
               onClick={() => onSelect(vote)}
@@ -312,16 +313,8 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
               <span>Atvērt 100 vietu sēžu zāli</span>
             </button>
 
+            {/* Right: Clean secondary link list */}
             <div className="flex items-center gap-3 text-slate-500 text-[11px]">
-              <button
-                type="button"
-                onClick={() => setIsExpanded(false)}
-                className="inline-flex items-center gap-1 text-slate-500 hover:text-slate-800 transition cursor-pointer"
-              >
-                <ChevronUp className="h-3.5 w-3.5 text-slate-400" />
-                <span>Aizvērt</span>
-              </button>
-              <span className="text-slate-300">·</span>
               <button
                 type="button"
                 onClick={handleCopy}
@@ -339,18 +332,29 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
                   </>
                 )}
               </button>
-              <span className="text-slate-300">·</span>
               {vote.protocolUrl && (
-                <a
-                  href={vote.protocolUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-slate-500 hover:text-slate-800 transition"
-                >
-                  <span>Oficiālais protokols</span>
-                  <ExternalLink className="h-3 w-3 text-slate-400" />
-                </a>
+                <>
+                  <span className="text-slate-300">·</span>
+                  <a
+                    href={vote.protocolUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-slate-500 hover:text-slate-800 transition"
+                  >
+                    <span>Oficiālais protokols</span>
+                    <ExternalLink className="h-3 w-3 text-slate-400" />
+                  </a>
+                </>
               )}
+              <span className="text-slate-300">·</span>
+              <button
+                type="button"
+                onClick={() => setIsExpanded(false)}
+                className="inline-flex items-center gap-0.5 text-slate-500 hover:text-slate-800 transition cursor-pointer"
+              >
+                <span>Aizvērt</span>
+                <span className="text-xs">↑</span>
+              </button>
             </div>
           </div>
         </div>
