@@ -346,7 +346,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
               </div>
 
               {/* SVG Hemicycle Diagram: Scaled up to fill column width and target comfortably */}
-              <div className="relative w-full aspect-[640/310] max-w-xl mx-auto my-auto shrink-0">
+              <div className="relative w-full aspect-[640/310] max-w-xl mx-auto shrink-0 my-1">
                 <svg viewBox="0 0 640 310" className="w-full h-full select-none">
                   {/* 100 Active Voting Seats */}
                   {seatPositions.map(({ mp, x, y, decision }) => {
@@ -401,10 +401,10 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                 </svg>
               </div>
 
-              {/* Active Inspector Card: Sits directly beneath the hemicycle arc to eliminate vertical gap */}
-              <div className="pt-2 border-t border-slate-200/80 shrink-0">
+              {/* Active Inspector Card: Locked fixed height to eliminate hover layout shifts */}
+              <div className="h-[76px] shrink-0 pt-2 border-t border-slate-200/80">
                 {activeSeat ? (
-                  <div className="flex items-center justify-between rounded-lg border border-slate-200 bg-white p-3 shadow-xs animate-in fade-in duration-100">
+                  <div className="h-full flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-2 shadow-xs animate-in fade-in duration-100">
                     <div className="flex items-center gap-3 min-w-0 pr-2">
                       {/* Initials Avatar Badge */}
                       <div
@@ -456,7 +456,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                     </div>
                   </div>
                 ) : (
-                  <div className="rounded-lg border border-dashed border-slate-200 bg-white/70 p-3 text-center text-xs text-slate-400">
+                  <div className="h-full flex items-center justify-center rounded-lg border border-dashed border-slate-200 bg-white/70 px-3 text-center text-xs text-slate-400 select-none">
                     Uzbrauciet vai uzklikšķiniet uz deputāta vietas, lai redzētu balsojumu.
                   </div>
                 )}
