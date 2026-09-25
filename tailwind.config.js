@@ -4,7 +4,6 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -34,8 +33,8 @@ export default {
           border: '#E2E8F0',
         },
         baltic: {
-          950: '#0B0F19', // Deep Baltic Slate
-          900: '#0F172A', // Baltic Navy base
+          950: '#0B0F19',
+          900: '#0F172A',
           800: '#1E293B',
           700: '#334155',
         }

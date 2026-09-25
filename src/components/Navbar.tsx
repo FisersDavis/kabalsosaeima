@@ -1,10 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import type { SaeimaTerm } from '../types';
-import { Sun, Moon, Database, ShieldCheck, ChevronDown, Check } from 'lucide-react';
+import { Database, ShieldCheck, ChevronDown, Check } from 'lucide-react';
 
 interface NavbarProps {
-  darkMode: boolean;
-  onToggleDarkMode: () => void;
   totalVotesCount: number;
   terms: SaeimaTerm[];
   selectedTerm: number;
@@ -12,8 +10,6 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
-  darkMode,
-  onToggleDarkMode,
   totalVotesCount,
   terms,
   selectedTerm,
@@ -35,12 +31,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   const currentTermObj = terms.find((t) => t.term === selectedTerm) || terms[0];
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200/90 bg-white/95 backdrop-blur dark:border-slate-800 dark:bg-slate-950/95 transition-colors">
+    <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         {/* Brand & Term Selector */}
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded border border-slate-300 bg-slate-900 text-white dark:border-slate-700 dark:bg-slate-100 dark:text-slate-900 shadow-sm">
-            {/* Architectural Saeima plenary room minimalist glyph */}
+          <div className="flex h-9 w-9 items-center justify-center rounded border border-slate-300 bg-slate-900 text-white shadow-xs">
+            {/* Saeima plenary room minimalist glyph */}
             <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 20a9 9 0 0 1 18 0" />
               <path d="M7 20a5 5 0 0 1 10 0" />
@@ -49,8 +45,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-sans text-lg font-bold tracking-tight text-slate-900 dark:text-white">
-                kābalso<span className="text-slate-900 dark:text-white font-extrabold">saeima</span><span className="text-slate-400 font-mono text-sm font-normal">.lv</span>
+              <span className="font-sans text-lg font-bold tracking-tight text-slate-900">
+                kābalso<span className="font-extrabold">saeima</span><span className="text-slate-400 font-mono text-sm font-normal">.lv</span>
               </span>
 
               {/* Term Selector Dropdown */}
@@ -58,7 +54,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <button
                   type="button"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="inline-flex items-center gap-1.5 rounded border border-slate-300 bg-slate-50 hover:bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 transition"
+                  className="inline-flex items-center gap-1.5 rounded border border-slate-300 bg-slate-50 hover:bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700 transition"
                   title="Izvēlēties Saeimas sasaukumu"
                 >
                   {currentTermObj?.isActive && (
@@ -70,7 +66,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
                 {/* Dropdown Menu */}
                 {isDropdownOpen && (
-                  <div className="absolute left-0 mt-2 w-64 rounded-lg border border-slate-300 bg-white p-1.5 shadow-lg dark:border-slate-800 dark:bg-slate-900 z-50 text-xs">
+                  <div className="absolute left-0 mt-2 w-64 rounded-lg border border-slate-300 bg-white p-1.5 shadow-lg z-50 text-xs">
                     <div className="px-3 py-1 font-semibold text-slate-400 uppercase tracking-wider text-[10px]">
                       Saeimas sasaukumi:
                     </div>
@@ -86,19 +82,19 @@ export const Navbar: React.FC<NavbarProps> = ({
                           }}
                           className={`flex w-full items-start justify-between rounded p-2 text-left transition ${
                             isSelected
-                              ? 'bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-white font-semibold'
-                              : 'text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-800/60'
+                              ? 'bg-slate-100 text-slate-900 font-semibold'
+                              : 'text-slate-700 hover:bg-slate-50'
                           }`}
                         >
                           <div>
                             <div className="flex items-center gap-1.5">
                               <span>{t.label}</span>
                               {t.isActive ? (
-                                <span className="rounded bg-emerald-100 px-1 py-0.2 text-[9px] font-semibold text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                                <span className="rounded bg-emerald-100 px-1 py-0.2 text-[9px] font-semibold text-emerald-800">
                                   Aktuālā
                                 </span>
                               ) : (
-                                <span className="rounded bg-slate-100 px-1 py-0.2 text-[9px] text-slate-500 dark:bg-slate-800">
+                                <span className="rounded bg-slate-100 px-1 py-0.2 text-[9px] text-slate-500">
                                   Nākamā
                                 </span>
                               )}
@@ -107,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                               {t.years} · {t.description}
                             </div>
                           </div>
-                          {isSelected && <Check className="h-4 w-4 text-slate-900 dark:text-white mt-0.5" />}
+                          {isSelected && <Check className="h-4 w-4 text-slate-900 mt-0.5" />}
                         </button>
                       );
                     })}
@@ -116,30 +112,21 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             </div>
 
-            <p className="hidden text-xs text-slate-500 dark:text-slate-400 sm:block">
+            <p className="hidden text-xs text-slate-500 sm:block">
               Objektīvi dati par katru balsojumu Saeimā · Atvērtā parlamenta reģistrs
             </p>
           </div>
         </div>
 
-        {/* Right Actions */}
+        {/* Right Status */}
         <div className="flex items-center gap-3">
-          <div className="hidden md:flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 border-r border-slate-200 dark:border-slate-800 pr-3">
+          <div className="flex items-center gap-2 text-xs text-slate-500">
             <Database className="h-3.5 w-3.5 text-slate-400" />
-            <span><strong className="font-mono text-slate-800 dark:text-slate-200">{totalVotesCount}</strong> balsojumi</span>
+            <span><strong className="font-mono text-slate-800">{totalVotesCount}</strong> balsojumi</span>
             <span>·</span>
             <ShieldCheck className="h-3.5 w-3.5 text-slate-500" />
-            <span>saeima.lv protokoli</span>
+            <span className="hidden sm:inline">saeima.lv protokoli</span>
           </div>
-
-          <button
-            type="button"
-            onClick={onToggleDarkMode}
-            className="flex h-8 w-8 items-center justify-center rounded border border-slate-300 bg-slate-50 text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-            title={darkMode ? "Ieslēgt gaišo motīvu" : "Ieslēgt tumšo motīvu"}
-          >
-            {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </button>
         </div>
       </div>
     </header>
