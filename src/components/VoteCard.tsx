@@ -88,23 +88,19 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
 
       {/* LEVEL 1: Immediately Visible (Scanning) */}
 
-      {/* Row 1: Title (1) + Result (2) in the exact same visual fixation */}
-      <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
-        <h3
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="text-base sm:text-lg font-bold leading-snug text-slate-900 hover:text-emerald-800 cursor-pointer transition"
-        >
-          {cleanedTitle}
-        </h3>
-
-        {/* 2. Verdict Badge Docked Directly to Title */}
+      {/* Row 1: Title (1) + Result (2) tucked directly after the final word */}
+      <h3
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="text-base sm:text-lg font-bold leading-snug text-slate-900 hover:text-emerald-800 cursor-pointer transition"
+      >
+        <span>{cleanedTitle}</span>
         {isQuorumBreak ? (
-          <span className="inline-flex items-center rounded-md border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-900 shadow-2xs whitespace-nowrap">
+          <span className="inline-flex items-center align-middle rounded-md border border-amber-300 bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-900 shadow-2xs whitespace-nowrap ml-2 -translate-y-px">
             Nav kvoruma
           </span>
         ) : (
           <span
-            className={`inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold shadow-2xs whitespace-nowrap ${
+            className={`inline-flex items-center align-middle rounded-md border px-2.5 py-0.5 text-xs font-semibold shadow-2xs whitespace-nowrap ml-2 -translate-y-px ${
               isApproved
                 ? 'border-emerald-300 bg-emerald-50 text-emerald-800'
                 : 'border-rose-300 bg-rose-50 text-rose-800'
@@ -113,10 +109,10 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
             {isApproved ? 'Pieņemts' : 'Noraidīts'}
           </span>
         )}
-      </div>
+      </h3>
 
       {/* Row 2: Vote Split (3) with chromatic typography */}
-      <div className="mt-2 flex items-center text-xs font-mono">
+      <div className="mt-1.5 flex items-center text-xs font-mono">
         <div className="flex items-center gap-2 sm:gap-2.5 text-slate-600">
           <span>
             <strong className="tabular-nums font-bold text-emerald-700">{vote.counts.par}</strong>{' '}
@@ -141,7 +137,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
       </div>
 
       {/* Row 3: Subdued Supporting Context (Topic · Date · Stage · Bill Nr) sits quietly underneath */}
-      <div className="mt-2 flex flex-wrap items-center gap-1.5 text-[11px] text-slate-400 font-normal">
+      <div className="mt-1.5 flex flex-wrap items-center gap-1.5 text-[11px] text-slate-400 font-normal">
         <span className="text-slate-600 font-medium">{vote.category.label}</span>
         <span>·</span>
         <span className="font-mono text-slate-500">{vote.sittingDate}</span>
@@ -178,7 +174,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
       </div>
 
       {/* Row 4: Single Expand Action Trigger + Rebel MPs indicator */}
-      <div className="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between">
+      <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between">
         <button
           type="button"
           onClick={() => setIsExpanded(!isExpanded)}
@@ -198,9 +194,17 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </button>
 
         {allDeviations.length > 0 && (
-          <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">
-            {allDeviations.length} pret frakciju
-          </span>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsExpanded(!isExpanded);
+            }}
+            title="Skatīt deputātus, kuri balsoja pretēji frakcijas vairākumam"
+            className="inline-flex items-center gap-1 rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600 hover:bg-slate-100 hover:border-slate-300 hover:text-slate-900 transition cursor-pointer"
+          >
+            <span>{allDeviations.length} pret frakciju</span>
+          </button>
         )}
       </div>
 
