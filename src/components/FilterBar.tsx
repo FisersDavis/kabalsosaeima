@@ -1,13 +1,13 @@
 import React from 'react';
-import { Search, X, CheckCircle2, XCircle } from 'lucide-react';
+import { Search, X, CheckCircle2, XCircle, AlertTriangle } from 'lucide-react';
 
 interface FilterBarProps {
   searchQuery: string;
   onSearchChange: (q: string) => void;
   selectedCategory: string;
   onCategoryChange: (cat: string) => void;
-  selectedOutcome: 'ALL' | 'PIENEMTS' | 'NORAIDITS';
-  onOutcomeChange: (outcome: 'ALL' | 'PIENEMTS' | 'NORAIDITS') => void;
+  selectedOutcome: 'ALL' | 'PIENEMTS' | 'NORAIDITS' | 'NAV_KVORUMA';
+  onOutcomeChange: (outcome: 'ALL' | 'PIENEMTS' | 'NORAIDITS' | 'NAV_KVORUMA') => void;
   categories: { id: string; label: string }[];
   tier1Only: boolean;
   onTier1Toggle: (val: boolean) => void;
@@ -51,12 +51,12 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           )}
         </div>
 
-        {/* Outcome Toggle */}
-        <div className="flex items-center gap-1 self-start sm:self-auto rounded-lg border border-slate-200 bg-slate-100/80 p-1 dark:border-slate-800 dark:bg-slate-900">
+        {/* Outcome Toggle (with NAV_KVORUMA) */}
+        <div className="flex flex-wrap items-center gap-1 self-start sm:self-auto rounded-lg border border-slate-200 bg-slate-100/80 p-1 dark:border-slate-800 dark:bg-slate-900">
           <button
             type="button"
             onClick={() => onOutcomeChange('ALL')}
-            className={`rounded-md px-3 py-1.5 text-xs font-medium transition ${
+            className={`rounded-md px-2.5 py-1.5 text-xs font-medium transition ${
               selectedOutcome === 'ALL'
                 ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-800 dark:text-white'
                 : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
@@ -67,7 +67,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           <button
             type="button"
             onClick={() => onOutcomeChange('PIENEMTS')}
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition ${
+            className={`flex items-center gap-1 rounded-md px-2.5 py-1.5 text-xs font-medium transition ${
               selectedOutcome === 'PIENEMTS'
                 ? 'bg-emerald-50 text-emerald-800 shadow-sm dark:bg-emerald-950/60 dark:text-emerald-300 ring-1 ring-emerald-500/30'
                 : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
@@ -79,7 +79,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           <button
             type="button"
             onClick={() => onOutcomeChange('NORAIDITS')}
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition ${
+            className={`flex items-center gap-1 rounded-md px-2.5 py-1.5 text-xs font-medium transition ${
               selectedOutcome === 'NORAIDITS'
                 ? 'bg-rose-50 text-rose-800 shadow-sm dark:bg-rose-950/60 dark:text-rose-300 ring-1 ring-rose-500/30'
                 : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
@@ -87,6 +87,18 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           >
             <XCircle className="h-3 w-3 text-rose-500" />
             Noraidītie
+          </button>
+          <button
+            type="button"
+            onClick={() => onOutcomeChange('NAV_KVORUMA')}
+            className={`flex items-center gap-1 rounded-md px-2.5 py-1.5 text-xs font-medium transition ${
+              selectedOutcome === 'NAV_KVORUMA'
+                ? 'bg-amber-50 text-amber-800 shadow-sm dark:bg-amber-950/60 dark:text-amber-300 ring-1 ring-amber-500/30'
+                : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
+            }`}
+          >
+            <AlertTriangle className="h-3 w-3 text-amber-500" />
+            Nav kvoruma
           </button>
         </div>
       </div>
@@ -136,7 +148,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 dark:border-slate-700 dark:bg-slate-900"
             />
             <span className="font-medium">Tikai gala lēmumi</span>
-            <span className="text-[10px] text-slate-400 hidden sm:inline">(slēpj procedūru)</span>
+            <span className="text-[10px] text-slate-400 hidden sm:inline">(3. lasījumi & steidzamie)</span>
           </label>
 
           <span className="font-mono text-slate-400 dark:text-slate-500">

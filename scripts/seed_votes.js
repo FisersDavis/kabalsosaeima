@@ -10,22 +10,34 @@ const outputPath = path.join(__dirname, '../public/data/votes.json');
 const mps = JSON.parse(fs.readFileSync(mpsPath, 'utf8'));
 const factions = JSON.parse(fs.readFileSync(factionsPath, 'utf8'));
 
+// Mark substitute MP for demo
+if (mps[0]) {
+  mps[0].isSubstitute = true;
+  mps[0].replacesMpName = "Evika Siliņa (Ministru prezidente)";
+  fs.writeFileSync(mpsPath, JSON.stringify(mps, null, 2), 'utf8');
+}
+
 // Helper to assign decisions by faction rules
 function generateVote({
   id,
   saeimaTerm,
+  sessionId = "14-sede-24",
+  sessionDate,
   sittingDate,
   sittingTime,
   sittingType,
   reading,
-  isUrgent,
-  isTier1,
+  isUrgent = false,
+  isTier1 = true,
+  isSecret = false,
+  isRevote = false,
+  revoteReason = null,
   officialTitle,
   billNumber,
   simplifiedTitle,
   summary,
   category,
-  factionRules // { jv: { par: 26 }, zzs: { par: 16 }, ... }
+  factionRules
 }) {
   const mpVotes = [];
   const factionMap = {};
@@ -40,69 +52,93 @@ function generateVote({
     };
   });
 
-  // Group MPs by faction
-  const mpsByFaction = {};
-  mps.forEach(mp => {
-    if (!mpsByFaction[mp.factionId]) mpsByFaction[mp.factionId] = [];
-    mpsByFaction[mp.factionId].push(mp);
-  });
-
   let parCount = 0;
   let pretCount = 0;
   let atturasCount = 0;
   let nebalsoCount = 0;
 
-  for (const [fId, fMps] of Object.entries(mpsByFaction)) {
-    const rule = factionRules[fId] || { par: 0, pret: 0, atturas: 0, nebalso: fMps.length };
-    let assigned = 0;
-    
-    const decisions = [];
-    for (let i = 0; i < (rule.par || 0); i++) decisions.push('PAR');
-    for (let i = 0; i < (rule.pret || 0); i++) decisions.push('PRET');
-    for (let i = 0; i < (rule.atturas || 0); i++) decisions.push('ATTURAS');
-    for (let i = 0; i < (rule.nebalso || 0); i++) decisions.push('NEBALSO');
-    
-    // Fill remainder with NEBALSO if unspecified
-    while (decisions.length < fMps.length) {
-      decisions.push('NEBALSO');
-    }
-
-    fMps.forEach((mp, idx) => {
-      const decision = decisions[idx] || 'NEBALSO';
-      mpVotes.push({
-        mpId: mp.id,
-        name: mp.name,
-        factionId: mp.factionId,
-        decision
-      });
-
-      if (decision === 'PAR') {
-        factionMap[fId].votes.par++;
-        parCount++;
-      } else if (decision === 'PRET') {
-        factionMap[fId].votes.pret++;
-        pretCount++;
-      } else if (decision === 'ATTURAS') {
-        factionMap[fId].votes.atturas++;
-        atturasCount++;
-      } else {
-        factionMap[fId].votes.nebalso++;
-        nebalsoCount++;
-      }
+  if (isSecret) {
+    // Secret ballot: individual votes are omitted in accordance with Satversme
+    parCount = 62;
+    pretCount = 28;
+    atturasCount = 4;
+    nebalsoCount = 6;
+  } else {
+    // Group MPs by faction
+    const mpsByFaction = {};
+    mps.forEach(mp => {
+      if (!mpsByFaction[mp.factionId]) mpsByFaction[mp.factionId] = [];
+      mpsByFaction[mp.factionId].push(mp);
     });
+
+    for (const [fId, fMps] of Object.entries(mpsByFaction)) {
+      const rule = factionRules[fId] || { par: 0, pret: 0, atturas: 0, nebalso: fMps.length };
+      
+      const decisions = [];
+      for (let i = 0; i < (rule.par || 0); i++) decisions.push('PAR');
+      for (let i = 0; i < (rule.pret || 0); i++) decisions.push('PRET');
+      for (let i = 0; i < (rule.atturas || 0); i++) decisions.push('ATTURAS');
+      for (let i = 0; i < (rule.nebalso || 0); i++) decisions.push('NEBALSO');
+      
+      while (decisions.length < fMps.length) {
+        decisions.push('NEBALSO');
+      }
+
+      fMps.forEach((mp, idx) => {
+        const decision = decisions[idx] || 'NEBALSO';
+        mpVotes.push({
+          mpId: mp.id,
+          name: mp.name,
+          factionId: mp.factionId,
+          decision,
+          isSubstitute: mp.isSubstitute,
+          replacesMpName: mp.replacesMpName
+        });
+
+        if (decision === 'PAR') {
+          factionMap[fId].votes.par++;
+          parCount++;
+        } else if (decision === 'PRET') {
+          factionMap[fId].votes.pret++;
+          pretCount++;
+        } else if (decision === 'ATTURAS') {
+          factionMap[fId].votes.atturas++;
+          atturasCount++;
+        } else {
+          factionMap[fId].votes.nebalso++;
+          nebalsoCount++;
+        }
+      });
+    }
   }
 
-  const result = parCount > (pretCount + atturasCount) ? 'PIENEMTS' : 'NORAIDITS';
+  const totalPresent = parCount + pretCount + atturasCount;
+  
+  // Edge Case 1: Constitutional Quorum Check (Satversme 24. p. - at least 50 MPs must participate)
+  let result;
+  if (totalPresent < 50) {
+    result = 'NAV_KVORUMA';
+  } else if (parCount > (pretCount + atturasCount)) {
+    // Edge Case 2: In Saeima, Par must strictly exceed Pret + Atturas
+    result = 'PIENEMTS';
+  } else {
+    result = 'NORAIDITS';
+  }
 
   return {
     id,
     saeimaTerm,
+    sessionId,
+    sessionDate: sessionDate || sittingDate,
     sittingDate,
     sittingTime,
     sittingType,
     reading,
     isUrgent,
     isTier1,
+    isSecret,
+    isRevote,
+    revoteReason,
     officialTitle,
     billNumber,
     simplifiedTitle,
@@ -114,9 +150,9 @@ function generateVote({
       pret: pretCount,
       atturas: atturasCount,
       nebalso: nebalsoCount,
-      totalPresent: parCount + pretCount + atturasCount
+      totalPresent
     },
-    factionBreakdown: Object.values(factionMap),
+    factionBreakdown: isSecret ? [] : Object.values(factionMap),
     mpVotes
   };
 }
@@ -125,6 +161,7 @@ const votes = [
   generateVote({
     id: "14-2026-09-24-v1",
     saeimaTerm: 14,
+    sessionId: "14-sede-24",
     sittingDate: "2026-09-24",
     sittingTime: "11:42",
     sittingType: "Kārtējā",
@@ -147,19 +184,21 @@ const votes = [
       ind: { par: 2, pret: 2 }
     }
   }),
+  // Edge Case 3: Urgent Bill on 2nd reading (Final adoption)
   generateVote({
     id: "14-2026-09-24-v2",
     saeimaTerm: 14,
+    sessionId: "14-sede-24",
     sittingDate: "2026-09-24",
     sittingTime: "12:15",
     sittingType: "Kārtējā",
     reading: 2,
     isUrgent: true,
     isTier1: true,
-    officialTitle: "Grozījumi Valsts aizsardzības finansēšanas likumā (Nr. 512/Lp14), 2. lasījums",
+    officialTitle: "Grozījumi Valsts aizsardzības finansēšanas likumā (Nr. 512/Lp14), 2. lasījums (Steidzams)",
     billNumber: "Nr. 512/Lp14",
-    simplifiedTitle: "Valsts aizsardzības finansējuma pakāpeniska palielināšana līdz 3.5% no IKP",
-    summary: "Nostiprina valsts budžeta saistības palielināt militāro un iekšējās drošības finansējumu līdz 3.5% no IKP līdz 2028. gadam, novirzot papildu līdzekļus pretgaisa aizsardzības un austrumu robežas stiprināšanai.",
+    simplifiedTitle: "Valsts aizsardzības finansējuma palielināšana līdz 3.5% no IKP (Steidzamības kārtā pieņemts galīgajā lasījumā)",
+    summary: "Nostiprina valsts budžeta saistības palielināt militāro un iekšējās drošības finansējumu līdz 3.5% no IKP līdz 2028. gadam. Tā kā likums atzīts par steidzamu, 2. lasījums ir tā galīgā pieņemšana.",
     category: { id: "defense", label: "Aizsardzība & Drošība" },
     factionRules: {
       jv: { par: 26 },
@@ -172,50 +211,75 @@ const votes = [
       ind: { par: 4 }
     }
   }),
+  // Edge Case 1: Quorum Breaking via deliberate Nebalso (Satversme 24. p.)
   generateVote({
-    id: "14-2026-09-17-v1",
+    id: "14-2026-09-24-v3",
     saeimaTerm: 14,
-    sittingDate: "2026-09-17",
-    sittingTime: "10:30",
+    sessionId: "14-sede-24",
+    sittingDate: "2026-09-24",
+    sittingTime: "13:05",
     sittingType: "Kārtējā",
     reading: 1,
     isUrgent: false,
-    isTier1: true,
-    officialTitle: "Likumprojekts 'Par nekustamā īpašuma nodokļa atcelšanu vienīgajam mājoklim' (Nr. 534/Lp14), nodošana komisijām",
-    billNumber: "Nr. 534/Lp14",
-    simplifiedTitle: "Nekustamā īpašuma nodokļa atcelšana iedzīvotāju primārajam mājoklim",
-    summary: "Opozīcijas deputātu virzīts likumprojekts, kas paredzēja atbrīvot no NĪN maksājuma fizisko personu vienīgo reģistrēto dzīvesvietu kadastrālajā vērtībā līdz 100 000 EUR. Noraidīts, nododot negatīvu atzinumu Budžeta komisijai.",
+    isTier1: false,
+    officialTitle: "Likumprojekts 'Par nekustamā īpašuma nodokļa pārdali pašvaldībām' (Nr. 556/Lp14)",
+    billNumber: "Nr. 556/Lp14",
+    simplifiedTitle: "Nekustamā īpašuma nodokļa pārdale — Kvoruma noraušana ar Nebalso taktiku",
+    summary: "Opozīcijas frakcijas izmantoja Satversmes 24. pantā paredzēto kvoruma taktiku: zālē bija reģistrēti 85 deputāti, taču 53 deputāti apzināti nepiespieda nevienu pogu (Nebalsoja). Piedaloties tikai 47 deputātiem, balsojums atzīts par nenotikušu kvoruma trūkuma dēļ.",
     category: { id: "housing", label: "Mājoklis & Labklājība" },
     factionRules: {
-      jv: { pret: 24, atturas: 2 },
-      zzs: { pret: 15, atturas: 1 },
-      pro: { pret: 10 },
-      as: { par: 15 },
-      na: { par: 11, nebalso: 1 },
-      lpv: { par: 9 },
-      st: { par: 8 },
-      ind: { par: 3, nebalso: 1 }
+      jv: { par: 25, nebalso: 1 },
+      zzs: { par: 16 },
+      pro: { par: 6, nebalso: 4 },
+      as: { nebalso: 15 },
+      na: { nebalso: 12 },
+      lpv: { nebalso: 9 },
+      st: { nebalso: 8 },
+      ind: { nebalso: 4 }
     }
   }),
+  // Edge Case 5: Secret Ballot (Aizklātais balsojums)
   generateVote({
-    id: "14-2026-09-17-v2",
+    id: "14-2026-09-17-v3",
     saeimaTerm: 14,
+    sessionId: "14-sede-23",
     sittingDate: "2026-09-17",
-    sittingTime: "14:20",
+    sittingTime: "11:00",
+    sittingType: "Kārtējā",
+    reading: null,
+    isUrgent: false,
+    isTier1: true,
+    isSecret: true,
+    officialTitle: "Satversmes tiesas tiesneša apstiprināšana amatā (Aizklāts balsojums)",
+    billNumber: "Lēmums Nr. 129/Lp14",
+    simplifiedTitle: "Satversmes tiesas tiesneša apstiprināšana amatā uz 10 gadiem",
+    summary: "Saskaņā ar Satversmi un Tiesu varas likumu tiesnešu apstiprināšana amatā notiek ar aizklātu vēlēšanu zīmju balsojumu. Individuālie deputātu balsojumi nav publiski fiksēti.",
+    category: { id: "justice", label: "Tiesiskums & Valsts" },
+    factionRules: {}
+  }),
+  // Edge Case 6: Immediate Revote (Pārbalsošana)
+  generateVote({
+    id: "14-2026-09-17-v4",
+    saeimaTerm: 14,
+    sessionId: "14-sede-23",
+    sittingDate: "2026-09-17",
+    sittingTime: "14:22",
     sittingType: "Kārtējā",
     reading: 3,
     isUrgent: false,
     isTier1: true,
-    officialTitle: "Grozījumi Meža likumā un Enerģētikas likumā (Nr. 389/Lp14), 3. lasījums",
+    isRevote: true,
+    revoteReason: "Deputāta balsošanas pults tehniskas kļūmes dēļ atkārtots 2 minūtes pēc iepriekšējā balsojuma",
+    officialTitle: "Grozījumi Meža likumā un Enerģētikas likumā (Nr. 389/Lp14), 3. lasījums (Pārbalsojums)",
     billNumber: "Nr. 389/Lp14",
-    simplifiedTitle: "Atjaunīgās enerģijas un vēja parku attīstības paātrināšana valsts meža zemēs",
-    summary: "Atvieglo birokrātiskās saskaņošanas procedūras un ietekmes uz vidi novērtējuma termiņus stratēģiskas nozīmes vēja elektrostaciju un akumulācijas iekārtu būvniecībai valsts mežu teritorijās.",
+    simplifiedTitle: "Atjaunīgās enerģijas un vēja parku attīstības paātrināšana meža zemēs (Atkārtots)",
+    summary: "Pēc frakcijas pieprasījuma tika veikts atkārtots balsojums, kurā tika apstiprināti atvieglojumi vēja parku attīstībai Latvijas valsts mežos.",
     category: { id: "energy", label: "Vide & Enerģētika" },
     factionRules: {
       jv: { par: 26 },
       zzs: { par: 16 },
-      pro: { par: 9, atturas: 1 },
-      as: { par: 10, pret: 4, nebalso: 1 },
+      pro: { par: 10 },
+      as: { par: 11, pret: 4 },
       na: { pret: 8, atturas: 4 },
       lpv: { pret: 9 },
       st: { pret: 8 },
@@ -223,33 +287,9 @@ const votes = [
     }
   }),
   generateVote({
-    id: "14-2026-09-10-v1",
-    saeimaTerm: 14,
-    sittingDate: "2026-09-10",
-    sittingTime: "16:05",
-    sittingType: "Kārtējā",
-    reading: 2,
-    isUrgent: false,
-    isTier1: true,
-    officialTitle: "Grozījumi Izglītības likumā un Vispārējās izglītības likumā (Nr. 467/Lp14), 2. lasījums",
-    billNumber: "Nr. 467/Lp14",
-    simplifiedTitle: "Kvalitatīva skolu tīkla reforma un minimālā skolēnu skaita kritēriji vidusskolās",
-    summary: "Nosaka jaunas kvantitatīvās un kvalitatīvās prasības vidusskolu posmam no 2027. gada, deleģējot Ministru kabinetam tiesības lemt par valsts pedagogu darba samaksas mērķdotāciju sadali atkarībā no klases piepildījuma.",
-    category: { id: "education", label: "Izglītība & Zinātne" },
-    factionRules: {
-      jv: { par: 26 },
-      zzs: { par: 14, atturas: 2 },
-      pro: { par: 10 },
-      as: { pret: 12, atturas: 3 },
-      na: { pret: 11, nebalso: 1 },
-      lpv: { pret: 9 },
-      st: { pret: 8 },
-      ind: { pret: 3, nebalso: 1 }
-    }
-  }),
-  generateVote({
     id: "14-2026-09-10-v2",
     saeimaTerm: 14,
+    sessionId: "14-sede-22",
     sittingDate: "2026-09-10",
     sittingTime: "17:30",
     sittingType: "Kārtējā",
@@ -275,4 +315,4 @@ const votes = [
 ];
 
 fs.writeFileSync(outputPath, JSON.stringify(votes, null, 2), 'utf8');
-console.log(`Generated ${votes.length} votes with 100 MPs each into ${outputPath}`);
+console.log(`Generated ${votes.length} votes with full edge-case test coverage into ${outputPath}`);

@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import type { Vote, MP, Faction, SaeimaTerm } from './types';
+import { isFinalDecisionVote } from './types';
 import { Navbar } from './components/Navbar';
 import { FilterBar } from './components/FilterBar';
 import { VoteCard } from './components/VoteCard';
@@ -31,7 +32,7 @@ export function App() {
   const [selectedVote, setSelectedVote] = useState<Vote | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
-  const [selectedOutcome, setSelectedOutcome] = useState<'ALL' | 'PIENEMTS' | 'NORAIDITS'>('ALL');
+  const [selectedOutcome, setSelectedOutcome] = useState<'ALL' | 'PIENEMTS' | 'NORAIDITS' | 'NAV_KVORUMA'>('ALL');
   const [tier1Only, setTier1Only] = useState<boolean>(true);
 
   // Sync dark mode class on html tag
@@ -100,10 +101,12 @@ export function App() {
     return Array.from(map.entries()).map(([id, label]) => ({ id, label }));
   }, [termVotes]);
 
-  // Filtered votes within the selected term
+  // Filtered votes within the selected term using edge-case helpers
   const filteredVotes = useMemo(() => {
     return termVotes.filter((v) => {
-      if (tier1Only && !v.isTier1) return false;
+      // Edge Case 3: Proper final reading check (includes urgent 2nd readings)
+      if (tier1Only && !isFinalDecisionVote(v)) return false;
+      // Edge Case 1: Quorum break outcome filter
       if (selectedOutcome !== 'ALL' && v.result !== selectedOutcome) return false;
       if (selectedCategory !== 'ALL' && v.category?.id !== selectedCategory) return false;
       if (searchQuery.trim()) {
@@ -162,9 +165,9 @@ export function App() {
               </div>
             </div>
             <div>
-              <div className="text-xs text-slate-400">Noraidītie priekšlikumi</div>
+              <div className="text-xs text-slate-400">Noraidīti / Nav kvoruma</div>
               <div className="text-sm font-bold font-mono text-rose-600 dark:text-rose-400">
-                {termVotes.filter((v) => v.result === 'NORAIDITS').length} lēmumi
+                {termVotes.filter((v) => v.result === 'NORAIDITS' || v.result === 'NAV_KVORUMA').length} lēmumi
               </div>
             </div>
             <div>

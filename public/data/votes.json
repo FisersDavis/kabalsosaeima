@@ -2,12 +2,17 @@
   {
     "id": "14-2026-09-24-v1",
     "saeimaTerm": 14,
+    "sessionId": "14-sede-24",
+    "sessionDate": "2026-09-24",
     "sittingDate": "2026-09-24",
     "sittingTime": "11:42",
     "sittingType": "Kārtējā",
     "reading": 3,
     "isUrgent": false,
     "isTier1": true,
+    "isSecret": false,
+    "isRevote": false,
+    "revoteReason": null,
     "officialTitle": "Grozījumi Pievienotās vērtības nodokļa likumā (Nr. 482/Lp14), 3. lasījums",
     "billNumber": "Nr. 482/Lp14",
     "simplifiedTitle": "PVN reģistrācijas sliekšņa celšana līdz 50 000 EUR un 12% likme augļiem",
@@ -127,7 +132,9 @@
         "mpId": "mp-1",
         "name": "Evika Siliņa",
         "factionId": "jv",
-        "decision": "PAR"
+        "decision": "PAR",
+        "isSubstitute": true,
+        "replacesMpName": "Evika Siliņa (Ministru prezidente)"
       },
       {
         "mpId": "mp-2",
@@ -728,16 +735,21 @@
   {
     "id": "14-2026-09-24-v2",
     "saeimaTerm": 14,
+    "sessionId": "14-sede-24",
+    "sessionDate": "2026-09-24",
     "sittingDate": "2026-09-24",
     "sittingTime": "12:15",
     "sittingType": "Kārtējā",
     "reading": 2,
     "isUrgent": true,
     "isTier1": true,
-    "officialTitle": "Grozījumi Valsts aizsardzības finansēšanas likumā (Nr. 512/Lp14), 2. lasījums",
+    "isSecret": false,
+    "isRevote": false,
+    "revoteReason": null,
+    "officialTitle": "Grozījumi Valsts aizsardzības finansēšanas likumā (Nr. 512/Lp14), 2. lasījums (Steidzams)",
     "billNumber": "Nr. 512/Lp14",
-    "simplifiedTitle": "Valsts aizsardzības finansējuma pakāpeniska palielināšana līdz 3.5% no IKP",
-    "summary": "Nostiprina valsts budžeta saistības palielināt militāro un iekšējās drošības finansējumu līdz 3.5% no IKP līdz 2028. gadam, novirzot papildu līdzekļus pretgaisa aizsardzības un austrumu robežas stiprināšanai.",
+    "simplifiedTitle": "Valsts aizsardzības finansējuma palielināšana līdz 3.5% no IKP (Steidzamības kārtā pieņemts galīgajā lasījumā)",
+    "summary": "Nostiprina valsts budžeta saistības palielināt militāro un iekšējās drošības finansējumu līdz 3.5% no IKP līdz 2028. gadam. Tā kā likums atzīts par steidzamu, 2. lasījums ir tā galīgā pieņemšana.",
     "category": {
       "id": "defense",
       "label": "Aizsardzība & Drošība"
@@ -853,7 +865,9 @@
         "mpId": "mp-1",
         "name": "Evika Siliņa",
         "factionId": "jv",
-        "decision": "PAR"
+        "decision": "PAR",
+        "isSubstitute": true,
+        "replacesMpName": "Evika Siliņa (Ministru prezidente)"
       },
       {
         "mpId": "mp-2",
@@ -1452,29 +1466,34 @@
     ]
   },
   {
-    "id": "14-2026-09-17-v1",
+    "id": "14-2026-09-24-v3",
     "saeimaTerm": 14,
-    "sittingDate": "2026-09-17",
-    "sittingTime": "10:30",
+    "sessionId": "14-sede-24",
+    "sessionDate": "2026-09-24",
+    "sittingDate": "2026-09-24",
+    "sittingTime": "13:05",
     "sittingType": "Kārtējā",
     "reading": 1,
     "isUrgent": false,
-    "isTier1": true,
-    "officialTitle": "Likumprojekts 'Par nekustamā īpašuma nodokļa atcelšanu vienīgajam mājoklim' (Nr. 534/Lp14), nodošana komisijām",
-    "billNumber": "Nr. 534/Lp14",
-    "simplifiedTitle": "Nekustamā īpašuma nodokļa atcelšana iedzīvotāju primārajam mājoklim",
-    "summary": "Opozīcijas deputātu virzīts likumprojekts, kas paredzēja atbrīvot no NĪN maksājuma fizisko personu vienīgo reģistrēto dzīvesvietu kadastrālajā vērtībā līdz 100 000 EUR. Noraidīts, nododot negatīvu atzinumu Budžeta komisijai.",
+    "isTier1": false,
+    "isSecret": false,
+    "isRevote": false,
+    "revoteReason": null,
+    "officialTitle": "Likumprojekts 'Par nekustamā īpašuma nodokļa pārdali pašvaldībām' (Nr. 556/Lp14)",
+    "billNumber": "Nr. 556/Lp14",
+    "simplifiedTitle": "Nekustamā īpašuma nodokļa pārdale — Kvoruma noraušana ar Nebalso taktiku",
+    "summary": "Opozīcijas frakcijas izmantoja Satversmes 24. pantā paredzēto kvoruma taktiku: zālē bija reģistrēti 85 deputāti, taču 53 deputāti apzināti nepiespieda nevienu pogu (Nebalsoja). Piedaloties tikai 47 deputātiem, balsojums atzīts par nenotikušu kvoruma trūkuma dēļ.",
     "category": {
       "id": "housing",
       "label": "Mājoklis & Labklājība"
     },
-    "result": "NORAIDITS",
+    "result": "NAV_KVORUMA",
     "counts": {
-      "par": 46,
-      "pret": 49,
-      "atturas": 3,
-      "nebalso": 2,
-      "totalPresent": 98
+      "par": 47,
+      "pret": 0,
+      "atturas": 0,
+      "nebalso": 53,
+      "totalPresent": 47
     },
     "factionBreakdown": [
       {
@@ -1483,10 +1502,10 @@
         "shortName": "JV",
         "color": "#00529B",
         "votes": {
-          "par": 0,
-          "pret": 24,
-          "atturas": 2,
-          "nebalso": 0
+          "par": 25,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
         }
       },
       {
@@ -1495,9 +1514,9 @@
         "shortName": "ZZS",
         "color": "#1B5E20",
         "votes": {
-          "par": 0,
-          "pret": 15,
-          "atturas": 1,
+          "par": 16,
+          "pret": 0,
+          "atturas": 0,
           "nebalso": 0
         }
       },
@@ -1507,10 +1526,10 @@
         "shortName": "PRO",
         "color": "#C2185B",
         "votes": {
-          "par": 0,
-          "pret": 10,
+          "par": 6,
+          "pret": 0,
           "atturas": 0,
-          "nebalso": 0
+          "nebalso": 4
         }
       },
       {
@@ -1519,10 +1538,10 @@
         "shortName": "AS",
         "color": "#00838F",
         "votes": {
-          "par": 15,
+          "par": 0,
           "pret": 0,
           "atturas": 0,
-          "nebalso": 0
+          "nebalso": 15
         }
       },
       {
@@ -1531,10 +1550,10 @@
         "shortName": "NA",
         "color": "#881337",
         "votes": {
-          "par": 11,
+          "par": 0,
           "pret": 0,
           "atturas": 0,
-          "nebalso": 1
+          "nebalso": 12
         }
       },
       {
@@ -1543,10 +1562,10 @@
         "shortName": "LPV",
         "color": "#D97706",
         "votes": {
-          "par": 9,
+          "par": 0,
           "pret": 0,
           "atturas": 0,
-          "nebalso": 0
+          "nebalso": 9
         }
       },
       {
@@ -1555,10 +1574,10 @@
         "shortName": "S!",
         "color": "#475569",
         "votes": {
-          "par": 8,
+          "par": 0,
           "pret": 0,
           "atturas": 0,
-          "nebalso": 0
+          "nebalso": 8
         }
       },
       {
@@ -1567,10 +1586,10 @@
         "shortName": "PIEFR",
         "color": "#64748B",
         "votes": {
-          "par": 3,
+          "par": 0,
           "pret": 0,
           "atturas": 0,
-          "nebalso": 1
+          "nebalso": 4
         }
       }
     ],
@@ -1579,469 +1598,471 @@
         "mpId": "mp-1",
         "name": "Evika Siliņa",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR",
+        "isSubstitute": true,
+        "replacesMpName": "Evika Siliņa (Ministru prezidente)"
       },
       {
         "mpId": "mp-2",
         "name": "Arvils Ašeradens",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-3",
         "name": "Ainars Latkovskis",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-4",
         "name": "Edmunds Jurēvics",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-5",
         "name": "Andrejs Judins",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-6",
         "name": "Inese Lībiņa-Egnere",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-7",
         "name": "Zanda Kalniņa-Lukaševica",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-8",
         "name": "Hosams Abu Meri",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-9",
         "name": "Jānis Reirs",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-10",
         "name": "Agita Zariņa-Stūre",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-11",
         "name": "Anna Rancāne",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-12",
         "name": "Atis Labucis",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-13",
         "name": "Gatis Liepiņš",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-14",
         "name": "Inga Bērziņa",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-15",
         "name": "Ingrīda Circene",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-16",
         "name": "Irma Kalniņa",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-17",
         "name": "Jānis Patmalnieks",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-18",
         "name": "Mārtiņš Daģis",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-19",
         "name": "Mārtiņš Felss",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-20",
         "name": "Raimonds Čudars",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-21",
         "name": "Uģis Mitrevics",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-22",
         "name": "Viktorija Baire",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-23",
         "name": "Zane Skujiņa-Rubene",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-24",
         "name": "Alvis Birkovs",
         "factionId": "jv",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-25",
         "name": "Didzis Šmits",
         "factionId": "jv",
-        "decision": "ATTURAS"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-26",
         "name": "Ints Dālderis",
         "factionId": "jv",
-        "decision": "ATTURAS"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-27",
         "name": "Viktors Valainis",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-28",
         "name": "Armands Krauze",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-29",
         "name": "Augusts Brigmanis",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-30",
         "name": "Daiga Mieriņa",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-31",
         "name": "Gunārs Kūtris",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-32",
         "name": "Harijs Rokpelnis",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-33",
         "name": "Jānis Vucāns",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-34",
         "name": "Kaspars Melnis",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-35",
         "name": "Līga Kozlovska",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-36",
         "name": "Līga Kļaviņa",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-37",
         "name": "Uldis Augulis",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-38",
         "name": "Valdis Maslovskis",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-39",
         "name": "Juris Jakovins",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-40",
         "name": "Anita Brakovska",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-41",
         "name": "Andrejs Vilks",
         "factionId": "zzs",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-42",
         "name": "Ģirts Štekerhofs",
         "factionId": "zzs",
-        "decision": "ATTURAS"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-43",
         "name": "Andris Šuvajevs",
         "factionId": "pro",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-44",
         "name": "Kaspars Briškens",
         "factionId": "pro",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-45",
         "name": "Antoņina Ņenaševa",
         "factionId": "pro",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-46",
         "name": "Edgars Zelderis",
         "factionId": "pro",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-47",
         "name": "Jana Simanovska",
         "factionId": "pro",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-48",
         "name": "Leila Rasima",
         "factionId": "pro",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-49",
         "name": "Mairita Lūse",
         "factionId": "pro",
-        "decision": "PRET"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-50",
         "name": "Skaidrīte Ābrama",
         "factionId": "pro",
-        "decision": "PRET"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-51",
         "name": "Atis Švinka",
         "factionId": "pro",
-        "decision": "PRET"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-52",
         "name": "Ervins Labanovskis",
         "factionId": "pro",
-        "decision": "PRET"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-53",
         "name": "Edgars Tavars",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-54",
         "name": "Māris Kučinskis",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-55",
         "name": "Raimonds Bergmanis",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-56",
         "name": "Edvards Smiltēns",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-57",
         "name": "Česlavs Batņa",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-58",
         "name": "Ingmārs Līdaka",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-59",
         "name": "Juris Viļums",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-60",
         "name": "Linda Liepiņa",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-61",
         "name": "Māris Sprindžuks",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-62",
         "name": "Aiva Vīksna",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-63",
         "name": "Andris Kulbergs",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-64",
         "name": "Atis Deksnis",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-65",
         "name": "Igors Rajevs",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-66",
         "name": "Ieva Brante",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-67",
         "name": "Lauris Lizbovskis",
         "factionId": "as",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-68",
         "name": "Raivis Dzintars",
         "factionId": "na",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-69",
         "name": "Jānis Dombrava",
         "factionId": "na",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-70",
         "name": "Ilze Indriksone",
         "factionId": "na",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-71",
         "name": "Artūrs Butāns",
         "factionId": "na",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-72",
         "name": "Edvīns Šnore",
         "factionId": "na",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-73",
         "name": "Ināra Mūrniece",
         "factionId": "na",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-74",
         "name": "Jurģis Klotiņš",
         "factionId": "na",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-75",
         "name": "Nauris Puntulis",
         "factionId": "na",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-76",
         "name": "Rihards Kols",
         "factionId": "na",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-77",
         "name": "Uldis Budriķis",
         "factionId": "na",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-78",
         "name": "Jānis Grasbergs",
         "factionId": "na",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-79",
@@ -2053,121 +2074,121 @@
         "mpId": "mp-80",
         "name": "Ainārs Šlesers",
         "factionId": "lpv",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-81",
         "name": "Krišjānis Kariņš",
         "factionId": "lpv",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-82",
         "name": "Mārcis Jencītis",
         "factionId": "lpv",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-83",
         "name": "Oļegs Burovs",
         "factionId": "lpv",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-84",
         "name": "Ramona Petraviča",
         "factionId": "lpv",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-85",
         "name": "Ričards Šlesers",
         "factionId": "lpv",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-86",
         "name": "Vilis Krištopans",
         "factionId": "lpv",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-87",
         "name": "Edmunds Zivtiņš",
         "factionId": "lpv",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-88",
         "name": "Kristaps Krištopans",
         "factionId": "lpv",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-89",
         "name": "Aleksejs Rosļikovs",
         "factionId": "st",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-90",
         "name": "Svetlana Čulkova",
         "factionId": "st",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-91",
         "name": "Nataļja Marčenko-Jodko",
         "factionId": "st",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-92",
         "name": "Iļja Ivanovs",
         "factionId": "st",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-93",
         "name": "Igors Judins",
         "factionId": "st",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-94",
         "name": "Jefimijs Klementjevs",
         "factionId": "st",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-95",
         "name": "Viktor Pučka",
         "factionId": "st",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-96",
         "name": "Dmitrijs Kovaļenko",
         "factionId": "st",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-97",
         "name": "Glorija Grevcova",
         "factionId": "ind",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-98",
         "name": "Aleksandrs Kiršteins",
         "factionId": "ind",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-99",
         "name": "Viktorija Pleškāne",
         "factionId": "ind",
-        "decision": "PAR"
+        "decision": "NEBALSO"
       },
       {
         "mpId": "mp-100",
@@ -2178,29 +2199,67 @@
     ]
   },
   {
-    "id": "14-2026-09-17-v2",
+    "id": "14-2026-09-17-v3",
     "saeimaTerm": 14,
+    "sessionId": "14-sede-23",
+    "sessionDate": "2026-09-17",
     "sittingDate": "2026-09-17",
-    "sittingTime": "14:20",
+    "sittingTime": "11:00",
+    "sittingType": "Kārtējā",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "isSecret": true,
+    "isRevote": false,
+    "revoteReason": null,
+    "officialTitle": "Satversmes tiesas tiesneša apstiprināšana amatā (Aizklāts balsojums)",
+    "billNumber": "Lēmums Nr. 129/Lp14",
+    "simplifiedTitle": "Satversmes tiesas tiesneša apstiprināšana amatā uz 10 gadiem",
+    "summary": "Saskaņā ar Satversmi un Tiesu varas likumu tiesnešu apstiprināšana amatā notiek ar aizklātu vēlēšanu zīmju balsojumu. Individuālie deputātu balsojumi nav publiski fiksēti.",
+    "category": {
+      "id": "justice",
+      "label": "Tiesiskums & Valsts"
+    },
+    "result": "PIENEMTS",
+    "counts": {
+      "par": 62,
+      "pret": 28,
+      "atturas": 4,
+      "nebalso": 6,
+      "totalPresent": 94
+    },
+    "factionBreakdown": [],
+    "mpVotes": []
+  },
+  {
+    "id": "14-2026-09-17-v4",
+    "saeimaTerm": 14,
+    "sessionId": "14-sede-23",
+    "sessionDate": "2026-09-17",
+    "sittingDate": "2026-09-17",
+    "sittingTime": "14:22",
     "sittingType": "Kārtējā",
     "reading": 3,
     "isUrgent": false,
     "isTier1": true,
-    "officialTitle": "Grozījumi Meža likumā un Enerģētikas likumā (Nr. 389/Lp14), 3. lasījums",
+    "isSecret": false,
+    "isRevote": true,
+    "revoteReason": "Deputāta balsošanas pults tehniskas kļūmes dēļ atkārtots 2 minūtes pēc iepriekšējā balsojuma",
+    "officialTitle": "Grozījumi Meža likumā un Enerģētikas likumā (Nr. 389/Lp14), 3. lasījums (Pārbalsojums)",
     "billNumber": "Nr. 389/Lp14",
-    "simplifiedTitle": "Atjaunīgās enerģijas un vēja parku attīstības paātrināšana valsts meža zemēs",
-    "summary": "Atvieglo birokrātiskās saskaņošanas procedūras un ietekmes uz vidi novērtējuma termiņus stratēģiskas nozīmes vēja elektrostaciju un akumulācijas iekārtu būvniecībai valsts mežu teritorijās.",
+    "simplifiedTitle": "Atjaunīgās enerģijas un vēja parku attīstības paātrināšana meža zemēs (Atkārtots)",
+    "summary": "Pēc frakcijas pieprasījuma tika veikts atkārtots balsojums, kurā tika apstiprināti atvieglojumi vēja parku attīstībai Latvijas valsts mežos.",
     "category": {
       "id": "energy",
       "label": "Vide & Enerģētika"
     },
     "result": "PIENEMTS",
     "counts": {
-      "par": 63,
+      "par": 65,
       "pret": 31,
-      "atturas": 5,
-      "nebalso": 1,
-      "totalPresent": 99
+      "atturas": 4,
+      "nebalso": 0,
+      "totalPresent": 100
     },
     "factionBreakdown": [
       {
@@ -2233,9 +2292,9 @@
         "shortName": "PRO",
         "color": "#C2185B",
         "votes": {
-          "par": 9,
+          "par": 10,
           "pret": 0,
-          "atturas": 1,
+          "atturas": 0,
           "nebalso": 0
         }
       },
@@ -2245,10 +2304,10 @@
         "shortName": "AS",
         "color": "#00838F",
         "votes": {
-          "par": 10,
+          "par": 11,
           "pret": 4,
           "atturas": 0,
-          "nebalso": 1
+          "nebalso": 0
         }
       },
       {
@@ -2305,7 +2364,9 @@
         "mpId": "mp-1",
         "name": "Evika Siliņa",
         "factionId": "jv",
-        "decision": "PAR"
+        "decision": "PAR",
+        "isSubstitute": true,
+        "replacesMpName": "Evika Siliņa (Ministru prezidente)"
       },
       {
         "mpId": "mp-2",
@@ -2611,7 +2672,7 @@
         "mpId": "mp-52",
         "name": "Ervins Labanovskis",
         "factionId": "pro",
-        "decision": "ATTURAS"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-53",
@@ -2677,7 +2738,7 @@
         "mpId": "mp-63",
         "name": "Andris Kulbergs",
         "factionId": "as",
-        "decision": "PRET"
+        "decision": "PAR"
       },
       {
         "mpId": "mp-64",
@@ -2701,7 +2762,7 @@
         "mpId": "mp-67",
         "name": "Lauris Lizbovskis",
         "factionId": "as",
-        "decision": "NEBALSO"
+        "decision": "PRET"
       },
       {
         "mpId": "mp-68",
@@ -2900,744 +2961,23 @@
         "name": "Andrejs Ceļapīters",
         "factionId": "ind",
         "decision": "PRET"
-      }
-    ]
-  },
-  {
-    "id": "14-2026-09-10-v1",
-    "saeimaTerm": 14,
-    "sittingDate": "2026-09-10",
-    "sittingTime": "16:05",
-    "sittingType": "Kārtējā",
-    "reading": 2,
-    "isUrgent": false,
-    "isTier1": true,
-    "officialTitle": "Grozījumi Izglītības likumā un Vispārējās izglītības likumā (Nr. 467/Lp14), 2. lasījums",
-    "billNumber": "Nr. 467/Lp14",
-    "simplifiedTitle": "Kvalitatīva skolu tīkla reforma un minimālā skolēnu skaita kritēriji vidusskolās",
-    "summary": "Nosaka jaunas kvantitatīvās un kvalitatīvās prasības vidusskolu posmam no 2027. gada, deleģējot Ministru kabinetam tiesības lemt par valsts pedagogu darba samaksas mērķdotāciju sadali atkarībā no klases piepildījuma.",
-    "category": {
-      "id": "education",
-      "label": "Izglītība & Zinātne"
-    },
-    "result": "PIENEMTS",
-    "counts": {
-      "par": 50,
-      "pret": 43,
-      "atturas": 5,
-      "nebalso": 2,
-      "totalPresent": 98
-    },
-    "factionBreakdown": [
-      {
-        "factionId": "jv",
-        "name": "Jaunā VIENOTĪBA",
-        "shortName": "JV",
-        "color": "#00529B",
-        "votes": {
-          "par": 26,
-          "pret": 0,
-          "atturas": 0,
-          "nebalso": 0
-        }
-      },
-      {
-        "factionId": "zzs",
-        "name": "Zaļo un Zemnieku savienība",
-        "shortName": "ZZS",
-        "color": "#1B5E20",
-        "votes": {
-          "par": 14,
-          "pret": 0,
-          "atturas": 2,
-          "nebalso": 0
-        }
-      },
-      {
-        "factionId": "pro",
-        "name": "PROGRESĪVIE",
-        "shortName": "PRO",
-        "color": "#C2185B",
-        "votes": {
-          "par": 10,
-          "pret": 0,
-          "atturas": 0,
-          "nebalso": 0
-        }
-      },
-      {
-        "factionId": "as",
-        "name": "APVIENOTAIS SARAKSTS",
-        "shortName": "AS",
-        "color": "#00838F",
-        "votes": {
-          "par": 0,
-          "pret": 12,
-          "atturas": 3,
-          "nebalso": 0
-        }
-      },
-      {
-        "factionId": "na",
-        "name": "Nacionālā apvienība",
-        "shortName": "NA",
-        "color": "#881337",
-        "votes": {
-          "par": 0,
-          "pret": 11,
-          "atturas": 0,
-          "nebalso": 1
-        }
-      },
-      {
-        "factionId": "lpv",
-        "name": "LATVIJA PIRMAJĀ VIETĀ",
-        "shortName": "LPV",
-        "color": "#D97706",
-        "votes": {
-          "par": 0,
-          "pret": 9,
-          "atturas": 0,
-          "nebalso": 0
-        }
-      },
-      {
-        "factionId": "st",
-        "name": "Stabilitātei!",
-        "shortName": "S!",
-        "color": "#475569",
-        "votes": {
-          "par": 0,
-          "pret": 8,
-          "atturas": 0,
-          "nebalso": 0
-        }
-      },
-      {
-        "factionId": "ind",
-        "name": "Pie frakcijām nepiederošie",
-        "shortName": "PIEFR",
-        "color": "#64748B",
-        "votes": {
-          "par": 0,
-          "pret": 3,
-          "atturas": 0,
-          "nebalso": 1
-        }
-      }
-    ],
-    "mpVotes": [
-      {
-        "mpId": "mp-1",
-        "name": "Evika Siliņa",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-2",
-        "name": "Arvils Ašeradens",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-3",
-        "name": "Ainars Latkovskis",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-4",
-        "name": "Edmunds Jurēvics",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-5",
-        "name": "Andrejs Judins",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-6",
-        "name": "Inese Lībiņa-Egnere",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-7",
-        "name": "Zanda Kalniņa-Lukaševica",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-8",
-        "name": "Hosams Abu Meri",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-9",
-        "name": "Jānis Reirs",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-10",
-        "name": "Agita Zariņa-Stūre",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-11",
-        "name": "Anna Rancāne",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-12",
-        "name": "Atis Labucis",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-13",
-        "name": "Gatis Liepiņš",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-14",
-        "name": "Inga Bērziņa",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-15",
-        "name": "Ingrīda Circene",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-16",
-        "name": "Irma Kalniņa",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-17",
-        "name": "Jānis Patmalnieks",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-18",
-        "name": "Mārtiņš Daģis",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-19",
-        "name": "Mārtiņš Felss",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-20",
-        "name": "Raimonds Čudars",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-21",
-        "name": "Uģis Mitrevics",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-22",
-        "name": "Viktorija Baire",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-23",
-        "name": "Zane Skujiņa-Rubene",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-24",
-        "name": "Alvis Birkovs",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-25",
-        "name": "Didzis Šmits",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-26",
-        "name": "Ints Dālderis",
-        "factionId": "jv",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-27",
-        "name": "Viktors Valainis",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-28",
-        "name": "Armands Krauze",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-29",
-        "name": "Augusts Brigmanis",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-30",
-        "name": "Daiga Mieriņa",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-31",
-        "name": "Gunārs Kūtris",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-32",
-        "name": "Harijs Rokpelnis",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-33",
-        "name": "Jānis Vucāns",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-34",
-        "name": "Kaspars Melnis",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-35",
-        "name": "Līga Kozlovska",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-36",
-        "name": "Līga Kļaviņa",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-37",
-        "name": "Uldis Augulis",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-38",
-        "name": "Valdis Maslovskis",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-39",
-        "name": "Juris Jakovins",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-40",
-        "name": "Anita Brakovska",
-        "factionId": "zzs",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-41",
-        "name": "Andrejs Vilks",
-        "factionId": "zzs",
-        "decision": "ATTURAS"
-      },
-      {
-        "mpId": "mp-42",
-        "name": "Ģirts Štekerhofs",
-        "factionId": "zzs",
-        "decision": "ATTURAS"
-      },
-      {
-        "mpId": "mp-43",
-        "name": "Andris Šuvajevs",
-        "factionId": "pro",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-44",
-        "name": "Kaspars Briškens",
-        "factionId": "pro",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-45",
-        "name": "Antoņina Ņenaševa",
-        "factionId": "pro",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-46",
-        "name": "Edgars Zelderis",
-        "factionId": "pro",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-47",
-        "name": "Jana Simanovska",
-        "factionId": "pro",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-48",
-        "name": "Leila Rasima",
-        "factionId": "pro",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-49",
-        "name": "Mairita Lūse",
-        "factionId": "pro",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-50",
-        "name": "Skaidrīte Ābrama",
-        "factionId": "pro",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-51",
-        "name": "Atis Švinka",
-        "factionId": "pro",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-52",
-        "name": "Ervins Labanovskis",
-        "factionId": "pro",
-        "decision": "PAR"
-      },
-      {
-        "mpId": "mp-53",
-        "name": "Edgars Tavars",
-        "factionId": "as",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-54",
-        "name": "Māris Kučinskis",
-        "factionId": "as",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-55",
-        "name": "Raimonds Bergmanis",
-        "factionId": "as",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-56",
-        "name": "Edvards Smiltēns",
-        "factionId": "as",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-57",
-        "name": "Česlavs Batņa",
-        "factionId": "as",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-58",
-        "name": "Ingmārs Līdaka",
-        "factionId": "as",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-59",
-        "name": "Juris Viļums",
-        "factionId": "as",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-60",
-        "name": "Linda Liepiņa",
-        "factionId": "as",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-61",
-        "name": "Māris Sprindžuks",
-        "factionId": "as",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-62",
-        "name": "Aiva Vīksna",
-        "factionId": "as",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-63",
-        "name": "Andris Kulbergs",
-        "factionId": "as",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-64",
-        "name": "Atis Deksnis",
-        "factionId": "as",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-65",
-        "name": "Igors Rajevs",
-        "factionId": "as",
-        "decision": "ATTURAS"
-      },
-      {
-        "mpId": "mp-66",
-        "name": "Ieva Brante",
-        "factionId": "as",
-        "decision": "ATTURAS"
-      },
-      {
-        "mpId": "mp-67",
-        "name": "Lauris Lizbovskis",
-        "factionId": "as",
-        "decision": "ATTURAS"
-      },
-      {
-        "mpId": "mp-68",
-        "name": "Raivis Dzintars",
-        "factionId": "na",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-69",
-        "name": "Jānis Dombrava",
-        "factionId": "na",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-70",
-        "name": "Ilze Indriksone",
-        "factionId": "na",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-71",
-        "name": "Artūrs Butāns",
-        "factionId": "na",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-72",
-        "name": "Edvīns Šnore",
-        "factionId": "na",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-73",
-        "name": "Ināra Mūrniece",
-        "factionId": "na",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-74",
-        "name": "Jurģis Klotiņš",
-        "factionId": "na",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-75",
-        "name": "Nauris Puntulis",
-        "factionId": "na",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-76",
-        "name": "Rihards Kols",
-        "factionId": "na",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-77",
-        "name": "Uldis Budriķis",
-        "factionId": "na",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-78",
-        "name": "Jānis Grasbergs",
-        "factionId": "na",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-79",
-        "name": "Ģirts Lapiņš",
-        "factionId": "na",
-        "decision": "NEBALSO"
-      },
-      {
-        "mpId": "mp-80",
-        "name": "Ainārs Šlesers",
-        "factionId": "lpv",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-81",
-        "name": "Krišjānis Kariņš",
-        "factionId": "lpv",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-82",
-        "name": "Mārcis Jencītis",
-        "factionId": "lpv",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-83",
-        "name": "Oļegs Burovs",
-        "factionId": "lpv",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-84",
-        "name": "Ramona Petraviča",
-        "factionId": "lpv",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-85",
-        "name": "Ričards Šlesers",
-        "factionId": "lpv",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-86",
-        "name": "Vilis Krištopans",
-        "factionId": "lpv",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-87",
-        "name": "Edmunds Zivtiņš",
-        "factionId": "lpv",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-88",
-        "name": "Kristaps Krištopans",
-        "factionId": "lpv",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-89",
-        "name": "Aleksejs Rosļikovs",
-        "factionId": "st",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-90",
-        "name": "Svetlana Čulkova",
-        "factionId": "st",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-91",
-        "name": "Nataļja Marčenko-Jodko",
-        "factionId": "st",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-92",
-        "name": "Iļja Ivanovs",
-        "factionId": "st",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-93",
-        "name": "Igors Judins",
-        "factionId": "st",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-94",
-        "name": "Jefimijs Klementjevs",
-        "factionId": "st",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-95",
-        "name": "Viktor Pučka",
-        "factionId": "st",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-96",
-        "name": "Dmitrijs Kovaļenko",
-        "factionId": "st",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-97",
-        "name": "Glorija Grevcova",
-        "factionId": "ind",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-98",
-        "name": "Aleksandrs Kiršteins",
-        "factionId": "ind",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-99",
-        "name": "Viktorija Pleškāne",
-        "factionId": "ind",
-        "decision": "PRET"
-      },
-      {
-        "mpId": "mp-100",
-        "name": "Andrejs Ceļapīters",
-        "factionId": "ind",
-        "decision": "NEBALSO"
       }
     ]
   },
   {
     "id": "14-2026-09-10-v2",
     "saeimaTerm": 14,
+    "sessionId": "14-sede-22",
+    "sessionDate": "2026-09-10",
     "sittingDate": "2026-09-10",
     "sittingTime": "17:30",
     "sittingType": "Kārtējā",
     "reading": 3,
     "isUrgent": false,
     "isTier1": true,
+    "isSecret": false,
+    "isRevote": false,
+    "revoteReason": null,
     "officialTitle": "Grozījumi Pilsonības likumā (Nr. 201/Lp14), 3. lasījums",
     "billNumber": "Nr. 201/Lp14",
     "simplifiedTitle": "Pilsonības atņemšanas kārtība personām, kas atbalsta agresorvalsts kara noziegumus",
@@ -3757,7 +3097,9 @@
         "mpId": "mp-1",
         "name": "Evika Siliņa",
         "factionId": "jv",
-        "decision": "PAR"
+        "decision": "PAR",
+        "isSubstitute": true,
+        "replacesMpName": "Evika Siliņa (Ministru prezidente)"
       },
       {
         "mpId": "mp-2",
