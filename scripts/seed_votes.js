@@ -10,12 +10,10 @@ const outputPath = path.join(__dirname, '../public/data/votes.json');
 const mps = JSON.parse(fs.readFileSync(mpsPath, 'utf8'));
 const factions = JSON.parse(fs.readFileSync(factionsPath, 'utf8'));
 
-// Mark substitute MP for demo
-if (mps[0]) {
-  mps[0].isSubstitute = true;
-  mps[0].replacesMpName = "Evika Siliņa (Ministru prezidente)";
-  fs.writeFileSync(mpsPath, JSON.stringify(mps, null, 2), 'utf8');
-}
+const factionCoalitionMap = {};
+factions.forEach(f => {
+  factionCoalitionMap[f.id] = f.isCoalition;
+});
 
 // Helper to assign decisions by faction rules
 function generateVote({
@@ -32,6 +30,7 @@ function generateVote({
   isSecret = false,
   isRevote = false,
   revoteReason = null,
+  protocolUrl = "https://www.saeima.lv/lv/likumdosana/balsojumi",
   officialTitle,
   billNumber,
   simplifiedTitle,
@@ -48,6 +47,7 @@ function generateVote({
       name: f.name,
       shortName: f.shortName,
       color: f.color,
+      isCoalition: f.isCoalition,
       votes: { par: 0, pret: 0, atturas: 0, nebalso: 0 }
     };
   });
@@ -57,14 +57,17 @@ function generateVote({
   let atturasCount = 0;
   let nebalsoCount = 0;
 
+  const coalitionSplit = {
+    coalition: { par: 0, pret: 0, atturas: 0, nebalso: 0, total: 52 },
+    opposition: { par: 0, pret: 0, atturas: 0, nebalso: 0, total: 48 },
+  };
+
   if (isSecret) {
-    // Secret ballot: individual votes are omitted in accordance with Satversme
     parCount = 62;
     pretCount = 28;
     atturasCount = 4;
     nebalsoCount = 6;
   } else {
-    // Group MPs by faction
     const mpsByFaction = {};
     mps.forEach(mp => {
       if (!mpsByFaction[mp.factionId]) mpsByFaction[mp.factionId] = [];
@@ -73,7 +76,9 @@ function generateVote({
 
     for (const [fId, fMps] of Object.entries(mpsByFaction)) {
       const rule = factionRules[fId] || { par: 0, pret: 0, atturas: 0, nebalso: fMps.length };
-      
+      const isCoal = factionCoalitionMap[fId] ?? false;
+      const targetBloc = isCoal ? coalitionSplit.coalition : coalitionSplit.opposition;
+
       const decisions = [];
       for (let i = 0; i < (rule.par || 0); i++) decisions.push('PAR');
       for (let i = 0; i < (rule.pret || 0); i++) decisions.push('PRET');
@@ -97,15 +102,19 @@ function generateVote({
 
         if (decision === 'PAR') {
           factionMap[fId].votes.par++;
+          targetBloc.par++;
           parCount++;
         } else if (decision === 'PRET') {
           factionMap[fId].votes.pret++;
+          targetBloc.pret++;
           pretCount++;
         } else if (decision === 'ATTURAS') {
           factionMap[fId].votes.atturas++;
+          targetBloc.atturas++;
           atturasCount++;
         } else {
           factionMap[fId].votes.nebalso++;
+          targetBloc.nebalso++;
           nebalsoCount++;
         }
       });
@@ -114,12 +123,10 @@ function generateVote({
 
   const totalPresent = parCount + pretCount + atturasCount;
   
-  // Edge Case 1: Constitutional Quorum Check (Satversme 24. p. - at least 50 MPs must participate)
   let result;
   if (totalPresent < 50) {
     result = 'NAV_KVORUMA';
   } else if (parCount > (pretCount + atturasCount)) {
-    // Edge Case 2: In Saeima, Par must strictly exceed Pret + Atturas
     result = 'PIENEMTS';
   } else {
     result = 'NORAIDITS';
@@ -139,6 +146,7 @@ function generateVote({
     isSecret,
     isRevote,
     revoteReason,
+    protocolUrl,
     officialTitle,
     billNumber,
     simplifiedTitle,
@@ -152,6 +160,7 @@ function generateVote({
       nebalso: nebalsoCount,
       totalPresent
     },
+    coalitionSplit: isSecret ? undefined : coalitionSplit,
     factionBreakdown: isSecret ? [] : Object.values(factionMap),
     mpVotes
   };
@@ -168,6 +177,7 @@ const votes = [
     reading: 3,
     isUrgent: false,
     isTier1: true,
+    protocolUrl: "https://www.saeima.lv/lv/likumdosana/balsojumi",
     officialTitle: "Grozījumi Pievienotās vērtības nodokļa likumā (Nr. 482/Lp14), 3. lasījums",
     billNumber: "Nr. 482/Lp14",
     simplifiedTitle: "PVN reģistrācijas sliekšņa celšana līdz 50 000 EUR un 12% likme augļiem",
@@ -184,7 +194,6 @@ const votes = [
       ind: { par: 2, pret: 2 }
     }
   }),
-  // Edge Case 3: Urgent Bill on 2nd reading (Final adoption)
   generateVote({
     id: "14-2026-09-24-v2",
     saeimaTerm: 14,
@@ -195,6 +204,7 @@ const votes = [
     reading: 2,
     isUrgent: true,
     isTier1: true,
+    protocolUrl: "https://www.saeima.lv/lv/likumdosana/balsojumi",
     officialTitle: "Grozījumi Valsts aizsardzības finansēšanas likumā (Nr. 512/Lp14), 2. lasījums (Steidzams)",
     billNumber: "Nr. 512/Lp14",
     simplifiedTitle: "Valsts aizsardzības finansējuma palielināšana līdz 3.5% no IKP (Steidzamības kārtā pieņemts galīgajā lasījumā)",
@@ -211,7 +221,6 @@ const votes = [
       ind: { par: 4 }
     }
   }),
-  // Edge Case 1: Quorum Breaking via deliberate Nebalso (Satversme 24. p.)
   generateVote({
     id: "14-2026-09-24-v3",
     saeimaTerm: 14,
@@ -222,6 +231,7 @@ const votes = [
     reading: 1,
     isUrgent: false,
     isTier1: false,
+    protocolUrl: "https://www.saeima.lv/lv/likumdosana/balsojumi",
     officialTitle: "Likumprojekts 'Par nekustamā īpašuma nodokļa pārdali pašvaldībām' (Nr. 556/Lp14)",
     billNumber: "Nr. 556/Lp14",
     simplifiedTitle: "Nekustamā īpašuma nodokļa pārdale — Kvoruma noraušana ar Nebalso taktiku",
@@ -238,7 +248,6 @@ const votes = [
       ind: { nebalso: 4 }
     }
   }),
-  // Edge Case 5: Secret Ballot (Aizklātais balsojums)
   generateVote({
     id: "14-2026-09-17-v3",
     saeimaTerm: 14,
@@ -250,6 +259,7 @@ const votes = [
     isUrgent: false,
     isTier1: true,
     isSecret: true,
+    protocolUrl: "https://www.saeima.lv/lv/likumdosana/balsojumi",
     officialTitle: "Satversmes tiesas tiesneša apstiprināšana amatā (Aizklāts balsojums)",
     billNumber: "Lēmums Nr. 129/Lp14",
     simplifiedTitle: "Satversmes tiesas tiesneša apstiprināšana amatā uz 10 gadiem",
@@ -257,7 +267,6 @@ const votes = [
     category: { id: "justice", label: "Tiesiskums & Valsts" },
     factionRules: {}
   }),
-  // Edge Case 6: Immediate Revote (Pārbalsošana)
   generateVote({
     id: "14-2026-09-17-v4",
     saeimaTerm: 14,
@@ -270,6 +279,7 @@ const votes = [
     isTier1: true,
     isRevote: true,
     revoteReason: "Deputāta balsošanas pults tehniskas kļūmes dēļ atkārtots 2 minūtes pēc iepriekšējā balsojuma",
+    protocolUrl: "https://www.saeima.lv/lv/likumdosana/balsojumi",
     officialTitle: "Grozījumi Meža likumā un Enerģētikas likumā (Nr. 389/Lp14), 3. lasījums (Pārbalsojums)",
     billNumber: "Nr. 389/Lp14",
     simplifiedTitle: "Atjaunīgās enerģijas un vēja parku attīstības paātrināšana meža zemēs (Atkārtots)",
@@ -296,6 +306,7 @@ const votes = [
     reading: 3,
     isUrgent: false,
     isTier1: true,
+    protocolUrl: "https://www.saeima.lv/lv/likumdosana/balsojumi",
     officialTitle: "Grozījumi Pilsonības likumā (Nr. 201/Lp14), 3. lasījums",
     billNumber: "Nr. 201/Lp14",
     simplifiedTitle: "Pilsonības atņemšanas kārtība personām, kas atbalsta agresorvalsts kara noziegumus",
@@ -315,4 +326,4 @@ const votes = [
 ];
 
 fs.writeFileSync(outputPath, JSON.stringify(votes, null, 2), 'utf8');
-console.log(`Generated ${votes.length} votes with full edge-case test coverage into ${outputPath}`);
+console.log(`Updated ${votes.length} votes with Coalition vs Opposition splits and protocol URLs into ${outputPath}`);

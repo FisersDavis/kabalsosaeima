@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { Vote } from '../types';
-import { Check, Copy, ChevronRight, FileText, AlertTriangle, RefreshCw, Lock } from 'lucide-react';
+import { Check, Copy, ChevronRight, FileText, AlertTriangle, RefreshCw, Lock, ExternalLink } from 'lucide-react';
 
 interface VoteCardProps {
   vote: Vote;
@@ -27,15 +27,18 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const coalition = vote.coalitionSplit?.coalition;
+  const opposition = vote.coalitionSplit?.opposition;
+
   return (
     <article
       id={`balsojums-${vote.id}`}
-      className="group relative rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow-md dark:border-slate-800/90 dark:bg-slate-900/90"
+      className="group relative rounded-xl border border-slate-200/90 bg-white p-5 shadow-sm transition hover:border-slate-300 hover:shadow dark:border-slate-800/90 dark:bg-slate-900/90"
     >
       {/* Revote Notice (Edge Case 6) */}
       {vote.isRevote && (
-        <div className="mb-3 flex items-center gap-2 rounded-lg bg-amber-500/10 px-3 py-1.5 text-xs text-amber-800 dark:text-amber-300 border border-amber-500/20">
-          <RefreshCw className="h-3.5 w-3.5 flex-shrink-0 animate-spin" />
+        <div className="mb-3 flex items-center gap-2 rounded border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs text-amber-900 dark:border-amber-900/60 dark:bg-amber-950/40 dark:text-amber-300">
+          <RefreshCw className="h-3.5 w-3.5 flex-shrink-0" />
           <span>
             <strong>Pārbalsojums:</strong> {vote.revoteReason || 'Balsojums atkārtots saskaņā ar procedūras pieteikumu vai pults kļūdu.'}
           </span>
@@ -43,9 +46,9 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
       )}
 
       {/* Top Meta Bar */}
-      <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-100 dark:border-slate-800/60">
+      <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-100 dark:border-slate-800/70">
         <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-          <span className="rounded-md bg-slate-100 px-2.5 py-0.5 font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+          <span className="rounded bg-slate-100 px-2 py-0.5 font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">
             {vote.category.label}
           </span>
           <span>·</span>
@@ -63,26 +66,26 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
             </>
           )}
 
-          {/* Urgent / Final tag (Edge Case 3) */}
+          {/* Urgent tag */}
           {vote.isUrgent && (
-            <span className="rounded bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700 dark:text-amber-400 border border-amber-500/20">
+            <span className="rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800 dark:bg-amber-950/60 dark:text-amber-300 border border-amber-300 dark:border-amber-800">
               Steidzams{vote.reading === 2 ? ' (Galīgais)' : ''}
             </span>
           )}
 
-          {/* Secret ballot indicator (Edge Case 5) */}
+          {/* Secret ballot */}
           {vote.isSecret && (
-            <span className="inline-flex items-center gap-1 rounded bg-purple-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-purple-700 dark:text-purple-400 border border-purple-500/20">
+            <span className="inline-flex items-center gap-1 rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-300 dark:border-slate-700">
               <Lock className="h-3 w-3" />
-              Aizklāts
+              Aizklāts balsojums
             </span>
           )}
         </div>
 
-        {/* Outcome Badge (Edge Cases 1, 2) */}
+        {/* Outcome Badge: Institutional Sage / Brick / Amber */}
         {isQuorumBreak ? (
           <span
-            className="inline-flex items-center gap-1 rounded-full px-3 py-0.5 text-xs font-semibold tracking-wide uppercase border border-amber-500/30 bg-amber-50 text-amber-800 dark:bg-amber-950/40 dark:text-amber-300"
+            className="inline-flex items-center gap-1 rounded px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider border border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-800/70 dark:bg-amber-950/40 dark:text-amber-300"
             title="Nav kvoruma: balsoja mazāk nekā 50 deputāti (Satversmes 24. pants)"
           >
             <AlertTriangle className="h-3 w-3 text-amber-600 dark:text-amber-400" />
@@ -90,10 +93,10 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
           </span>
         ) : (
           <span
-            className={`rounded-full px-3 py-0.5 text-xs font-semibold tracking-wide uppercase ${
+            className={`rounded px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider border ${
               isApproved
-                ? 'border border-emerald-500/20 bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400'
-                : 'border border-rose-500/20 bg-rose-50 text-rose-700 dark:bg-rose-950/40 dark:text-rose-400'
+                ? 'border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-300'
+                : 'border-red-200 bg-red-50 text-red-800 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-300'
             }`}
           >
             {isApproved ? 'Pieņemts' : 'Noraidīts'}
@@ -102,33 +105,31 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
       </div>
 
       {/* Titles */}
-      <div className="pt-3.5 space-y-1.5">
+      <div className="pt-3.5 space-y-1">
         <h3
           onClick={() => onSelect(vote)}
-          className="text-lg font-bold leading-snug text-slate-900 group-hover:text-emerald-600 dark:text-slate-100 dark:group-hover:text-emerald-400 cursor-pointer transition"
+          className="text-base sm:text-lg font-bold leading-snug text-slate-900 group-hover:text-emerald-800 dark:text-slate-100 dark:group-hover:text-emerald-400 cursor-pointer transition"
         >
           {vote.simplifiedTitle}
         </h3>
-        <div className="flex items-center gap-2">
-          <p className="line-clamp-1 font-mono text-xs text-slate-500 dark:text-slate-400">
-            {vote.officialTitle}
-          </p>
-        </div>
+        <p className="line-clamp-1 font-mono text-xs text-slate-500 dark:text-slate-400">
+          {vote.officialTitle}
+        </p>
       </div>
 
       {/* Saeima Anotācija / Summary preview */}
-      <div className="mt-3 rounded-xl bg-slate-50 p-3 text-xs leading-relaxed text-slate-600 dark:bg-slate-800/50 dark:text-slate-300">
+      <div className="mt-3 rounded border border-slate-200/70 bg-slate-50/60 p-3 text-xs leading-relaxed text-slate-600 dark:border-slate-800/70 dark:bg-slate-800/40 dark:text-slate-300">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1.5 font-medium text-slate-800 dark:text-slate-200">
-            <FileText className="h-3.5 w-3.5 text-slate-400" />
-            <span>Likumprojekta būtība (Saeimas anotācija):</span>
+            <FileText className="h-3.5 w-3.5 text-slate-500" />
+            <span>Likumprojekta būtība (Saeimas juridiskā anotācija):</span>
           </div>
           <button
             type="button"
             onClick={() => setShowSummary(!showSummary)}
-            className="text-[11px] text-emerald-600 hover:underline dark:text-emerald-400"
+            className="text-[11px] font-medium text-emerald-700 hover:underline dark:text-emerald-400"
           >
-            {showSummary ? 'Rādīt mazāk' : 'Lasīt visu'}
+            {showSummary ? 'Rādīt mazāk' : 'Lasīt pilno anotāciju'}
           </button>
         </div>
         <p className={`mt-1.5 ${showSummary ? '' : 'line-clamp-2'}`}>
@@ -136,47 +137,80 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </p>
       </div>
 
-      {/* Aggregate Voting Bar with Quorum & Adoption Math (Edge Cases 1, 2) */}
-      <div className="mt-5 space-y-2">
+      {/* Aggregate Voting Bar: Pine / Brick / Ochre / Slate */}
+      <div className="mt-4 space-y-2">
         <div className="flex justify-between font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">
-          <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
-            <span className="h-2 w-2 rounded-full bg-emerald-500" />
+          <span className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400">
+            <span className="h-2 w-2 rounded-sm bg-emerald-700 dark:bg-emerald-500" />
             {vote.counts.par} Par
           </span>
-          <span className="flex items-center gap-1.5 text-rose-600 dark:text-rose-400">
-            <span className="h-2 w-2 rounded-full bg-rose-500" />
+          <span className="flex items-center gap-1.5 text-red-700 dark:text-red-400">
+            <span className="h-2 w-2 rounded-sm bg-red-700 dark:bg-red-500" />
             {vote.counts.pret} Pret
           </span>
-          <span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400">
-            <span className="h-2 w-2 rounded-full bg-amber-500" />
+          <span className="flex items-center gap-1.5 text-amber-700 dark:text-amber-400">
+            <span className="h-2 w-2 rounded-sm bg-amber-600" />
             {vote.counts.atturas} Atturas
           </span>
-          <span className="flex items-center gap-1.5 text-slate-400 dark:text-slate-400">
-            <span className="h-2 w-2 rounded-full bg-slate-400" />
+          <span className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+            <span className="h-2 w-2 rounded-sm bg-slate-400" />
             {vote.counts.nebalso} Nebalsoja
           </span>
         </div>
 
-        {/* Stacked Proportional Bar */}
-        <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-slate-100 shadow-inner dark:bg-slate-800">
-          <div style={{ width: `${parPct}%` }} className="bg-emerald-500 transition-all duration-500" />
-          <div style={{ width: `${pretPct}%` }} className="bg-rose-500 transition-all duration-500" />
-          <div style={{ width: `${atturasPct}%` }} className="bg-amber-400 transition-all duration-500" />
-          <div style={{ width: `${nebalsoPct}%` }} className="bg-slate-300 dark:bg-slate-600 transition-all duration-500" />
+        {/* Stacked Proportional Bar with subtle corners */}
+        <div className="flex h-2 w-full overflow-hidden rounded bg-slate-100 shadow-inner dark:bg-slate-800">
+          <div style={{ width: `${parPct}%` }} className="bg-emerald-700 dark:bg-emerald-600 transition-all duration-300" />
+          <div style={{ width: `${pretPct}%` }} className="bg-red-700 dark:bg-red-600 transition-all duration-300" />
+          <div style={{ width: `${atturasPct}%` }} className="bg-amber-600 transition-all duration-300" />
+          <div style={{ width: `${nebalsoPct}%` }} className="bg-slate-300 dark:bg-slate-600 transition-all duration-300" />
         </div>
 
-        {/* Legal Calculation Hint */}
+        {/* Legal Calculation & Quorum Status */}
         <div className="flex items-center justify-between text-[11px] text-slate-400 font-mono">
           <span>Kvorums: {vote.counts.totalPresent} / 50 deputāti</span>
-          <span>Nepieciešams pieņemšanai: Par &gt; Pret + Atturas ({vote.counts.pret + vote.counts.atturas})</span>
+          <span>Pieņemšanai: Par &gt; Pret + Atturas ({vote.counts.pret + vote.counts.atturas})</span>
         </div>
       </div>
 
-      {/* Faction Spectrum Breakdown (Edge Case 8: snapshot-based dynamic cohesion) */}
+      {/* Koalīcija vs. Opozīcija Aggregate Breakdown (Sober Civic Ledger standard) */}
+      {!vote.isSecret && coalition && opposition && (
+        <div className="mt-4 rounded border border-slate-200/80 bg-slate-50/50 p-2.5 text-xs dark:border-slate-800/80 dark:bg-slate-900/50 font-mono">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="flex items-center justify-between border-b sm:border-b-0 sm:border-r border-slate-200/80 dark:border-slate-800/80 sm:pr-3 pb-1.5 sm:pb-0">
+              <span className="font-sans font-semibold text-slate-800 dark:text-slate-200">
+                Koalīcija ({coalition.total}):
+              </span>
+              <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300 font-medium">
+                <span className="text-emerald-700 dark:text-emerald-400 font-bold">{coalition.par} Par</span>
+                <span>·</span>
+                <span className="text-red-700 dark:text-red-400 font-bold">{coalition.pret} Pret</span>
+                <span>·</span>
+                <span className="text-slate-400">{coalition.nebalso} Nebalso</span>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between sm:pl-3">
+              <span className="font-sans font-semibold text-slate-800 dark:text-slate-200">
+                Opozīcija ({opposition.total}):
+              </span>
+              <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300 font-medium">
+                <span className="text-emerald-700 dark:text-emerald-400 font-bold">{opposition.par} Par</span>
+                <span>·</span>
+                <span className="text-red-700 dark:text-red-400 font-bold">{opposition.pret} Pret</span>
+                <span>·</span>
+                <span className="text-slate-400">{opposition.nebalso} Nebalso</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Individual Faction Discipline Spectrum */}
       {!vote.isSecret && vote.factionBreakdown && (
-        <div className="mt-4 pt-3.5 border-t border-slate-100 dark:border-slate-800/80">
+        <div className="mt-3.5 pt-3 border-t border-slate-100 dark:border-slate-800/80">
           <div className="mb-2 flex items-center justify-between text-[11px] text-slate-400">
-            <span className="font-medium uppercase tracking-wider">Frakciju balsojuma disciplīna:</span>
+            <span className="font-medium uppercase tracking-wider">Frakciju balsojumi:</span>
             <span>Zaļš: Par · Sarkans: Pret</span>
           </div>
 
@@ -199,9 +233,9 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
                   </div>
                   {/* Mini faction split-bar */}
                   <div className="flex h-1.5 w-full overflow-hidden rounded bg-slate-100 dark:bg-slate-800">
-                    <div style={{ width: `${fParPct}%` }} className="bg-emerald-500" />
-                    <div style={{ width: `${fPretPct}%` }} className="bg-rose-500" />
-                    <div style={{ width: `${fAtturasPct}%` }} className="bg-amber-400" />
+                    <div style={{ width: `${fParPct}%` }} className="bg-emerald-700 dark:bg-emerald-600" />
+                    <div style={{ width: `${fPretPct}%` }} className="bg-red-700 dark:bg-red-600" />
+                    <div style={{ width: `${fAtturasPct}%` }} className="bg-amber-600" />
                   </div>
                 </div>
               );
@@ -210,30 +244,45 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </div>
       )}
 
-      {/* Footer Navigation & Actions */}
-      <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-3 text-xs dark:border-slate-800">
-        <button
-          type="button"
-          onClick={handleCopy}
-          className="inline-flex items-center gap-1.5 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition"
-        >
-          {copied ? (
-            <>
-              <Check className="h-3.5 w-3.5 text-emerald-500" />
-              <span className="text-emerald-600 dark:text-emerald-400">Nokopēts!</span>
-            </>
-          ) : (
-            <>
-              <Copy className="h-3.5 w-3.5" />
-              <span>Kopīgot saiti</span>
-            </>
+      {/* Footer Navigation & Provenance Link ("Avots") */}
+      <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between border-t border-slate-100 pt-3 gap-2 text-xs dark:border-slate-800">
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={handleCopy}
+            className="inline-flex items-center gap-1.5 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition"
+          >
+            {copied ? (
+              <>
+                <Check className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+                <span className="text-emerald-700 dark:text-emerald-400 font-medium">Nokopēts!</span>
+              </>
+            ) : (
+              <>
+                <Copy className="h-3.5 w-3.5" />
+                <span>Kopīgot</span>
+              </>
+            )}
+          </button>
+
+          {vote.protocolUrl && (
+            <a
+              href={vote.protocolUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition"
+              title="Oficiālais Saeimas sēdes protokols un stenogramma"
+            >
+              <span>Avots (saeima.lv)</span>
+              <ExternalLink className="h-3 w-3" />
+            </a>
           )}
-        </button>
+        </div>
 
         <button
           type="button"
           onClick={() => onSelect(vote)}
-          className="inline-flex items-center gap-1 font-semibold text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 transition group/btn"
+          className="inline-flex items-center gap-1 font-semibold text-emerald-800 hover:text-emerald-950 dark:text-emerald-400 dark:hover:text-emerald-300 transition group/btn self-end sm:self-auto"
         >
           <span>{vote.isSecret ? 'Skatīt balsojuma detaļas' : 'Skatīt 100 deputātu balsis sēžu zālē'}</span>
           <ChevronRight className="h-4 w-4 transition transform group-hover/btn:translate-x-0.5" />

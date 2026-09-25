@@ -44,7 +44,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
     return map;
   }, [factions]);
 
-  // Lookup MP vote and substitute status snapshot (Edge Cases 4, 8)
+  // Lookup MP vote and substitute status snapshot
   const mpVoteRecordMap = useMemo(() => {
     const map = new Map<string, { decision: VoteDecision; isSubstitute?: boolean; replacesMpName?: string }>();
     vote.mpVotes?.forEach((mv) => map.set(mv.mpId, {
@@ -99,36 +99,35 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
     return seats;
   }, [mps, mpVoteRecordMap, vote]);
 
-  // Decision color helper
+  // Sober Pine / Brick / Ochre / Slate color mapping
   const getDecisionColor = (decision: VoteDecision) => {
     switch (decision) {
       case 'PAR':
-        return '#10B981'; // Emerald
+        return '#15803D'; // Pine Forest Green
       case 'PRET':
-        return '#EF4444'; // Rose
+        return '#991B1B'; // Muted Brick
       case 'ATTURAS':
-        return '#F59E0B'; // Amber
+        return '#B45309'; // Amber Ochre
       case 'NEBALSO':
       default:
-        return '#94A3B8'; // Slate
+        return '#64748B'; // Fog Slate
     }
   };
 
   const getDecisionBadge = (decision: VoteDecision) => {
     switch (decision) {
       case 'PAR':
-        return <span className="text-emerald-600 dark:text-emerald-400 font-bold">PAR</span>;
+        return <span className="text-emerald-800 dark:text-emerald-400 font-bold">PAR</span>;
       case 'PRET':
-        return <span className="text-rose-600 dark:text-rose-400 font-bold">PRET</span>;
+        return <span className="text-red-800 dark:text-red-400 font-bold">PRET</span>;
       case 'ATTURAS':
-        return <span className="text-amber-600 dark:text-amber-400 font-bold">ATTURAS</span>;
+        return <span className="text-amber-800 dark:text-amber-400 font-bold">ATTURAS</span>;
       case 'NEBALSO':
       default:
         return <span className="text-slate-400 font-medium">NEBALSOJA</span>;
     }
   };
 
-  // Filtered MPs list for table view
   const filteredSeats = useMemo(() => {
     return seatPositions.filter(({ mp, decision }) => {
       if (filterDecision !== 'ALL' && decision !== filterDecision) return false;
@@ -141,34 +140,34 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
   const hasQuorum = vote.counts.totalPresent >= 50;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/70 backdrop-blur-sm animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/70 backdrop-blur-sm animate-in fade-in duration-150">
       <div
-        className="relative flex flex-col w-full max-w-5xl max-h-[92vh] rounded-2xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-900 overflow-hidden"
+        className="relative flex flex-col w-full max-w-5xl max-h-[92vh] rounded-xl border border-slate-300 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-900 overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4 dark:border-slate-800">
+        <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-950/50">
           <div>
             <div className="flex items-center gap-2">
-              <span className="rounded bg-slate-100 px-2 py-0.5 font-mono text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+              <span className="rounded bg-slate-200 px-2 py-0.5 font-mono text-xs font-semibold text-slate-800 dark:bg-slate-800 dark:text-slate-200">
                 {vote.billNumber}
               </span>
-              <span className="font-mono text-xs text-slate-400">
+              <span className="font-mono text-xs text-slate-500">
                 {vote.sittingDate} · {vote.sittingTime}
               </span>
 
               {/* Status Outcome Badge */}
               {vote.result === 'NAV_KVORUMA' ? (
-                <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-bold bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
+                <span className="inline-flex items-center gap-1 rounded px-2 py-0.5 text-[11px] font-bold border border-amber-300 bg-amber-50 text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-300">
                   <AlertTriangle className="h-3 w-3" />
                   NAV KVORUMA (&lt; 50)
                 </span>
               ) : (
                 <span
-                  className={`rounded-full px-2 py-0.5 text-[11px] font-bold ${
+                  className={`rounded px-2 py-0.5 text-[11px] font-bold border ${
                     vote.result === 'PIENEMTS'
-                      ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                      : 'bg-rose-500/10 text-rose-600 dark:text-rose-400'
+                      ? 'border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-300'
+                      : 'border-red-200 bg-red-50 text-red-800 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-300'
                   }`}
                 >
                   {vote.result === 'PIENEMTS' ? 'PIEŅEMTS' : 'NORAIDĪTS'}
@@ -176,12 +175,12 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
               )}
 
               {vote.isSecret && (
-                <span className="rounded-full px-2 py-0.5 text-[11px] font-bold bg-purple-500/10 text-purple-700 dark:text-purple-300">
+                <span className="rounded px-2 py-0.5 text-[11px] font-bold bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-200">
                   AIZKLĀTS BALSOJUMS
                 </span>
               )}
             </div>
-            <h2 className="mt-1 text-lg font-bold text-slate-900 dark:text-slate-100 line-clamp-1">
+            <h2 className="mt-1 text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 line-clamp-1">
               {vote.simplifiedTitle}
             </h2>
           </div>
@@ -189,7 +188,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-800 dark:hover:text-slate-200 transition"
+            className="rounded p-2 text-slate-400 hover:bg-slate-200 hover:text-slate-700 dark:hover:bg-slate-800 dark:hover:text-slate-200 transition"
           >
             <X className="h-5 w-5" />
           </button>
@@ -197,57 +196,58 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
 
         {/* Content Body */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          {/* Edge Case 5: Secret Ballots (Aizklātie balsojumi) */}
           {vote.isSecret ? (
-            <div className="rounded-2xl border border-purple-200 bg-purple-50/50 p-8 text-center dark:border-purple-900/50 dark:bg-purple-950/20 space-y-4">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-100 text-purple-600 dark:bg-purple-900/50 dark:text-purple-300">
-                <Lock className="h-7 w-7" />
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-8 text-center dark:border-slate-800 dark:bg-slate-900/40 space-y-4">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                <Lock className="h-6 w-6" />
               </div>
               <div className="max-w-md mx-auto space-y-2">
                 <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">
-                  Aizklāts balsojums (Satversmes procedūra)
+                  Aizklāts balsojums (Satversmes un Kārtības ruļļa procedūra)
                 </h3>
                 <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Saskaņā ar Satversmi un Saeimas kārtības rulli amatpersonu vēlēšanās (Satversmes tiesas tiesneši, Tiesībsargs, Valsts kontrolieris u.c.) individuālie deputātu balsojumi netiek fiksēti un nav publiski pieejami.
+                  Saskaņā ar Satversmi un Saeimas kārtības rulli amatpersonu vēlēšanās individuālie deputātu balsojumi netiek fiksēti un nav publiski pieejami.
                 </p>
               </div>
 
               {/* Tally Box */}
-              <div className="inline-flex items-center gap-6 rounded-xl border border-purple-200 bg-white px-6 py-3 shadow-sm dark:border-purple-800 dark:bg-slate-900 font-mono text-sm">
-                <span className="text-emerald-600 dark:text-emerald-400 font-bold">{vote.counts.par} Par</span>
-                <span className="text-rose-600 dark:text-rose-400 font-bold">{vote.counts.pret} Pret</span>
-                <span className="text-amber-600 dark:text-amber-400 font-bold">{vote.counts.atturas} Atturas</span>
-                <span className="text-slate-400 font-bold">{vote.counts.nebalso} Nebalsoja</span>
+              <div className="inline-flex items-center gap-6 rounded border border-slate-300 bg-white px-6 py-3 shadow-sm dark:border-slate-700 dark:bg-slate-900 font-mono text-sm">
+                <span className="text-emerald-700 dark:text-emerald-400 font-bold">{vote.counts.par} Par</span>
+                <span className="text-red-700 dark:text-red-400 font-bold">{vote.counts.pret} Pret</span>
+                <span className="text-amber-700 dark:text-amber-400 font-bold">{vote.counts.atturas} Atturas</span>
+                <span className="text-slate-500 font-bold">{vote.counts.nebalso} Nebalsoja</span>
               </div>
             </div>
           ) : (
             <>
               {/* Main Visual: Plenary Hemicycle */}
-              <div className="relative rounded-2xl border border-slate-100 bg-slate-50/70 p-4 dark:border-slate-800/80 dark:bg-slate-950/60 flex flex-col items-center">
+              <div className="relative rounded-xl border border-slate-200 bg-slate-50/50 p-4 dark:border-slate-800 dark:bg-slate-950/60 flex flex-col items-center">
                 <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-slate-500 mb-2 gap-2">
                   <div className="flex items-center gap-2">
-                    <span className="font-medium">Saeimas Sēžu zāles balsojuma karte (100 deputāti):</span>
+                    <span className="font-medium text-slate-700 dark:text-slate-300">
+                      Saeimas Sēžu zāles balsojuma karte (100 vietas):
+                    </span>
                     {!hasQuorum && (
-                      <span className="rounded bg-rose-500/10 px-1.5 py-0.5 text-[10px] font-bold text-rose-600 dark:text-rose-400">
-                        Kvoruma trūkums (kārbalsis &lt; 50)
+                      <span className="rounded bg-red-100 px-1.5 py-0.5 text-[10px] font-bold text-red-800 dark:bg-red-950 dark:text-red-300">
+                        Nav kvoruma (&lt; 50)
                       </span>
                     )}
                   </div>
                   <div className="flex items-center gap-4 font-mono font-medium">
-                    <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
-                      <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
+                    <span className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400">
+                      <span className="h-2 w-2 rounded-sm bg-emerald-700 dark:bg-emerald-500" />
                       {vote.counts.par} Par
                     </span>
-                    <span className="flex items-center gap-1.5 text-rose-600 dark:text-rose-400">
-                      <span className="h-2.5 w-2.5 rounded-full bg-rose-500" />
+                    <span className="flex items-center gap-1.5 text-red-700 dark:text-red-400">
+                      <span className="h-2 w-2 rounded-sm bg-red-700 dark:bg-red-500" />
                       {vote.counts.pret} Pret
                     </span>
-                    <span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400">
-                      <span className="h-2.5 w-2.5 rounded-full bg-amber-500" />
+                    <span className="flex items-center gap-1.5 text-amber-700 dark:text-amber-400">
+                      <span className="h-2 w-2 rounded-sm bg-amber-600" />
                       {vote.counts.atturas} Atturas
                     </span>
-                    <span className="flex items-center gap-1.5 text-slate-400">
-                      <span className="h-2.5 w-2.5 rounded-full bg-slate-400" />
+                    <span className="flex items-center gap-1.5 text-slate-500">
+                      <span className="h-2 w-2 rounded-sm bg-slate-400" />
                       {vote.counts.nebalso} Nebalsoja
                     </span>
                   </div>
@@ -256,12 +256,11 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                 {/* SVG Hemicycle */}
                 <div className="relative w-full max-w-2xl aspect-[640/340]">
                   <svg viewBox="0 0 640 330" className="w-full h-full select-none">
-                    {/* Presidium rostrum marker */}
                     <path
                       d="M260 300 Q320 280 380 300"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="3"
+                      strokeWidth="2.5"
                       className="text-slate-300 dark:text-slate-700"
                     />
                     <text
@@ -273,7 +272,6 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                       Prezidija tribīne
                     </text>
 
-                    {/* 100 Deputātu vietas */}
                     {seatPositions.map(({ mp, x, y, decision, isSubstitute, replacesMpName }) => {
                       const isHovered = hoveredMp?.mp.id === mp.id;
                       const faction = factionLookup.get(mp.factionId);
@@ -287,12 +285,12 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                           <circle
                             cx={x}
                             cy={y}
-                            r={isHovered ? 8 : 6.5}
+                            r={isHovered ? 7.5 : 6}
                             fill={getDecisionColor(decision)}
                             opacity={isMatchFilter ? 1 : 0.2}
-                            className="cursor-pointer transition-all duration-150 hover:stroke-white dark:hover:stroke-slate-900"
+                            className="cursor-pointer transition-all duration-100 hover:stroke-white dark:hover:stroke-slate-900"
                             strokeWidth={isHovered ? 2.5 : 1}
-                            stroke={isHovered ? '#ffffff' : 'rgba(0,0,0,0.1)'}
+                            stroke={isHovered ? '#ffffff' : 'rgba(0,0,0,0.15)'}
                             onMouseEnter={() =>
                               setHoveredMp({ mp, decision, faction, x, y, isSubstitute, replacesMpName })
                             }
@@ -303,10 +301,10 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                     })}
                   </svg>
 
-                  {/* Tooltip Card when hovering a seat (Edge Case 4: Substitute MPs) */}
+                  {/* Tooltip Card */}
                   {hoveredMp && (
                     <div
-                      className="absolute pointer-events-none z-30 rounded-xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur-md dark:border-slate-700 dark:bg-slate-800/95 text-xs transform -translate-x-1/2 -translate-y-full mb-3"
+                      className="absolute pointer-events-none z-30 rounded border border-slate-300 bg-white p-2.5 shadow-lg dark:border-slate-700 dark:bg-slate-900 text-xs transform -translate-x-1/2 -translate-y-full mb-3"
                       style={{
                         left: `${(hoveredMp.x / 640) * 100}%`,
                         top: `${(hoveredMp.y / 330) * 100}%`,
@@ -317,22 +315,21 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                           {hoveredMp.mp.name}
                         </span>
                         <span
-                          className="rounded px-1.5 py-0.5 text-[10px] font-mono font-bold text-white"
+                          className="rounded px-1.5 py-0.2 text-[10px] font-mono font-bold text-white"
                           style={{ backgroundColor: hoveredMp.faction?.color || '#64748B' }}
                         >
                           {hoveredMp.faction?.shortName}
                         </span>
                       </div>
 
-                      {/* Substitute MP Tag */}
                       {hoveredMp.isSubstitute && (
-                        <div className="mb-1 text-[10px] text-amber-600 dark:text-amber-400 font-medium">
+                        <div className="mb-1 text-[10px] text-amber-700 dark:text-amber-400 font-medium">
                           ✦ Mīkstais mandāts {hoveredMp.replacesMpName ? `(${hoveredMp.replacesMpName})` : ''}
                         </div>
                       )}
 
-                      <div className="flex items-center justify-between gap-4 text-slate-500 dark:text-slate-400 text-[11px]">
-                        <span>Vieta Nr. {hoveredMp.mp.seatNumber}</span>
+                      <div className="flex items-center justify-between gap-4 text-slate-500 dark:text-slate-400 text-[11px] font-mono">
+                        <span>Vieta #{hoveredMp.mp.seatNumber}</span>
                         <div>Balsojums: {getDecisionBadge(hoveredMp.decision)}</div>
                       </div>
                     </div>
@@ -343,7 +340,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                 </p>
               </div>
 
-              {/* Filtering and Search Controls for MP List */}
+              {/* Filtering Controls */}
               <div className="space-y-3">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   {/* Decision filter */}
@@ -351,7 +348,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setFilterDecision('ALL')}
-                      className={`rounded-lg px-2.5 py-1 font-medium transition ${
+                      className={`rounded px-2.5 py-1 font-medium transition ${
                         filterDecision === 'ALL'
                           ? 'bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900'
                           : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'
@@ -362,9 +359,9 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setFilterDecision('PAR')}
-                      className={`rounded-lg px-2.5 py-1 font-medium transition ${
+                      className={`rounded px-2.5 py-1 font-medium transition ${
                         filterDecision === 'PAR'
-                          ? 'bg-emerald-600 text-white'
+                          ? 'bg-emerald-700 text-white'
                           : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'
                       }`}
                     >
@@ -373,9 +370,9 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setFilterDecision('PRET')}
-                      className={`rounded-lg px-2.5 py-1 font-medium transition ${
+                      className={`rounded px-2.5 py-1 font-medium transition ${
                         filterDecision === 'PRET'
-                          ? 'bg-rose-600 text-white'
+                          ? 'bg-red-700 text-white'
                           : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'
                       }`}
                     >
@@ -384,9 +381,9 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setFilterDecision('ATTURAS')}
-                      className={`rounded-lg px-2.5 py-1 font-medium transition ${
+                      className={`rounded px-2.5 py-1 font-medium transition ${
                         filterDecision === 'ATTURAS'
-                          ? 'bg-amber-500 text-white'
+                          ? 'bg-amber-600 text-white'
                           : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'
                       }`}
                     >
@@ -395,7 +392,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                     <button
                       type="button"
                       onClick={() => setFilterDecision('NEBALSO')}
-                      className={`rounded-lg px-2.5 py-1 font-medium transition ${
+                      className={`rounded px-2.5 py-1 font-medium transition ${
                         filterDecision === 'NEBALSO'
                           ? 'bg-slate-600 text-white'
                           : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300'
@@ -413,7 +410,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                       value={searchMp}
                       onChange={(e) => setSearchMp(e.target.value)}
                       placeholder="Meklēt deputātu..."
-                      className="w-full rounded-lg border border-slate-200 bg-white py-1.5 pl-8 pr-3 text-xs text-slate-900 focus:border-emerald-500 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100"
+                      className="w-full rounded border border-slate-300 bg-white py-1.5 pl-8 pr-3 text-xs text-slate-900 focus:border-slate-500 focus:outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
                     />
                   </div>
                 </div>
@@ -423,7 +420,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setFilterFaction('ALL')}
-                    className={`rounded-md px-2 py-0.5 text-[11px] font-medium transition ${
+                    className={`rounded px-2 py-0.5 text-[11px] font-medium transition ${
                       filterFaction === 'ALL'
                         ? 'bg-slate-800 text-white dark:bg-slate-100 dark:text-slate-900'
                         : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
@@ -436,14 +433,14 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                       key={f.id}
                       type="button"
                       onClick={() => setFilterFaction(f.id)}
-                      className={`rounded-md px-2 py-0.5 text-[11px] font-mono font-medium transition ${
+                      className={`rounded px-2 py-0.5 text-[11px] font-mono font-medium transition ${
                         filterFaction === f.id
                           ? 'text-white shadow-sm ring-1 ring-white/20'
                           : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
                       }`}
                       style={{
                         backgroundColor: filterFaction === f.id ? f.color : 'transparent',
-                        border: `1px solid ${filterFaction === f.id ? f.color : '#e2e8f0'}`,
+                        border: `1px solid ${filterFaction === f.id ? f.color : '#cbd5e1'}`,
                       }}
                     >
                       {f.shortName}
@@ -453,29 +450,29 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
               </div>
 
               {/* 100 MPs List Grid */}
-              <div className="border rounded-xl border-slate-200 dark:border-slate-800 overflow-hidden">
+              <div className="border rounded border-slate-200 dark:border-slate-800 overflow-hidden">
                 <div className="max-h-64 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800">
                   <table className="w-full text-left text-xs">
-                    <thead className="sticky top-0 bg-slate-50 text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+                    <thead className="sticky top-0 bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">
                       <tr>
-                        <th className="py-2 px-3 font-medium">Deputāts</th>
-                        <th className="py-2 px-3 font-medium">Frakcija</th>
-                        <th className="py-2 px-3 font-medium text-right">Lēmums</th>
+                        <th className="py-2 px-3 font-semibold">Deputāts</th>
+                        <th className="py-2 px-3 font-semibold">Frakcija</th>
+                        <th className="py-2 px-3 font-semibold text-right">Lēmums</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
+                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60 font-sans">
                       {filteredSeats.map(({ mp, decision, isSubstitute, replacesMpName }) => {
                         const faction = factionLookup.get(mp.factionId);
                         return (
                           <tr
                             key={mp.id}
-                            className="hover:bg-slate-50/80 dark:hover:bg-slate-800/40 transition"
+                            className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition"
                           >
                             <td className="py-2 px-3 font-medium text-slate-900 dark:text-slate-100">
                               <div className="flex items-center gap-1.5">
                                 <span>{mp.name}</span>
                                 {isSubstitute && (
-                                  <span className="rounded bg-amber-500/10 px-1 text-[9px] font-medium text-amber-700 dark:text-amber-400" title={`Aizvieto ${replacesMpName || 'ministru'}`}>
+                                  <span className="rounded bg-amber-100 px-1 text-[9px] font-medium text-amber-800 dark:bg-amber-950 dark:text-amber-300" title={`Aizvieto ${replacesMpName || 'ministru'}`}>
                                     Mīkstais mandāts
                                   </span>
                                 )}
@@ -483,12 +480,12 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                             </td>
                             <td className="py-2 px-3">
                               <span
-                                className="inline-flex rounded px-1.5 py-0.5 font-mono text-[10px] font-bold text-white"
+                                className="inline-flex rounded px-1.5 py-0.2 font-mono text-[10px] font-bold text-white"
                                 style={{ backgroundColor: faction?.color || '#64748B' }}
                               >
                                 {faction?.shortName}
                               </span>
-                              <span className="ml-1.5 text-slate-400 text-[11px] hidden sm:inline">
+                              <span className="ml-1.5 text-slate-500 text-[11px] hidden sm:inline">
                                 {faction?.name}
                               </span>
                             </td>

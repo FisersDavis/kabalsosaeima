@@ -13,6 +13,7 @@
     "isSecret": false,
     "isRevote": false,
     "revoteReason": null,
+    "protocolUrl": "https://www.saeima.lv/lv/likumdosana/balsojumi",
     "officialTitle": "Grozījumi Pievienotās vērtības nodokļa likumā (Nr. 482/Lp14), 3. lasījums",
     "billNumber": "Nr. 482/Lp14",
     "simplifiedTitle": "PVN reģistrācijas sliekšņa celšana līdz 50 000 EUR un 12% likme augļiem",
@@ -29,12 +30,29 @@
       "nebalso": 10,
       "totalPresent": 90
     },
+    "coalitionSplit": {
+      "coalition": {
+        "par": 51,
+        "pret": 0,
+        "atturas": 0,
+        "nebalso": 1,
+        "total": 52
+      },
+      "opposition": {
+        "par": 2,
+        "pret": 34,
+        "atturas": 3,
+        "nebalso": 9,
+        "total": 48
+      }
+    },
     "factionBreakdown": [
       {
         "factionId": "jv",
         "name": "Jaunā VIENOTĪBA",
         "shortName": "JV",
         "color": "#00529B",
+        "isCoalition": true,
         "votes": {
           "par": 25,
           "pret": 0,
@@ -47,6 +65,7 @@
         "name": "Zaļo un Zemnieku savienība",
         "shortName": "ZZS",
         "color": "#1B5E20",
+        "isCoalition": true,
         "votes": {
           "par": 16,
           "pret": 0,
@@ -59,6 +78,7 @@
         "name": "PROGRESĪVIE",
         "shortName": "PRO",
         "color": "#C2185B",
+        "isCoalition": true,
         "votes": {
           "par": 10,
           "pret": 0,
@@ -71,6 +91,7 @@
         "name": "APVIENOTAIS SARAKSTS",
         "shortName": "AS",
         "color": "#00838F",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 13,
@@ -83,6 +104,7 @@
         "name": "Nacionālā apvienība",
         "shortName": "NA",
         "color": "#881337",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 10,
@@ -95,6 +117,7 @@
         "name": "LATVIJA PIRMAJĀ VIETĀ",
         "shortName": "LPV",
         "color": "#D97706",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 9,
@@ -107,6 +130,7 @@
         "name": "Stabilitātei!",
         "shortName": "S!",
         "color": "#475569",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 0,
@@ -119,6 +143,7 @@
         "name": "Pie frakcijām nepiederošie",
         "shortName": "PIEFR",
         "color": "#64748B",
+        "isCoalition": false,
         "votes": {
           "par": 2,
           "pret": 2,
@@ -746,6 +771,7 @@
     "isSecret": false,
     "isRevote": false,
     "revoteReason": null,
+    "protocolUrl": "https://www.saeima.lv/lv/likumdosana/balsojumi",
     "officialTitle": "Grozījumi Valsts aizsardzības finansēšanas likumā (Nr. 512/Lp14), 2. lasījums (Steidzams)",
     "billNumber": "Nr. 512/Lp14",
     "simplifiedTitle": "Valsts aizsardzības finansējuma palielināšana līdz 3.5% no IKP (Steidzamības kārtā pieņemts galīgajā lasījumā)",
@@ -762,12 +788,29 @@
       "nebalso": 4,
       "totalPresent": 96
     },
+    "coalitionSplit": {
+      "coalition": {
+        "par": 52,
+        "pret": 0,
+        "atturas": 0,
+        "nebalso": 0,
+        "total": 52
+      },
+      "opposition": {
+        "par": 31,
+        "pret": 6,
+        "atturas": 7,
+        "nebalso": 4,
+        "total": 48
+      }
+    },
     "factionBreakdown": [
       {
         "factionId": "jv",
         "name": "Jaunā VIENOTĪBA",
         "shortName": "JV",
         "color": "#00529B",
+        "isCoalition": true,
         "votes": {
           "par": 26,
           "pret": 0,
@@ -780,6 +823,7 @@
         "name": "Zaļo un Zemnieku savienība",
         "shortName": "ZZS",
         "color": "#1B5E20",
+        "isCoalition": true,
         "votes": {
           "par": 16,
           "pret": 0,
@@ -792,6 +836,7 @@
         "name": "PROGRESĪVIE",
         "shortName": "PRO",
         "color": "#C2185B",
+        "isCoalition": true,
         "votes": {
           "par": 10,
           "pret": 0,
@@ -804,6 +849,7 @@
         "name": "APVIENOTAIS SARAKSTS",
         "shortName": "AS",
         "color": "#00838F",
+        "isCoalition": false,
         "votes": {
           "par": 15,
           "pret": 0,
@@ -816,6 +862,7 @@
         "name": "Nacionālā apvienība",
         "shortName": "NA",
         "color": "#881337",
+        "isCoalition": false,
         "votes": {
           "par": 12,
           "pret": 0,
@@ -828,6 +875,7 @@
         "name": "LATVIJA PIRMAJĀ VIETĀ",
         "shortName": "LPV",
         "color": "#D97706",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 0,
@@ -840,6 +888,7 @@
         "name": "Stabilitātei!",
         "shortName": "S!",
         "color": "#475569",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 6,
@@ -852,6 +901,7 @@
         "name": "Pie frakcijām nepiederošie",
         "shortName": "PIEFR",
         "color": "#64748B",
+        "isCoalition": false,
         "votes": {
           "par": 4,
           "pret": 0,
@@ -1479,6 +1529,7 @@
     "isSecret": false,
     "isRevote": false,
     "revoteReason": null,
+    "protocolUrl": "https://www.saeima.lv/lv/likumdosana/balsojumi",
     "officialTitle": "Likumprojekts 'Par nekustamā īpašuma nodokļa pārdali pašvaldībām' (Nr. 556/Lp14)",
     "billNumber": "Nr. 556/Lp14",
     "simplifiedTitle": "Nekustamā īpašuma nodokļa pārdale — Kvoruma noraušana ar Nebalso taktiku",
@@ -1495,12 +1546,29 @@
       "nebalso": 53,
       "totalPresent": 47
     },
+    "coalitionSplit": {
+      "coalition": {
+        "par": 47,
+        "pret": 0,
+        "atturas": 0,
+        "nebalso": 5,
+        "total": 52
+      },
+      "opposition": {
+        "par": 0,
+        "pret": 0,
+        "atturas": 0,
+        "nebalso": 48,
+        "total": 48
+      }
+    },
     "factionBreakdown": [
       {
         "factionId": "jv",
         "name": "Jaunā VIENOTĪBA",
         "shortName": "JV",
         "color": "#00529B",
+        "isCoalition": true,
         "votes": {
           "par": 25,
           "pret": 0,
@@ -1513,6 +1581,7 @@
         "name": "Zaļo un Zemnieku savienība",
         "shortName": "ZZS",
         "color": "#1B5E20",
+        "isCoalition": true,
         "votes": {
           "par": 16,
           "pret": 0,
@@ -1525,6 +1594,7 @@
         "name": "PROGRESĪVIE",
         "shortName": "PRO",
         "color": "#C2185B",
+        "isCoalition": true,
         "votes": {
           "par": 6,
           "pret": 0,
@@ -1537,6 +1607,7 @@
         "name": "APVIENOTAIS SARAKSTS",
         "shortName": "AS",
         "color": "#00838F",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 0,
@@ -1549,6 +1620,7 @@
         "name": "Nacionālā apvienība",
         "shortName": "NA",
         "color": "#881337",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 0,
@@ -1561,6 +1633,7 @@
         "name": "LATVIJA PIRMAJĀ VIETĀ",
         "shortName": "LPV",
         "color": "#D97706",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 0,
@@ -1573,6 +1646,7 @@
         "name": "Stabilitātei!",
         "shortName": "S!",
         "color": "#475569",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 0,
@@ -1585,6 +1659,7 @@
         "name": "Pie frakcijām nepiederošie",
         "shortName": "PIEFR",
         "color": "#64748B",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 0,
@@ -2212,6 +2287,7 @@
     "isSecret": true,
     "isRevote": false,
     "revoteReason": null,
+    "protocolUrl": "https://www.saeima.lv/lv/likumdosana/balsojumi",
     "officialTitle": "Satversmes tiesas tiesneša apstiprināšana amatā (Aizklāts balsojums)",
     "billNumber": "Lēmums Nr. 129/Lp14",
     "simplifiedTitle": "Satversmes tiesas tiesneša apstiprināšana amatā uz 10 gadiem",
@@ -2245,6 +2321,7 @@
     "isSecret": false,
     "isRevote": true,
     "revoteReason": "Deputāta balsošanas pults tehniskas kļūmes dēļ atkārtots 2 minūtes pēc iepriekšējā balsojuma",
+    "protocolUrl": "https://www.saeima.lv/lv/likumdosana/balsojumi",
     "officialTitle": "Grozījumi Meža likumā un Enerģētikas likumā (Nr. 389/Lp14), 3. lasījums (Pārbalsojums)",
     "billNumber": "Nr. 389/Lp14",
     "simplifiedTitle": "Atjaunīgās enerģijas un vēja parku attīstības paātrināšana meža zemēs (Atkārtots)",
@@ -2261,12 +2338,29 @@
       "nebalso": 0,
       "totalPresent": 100
     },
+    "coalitionSplit": {
+      "coalition": {
+        "par": 52,
+        "pret": 0,
+        "atturas": 0,
+        "nebalso": 0,
+        "total": 52
+      },
+      "opposition": {
+        "par": 13,
+        "pret": 31,
+        "atturas": 4,
+        "nebalso": 0,
+        "total": 48
+      }
+    },
     "factionBreakdown": [
       {
         "factionId": "jv",
         "name": "Jaunā VIENOTĪBA",
         "shortName": "JV",
         "color": "#00529B",
+        "isCoalition": true,
         "votes": {
           "par": 26,
           "pret": 0,
@@ -2279,6 +2373,7 @@
         "name": "Zaļo un Zemnieku savienība",
         "shortName": "ZZS",
         "color": "#1B5E20",
+        "isCoalition": true,
         "votes": {
           "par": 16,
           "pret": 0,
@@ -2291,6 +2386,7 @@
         "name": "PROGRESĪVIE",
         "shortName": "PRO",
         "color": "#C2185B",
+        "isCoalition": true,
         "votes": {
           "par": 10,
           "pret": 0,
@@ -2303,6 +2399,7 @@
         "name": "APVIENOTAIS SARAKSTS",
         "shortName": "AS",
         "color": "#00838F",
+        "isCoalition": false,
         "votes": {
           "par": 11,
           "pret": 4,
@@ -2315,6 +2412,7 @@
         "name": "Nacionālā apvienība",
         "shortName": "NA",
         "color": "#881337",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 8,
@@ -2327,6 +2425,7 @@
         "name": "LATVIJA PIRMAJĀ VIETĀ",
         "shortName": "LPV",
         "color": "#D97706",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 9,
@@ -2339,6 +2438,7 @@
         "name": "Stabilitātei!",
         "shortName": "S!",
         "color": "#475569",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 8,
@@ -2351,6 +2451,7 @@
         "name": "Pie frakcijām nepiederošie",
         "shortName": "PIEFR",
         "color": "#64748B",
+        "isCoalition": false,
         "votes": {
           "par": 2,
           "pret": 2,
@@ -2978,6 +3079,7 @@
     "isSecret": false,
     "isRevote": false,
     "revoteReason": null,
+    "protocolUrl": "https://www.saeima.lv/lv/likumdosana/balsojumi",
     "officialTitle": "Grozījumi Pilsonības likumā (Nr. 201/Lp14), 3. lasījums",
     "billNumber": "Nr. 201/Lp14",
     "simplifiedTitle": "Pilsonības atņemšanas kārtība personām, kas atbalsta agresorvalsts kara noziegumus",
@@ -2994,12 +3096,29 @@
       "nebalso": 3,
       "totalPresent": 97
     },
+    "coalitionSplit": {
+      "coalition": {
+        "par": 52,
+        "pret": 0,
+        "atturas": 0,
+        "nebalso": 0,
+        "total": 52
+      },
+      "opposition": {
+        "par": 34,
+        "pret": 8,
+        "atturas": 3,
+        "nebalso": 3,
+        "total": 48
+      }
+    },
     "factionBreakdown": [
       {
         "factionId": "jv",
         "name": "Jaunā VIENOTĪBA",
         "shortName": "JV",
         "color": "#00529B",
+        "isCoalition": true,
         "votes": {
           "par": 26,
           "pret": 0,
@@ -3012,6 +3131,7 @@
         "name": "Zaļo un Zemnieku savienība",
         "shortName": "ZZS",
         "color": "#1B5E20",
+        "isCoalition": true,
         "votes": {
           "par": 16,
           "pret": 0,
@@ -3024,6 +3144,7 @@
         "name": "PROGRESĪVIE",
         "shortName": "PRO",
         "color": "#C2185B",
+        "isCoalition": true,
         "votes": {
           "par": 10,
           "pret": 0,
@@ -3036,6 +3157,7 @@
         "name": "APVIENOTAIS SARAKSTS",
         "shortName": "AS",
         "color": "#00838F",
+        "isCoalition": false,
         "votes": {
           "par": 15,
           "pret": 0,
@@ -3048,6 +3170,7 @@
         "name": "Nacionālā apvienība",
         "shortName": "NA",
         "color": "#881337",
+        "isCoalition": false,
         "votes": {
           "par": 12,
           "pret": 0,
@@ -3060,6 +3183,7 @@
         "name": "LATVIJA PIRMAJĀ VIETĀ",
         "shortName": "LPV",
         "color": "#D97706",
+        "isCoalition": false,
         "votes": {
           "par": 4,
           "pret": 0,
@@ -3072,6 +3196,7 @@
         "name": "Stabilitātei!",
         "shortName": "S!",
         "color": "#475569",
+        "isCoalition": false,
         "votes": {
           "par": 0,
           "pret": 8,
@@ -3084,6 +3209,7 @@
         "name": "Pie frakcijām nepiederošie",
         "shortName": "PIEFR",
         "color": "#64748B",
+        "isCoalition": false,
         "votes": {
           "par": 3,
           "pret": 0,

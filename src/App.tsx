@@ -6,7 +6,7 @@ import { FilterBar } from './components/FilterBar';
 import { VoteCard } from './components/VoteCard';
 import { HemicycleModal } from './components/HemicycleModal';
 import { Footer } from './components/Footer';
-import { Sparkles, AlertCircle, Info } from 'lucide-react';
+import { BookOpen, AlertCircle, Info } from 'lucide-react';
 
 export function App() {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
@@ -14,7 +14,7 @@ export function App() {
       return document.documentElement.classList.contains('dark') ||
         window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
-    return true;
+    return false; // Default to clean chalk light mode for civic ledger
   });
 
   const [terms, setTerms] = useState<SaeimaTerm[]>([
@@ -104,9 +104,7 @@ export function App() {
   // Filtered votes within the selected term using edge-case helpers
   const filteredVotes = useMemo(() => {
     return termVotes.filter((v) => {
-      // Edge Case 3: Proper final reading check (includes urgent 2nd readings)
       if (tier1Only && !isFinalDecisionVote(v)) return false;
-      // Edge Case 1: Quorum break outcome filter
       if (selectedOutcome !== 'ALL' && v.result !== selectedOutcome) return false;
       if (selectedCategory !== 'ALL' && v.category?.id !== selectedCategory) return false;
       if (searchQuery.trim()) {
@@ -124,7 +122,7 @@ export function App() {
   const activeTermObj = terms.find((t) => t.term === selectedTerm);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 flex flex-col font-sans transition-colors duration-200">
+    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 flex flex-col font-sans transition-colors duration-150">
       <Navbar
         darkMode={darkMode}
         onToggleDarkMode={() => setDarkMode(!darkMode)}
@@ -134,66 +132,66 @@ export function App() {
         onSelectTerm={setSelectedTerm}
       />
 
-      <main className="flex-1 mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden rounded-3xl border border-slate-200/90 bg-gradient-to-b from-white to-slate-50/50 p-6 sm:p-8 shadow-sm dark:border-slate-800/90 dark:from-slate-900 dark:to-slate-950">
-          <div className="max-w-3xl space-y-3">
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>{activeTermObj?.label || `${selectedTerm}. Saeima`} ({activeTermObj?.years})</span>
+      <main className="flex-1 mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 lg:px-8 space-y-6">
+        {/* Sober Civic Header (Valsts pārvaldes & LSM stils) */}
+        <section className="rounded-xl border border-slate-200/90 bg-white p-6 dark:border-slate-800 dark:bg-slate-900 shadow-sm">
+          <div className="max-w-3xl space-y-2">
+            <div className="inline-flex items-center gap-1.5 rounded bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+              <BookOpen className="h-3.5 w-3.5 text-slate-500" />
+              <span>{activeTermObj?.label || `${selectedTerm}. Saeima`} ({activeTermObj?.years}) · Balsojumu reģistrs</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-              Kā deputāti balso par likumiem?
+            <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Saeimas plenārsēžu balsojumu pārskats
             </h1>
-            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Pārskati {selectedTerm}. Saeimas pieņemtos un noraidītos likumprojektus, salīdzini frakciju balsojumus un apskati katra no 100 deputātiem individuālo nostāju interaktīvā sēžu zāles kartē.
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Atvērts, neitrāls parlamenta lēmumu reģistrs. Pārbaudiet pieņemtos likumus, salīdziniet koalīcijas un opozīcijas nostāju un aplūkojiet katra no 100 deputātiem reģistrēto balsojumu.
             </p>
           </div>
 
           {/* Quick Metrics Bar */}
-          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 pt-6 border-t border-slate-200/70 dark:border-slate-800/70">
+          <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4 pt-4 border-t border-slate-100 dark:border-slate-800 font-mono text-xs">
             <div>
-              <div className="text-xs text-slate-400">Pēdējā reģistrētā sēde</div>
-              <div className="text-sm font-bold font-mono text-slate-900 dark:text-white">
+              <div className="text-slate-500 text-[11px]">Pēdējā reģistrētā sēde</div>
+              <div className="font-semibold text-slate-900 dark:text-white">
                 {termVotes.length > 0 ? termVotes[0].sittingDate : 'Nav datu'}
               </div>
             </div>
             <div>
-              <div className="text-xs text-slate-400">Pieņemtie likumi</div>
-              <div className="text-sm font-bold font-mono text-emerald-600 dark:text-emerald-400">
+              <div className="text-slate-500 text-[11px]">Pieņemtie likumi</div>
+              <div className="font-semibold text-emerald-700 dark:text-emerald-400">
                 {termVotes.filter((v) => v.result === 'PIENEMTS').length} likumprojekti
               </div>
             </div>
             <div>
-              <div className="text-xs text-slate-400">Noraidīti / Nav kvoruma</div>
-              <div className="text-sm font-bold font-mono text-rose-600 dark:text-rose-400">
+              <div className="text-slate-500 text-[11px]">Noraidīti / Nav kvoruma</div>
+              <div className="font-semibold text-red-700 dark:text-red-400">
                 {termVotes.filter((v) => v.result === 'NORAIDITS' || v.result === 'NAV_KVORUMA').length} lēmumi
               </div>
             </div>
             <div>
-              <div className="text-xs text-slate-400">Pārstāvētie deputāti</div>
-              <div className="text-sm font-bold font-mono text-slate-900 dark:text-white">100 / 100 deputāti</div>
+              <div className="text-slate-500 text-[11px]">Saeimas sastāvs</div>
+              <div className="font-semibold text-slate-900 dark:text-white">100 deputāti</div>
             </div>
           </div>
         </section>
 
         {/* Future / Empty Term Notice */}
         {!loading && termVotes.length === 0 && (
-          <div className="rounded-2xl border border-sky-200 bg-sky-50/60 p-6 dark:border-sky-900/50 dark:bg-sky-950/30 flex items-start gap-4">
-            <Info className="h-6 w-6 text-sky-600 dark:text-sky-400 flex-shrink-0 mt-0.5" />
+          <div className="rounded-xl border border-slate-300 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900 flex items-start gap-4">
+            <Info className="h-5 w-5 text-slate-500 flex-shrink-0 mt-0.5" />
             <div className="space-y-1">
-              <h3 className="text-sm font-bold text-sky-900 dark:text-sky-200">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-slate-200">
                 {activeTermObj?.label} vēl nav uzsākusi darbu
               </h3>
-              <p className="text-xs text-sky-700 dark:text-sky-300 leading-relaxed">
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                 Šī sasaukuma sēžu balsojumi tiks automātiski sinhronizēti no Saeimas atvērtajiem datiem, tiklīdz jaunais parlaments sanāks uz savu pirmo sēdi.
               </p>
               <button
                 type="button"
                 onClick={() => setSelectedTerm(14)}
-                className="mt-2 text-xs font-semibold text-sky-800 hover:underline dark:text-sky-300"
+                className="mt-2 text-xs font-semibold text-slate-800 hover:underline dark:text-slate-200"
               >
-                Pārslēgties atpakaļ uz 14. Saeimu (2022–2026) →
+                Pārslēgties uz 14. Saeimu (2022–2026) →
               </button>
             </div>
           </div>
@@ -201,7 +199,7 @@ export function App() {
 
         {/* Filter Controls */}
         {termVotes.length > 0 && (
-          <section className="sticky top-16 z-30 -mx-2 rounded-2xl bg-white/95 p-4 shadow-sm backdrop-blur-md border border-slate-200/80 dark:border-slate-800/80 dark:bg-slate-950/95">
+          <section className="sticky top-14 z-30 -mx-2 rounded-xl bg-white/95 p-3.5 shadow-sm backdrop-blur border border-slate-200/90 dark:border-slate-800/90 dark:bg-slate-950/95">
             <FilterBar
               searchQuery={searchQuery}
               onSearchChange={setSearchQuery}
@@ -218,24 +216,24 @@ export function App() {
         )}
 
         {/* Vote Cards Feed */}
-        <section className="space-y-5">
+        <section className="space-y-4">
           {loading && (
-            <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center text-slate-400 dark:border-slate-800 dark:bg-slate-900">
-              <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent" />
-              <p className="mt-3 text-sm">Ielādē Saeimas balsojumus...</p>
+            <div className="rounded-xl border border-slate-200 bg-white p-12 text-center text-slate-400 dark:border-slate-800 dark:bg-slate-900">
+              <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-slate-400 border-t-transparent" />
+              <p className="mt-3 text-xs">Ielādē Saeimas sēžu datus...</p>
             </div>
           )}
 
           {error && (
-            <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6 text-center text-rose-700 dark:border-rose-900/50 dark:bg-rose-950/30 dark:text-rose-400">
-              <AlertCircle className="mx-auto h-8 w-8 mb-2" />
-              <p className="text-sm font-medium">{error}</p>
+            <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-center text-red-800 dark:border-red-900/50 dark:bg-red-950/30 dark:text-red-400">
+              <AlertCircle className="mx-auto h-7 w-7 mb-2" />
+              <p className="text-xs font-medium">{error}</p>
             </div>
           )}
 
           {!loading && !error && termVotes.length > 0 && filteredVotes.length === 0 && (
-            <div className="rounded-2xl border border-dashed border-slate-200 bg-white p-12 text-center text-slate-500 dark:border-slate-800 dark:bg-slate-900">
-              <p className="text-base font-semibold">Nav atrasts neviens balsojums</p>
+            <div className="rounded-xl border border-dashed border-slate-300 bg-white p-12 text-center text-slate-500 dark:border-slate-800 dark:bg-slate-900">
+              <p className="text-sm font-semibold">Nav atrasts neviens balsojums</p>
               <p className="text-xs text-slate-400 mt-1">
                 Pamēģiniet mainīt meklēšanas vārdu vai noņemt kādu no filtriem.
               </p>
@@ -247,7 +245,7 @@ export function App() {
                   setSelectedOutcome('ALL');
                   setTier1Only(false);
                 }}
-                className="mt-4 rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-700 transition"
+                className="mt-3 rounded border border-slate-300 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-200 transition"
               >
                 Atiestatīt visus filtrus
               </button>
@@ -264,7 +262,7 @@ export function App() {
         </section>
       </main>
 
-      {/* Hemicycle Modal for 100 MPs Chamber Seating */}
+      {/* Hemicycle Modal */}
       {selectedVote && (
         <HemicycleModal
           vote={selectedVote}

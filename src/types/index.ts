@@ -42,6 +42,7 @@ export interface FactionBreakdown {
   name: string;
   shortName: string;
   color: string;
+  isCoalition?: boolean;
   votes: {
     par: number;
     pret: number;
@@ -50,24 +51,38 @@ export interface FactionBreakdown {
   };
 }
 
+export interface BlocSplit {
+  par: number;
+  pret: number;
+  atturas: number;
+  nebalso: number;
+  total: number;
+}
+
+export interface CoalitionOppositionSplit {
+  coalition: BlocSplit;
+  opposition: BlocSplit;
+}
+
 export interface Vote {
   id: string;
   saeimaTerm: number;
-  sessionId?: string; // e.g., "14-sede-48" (handles overnight/multi-day sittings)
+  sessionId?: string; // e.g., "14-sede-48"
   sessionDate: string; // Official sitting date
   sittingDate: string;
   sittingTime: string;
   sittingType: string;
   reading?: 1 | 2 | 3 | null;
   isUrgent?: boolean;
-  isTier1: boolean; // True for final votes and high-impact policy decisions
-  isSecret?: boolean; // Aizklāts balsojums (Satversme)
-  isRevote?: boolean; // Pārbalsošana (pults kļūda vai procedūra)
+  isTier1: boolean;
+  isSecret?: boolean;
+  isRevote?: boolean;
   revoteReason?: string;
   officialTitle: string;
   billNumber: string;
   simplifiedTitle: string;
   summary: string;
+  protocolUrl?: string; // Direct link to saeima.lv stenogram / protocol
   category: {
     id: string;
     label: string;
@@ -80,20 +95,17 @@ export interface Vote {
     nebalso: number;
     totalPresent: number; // par + pret + atturas
   };
+  coalitionSplit?: CoalitionOppositionSplit; // Koalīcija vs Opozīcija aggregate breakdown
   factionBreakdown: FactionBreakdown[];
   mpVotes: MPVoteRecord[];
 }
 
-// Constitutional helper to determine if a vote is the final decision on a law
 export function isFinalDecisionVote(vote: Vote): boolean {
-  // Urgent bills finish on 2nd reading (Satversme 75. p.)
   if (vote.isUrgent && vote.reading === 2) return true;
-  // Standard bills finish on 3rd reading
   if (vote.reading === 3) return true;
   return vote.isTier1;
 }
 
-// Constitutional helper to check quorum (Satversme 24. p. - at least 50 MPs must cast Par/Pret/Atturas)
 export function checkSaeimaQuorum(counts: { par: number; pret: number; atturas: number }): boolean {
   return (counts.par + counts.pret + counts.atturas) >= 50;
 }
