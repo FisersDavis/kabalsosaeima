@@ -164,21 +164,21 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
         </div>
       </div>
 
-      {/* 3. The Main Ratio Bar (Quiet Context, Slim 5px Track Capped in Width) */}
-      <div className="mt-2.5 space-y-1 max-w-md">
-        <div className="flex items-center gap-2.5 font-mono text-xs text-slate-600">
+      {/* 3. Pure Text-First Numeric Record (Zero Chromatic Bar on Default View) */}
+      <div className="mt-2.5 flex items-center justify-between text-xs font-mono">
+        <div className="flex items-center gap-2 sm:gap-2.5 text-slate-600">
           <span>
-            <strong className="tabular-nums font-bold text-emerald-700">{vote.counts.par}</strong>{' '}
+            <strong className="tabular-nums font-bold text-slate-900">{vote.counts.par}</strong>{' '}
             <span className="font-sans text-[11px] text-slate-500">Par</span>
           </span>
           <span className="text-slate-300">·</span>
           <span>
-            <strong className="tabular-nums font-bold text-rose-700">{vote.counts.pret}</strong>{' '}
+            <strong className="tabular-nums font-bold text-slate-900">{vote.counts.pret}</strong>{' '}
             <span className="font-sans text-[11px] text-slate-500">Pret</span>
           </span>
           <span className="text-slate-300">·</span>
           <span>
-            <strong className="tabular-nums font-bold text-amber-700">{vote.counts.atturas}</strong>{' '}
+            <strong className="tabular-nums font-bold text-slate-700">{vote.counts.atturas}</strong>{' '}
             <span className="font-sans text-[11px] text-slate-500">Atturas</span>
           </span>
           <span className="text-slate-300">·</span>
@@ -188,16 +188,15 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
           </span>
         </div>
 
-        {/* Slim 5px bar */}
-        <div className="flex h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
-          <div style={{ width: `${parPct}%` }} className="bg-emerald-600 transition-all duration-300" />
-          <div style={{ width: `${pretPct}%` }} className="bg-rose-600 transition-all duration-300" />
-          <div style={{ width: `${atturasPct}%` }} className="bg-amber-500 transition-all duration-300" />
-          <div style={{ width: `${nebalsoPct}%` }} className="bg-slate-300 transition-all duration-300" />
-        </div>
+        {/* Discrete Rebel MPs indicator */}
+        {allDeviations.length > 0 && (
+          <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">
+            {allDeviations.length} pret frakciju
+          </span>
+        )}
       </div>
 
-      {/* 4. Action Trigger & Rebel Pill */}
+      {/* 4. Single Expand Action Trigger */}
       <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
         <button
           type="button"
@@ -216,12 +215,6 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
             </>
           )}
         </button>
-
-        {allDeviations.length > 0 && (
-          <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">
-            {allDeviations.length} pret frakciju
-          </span>
-        )}
       </div>
 
       {/* LEVEL 2: Progressive Disclosure (Accordion Drawer) */}
@@ -243,6 +236,20 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
               <span>Atvērt zāli</span>
               <ChevronRight className="h-3.5 w-3.5" />
             </button>
+          </div>
+
+          {/* Ratio Progress Bar inside drawer */}
+          <div className="space-y-1 rounded-lg border border-slate-200 bg-slate-50/50 p-2.5">
+            <div className="flex items-center justify-between text-[11px] text-slate-500 font-mono">
+              <span className="font-sans font-medium text-slate-700">Kopējā balsu proporcija:</span>
+              <span>{parPct.toFixed(0)}% Par · {pretPct.toFixed(0)}% Pret</span>
+            </div>
+            <div className="flex h-2 w-full overflow-hidden rounded-full bg-slate-200">
+              <div style={{ width: `${parPct}%` }} className="bg-emerald-600 transition-all duration-300" title={`${vote.counts.par} Par`} />
+              <div style={{ width: `${pretPct}%` }} className="bg-rose-600 transition-all duration-300" title={`${vote.counts.pret} Pret`} />
+              <div style={{ width: `${atturasPct}%` }} className="bg-amber-500 transition-all duration-300" title={`${vote.counts.atturas} Atturas`} />
+              <div style={{ width: `${nebalsoPct}%` }} className="bg-slate-300 transition-all duration-300" title={`${vote.counts.nebalso} Nebalsoja`} />
+            </div>
           </div>
 
           {/* Detailed Rebel MPs Breakdown (Tamed and cleanly placed inside drawer) */}
