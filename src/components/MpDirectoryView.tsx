@@ -146,8 +146,13 @@ export const MpDirectoryView: React.FC<MpDirectoryViewProps> = ({
           <select
             value={selectedFaction}
             onChange={(e) => onFactionChange(e.target.value)}
+            style={{ colorScheme: 'light' }}
             aria-label="Filtrēt pēc frakcijas"
-            className="text-xs rounded-lg border border-slate-200 bg-white py-1.5 px-2.5 font-medium text-slate-700 hover:border-slate-300 focus:outline-none focus:border-slate-400 cursor-pointer"
+            className={`text-xs rounded-lg border py-1.5 px-2.5 font-medium cursor-pointer focus:outline-none transition ${
+              selectedFaction !== 'ALL'
+                ? 'border-slate-900 bg-slate-100 text-slate-900 font-semibold ring-1 ring-slate-900/20 shadow-2xs'
+                : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
+            }`}
           >
             <option value="ALL">Visas frakcijas ({mps.filter(m => activeOnly ? m.isActive : true).length})</option>
             {factions.map((f) => (

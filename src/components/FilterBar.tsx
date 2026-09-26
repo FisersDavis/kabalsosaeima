@@ -75,20 +75,21 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         <select
           value={selectedVoteType}
           onChange={(e) => onVoteTypeChange(e.target.value as VoteTypeFilter)}
+          style={{ colorScheme: 'light' }}
           className={`appearance-none rounded-lg border py-1.5 pl-3 pr-7 text-xs font-medium focus:outline-none cursor-pointer transition ${
             selectedVoteType !== 'ALL'
-              ? 'border-slate-800 bg-slate-900 text-white'
+              ? 'border-slate-900 bg-slate-100 text-slate-900 font-semibold ring-1 ring-slate-900/20 shadow-2xs'
               : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
           }`}
         >
-          <option value="ALL" className="bg-white text-slate-900">Visi balsojumi</option>
-          <option value="likums" className="bg-white text-slate-900">Likumu pieņemšana</option>
-          <option value="priekslikums" className="bg-white text-slate-900">Priekšlikumi un grozījumi</option>
-          <option value="procedura" className="bg-white text-slate-900">Procedūra un darba kārtība</option>
+          <option value="ALL">Visi balsojumi</option>
+          <option value="likums">Likumu pieņemšana</option>
+          <option value="priekslikums">Priekšlikumi un grozījumi</option>
+          <option value="procedura">Procedūra un darba kārtība</option>
         </select>
         <ChevronDown
           className={`pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 ${
-            selectedVoteType !== 'ALL' ? 'text-slate-300' : 'text-slate-400'
+            selectedVoteType !== 'ALL' ? 'text-slate-900' : 'text-slate-400'
           }`}
         />
       </div>
@@ -98,22 +99,23 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         <select
           value={selectedCategory}
           onChange={(e) => onCategoryChange(e.target.value)}
+          style={{ colorScheme: 'light' }}
           className={`appearance-none rounded-lg border py-1.5 pl-3 pr-7 text-xs font-medium focus:outline-none cursor-pointer transition ${
             selectedCategory !== 'ALL'
-              ? 'border-slate-800 bg-slate-900 text-white'
+              ? 'border-slate-900 bg-slate-100 text-slate-900 font-semibold ring-1 ring-slate-900/20 shadow-2xs'
               : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
           }`}
         >
-          <option value="ALL" className="bg-white text-slate-900">Visi temati</option>
+          <option value="ALL">Visi temati</option>
           {categories.map((c) => (
-            <option key={c.id} value={c.id} className="bg-white text-slate-900">
+            <option key={c.id} value={c.id}>
               {c.label}
             </option>
           ))}
         </select>
         <ChevronDown
           className={`pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 ${
-            selectedCategory !== 'ALL' ? 'text-slate-300' : 'text-slate-400'
+            selectedCategory !== 'ALL' ? 'text-slate-900' : 'text-slate-400'
           }`}
         />
       </div>
@@ -123,20 +125,21 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         <select
           value={selectedOutcome}
           onChange={(e) => onOutcomeChange(e.target.value as any)}
+          style={{ colorScheme: 'light' }}
           className={`appearance-none rounded-lg border py-1.5 pl-3 pr-7 text-xs font-medium focus:outline-none cursor-pointer transition ${
             selectedOutcome !== 'ALL'
-              ? 'border-slate-800 bg-slate-900 text-white'
+              ? 'border-slate-900 bg-slate-100 text-slate-900 font-semibold ring-1 ring-slate-900/20 shadow-2xs'
               : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
           }`}
         >
-          <option value="ALL" className="bg-white text-slate-900">Visi rezultāti</option>
-          <option value="PIENEMTS" className="bg-white text-slate-900">Pieņemtie</option>
-          <option value="NORAIDITS" className="bg-white text-slate-900">Noraidītie</option>
-          <option value="NAV_KVORUMA" className="bg-white text-slate-900">Nav kvoruma</option>
+          <option value="ALL">Visi rezultāti</option>
+          <option value="PIENEMTS">Pieņemtie</option>
+          <option value="NORAIDITS">Noraidītie</option>
+          <option value="NAV_KVORUMA">Nav kvoruma</option>
         </select>
         <ChevronDown
           className={`pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 ${
-            selectedOutcome !== 'ALL' ? 'text-slate-300' : 'text-slate-400'
+            selectedOutcome !== 'ALL' ? 'text-slate-900' : 'text-slate-400'
           }`}
         />
       </div>
