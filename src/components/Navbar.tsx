@@ -8,6 +8,7 @@ interface NavbarProps {
   selectedTerm: number;
   onSelectTerm: (term: number) => void;
   latestSittingDate?: string;
+  lastSyncDate?: string;
   onOpenInfoModal: (tab: 'about' | 'methodology' | 'data') => void;
 }
 
@@ -17,6 +18,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   selectedTerm,
   onSelectTerm,
   latestSittingDate,
+  lastSyncDate,
   onOpenInfoModal,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -134,8 +136,15 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-slate-600">
             {/* Provenance strip with tabular numbers */}
             <div className="flex items-center gap-1.5 text-[11px] sm:text-xs">
-              <span className="hidden md:inline text-slate-400">
-                Atjaunots: <strong className="text-slate-700 font-medium">{latestSittingDate || '25.09.2026'}</strong>
+              <span
+                className="hidden md:inline text-slate-400 cursor-help transition hover:text-slate-600"
+                title={
+                  lastSyncDate
+                    ? `Pēdējā Saeimas sēde: ${latestSittingDate || 'Nav datu'} · Pēdējā datu sinhronizācija: ${lastSyncDate}`
+                    : `Pēdējā Saeimas sēde: ${latestSittingDate || 'Nav datu'}`
+                }
+              >
+                Atjaunots: <strong className="text-slate-700 font-medium underline decoration-slate-300 decoration-dotted underline-offset-2">{latestSittingDate || '25.09.2026'}</strong>
               </span>
               <span className="hidden md:inline text-slate-300">·</span>
               <div className="flex items-center gap-1">

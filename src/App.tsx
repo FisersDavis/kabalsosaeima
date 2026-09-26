@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import type { Vote, MP, Faction, SaeimaTerm } from './types';
-import { isFinalDecisionVote } from './types';
+import type { Vote, MP, Faction, SaeimaTerm, SiteMetadata } from './types';
+import { isFinalDecisionVote, parseLatvianDate } from './types';
 import { Navbar } from './components/Navbar';
 import { FilterBar, type VoteTypeFilter } from './components/FilterBar';
 import { VoteCard } from './components/VoteCard';
@@ -21,6 +21,7 @@ export function App() {
   const [votes, setVotes] = useState<Vote[]>([]);
   const [mps, setMps] = useState<MP[]>([]);
   const [factions, setFactions] = useState<Faction[]>([]);
+  const [metadata, setMetadata] = useState<SiteMetadata | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -44,11 +45,12 @@ export function App() {
       try {
         setLoading(true);
         const t = Date.now();
-        const [votesRes, mpsRes, factionsRes, termsRes] = await Promise.all([
+        const [votesRes, mpsRes, factionsRes, termsRes, metaRes] = await Promise.all([
           fetch(`./data/votes.json?v=${t}`, { cache: 'no-store' }),
           fetch(`./data/mps.json?v=${t}`, { cache: 'no-store' }),
           fetch(`./data/factions.json?v=${t}`, { cache: 'no-store' }),
           fetch(`./data/terms.json?v=${t}`, { cache: 'no-store' }),
+          fetch(`./data/metadata.json?v=${t}`, { cache: 'no-store' }).catch(() => null),
         ]);
 
         if (!votesRes.ok || !mpsRes.ok || !factionsRes.ok) {
@@ -68,6 +70,11 @@ export function App() {
         if (termsRes.ok) {
           const termsData = await termsRes.json();
           setTerms(termsData);
+        }
+
+        if (metaRes && metaRes.ok) {
+          const metaData = await metaRes.json();
+          setMetadata(metaData);
         }
       } catch (err: any) {
         console.error(err);
@@ -121,6 +128,23 @@ export function App() {
 
   const activeTermObj = terms.find((t) => t.term === selectedTerm);
 
+  // Dynamically determine true latest sitting date chronologically
+  const latestSittingDate = useMemo(() => {
+    if (termVotes.length === 0) return metadata?.latestSittingDate;
+    let maxTime = 0;
+    let maxDateStr = '';
+    for (const v of termVotes) {
+      if (v.sittingDate) {
+        const t = parseLatvianDate(v.sittingDate);
+        if (t > maxTime) {
+          maxTime = t;
+          maxDateStr = v.sittingDate;
+        }
+      }
+    }
+    return maxDateStr || termVotes[0]?.sittingDate || metadata?.latestSittingDate;
+  }, [termVotes, metadata]);
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
       <Navbar
@@ -128,7 +152,8 @@ export function App() {
         terms={terms}
         selectedTerm={selectedTerm}
         onSelectTerm={setSelectedTerm}
-        latestSittingDate={termVotes[0]?.sittingDate}
+        latestSittingDate={latestSittingDate}
+        lastSyncDate={metadata?.formattedSyncDate}
         onOpenInfoModal={setCivicModalTab}
       />
 

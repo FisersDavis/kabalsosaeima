@@ -12,6 +12,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  issues: write
 
 concurrency:
   group: 'pages'
@@ -30,11 +31,44 @@ jobs:
           python-version: '3.11'
 
       - name: Fetch and verify Saeima votes
+        id: sync_step
         run: |
           python scripts/ingest_real_saeima.py
-          python scripts/fetch_saeima_votes.py
+          python scripts/sentinel_check.py --mode integrity --update-metadata
 
-      - name: Commit updated datasets (if any on scheduled run)
+      - name: Alert on Failure (Create GitHub Issue & Email)
+        if: failure() && steps.sync_step.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPORT="🚨 **Saeimas balsojumu sinhronizācija vai integritātes pārbaude neizdevās**\n\nDarba plūsma: [Skatīt darbību žurnālu](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\nCommit: ${{ github.sha }}\n"
+          if [ -f alert_report.md ]; then
+            REPORT=$(cat alert_report.md)
+            REPORT="$REPORT\n\n[🔍 Pārbaudīt GitHub Action žurnālu](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          fi
+          
+          # Check if an alert issue is already open to avoid spam
+          EXISTING_ISSUE=$(gh issue list --state open --label "automated-alert" --json number -q '.[0].number' 2>/dev/null || true)
+          if [ -z "$EXISTING_ISSUE" ]; then
+            gh issue create \
+              --title "🚨 Datu kļūda: Saeimas sinhronizācija neizdevās" \
+              --body "$REPORT" \
+              --label "bug,automated-alert"
+          else
+            gh issue comment "$EXISTING_ISSUE" --body "⚠️ Atkārtota sinhronizācijas kļūda: $REPORT"
+          fi
+
+      - name: Auto-close resolved alert issues (if successful)
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          EXISTING_ISSUE=$(gh issue list --state open --label "automated-alert" --json number -q '.[0].number' 2>/dev/null || true)
+          if [ -n "$EXISTING_ISSUE" ]; then
+            gh issue close "$EXISTING_ISSUE" --comment "✅ Problēma atrisināta automātiski nākamajā sinhronizācijas reizē. Visi integritātes testi sekmīgi nokārtoti."
+          fi
+
+      - name: Commit updated datasets & metadata (if any)
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Saeima Bot"

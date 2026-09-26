@@ -111,3 +111,25 @@ export function isFinalDecisionVote(vote: Vote): boolean {
 export function checkSaeimaQuorum(counts: { par: number; pret: number; atturas: number }): boolean {
   return (counts.par + counts.pret + counts.atturas) >= 50;
 }
+
+export interface SiteMetadata {
+  lastSync?: string;
+  formattedSyncDate?: string;
+  totalVotes?: number;
+  latestSittingDate?: string;
+  saeimaTerm?: number;
+  status?: string;
+}
+
+export function parseLatvianDate(dateStr?: string): number {
+  if (!dateStr) return 0;
+  const parts = dateStr.trim().split('.');
+  if (parts.length === 3) {
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1;
+    const year = parseInt(parts[2], 10);
+    return new Date(year, month, day).getTime();
+  }
+  return 0;
+}
+

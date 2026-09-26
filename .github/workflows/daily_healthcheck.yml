@@ -1,0 +1,61 @@
+name: Daily Sentinel Healthcheck
+
+on:
+  schedule:
+    # Runs daily at 06:00 UTC (09:00 Riga time)
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  healthcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Sentinel Healthcheck
+        id: sentinel
+        run: |
+          python scripts/sentinel_check.py --mode integrity
+          # Test live site endpoint
+          python scripts/sentinel_check.py --mode live --url "https://kabalsosaeima.lv" || python scripts/sentinel_check.py --mode live --url "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}" || true
+
+      - name: Alert on Outage or Integrity Failure
+        if: failure() && steps.sentinel.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPORT="🚨 **kabalsosaeima.lv ikdienas pārbaude konstatēja kļūdu**\n\nŽurnāls: [Skatīt žurnālu](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\n"
+          if [ -f alert_report.md ]; then
+            REPORT=$(cat alert_report.md)
+            REPORT="$REPORT\n\n[🔍 Pārbaudīt GitHub Action žurnālu](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          fi
+          
+          EXISTING_ISSUE=$(gh issue list --state open --label "automated-alert" --json number -q '.[0].number' 2>/dev/null || true)
+          if [ -z "$EXISTING_ISSUE" ]; then
+            gh issue create \
+              --title "🚨 Vietnes pieejamības vai datu integritātes kļūda" \
+              --body "$REPORT" \
+              --label "bug,automated-alert"
+          else
+            gh issue comment "$EXISTING_ISSUE" --body "⚠️ Atkārtota pārbaudes kļūda: $REPORT"
+          fi
+
+      - name: Auto-close resolved alert issues (if recovered)
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          EXISTING_ISSUE=$(gh issue list --state open --label "automated-alert" --json number -q '.[0].number' 2>/dev/null || true)
+          if [ -n "$EXISTING_ISSUE" ]; then
+            gh issue close "$EXISTING_ISSUE" --comment "✅ Vietne un dati atkal ir 100% veselīgi. Problēma atrisināta automātiski."
+          fi
