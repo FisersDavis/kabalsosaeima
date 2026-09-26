@@ -1,43 +1,75 @@
 # kābalsosaeima.lv — Nākotnes Funkciju un Uzlabojumu Ceļvedis (Roadmap)
 
-Šajā dokumentā apkopoti plānotie un potenciālie uzlabojumi vietnei **kabalsosaeima.lv**, kas izstrādāti, lai padarītu Saeimas balsojumu datus vēl pieejamākus, saprotamākus un noderīgākus sabiedrībai, medijiem un pētniekiem.
+> **Projekta pamatprincips:** *"Objektīvi dati par katru balsojumu Saeimā · Atvērtā parlamenta reģistrs"*  
+> Mēs nepievienojam viedokļus, vērtējumus vai politiskus epitetus — mēs parādām precīzus, matemātiski un konstitucionāli pamatotus datus no Saeimas oficiālajiem protokoliem.
 
 ---
 
-## 🏛️ 1. Deputāta profils & Personīgā statistika (*MP Profile View*)
-Katram no 100 deputātiem pieejama detalizēta individuālā lapa / modālais logs:
-- **Apmeklējuma un aktivitātes rādītājs**: Cik % sēžu un balsojumu deputāts ir piedalījies (*Par, Pret, Atturas*) vs *Nebalsoja / Nav reģistrēts*.
-- **Frakcijas lojalitātes indekss**: Cik % gadījumu deputāts balsojis saskaņā ar savas frakcijas vairākumu vs balsojis pretēji partijas disciplīnai (*rebel votes*).
-- **Zīmīgākie balsojumi**: Saraksts ar svarīgākajiem 1. līmeņa (*Tier 1*) balsojumiem, kuros deputāta balss izšķīra rezultātu vai novirzījās no koalīcijas/opozīcijas līnijas.
-- **Mīkstā mandāta vēsture**: Skaidra norāde par mandāta statusu (piem., *"Aizvieto ministri Eviku Siliņu no 15.09.2023"*).
+## 🏛️ Informācijas arhitektūra (Hibrīda modelis)
+Lietotāja saskarne tiek organizēta trīs skaidrās galvenajās sadaļās:
+1. **[Balsojumi]** — Galvenā likumprojektu plūsma, meklēšana, filtri un 100 deputātu sēžu zāles interaktīvā karte (*Hemicycle*).
+2. **[Partijas & Deputāti]** — Frakciju profili, deputātu kartotēka un partiju balsojumu korelācijas matrica.
+3. **[Tematiskais radars]** — Sabiedriski nozīmīgāko lēmumu kartotēka pa jomām (*Landmark Decision Dossiers*).
+
+Papildus jebkurš deputāts, frakcija vai tēmas birka ir klikšķināma tieši no balsojumu kartītēm un sēžu zāles punktiem, atverot profilu ar tiešo URL saiti.
 
 ---
 
-## 📊 2. Frakciju salīdzinājums & Disciplīnas radars (*Faction Cohesion*)
-Salīdzinošs analītisks rīks par parlamenta politiskajiem spēkiem:
-- **Frakciju vienotības rādītājs (*Party Whip Discipline*)**: Kuras frakcijas balso kā monolīts bloks un kurās visbiežāk vērojams deputātu brīvais balsojums.
-- **Koalīcijas vs Opozīcijas balsojumu korelācija**: Cik bieži koalīcijas frakcijas (JV, ZZS, PRO) balso vienoti, un kādos tematos opozīcijas frakcijas (AS, NA, LPV, S!) tām pievienojas.
-- **Balsojumu dinamika pa nozarēm**: Kā frakcijas balso specifiskās jomās (drošība, nodokļi, sociālie jautājumi).
+## 👤 B. Deputāta & Frakcijas profils (*The Party & MP Profile*)
+
+### 1. Frakcijas vienotības rādītājs (*Cohesion Score*)
+- **Aprēķina metodoloģija:** Salīdzina tikai tos balsojumus, kuros deputāts ir **aktīvi piedalījies** (*Par* vs *Pret / Atturas*).
+- Deputāts tiek uzskatīts par balsojušu pretēji frakcijai tikai tad, ja viņa izvēle ir pretrunā ar frakcijas absolūtā vairākuma nostāju (saskaņā ar Satversmes 24. panta materiālo iznākumu).
+- Prombūtne vai kvoruma ieturēšana netiek mākslīgi pieskaitīta pie "partijas nodevības", bet tiek uzskaitīta atsevišķā klātbūtnes rādītājā.
+- Neatkarīgajiem deputātiem (*PIEFR / IND*) frakcijas disciplīnas rādītājs netiek piemērots.
+
+### 2. Apmeklējums un kvoruma taktikas (*Attendance & Quorum Tactics*)
+Izglīto vēlētāju par parlamentārajām procedūrām, atmaskojot mītu, ka *"Nebalsoja"* vienmēr nozīmē slinkošanu:
+- **3 daļu vizuālā josla katram deputātam:**
+  1. **Aktīvi balsoja (zaļš, %)** — Balsojis *Par*, *Pret* vai *Atturas*.
+  2. **Zālē, bet nebalsoja (dzeltens/pelēks, %)** — Reģistrēts sēžu zālē, bet apzināti atturējies spiest pogu kvoruma bloķēšanas nolūkā (*Satversmes 24. pants*).
+  3. **Nav reģistrēts (gaišpelēks, %)** — Attaisnota vai neattaisnota prombūtne sēdē (komandējums, slimība, atvaļinājums).
+- Katram deputātam pieejams saraksts ar konkrētajiem balsojumiem, kuros izmantots kvoruma manevrs.
+
+### 3. Frakciju korelācijas matrica (*Faction Alignment Heatmap Grid*)
+- $8 \times 8$ simetrisks siltumkartes režģis, kas parāda, cik % balsojumu jebkuras divas frakcijas (piemēram, `JV` un `NA`, vai `PRO` un `ZZS`) balsojušas vienādi.
+- **Filtri pa nozarēm:** Lietotājs var redzēt korelāciju kopumā vs tikai aizsardzībā vs tikai nodokļu un budžeta jautājumos.
+- Klikšķis uz šūnas atver konkrēto balsojumu sarakstu, kuros frakcijas bija vienotas vai šķēlās.
+
+### 4. Deputāta profila 4 karšu struktūra
+1. **Identitāte & Mandāts:** Vārds, frakcija, apgabals, komisijas, oficiālais e-pasts, kā arī "mīkstā mandāta" statuss (piemēram, *"Aizvieto ministri Eviku Siliņu no 15.09.2023"*).
+2. **Klātbūtnes un kvoruma josla:** 3 segmentu aktivitātes pārskats.
+3. **Frakcijas disciplīna & Novirzes:** Vienotības % un tiešais saraksts ar visiem gadījumiem, kad balsots pretēji partijas vairākumam.
+4. **Balsojumu vēsture:** Pilns hronoloģisks balsojumu arhīvs ar meklētāju un rezultātu birkām.
 
 ---
 
-## 🔗 3. URL Maršrutēšana & Dziļās saites (*Deep Linking*)
-- **Tiešās saites uz balsojumiem un deputātiem**: Iespēja dalīties ar konkrētu balsojumu (`/#balsojums-482`) vai deputāta kartīti (`/#deputats-janis-rozenbergs`), atverot to tieši.
-- **Filtru saglabāšana URL parametros**: Piemēram, `/?kategorija=nodokli&rezultats=PIENEMTS`, ļaujot žurnālistiem un sociālo tīklu lietotājiem dalīties ar filtrētiem meklēšanas rezultātiem.
+## 🎯 C. Tematiskais balsojumu radars (*The Issue Tracker*)
+
+### 1. Zīmīgāko lēmumu kartotēkas (*Landmark Decision Dossiers*)
+Tā vietā, lai piešķirtu subjektīvus partiju "zaļuma" vai "uzņēmējdraudzīguma" reitingus, sistēma apkopo **10–15 nozīmīgākos likumus katrā nozarē**:
+- **Cilvēktiesības & Sabiedrība:** Partnerības regulējums, Stambulas konvencija, Valsts valodas prasības u.c.
+- **Valsts drošība & Aizsardzība:** Valsts aizsardzības dienests, Krievijas/Baltkrievijas lauksaimniecības preču embargo, robežas izbūve u.c.
+- **Nodokļi & Finanses:** Valsts budžeti, Mikrouzņēmumu nodokļa izmaiņas, Banku solidaritātes iemaksa u.c.
+- **Ekonomika & Enerģētika:** Atjaunīgā enerģija, mežu apsaimniekošana, dzelzceļa infrastruktūra u.c.
+- **Tiesiskums:** Krimināllikuma sodu bardzība, vēlēšanu likuma izmaiņas, KNAB pilnvaras.
+
+### 2. Skaidra partiju nostāju salīdzināšanas tabula
+Katrai nozīmīgajai tēmai tiek renderēta pārskatāma matrica:
+| Likumprojekts | Datums | JV | ZZS | PRO | AS | NA | LPV | S! | Iznākums |
+|---|---|---|---|---|---|---|---|---|---|
+| Valsts aizsardzības dienests | 05.04.2023 | **PAR** | **PAR** | **PAR** | **PAR** | **PAR** | PRET | PRET | **Pieņemts** |
+| Partnerības regulējums | 09.11.2023 | **PAR** | **PAR** | **PAR** | PRET | PRET | PRET | NEBALSO | **Pieņemts** |
+
+### 3. Argumentācija bez subjektīvisma: Stenogrammu tiešie citāti
+Katram kartotēkas likumam tiek pievienots objektīvs debašu kopsavilkums:
+- **Likumprojekta anotācijas būtība:** Oficiālais juridiskais mērķis no Saeimas Juridiskā biroja.
+- **Atbildīgā ziņotāja / virzītāja tēze:** 1–2 teikumu tiešs citāts no Saeimas plenārsēdes oficiālās stenogrammas (ar runātāja vārdu, frakciju un laika zīmogu).
+- **Vadošā opozīcijas runātāja tēze:** 1–2 teikumu tiešs citāts no tribīnes pret šo likumu (ar runātāja vārdu, frakciju un laika zīmogu).
 
 ---
 
-## 📰 4. Pilsoniskie iegulšanas logrīki & Datu eksports (*Embed Widgets & CSV*)
-- **Iegulšanas kods medijiem (*Embed Widget*)**: Žurnālistiem un emuāru autoriem iespēja ar vienu klikšķi iegūt `<iframe>` vai tīru komponenti, lai ievietotu konkrēta likuma balsojuma vizualizāciju vai sēžu zāles karti savā rakstā.
-- **Atvērto datu CSV/JSON eksports**: Pētniekiem un sabiedriskajām organizācijām iespēja lejupielādēt filtrētos datus analīzei Excel vai Python vidē.
-
----
-
-## 🗳️ 5. Vēlētāja salīdzināšanas rīks ("Mans deputāts")
-- **Interaktīvs 5-10 svarīgāko balsojumu tests**: Lietotājs izvēlas savu nostāju (Par / Pret) galvenajos sabiedrības lēmumos (piem., Stambulas konvencija, Partnerības regulējums, Aizsardzības dienests).
-- **Saderības aprēķins**: Algoritms aprēķina, kura frakcija un kuri 5 deputāti visprecīzāk atbilst vēlētāja personīgajām vērtībām.
-
----
-
-## 🛡️ 6. Zero-Maintenance Automātiskā pašpārbaude & Brīdinājumu sistēma
-- Skatīt aktīvo izstrādes posmu attiecībā uz automātisko integritātes pārbaudi un paziņojumiem.
+## 🚀 Nākamie soļi
+Kad lietotājs vēlēsies uzsākt šo posmu realizāciju, darbs tiks sadalīts 2 izolētos etapos:
+- **1. solis:** `[Partijas & Deputāti]` skats + 4 karšu Deputāta profils un frakciju korelācijas matrica.
+- **2. solis:** `[Tematiskais radars]` skats + Zīmīgāko lēmumu kartotēka ar oficiālajiem stenogrammu citātiem.
