@@ -11,8 +11,7 @@ import {
   Search,
   ShieldAlert,
   ChevronRight,
-  Info,
-  ArrowRight
+  Info
 } from 'lucide-react';
 
 interface MpProfileModalProps {
@@ -217,11 +216,18 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
     isAmendment?: boolean;
     category?: string;
   }) => {
-    // Clean up procedural prefixes: "Par nodošanu ..." -> "Nodošana ...", etc.
-    const displayTitle = item.title
-      .replace(/^Par nodošanu /i, 'Nodošana ')
-      .replace(/^Par iekļaušanu /i, 'Iekļaušana ')
-      .replace(/^Par izslēgšanu /i, 'Izslēgšana ');
+    // Clean up procedural prefixes and legal boilerplate:
+    let clean = item.title.trim();
+    clean = clean.replace(/^Par likumprojekta\s+/i, '');
+    clean = clean.replace(/^Par likumprojektu\s+/i, '');
+    clean = clean.replace(/^Likumprojekts\s+/i, '');
+    clean = clean.replace(/^Par lēmuma projekta\s+/i, '');
+    clean = clean.replace(/^Par lēmuma projektu\s+/i, '');
+    clean = clean.replace(/^Lēmuma projekts\s+/i, '');
+    clean = clean.replace(/^Par nodošanu\s+/i, 'Nodošana ');
+    clean = clean.replace(/^Par iekļaušanu\s+/i, 'Iekļaušana ');
+    clean = clean.replace(/^Par izslēgšanu\s+/i, 'Izslēgšana ');
+    const displayTitle = clean.trim();
 
     const isAmendment =
       item.isAmendment ??
@@ -263,18 +269,26 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
       );
     }
 
+    // Drop 'Darba kārtība' or 'Procedūra' in favor of substantive category or 'Likumprojekts'
+    const stageDesc =
+      item.readingStage &&
+      item.readingStage !== 'Darba kārtība' &&
+      item.readingStage !== 'Procedūra'
+        ? item.readingStage
+        : item.category || 'Likumprojekts';
+
     return (
       <>
         <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono text-slate-500 mb-0.5">
           <span className="font-semibold text-slate-600">
-            {item.readingStage || item.category || 'Likumprojekts'}
+            {stageDesc}
           </span>
           <span className="text-slate-400">·</span>
           <span className="text-slate-400">{item.sittingDate}</span>
         </div>
         <div
           className="font-bold text-slate-900 text-xs sm:text-sm leading-snug line-clamp-2 break-words"
-          title={item.title}
+          title={displayTitle}
         >
           {displayTitle}
         </div>
@@ -363,13 +377,22 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
           <button
             type="button"
             onClick={() => setActiveTab('attendance')}
-            className={`py-3 text-xs sm:text-sm font-semibold border-b-2 transition cursor-pointer whitespace-nowrap ${
+            className={`py-3 text-xs sm:text-sm font-semibold border-b-2 transition cursor-pointer whitespace-nowrap flex items-center ${
               activeTab === 'attendance'
                 ? 'border-slate-900 text-slate-900'
                 : 'border-transparent text-slate-500 hover:text-slate-800'
             }`}
           >
             Klātbūtne un kvorums
+            {dossier?.attendance?.presentPct !== undefined && (
+              <span className={`ml-1.5 rounded-full px-2 py-0.5 text-xs font-semibold tabular-nums ${
+                activeTab === 'attendance'
+                  ? 'bg-emerald-100 text-emerald-900'
+                  : 'bg-emerald-50 text-emerald-700'
+              }`}>
+                {Math.round(dossier.attendance.presentPct)}%
+              </span>
+            )}
           </button>
 
           <button
@@ -433,14 +456,63 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
             <>
               {/* TAB 1: ATTENDANCE & QUORUM TACTICS (Card 2) */}
               {activeTab === 'attendance' && (
-                <div className="space-y-6">
+                <div className="space-y-6 pb-8">
+                  {/* Standardized Attendance Hero Card */}
+                  <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                      <div className="text-xs uppercase font-semibold text-slate-400">
+                        Klātbūtnes rādītājs
+                      </div>
+                      <div className="mt-1 flex items-baseline gap-2">
+                        <span className="text-3xl font-extrabold text-slate-900 font-mono">
+                          {dossier.attendance.presentPct} %
+                        </span>
+                        <span className="text-xs text-slate-500">
+                          (klātbūtne balsojumos)
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-500 mt-1 leading-relaxed max-w-lg">
+                        Saskaņā ar Satversmes 24. pantu klātbūtne tiek fiksēta, kad deputāts aktīvi piedalās balsojumā. Zālē reģistrēti, bet nebalsotie balsojumi tiek uzskaitīti kā kvoruma manevri.
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-2 sm:gap-3 self-stretch sm:self-auto border-t sm:border-t-0 sm:border-l border-slate-100 pt-3 sm:pt-0 sm:pl-6 text-right flex-wrap sm:flex-nowrap">
+                      <div className="p-2 sm:p-2.5 rounded-lg bg-emerald-50/60 border border-emerald-100 min-w-[96px] text-center">
+                        <div className="text-sm sm:text-base font-mono font-bold text-emerald-700">
+                          {dossier.attendance.presentCount}
+                        </div>
+                        <div className="text-[10px] text-emerald-800 font-medium">
+                          Aktīvi balsojis
+                        </div>
+                      </div>
+
+                      <div className="p-2 sm:p-2.5 rounded-lg bg-amber-50/60 border border-amber-100 min-w-[96px] text-center">
+                        <div className="text-sm sm:text-base font-mono font-bold text-amber-700">
+                          {dossier.attendance.withheldCount}
+                        </div>
+                        <div className="text-[10px] text-amber-800 font-medium">
+                          Kvoruma manevri
+                        </div>
+                      </div>
+
+                      <div className="p-2 sm:p-2.5 rounded-lg bg-slate-50 border border-slate-200 min-w-[96px] text-center">
+                        <div className="text-sm sm:text-base font-mono font-bold text-slate-700">
+                          {dossier.attendance.absentCount}
+                        </div>
+                        <div className="text-[10px] text-slate-600 font-medium">
+                          Prombūtnē
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* 3-Segment Stacked Activity Bar */}
                   <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs space-y-3">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-xs font-bold text-slate-900">
-                        Parlamentārās aktivitātes kopsavilkums (Satversmes 24. pants)
-                      </h3>
-                      <span className="text-xs font-mono text-slate-500">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-bold text-slate-900">
+                        Parlamentārās aktivitātes sadalījums
+                      </span>
+                      <span className="font-mono text-slate-500">
                         Kopā {dossier.totalVotes} balsojumi
                       </span>
                     </div>
@@ -465,97 +537,27 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                     </div>
 
                     {/* Legend */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                      <div className="flex items-start gap-2 p-2.5 rounded-lg bg-emerald-50/60 border border-emerald-100">
-                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 mt-1 flex-shrink-0" />
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs pt-1">
+                      <div className="flex items-center gap-2 p-2 rounded-lg bg-emerald-50/50 border border-emerald-100/60">
+                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0" />
                         <div>
-                          <div className="text-xs font-bold text-emerald-950 font-mono">
-                            {dossier.attendance.presentPct} %
-                          </div>
-                          <div className="text-[11px] font-semibold text-emerald-800">Aktīvi balsojis</div>
-                          <div className="text-[10px] text-emerald-700/80">
-                            {dossier.attendance.presentCount} no {dossier.totalVotes} balsojumiem
-                          </div>
+                          <span className="font-bold font-mono text-slate-900">{dossier.attendance.presentPct}%</span>
+                          <span className="text-[11px] text-slate-500 ml-1">Aktīvi balsojis ({dossier.attendance.presentCount})</span>
                         </div>
                       </div>
-
-                      <div className="flex items-start gap-2 p-2.5 rounded-lg bg-amber-50/60 border border-amber-100">
-                        <span className="w-2.5 h-2.5 rounded-full bg-amber-400 mt-1 flex-shrink-0" />
+                      <div className="flex items-center gap-2 p-2 rounded-lg bg-amber-50/50 border border-amber-100/60">
+                        <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0" />
                         <div>
-                          <div className="text-xs font-bold text-amber-950 font-mono">
-                            {dossier.attendance.withheldPct} %
-                          </div>
-                          <div className="text-[11px] font-semibold text-amber-800">Zālē, bet nebalsoja</div>
-                          <div className="text-[10px] text-amber-700/80">
-                            {dossier.attendance.withheldCount} kvoruma manevri
-                          </div>
+                          <span className="font-bold font-mono text-slate-900">{dossier.attendance.withheldPct}%</span>
+                          <span className="text-[11px] text-slate-500 ml-1">Kvoruma manevri ({dossier.attendance.withheldCount})</span>
                         </div>
                       </div>
-
-                      <div className="flex items-start gap-2 p-2.5 rounded-lg bg-slate-50 border border-slate-200">
-                        <span className="w-2.5 h-2.5 rounded-full bg-slate-300 mt-1 flex-shrink-0" />
+                      <div className="flex items-center gap-2 p-2 rounded-lg bg-slate-50 border border-slate-200/60">
+                        <span className="w-2.5 h-2.5 rounded-full bg-slate-300 shrink-0" />
                         <div>
-                          <div className="text-xs font-bold text-slate-800 font-mono">
-                            {dossier.attendance.absentPct} %
-                          </div>
-                          <div className="text-[11px] font-semibold text-slate-700">Nav reģistrēts zālē</div>
-                          <div className="text-[10px] text-slate-500">
-                            {dossier.attendance.absentCount} prombūtnes reizes
-                          </div>
+                          <span className="font-bold font-mono text-slate-900">{dossier.attendance.absentPct}%</span>
+                          <span className="text-[11px] text-slate-500 ml-1">Prombūtnē ({dossier.attendance.absentCount})</span>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Individual Votes Breakdown Grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
-                    <div className="p-3 rounded-xl border border-slate-200 bg-white text-center">
-                      <div className="text-[10px] uppercase font-semibold text-slate-400">PAR</div>
-                      <div className="text-lg font-bold text-emerald-600 font-mono mt-0.5">
-                        {dossier.votesBreakdown.par}
-                      </div>
-                      <div className="text-[10px] text-slate-500 font-mono">
-                        {Math.round((dossier.votesBreakdown.par / dossier.totalVotes) * 100)} %
-                      </div>
-                    </div>
-
-                    <div className="p-3 rounded-xl border border-slate-200 bg-white text-center">
-                      <div className="text-[10px] uppercase font-semibold text-slate-400">PRET</div>
-                      <div className="text-lg font-bold text-rose-600 font-mono mt-0.5">
-                        {dossier.votesBreakdown.pret}
-                      </div>
-                      <div className="text-[10px] text-slate-500 font-mono">
-                        {Math.round((dossier.votesBreakdown.pret / dossier.totalVotes) * 100)} %
-                      </div>
-                    </div>
-
-                    <div className="p-3 rounded-xl border border-slate-200 bg-white text-center">
-                      <div className="text-[10px] uppercase font-semibold text-slate-400">ATTURAS</div>
-                      <div className="text-lg font-bold text-amber-600 font-mono mt-0.5">
-                        {dossier.votesBreakdown.atturas}
-                      </div>
-                      <div className="text-[10px] text-slate-500 font-mono">
-                        {Math.round((dossier.votesBreakdown.atturas / dossier.totalVotes) * 100)} %
-                      </div>
-                    </div>
-
-                    <div className="p-3 rounded-xl border border-slate-200 bg-white text-center">
-                      <div className="text-[10px] uppercase font-semibold text-slate-400">NEBALSOJA</div>
-                      <div className="text-lg font-bold text-slate-700 font-mono mt-0.5">
-                        {dossier.votesBreakdown.nebalso}
-                      </div>
-                      <div className="text-[10px] text-slate-500 font-mono">
-                        {Math.round((dossier.votesBreakdown.nebalso / dossier.totalVotes) * 100)} %
-                      </div>
-                    </div>
-
-                    <div className="p-3 rounded-xl border border-slate-200 bg-white text-center col-span-2 sm:col-span-1">
-                      <div className="text-[10px] uppercase font-semibold text-slate-400">PROMBŪTNĒ</div>
-                      <div className="text-lg font-bold text-slate-400 font-mono mt-0.5">
-                        {dossier.votesBreakdown.navRegistrets}
-                      </div>
-                      <div className="text-[10px] text-slate-500 font-mono">
-                        {Math.round((dossier.votesBreakdown.navRegistrets / dossier.totalVotes) * 100)} %
                       </div>
                     </div>
                   </div>
@@ -758,6 +760,64 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
               {/* TAB 3: VOTING HISTORY (Card 4) */}
               {activeTab === 'history' && (
                 <div className="space-y-4 pb-8">
+                  {/* Standardized History Hero Card */}
+                  <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                      <div className="text-xs uppercase font-semibold text-slate-400">
+                        Kopējā balsojumu aktivitāte
+                      </div>
+                      <div className="mt-1 flex items-baseline gap-2">
+                        <span className="text-3xl font-extrabold text-slate-900 font-mono">
+                          {dossier.totalVotes}
+                        </span>
+                        <span className="text-xs text-slate-500">
+                          (reģistrēti balsojumi 14. Saeimā)
+                        </span>
+                      </div>
+                      <p className="text-xs text-slate-500 mt-1 leading-relaxed max-w-lg">
+                        Pilns deputāta balsojumu arhīvs ar individuālo lēmumu un sēdes protokoliem.
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-2 sm:gap-3 self-stretch sm:self-auto border-t sm:border-t-0 sm:border-l border-slate-100 pt-3 sm:pt-0 sm:pl-6 text-right flex-wrap sm:flex-nowrap">
+                      <div className="p-2 sm:p-2.5 rounded-lg bg-emerald-50/60 border border-emerald-100 min-w-[76px] sm:min-w-[84px] text-center">
+                        <div className="text-sm sm:text-base font-mono font-bold text-emerald-700">
+                          {dossier.votesBreakdown.par}
+                        </div>
+                        <div className="text-[10px] text-emerald-800 font-medium">
+                          Par ({dossier.totalVotes > 0 ? Math.round((dossier.votesBreakdown.par / dossier.totalVotes) * 100) : 0}%)
+                        </div>
+                      </div>
+
+                      <div className="p-2 sm:p-2.5 rounded-lg bg-rose-50/60 border border-rose-100 min-w-[76px] sm:min-w-[84px] text-center">
+                        <div className="text-sm sm:text-base font-mono font-bold text-rose-700">
+                          {dossier.votesBreakdown.pret}
+                        </div>
+                        <div className="text-[10px] text-rose-800 font-medium">
+                          Pret ({dossier.totalVotes > 0 ? Math.round((dossier.votesBreakdown.pret / dossier.totalVotes) * 100) : 0}%)
+                        </div>
+                      </div>
+
+                      <div className="p-2 sm:p-2.5 rounded-lg bg-amber-50/60 border border-amber-100 min-w-[76px] sm:min-w-[84px] text-center">
+                        <div className="text-sm sm:text-base font-mono font-bold text-amber-700">
+                          {dossier.votesBreakdown.atturas}
+                        </div>
+                        <div className="text-[10px] text-amber-800 font-medium">
+                          Atturas ({dossier.totalVotes > 0 ? Math.round((dossier.votesBreakdown.atturas / dossier.totalVotes) * 100) : 0}%)
+                        </div>
+                      </div>
+
+                      <div className="p-2 sm:p-2.5 rounded-lg bg-slate-50 border border-slate-200 min-w-[76px] sm:min-w-[84px] text-center">
+                        <div className="text-sm sm:text-base font-mono font-bold text-slate-700">
+                          {dossier.votesBreakdown.nebalso}
+                        </div>
+                        <div className="text-[10px] text-slate-600 font-medium">
+                          Nebalsoja ({dossier.totalVotes > 0 ? Math.round((dossier.votesBreakdown.nebalso / dossier.totalVotes) * 100) : 0}%)
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Search and decision filter */}
                   <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 rounded-xl border border-slate-200 bg-slate-50 p-2.5">
                     <div className="relative flex-1">
@@ -813,6 +873,15 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
 
                   {/* History list */}
                   <div className="divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white overflow-hidden shadow-2xs">
+                    {/* UNIFIED TABLE COLUMN HEADER */}
+                    <div className="flex items-center justify-between px-3.5 py-2 bg-slate-50 border-b border-slate-200 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                      <span>Likumprojekts vai priekšlikums</span>
+                      <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                        <span className="w-[100px] text-center">Deputāts</span>
+                        <span className="w-[20px]" />
+                      </div>
+                    </div>
+
                     {filteredHistory.slice(0, historyVisibleCount).map((item) => (
                       <div
                         key={item.voteId}
@@ -825,14 +894,16 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                           {renderVoteItemDetails(item)}
                         </div>
 
-                        <div className="flex items-center gap-2.5 shrink-0">
-                          {getDecisionBadge(item.decision)}
+                        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                          <div className="w-[100px] flex justify-center">
+                            {getDecisionBadge(item.decision)}
+                          </div>
 
-                          {onSelectVote && (
-                            <div className="w-5 flex justify-center">
-                              <ArrowRight className="h-3.5 w-3.5 text-slate-300 group-hover:text-slate-900 transition-colors" />
-                            </div>
-                          )}
+                          <div className="w-[20px] flex justify-center">
+                            {onSelectVote && (
+                              <ChevronRight className="h-4 w-4 text-slate-300 group-hover:text-slate-900 transition-colors" />
+                            )}
+                          </div>
                         </div>
                       </div>
                     ))}
