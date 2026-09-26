@@ -39,6 +39,8 @@
     "activeTotalCount": 396,
     "activeAlignedCount": 392,
     "deviationsCount": 4,
+    "oppositeCount": 0,
+    "nuanceCount": 4,
     "deviations": [
       {
         "voteId": "4c943544-e51d-40b1-acf6-3e049ca042ad",
@@ -47,7 +49,8 @@
         "decision": "ATTURAS",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "06ed8433-ea14-4f14-84a9-1810bc2a1818",
@@ -56,7 +59,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "aa93c924-de66-41cd-b1bb-8d885551c6b7",
@@ -65,7 +69,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "ffc75b79-fe38-49d6-93e7-2340f529c3cc",
@@ -74,7 +79,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Tiesiskums un Korupcijas novēršana"
+        "category": "Tiesiskums un Korupcijas novēršana",
+        "deviationType": "NUANCE"
       }
     ]
   },

@@ -37,6 +37,8 @@
     "activeTotalCount": 331,
     "activeAlignedCount": 330,
     "deviationsCount": 1,
+    "oppositeCount": 0,
+    "nuanceCount": 1,
     "deviations": [
       {
         "voteId": "ffc75b79-fe38-49d6-93e7-2340f529c3cc",
@@ -45,7 +47,8 @@
         "decision": "ATTURAS",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Tiesiskums un Korupcijas novēršana"
+        "category": "Tiesiskums un Korupcijas novēršana",
+        "deviationType": "NUANCE"
       }
     ]
   },

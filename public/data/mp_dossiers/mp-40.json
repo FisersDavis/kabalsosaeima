@@ -37,6 +37,8 @@
     "activeTotalCount": 179,
     "activeAlignedCount": 174,
     "deviationsCount": 5,
+    "oppositeCount": 4,
+    "nuanceCount": 1,
     "deviations": [
       {
         "voteId": "163a9588-93f9-443f-bd1f-f964111a6be3",
@@ -45,7 +47,8 @@
         "decision": "ATTURAS",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "a431f228-301a-4572-aaac-15a5f28712de",
@@ -54,7 +57,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "ce4f8e73-7068-4026-bdac-7547bb059b48",
@@ -63,7 +67,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "e4f10c3c-eafb-405f-9b5f-696f2a6e4860",
@@ -72,7 +77,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "6194da59-a783-45d9-8441-8fcfe7f5456c",
@@ -81,7 +87,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       }
     ]
   },

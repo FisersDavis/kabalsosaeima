@@ -37,6 +37,8 @@
     "activeTotalCount": 367,
     "activeAlignedCount": 289,
     "deviationsCount": 78,
+    "oppositeCount": 57,
+    "nuanceCount": 21,
     "deviations": [
       {
         "voteId": "886feaf3-2645-45dd-898e-768e86791ad5",
@@ -45,7 +47,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "27ab82e9-0773-49ab-aed2-90ce3417f0fc",
@@ -54,7 +57,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "f46e76dd-eb3c-4105-9b7d-2fbef45cd72d",
@@ -63,7 +67,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "2b8a98ab-fc76-410d-bc2b-87f957466499",
@@ -72,7 +77,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "62175a46-af2b-4538-af26-50ffbbae71a3",
@@ -81,7 +87,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Budžets un Nodokļi"
+        "category": "Budžets un Nodokļi",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "91f34b1e-9713-4877-9ba8-ca8dd93c4821",
@@ -90,7 +97,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "773a4357-57a1-437a-b78e-9d256d4a8459",
@@ -99,7 +107,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "da5e7298-2f9d-47fa-9610-ec0bde33a819",
@@ -108,7 +117,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "14cd6244-a504-4e03-8b60-ab01595d0599",
@@ -117,7 +127,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "079a76ed-380f-4baf-a149-35d275bcd846",
@@ -126,7 +137,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "aab55221-4768-4723-b318-186ca77f63c1",
@@ -135,7 +147,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts drošība un Aizsardzība"
+        "category": "Valsts drošība un Aizsardzība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "fd042b71-f148-48bc-81a6-1a6496df47e4",
@@ -144,7 +157,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "13fabf57-9e8d-4cd6-a305-2a52c39c8b5f",
@@ -153,7 +167,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "8b1d0056-6f8a-43bb-909b-87de73780451",
@@ -162,7 +177,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "04f5ba8d-6af0-4d61-a2b7-aececd11a0ca",
@@ -171,7 +187,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "ff7a7ba2-578a-4cf7-a77d-5111b355cb5c",
@@ -180,7 +197,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "43251a67-21c1-4560-8705-fd4a566a5e65",
@@ -189,7 +207,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "295224bb-9bc8-42ed-bad2-6cb6c9d28fa0",
@@ -198,7 +217,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "8f6b367e-1689-45b7-b63e-fa9395620ba8",
@@ -207,7 +227,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Ekonomika un Enerģētika"
+        "category": "Ekonomika un Enerģētika",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "cc334ea6-da63-4bbc-84b8-2172e4e94253",
@@ -216,7 +237,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "aec12624-bc6c-4ecd-864f-4acaa2cb16c1",
@@ -225,7 +247,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "a4a8d587-05e0-4644-aafb-664e07c3b60d",
@@ -234,7 +257,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "84f441bf-bc47-4b51-a49d-b6be713d9ae5",
@@ -243,7 +267,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "f76f06d5-2c52-4d08-9134-fd46a8540e46",
@@ -252,7 +277,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "8ecdf2fa-18c1-42ed-a3b4-3c79429d37c1",
@@ -261,7 +287,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "780d2317-ca1e-4815-a413-5c0bb07116fb",
@@ -270,7 +297,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "d5186cb2-6b44-4d8f-8ec4-6067c9437c17",
@@ -279,7 +307,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "096c8060-fc19-4379-8ea1-5155e0b2ae33",
@@ -288,7 +317,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Tiesiskums un Korupcijas novēršana"
+        "category": "Tiesiskums un Korupcijas novēršana",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "691254b4-ed38-46c1-b347-311e8e9f9830",
@@ -297,7 +327,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "d63b01f8-90dc-4351-a600-f04657630888",
@@ -306,7 +337,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Tiesiskums un Korupcijas novēršana"
+        "category": "Tiesiskums un Korupcijas novēršana",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "4cda8d45-11b7-4c70-a65e-7f83259a7233",
@@ -315,7 +347,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Tiesiskums un Korupcijas novēršana"
+        "category": "Tiesiskums un Korupcijas novēršana",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "75569785-14e3-40c2-ba3a-44821ae4b2aa",
@@ -324,7 +357,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "06ed8433-ea14-4f14-84a9-1810bc2a1818",
@@ -333,7 +367,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "d5e21ba5-db41-42be-a3d4-eb43aef467e8",
@@ -342,7 +377,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "b5eef142-578c-483a-9ae4-23822135d122",
@@ -351,7 +387,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "442d3402-0e2d-4172-8bfa-45aad3fc6710",
@@ -360,7 +397,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "95156201-4f36-4628-970c-637890a02663",
@@ -369,7 +407,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "58ef9946-6289-4f8c-b4ae-a5faac4972a0",
@@ -378,7 +417,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "e60178a2-ca4e-4262-81e7-ef029b2dde78",
@@ -387,7 +427,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "fdfadb94-4570-45bb-aa5b-c429efb79bad",
@@ -396,7 +437,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "1cf709f4-4044-4c50-8105-dfc6a54e2f66",
@@ -405,7 +447,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "3c41ba90-34cd-488d-8029-6aeb670a087c",
@@ -414,7 +457,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "c1907881-93e3-4aaf-9843-02a4aa8ad0d2",
@@ -423,7 +467,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "87cfface-570a-41ff-a153-113f10281814",
@@ -432,7 +477,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "ba5e5e11-540f-4816-b3b6-d3334786d84c",
@@ -441,7 +487,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "b77b7382-7ec0-43e7-9583-845f178c6501",
@@ -450,7 +497,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "01fa1dec-c077-4648-8532-e5fd8d627e14",
@@ -459,7 +507,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "65057bc1-7a2d-4a13-8615-15f7782f96cb",
@@ -468,7 +517,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "8e7e475e-112d-4793-8391-c42017903780",
@@ -477,7 +527,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "1edf27c5-93c9-42f3-a633-7863acc440d7",
@@ -486,7 +537,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "3e0ab26c-e0a2-4ee9-a01a-c3a2f675552b",
@@ -495,7 +547,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "2fd1b058-43f0-4124-961e-0b8077d6ef4e",
@@ -504,7 +557,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "f6b40c82-2554-4cd2-9a16-b54f6d7509b3",
@@ -513,7 +567,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "a4aa357e-c9c5-4fb7-81b7-8a1ad77a4957",
@@ -522,7 +577,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "6c65b899-7798-4f44-afa3-4c2499b2abc5",
@@ -531,7 +587,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "2625edf6-3a19-4d5f-aa85-353600871372",
@@ -540,7 +597,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "5cf971a3-6a5e-4669-bac2-9204fdebf44d",
@@ -549,7 +607,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "e33a3d59-ffd4-4dba-b460-78a7d52ba271",
@@ -558,7 +617,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "05efc246-1013-4014-8359-9f46e8286287",
@@ -567,7 +627,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "61de7267-1499-4038-99d1-efc531b3fb88",
@@ -576,7 +637,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "a7ec6696-5912-43d5-bc5c-fa0607609d0e",
@@ -585,7 +647,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "cb621fe3-5bb8-4533-b2d5-92cbe1aa5e02",
@@ -594,7 +657,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "104efc2c-f372-4a16-a00b-9216ea55f8bc",
@@ -603,7 +667,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "cbc3e054-7fde-45ed-8ec3-82231a6b5395",
@@ -612,7 +677,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "c568a17e-0528-4205-a034-e3dcbbc50619",
@@ -621,7 +687,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "f282de87-ea19-4d9a-a7ec-b27e71f4e1be",
@@ -630,7 +697,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "750a9b72-e07f-4ddb-9557-fcc384b122ad",
@@ -639,7 +707,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "18389c6e-cbae-43d2-801e-bdb5f9314084",
@@ -648,7 +717,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "8f0c2034-642a-4e6b-a3d0-c661d72aba32",
@@ -657,7 +727,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "c82c542a-2f91-4499-8e0a-cc97c3337747",
@@ -666,7 +737,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Tiesiskums un Korupcijas novēršana"
+        "category": "Tiesiskums un Korupcijas novēršana",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "e4841c5c-26d9-47f1-a41c-29434dcd8613",
@@ -675,7 +747,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "27cc7a45-f77d-4a0f-bfc7-cfa443531db3",
@@ -684,7 +757,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "fb9e7ef3-c3b2-4c10-8643-a88dc78ffddf",
@@ -693,7 +767,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "85051778-3d81-4237-b48d-835e946efa5a",
@@ -702,7 +777,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "9f896ac7-12a5-4df8-96b7-35b124e7727f",
@@ -711,7 +787,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "9d0795f0-2239-4698-9fb3-d22044f98c82",
@@ -720,7 +797,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Budžets un Nodokļi"
+        "category": "Budžets un Nodokļi",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "d65b82f5-9d9c-43d3-aa45-624aef41bee4",
@@ -729,7 +807,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Budžets un Nodokļi"
+        "category": "Budžets un Nodokļi",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "19c766a7-7888-40a7-9b2c-bb42e7e80036",
@@ -738,7 +817,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Budžets un Nodokļi"
+        "category": "Budžets un Nodokļi",
+        "deviationType": "OPPOSITE"
       }
     ]
   },

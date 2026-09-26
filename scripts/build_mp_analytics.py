@@ -129,6 +129,9 @@ def build_analytics():
                     if decision == faction_line:
                         active_aligned_count += 1
                     else:
+                        is_opposite = (decision == "PAR" and faction_line in ("PRET", "ATTURAS")) or \
+                                      (faction_line == "PAR" and decision in ("PRET", "ATTURAS"))
+                        dev_type = "OPPOSITE" if is_opposite else "NUANCE"
                         deviations.append({
                             "voteId": vid,
                             "title": v.get("simplifiedTitle") or v.get("officialTitle"),
@@ -136,7 +139,8 @@ def build_analytics():
                             "decision": decision,
                             "factionLine": faction_line,
                             "result": v.get("result", "PIENEMTS"),
-                            "category": v.get("category", {}).get("label", "Valsts pārvalde")
+                            "category": v.get("category", {}).get("label", "Valsts pārvalde"),
+                            "deviationType": dev_type
                         })
 
             history.append({
@@ -160,6 +164,9 @@ def build_analytics():
             cohesion_pct = None
         else:
             cohesion_pct = 100.0
+
+        opposite_count = sum(1 for d in deviations if d["deviationType"] == "OPPOSITE")
+        nuance_count = sum(1 for d in deviations if d["deviationType"] == "NUANCE")
 
         # Dossier payload
         dossier = {
@@ -187,6 +194,8 @@ def build_analytics():
                 "activeTotalCount": active_total_count,
                 "activeAlignedCount": active_aligned_count,
                 "deviationsCount": len(deviations),
+                "oppositeCount": opposite_count,
+                "nuanceCount": nuance_count,
                 "deviations": deviations
             },
             "votingHistory": history
@@ -204,6 +213,8 @@ def build_analytics():
             "absentPct": absent_pct,
             "cohesionPct": cohesion_pct,
             "deviationsCount": len(deviations),
+            "oppositeCount": opposite_count,
+            "nuanceCount": nuance_count,
             "isIndependent": is_independent
         }
 

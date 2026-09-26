@@ -37,6 +37,8 @@
     "activeTotalCount": 349,
     "activeAlignedCount": 345,
     "deviationsCount": 4,
+    "oppositeCount": 4,
+    "nuanceCount": 0,
     "deviations": [
       {
         "voteId": "8b1d0056-6f8a-43bb-909b-87de73780451",
@@ -45,7 +47,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "04f5ba8d-6af0-4d61-a2b7-aececd11a0ca",
@@ -54,7 +57,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "8ecdf2fa-18c1-42ed-a3b4-3c79429d37c1",
@@ -63,7 +67,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "06ed8433-ea14-4f14-84a9-1810bc2a1818",
@@ -72,7 +77,8 @@
         "decision": "PAR",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       }
     ]
   },

@@ -39,6 +39,8 @@
     "activeTotalCount": 395,
     "activeAlignedCount": 382,
     "deviationsCount": 13,
+    "oppositeCount": 0,
+    "nuanceCount": 13,
     "deviations": [
       {
         "voteId": "cd4bceb5-311e-46a0-a7eb-79b7e3428f6a",
@@ -47,7 +49,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "9e386a12-b87b-4f6e-a56a-d444253cbd5b",
@@ -56,7 +59,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "92439577-36ff-4bc9-9bfa-c769915634bf",
@@ -65,7 +69,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "49cc9597-fc59-4da6-a55e-92de6dcedbdc",
@@ -74,7 +79,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "c172ef8b-c249-4085-a628-791f087a09e5",
@@ -83,7 +89,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "7e08c026-a24f-4055-8b18-e334372290ae",
@@ -92,7 +99,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "b3e7cff2-4bb2-4cd8-991d-d305043285a2",
@@ -101,7 +109,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "e2c61c86-d191-4403-8f4d-60a38e013fb9",
@@ -110,7 +119,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "b9cf291d-4872-4f89-af09-a8d497c5e68d",
@@ -119,7 +129,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "75569785-14e3-40c2-ba3a-44821ae4b2aa",
@@ -128,7 +139,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "06ed8433-ea14-4f14-84a9-1810bc2a1818",
@@ -137,7 +149,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "2fd1b058-43f0-4124-961e-0b8077d6ef4e",
@@ -146,7 +159,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "ffc75b79-fe38-49d6-93e7-2340f529c3cc",
@@ -155,7 +169,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Tiesiskums un Korupcijas novēršana"
+        "category": "Tiesiskums un Korupcijas novēršana",
+        "deviationType": "NUANCE"
       }
     ]
   },

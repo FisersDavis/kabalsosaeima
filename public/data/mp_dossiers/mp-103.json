@@ -39,6 +39,8 @@
     "activeTotalCount": 366,
     "activeAlignedCount": 365,
     "deviationsCount": 1,
+    "oppositeCount": 1,
+    "nuanceCount": 0,
     "deviations": [
       {
         "voteId": "c9781f7c-e91b-4ecf-8f3a-6927651bcb88",
@@ -47,7 +49,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       }
     ]
   },

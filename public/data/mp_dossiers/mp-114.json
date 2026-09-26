@@ -39,6 +39,8 @@
     "activeTotalCount": 160,
     "activeAlignedCount": 159,
     "deviationsCount": 1,
+    "oppositeCount": 0,
+    "nuanceCount": 1,
     "deviations": [
       {
         "voteId": "85051778-3d81-4237-b48d-835e946efa5a",
@@ -47,7 +49,8 @@
         "decision": "ATTURAS",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "NUANCE"
       }
     ]
   },

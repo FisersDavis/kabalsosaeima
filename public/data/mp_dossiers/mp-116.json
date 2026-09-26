@@ -39,6 +39,8 @@
     "activeTotalCount": 397,
     "activeAlignedCount": 395,
     "deviationsCount": 2,
+    "oppositeCount": 0,
+    "nuanceCount": 2,
     "deviations": [
       {
         "voteId": "4c943544-e51d-40b1-acf6-3e049ca042ad",
@@ -47,7 +49,8 @@
         "decision": "ATTURAS",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "bea99d72-3c01-4be1-8df3-7ad709eea676",
@@ -56,7 +59,8 @@
         "decision": "ATTURAS",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Tiesiskums un Korupcijas novēršana"
+        "category": "Tiesiskums un Korupcijas novēršana",
+        "deviationType": "NUANCE"
       }
     ]
   },

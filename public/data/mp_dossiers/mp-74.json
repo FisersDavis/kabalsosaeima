@@ -37,6 +37,8 @@
     "activeTotalCount": 378,
     "activeAlignedCount": 373,
     "deviationsCount": 5,
+    "oppositeCount": 5,
+    "nuanceCount": 0,
     "deviations": [
       {
         "voteId": "efe8c6b9-4ea1-49e7-8ad8-62d5ead60360",
@@ -45,7 +47,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "d90e80fa-938c-43d5-93cf-b37af8ea79c3",
@@ -54,7 +57,8 @@
         "decision": "ATTURAS",
         "factionLine": "PAR",
         "result": "NORAIDITS",
-        "category": "Ekonomika un Enerģētika"
+        "category": "Ekonomika un Enerģētika",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "62876002-beb6-411b-af42-3a5226a5c4fc",
@@ -63,7 +67,8 @@
         "decision": "ATTURAS",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "f282de87-ea19-4d9a-a7ec-b27e71f4e1be",
@@ -72,7 +77,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "97b1cef2-5c5c-4d04-84c4-41757cc6eb31",
@@ -81,7 +87,8 @@
         "decision": "ATTURAS",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts drošība un Aizsardzība"
+        "category": "Valsts drošība un Aizsardzība",
+        "deviationType": "OPPOSITE"
       }
     ]
   },

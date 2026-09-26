@@ -84,6 +84,7 @@ export interface MpDeviation {
   factionLine: VoteDecision;
   result: string;
   category?: string;
+  deviationType: 'OPPOSITE' | 'NUANCE';
 }
 
 export interface MpCohesion {
@@ -92,6 +93,8 @@ export interface MpCohesion {
   activeTotalCount: number;
   activeAlignedCount: number;
   deviationsCount: number;
+  oppositeCount: number;
+  nuanceCount: number;
   deviations: MpDeviation[];
 }
 
@@ -121,6 +124,8 @@ export interface MpSummary {
   absentPct: number;
   cohesionPct: number | null;
   deviationsCount: number;
+  oppositeCount?: number;
+  nuanceCount?: number;
   isIndependent: boolean;
 }
 

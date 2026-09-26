@@ -37,6 +37,8 @@
     "activeTotalCount": 328,
     "activeAlignedCount": 326,
     "deviationsCount": 2,
+    "oppositeCount": 1,
+    "nuanceCount": 1,
     "deviations": [
       {
         "voteId": "b4be435d-3390-4b6e-ae0d-583a0120e898",
@@ -45,7 +47,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "9f896ac7-12a5-4df8-96b7-35b124e7727f",
@@ -54,7 +57,8 @@
         "decision": "ATTURAS",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "NUANCE"
       }
     ]
   },

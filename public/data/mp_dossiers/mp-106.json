@@ -39,6 +39,8 @@
     "activeTotalCount": 198,
     "activeAlignedCount": 197,
     "deviationsCount": 1,
+    "oppositeCount": 1,
+    "nuanceCount": 0,
     "deviations": [
       {
         "voteId": "442d3402-0e2d-4172-8bfa-45aad3fc6710",
@@ -47,7 +49,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       }
     ]
   },

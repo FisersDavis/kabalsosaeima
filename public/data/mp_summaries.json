@@ -5,6 +5,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-2": {
@@ -13,6 +15,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-3": {
@@ -21,6 +25,8 @@
     "absentPct": 17.2,
     "cohesionPct": 98.1,
     "deviationsCount": 6,
+    "oppositeCount": 0,
+    "nuanceCount": 6,
     "isIndependent": false
   },
   "mp-4": {
@@ -29,6 +35,8 @@
     "absentPct": 7.2,
     "cohesionPct": 92.1,
     "deviationsCount": 26,
+    "oppositeCount": 0,
+    "nuanceCount": 26,
     "isIndependent": false
   },
   "mp-5": {
@@ -37,6 +45,8 @@
     "absentPct": 0.5,
     "cohesionPct": 98.5,
     "deviationsCount": 6,
+    "oppositeCount": 1,
+    "nuanceCount": 5,
     "isIndependent": false
   },
   "mp-6": {
@@ -45,6 +55,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-7": {
@@ -53,6 +65,8 @@
     "absentPct": 24.5,
     "cohesionPct": 94.6,
     "deviationsCount": 16,
+    "oppositeCount": 1,
+    "nuanceCount": 15,
     "isIndependent": false
   },
   "mp-8": {
@@ -61,6 +75,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-9": {
@@ -69,6 +85,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-10": {
@@ -77,6 +95,8 @@
     "absentPct": 35.0,
     "cohesionPct": 98.1,
     "deviationsCount": 5,
+    "oppositeCount": 1,
+    "nuanceCount": 4,
     "isIndependent": false
   },
   "mp-11": {
@@ -85,6 +105,8 @@
     "absentPct": 1.2,
     "cohesionPct": 97.7,
     "deviationsCount": 9,
+    "oppositeCount": 1,
+    "nuanceCount": 8,
     "isIndependent": false
   },
   "mp-12": {
@@ -93,6 +115,8 @@
     "absentPct": 0.8,
     "cohesionPct": 97.2,
     "deviationsCount": 11,
+    "oppositeCount": 0,
+    "nuanceCount": 11,
     "isIndependent": false
   },
   "mp-13": {
@@ -101,6 +125,8 @@
     "absentPct": 0.2,
     "cohesionPct": 97.0,
     "deviationsCount": 12,
+    "oppositeCount": 0,
+    "nuanceCount": 12,
     "isIndependent": false
   },
   "mp-14": {
@@ -109,6 +135,8 @@
     "absentPct": 0.5,
     "cohesionPct": 96.7,
     "deviationsCount": 13,
+    "oppositeCount": 1,
+    "nuanceCount": 12,
     "isIndependent": false
   },
   "mp-15": {
@@ -117,6 +145,8 @@
     "absentPct": 0.8,
     "cohesionPct": 99.0,
     "deviationsCount": 4,
+    "oppositeCount": 1,
+    "nuanceCount": 3,
     "isIndependent": false
   },
   "mp-16": {
@@ -125,6 +155,8 @@
     "absentPct": 9.2,
     "cohesionPct": 99.4,
     "deviationsCount": 2,
+    "oppositeCount": 0,
+    "nuanceCount": 2,
     "isIndependent": false
   },
   "mp-17": {
@@ -133,6 +165,8 @@
     "absentPct": 2.8,
     "cohesionPct": 92.6,
     "deviationsCount": 28,
+    "oppositeCount": 2,
+    "nuanceCount": 26,
     "isIndependent": false
   },
   "mp-18": {
@@ -141,6 +175,8 @@
     "absentPct": 5.8,
     "cohesionPct": 98.1,
     "deviationsCount": 7,
+    "oppositeCount": 1,
+    "nuanceCount": 6,
     "isIndependent": false
   },
   "mp-19": {
@@ -149,6 +185,8 @@
     "absentPct": 0.8,
     "cohesionPct": 94.7,
     "deviationsCount": 21,
+    "oppositeCount": 0,
+    "nuanceCount": 21,
     "isIndependent": false
   },
   "mp-20": {
@@ -157,6 +195,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-21": {
@@ -165,6 +205,8 @@
     "absentPct": 3.2,
     "cohesionPct": 70.8,
     "deviationsCount": 105,
+    "oppositeCount": 103,
+    "nuanceCount": 2,
     "isIndependent": false
   },
   "mp-22": {
@@ -173,6 +215,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-23": {
@@ -181,6 +225,8 @@
     "absentPct": 8.5,
     "cohesionPct": 97.8,
     "deviationsCount": 8,
+    "oppositeCount": 0,
+    "nuanceCount": 8,
     "isIndependent": false
   },
   "mp-24": {
@@ -189,6 +235,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-25": {
@@ -197,6 +245,8 @@
     "absentPct": 52.0,
     "cohesionPct": 72.0,
     "deviationsCount": 42,
+    "oppositeCount": 40,
+    "nuanceCount": 2,
     "isIndependent": false
   },
   "mp-26": {
@@ -205,6 +255,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-27": {
@@ -213,6 +265,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-28": {
@@ -221,6 +275,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-29": {
@@ -229,6 +285,8 @@
     "absentPct": 27.8,
     "cohesionPct": 96.0,
     "deviationsCount": 11,
+    "oppositeCount": 4,
+    "nuanceCount": 7,
     "isIndependent": false
   },
   "mp-30": {
@@ -237,6 +295,8 @@
     "absentPct": 6.0,
     "cohesionPct": 93.1,
     "deviationsCount": 26,
+    "oppositeCount": 2,
+    "nuanceCount": 24,
     "isIndependent": false
   },
   "mp-31": {
@@ -245,6 +305,8 @@
     "absentPct": 1.8,
     "cohesionPct": 97.3,
     "deviationsCount": 10,
+    "oppositeCount": 4,
+    "nuanceCount": 6,
     "isIndependent": false
   },
   "mp-32": {
@@ -253,6 +315,8 @@
     "absentPct": 0.2,
     "cohesionPct": 88.5,
     "deviationsCount": 45,
+    "oppositeCount": 6,
+    "nuanceCount": 39,
     "isIndependent": false
   },
   "mp-33": {
@@ -261,6 +325,8 @@
     "absentPct": 25.8,
     "cohesionPct": 95.6,
     "deviationsCount": 13,
+    "oppositeCount": 6,
+    "nuanceCount": 7,
     "isIndependent": false
   },
   "mp-34": {
@@ -269,6 +335,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-35": {
@@ -277,6 +345,8 @@
     "absentPct": 16.2,
     "cohesionPct": 96.2,
     "deviationsCount": 11,
+    "oppositeCount": 0,
+    "nuanceCount": 11,
     "isIndependent": false
   },
   "mp-36": {
@@ -285,6 +355,8 @@
     "absentPct": 15.0,
     "cohesionPct": 96.4,
     "deviationsCount": 12,
+    "oppositeCount": 8,
+    "nuanceCount": 4,
     "isIndependent": false
   },
   "mp-37": {
@@ -293,6 +365,8 @@
     "absentPct": 16.0,
     "cohesionPct": 92.2,
     "deviationsCount": 20,
+    "oppositeCount": 8,
+    "nuanceCount": 12,
     "isIndependent": false
   },
   "mp-38": {
@@ -301,6 +375,8 @@
     "absentPct": 2.8,
     "cohesionPct": 97.7,
     "deviationsCount": 8,
+    "oppositeCount": 3,
+    "nuanceCount": 5,
     "isIndependent": false
   },
   "mp-39": {
@@ -309,6 +385,8 @@
     "absentPct": 0.5,
     "cohesionPct": 97.2,
     "deviationsCount": 11,
+    "oppositeCount": 4,
+    "nuanceCount": 7,
     "isIndependent": false
   },
   "mp-40": {
@@ -317,6 +395,8 @@
     "absentPct": 55.0,
     "cohesionPct": 97.2,
     "deviationsCount": 5,
+    "oppositeCount": 4,
+    "nuanceCount": 1,
     "isIndependent": false
   },
   "mp-41": {
@@ -325,6 +405,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-42": {
@@ -333,6 +415,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-43": {
@@ -341,6 +425,8 @@
     "absentPct": 4.0,
     "cohesionPct": 99.2,
     "deviationsCount": 3,
+    "oppositeCount": 1,
+    "nuanceCount": 2,
     "isIndependent": false
   },
   "mp-44": {
@@ -349,6 +435,8 @@
     "absentPct": 16.8,
     "cohesionPct": 99.7,
     "deviationsCount": 1,
+    "oppositeCount": 0,
+    "nuanceCount": 1,
     "isIndependent": false
   },
   "mp-45": {
@@ -357,6 +445,8 @@
     "absentPct": 19.5,
     "cohesionPct": 98.4,
     "deviationsCount": 5,
+    "oppositeCount": 1,
+    "nuanceCount": 4,
     "isIndependent": false
   },
   "mp-46": {
@@ -365,6 +455,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-47": {
@@ -373,6 +465,8 @@
     "absentPct": 14.0,
     "cohesionPct": 98.2,
     "deviationsCount": 6,
+    "oppositeCount": 2,
+    "nuanceCount": 4,
     "isIndependent": false
   },
   "mp-48": {
@@ -381,6 +475,8 @@
     "absentPct": 15.8,
     "cohesionPct": 98.2,
     "deviationsCount": 6,
+    "oppositeCount": 1,
+    "nuanceCount": 5,
     "isIndependent": false
   },
   "mp-49": {
@@ -389,6 +485,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-50": {
@@ -397,6 +495,8 @@
     "absentPct": 4.5,
     "cohesionPct": 80.8,
     "deviationsCount": 68,
+    "oppositeCount": 36,
+    "nuanceCount": 32,
     "isIndependent": false
   },
   "mp-51": {
@@ -405,6 +505,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-52": {
@@ -413,6 +515,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-53": {
@@ -421,6 +525,8 @@
     "absentPct": 12.2,
     "cohesionPct": 98.5,
     "deviationsCount": 5,
+    "oppositeCount": 3,
+    "nuanceCount": 2,
     "isIndependent": false
   },
   "mp-54": {
@@ -429,6 +535,8 @@
     "absentPct": 3.5,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-55": {
@@ -437,6 +545,8 @@
     "absentPct": 8.5,
     "cohesionPct": 97.4,
     "deviationsCount": 9,
+    "oppositeCount": 4,
+    "nuanceCount": 5,
     "isIndependent": false
   },
   "mp-56": {
@@ -445,6 +555,8 @@
     "absentPct": 24.2,
     "cohesionPct": 99.3,
     "deviationsCount": 2,
+    "oppositeCount": 2,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-57": {
@@ -453,6 +565,8 @@
     "absentPct": 7.0,
     "cohesionPct": 98.9,
     "deviationsCount": 4,
+    "oppositeCount": 4,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-58": {
@@ -461,6 +575,8 @@
     "absentPct": 19.5,
     "cohesionPct": 98.9,
     "deviationsCount": 3,
+    "oppositeCount": 1,
+    "nuanceCount": 2,
     "isIndependent": false
   },
   "mp-59": {
@@ -469,6 +585,8 @@
     "absentPct": 18.0,
     "cohesionPct": 93.8,
     "deviationsCount": 16,
+    "oppositeCount": 1,
+    "nuanceCount": 15,
     "isIndependent": false
   },
   "mp-60": {
@@ -477,6 +595,8 @@
     "absentPct": 0.5,
     "cohesionPct": 78.7,
     "deviationsCount": 78,
+    "oppositeCount": 57,
+    "nuanceCount": 21,
     "isIndependent": false
   },
   "mp-61": {
@@ -485,6 +605,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-62": {
@@ -493,6 +615,8 @@
     "absentPct": 40.5,
     "cohesionPct": 98.2,
     "deviationsCount": 4,
+    "oppositeCount": 4,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-63": {
@@ -501,6 +625,8 @@
     "absentPct": 41.2,
     "cohesionPct": 98.9,
     "deviationsCount": 2,
+    "oppositeCount": 2,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-64": {
@@ -509,6 +635,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-65": {
@@ -517,6 +645,8 @@
     "absentPct": 16.0,
     "cohesionPct": 76.4,
     "deviationsCount": 74,
+    "oppositeCount": 62,
+    "nuanceCount": 12,
     "isIndependent": false
   },
   "mp-66": {
@@ -525,6 +655,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-67": {
@@ -533,6 +665,8 @@
     "absentPct": 7.5,
     "cohesionPct": 97.1,
     "deviationsCount": 10,
+    "oppositeCount": 7,
+    "nuanceCount": 3,
     "isIndependent": false
   },
   "mp-68": {
@@ -541,6 +675,8 @@
     "absentPct": 32.0,
     "cohesionPct": 98.5,
     "deviationsCount": 4,
+    "oppositeCount": 3,
+    "nuanceCount": 1,
     "isIndependent": false
   },
   "mp-69": {
@@ -549,6 +685,8 @@
     "absentPct": 55.2,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-70": {
@@ -557,6 +695,8 @@
     "absentPct": 29.5,
     "cohesionPct": 98.9,
     "deviationsCount": 3,
+    "oppositeCount": 1,
+    "nuanceCount": 2,
     "isIndependent": false
   },
   "mp-71": {
@@ -565,6 +705,8 @@
     "absentPct": 25.2,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-72": {
@@ -573,6 +715,8 @@
     "absentPct": 2.5,
     "cohesionPct": 99.1,
     "deviationsCount": 3,
+    "oppositeCount": 2,
+    "nuanceCount": 1,
     "isIndependent": false
   },
   "mp-73": {
@@ -581,6 +725,8 @@
     "absentPct": 26.2,
     "cohesionPct": 99.2,
     "deviationsCount": 2,
+    "oppositeCount": 1,
+    "nuanceCount": 1,
     "isIndependent": false
   },
   "mp-74": {
@@ -589,6 +735,8 @@
     "absentPct": 0.5,
     "cohesionPct": 98.7,
     "deviationsCount": 5,
+    "oppositeCount": 5,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-75": {
@@ -597,6 +745,8 @@
     "absentPct": 9.8,
     "cohesionPct": 99.4,
     "deviationsCount": 2,
+    "oppositeCount": 1,
+    "nuanceCount": 1,
     "isIndependent": false
   },
   "mp-76": {
@@ -605,6 +755,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-77": {
@@ -613,6 +765,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-78": {
@@ -621,6 +775,8 @@
     "absentPct": 27.8,
     "cohesionPct": 98.4,
     "deviationsCount": 4,
+    "oppositeCount": 3,
+    "nuanceCount": 1,
     "isIndependent": false
   },
   "mp-79": {
@@ -629,6 +785,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-80": {
@@ -637,6 +795,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-81": {
@@ -645,6 +805,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-82": {
@@ -653,6 +815,8 @@
     "absentPct": 4.2,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-83": {
@@ -661,6 +825,8 @@
     "absentPct": 7.8,
     "cohesionPct": 63.8,
     "deviationsCount": 104,
+    "oppositeCount": 91,
+    "nuanceCount": 13,
     "isIndependent": false
   },
   "mp-84": {
@@ -669,6 +835,8 @@
     "absentPct": 3.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-85": {
@@ -677,6 +845,8 @@
     "absentPct": 23.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-86": {
@@ -685,6 +855,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-87": {
@@ -693,6 +865,8 @@
     "absentPct": 12.0,
     "cohesionPct": 99.7,
     "deviationsCount": 1,
+    "oppositeCount": 1,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-88": {
@@ -701,6 +875,8 @@
     "absentPct": 31.8,
     "cohesionPct": 99.6,
     "deviationsCount": 1,
+    "oppositeCount": 1,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-89": {
@@ -709,6 +885,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-90": {
@@ -717,6 +895,8 @@
     "absentPct": 4.8,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-91": {
@@ -725,6 +905,8 @@
     "absentPct": 13.8,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-92": {
@@ -733,6 +915,8 @@
     "absentPct": 15.5,
     "cohesionPct": 94.8,
     "deviationsCount": 8,
+    "oppositeCount": 8,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-93": {
@@ -741,6 +925,8 @@
     "absentPct": 10.8,
     "cohesionPct": 95.9,
     "deviationsCount": 6,
+    "oppositeCount": 6,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-94": {
@@ -749,6 +935,8 @@
     "absentPct": 0.5,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-95": {
@@ -757,6 +945,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-96": {
@@ -765,6 +955,8 @@
     "absentPct": 55.2,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-97": {
@@ -773,6 +965,8 @@
     "absentPct": 100.0,
     "cohesionPct": null,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": true
   },
   "mp-98": {
@@ -781,6 +975,8 @@
     "absentPct": 21.0,
     "cohesionPct": null,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": true
   },
   "mp-99": {
@@ -789,6 +985,8 @@
     "absentPct": 2.8,
     "cohesionPct": null,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": true
   },
   "mp-100": {
@@ -797,6 +995,8 @@
     "absentPct": 1.2,
     "cohesionPct": null,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": true
   },
   "mp-101": {
@@ -805,6 +1005,8 @@
     "absentPct": 0.2,
     "cohesionPct": 89.9,
     "deviationsCount": 39,
+    "oppositeCount": 0,
+    "nuanceCount": 39,
     "isIndependent": false
   },
   "mp-102": {
@@ -813,6 +1015,8 @@
     "absentPct": 13.2,
     "cohesionPct": 98.2,
     "deviationsCount": 6,
+    "oppositeCount": 3,
+    "nuanceCount": 3,
     "isIndependent": false
   },
   "mp-103": {
@@ -821,6 +1025,8 @@
     "absentPct": 2.0,
     "cohesionPct": 99.7,
     "deviationsCount": 1,
+    "oppositeCount": 1,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-104": {
@@ -829,6 +1035,8 @@
     "absentPct": 10.5,
     "cohesionPct": 98.3,
     "deviationsCount": 5,
+    "oppositeCount": 1,
+    "nuanceCount": 4,
     "isIndependent": false
   },
   "mp-105": {
@@ -837,6 +1045,8 @@
     "absentPct": 1.0,
     "cohesionPct": 98.2,
     "deviationsCount": 7,
+    "oppositeCount": 1,
+    "nuanceCount": 6,
     "isIndependent": false
   },
   "mp-106": {
@@ -845,6 +1055,8 @@
     "absentPct": 0.8,
     "cohesionPct": 99.5,
     "deviationsCount": 1,
+    "oppositeCount": 1,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-107": {
@@ -853,6 +1065,8 @@
     "absentPct": 1.8,
     "cohesionPct": null,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": true
   },
   "mp-108": {
@@ -861,6 +1075,8 @@
     "absentPct": 0.2,
     "cohesionPct": 98.0,
     "deviationsCount": 8,
+    "oppositeCount": 1,
+    "nuanceCount": 7,
     "isIndependent": false
   },
   "mp-109": {
@@ -869,6 +1085,8 @@
     "absentPct": 2.0,
     "cohesionPct": 99.2,
     "deviationsCount": 3,
+    "oppositeCount": 2,
+    "nuanceCount": 1,
     "isIndependent": false
   },
   "mp-110": {
@@ -877,6 +1095,8 @@
     "absentPct": 4.2,
     "cohesionPct": 97.6,
     "deviationsCount": 9,
+    "oppositeCount": 3,
+    "nuanceCount": 6,
     "isIndependent": false
   },
   "mp-111": {
@@ -885,6 +1105,8 @@
     "absentPct": 0.2,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-112": {
@@ -893,6 +1115,8 @@
     "absentPct": 3.5,
     "cohesionPct": 93.4,
     "deviationsCount": 25,
+    "oppositeCount": 1,
+    "nuanceCount": 24,
     "isIndependent": false
   },
   "mp-113": {
@@ -901,6 +1125,8 @@
     "absentPct": 0.2,
     "cohesionPct": 97.5,
     "deviationsCount": 10,
+    "oppositeCount": 3,
+    "nuanceCount": 7,
     "isIndependent": false
   },
   "mp-114": {
@@ -909,6 +1135,8 @@
     "absentPct": 49.8,
     "cohesionPct": 99.4,
     "deviationsCount": 1,
+    "oppositeCount": 0,
+    "nuanceCount": 1,
     "isIndependent": false
   },
   "mp-115": {
@@ -917,6 +1145,8 @@
     "absentPct": 1.8,
     "cohesionPct": 96.0,
     "deviationsCount": 15,
+    "oppositeCount": 12,
+    "nuanceCount": 3,
     "isIndependent": false
   },
   "mp-116": {
@@ -925,6 +1155,8 @@
     "absentPct": 0.2,
     "cohesionPct": 99.5,
     "deviationsCount": 2,
+    "oppositeCount": 0,
+    "nuanceCount": 2,
     "isIndependent": false
   },
   "mp-117": {
@@ -933,6 +1165,8 @@
     "absentPct": 2.8,
     "cohesionPct": null,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": true
   },
   "mp-118": {
@@ -941,6 +1175,8 @@
     "absentPct": 0.5,
     "cohesionPct": 98.7,
     "deviationsCount": 5,
+    "oppositeCount": 1,
+    "nuanceCount": 4,
     "isIndependent": false
   },
   "mp-119": {
@@ -949,6 +1185,8 @@
     "absentPct": 2.2,
     "cohesionPct": 98.7,
     "deviationsCount": 5,
+    "oppositeCount": 0,
+    "nuanceCount": 5,
     "isIndependent": false
   },
   "mp-120": {
@@ -957,6 +1195,8 @@
     "absentPct": 0.2,
     "cohesionPct": 92.4,
     "deviationsCount": 29,
+    "oppositeCount": 5,
+    "nuanceCount": 24,
     "isIndependent": false
   },
   "mp-121": {
@@ -965,6 +1205,8 @@
     "absentPct": 0.5,
     "cohesionPct": 96.7,
     "deviationsCount": 13,
+    "oppositeCount": 0,
+    "nuanceCount": 13,
     "isIndependent": false
   },
   "mp-122": {
@@ -973,6 +1215,8 @@
     "absentPct": 4.2,
     "cohesionPct": 97.6,
     "deviationsCount": 9,
+    "oppositeCount": 0,
+    "nuanceCount": 9,
     "isIndependent": false
   },
   "mp-123": {
@@ -981,6 +1225,8 @@
     "absentPct": 3.2,
     "cohesionPct": 97.5,
     "deviationsCount": 9,
+    "oppositeCount": 7,
+    "nuanceCount": 2,
     "isIndependent": false
   },
   "mp-124": {
@@ -989,6 +1235,8 @@
     "absentPct": 18.8,
     "cohesionPct": 96.9,
     "deviationsCount": 10,
+    "oppositeCount": 4,
+    "nuanceCount": 6,
     "isIndependent": false
   },
   "mp-125": {
@@ -997,6 +1245,8 @@
     "absentPct": 16.2,
     "cohesionPct": 95.3,
     "deviationsCount": 15,
+    "oppositeCount": 0,
+    "nuanceCount": 15,
     "isIndependent": false
   },
   "mp-126": {
@@ -1005,6 +1255,8 @@
     "absentPct": 0.5,
     "cohesionPct": 99.0,
     "deviationsCount": 4,
+    "oppositeCount": 0,
+    "nuanceCount": 4,
     "isIndependent": false
   },
   "mp-127": {
@@ -1013,6 +1265,8 @@
     "absentPct": 9.2,
     "cohesionPct": 98.1,
     "deviationsCount": 7,
+    "oppositeCount": 0,
+    "nuanceCount": 7,
     "isIndependent": false
   },
   "mp-128": {
@@ -1021,6 +1275,8 @@
     "absentPct": 11.8,
     "cohesionPct": 95.7,
     "deviationsCount": 14,
+    "oppositeCount": 11,
+    "nuanceCount": 3,
     "isIndependent": false
   },
   "mp-129": {
@@ -1029,6 +1285,8 @@
     "absentPct": 8.5,
     "cohesionPct": 99.2,
     "deviationsCount": 3,
+    "oppositeCount": 2,
+    "nuanceCount": 1,
     "isIndependent": false
   },
   "mp-130": {
@@ -1037,6 +1295,8 @@
     "absentPct": 59.8,
     "cohesionPct": null,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": true
   },
   "mp-131": {
@@ -1045,6 +1305,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-132": {
@@ -1053,6 +1315,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-133": {
@@ -1061,6 +1325,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-134": {
@@ -1069,6 +1335,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-135": {
@@ -1077,6 +1345,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-136": {
@@ -1085,6 +1355,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-137": {
@@ -1093,6 +1365,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-138": {
@@ -1101,6 +1375,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-139": {
@@ -1109,6 +1385,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-140": {
@@ -1117,6 +1395,8 @@
     "absentPct": 100.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "isIndependent": false
   }
 }

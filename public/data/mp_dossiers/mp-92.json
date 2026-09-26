@@ -37,6 +37,8 @@
     "activeTotalCount": 154,
     "activeAlignedCount": 146,
     "deviationsCount": 8,
+    "oppositeCount": 8,
+    "nuanceCount": 0,
     "deviations": [
       {
         "voteId": "22a9fd7a-b432-4e79-9be8-f74b08b274a4",
@@ -45,7 +47,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "886feaf3-2645-45dd-898e-768e86791ad5",
@@ -54,7 +57,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "PIENEMTS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "f46e76dd-eb3c-4105-9b7d-2fbef45cd72d",
@@ -63,7 +67,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "2b8a98ab-fc76-410d-bc2b-87f957466499",
@@ -72,7 +77,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "09fe2eb8-5b1c-460a-8da2-6faef4a3c566",
@@ -81,7 +87,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "375e82f9-8c09-4ade-9511-3e48845c4cac",
@@ -90,7 +97,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "805c32ee-765e-4c1c-90d5-a792f5529bf4",
@@ -99,7 +107,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "PIENEMTS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "61c2f7fb-0e96-46c9-8869-60f984e13ff3",
@@ -108,7 +117,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "PIENEMTS",
-        "category": "Budžets un Nodokļi"
+        "category": "Budžets un Nodokļi",
+        "deviationType": "OPPOSITE"
       }
     ]
   },

@@ -37,6 +37,8 @@
     "activeTotalCount": 271,
     "activeAlignedCount": 268,
     "deviationsCount": 3,
+    "oppositeCount": 1,
+    "nuanceCount": 2,
     "deviations": [
       {
         "voteId": "d90e80fa-938c-43d5-93cf-b37af8ea79c3",
@@ -45,7 +47,8 @@
         "decision": "PRET",
         "factionLine": "PAR",
         "result": "NORAIDITS",
-        "category": "Ekonomika un Enerģētika"
+        "category": "Ekonomika un Enerģētika",
+        "deviationType": "OPPOSITE"
       },
       {
         "voteId": "66c51aec-d740-4afa-839c-cf696110498c",
@@ -54,7 +57,8 @@
         "decision": "ATTURAS",
         "factionLine": "PRET",
         "result": "NORAIDITS",
-        "category": "Valsts pārvalde"
+        "category": "Valsts pārvalde",
+        "deviationType": "NUANCE"
       },
       {
         "voteId": "85051778-3d81-4237-b48d-835e946efa5a",
@@ -63,7 +67,8 @@
         "decision": "PRET",
         "factionLine": "ATTURAS",
         "result": "NORAIDITS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "NUANCE"
       }
     ]
   },

@@ -37,6 +37,8 @@
     "activeTotalCount": 228,
     "activeAlignedCount": 227,
     "deviationsCount": 1,
+    "oppositeCount": 1,
+    "nuanceCount": 0,
     "deviations": [
       {
         "voteId": "84f441bf-bc47-4b51-a49d-b6be713d9ae5",
@@ -45,7 +47,8 @@
         "decision": "PAR",
         "factionLine": "PRET",
         "result": "PIENEMTS",
-        "category": "Veselība un Labklājība"
+        "category": "Veselība un Labklājība",
+        "deviationType": "OPPOSITE"
       }
     ]
   },

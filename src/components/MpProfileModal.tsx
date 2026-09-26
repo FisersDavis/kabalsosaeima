@@ -42,6 +42,9 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
   // Progressive pagination for voting history
   const [historyVisibleCount, setHistoryVisibleCount] = useState<number>(50);
 
+  // Deviation tier filter
+  const [deviationFilter, setDeviationFilter] = useState<'ALL' | 'OPPOSITE' | 'NUANCE'>('ALL');
+
   // Scroll ref for modal body to reset scroll on tab switch
   const modalBodyRef = useRef<HTMLDivElement>(null);
 
@@ -53,6 +56,10 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
   useEffect(() => {
     setHistoryVisibleCount(50);
   }, [historySearch, historyDecision, mp.id]);
+
+  useEffect(() => {
+    setDeviationFilter('ALL');
+  }, [mp.id, activeTab]);
 
   // Fetch individual dossier JSON
   useEffect(() => {
@@ -119,6 +126,13 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
       return true;
     });
   }, [dossier?.votingHistory, historyDecision, historySearch]);
+
+  // Filtered deviations by tier (OPPOSITE vs NUANCE)
+  const filteredDeviations = useMemo(() => {
+    if (!dossier?.cohesion?.deviations) return [];
+    if (deviationFilter === 'ALL') return dossier.cohesion.deviations;
+    return dossier.cohesion.deviations.filter((d) => d.deviationType === deviationFilter);
+  }, [dossier?.cohesion?.deviations, deviationFilter]);
 
   const getDecisionBadge = (decision: VoteDecision) => {
     switch (decision) {
@@ -471,7 +485,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                           </p>
                         </div>
 
-                        <div className="flex items-center gap-3 self-stretch sm:self-auto border-t sm:border-t-0 sm:border-l border-slate-100 pt-3 sm:pt-0 sm:pl-6 text-right">
+                        <div className="flex items-center gap-3 self-stretch sm:self-auto border-t sm:border-t-0 sm:border-l border-slate-100 pt-3 sm:pt-0 sm:pl-6 text-right flex-wrap sm:flex-nowrap">
                           <div>
                             <div className="text-xs font-mono font-bold text-emerald-700">
                               {dossier.cohesion.activeAlignedCount}
@@ -481,22 +495,69 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                           <span className="text-slate-300">/</span>
                           <div>
                             <div className="text-xs font-mono font-bold text-rose-700">
-                              {dossier.cohesion.deviationsCount}
+                              {dossier.cohesion.oppositeCount ?? 0}
                             </div>
-                            <div className="text-[10px] text-slate-400">atšķirīgas balsis</div>
+                            <div className="text-[10px] text-slate-400">pretējas balsis</div>
+                          </div>
+                          <span className="text-slate-300">/</span>
+                          <div>
+                            <div className="text-xs font-mono font-bold text-amber-700">
+                              {dossier.cohesion.nuanceCount ?? 0}
+                            </div>
+                            <div className="text-[10px] text-slate-400">pozīcijas nianses</div>
                           </div>
                         </div>
                       </div>
 
                       {/* Deviations List */}
                       <div className="space-y-3">
-                        <div className="flex items-center justify-between">
-                          <h4 className="text-xs font-bold text-slate-900">
-                            Balsojumi, kuros deputāts balsojis pretēji frakcijas vairākumam
-                          </h4>
-                          <span className="text-xs font-mono text-slate-500">
-                            Kopā {dossier.cohesion.deviationsCount}
-                          </span>
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                          <div>
+                            <h4 className="text-xs font-bold text-slate-900">
+                              Balsojumi, kuros deputāta izvēle atšķīrās no frakcijas vairākuma
+                            </h4>
+                            <p className="text-[11px] text-slate-500 mt-0.5">
+                              Kopā {dossier.cohesion.deviationsCount} atšķirīgas balsis ({dossier.cohesion.oppositeCount ?? 0} pretējas, {dossier.cohesion.nuanceCount ?? 0} nianses)
+                            </p>
+                          </div>
+
+                          {dossier.cohesion.deviationsCount > 0 && (
+                            <div className="flex items-center gap-1.5 shrink-0 overflow-x-auto scrollbar-none">
+                              <button
+                                type="button"
+                                onClick={() => setDeviationFilter('ALL')}
+                                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
+                                  deviationFilter === 'ALL'
+                                    ? 'bg-slate-900 text-white shadow-2xs'
+                                    : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                                }`}
+                              >
+                                Visi ({dossier.cohesion.deviationsCount})
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setDeviationFilter('OPPOSITE')}
+                                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
+                                  deviationFilter === 'OPPOSITE'
+                                    ? 'bg-rose-700 text-white shadow-2xs'
+                                    : 'bg-white text-rose-700 hover:bg-rose-50 border border-rose-200'
+                                }`}
+                              >
+                                Pretēji ({dossier.cohesion.oppositeCount ?? 0})
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => setDeviationFilter('NUANCE')}
+                                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
+                                  deviationFilter === 'NUANCE'
+                                    ? 'bg-amber-600 text-white shadow-2xs'
+                                    : 'bg-white text-amber-700 hover:bg-amber-50 border border-amber-200'
+                                }`}
+                              >
+                                Nianses ({dossier.cohesion.nuanceCount ?? 0})
+                              </button>
+                            </div>
+                          )}
                         </div>
 
                         {dossier.cohesion.deviations.length === 0 ? (
@@ -507,20 +568,34 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                               Šis deputāts visos reģistrētajos balsojumos ir balsojis saskaņā ar savas frakcijas vairākuma lēmumu.
                             </p>
                           </div>
+                        ) : filteredDeviations.length === 0 ? (
+                          <div className="rounded-xl border border-slate-200 bg-white p-8 text-center text-slate-500 text-xs">
+                            Šajā filtrā nav neviena balsojuma.
+                          </div>
                         ) : (
                           <div className="divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white overflow-hidden shadow-2xs">
-                            {dossier.cohesion.deviations.map((dev) => (
+                            {filteredDeviations.map((dev) => (
                               <div
                                 key={dev.voteId}
                                 className="p-3.5 hover:bg-slate-50 transition flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs"
                               >
                                 <div className="min-w-0 flex-1">
-                                  <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-1">
+                                  <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-1 flex-wrap">
                                     <span>{dev.sittingDate}</span>
                                     <span>·</span>
                                     <span>{dev.category || 'Likumprojekts'}</span>
+                                    <span>·</span>
+                                    {dev.deviationType === 'OPPOSITE' ? (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded font-sans font-bold text-[10px] bg-rose-50 text-rose-800 border border-rose-200">
+                                        Pretējs balsojums
+                                      </span>
+                                    ) : (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded font-sans font-bold text-[10px] bg-amber-50 text-amber-800 border border-amber-200">
+                                        Pozīcijas nianse (Pret vs Atturas)
+                                      </span>
+                                    )}
                                   </div>
-                                  <div className="font-semibold text-slate-900 leading-snug line-clamp-2">
+                                  <div className="font-semibold text-slate-900 leading-snug line-clamp-2" title={dev.title}>
                                     {dev.title}
                                   </div>
                                 </div>
@@ -551,6 +626,14 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                             ))}
                           </div>
                         )}
+
+                        {/* Constitutional education note for deviations */}
+                        <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4 flex items-start gap-3 text-xs text-slate-600 leading-relaxed">
+                          <Info className="h-4 w-4 text-slate-500 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <strong className="text-slate-800">Kāpēc nodalām pretēju balsojumu no pozīcijas nianses?</strong> Saskaņā ar Satversmes 24. pantu, gan balss „Pret”, gan „Atturas” matemātiski darbojas vienādi — abas novērš lēmuma pieņemšanu. Tādēļ balsojums „Pret”, kamēr frakcija „Atturas” (vai otrādi), ir taktiska nianse, nevis pretējs mērķis. Par būtisku domstarpību uzskatāms tikai pretējs balsojums — kad viena puse balsojusi „Par”, bet otra to bloķējusi.
+                          </div>
+                        </div>
                       </div>
                     </>
                   )}

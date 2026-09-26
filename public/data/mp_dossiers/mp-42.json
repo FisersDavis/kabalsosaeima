@@ -37,6 +37,8 @@
     "activeTotalCount": 0,
     "activeAlignedCount": 0,
     "deviationsCount": 0,
+    "oppositeCount": 0,
+    "nuanceCount": 0,
     "deviations": []
   },
   "votingHistory": [
