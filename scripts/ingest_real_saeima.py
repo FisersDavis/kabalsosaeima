@@ -41,27 +41,27 @@ FACTION_MAP = {
 CATEGORIES = [
     {
         'id': 'drosiba',
-        'label': 'Valsts drošība & Aizsardzība',
+        'label': 'Valsts drošība un aizsardzība',
         'keywords': ['aizsardzīb', 'militār', 'robež', 'iekšliet', 'policij', 'valsts drošīb', 'ieroč', 'ukrain', 'sankcij']
     },
     {
         'id': 'budzets',
-        'label': 'Budžets & Nodokļi',
+        'label': 'Budžets un nodokļi',
         'keywords': ['budžet', 'nodokļ', 'finans', 'akcīz', 'ieņēmum', 'muitas', 'kredīt', 'parād', 'nodev']
     },
     {
         'id': 'ekonomika',
-        'label': 'Ekonomika & Enerģētika',
+        'label': 'Ekonomika un enerģētika',
         'keywords': ['enerģētik', 'iepirkum', 'komerc', 'tirg', 'transport', 'dzelzceļ', 'lauksaimniecīb', 'mež', 'ost', 'satiksm', 'būvniecīb', 'biznes']
     },
     {
         'id': 'tiesiskums',
-        'label': 'Tiesiskums & Korupcijas novēršana',
+        'label': 'Tiesiskums un korupcijas novēršana',
         'keywords': ['krimināl', 'tiesu', 'korupcij', 'prokuratūr', 'satversm', 'sodu', 'notariāt', 'advokatūr', 'vēlēšan', 'knab', 'civillik']
     },
     {
         'id': 'socialie',
-        'label': 'Veselība & Labklājība',
+        'label': 'Veselība un labklājība',
         'keywords': ['pensij', 'pabalst', 'veselīb', 'ārstniecīb', 'bērn', 'invalīd', 'darba', 'izglītīb', 'sociāl', 'pacient', 'zāļu', 'medicin']
     },
     {

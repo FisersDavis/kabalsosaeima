@@ -553,7 +553,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                               · {formatSubstituteLabel(activeSeat.replacesMpName)}
                             </span>
                           )}
-                          <span className="ml-1.5 text-slate-400 font-mono">· Vieta #{activeSeat.chamberSeat}</span>
+                          <span className="ml-1.5 text-slate-400 font-mono">· Vieta Nr. {activeSeat.chamberSeat}</span>
                         </div>
                       </div>
                     </div>

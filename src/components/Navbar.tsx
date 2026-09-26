@@ -243,7 +243,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
             >
               <Users className="h-3.5 w-3.5" />
-              <span>Partijas & Deputāti</span>
+              <span>Partijas un deputāti</span>
               <span className={`ml-0.5 text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
                 activeTab === 'mps' ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-500'
               }`}>

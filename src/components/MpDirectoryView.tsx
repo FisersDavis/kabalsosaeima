@@ -73,7 +73,7 @@ export const MpDirectoryView: React.FC<MpDirectoryViewProps> = ({
         <div className="flex items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-2">
             <Users className="h-4 w-4 text-slate-700" />
-            <h2 className="text-sm font-bold text-slate-900">Saeimas frakcijas & politiskie spēki</h2>
+            <h2 className="text-sm font-bold text-slate-900">Saeimas frakcijas un politiskie spēki</h2>
           </div>
           <span className="text-xs text-slate-500 font-medium">Kopā 100 deputātu mandāti</span>
         </div>
@@ -242,7 +242,7 @@ export const MpDirectoryView: React.FC<MpDirectoryViewProps> = ({
                         </span>
 
                         <span className="text-[10px] text-slate-400 font-mono">
-                          #{mp.seatNumber}
+                          Nr. {mp.seatNumber}
                         </span>
                       </div>
                     </div>
@@ -269,7 +269,7 @@ export const MpDirectoryView: React.FC<MpDirectoryViewProps> = ({
                     )}
 
                     <span className="text-slate-400 text-[9px] group-hover:text-slate-600 transition flex items-center gap-0.5">
-                      Sēdvieta {mp.seatNumber}
+                      Sēdvieta Nr. {mp.seatNumber}
                     </span>
                   </div>
                 </div>

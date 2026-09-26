@@ -29,7 +29,7 @@ interface CivicDomainConfig {
 const CIVIC_DOMAINS: CivicDomainConfig[] = [
   {
     id: 'drosiba',
-    title: 'Valsts drošība & Aizsardzība',
+    title: 'Valsts drošība un aizsardzība',
     description: 'Nacionālie bruņotie spēki, robežapsardzība, NATO integrācija, iekšlietu dienesti un civilā aizsardzība.',
     icon: Shield,
     iconBg: 'bg-blue-50',
@@ -38,7 +38,7 @@ const CIVIC_DOMAINS: CivicDomainConfig[] = [
   },
   {
     id: 'budzets',
-    title: 'Budžets & Nodokļi',
+    title: 'Budžets un nodokļi',
     description: 'Valsts ikgadējais budžets, nodokļu un nodevu likmes, fiskālā disciplīna un valsts kases uzraudzība.',
     icon: Coins,
     iconBg: 'bg-amber-50',
@@ -47,7 +47,7 @@ const CIVIC_DOMAINS: CivicDomainConfig[] = [
   },
   {
     id: 'tiesiskums',
-    title: 'Tiesiskums & Korupcijas novēršana',
+    title: 'Tiesiskums un korupcijas novēršana',
     description: 'Satversmes grozījumi, tiesu reformas, KNAB uzraudzība, administratīvā atbildība un cilvēktiesības.',
     icon: Scale,
     iconBg: 'bg-purple-50',
@@ -56,7 +56,7 @@ const CIVIC_DOMAINS: CivicDomainConfig[] = [
   },
   {
     id: 'ekonomika',
-    title: 'Ekonomika & Enerģētika',
+    title: 'Ekonomika un enerģētika',
     description: 'Enerģētiskā neatkarība, elektroenerģijas tirgus, infrastruktūra, lauksaimniecība un tirdzniecība.',
     icon: Zap,
     iconBg: 'bg-emerald-50',
@@ -65,7 +65,7 @@ const CIVIC_DOMAINS: CivicDomainConfig[] = [
   },
   {
     id: 'socialie',
-    title: 'Veselība & Labklājība',
+    title: 'Veselība un labklājība',
     description: 'Veselības aprūpes finansējums, pensiju indeksācija, sociālie pabalsti un izglītības sistēmas reformas.',
     icon: HeartHandshake,
     iconBg: 'bg-rose-50',

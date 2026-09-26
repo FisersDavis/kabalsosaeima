@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100 text-xs text-slate-400">
-          <p>© {new Date().getFullYear()} kābalsosaeima.lv · Zero-Maintenance Civic Tech</p>
+          <p>© {new Date().getFullYear()} kābalsosaeima.lv · Atvērtā koda pilsoniskā iniciatīva</p>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1">
               Veidots sabiedrības informēšanai un atklātībai

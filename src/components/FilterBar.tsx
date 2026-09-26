@@ -83,8 +83,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         >
           <option value="ALL" className="bg-white text-slate-900">Visi balsojumi</option>
           <option value="likums" className="bg-white text-slate-900">Likumu pieņemšana</option>
-          <option value="priekslikums" className="bg-white text-slate-900">Priekšlikumi & labojumi</option>
-          <option value="procedura" className="bg-white text-slate-900">Procedūra & darba kārtība</option>
+          <option value="priekslikums" className="bg-white text-slate-900">Priekšlikumi un grozījumi</option>
+          <option value="procedura" className="bg-white text-slate-900">Procedūra un darba kārtība</option>
         </select>
         <ChevronDown
           className={`pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 ${
