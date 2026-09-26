@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import type { MP, Faction, MpDossier, VoteDecision } from '../types';
 import { normalizeLatvianSearch } from '../types';
 import {
@@ -38,6 +38,21 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
   // History search & filters
   const [historySearch, setHistorySearch] = useState<string>('');
   const [historyDecision, setHistoryDecision] = useState<string>('ALL');
+
+  // Progressive pagination for voting history
+  const [historyVisibleCount, setHistoryVisibleCount] = useState<number>(50);
+
+  // Scroll ref for modal body to reset scroll on tab switch
+  const modalBodyRef = useRef<HTMLDivElement>(null);
+
+  // Reset scroll to top and reset history pagination count on tab or filter switch
+  useEffect(() => {
+    modalBodyRef.current?.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+  }, [activeTab]);
+
+  useEffect(() => {
+    setHistoryVisibleCount(50);
+  }, [historySearch, historyDecision, mp.id]);
 
   // Fetch individual dossier JSON
   useEffect(() => {
@@ -147,15 +162,19 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
   const mpFaction = dossier?.faction || faction;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs overflow-y-auto">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs"
+      onClick={onClose}
+    >
       <div
-        className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh] animate-in fade-in zoom-in-95 duration-150"
+        className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col h-[90vh] max-h-[90vh] animate-in fade-in zoom-in-95 duration-150"
         role="dialog"
         aria-modal="true"
         aria-labelledby="mp-modal-title"
+        onClick={(e) => e.stopPropagation()}
       >
         {/* HEADER: Identity & Mandate (Card 1) */}
-        <div className="p-4 sm:p-6 bg-slate-50/90 border-b border-slate-200 flex items-start justify-between gap-4">
+        <div className="p-4 sm:p-6 bg-slate-50/90 border-b border-slate-200 flex items-start justify-between gap-4 shrink-0">
           <div className="flex items-start gap-3.5 sm:gap-4">
             {/* Avatar circle */}
             <div
@@ -217,7 +236,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
         </div>
 
         {/* NAVIGATION TABS */}
-        <div className="flex border-b border-slate-200 bg-white px-4 sm:px-6 gap-2 sm:gap-4 overflow-x-auto scrollbar-none">
+        <div className="flex border-b border-slate-200 bg-white px-4 sm:px-6 gap-2 sm:gap-4 overflow-x-auto scrollbar-none shrink-0 sticky top-0 z-10">
           <button
             type="button"
             onClick={() => setActiveTab('attendance')}
@@ -239,7 +258,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                 : 'border-transparent text-slate-500 hover:text-slate-800'
             }`}
           >
-            Frakcijas vienotība & šķelšanās
+            Frakcijas vienotība un šķelšanās
             {dossier?.cohesion?.deviationsCount !== undefined && dossier.cohesion.deviationsCount > 0 && (
               <span className="ml-1.5 px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-amber-100 text-amber-800">
                 {dossier.cohesion.deviationsCount}
@@ -264,7 +283,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
         </div>
 
         {/* MODAL BODY */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+        <div ref={modalBodyRef} className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-6 space-y-6">
           {loading && (
             <div className="py-16 text-center text-slate-400">
               <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-slate-400 border-t-transparent" />
@@ -573,13 +592,30 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                   </div>
 
                   {/* History items count */}
-                  <div className="text-xs text-slate-500 px-1">
-                    Atrasti {filteredHistory.length} balsojumi
+                  <div className="flex items-center justify-between text-xs text-slate-500 px-1">
+                    <span>
+                      Atrasti {filteredHistory.length} balsojumi
+                      {filteredHistory.length > historyVisibleCount && (
+                        <span className="text-slate-400 ml-1">
+                          (parādīti pirmie {historyVisibleCount})
+                        </span>
+                      )}
+                    </span>
+
+                    {filteredHistory.length > historyVisibleCount && (
+                      <button
+                        type="button"
+                        onClick={() => setHistoryVisibleCount(filteredHistory.length)}
+                        className="text-slate-600 hover:text-slate-900 font-medium underline text-xs cursor-pointer"
+                      >
+                        Rādīt visus ({filteredHistory.length})
+                      </button>
+                    )}
                   </div>
 
                   {/* History list */}
                   <div className="divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white overflow-hidden shadow-2xs">
-                    {filteredHistory.slice(0, 50).map((item) => (
+                    {filteredHistory.slice(0, historyVisibleCount).map((item) => (
                       <div
                         key={item.voteId}
                         className="p-3.5 hover:bg-slate-50 transition flex items-center justify-between gap-3 text-xs"
@@ -613,9 +649,22 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                     ))}
                   </div>
 
-                  {filteredHistory.length > 50 && (
-                    <div className="text-center text-xs text-slate-400 py-2">
-                      Parādīti pirmie 50 no {filteredHistory.length} balsojumiem. Izmantojiet meklēšanu precīzākai atlasei.
+                  {filteredHistory.length > historyVisibleCount && (
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 pb-1">
+                      <button
+                        type="button"
+                        onClick={() => setHistoryVisibleCount((prev) => Math.min(prev + 50, filteredHistory.length))}
+                        className="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 text-xs font-semibold shadow-xs hover:border-slate-400 transition cursor-pointer"
+                      >
+                        Rādīt vēl 50 balsojumus (atlikuši {filteredHistory.length - historyVisibleCount})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setHistoryVisibleCount(filteredHistory.length)}
+                        className="text-xs text-slate-500 hover:text-slate-800 underline cursor-pointer py-1"
+                      >
+                        Ielādēt visus {filteredHistory.length} balsojumus uzreiz
+                      </button>
                     </div>
                   )}
                 </div>
@@ -625,7 +674,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
         </div>
 
         {/* FOOTER */}
-        <div className="p-3 bg-slate-50 border-t border-slate-200 text-center text-[11px] text-slate-500">
+        <div className="p-3 bg-slate-50 border-t border-slate-200 text-center text-[11px] text-slate-500 shrink-0">
           <span>Objektīvi dati no Saeimas oficiālajiem sēžu protokoliem · Atvērtā parlamenta reģistrs</span>
         </div>
       </div>
