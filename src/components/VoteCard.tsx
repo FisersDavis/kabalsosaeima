@@ -19,15 +19,27 @@ interface VoteCardProps {
 
 const SEAT_ORDER = ['JV', 'ZZS', 'AS', 'NA', 'PRO', 'LPV', 'S!', 'PIEFR'];
 
-interface FactionStanceBadge {
+interface GroupedFaction {
   shortName: string;
-  stance: 'PAR' | 'PRET' | 'NEB' | '—';
-  badgeClass: string;
+  name: string;
+  color: string;
   tooltip: string;
 }
 
-function getFactionStanceBadges(factionBreakdown: FactionBreakdown[] | undefined): FactionStanceBadge[] {
-  if (!factionBreakdown) return [];
+interface GroupedFactionBlocs {
+  par: GroupedFaction[];
+  pret: GroupedFaction[];
+  cits: GroupedFaction[];
+}
+
+function getGroupedFactionBlocs(factionBreakdown: FactionBreakdown[] | undefined): GroupedFactionBlocs {
+  const result: GroupedFactionBlocs = {
+    par: [],
+    pret: [],
+    cits: [],
+  };
+
+  if (!factionBreakdown) return result;
 
   const fbMap = new Map<string, FactionBreakdown>();
   factionBreakdown.forEach((fb) => {
@@ -35,28 +47,12 @@ function getFactionStanceBadges(factionBreakdown: FactionBreakdown[] | undefined
     fbMap.set(fb.factionId.toUpperCase(), fb);
   });
 
-  return SEAT_ORDER.map((short) => {
+  SEAT_ORDER.forEach((short) => {
     const fb = fbMap.get(short) || fbMap.get(short === 'S!' ? 'ST' : short === 'PIEFR' ? 'IND' : short);
-    if (!fb) {
-      return {
-        shortName: short,
-        stance: '—',
-        badgeClass: 'bg-slate-50 text-slate-400 border border-slate-200',
-        tooltip: `${short}: nav datu`,
-      };
-    }
+    if (!fb) return;
 
     const fid = fb.factionId.toLowerCase();
     const isIndependent = short === 'PIEFR' || fid === 'piefr' || fid === 'ind';
-
-    if (isIndependent) {
-      return {
-        shortName: short,
-        stance: '—',
-        badgeClass: 'bg-slate-50 text-slate-500 border border-slate-200',
-        tooltip: `${short} (neatkarīgie deputāti): frakcijas disciplīna netiek piemērota`,
-      };
-    }
 
     const p = fb.votes.par || 0;
     const pr = fb.votes.pret || 0;
@@ -67,40 +63,48 @@ function getFactionStanceBadges(factionBreakdown: FactionBreakdown[] | undefined
 
     const tallyStr = `${p} Par · ${pr} Pret · ${a} Atturas · ${nb} Nebalsoja`;
 
+    if (isIndependent) {
+      result.cits.push({
+        shortName: short,
+        name: fb.name,
+        color: fb.color || '#64748B',
+        tooltip: `${short} (neatkarīgie deputāti): ${tallyStr}`,
+      });
+      return;
+    }
+
     if (active === 0 || nb > active) {
-      return {
+      result.cits.push({
         shortName: short,
-        stance: 'NEB',
-        badgeClass: 'bg-slate-100 text-slate-600 border border-slate-200 font-medium',
+        name: fb.name,
+        color: fb.color || '#64748B',
         tooltip: `${short}: ${tallyStr} (vairākums nebalsoja)`,
-      };
-    }
-
-    if (p > block) {
-      return {
+      });
+    } else if (p > block) {
+      result.par.push({
         shortName: short,
-        stance: 'PAR',
-        badgeClass: 'bg-emerald-50 text-emerald-800 border border-emerald-300 font-bold',
+        name: fb.name,
+        color: fb.color || '#10B981',
         tooltip: `${short}: ${tallyStr} (atbalstīja)`,
-      };
-    }
-
-    if (block > p) {
-      return {
+      });
+    } else if (block > p) {
+      result.pret.push({
         shortName: short,
-        stance: 'PRET',
-        badgeClass: 'bg-rose-50 text-rose-800 border border-rose-300 font-bold',
+        name: fb.name,
+        color: fb.color || '#EF4444',
         tooltip: `${short}: ${tallyStr} (noraidīja)`,
-      };
+      });
+    } else {
+      result.cits.push({
+        shortName: short,
+        name: fb.name,
+        color: fb.color || '#64748B',
+        tooltip: `${short}: ${tallyStr} (balsis sadalījās vienādi)`,
+      });
     }
-
-    return {
-      shortName: short,
-      stance: '—',
-      badgeClass: 'bg-slate-50 text-slate-500 border border-slate-200',
-      tooltip: `${short}: ${tallyStr} (balsis sadalījās vienādi)`,
-    };
   });
+
+  return result;
 }
 
 // Strips redundant Latvian parliamentary preamble filler from titles
@@ -152,8 +156,8 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionS
   const [copied, setCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const factionStanceBadges = useMemo(() => {
-    return showFactionStances ? getFactionStanceBadges(vote.factionBreakdown) : [];
+  const groupedBlocs = useMemo(() => {
+    return showFactionStances ? getGroupedFactionBlocs(vote.factionBreakdown) : { par: [], pret: [], cits: [] };
   }, [showFactionStances, vote.factionBreakdown]);
 
   const isApproved = vote.result === 'PIENEMTS';
@@ -305,23 +309,80 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionS
         )}
       </div>
 
-      {/* Row 3.5: Faction Majority Stances Strip (Continuous, seat-ordered, no coalition delimiters) */}
-      {showFactionStances && factionStanceBadges.length > 0 && (
-        <div className="mt-2 pt-1.5 border-t border-slate-100 flex flex-wrap items-center gap-1.5 text-xs">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 select-none mr-0.5">
-            Frakciju pozīcijas:
-          </span>
-          <div className="flex flex-wrap items-center gap-1">
-            {factionStanceBadges.map((badge) => (
-              <span
-                key={badge.shortName}
-                title={badge.tooltip}
-                className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono cursor-default ${badge.badgeClass}`}
-              >
-                {badge.shortName} {badge.stance}
+      {/* Row 3.5: Grouped Faction Blocs (Par / Pret / Cits) */}
+      {showFactionStances && (groupedBlocs.par.length > 0 || groupedBlocs.pret.length > 0 || groupedBlocs.cits.length > 0) && (
+        <div className="mt-2 pt-1.5 border-t border-slate-100 flex flex-wrap items-center gap-x-3.5 gap-y-1.5 text-xs">
+          {/* Par Bloc */}
+          {groupedBlocs.par.length > 0 && (
+            <div className="flex items-center gap-1.5">
+              <span className="text-[11px] font-bold text-emerald-700 tracking-wide select-none">
+                Par:
               </span>
-            ))}
-          </div>
+              <div className="flex flex-wrap items-center gap-1">
+                {groupedBlocs.par.map((f) => (
+                  <span
+                    key={f.shortName}
+                    title={f.tooltip}
+                    className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md border border-slate-200 bg-white text-slate-800 text-[11px] font-mono font-semibold shadow-2xs hover:bg-slate-50 transition cursor-default"
+                  >
+                    <span
+                      className="h-1.5 w-1.5 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: f.color }}
+                    />
+                    <span>{f.shortName}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Pret Bloc */}
+          {groupedBlocs.pret.length > 0 && (
+            <div className="flex items-center gap-1.5">
+              <span className="text-[11px] font-bold text-rose-700 tracking-wide select-none">
+                Pret:
+              </span>
+              <div className="flex flex-wrap items-center gap-1">
+                {groupedBlocs.pret.map((f) => (
+                  <span
+                    key={f.shortName}
+                    title={f.tooltip}
+                    className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md border border-slate-200 bg-white text-slate-800 text-[11px] font-mono font-semibold shadow-2xs hover:bg-slate-50 transition cursor-default"
+                  >
+                    <span
+                      className="h-1.5 w-1.5 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: f.color }}
+                    />
+                    <span>{f.shortName}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Cits Bloc */}
+          {groupedBlocs.cits.length > 0 && (
+            <div className="flex items-center gap-1.5">
+              <span className="text-[11px] font-bold text-slate-500 tracking-wide select-none">
+                Cits:
+              </span>
+              <div className="flex flex-wrap items-center gap-1">
+                {groupedBlocs.cits.map((f) => (
+                  <span
+                    key={f.shortName}
+                    title={f.tooltip}
+                    className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md border border-slate-200 bg-slate-50 text-slate-600 text-[11px] font-mono font-medium shadow-2xs hover:bg-slate-100 transition cursor-default"
+                  >
+                    <span
+                      className="h-1.5 w-1.5 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: f.color }}
+                    />
+                    <span>{f.shortName}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
