@@ -23,7 +23,7 @@ export function App() {
   const [activeTab, setActiveTab] = useState<ActiveNavTab>(() => {
     if (typeof window !== 'undefined') {
       const h = window.location.hash.toLowerCase();
-      if (h === '#radars' || h === '#tematiskais-radars' || h === '#issues') return 'issues';
+      if (h.startsWith('#radars') || h.startsWith('#tematiskais-radars') || h.startsWith('#issues')) return 'issues';
       if (h === '#deputati' || h === '#partijas' || h === '#mps') return 'mps';
     }
     return 'votes';
@@ -41,7 +41,7 @@ export function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const h = window.location.hash.toLowerCase();
-      if (h === '#radars' || h === '#tematiskais-radars' || h === '#issues') {
+      if (h.startsWith('#radars') || h.startsWith('#tematiskais-radars') || h.startsWith('#issues')) {
         setActiveTab('issues');
       } else if (h === '#deputati' || h === '#partijas' || h === '#mps') {
         setActiveTab('mps');
@@ -360,6 +360,9 @@ export function App() {
             onSelectCategory={(categoryId) => {
               setSelectedCategory(categoryId);
               setActiveTab('votes');
+              if (typeof window !== 'undefined') {
+                window.location.hash = '#balsojumi';
+              }
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
