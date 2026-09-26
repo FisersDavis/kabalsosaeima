@@ -15,7 +15,6 @@ export interface Faction {
   shortName: string;
   color: string;
   seats: number;
-  isCoalition?: boolean;
 }
 
 export interface MP {

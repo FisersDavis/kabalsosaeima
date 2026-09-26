@@ -108,10 +108,10 @@ export const MpDirectoryView: React.FC<MpDirectoryViewProps> = ({
                 <div className="mt-1.5 font-bold text-xs leading-snug truncate w-full" title={faction.name}>
                   {faction.shortName}
                 </div>
-                <div className={`text-[10px] mt-0.5 truncate w-full ${
+                <div className={`text-[10px] mt-0.5 truncate w-full font-medium ${
                   isSelected ? 'text-slate-300' : 'text-slate-500'
                 }`}>
-                  {faction.isCoalition ? 'Koalīcija' : 'Opozīcija'}
+                  {count} {count === 1 ? 'mandāts' : 'mandāti'}
                 </div>
               </button>
             );
@@ -122,19 +122,19 @@ export const MpDirectoryView: React.FC<MpDirectoryViewProps> = ({
       {/* Filter and Search Bar */}
       <section className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 rounded-xl border border-slate-200 bg-white p-3 shadow-2xs">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Meklēt deputātu pēc vārda vai uzvārda..."
-            className="w-full pl-8.5 pr-8 py-1.5 text-xs rounded-lg border border-slate-200 focus:outline-none focus:border-slate-400 bg-slate-50/50"
+            className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-10 pr-8 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => onSearchChange('')}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
             >
               <X className="h-3.5 w-3.5" />
             </button>
