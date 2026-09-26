@@ -322,6 +322,10 @@ export function App() {
         {activeTab === 'issues' && (
           <IssueRadarView
             votes={termVotes}
+            factions={factions}
+            onSelectVote={(vote) => {
+              setSelectedVote(vote);
+            }}
             onSelectCategory={(categoryId) => {
               setSelectedCategory(categoryId);
               setActiveTab('votes');
