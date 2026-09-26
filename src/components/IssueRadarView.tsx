@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import type { Vote, Faction, FactionBreakdown } from '../types';
 import { normalizeLatvianSearch, parseLatvianDate } from '../types';
+import { VoteCard } from './VoteCard';
 import {
   Shield,
   Coins,
@@ -12,16 +13,8 @@ import {
   Search,
   X,
   ChevronDown,
-  ChevronUp,
-  ExternalLink,
   Info,
-  CheckCircle2,
-  XCircle,
-  AlertCircle,
-  Users,
   Flame,
-  Split,
-  FileCheck2,
   LayoutGrid,
   Filter
 } from 'lucide-react';
@@ -33,8 +26,8 @@ interface IssueRadarViewProps {
   onSelectCategory?: (categoryId: string) => void;
 }
 
-export type RadarCharacterFilter = 'ALL' | 'TIGHT_MARGIN' | 'COALITION_SPLIT' | 'FINAL_PASSAGE';
 export type RadarMatrixMetric = 'COALITION_ALIGNMENT' | 'VOTE_PAR';
+export type RadarContentiousFilter = 'CONTENTIOUS_ONLY' | 'ALL_VOTES' | 'COALITION_SPLIT_ONLY' | 'TIGHT_MARGIN_ONLY';
 
 interface CivicDomainConfig {
   id: string;
@@ -44,8 +37,6 @@ interface CivicDomainConfig {
   icon: React.ElementType;
   iconBg: string;
   iconColor: string;
-  activeBorder: string;
-  activeBg: string;
   badgeBg: string;
 }
 
@@ -58,8 +49,6 @@ const CIVIC_DOMAINS: CivicDomainConfig[] = [
     icon: Shield,
     iconBg: 'bg-blue-50',
     iconColor: 'text-blue-700',
-    activeBorder: 'border-blue-600',
-    activeBg: 'bg-blue-50/50',
     badgeBg: 'bg-blue-100 text-blue-800',
   },
   {
@@ -70,8 +59,6 @@ const CIVIC_DOMAINS: CivicDomainConfig[] = [
     icon: Coins,
     iconBg: 'bg-amber-50',
     iconColor: 'text-amber-700',
-    activeBorder: 'border-amber-600',
-    activeBg: 'bg-amber-50/50',
     badgeBg: 'bg-amber-100 text-amber-800',
   },
   {
@@ -82,8 +69,6 @@ const CIVIC_DOMAINS: CivicDomainConfig[] = [
     icon: Scale,
     iconBg: 'bg-purple-50',
     iconColor: 'text-purple-700',
-    activeBorder: 'border-purple-600',
-    activeBg: 'bg-purple-50/50',
     badgeBg: 'bg-purple-100 text-purple-800',
   },
   {
@@ -94,8 +79,6 @@ const CIVIC_DOMAINS: CivicDomainConfig[] = [
     icon: Zap,
     iconBg: 'bg-emerald-50',
     iconColor: 'text-emerald-700',
-    activeBorder: 'border-emerald-600',
-    activeBg: 'bg-emerald-50/50',
     badgeBg: 'bg-emerald-100 text-emerald-800',
   },
   {
@@ -106,8 +89,6 @@ const CIVIC_DOMAINS: CivicDomainConfig[] = [
     icon: HeartHandshake,
     iconBg: 'bg-rose-50',
     iconColor: 'text-rose-700',
-    activeBorder: 'border-rose-600',
-    activeBg: 'bg-rose-50/50',
     badgeBg: 'bg-rose-100 text-rose-800',
   },
   {
@@ -118,49 +99,13 @@ const CIVIC_DOMAINS: CivicDomainConfig[] = [
     icon: Building2,
     iconBg: 'bg-slate-100',
     iconColor: 'text-slate-700',
-    activeBorder: 'border-slate-800',
-    activeBg: 'bg-slate-100/60',
     badgeBg: 'bg-slate-200 text-slate-800',
   },
 ];
 
 const INITIAL_PAGE_SIZE = 25;
 
-// Correct Latvian noun declension for counts
-function formatLatvianCount(count: number, singular: string, pluralNom: string, pluralGen: string): string {
-  const mod10 = count % 10;
-  const mod100 = count % 100;
-  if (mod100 >= 11 && mod100 <= 19) {
-    return `${count} ${pluralGen}`;
-  }
-  if (mod10 === 1) {
-    return `${count} ${singular}`;
-  }
-  if (mod10 === 0) {
-    return `${count} ${pluralGen}`;
-  }
-  return `${count} ${pluralNom}`;
-}
-
-// Strips redundant preamble filler from parliamentary titles
-function cleanVoteTitle(rawTitle: string): string {
-  if (!rawTitle) return '';
-  let t = rawTitle.trim();
-  t = t.replace(/^\s*Par\s+likumprojekta\s+/i, '');
-  t = t.replace(/^\s*Par\s+likumprojektu\s+/i, '');
-  t = t.replace(/^\s*Par\s+lēmuma\s+projektu\s+/i, '');
-  t = t.replace(/^\s*Par\s+lēmuma\s+/i, '');
-  t = t.replace(/^\s*Likumprojekts\s+/i, '');
-  t = t.replace(/^\s*Par\s+priekšlikumu\s+/i, '');
-  t = t.replace(/\s*\(\s*\d+\/[A-Za-z0-9]+\s*\)\s*$/, '');
-  t = t.trim();
-  if (t.length > 0) {
-    return t[0].toUpperCase() + t.slice(1);
-  }
-  return rawTitle;
-}
-
-// Helper to get majority decision for a faction in a vote
+// Helper to get majority active decision for a faction in a vote
 function getFactionMajority(
   fbList: FactionBreakdown[] | undefined,
   factionId: string
@@ -185,7 +130,7 @@ function getFactionMajority(
   return 'ATTURAS';
 }
 
-// Check if a vote had a tight margin (difference between PAR and PRET+ATTURAS <= threshold)
+// Check if a vote had a tight margin (difference between PAR and PRET+ATTURAS <= 10)
 function isTightMarginVote(v: Vote, threshold = 10): boolean {
   const par = v.counts.par || 0;
   const block = (v.counts.pret || 0) + (v.counts.atturas || 0);
@@ -205,122 +150,6 @@ function isCoalitionSplitVote(v: Vote): boolean {
   return distinct.size > 1;
 }
 
-// Check if a vote is final legislative passage
-function isFinalPassageVote(v: Vote): boolean {
-  if (v.isTier1) return true;
-  if (v.reading === 3) return true;
-  if (v.isUrgent && v.reading === 2) return true;
-  return v.voteType === 'likums';
-}
-
-interface FactionStance {
-  decision: 'PAR' | 'PRET' | 'ATTURAS' | 'NEBALSO' | 'NAV_DATU';
-  isSplit: boolean;
-  par: number;
-  pret: number;
-  atturas: number;
-  nebalso: number;
-  activeCount: number;
-  totalMembers: number;
-  majorityPct: number;
-  tooltip: string;
-}
-
-function getFactionVoteStance(
-  factionBreakdown: FactionBreakdown[] | undefined,
-  factionId: string,
-  shortName: string
-): FactionStance {
-  const fb = factionBreakdown?.find(
-    (item) => item.factionId.toLowerCase() === factionId.toLowerCase() || item.shortName.toUpperCase() === shortName.toUpperCase()
-  );
-
-  if (!fb) {
-    return {
-      decision: 'NAV_DATU',
-      isSplit: false,
-      par: 0,
-      pret: 0,
-      atturas: 0,
-      nebalso: 0,
-      activeCount: 0,
-      totalMembers: 0,
-      majorityPct: 0,
-      tooltip: `${shortName}: dati par šo balsojumu nav pieejami`,
-    };
-  }
-
-  const par = fb.votes.par || 0;
-  const pret = fb.votes.pret || 0;
-  const atturas = fb.votes.atturas || 0;
-  const nebalso = fb.votes.nebalso || 0;
-  const activeCount = par + pret + atturas;
-  const totalMembers = activeCount + nebalso;
-
-  if (activeCount === 0) {
-    if (nebalso > 0) {
-      return {
-        decision: 'NEBALSO',
-        isSplit: false,
-        par: 0,
-        pret: 0,
-        atturas: 0,
-        nebalso,
-        activeCount: 0,
-        totalMembers,
-        majorityPct: 100,
-        tooltip: `${shortName}: ${nebalso} reģistrēti zālē, bet nebalsoja (kvoruma manevrs)`,
-      };
-    }
-    return {
-      decision: 'NAV_DATU',
-      isSplit: false,
-      par: 0,
-      pret: 0,
-      atturas: 0,
-      nebalso: 0,
-      activeCount: 0,
-      totalMembers: 0,
-      majorityPct: 0,
-      tooltip: `${shortName}: visi deputāti prombūtnē`,
-    };
-  }
-
-  const options: Array<{ decision: 'PAR' | 'PRET' | 'ATTURAS'; count: number }> = [
-    { decision: 'PAR', count: par },
-    { decision: 'PRET', count: pret },
-    { decision: 'ATTURAS', count: atturas },
-  ];
-  options.sort((a, b) => b.count - a.count);
-
-  const dominant = options[0];
-  const second = options[1];
-  const isSplit = second.count > 0;
-  const majorityPct = Math.round((dominant.count / activeCount) * 100);
-
-  const parts: string[] = [];
-  if (par > 0) parts.push(`${par} Par`);
-  if (pret > 0) parts.push(`${pret} Pret`);
-  if (atturas > 0) parts.push(`${atturas} Atturas`);
-  if (nebalso > 0) parts.push(`${nebalso} Nebalsoja`);
-
-  const breakdownStr = parts.join(' · ');
-  const statusNote = isSplit ? ` (${majorityPct}% vienoti)` : ' (vienbalsīgi)';
-
-  return {
-    decision: dominant.decision,
-    isSplit,
-    par,
-    pret,
-    atturas,
-    nebalso,
-    activeCount,
-    totalMembers,
-    majorityPct,
-    tooltip: `${shortName}: ${breakdownStr}${statusNote}`,
-  };
-}
-
 export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
   votes,
   factions,
@@ -328,34 +157,42 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
   onSelectCategory,
 }) => {
   const [selectedDomainId, setSelectedDomainId] = useState<string>('ALL');
-  const [characterFilter, setCharacterFilter] = useState<RadarCharacterFilter>('ALL');
-  const [outcomeFilter, setOutcomeFilter] = useState<'ALL' | 'PIENEMTS' | 'NORAIDITS'>('ALL');
+  // Default to contentious votes (anomalies, coalition splits & tight margins)
+  const [contentiousFilter, setContentiousFilter] = useState<RadarContentiousFilter>('CONTENTIOUS_ONLY');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [visibleCount, setVisibleCount] = useState<number>(INITIAL_PAGE_SIZE);
-  const [expandedVoteId, setExpandedVoteId] = useState<string | null>(null);
   const [matrixMetric, setMatrixMetric] = useState<RadarMatrixMetric>('COALITION_ALIGNMENT');
 
-  // Parliamentary order of factions
-  const orderedFactions = useMemo(() => {
-    if (factions && factions.length > 0) {
-      return factions;
-    }
-    return [
+  // Parliamentary factions (Coalition: JV, ZZS, PRO | Opposition: AS, NA, LPV, S! | Independent: PIEFR)
+  const coalitionFactions = useMemo(() => {
+    return (factions.length > 0 ? factions : [
       { id: 'jv', shortName: 'JV', name: 'Jaunā VIENOTĪBA', color: '#00529B', seats: 26 },
       { id: 'zzs', shortName: 'ZZS', name: 'Zaļo un Zemnieku savienība', color: '#006837', seats: 16 },
       { id: 'pro', shortName: 'PRO', name: 'PROGRESĪVIE', color: '#E30613', seats: 10 },
+    ]).filter((f) => ['jv', 'zzs', 'pro'].includes(f.id.toLowerCase()) || ['jv', 'zzs', 'pro'].includes(f.shortName.toLowerCase()));
+  }, [factions]);
+
+  const oppositionFactions = useMemo(() => {
+    return (factions.length > 0 ? factions : [
       { id: 'as', shortName: 'AS', name: 'APVIENOTAIS SARAKSTS', color: '#1E3A8A', seats: 15 },
       { id: 'na', shortName: 'NA', name: 'Nacionālā apvienība', color: '#8B0000', seats: 13 },
       { id: 'lpv', shortName: 'LPV', name: 'Latvija pirmajā vietā', color: '#F58220', seats: 8 },
-      { id: 's!', shortName: 'S!', name: '"Stabilitātei!"', color: '#00AEEF', seats: 10 },
-      { id: 'piefr', shortName: 'PIEFR', name: 'Pie frakcijām nepiederošie', color: '#64748B', seats: 2 },
-    ];
+      { id: 'st', shortName: 'S!', name: '"Stabilitātei!"', color: '#00AEEF', seats: 10 },
+    ]).filter((f) => ['as', 'na', 'lpv', 's!', 'st'].includes(f.id.toLowerCase()) || ['as', 'na', 'lpv', 's!'].includes(f.shortName.toLowerCase()));
   }, [factions]);
 
-  // 1. MACRO TOPIC MATRIX & HEATMAP CALCULATIONS
-  // Computes faction-by-domain alignment heatmap data
+  const independentFactions = useMemo(() => {
+    return (factions.length > 0 ? factions : [
+      { id: 'ind', shortName: 'PIEFR', name: 'Pie frakcijām nepiederošie', color: '#64748B', seats: 2 },
+    ]).filter((f) => ['piefr', 'ind'].includes(f.id.toLowerCase()) || ['piefr', 'ind'].includes(f.shortName.toLowerCase()));
+  }, [factions]);
+
+  const orderedFactions = useMemo(() => {
+    return [...coalitionFactions, ...oppositionFactions, ...independentFactions];
+  }, [coalitionFactions, oppositionFactions, independentFactions]);
+
+  // 1. TOPIC COMPARISON MATRIX DATA
   const heatmapData = useMemo(() => {
-    // domainId -> factionId -> { alignedVotes, totalVotes, parVotes, activeVotes }
     const stats: Record<
       string,
       Record<string, { alignedCount: number; alignedTotal: number; parCount: number; activeTotal: number }>
@@ -372,7 +209,7 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
       const catId = v.category?.id;
       if (!catId || !stats[catId]) return;
 
-      // Determine coalition line for this vote: sum active votes of JV + ZZS + PRO
+      // Coalition line: sum active votes of JV + ZZS + PRO
       let cPar = 0;
       let cBlock = 0;
       const fDecisions: Record<string, 'PAR' | 'PRET' | 'ATTURAS' | 'NEBALSO' | null> = {};
@@ -387,7 +224,6 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
           cBlock += (fb.votes.pret || 0) + (fb.votes.atturas || 0);
         }
 
-        // Tally PAR / Active votes for raw support metric
         if (stats[catId][fid]) {
           const act = (fb.votes.par || 0) + (fb.votes.pret || 0) + (fb.votes.atturas || 0);
           stats[catId][fid].parCount += fb.votes.par || 0;
@@ -395,7 +231,6 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
         }
       });
 
-      // Coalition line decision
       if (cPar + cBlock > 0) {
         const coalitionLine = cPar >= cBlock ? 'PAR' : 'PRET';
 
@@ -414,20 +249,22 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
     return stats;
   }, [votes, orderedFactions]);
 
-  // Overall domain summary tiles stats
-  const domainTilesStats = useMemo(() => {
-    return CIVIC_DOMAINS.map((domain) => {
+  // Overall consensus rating per domain
+  const domainConsensusStats = useMemo(() => {
+    const map = new Map<string, { totalVotes: number; consensusPct: number; contentiousCount: number }>();
+
+    CIVIC_DOMAINS.forEach((domain) => {
       const dVotes = votes.filter((v) => v.category?.id === domain.id);
-      const total = dVotes.length;
-      let passed = 0;
-      let rejected = 0;
-      let noQuorum = 0;
+      const totalVotes = dVotes.length;
       let consensusCount = 0;
+      let contentiousCount = 0;
 
       dVotes.forEach((v) => {
-        if (v.result === 'PIENEMTS') passed += 1;
-        else if (v.result === 'NORAIDITS') rejected += 1;
-        else if (v.result === 'NAV_KVORUMA') noQuorum += 1;
+        const isSplit = isCoalitionSplitVote(v);
+        const isTight = isTightMarginVote(v);
+        if (isSplit || isTight) {
+          contentiousCount += 1;
+        }
 
         const activeTotal = v.counts.par + v.counts.pret + v.counts.atturas;
         if (activeTotal > 0 && (v.counts.par / activeTotal) >= 0.8) {
@@ -435,56 +272,49 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
         }
       });
 
-      const consensusPct = total > 0 ? Math.round((consensusCount / total) * 100) : 0;
-      const passedPct = total > 0 ? Math.round((passed / total) * 100) : 0;
-
-      return {
-        ...domain,
-        total,
-        passed,
-        rejected,
-        noQuorum,
-        consensusPct,
-        passedPct,
-      };
+      const consensusPct = totalVotes > 0 ? Math.round((consensusCount / totalVotes) * 100) : 0;
+      map.set(domain.id, { totalVotes, consensusPct, contentiousCount });
     });
+
+    return map;
   }, [votes]);
 
-  // Character filter counts
-  const characterCounts = useMemo(() => {
-    let tight = 0;
-    let split = 0;
-    let finalP = 0;
+  // Counts for the contentious / all filter switcher in active domain scope
+  const filterCounts = useMemo(() => {
+    let totalInScope = 0;
+    let contentiousInScope = 0;
+    let splitInScope = 0;
+    let tightInScope = 0;
 
     votes.forEach((v) => {
       if (selectedDomainId !== 'ALL' && v.category?.id !== selectedDomainId) return;
-      if (isTightMarginVote(v)) tight += 1;
-      if (isCoalitionSplitVote(v)) split += 1;
-      if (isFinalPassageVote(v)) finalP += 1;
+      totalInScope += 1;
+
+      const isSplit = isCoalitionSplitVote(v);
+      const isTight = isTightMarginVote(v);
+
+      if (isSplit) splitInScope += 1;
+      if (isTight) tightInScope += 1;
+      if (isSplit || isTight) contentiousInScope += 1;
     });
 
-    const total = votes.filter((v) => selectedDomainId === 'ALL' || v.category?.id === selectedDomainId).length;
-
-    return { total, tight, split, finalP };
+    return { totalInScope, contentiousInScope, splitInScope, tightInScope };
   }, [votes, selectedDomainId]);
 
-  // Filtered votes for the dossier ledger
+  // Filtered votes for the feed
   const filteredVotes = useMemo(() => {
     return votes
       .filter((v) => {
         // Domain filter
         if (selectedDomainId !== 'ALL' && v.category?.id !== selectedDomainId) return false;
 
-        // Character filter
-        if (characterFilter === 'TIGHT_MARGIN' && !isTightMarginVote(v)) return false;
-        if (characterFilter === 'COALITION_SPLIT' && !isCoalitionSplitVote(v)) return false;
-        if (characterFilter === 'FINAL_PASSAGE' && !isFinalPassageVote(v)) return false;
+        // Contentious / Scope filter
+        const isSplit = isCoalitionSplitVote(v);
+        const isTight = isTightMarginVote(v);
 
-        // Outcome filter
-        if (outcomeFilter !== 'ALL') {
-          if (outcomeFilter === 'PIENEMTS' && v.result !== 'PIENEMTS') return false;
-          if (outcomeFilter === 'NORAIDITS' && v.result === 'PIENEMTS') return false;
-        }
+        if (contentiousFilter === 'CONTENTIOUS_ONLY' && !isSplit && !isTight) return false;
+        if (contentiousFilter === 'COALITION_SPLIT_ONLY' && !isSplit) return false;
+        if (contentiousFilter === 'TIGHT_MARGIN_ONLY' && !isTight) return false;
 
         // Search query
         if (searchQuery.trim()) {
@@ -503,38 +333,36 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
         const dateB = parseLatvianDate(b.sittingDate || b.sessionDate);
         return dateB - dateA;
       });
-  }, [votes, selectedDomainId, characterFilter, outcomeFilter, searchQuery]);
+  }, [votes, selectedDomainId, contentiousFilter, searchQuery]);
 
-  // Capped visible slice (prevents infinite DOM receipt bloat)
   const visibleVotes = useMemo(() => {
     return filteredVotes.slice(0, visibleCount);
   }, [filteredVotes, visibleCount]);
 
-  // Reset pagination on filter change
   const handleSelectDomain = (domainId: string) => {
     setSelectedDomainId(domainId);
     setVisibleCount(INITIAL_PAGE_SIZE);
   };
 
-  const handleSelectCharacter = (cf: RadarCharacterFilter) => {
-    setCharacterFilter(cf);
+  const handleSelectContentious = (filter: RadarContentiousFilter) => {
+    setContentiousFilter(filter);
     setVisibleCount(INITIAL_PAGE_SIZE);
   };
 
-  // Helper for heatmap cell color styling
+  // Muted, institutional cell color styling
   const getCellColorClass = (pct: number) => {
-    if (pct >= 90) return 'bg-emerald-100 text-emerald-900 font-bold border-emerald-300';
-    if (pct >= 75) return 'bg-emerald-50 text-emerald-800 font-medium border-emerald-200';
-    if (pct >= 55) return 'bg-amber-50 text-amber-800 font-medium border-amber-200';
-    if (pct >= 35) return 'bg-rose-50 text-rose-800 font-medium border-rose-200';
-    return 'bg-rose-100 text-rose-900 font-bold border-rose-300';
+    if (pct >= 90) return 'bg-emerald-50/90 text-emerald-800 border-emerald-200/80 font-bold';
+    if (pct >= 75) return 'bg-emerald-50/40 text-emerald-700 border-emerald-100 font-medium';
+    if (pct >= 55) return 'bg-amber-50/70 text-amber-800 border-amber-200/80 font-medium';
+    if (pct >= 35) return 'bg-rose-50/60 text-rose-800 border-rose-200/60 font-medium';
+    return 'bg-rose-100/70 text-rose-900 border-rose-300 font-bold';
   };
 
   const activeDomainObj = CIVIC_DOMAINS.find((d) => d.id === selectedDomainId);
 
   return (
     <div className="space-y-4">
-      {/* 1. HERO CONTEXT & INTRODUCTION */}
+      {/* 1. HERO TITLE & CONTEXT */}
       <section className="rounded-xl border border-slate-200 bg-white p-4 shadow-2xs">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
@@ -547,29 +375,31 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
               </h2>
             </div>
             <p className="text-xs text-slate-600 mt-1 max-w-2xl leading-relaxed">
-              Makro pārskats par Saeimas nozaru politiku un partiju savstarpējo saskaņu. Salīdziniet frakciju vienotību pa tēmām, atklājiet koalīcijas šķelšanās un filtrējiet zīmīgākos lēmumus.
+              Parlamentārās saskaņas un šķelšanās radars. Salīdziniet frakciju nostājas pa nozarēm un atklājiet, kuros jautājumos koalīcija un opozīcija sadarbojas, bet kuros — šķeļas.
             </p>
           </div>
-          <div className="flex items-center gap-1.5 self-start sm:self-auto flex-shrink-0">
+          <div className="text-right flex-shrink-0 self-start sm:self-auto">
             <span className="text-[11px] text-slate-500 font-mono font-medium">
-              {formatLatvianCount(votes.length, 'reģistrēts balsojums', 'reģistrēti balsojumi', 'reģistrētu balsojumu')}
+              {votes.length} balsojumi · 6 nozares
             </span>
           </div>
         </div>
       </section>
 
-      {/* 2. THE TOPIC COMPARISON MATRIX (RADAR HEATMAP) */}
+      {/* 2. POLISHED TOP HEATMAP MATRIX WITH COALITION VS OPPOSITION ANCHOR */}
       <section className="rounded-xl border border-slate-200 bg-white shadow-2xs overflow-hidden">
         <div className="p-3.5 border-b border-slate-200 bg-slate-50/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
             <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wide flex items-center gap-1.5">
               <span>Frakciju un nozaru saskaņas matrica</span>
-              <span className="text-[10px] text-slate-500 lowercase font-normal">(noklikšķiniet uz rindas, lai filtrētu)</span>
+              <span className="text-[10px] text-slate-500 lowercase font-normal">
+                (noklikšķiniet uz nozares, lai filtrētu balsojumus)
+              </span>
             </h3>
             <p className="text-[11px] text-slate-600 mt-0.5">
               {matrixMetric === 'COALITION_ALIGNMENT'
                 ? 'Rāda, cik % balsojumu konkrētā frakcija balsojusi vienoti ar valdības koalīcijas vairākumu (JV+ZZS+PRO).'
-                : 'Rāda, cik % no aktīvajiem balsojumiem konkrētā frakcija šajā tēmā balsojusi "PAR".'}
+                : 'Rāda, cik % no aktīvajām balsīm konkrētā frakcija šajā nozarē balsojusi "PAR".'}
             </p>
           </div>
 
@@ -600,31 +430,124 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
           </div>
         </div>
 
-        {/* Heatmap Table */}
+        {/* Heatmap Table with Clear Coalition / Opposition Grouping */}
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse min-w-[760px]">
             <thead>
-              <tr className="border-b border-slate-200 bg-slate-100/70 text-[10px] text-slate-600 font-bold uppercase tracking-wider select-none">
-                <th scope="col" className="py-2 px-3 w-56">
+              {/* Row 1: Bloc Grouping Headers */}
+              <tr className="border-b border-slate-200 bg-slate-100/90 text-[10px] text-slate-700 font-bold uppercase tracking-wider select-none">
+                <th scope="col" className="py-1.5 px-3 w-56 border-r border-slate-200">
                   Nozare / Temats
                 </th>
-                {orderedFactions.map((f) => (
-                  <th key={f.id} scope="col" className="py-2 px-1 text-center w-14">
+
+                {/* Coalition Header */}
+                <th
+                  scope="col"
+                  colSpan={coalitionFactions.length}
+                  className="py-1.5 px-1 text-center bg-blue-50/60 text-blue-900 border-r-2 border-r-slate-300"
+                >
+                  <div className="flex items-center justify-center gap-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+                    <span>Koalīcija</span>
+                  </div>
+                </th>
+
+                {/* Opposition Header */}
+                <th
+                  scope="col"
+                  colSpan={oppositionFactions.length}
+                  className="py-1.5 px-1 text-center bg-slate-50 text-slate-800 border-r border-r-slate-200"
+                >
+                  <div className="flex items-center justify-center gap-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-slate-500" />
+                    <span>Opozīcija</span>
+                  </div>
+                </th>
+
+                {/* Independent Header */}
+                <th
+                  scope="col"
+                  colSpan={independentFactions.length}
+                  className="py-1.5 px-1 text-center text-slate-600 border-r border-r-slate-200"
+                >
+                  Neatk.
+                </th>
+
+                {/* Consensus Header */}
+                <th scope="col" className="py-1.5 px-2 text-center w-20">
+                  Konsenss
+                </th>
+              </tr>
+
+              {/* Row 2: Faction Short Names */}
+              <tr className="border-b border-slate-200 bg-slate-50/70 text-[10px] text-slate-600 font-bold uppercase tracking-wider select-none">
+                <th scope="col" className="py-2 px-3 border-r border-slate-200">
+                  {selectedDomainId !== 'ALL' ? (
+                    <button
+                      type="button"
+                      onClick={() => handleSelectDomain('ALL')}
+                      className="text-blue-700 hover:text-blue-900 font-bold underline cursor-pointer text-[10px]"
+                    >
+                      ← Rādīt visas nozares
+                    </button>
+                  ) : (
+                    <span className="text-slate-500 font-normal">Noklikšķiniet rindā</span>
+                  )}
+                </th>
+
+                {/* Coalition Faction Columns */}
+                {coalitionFactions.map((f, idx) => (
+                  <th
+                    key={f.id}
+                    scope="col"
+                    className={`py-2 px-1 text-center w-14 ${
+                      idx === coalitionFactions.length - 1 ? 'border-r-2 border-r-slate-300' : ''
+                    }`}
+                  >
                     <div className="inline-flex flex-col items-center">
                       <span className="h-1.5 w-3.5 rounded-full mb-0.5" style={{ backgroundColor: f.color }} />
                       <span className="text-[10px] font-mono font-bold text-slate-800">{f.shortName}</span>
                     </div>
                   </th>
                 ))}
+
+                {/* Opposition Faction Columns */}
+                {oppositionFactions.map((f, idx) => (
+                  <th
+                    key={f.id}
+                    scope="col"
+                    className={`py-2 px-1 text-center w-14 ${
+                      idx === oppositionFactions.length - 1 ? 'border-r border-r-slate-200' : ''
+                    }`}
+                  >
+                    <div className="inline-flex flex-col items-center">
+                      <span className="h-1.5 w-3.5 rounded-full mb-0.5" style={{ backgroundColor: f.color }} />
+                      <span className="text-[10px] font-mono font-bold text-slate-800">{f.shortName}</span>
+                    </div>
+                  </th>
+                ))}
+
+                {/* Independent Factions */}
+                {independentFactions.map((f) => (
+                  <th key={f.id} scope="col" className="py-2 px-1 text-center w-14 border-r border-r-slate-200">
+                    <div className="inline-flex flex-col items-center">
+                      <span className="h-1.5 w-3.5 rounded-full mb-0.5" style={{ backgroundColor: f.color }} />
+                      <span className="text-[10px] font-mono font-bold text-slate-800">{f.shortName}</span>
+                    </div>
+                  </th>
+                ))}
+
+                {/* Overall Consensus */}
                 <th scope="col" className="py-2 px-2 text-center w-20">
                   Konsenss
                 </th>
               </tr>
             </thead>
+
             <tbody className="divide-y divide-slate-100 text-xs">
               {CIVIC_DOMAINS.map((domain) => {
                 const isSelected = selectedDomainId === domain.id;
-                const dTile = domainTilesStats.find((t) => t.id === domain.id);
+                const dStats = domainConsensusStats.get(domain.id);
                 const Icon = domain.icon;
 
                 return (
@@ -633,27 +556,32 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
                     onClick={() => handleSelectDomain(isSelected ? 'ALL' : domain.id)}
                     className={`transition cursor-pointer ${
                       isSelected
-                        ? 'bg-blue-50/70 font-semibold'
-                        : 'hover:bg-slate-50'
+                        ? 'bg-blue-50/70 border-l-4 border-l-blue-600 font-semibold'
+                        : 'hover:bg-slate-50/90'
                     }`}
                   >
-                    {/* Domain Title */}
-                    <td className="py-2 px-3 align-middle">
-                      <div className="flex items-center gap-2">
-                        <div className={`p-1 rounded ${domain.iconBg} ${domain.iconColor} flex-shrink-0`}>
-                          <Icon className="h-3.5 w-3.5" />
+                    {/* Domain Title with Icon and Count */}
+                    <td className="py-2.5 px-3 align-middle border-r border-slate-200">
+                      <div className="flex items-center justify-between gap-1">
+                        <div className="flex items-center gap-2 truncate">
+                          <div className={`p-1 rounded ${domain.iconBg} ${domain.iconColor} flex-shrink-0`}>
+                            <Icon className="h-3.5 w-3.5" />
+                          </div>
+                          <span className="text-slate-900 truncate">{domain.title}</span>
                         </div>
-                        <div className="truncate">
-                          <span className="text-slate-900 font-semibold">{domain.title}</span>
-                          <span className="ml-1.5 text-[10px] text-slate-500 font-mono">
-                            ({dTile?.total || 0})
+                        <div className="flex items-center gap-1 flex-shrink-0 ml-1">
+                          <span className="text-[10px] text-slate-500 font-mono">
+                            {dStats?.totalVotes || 0}
                           </span>
+                          {isSelected && (
+                            <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
+                          )}
                         </div>
                       </div>
                     </td>
 
-                    {/* Faction Heatmap Cells */}
-                    {orderedFactions.map((f) => {
+                    {/* Coalition Cells */}
+                    {coalitionFactions.map((f, idx) => {
                       const fStats = heatmapData[domain.id]?.[f.id];
                       let pct = 0;
                       let tooltip = '';
@@ -662,21 +590,83 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
                         pct = fStats && fStats.alignedTotal > 0
                           ? Math.round((fStats.alignedCount / fStats.alignedTotal) * 100)
                           : 0;
-                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.alignedCount || 0} no ${fStats?.alignedTotal || 0} balsojumiem (${pct}%) saskaņā ar koalīcijas līniju`;
+                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.alignedCount || 0}/${fStats?.alignedTotal || 0} (${pct}%) vienoti ar koalīcijas līniju`;
                       } else {
                         pct = fStats && fStats.activeTotal > 0
                           ? Math.round((fStats.parCount / fStats.activeTotal) * 100)
                           : 0;
-                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.parCount || 0} no ${fStats?.activeTotal || 0} aktīvajām balsīm (${pct}%) PAR`;
+                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.parCount || 0}/${fStats?.activeTotal || 0} (${pct}%) PAR`;
                       }
 
                       return (
-                        <td key={f.id} className="py-2 px-1 text-center align-middle" title={tooltip}>
-                          <span
-                            className={`inline-block w-9 py-0.5 rounded text-[11px] font-mono border ${getCellColorClass(
-                              pct
-                            )}`}
-                          >
+                        <td
+                          key={f.id}
+                          className={`py-2 px-1 text-center align-middle ${
+                            idx === coalitionFactions.length - 1 ? 'border-r-2 border-r-slate-300' : ''
+                          }`}
+                          title={tooltip}
+                        >
+                          <span className={`inline-block w-10 py-0.5 rounded text-[11px] font-mono border ${getCellColorClass(pct)}`}>
+                            {pct}%
+                          </span>
+                        </td>
+                      );
+                    })}
+
+                    {/* Opposition Cells */}
+                    {oppositionFactions.map((f, idx) => {
+                      const fStats = heatmapData[domain.id]?.[f.id];
+                      let pct = 0;
+                      let tooltip = '';
+
+                      if (matrixMetric === 'COALITION_ALIGNMENT') {
+                        pct = fStats && fStats.alignedTotal > 0
+                          ? Math.round((fStats.alignedCount / fStats.alignedTotal) * 100)
+                          : 0;
+                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.alignedCount || 0}/${fStats?.alignedTotal || 0} (${pct}%) vienoti ar koalīcijas līniju`;
+                      } else {
+                        pct = fStats && fStats.activeTotal > 0
+                          ? Math.round((fStats.parCount / fStats.activeTotal) * 100)
+                          : 0;
+                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.parCount || 0}/${fStats?.activeTotal || 0} (${pct}%) PAR`;
+                      }
+
+                      return (
+                        <td
+                          key={f.id}
+                          className={`py-2 px-1 text-center align-middle ${
+                            idx === oppositionFactions.length - 1 ? 'border-r border-r-slate-200' : ''
+                          }`}
+                          title={tooltip}
+                        >
+                          <span className={`inline-block w-10 py-0.5 rounded text-[11px] font-mono border ${getCellColorClass(pct)}`}>
+                            {pct}%
+                          </span>
+                        </td>
+                      );
+                    })}
+
+                    {/* Independent Cells */}
+                    {independentFactions.map((f) => {
+                      const fStats = heatmapData[domain.id]?.[f.id];
+                      let pct = 0;
+                      let tooltip = '';
+
+                      if (matrixMetric === 'COALITION_ALIGNMENT') {
+                        pct = fStats && fStats.alignedTotal > 0
+                          ? Math.round((fStats.alignedCount / fStats.alignedTotal) * 100)
+                          : 0;
+                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.alignedCount || 0}/${fStats?.alignedTotal || 0} (${pct}%) vienoti ar koalīciju`;
+                      } else {
+                        pct = fStats && fStats.activeTotal > 0
+                          ? Math.round((fStats.parCount / fStats.activeTotal) * 100)
+                          : 0;
+                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.parCount || 0}/${fStats?.activeTotal || 0} (${pct}%) PAR`;
+                      }
+
+                      return (
+                        <td key={f.id} className="py-2 px-1 text-center align-middle border-r border-r-slate-200" title={tooltip}>
+                          <span className={`inline-block w-10 py-0.5 rounded text-[11px] font-mono border ${getCellColorClass(pct)}`}>
                             {pct}%
                           </span>
                         </td>
@@ -686,7 +676,7 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
                     {/* Overall Domain Consensus Rating */}
                     <td className="py-2 px-2 text-center align-middle">
                       <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200">
-                        {dTile?.consensusPct || 0}%
+                        {dStats?.consensusPct || 0}%
                       </span>
                     </td>
                   </tr>
@@ -697,212 +687,140 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
         </div>
       </section>
 
-      {/* 3. INTERACTIVE TOPIC GRID / MACRO TILES */}
-      <section className="space-y-2">
-        <div className="flex items-center justify-between gap-2 px-1">
+      {/* 3. COMPACT TOPIC FILTER PILLS STRIP (REPLACING THE REDUNDANT 6 CARDS) */}
+      <section className="rounded-xl border border-slate-200 bg-white p-3 shadow-2xs">
+        <div className="flex items-center justify-between gap-2 mb-2 pb-1.5 border-b border-slate-100">
           <div className="flex items-center gap-1.5">
-            <Sparkles className="h-4 w-4 text-slate-700" />
-            <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wide">
-              Nozaru kopsavilkuma kartītes
-            </h3>
+            <Filter className="h-3.5 w-3.5 text-slate-600" />
+            <span className="text-xs font-bold text-slate-900 uppercase tracking-wide">
+              Nozaru filtri:
+            </span>
           </div>
-          {selectedDomainId !== 'ALL' && (
+
+          {activeDomainObj && (
             <button
               type="button"
               onClick={() => handleSelectDomain('ALL')}
               className="text-xs text-blue-700 hover:text-blue-900 font-semibold underline cursor-pointer"
             >
-              Rādīt visas jomas kopā
+              Noņemt filtru (rādīt visas nozares)
             </button>
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          {domainTilesStats.map((tile) => {
-            const isSelected = selectedDomainId === tile.id;
-            const Icon = tile.icon;
-
-            return (
-              <button
-                key={tile.id}
-                type="button"
-                onClick={() => handleSelectDomain(isSelected ? 'ALL' : tile.id)}
-                className={`text-left rounded-xl border p-3.5 transition flex flex-col justify-between cursor-pointer ${
-                  isSelected
-                    ? `${tile.activeBg} ${tile.activeBorder} shadow-xs ring-2 ring-slate-400/40`
-                    : 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-2xs'
-                }`}
-              >
-                <div>
-                  {/* Card Header */}
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <div className={`p-1.5 rounded-lg ${tile.iconBg} ${tile.iconColor}`}>
-                      <Icon className="h-4 w-4" />
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[10px] font-mono font-bold px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
-                        {tile.total} balsojumi
-                      </span>
-                      {isSelected && (
-                        <span className="text-[10px] font-bold px-1.5 py-0.2 rounded-full bg-slate-900 text-white">
-                          Atlasīts
-                        </span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Title & Short description */}
-                  <h4 className="text-xs font-bold text-slate-900 leading-snug">
-                    {tile.title}
-                  </h4>
-                  <p className="text-[11px] text-slate-500 mt-1 line-clamp-2 leading-relaxed">
-                    {tile.description}
-                  </p>
-                </div>
-
-                {/* Card Footer: Consensus & Outcome bar */}
-                <div className="mt-3 pt-2.5 border-t border-slate-100/80">
-                  <div className="flex items-center justify-between text-[10px] text-slate-600 mb-1">
-                    <span>
-                      Konsenss:{' '}
-                      <strong className={tile.consensusPct >= 75 ? 'text-emerald-700' : 'text-amber-700'}>
-                        {tile.consensusPct}%
-                      </strong>
-                    </span>
-                    <span>
-                      Pieņemti: <strong>{tile.passedPct}%</strong>
-                    </span>
-                  </div>
-
-                  <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden flex">
-                    <div
-                      className="bg-emerald-500 h-full"
-                      style={{ width: `${tile.passedPct}%` }}
-                      title={`Pieņemti: ${tile.passed}`}
-                    />
-                    <div
-                      className="bg-rose-500 h-full"
-                      style={{ width: `${tile.total > 0 ? Math.round((tile.rejected / tile.total) * 100) : 0}%` }}
-                      title={`Noraidīti: ${tile.rejected}`}
-                    />
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* 4. FILTERS: BY NATURE ("Filtri pēc rakstura") & SEARCH */}
-      <section className="rounded-xl border border-slate-200 bg-white p-3 shadow-2xs space-y-3">
-        {/* Character Segmented Pills */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5">
-          <div className="flex items-center gap-1.5">
-            <Filter className="h-3.5 w-3.5 text-slate-600" />
-            <span className="text-xs font-bold text-slate-900 uppercase tracking-wide">
-              Filtri pēc rakstura:
-            </span>
-          </div>
-
-          {/* Active Domain Indicator (if selected) */}
-          {activeDomainObj && (
-            <div className="flex items-center gap-1.5 text-xs">
-              <span className="text-slate-500">Filtrēts pēc:</span>
-              <span className={`px-2 py-0.5 rounded-md font-bold text-[11px] ${activeDomainObj.badgeBg}`}>
-                {activeDomainObj.shortTitle}
-              </span>
-              <button
-                type="button"
-                onClick={() => handleSelectDomain('ALL')}
-                className="text-slate-400 hover:text-slate-700 cursor-pointer"
-                title="Noņemt nozares filtru"
-              >
-                <X className="h-3.5 w-3.5" />
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* 4 Nature Buttons */}
-        <div className="flex flex-wrap items-center gap-1.5">
+        {/* Horizontal Topic Pill Strip */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-thin">
           <button
             type="button"
-            onClick={() => handleSelectCharacter('ALL')}
-            className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer flex items-center gap-1.5 border ${
-              characterFilter === 'ALL'
+            onClick={() => handleSelectDomain('ALL')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition cursor-pointer flex items-center gap-1.5 border ${
+              selectedDomainId === 'ALL'
                 ? 'bg-slate-900 text-white border-slate-900 shadow-2xs'
                 : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
             }`}
           >
-            <span>Visi balsojumi</span>
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>Visas nozares</span>
             <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
-              characterFilter === 'ALL' ? 'bg-slate-800 text-slate-200' : 'bg-slate-200 text-slate-700'
+              selectedDomainId === 'ALL' ? 'bg-slate-800 text-slate-200' : 'bg-slate-200 text-slate-700'
             }`}>
-              {characterCounts.total}
+              {votes.length}
             </span>
           </button>
 
-          <button
-            type="button"
-            onClick={() => handleSelectCharacter('TIGHT_MARGIN')}
-            className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer flex items-center gap-1.5 border ${
-              characterFilter === 'TIGHT_MARGIN'
-                ? 'bg-amber-700 text-white border-amber-700 shadow-2xs font-bold'
-                : 'bg-amber-50/70 text-amber-900 border-amber-200 hover:bg-amber-100/70'
-            }`}
-            title="Balsojumi ar ļoti ciešu iznākumu (starpība ≤ 10 balsīm)"
-          >
-            <Flame className="h-3.5 w-3.5 text-amber-500" />
-            <span>Saspringtie balsojumi</span>
-            <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
-              characterFilter === 'TIGHT_MARGIN' ? 'bg-amber-800 text-amber-100' : 'bg-amber-200/80 text-amber-900'
-            }`}>
-              {characterCounts.tight}
-            </span>
-          </button>
+          {CIVIC_DOMAINS.map((domain) => {
+            const dStats = domainConsensusStats.get(domain.id);
+            const isSelected = selectedDomainId === domain.id;
+            const Icon = domain.icon;
 
-          <button
-            type="button"
-            onClick={() => handleSelectCharacter('COALITION_SPLIT')}
-            className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer flex items-center gap-1.5 border ${
-              characterFilter === 'COALITION_SPLIT'
-                ? 'bg-rose-700 text-white border-rose-700 shadow-2xs font-bold'
-                : 'bg-rose-50/70 text-rose-900 border-rose-200 hover:bg-rose-100/70'
-            }`}
-            title="Balsojumi, kuros koalīcijas partneri (JV, ZZS, PRO) balsoja pretēji"
-          >
-            <Split className="h-3.5 w-3.5 text-rose-500" />
-            <span>Koalīcijas šķelšanās</span>
-            <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
-              characterFilter === 'COALITION_SPLIT' ? 'bg-rose-800 text-rose-100' : 'bg-rose-200/80 text-rose-900'
-            }`}>
-              {characterCounts.split}
-            </span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleSelectCharacter('FINAL_PASSAGE')}
-            className={`px-2.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer flex items-center gap-1.5 border ${
-              characterFilter === 'FINAL_PASSAGE'
-                ? 'bg-blue-700 text-white border-blue-700 shadow-2xs font-bold'
-                : 'bg-blue-50/70 text-blue-900 border-blue-200 hover:bg-blue-100/70'
-            }`}
-            title="Galīgie 2. un 3. lasījumu likumu balsojumi, izslēdzot procedūru balsojumus"
-          >
-            <FileCheck2 className="h-3.5 w-3.5 text-blue-500" />
-            <span>Likumu pieņemšana</span>
-            <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
-              characterFilter === 'FINAL_PASSAGE' ? 'bg-blue-800 text-blue-100' : 'bg-blue-200/80 text-blue-900'
-            }`}>
-              {characterCounts.finalP}
-            </span>
-          </button>
+            return (
+              <button
+                key={domain.id}
+                type="button"
+                onClick={() => handleSelectDomain(domain.id)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition cursor-pointer flex items-center gap-1.5 border ${
+                  isSelected
+                    ? 'bg-blue-50 text-blue-950 border-blue-600 shadow-2xs ring-1 ring-blue-500/40 font-bold'
+                    : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                }`}
+              >
+                <div className={`p-0.5 rounded ${domain.iconBg} ${domain.iconColor}`}>
+                  <Icon className="h-3.5 w-3.5" />
+                </div>
+                <span>{domain.shortTitle}</span>
+                <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
+                  isSelected ? 'bg-blue-200/80 text-blue-900 font-bold' : 'bg-slate-200 text-slate-700'
+                }`}>
+                  {dStats?.totalVotes || 0}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Search & Outcome Row */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pt-2 border-t border-slate-100">
-          <div className="relative flex-1 max-w-md">
+        {/* Selected Domain Banner (if a single topic is chosen) */}
+        {activeDomainObj && (
+          <div className="mt-2.5 pt-2.5 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+            <div className="text-xs text-slate-600 leading-relaxed">
+              <strong className="text-slate-900">{activeDomainObj.title}:</strong> {activeDomainObj.description}
+            </div>
+            {onSelectCategory && (
+              <button
+                type="button"
+                onClick={() => onSelectCategory(activeDomainObj.id)}
+                className="text-xs text-blue-700 hover:text-blue-900 font-semibold underline whitespace-nowrap cursor-pointer flex-shrink-0"
+              >
+                Skatīt galvenajā balsojumu plūsmā →
+              </button>
+            )}
+          </div>
+        )}
+      </section>
+
+      {/* 4. CONTENTIOUS VOTE TOGGLE ("Šķelšanās un saspringtie balsojumi") & SEARCH */}
+      <section className="rounded-xl border border-slate-200 bg-white p-3 shadow-2xs space-y-2.5">
+        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-2.5">
+          {/* Main Contentious / All Votes Toggle */}
+          <div className="inline-flex rounded-lg border border-slate-200 bg-slate-50 p-1 text-xs">
+            <button
+              type="button"
+              onClick={() => handleSelectContentious('CONTENTIOUS_ONLY')}
+              className={`px-3 py-1.5 rounded-md font-semibold transition cursor-pointer flex items-center gap-1.5 ${
+                contentiousFilter === 'CONTENTIOUS_ONLY'
+                  ? 'bg-rose-700 text-white shadow-2xs font-bold'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+              title="Rādīt tikai balsojumus, kuros koalīcija šķēlās vai starpība bija ≤ 10 balsīm"
+            >
+              <Flame className="h-3.5 w-3.5" />
+              <span>Tikai šķelšanās un saspringtie</span>
+              <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
+                contentiousFilter === 'CONTENTIOUS_ONLY' ? 'bg-rose-800 text-rose-100' : 'bg-slate-200 text-slate-700'
+              }`}>
+                {filterCounts.contentiousInScope}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleSelectContentious('ALL_VOTES')}
+              className={`px-3 py-1.5 rounded-md font-semibold transition cursor-pointer flex items-center gap-1.5 ${
+                contentiousFilter === 'ALL_VOTES'
+                  ? 'bg-slate-900 text-white shadow-2xs font-bold'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+            >
+              <span>Visi balsojumi</span>
+              <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono ${
+                contentiousFilter === 'ALL_VOTES' ? 'bg-slate-800 text-slate-200' : 'bg-slate-200 text-slate-700'
+              }`}>
+                {filterCounts.totalInScope}
+              </span>
+            </button>
+          </div>
+
+          {/* Search Box */}
+          <div className="relative flex-1 max-w-sm">
             <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
             <input
               type="text"
@@ -924,364 +842,89 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
               </button>
             )}
           </div>
+        </div>
 
-          {/* Outcome Filter */}
-          <div className="inline-flex rounded-lg border border-slate-200 bg-slate-50 p-0.5 text-xs self-start sm:self-auto">
-            <button
-              type="button"
-              onClick={() => {
-                setOutcomeFilter('ALL');
-                setVisibleCount(INITIAL_PAGE_SIZE);
-              }}
-              className={`px-2.5 py-1 rounded-md font-semibold transition cursor-pointer ${
-                outcomeFilter === 'ALL'
-                  ? 'bg-white text-slate-900 shadow-2xs'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              Visi
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setOutcomeFilter('PIENEMTS');
-                setVisibleCount(INITIAL_PAGE_SIZE);
-              }}
-              className={`px-2.5 py-1 rounded-md font-semibold transition cursor-pointer ${
-                outcomeFilter === 'PIENEMTS'
-                  ? 'bg-emerald-50 text-emerald-800 shadow-2xs font-bold'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              Pieņemtie
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setOutcomeFilter('NORAIDITS');
-                setVisibleCount(INITIAL_PAGE_SIZE);
-              }}
-              className={`px-2.5 py-1 rounded-md font-semibold transition cursor-pointer ${
-                outcomeFilter === 'NORAIDITS'
-                  ? 'bg-rose-50 text-rose-800 shadow-2xs font-bold'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              Noraidītie
-            </button>
-          </div>
+        {/* Sub-Filters for Specific Fracture Types (only visible when contentious or all is active) */}
+        <div className="flex flex-wrap items-center gap-1.5 pt-1 text-xs text-slate-600">
+          <span className="text-[11px] font-medium text-slate-500">Detalizētāk:</span>
+
+          <button
+            type="button"
+            onClick={() => handleSelectContentious('COALITION_SPLIT_ONLY')}
+            className={`px-2 py-0.5 rounded text-[11px] transition cursor-pointer border ${
+              contentiousFilter === 'COALITION_SPLIT_ONLY'
+                ? 'bg-rose-50 text-rose-900 border-rose-300 font-bold shadow-2xs'
+                : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+            }`}
+          >
+            Koalīcijas šķelšanās ({filterCounts.splitInScope})
+          </button>
+
+          <button
+            type="button"
+            onClick={() => handleSelectContentious('TIGHT_MARGIN_ONLY')}
+            className={`px-2 py-0.5 rounded text-[11px] transition cursor-pointer border ${
+              contentiousFilter === 'TIGHT_MARGIN_ONLY'
+                ? 'bg-amber-50 text-amber-900 border-amber-300 font-bold shadow-2xs'
+                : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+            }`}
+          >
+            Saspringtie balsojumi ({filterCounts.tightInScope})
+          </button>
         </div>
       </section>
 
-      {/* 5. THE SUBSTANTIVE DECISIONS LEDGER (CAPPED AT 25 WITH PAGINATION) */}
-      <section className="rounded-xl border border-slate-200 bg-white shadow-2xs overflow-hidden">
-        <div className="px-4 py-3 border-b border-slate-200 bg-slate-50/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-          <div>
-            <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wide">
-              {activeDomainObj ? `${activeDomainObj.title} — lēmumi` : 'Atlasītie Saeimas balsojumi'}
-            </h3>
-            <p className="text-[11px] text-slate-500 mt-0.5">
-              Parādīti {visibleVotes.length} no {filteredVotes.length} atlasītajiem balsojumiem. Klikšķiniet uz rindas, lai redzētu anotāciju vai atvērtu zāles karti.
-            </p>
+      {/* 5. CLEAN VOTE CARDS FEED (USING CONSISTENT VoteCard COMPONENT) */}
+      <section className="space-y-3">
+        <div className="flex items-center justify-between px-1 text-xs text-slate-600">
+          <div className="font-semibold text-slate-800">
+            {activeDomainObj ? `${activeDomainObj.title} — ` : ''}
+            {contentiousFilter === 'CONTENTIOUS_ONLY'
+              ? 'Šķelšanās un saspringtie balsojumi'
+              : contentiousFilter === 'COALITION_SPLIT_ONLY'
+              ? 'Koalīcijas partneru šķelšanās balsojumi'
+              : contentiousFilter === 'TIGHT_MARGIN_ONLY'
+              ? 'Saspringtie balsojumi (≤ 10 balsīm)'
+              : 'Visi balsojumi'}
           </div>
 
-          {onSelectCategory && activeDomainObj && (
-            <button
-              type="button"
-              onClick={() => onSelectCategory(activeDomainObj.id)}
-              className="text-xs text-blue-700 hover:text-blue-900 font-semibold underline cursor-pointer"
-            >
-              Atvērt šo tēmu galvenajā plūsmā →
-            </button>
-          )}
+          <div className="font-mono text-[11px] text-slate-500">
+            Parādīti {visibleVotes.length} no {filteredVotes.length}
+          </div>
         </div>
 
-        {/* Table Content */}
+        {/* Empty state */}
         {filteredVotes.length === 0 ? (
-          <div className="py-12 px-4 text-center">
+          <div className="rounded-xl border border-slate-200 bg-white p-12 text-center shadow-2xs">
             <Info className="h-8 w-8 text-slate-300 mx-auto mb-2" />
             <div className="text-sm font-bold text-slate-700">Netika atrasts neviens atbilstīgs balsojums</div>
             <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
-              Mēģiniet izvēlēties citu filtru pēc rakstura, notīrīt meklēšanu vai apskatīt citas nozares.
+              Šajā nozarē nav reģistrēti balsojumi ar šādiem filtriem. Izvēlieties "Visi balsojumi" vai notīriet meklēšanu.
             </p>
-            {(searchQuery || outcomeFilter !== 'ALL' || characterFilter !== 'ALL' || selectedDomainId !== 'ALL') && (
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchQuery('');
-                  setOutcomeFilter('ALL');
-                  setCharacterFilter('ALL');
-                  setSelectedDomainId('ALL');
-                  setVisibleCount(INITIAL_PAGE_SIZE);
-                }}
-                className="mt-3 px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 text-xs font-semibold hover:bg-slate-100 transition cursor-pointer"
-              >
-                Atiestatīt visus filtrus
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={() => {
+                setContentiousFilter('ALL_VOTES');
+                setSelectedDomainId('ALL');
+                setSearchQuery('');
+                setVisibleCount(INITIAL_PAGE_SIZE);
+              }}
+              className="mt-3 px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 text-xs font-semibold hover:bg-slate-100 transition cursor-pointer"
+            >
+              Rādīt visus balsojumus
+            </button>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[920px]">
-              <thead>
-                <tr className="border-b border-slate-200 bg-slate-100/70 text-[10px] text-slate-600 font-bold uppercase tracking-wider select-none">
-                  <th scope="col" className="py-2.5 px-3 w-5/12">
-                    Datums un likumprojekts
-                  </th>
-                  {orderedFactions.map((f) => (
-                    <th key={f.id} scope="col" className="py-2.5 px-1.5 text-center w-[46px]" title={`${f.name} (${f.seats} mandāti)`}>
-                      <div className="inline-flex flex-col items-center">
-                        <span className="h-1.5 w-4 rounded-full mb-0.5" style={{ backgroundColor: f.color }} />
-                        <span className="text-[10px] font-mono font-bold text-slate-800">{f.shortName}</span>
-                      </div>
-                    </th>
-                  ))}
-                  <th scope="col" className="py-2.5 px-3 text-center w-28">
-                    Iznākums
-                  </th>
-                  <th scope="col" className="py-2.5 px-3 text-right w-24">
-                    Sēžu zāle
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody className="divide-y divide-slate-100 text-xs">
-                {visibleVotes.map((vote) => {
-                  const isApproved = vote.result === 'PIENEMTS';
-                  const isQuorumBreak = vote.result === 'NAV_KVORUMA';
-                  const isExpanded = expandedVoteId === vote.id;
-                  const displayTitle = cleanVoteTitle(vote.simplifiedTitle || vote.officialTitle);
-                  const isTight = isTightMarginVote(vote);
-                  const isSplitCoalition = isCoalitionSplitVote(vote);
-
-                  return (
-                    <React.Fragment key={vote.id}>
-                      <tr
-                        onClick={() => setExpandedVoteId(isExpanded ? null : vote.id)}
-                        className={`transition hover:bg-slate-50/80 cursor-pointer ${
-                          isExpanded ? 'bg-slate-50/90' : ''
-                        }`}
-                      >
-                        {/* 1. Date, Badges & Law Title */}
-                        <td className="py-2.5 px-3 align-middle">
-                          <div className="flex flex-wrap items-center gap-1.5 mb-1">
-                            <span className="text-[11px] font-mono text-slate-500 font-medium">
-                              {vote.sittingDate || vote.sessionDate}
-                            </span>
-
-                            {vote.readingStage && (
-                              <span className="px-1.5 py-0.2 rounded text-[10px] font-mono font-medium bg-slate-100 text-slate-600 border border-slate-200">
-                                {vote.readingStage}
-                              </span>
-                            )}
-
-                            {vote.billNumber && (
-                              <span className="px-1.5 py-0.2 rounded text-[10px] font-mono text-slate-500 bg-slate-50 border border-slate-200">
-                                {vote.billNumber}
-                              </span>
-                            )}
-
-                            {isTight && (
-                              <span className="px-1.5 py-0.2 rounded text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-300">
-                                Saspringts
-                              </span>
-                            )}
-
-                            {isSplitCoalition && (
-                              <span className="px-1.5 py-0.2 rounded text-[10px] font-bold bg-rose-50 text-rose-800 border border-rose-300">
-                                Koalīcija šķēlās
-                              </span>
-                            )}
-                          </div>
-
-                          <div className="font-semibold text-slate-900 leading-snug line-clamp-2 hover:text-blue-900 transition">
-                            {displayTitle}
-                          </div>
-                        </td>
-
-                        {/* 2. Faction Stance Cells */}
-                        {orderedFactions.map((f) => {
-                          const stance = getFactionVoteStance(vote.factionBreakdown, f.id, f.shortName);
-
-                          return (
-                            <td key={f.id} className="py-2.5 px-1 text-center align-middle" title={stance.tooltip}>
-                              {stance.decision === 'PAR' && (
-                                <span
-                                  className={`inline-flex items-center justify-center px-1.5 py-0.5 rounded text-[10px] font-mono font-bold ${
-                                    stance.isSplit
-                                      ? 'bg-emerald-50 text-emerald-800 border border-dashed border-emerald-300 gap-0.5'
-                                      : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                                  }`}
-                                >
-                                  <span>PAR</span>
-                                  {stance.isSplit && (
-                                    <span className="h-1 w-1 rounded-full bg-amber-500" title="Sašķelts frakcijas balsojums" />
-                                  )}
-                                </span>
-                              )}
-
-                              {stance.decision === 'PRET' && (
-                                <span
-                                  className={`inline-flex items-center justify-center px-1.5 py-0.5 rounded text-[10px] font-mono font-bold ${
-                                    stance.isSplit
-                                      ? 'bg-rose-50 text-rose-800 border border-dashed border-rose-300 gap-0.5'
-                                      : 'bg-rose-50 text-rose-700 border border-rose-200'
-                                  }`}
-                                >
-                                  <span>PRET</span>
-                                  {stance.isSplit && (
-                                    <span className="h-1 w-1 rounded-full bg-amber-500" title="Sašķelts frakcijas balsojums" />
-                                  )}
-                                </span>
-                              )}
-
-                              {stance.decision === 'ATTURAS' && (
-                                <span className="inline-flex items-center justify-center px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-50 text-amber-700 border border-amber-200">
-                                  ATT.
-                                </span>
-                              )}
-
-                              {stance.decision === 'NEBALSO' && (
-                                <span className="inline-flex items-center justify-center px-1 py-0.5 rounded text-[10px] font-mono font-medium bg-slate-100 text-slate-500 border border-slate-200">
-                                  NEB.
-                                </span>
-                              )}
-
-                              {stance.decision === 'NAV_DATU' && (
-                                <span className="text-slate-300 text-xs select-none">—</span>
-                              )}
-                            </td>
-                          );
-                        })}
-
-                        {/* 3. Outcome Cell */}
-                        <td className="py-2.5 px-3 text-center align-middle whitespace-nowrap">
-                          {isApproved ? (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                              <span>PIEŅEMTS</span>
-                            </span>
-                          ) : isQuorumBreak ? (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
-                              <AlertCircle className="w-3 h-3 text-amber-600" />
-                              <span>NAV KVORUMA</span>
-                            </span>
-                          ) : (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">
-                              <XCircle className="w-3 h-3 text-rose-600" />
-                              <span>NORAIDĪTS</span>
-                            </span>
-                          )}
-
-                          <div className="text-[10px] font-mono text-slate-500 mt-0.5">
-                            {vote.counts.par} : {vote.counts.pret}
-                          </div>
-                        </td>
-
-                        {/* 4. Action / Hemicycle Link */}
-                        <td className="py-2.5 px-3 text-right align-middle whitespace-nowrap">
-                          <div className="inline-flex items-center gap-1">
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                onSelectVote(vote);
-                              }}
-                              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-900 hover:text-white hover:border-slate-900 text-xs font-semibold shadow-2xs transition cursor-pointer"
-                              title="Atvērt 100 deputātu sēžu zāles interaktīvo karti"
-                            >
-                              <Users className="w-3.5 h-3.5" />
-                              <span className="hidden sm:inline">Zāle</span>
-                            </button>
-
-                            <button
-                              type="button"
-                              aria-label="Izvērst detaļas"
-                              className="p-1 text-slate-400 hover:text-slate-700 rounded transition cursor-pointer"
-                            >
-                              {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-
-                      {/* Expandable Details Drawer */}
-                      {isExpanded && (
-                        <tr className="bg-slate-50/70 border-b border-slate-200">
-                          <td colSpan={orderedFactions.length + 3} className="px-4 py-3">
-                            <div className="space-y-2 text-xs">
-                              <div>
-                                <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">
-                                  Oficiālais Saeimas nosaukums
-                                </div>
-                                <div className="text-slate-800 font-medium leading-relaxed">
-                                  {vote.officialTitle}
-                                </div>
-                              </div>
-
-                              {vote.summary && (
-                                <div className="pt-1">
-                                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">
-                                    Likumprojekta anotācija un mērķis
-                                  </div>
-                                  <p className="text-slate-600 leading-relaxed max-w-3xl">
-                                    {vote.summary}
-                                  </p>
-                                </div>
-                              )}
-
-                              <div className="pt-2 flex flex-wrap items-center justify-between gap-2 border-t border-slate-200/60">
-                                <div className="text-[11px] text-slate-500 font-mono">
-                                  Kopā reģistrēti:{' '}
-                                  <strong className="text-slate-800">
-                                    {vote.counts.par + vote.counts.pret + vote.counts.atturas + vote.counts.nebalso}
-                                  </strong>{' '}
-                                  deputāti ({vote.counts.par} Par, {vote.counts.pret} Pret, {vote.counts.atturas} Atturas, {vote.counts.nebalso} Nebalsoja)
-                                </div>
-
-                                <div className="flex items-center gap-2">
-                                  {vote.protocolUrl && (
-                                    <a
-                                      href={vote.protocolUrl}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="inline-flex items-center gap-1 text-[11px] text-blue-700 hover:text-blue-900 font-medium underline"
-                                      onClick={(e) => e.stopPropagation()}
-                                    >
-                                      <span>Saeimas oficiālais protokols</span>
-                                      <ExternalLink className="w-3 h-3" />
-                                    </a>
-                                  )}
-
-                                  <button
-                                    type="button"
-                                    onClick={() => onSelectVote(vote)}
-                                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition cursor-pointer"
-                                  >
-                                    <Users className="w-3.5 h-3.5" />
-                                    <span>Atvērt 100 deputātu sēžu zāles karti</span>
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      )}
-                    </React.Fragment>
-                  );
-                })}
-              </tbody>
-            </table>
+          <div className="space-y-3">
+            {visibleVotes.map((vote) => (
+              <VoteCard key={vote.id} vote={vote} onSelect={onSelectVote} />
+            ))}
           </div>
         )}
 
-        {/* 6. PAGINATION: "RĀDĪT VĒL 25 BALSOJUMUS" */}
+        {/* Progressive Loading Trigger */}
         {filteredVotes.length > visibleCount && (
-          <div className="p-4 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <span className="text-xs text-slate-500 font-mono">
-              Parādīti {visibleCount} no {filteredVotes.length} balsojumiem
-            </span>
-
+          <div className="pt-2 pb-4 text-center">
             <button
               type="button"
               onClick={() => setVisibleCount((prev) => prev + INITIAL_PAGE_SIZE)}
@@ -1290,15 +933,18 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
               <span>Rādīt vēl {Math.min(INITIAL_PAGE_SIZE, filteredVotes.length - visibleCount)} balsojumus</span>
               <ChevronDown className="h-4 w-4" />
             </button>
+            <div className="mt-1.5 text-[11px] text-slate-500 font-mono">
+              Parādīti {visibleCount} no {filteredVotes.length} balsojumiem
+            </div>
           </div>
         )}
       </section>
 
-      {/* 7. METHODOLOGY FOOTER */}
+      {/* 6. METHODOLOGY FOOTER */}
       <footer className="rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 flex items-start gap-3 text-xs text-slate-600">
         <Info className="h-4 w-4 text-slate-500 flex-shrink-0 mt-0.5" />
         <div className="leading-relaxed">
-          <strong className="text-slate-800">Par radara analīzi:</strong> Koalīcijas saskaņa mēra frakciju balsojumu atbilstību valdības koalīcijas (JV, ZZS, PRO) vairākuma nostājai. Saspringtie balsojumi atlasa lēmumus, kuros starpība starp atbalstu un noraidījumu nepārsniedza 10 balsis. Visi dati balstīti uz oficiālajiem Saeimas plenārsēžu protokoliem.
+          <strong className="text-slate-800">Par radara metodoloģiju:</strong> Matrica aprēķina katras frakcijas saskaņu ar valdības koalīcijas (JV, ZZS, PRO) vairākumu. Saspringtie balsojumi atlasa lēmumus, kuros starpība starp atbalstu un noraidījumu bija ≤ 10 balsīm, bet koalīcijas šķelšanās fiksē gadījumus, kad valdības partijas balsojušas savstarpēji pretēji. Visi dati balstīti uz oficiālajiem Saeimas plenārsēžu protokoliem.
         </div>
       </footer>
     </div>
