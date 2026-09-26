@@ -217,17 +217,35 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
     isAmendment?: boolean;
     category?: string;
   }) => {
+    // Clean up procedural prefixes: "Par nodošanu ..." -> "Nodošana ...", etc.
+    const displayTitle = item.title
+      .replace(/^Par nodošanu /i, 'Nodošana ')
+      .replace(/^Par iekļaušanu /i, 'Iekļaušana ')
+      .replace(/^Par izslēgšanu /i, 'Izslēgšana ');
+
     const isAmendment =
       item.isAmendment ??
       (item.voteType === 'priekslikums' ||
         item.readingStage === 'Priekšlikums' ||
         /priekšlikum/i.test(item.title));
 
-    const isRedundantParent =
-      Boolean(item.parentBillTitle &&
-      item.parentBillTitle.trim().toLowerCase() === item.title.trim().toLowerCase());
+    const isProceduralSubMotion = Boolean(
+      item.parentBillTitle && (
+        item.voteType === 'procedura' ||
+        item.readingStage === 'Nodošana komisijām' ||
+        item.readingStage === 'Darba kārtība' ||
+        /^Nodošana /i.test(displayTitle) ||
+        /^Iekļaušana /i.test(displayTitle) ||
+        /^Izslēgšana /i.test(displayTitle)
+      )
+    );
 
-    if (isAmendment && !isRedundantParent && item.parentBillTitle) {
+    const isRedundantParent = Boolean(
+      item.parentBillTitle &&
+      item.parentBillTitle.trim().toLowerCase() === item.title.trim().toLowerCase()
+    );
+
+    if ((isAmendment || isProceduralSubMotion) && !isRedundantParent && item.parentBillTitle) {
       return (
         <>
           <div
@@ -239,7 +257,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
             <span className="text-slate-400">{item.sittingDate}</span>
           </div>
           <div className="font-bold text-slate-900 text-xs sm:text-sm leading-snug">
-            {item.title}
+            {displayTitle}
           </div>
         </>
       );
@@ -258,7 +276,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
           className="font-bold text-slate-900 text-xs sm:text-sm leading-snug line-clamp-2 break-words"
           title={item.title}
         >
-          {item.title}
+          {displayTitle}
         </div>
       </>
     );
@@ -365,7 +383,11 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
           >
             Frakcijas vienotība un šķelšanās
             {dossier?.cohesion?.deviationsCount !== undefined && dossier.cohesion.deviationsCount > 0 && (
-              <span className="ml-1.5 px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-amber-100 text-amber-800">
+              <span className={`ml-1.5 rounded-full px-2 py-0.5 text-xs font-semibold tabular-nums ${
+                activeTab === 'cohesion'
+                  ? 'bg-amber-100 text-amber-900'
+                  : 'bg-amber-50 text-amber-700'
+              }`}>
                 {dossier.cohesion.deviationsCount}
               </span>
             )}
@@ -381,7 +403,11 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
             }`}
           >
             Balsojumu vēsture
-            <span className="ml-1.5 px-1.5 py-0.2 rounded-full text-[10px] font-mono bg-slate-100 text-slate-600">
+            <span className={`ml-1.5 rounded-full px-2 py-0.5 text-xs font-semibold tabular-nums ${
+              activeTab === 'history'
+                ? 'bg-slate-200 text-slate-900'
+                : 'bg-slate-100 text-slate-600'
+            }`}>
               {dossier?.totalVotes || 400}
             </span>
           </button>
@@ -630,7 +656,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                           {/* SECTION A: ATKLĀTA PRETRUNA AR FRAKCIJU (Rebel / Opposing votes) */}
                           {oppositeDeviations.length > 0 && (
                             <>
-                              <div className="px-3.5 py-2 bg-rose-50/70 border-b border-rose-100 flex items-center justify-between">
+                              <div className="px-4 py-2 bg-slate-50 border-y border-slate-100 flex items-center justify-between">
                                 <div className="flex items-center gap-2">
                                   <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
                                   <h4 className="text-xs font-bold text-slate-900">
@@ -672,16 +698,25 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                           {/* SECTION B: BALSOJUMA TOŅA ATŠĶIRĪBAS (Nuance: Pret vs Atturas) */}
                           {nuanceDeviations.length > 0 && (
                             <>
-                              <div className="px-3.5 py-2.5 bg-amber-50/60 border-b border-amber-100">
+                              <div className="px-4 py-2 bg-slate-50 border-y border-slate-100 flex items-center justify-between">
                                 <div className="flex items-center gap-2">
                                   <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
                                   <h4 className="text-xs font-bold text-slate-900">
                                     Balsojuma toņa atšķirības ({nuanceDeviations.length})
                                   </h4>
+                                  <div className="relative group inline-flex items-center ml-1">
+                                    <button
+                                      type="button"
+                                      aria-label="Paskaidrojums par balsojuma toņa atšķirībām"
+                                      className="text-slate-400 hover:text-slate-600 transition p-0.5 cursor-help"
+                                    >
+                                      <Info className="h-3.5 w-3.5" />
+                                    </button>
+                                    <div className="absolute left-6 top-1/2 -translate-y-1/2 w-72 p-2.5 bg-slate-900 text-white text-[11px] rounded-lg shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity z-30 leading-relaxed font-normal normal-case">
+                                      Satversmes 24. panta izpratnē abas balsis panāca to pašu iznākumu (likuma noraidīšanu), bet atšķīrās balsojuma veids (Pret vai Atturas).
+                                    </div>
+                                  </div>
                                 </div>
-                                <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
-                                  Satversmes 24. panta izpratnē abas balsis panāca to pašu iznākumu (likuma noraidīšanu), bet atšķīrās balsojuma veids (Pret vai Atturas).
-                                </p>
                               </div>
 
                               {nuanceDeviations.map((dev) => (

@@ -62,13 +62,25 @@ def build_analytics():
     # Load all rollcalls into a fast lookup: mpId -> list of { voteId, decision }
     mp_votes_log = defaultdict(dict)
 
-    # Build parent bill titles lookup for bare proposals (e.g., "1. priekšlikums")
-    bill_parent_titles = {}
+    # Build parent bill titles lookup for bare proposals (e.g., "1. priekšlikums") and procedural motions
+    bill_parent_titles = {
+        "895/Lm14": "Par ASV prezidenta Donalda Trampa kandidatūras atbalstīšanu Nobela miera prēmijas piešķiršanai",
+        "924/Lm14": "Par neatliekamiem pasākumiem enerģētiskās krīzes un degvielas cenu kāpuma seku mazināšanai un degvielas cenu pazemināšanu",
+        "929/Lm14": "Par importētāju un eksportētāju saraksta publicēšanu, kuri veic darījumus ar Krievijas Federāciju un Baltkrievijas Republiku",
+    }
     for v in votes:
         b = v.get("billNumber")
         t = v.get("simplifiedTitle") or v.get("officialTitle", "")
-        if b and not ("priekšlikums" in t.lower() or t.startswith("Par priekšlikumu")):
-            clean = t.replace("Par likumprojekta ", "").replace("Par likumprojektu ", "").replace("Likumprojekts ", "").strip()
+        t_clean = t.strip()
+        if b and not (
+            "priekšlikums" in t_clean.lower()
+            or t_clean.startswith("Par priekšlikumu")
+            or t_clean.startswith("Par nodošanu")
+            or t_clean.startswith("Par iekļaušanu")
+            or t_clean.startswith("Par izslēgšanu")
+            or t_clean.startswith("Par pārtraukumu")
+        ):
+            clean = t_clean.replace("Par likumprojekta ", "").replace("Par likumprojektu ", "").replace("Likumprojekts ", "").replace("Par lēmuma projekta ", "").replace(" iekļaušanu Saeimas sēdes darba kārtībā", "").strip()
             if b not in bill_parent_titles or len(clean) > len(bill_parent_titles[b]):
                 bill_parent_titles[b] = clean
 
@@ -131,6 +143,25 @@ def build_analytics():
             else:
                 absent_count += 1
 
+            b_num = v.get("billNumber")
+            v_title = (v.get("simplifiedTitle") or v.get("officialTitle", "")).strip()
+            is_amendment = (v.get("voteType") == "priekslikums") or ("priekšlikums" in v_title.lower()) or ("priekšlikumu" in v_title.lower())
+            is_procedural_motion = (
+                v_title.startswith("Par nodošanu")
+                or v_title.startswith("Par iekļaušanu")
+                or v_title.startswith("Par izslēgšanu")
+                or v_title.startswith("Par pārtraukumu")
+            )
+            if v_title.startswith("Par nodošanu "):
+                display_title = v_title.replace("Par nodošanu ", "Nodošana ")
+            elif v_title.startswith("Par iekļaušanu "):
+                display_title = v_title.replace("Par iekļaušanu ", "Iekļaušana ")
+            else:
+                display_title = v_title
+
+            reading_stage = v.get("readingStage") or ("Likuma pieņemšana" if v.get("voteType") == "likums" else "Likumprojekts")
+            parent_title = bill_parent_titles.get(b_num) if (b_num and (is_amendment or is_procedural_motion)) else None
+
             # Check deviation if MP was active and not independent
             if not is_independent and decision in ("PAR", "PRET", "ATTURAS"):
                 faction_line = vote_faction_lines[vid].get(fid)
@@ -142,15 +173,10 @@ def build_analytics():
                         is_opposite = (decision == "PAR" and faction_line in ("PRET", "ATTURAS")) or \
                                       (faction_line == "PAR" and decision in ("PRET", "ATTURAS"))
                         dev_type = "OPPOSITE" if is_opposite else "NUANCE"
-                        b_num = v.get("billNumber")
-                        v_title = v.get("simplifiedTitle") or v.get("officialTitle", "")
-                        is_amendment = (v.get("voteType") == "priekslikums") or ("priekšlikums" in v_title.lower()) or ("priekšlikumu" in v_title.lower())
-                        reading_stage = v.get("readingStage") or ("Likuma pieņemšana" if v.get("voteType") == "likums" else "Likumprojekts")
-                        parent_title = bill_parent_titles.get(b_num) if (b_num and is_amendment) else None
 
                         deviations.append({
                             "voteId": vid,
-                            "title": v_title,
+                            "title": display_title,
                             "sittingDate": v.get("sittingDate", ""),
                             "decision": decision,
                             "factionLine": faction_line,
@@ -163,15 +189,9 @@ def build_analytics():
                             "isAmendment": is_amendment
                         })
 
-            b_num = v.get("billNumber")
-            v_title = v.get("simplifiedTitle") or v.get("officialTitle", "")
-            is_amendment = (v.get("voteType") == "priekslikums") or ("priekšlikums" in v_title.lower()) or ("priekšlikumu" in v_title.lower())
-            reading_stage = v.get("readingStage") or ("Likuma pieņemšana" if v.get("voteType") == "likums" else "Likumprojekts")
-            parent_title = bill_parent_titles.get(b_num) if (b_num and is_amendment) else None
-
             history.append({
                 "voteId": vid,
-                "title": v_title,
+                "title": display_title,
                 "sittingDate": v.get("sittingDate", ""),
                 "decision": decision,
                 "result": v.get("result", "PIENEMTS"),
