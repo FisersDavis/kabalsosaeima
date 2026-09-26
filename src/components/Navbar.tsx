@@ -136,16 +136,30 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-slate-600">
             {/* Provenance strip with tabular numbers */}
             <div className="flex items-center gap-1.5 text-[11px] sm:text-xs">
-              <span
-                className="hidden md:inline text-slate-400 cursor-help transition hover:text-slate-600"
-                title={
-                  lastSyncDate
-                    ? `Pēdējā Saeimas sēde: ${latestSittingDate || 'Nav datu'} · Pēdējā datu sinhronizācija: ${lastSyncDate}`
-                    : `Pēdējā Saeimas sēde: ${latestSittingDate || 'Nav datu'}`
-                }
-              >
-                Atjaunots: <strong className="text-slate-700 font-medium underline decoration-slate-300 decoration-dotted underline-offset-2">{latestSittingDate || '25.09.2026'}</strong>
-              </span>
+              <div className="relative group hidden md:inline-flex items-center">
+                <span className="text-slate-400 cursor-pointer transition hover:text-slate-700">
+                  Atjaunots: <strong className="text-slate-700 font-medium underline decoration-slate-300 decoration-dotted underline-offset-2">{latestSittingDate || '25.09.2026'}</strong>
+                </span>
+
+                {/* Instant 0ms Hover Tooltip */}
+                <div className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-center z-50">
+                  <div className="rounded-lg bg-slate-900 px-3 py-1.5 text-[11px] font-medium text-white shadow-xl whitespace-nowrap">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-slate-400">Pēdējā sēde:</span>
+                      <span className="text-slate-100 font-mono font-semibold">{latestSittingDate || 'Nav datu'}</span>
+                      {lastSyncDate && (
+                        <>
+                          <span className="text-slate-600">·</span>
+                          <span className="text-slate-400">Sinhronizēts:</span>
+                          <span className="text-emerald-400 font-mono font-semibold">{lastSyncDate}</span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  {/* Subtle arrow pointer */}
+                  <div className="h-0 w-0 border-x-4 border-x-transparent border-t-4 border-t-slate-900 -mt-px" />
+                </div>
+              </div>
               <span className="hidden md:inline text-slate-300">·</span>
               <div className="flex items-center gap-1">
                 <Database className="h-3 w-3 text-slate-400" />
