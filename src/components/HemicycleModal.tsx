@@ -68,6 +68,8 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
   const [loadedMpVotes, setLoadedMpVotes] = useState<MPVoteRecord[] | null>(vote.mpVotes || null);
   const [loadingRollcall, setLoadingRollcall] = useState<boolean>(!vote.mpVotes && !vote.isSecret);
 
+  const [rollcallError, setRollcallError] = useState<boolean>(false);
+
   // Close on ESC
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -77,20 +79,10 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  // Edge Case 10: Lazy-load individual MP roll-call bundle on demand (saves 86% payload on initial feed)
-  useEffect(() => {
-    if (vote.mpVotes && vote.mpVotes.length > 0) {
-      setLoadedMpVotes(vote.mpVotes);
-      setLoadingRollcall(false);
-      return;
-    }
-    if (vote.isSecret) {
-      setLoadingRollcall(false);
-      return;
-    }
-
+  const loadRollcall = () => {
     let isMounted = true;
     setLoadingRollcall(true);
+    setRollcallError(false);
 
     const t = Date.now();
     fetch(`./data/rollcalls/${vote.id}.json?v=${t}`)
@@ -107,6 +99,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
       .catch((err) => {
         console.warn('Lazy rollcall fetch fallback:', err);
         if (isMounted) {
+          setRollcallError(true);
           setLoadingRollcall(false);
         }
       });
@@ -114,6 +107,21 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
     return () => {
       isMounted = false;
     };
+  };
+
+  // Edge Case 10: Lazy-load individual MP roll-call bundle on demand (saves 86% payload on initial feed)
+  useEffect(() => {
+    if (vote.mpVotes && vote.mpVotes.length > 0) {
+      setLoadedMpVotes(vote.mpVotes);
+      setLoadingRollcall(false);
+      return;
+    }
+    if (vote.isSecret) {
+      setLoadingRollcall(false);
+      return;
+    }
+
+    return loadRollcall();
   }, [vote]);
 
   const factionLookup = useMemo(() => {
@@ -421,6 +429,23 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                   )}
                 </div>
               </div>
+
+              {/* Network / Load Error Banner */}
+              {rollcallError && (
+                <div className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 flex items-center justify-between text-xs text-amber-900">
+                  <div className="flex items-center gap-1.5">
+                    <AlertTriangle className="h-4 w-4 text-amber-600 shrink-0" />
+                    <span>Neizdevās ielādēt sēžu zāles datus šim balsojumam.</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={loadRollcall}
+                    className="underline font-semibold hover:text-amber-950 ml-2 cursor-pointer"
+                  >
+                    Mēģināt vēlreiz
+                  </button>
+                </div>
+              )}
 
               {/* SVG Hemicycle Diagram: Scaled up to fill column width and target comfortably */}
               <div className="relative w-full aspect-[640/310] max-w-2xl mx-auto shrink-0 my-1">

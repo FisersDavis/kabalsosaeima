@@ -135,6 +135,8 @@ def check_local_integrity(update_metadata=False):
                 rc_path = os.path.join(ROLLCALLS_DIR, f"{vid}.json")
                 if os.path.exists(rc_path):
                     mp_votes = load_json(rc_path)
+                else:
+                    errors.append(f"Balsojumam `{vid}` trūkst individuālais roll-call fails: `public/data/rollcalls/{vid}.json`")
 
             if mp_votes:
                 par_mps = sum(1 for m in mp_votes if m.get('decision') == 'PAR')
