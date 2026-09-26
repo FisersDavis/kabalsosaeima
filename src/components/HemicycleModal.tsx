@@ -92,9 +92,10 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
     let isMounted = true;
     setLoadingRollcall(true);
 
-    fetch(`./data/rollcalls/${vote.id}.json`)
+    const t = Date.now();
+    fetch(`./data/rollcalls/${vote.id}.json?v=${t}`)
       .then((res) => {
-        if (!res.ok) throw new Error('Rollcall not found');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
       .then((data: MPVoteRecord[]) => {
@@ -169,7 +170,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
 
   // Generate 100 hemicycle seat coordinates in 4 concentric semi-circular arcs
   const seatPositions = useMemo(() => {
-    if (vote.isSecret || !vote.mpVotes || vote.mpVotes.length === 0) return [];
+    if (vote.isSecret) return [];
 
     // Rows distribution for 100 seats: [18, 24, 28, 30] = 100 seats
     const rows = [
