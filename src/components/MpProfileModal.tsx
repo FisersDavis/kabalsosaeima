@@ -18,8 +18,9 @@ import {
 interface MpProfileModalProps {
   mp: MP;
   faction?: Faction;
+  initialTab?: 'attendance' | 'cohesion' | 'history';
   onClose: () => void;
-  onSelectVote?: (voteId: string) => void;
+  onSelectVote?: (voteId: string, currentTab: 'attendance' | 'cohesion' | 'history') => void;
 }
 
 // Latvian grammar plural agreement helpers
@@ -56,6 +57,7 @@ function formatAlignedCount(count: number): string {
 export const MpProfileModal: React.FC<MpProfileModalProps> = ({
   mp,
   faction,
+  initialTab = 'attendance',
   onClose,
   onSelectVote,
 }) => {
@@ -64,7 +66,14 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
   const [error, setError] = useState<string | null>(null);
 
   // Active view tab inside modal
-  const [activeTab, setActiveTab] = useState<'attendance' | 'cohesion' | 'history'>('attendance');
+  const [activeTab, setActiveTab] = useState<'attendance' | 'cohesion' | 'history'>(initialTab);
+
+  // Sync tab if initialTab or mp changes
+  useEffect(() => {
+    if (initialTab) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab, mp.id]);
 
   // History search & filters
   const [historySearch, setHistorySearch] = useState<string>('');
@@ -576,7 +585,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                                 {oppositeDeviations.map((dev) => (
                                   <div
                                     key={dev.voteId}
-                                    onClick={() => onSelectVote?.(dev.voteId)}
+                                    onClick={() => onSelectVote?.(dev.voteId, activeTab)}
                                     className={`p-3.5 transition-colors flex items-center justify-between gap-3 text-xs ${
                                       onSelectVote ? 'hover:bg-slate-50 cursor-pointer group' : ''
                                     }`}
@@ -652,7 +661,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                                 {nuanceDeviations.map((dev) => (
                                   <div
                                     key={dev.voteId}
-                                    onClick={() => onSelectVote?.(dev.voteId)}
+                                    onClick={() => onSelectVote?.(dev.voteId, activeTab)}
                                     className={`p-3.5 transition-colors flex items-center justify-between gap-3 text-xs ${
                                       onSelectVote ? 'hover:bg-slate-50 cursor-pointer group' : ''
                                     }`}
@@ -766,7 +775,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                     {filteredHistory.slice(0, historyVisibleCount).map((item) => (
                       <div
                         key={item.voteId}
-                        onClick={() => onSelectVote?.(item.voteId)}
+                        onClick={() => onSelectVote?.(item.voteId, activeTab)}
                         className={`p-3.5 transition-colors flex items-center justify-between gap-3 text-xs ${
                           onSelectVote ? 'hover:bg-slate-50 cursor-pointer group' : ''
                         }`}

@@ -32,6 +32,9 @@ export function App() {
 
   const [selectedVote, setSelectedVote] = useState<Vote | null>(null);
   const [selectedMp, setSelectedMp] = useState<MP | null>(null);
+  const [mpInitialTab, setMpInitialTab] = useState<'attendance' | 'cohesion' | 'history'>('attendance');
+  const [returnToMpAfterVote, setReturnToMpAfterVote] = useState<{ mp: MP; tab: 'attendance' | 'cohesion' | 'history' } | null>(null);
+  const [returnToVoteAfterMp, setReturnToVoteAfterMp] = useState<Vote | null>(null);
   const [civicModalTab, setCivicModalTab] = useState<'about' | 'methodology' | 'data' | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
@@ -269,7 +272,11 @@ export function App() {
                 <VoteCard
                   key={vote.id}
                   vote={vote}
-                  onSelect={(v) => setSelectedVote(v)}
+                  onSelect={(v) => {
+                    setReturnToMpAfterVote(null);
+                    setReturnToVoteAfterMp(null);
+                    setSelectedVote(v);
+                  }}
                 />
               ))}
 
@@ -301,7 +308,12 @@ export function App() {
             onFactionChange={setMpFactionFilter}
             activeOnly={mpActiveOnly}
             onActiveOnlyToggle={setMpActiveOnly}
-            onSelectMp={setSelectedMp}
+            onSelectMp={(mp) => {
+              setReturnToMpAfterVote(null);
+              setReturnToVoteAfterMp(null);
+              setMpInitialTab('attendance');
+              setSelectedMp(mp);
+            }}
             mpSummaries={mpSummaries}
           />
         )}
@@ -325,8 +337,20 @@ export function App() {
           vote={selectedVote}
           mps={mps}
           factions={factions}
-          onClose={() => setSelectedVote(null)}
-          onSelectMp={setSelectedMp}
+          onClose={() => {
+            setSelectedVote(null);
+            if (returnToMpAfterVote) {
+              setSelectedMp(returnToMpAfterVote.mp);
+              setMpInitialTab(returnToMpAfterVote.tab);
+              setReturnToMpAfterVote(null);
+            }
+          }}
+          onSelectMp={(mp) => {
+            setReturnToVoteAfterMp(selectedVote);
+            setSelectedVote(null);
+            setSelectedMp(mp);
+            setMpInitialTab('attendance');
+          }}
         />
       )}
 
@@ -335,10 +359,18 @@ export function App() {
         <MpProfileModal
           mp={selectedMp}
           faction={factions.find((f) => f.id === selectedMp.factionId)}
-          onClose={() => setSelectedMp(null)}
-          onSelectVote={(voteId) => {
+          initialTab={mpInitialTab}
+          onClose={() => {
+            setSelectedMp(null);
+            if (returnToVoteAfterMp) {
+              setSelectedVote(returnToVoteAfterMp);
+              setReturnToVoteAfterMp(null);
+            }
+          }}
+          onSelectVote={(voteId, currentTab) => {
             const v = votes.find((item) => item.id === voteId);
-            if (v) {
+            if (v && selectedMp) {
+              setReturnToMpAfterVote({ mp: selectedMp, tab: currentTab });
               setSelectedMp(null);
               setSelectedVote(v);
             }
