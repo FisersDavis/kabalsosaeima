@@ -218,7 +218,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={() => onSelectTab('votes')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer shrink-0 ${
                 activeTab === 'votes'
                   ? 'bg-slate-900 text-white shadow-2xs'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
@@ -236,14 +236,17 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={() => onSelectTab('mps')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer shrink-0 ${
                 activeTab === 'mps'
                   ? 'bg-slate-900 text-white shadow-2xs'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
               <Users className="h-3.5 w-3.5" />
-              <span>Partijas un deputāti</span>
+              <span>
+                <span className="sm:hidden">Deputāti</span>
+                <span className="hidden sm:inline">Partijas un deputāti</span>
+              </span>
               <span className={`ml-0.5 text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
                 activeTab === 'mps' ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-500'
               }`}>
@@ -254,14 +257,17 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={() => onSelectTab('issues')}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+              className={`inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer shrink-0 ${
                 activeTab === 'issues'
                   ? 'bg-slate-900 text-white shadow-2xs'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
               <Layers className="h-3.5 w-3.5" />
-              <span>Tematiskais radars</span>
+              <span>
+                <span className="sm:hidden">Radars</span>
+                <span className="hidden sm:inline">Tematiskais radars</span>
+              </span>
             </button>
           </nav>
 

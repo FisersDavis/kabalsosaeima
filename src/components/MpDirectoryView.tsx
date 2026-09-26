@@ -1,5 +1,6 @@
 import React from 'react';
 import type { MP, Faction } from '../types';
+import { normalizeLatvianSearch } from '../types';
 import { Search, Users, X, Info } from 'lucide-react';
 
 interface MpDirectoryViewProps {
@@ -47,10 +48,10 @@ export const MpDirectoryView: React.FC<MpDirectoryViewProps> = ({
       if (activeOnly && !mp.isActive) return false;
       if (selectedFaction !== 'ALL' && mp.factionId !== selectedFaction) return false;
       if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase().trim();
-        const matchesName = mp.name.toLowerCase().includes(q);
+        const q = normalizeLatvianSearch(searchQuery.trim());
+        const matchesName = normalizeLatvianSearch(mp.name).includes(q);
         const faction = factionMap.get(mp.factionId);
-        const matchesFaction = faction?.name.toLowerCase().includes(q) || faction?.shortName.toLowerCase().includes(q);
+        const matchesFaction = normalizeLatvianSearch(faction?.name).includes(q) || normalizeLatvianSearch(faction?.shortName).includes(q);
         if (!matchesName && !matchesFaction) return false;
       }
       return true;

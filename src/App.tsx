@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import type { Vote, MP, Faction, SaeimaTerm, SiteMetadata, ActiveNavTab } from './types';
-import { isFinalDecisionVote, parseLatvianDate } from './types';
+import { isFinalDecisionVote, parseLatvianDate, normalizeLatvianSearch } from './types';
 import { Navbar } from './components/Navbar';
 import { FilterBar, type VoteTypeFilter } from './components/FilterBar';
 import { VoteCard } from './components/VoteCard';
@@ -124,11 +124,11 @@ export function App() {
       if (selectedOutcome !== 'ALL' && v.result !== selectedOutcome) return false;
       if (selectedCategory !== 'ALL' && v.category?.id !== selectedCategory) return false;
       if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        const inTitle = v.simplifiedTitle.toLowerCase().includes(q);
-        const inOfficial = v.officialTitle.toLowerCase().includes(q);
-        const inBill = v.billNumber.toLowerCase().includes(q);
-        const inSummary = v.summary.toLowerCase().includes(q);
+        const q = normalizeLatvianSearch(searchQuery);
+        const inTitle = normalizeLatvianSearch(v.simplifiedTitle).includes(q);
+        const inOfficial = normalizeLatvianSearch(v.officialTitle).includes(q);
+        const inBill = normalizeLatvianSearch(v.billNumber).includes(q);
+        const inSummary = normalizeLatvianSearch(v.summary).includes(q);
         if (!inTitle && !inOfficial && !inBill && !inSummary) return false;
       }
       return true;
@@ -302,6 +302,7 @@ export function App() {
             onSelectCategory={(categoryId) => {
               setSelectedCategory(categoryId);
               setActiveTab('votes');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
           />
         )}
