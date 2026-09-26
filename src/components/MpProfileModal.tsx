@@ -42,9 +42,6 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
   // Progressive pagination for voting history
   const [historyVisibleCount, setHistoryVisibleCount] = useState<number>(50);
 
-  // Deviation tier filter
-  const [deviationFilter, setDeviationFilter] = useState<'ALL' | 'OPPOSITE' | 'NUANCE'>('ALL');
-
   // Scroll ref for modal body to reset scroll on tab switch
   const modalBodyRef = useRef<HTMLDivElement>(null);
 
@@ -56,10 +53,6 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
   useEffect(() => {
     setHistoryVisibleCount(50);
   }, [historySearch, historyDecision, mp.id]);
-
-  useEffect(() => {
-    setDeviationFilter('ALL');
-  }, [mp.id, activeTab]);
 
   // Fetch individual dossier JSON
   useEffect(() => {
@@ -127,12 +120,14 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
     });
   }, [dossier?.votingHistory, historyDecision, historySearch]);
 
-  // Filtered deviations by tier (OPPOSITE vs NUANCE)
-  const filteredDeviations = useMemo(() => {
-    if (!dossier?.cohesion?.deviations) return [];
-    if (deviationFilter === 'ALL') return dossier.cohesion.deviations;
-    return dossier.cohesion.deviations.filter((d) => d.deviationType === deviationFilter);
-  }, [dossier?.cohesion?.deviations, deviationFilter]);
+  // Split deviations into Opposite (rebels) and Nuance (Pret vs Atturas)
+  const oppositeDeviations = useMemo(() => {
+    return dossier?.cohesion?.deviations?.filter((d) => d.deviationType === 'OPPOSITE') || [];
+  }, [dossier?.cohesion?.deviations]);
+
+  const nuanceDeviations = useMemo(() => {
+    return dossier?.cohesion?.deviations?.filter((d) => d.deviationType === 'NUANCE') || [];
+  }, [dossier?.cohesion?.deviations]);
 
   const getDecisionBadge = (decision: VoteDecision) => {
     switch (decision) {
@@ -485,156 +480,178 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                           </p>
                         </div>
 
-                        <div className="flex items-center gap-3 self-stretch sm:self-auto border-t sm:border-t-0 sm:border-l border-slate-100 pt-3 sm:pt-0 sm:pl-6 text-right flex-wrap sm:flex-nowrap">
-                          <div>
-                            <div className="text-xs font-mono font-bold text-emerald-700">
+                        <div className="flex items-center gap-2 sm:gap-3 self-stretch sm:self-auto border-t sm:border-t-0 sm:border-l border-slate-100 pt-3 sm:pt-0 sm:pl-6 text-right flex-wrap sm:flex-nowrap">
+                          <div className="p-2 sm:p-2.5 rounded-lg bg-emerald-50/60 border border-emerald-100 min-w-[90px] text-center">
+                            <div className="text-sm sm:text-base font-mono font-bold text-emerald-700">
                               {dossier.cohesion.activeAlignedCount}
                             </div>
-                            <div className="text-[10px] text-slate-400">vienoti balsojumi</div>
+                            <div className="text-[10px] text-slate-500 font-medium">vienoti balsojumi</div>
                           </div>
-                          <span className="text-slate-300">/</span>
-                          <div>
-                            <div className="text-xs font-mono font-bold text-rose-700">
+
+                          <div className="p-2 sm:p-2.5 rounded-lg bg-rose-50/60 border border-rose-100 min-w-[90px] text-center">
+                            <div className="text-sm sm:text-base font-mono font-bold text-rose-700">
                               {dossier.cohesion.oppositeCount ?? 0}
                             </div>
-                            <div className="text-[10px] text-slate-400">pretējas balsis</div>
+                            <div className="text-[10px] text-rose-700 font-medium">pretējas balsis</div>
                           </div>
-                          <span className="text-slate-300">/</span>
-                          <div>
-                            <div className="text-xs font-mono font-bold text-amber-700">
+
+                          <div className="p-2 sm:p-2.5 rounded-lg bg-amber-50/60 border border-amber-100 min-w-[90px] text-center">
+                            <div className="text-sm sm:text-base font-mono font-bold text-amber-700">
                               {dossier.cohesion.nuanceCount ?? 0}
                             </div>
-                            <div className="text-[10px] text-slate-400">pozīcijas nianses</div>
+                            <div className="text-[10px] text-amber-700 font-medium">pozīcijas nianses</div>
                           </div>
                         </div>
                       </div>
 
-                      {/* Deviations List */}
-                      <div className="space-y-3">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-                          <div>
-                            <h4 className="text-xs font-bold text-slate-900">
-                              Balsojumi, kuros deputāta izvēle atšķīrās no frakcijas vairākuma
-                            </h4>
-                            <p className="text-[11px] text-slate-500 mt-0.5">
-                              Kopā {dossier.cohesion.deviationsCount} atšķirīgas balsis ({dossier.cohesion.oppositeCount ?? 0} pretējas, {dossier.cohesion.nuanceCount ?? 0} nianses)
-                            </p>
-                          </div>
+                      {/* DEVIATIONS SECTIONS */}
+                      {dossier.cohesion.deviations.length === 0 ? (
+                        <div className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500">
+                          <CheckCircle2 className="mx-auto h-7 w-7 text-emerald-500 mb-2" />
+                          <p className="text-sm font-semibold">100% frakcijas vienotība</p>
+                          <p className="text-xs text-slate-400 mt-0.5">
+                            Šis deputāts visos reģistrētajos balsojumos ir balsojis saskaņā ar savas frakcijas vairākuma lēmumu.
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="space-y-6">
+                          {/* SECTION A: ATKLĀTA PRETRUNA AR FRAKCIJU (Rebel / Opposing votes) */}
+                          {oppositeDeviations.length > 0 && (
+                            <div className="space-y-2">
+                              <div className="flex items-center justify-between px-1">
+                                <div className="flex items-center gap-2">
+                                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
+                                  <h4 className="text-xs font-bold text-slate-900">
+                                    Atklāta pretruna ar frakciju ({oppositeDeviations.length})
+                                  </h4>
+                                </div>
+                                <span className="text-[11px] font-medium text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                                  Pretējs balsojums
+                                </span>
+                              </div>
 
-                          {dossier.cohesion.deviationsCount > 0 && (
-                            <div className="flex items-center gap-1.5 shrink-0 overflow-x-auto scrollbar-none">
-                              <button
-                                type="button"
-                                onClick={() => setDeviationFilter('ALL')}
-                                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
-                                  deviationFilter === 'ALL'
-                                    ? 'bg-slate-900 text-white shadow-2xs'
-                                    : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-                                }`}
-                              >
-                                Visi ({dossier.cohesion.deviationsCount})
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => setDeviationFilter('OPPOSITE')}
-                                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
-                                  deviationFilter === 'OPPOSITE'
-                                    ? 'bg-rose-700 text-white shadow-2xs'
-                                    : 'bg-white text-rose-700 hover:bg-rose-50 border border-rose-200'
-                                }`}
-                              >
-                                Pretēji ({dossier.cohesion.oppositeCount ?? 0})
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => setDeviationFilter('NUANCE')}
-                                className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
-                                  deviationFilter === 'NUANCE'
-                                    ? 'bg-amber-600 text-white shadow-2xs'
-                                    : 'bg-white text-amber-700 hover:bg-amber-50 border border-amber-200'
-                                }`}
-                              >
-                                Nianses ({dossier.cohesion.nuanceCount ?? 0})
-                              </button>
+                              <div className="rounded-xl border border-rose-200/80 bg-white overflow-hidden shadow-2xs divide-y divide-slate-100">
+                                {/* Table header */}
+                                <div className="flex items-center justify-between px-3.5 py-1.5 bg-rose-50/50 border-b border-rose-100 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                                  <span>Likumprojekts vai priekšlikums</span>
+                                  <div className="flex items-center gap-2 sm:gap-4 pr-6">
+                                    <span className="w-20 text-center">Deputāts</span>
+                                    <span className="w-24 text-center">Frakcija</span>
+                                  </div>
+                                </div>
+
+                                {oppositeDeviations.map((dev) => (
+                                  <div
+                                    key={dev.voteId}
+                                    className="p-3.5 hover:bg-slate-50 transition flex items-center justify-between gap-3 text-xs"
+                                  >
+                                    <div className="min-w-0 flex-1">
+                                      <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-0.5">
+                                        <span>{dev.sittingDate}</span>
+                                        <span>·</span>
+                                        <span>{dev.category || 'Likumprojekts'}</span>
+                                      </div>
+                                      <div className="font-semibold text-slate-900 leading-snug line-clamp-2" title={dev.title}>
+                                        {dev.title}
+                                      </div>
+                                    </div>
+
+                                    <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+                                      <div className="w-20 flex justify-center">
+                                        {getDecisionBadge(dev.decision)}
+                                      </div>
+                                      <div className="w-24 flex justify-center">
+                                        {getDecisionBadge(dev.factionLine)}
+                                      </div>
+
+                                      {onSelectVote ? (
+                                        <button
+                                          type="button"
+                                          onClick={() => onSelectVote(dev.voteId)}
+                                          className="p-1 text-slate-400 hover:text-slate-900 transition cursor-pointer"
+                                          title="Atvērt šo balsojumu"
+                                        >
+                                          <ChevronRight className="h-4 w-4" />
+                                        </button>
+                                      ) : (
+                                        <div className="w-4" />
+                                      )}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* SECTION B: BALSOJUMA TOŅA ATŠĶIRĪBAS (Nuance: Pret vs Atturas) */}
+                          {nuanceDeviations.length > 0 && (
+                            <div className="space-y-2">
+                              <div className="px-1">
+                                <div className="flex items-center gap-2">
+                                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                                  <h4 className="text-xs font-bold text-slate-900">
+                                    Balsojuma toņa atšķirības ({nuanceDeviations.length})
+                                  </h4>
+                                </div>
+                                <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">
+                                  Satversmes 24. panta izpratnē abas balsis panāca to pašu iznākumu (likuma noraidīšanu), bet atšķīrās balsojuma veids (Pret vai Atturas).
+                                </p>
+                              </div>
+
+                              <div className="rounded-xl border border-slate-200 bg-white overflow-hidden shadow-2xs divide-y divide-slate-100">
+                                {/* Table header */}
+                                <div className="flex items-center justify-between px-3.5 py-1.5 bg-slate-50 border-b border-slate-200 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                                  <span>Likumprojekts vai priekšlikums</span>
+                                  <div className="flex items-center gap-2 sm:gap-4 pr-6">
+                                    <span className="w-20 text-center">Deputāts</span>
+                                    <span className="w-24 text-center">Frakcija</span>
+                                  </div>
+                                </div>
+
+                                {nuanceDeviations.map((dev) => (
+                                  <div
+                                    key={dev.voteId}
+                                    className="p-3.5 hover:bg-slate-50 transition flex items-center justify-between gap-3 text-xs"
+                                  >
+                                    <div className="min-w-0 flex-1">
+                                      <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-0.5">
+                                        <span>{dev.sittingDate}</span>
+                                        <span>·</span>
+                                        <span>{dev.category || 'Likumprojekts'}</span>
+                                      </div>
+                                      <div className="font-semibold text-slate-900 leading-snug line-clamp-2" title={dev.title}>
+                                        {dev.title}
+                                      </div>
+                                    </div>
+
+                                    <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+                                      <div className="w-20 flex justify-center">
+                                        {getDecisionBadge(dev.decision)}
+                                      </div>
+                                      <div className="w-24 flex justify-center">
+                                        {getDecisionBadge(dev.factionLine)}
+                                      </div>
+
+                                      {onSelectVote ? (
+                                        <button
+                                          type="button"
+                                          onClick={() => onSelectVote(dev.voteId)}
+                                          className="p-1 text-slate-400 hover:text-slate-900 transition cursor-pointer"
+                                          title="Atvērt šo balsojumu"
+                                        >
+                                          <ChevronRight className="h-4 w-4" />
+                                        </button>
+                                      ) : (
+                                        <div className="w-4" />
+                                      )}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
                             </div>
                           )}
                         </div>
-
-                        {dossier.cohesion.deviations.length === 0 ? (
-                          <div className="rounded-xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500">
-                            <CheckCircle2 className="mx-auto h-7 w-7 text-emerald-500 mb-2" />
-                            <p className="text-sm font-semibold">100% frakcijas vienotība</p>
-                            <p className="text-xs text-slate-400 mt-0.5">
-                              Šis deputāts visos reģistrētajos balsojumos ir balsojis saskaņā ar savas frakcijas vairākuma lēmumu.
-                            </p>
-                          </div>
-                        ) : filteredDeviations.length === 0 ? (
-                          <div className="rounded-xl border border-slate-200 bg-white p-8 text-center text-slate-500 text-xs">
-                            Šajā filtrā nav neviena balsojuma.
-                          </div>
-                        ) : (
-                          <div className="divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white overflow-hidden shadow-2xs">
-                            {filteredDeviations.map((dev) => (
-                              <div
-                                key={dev.voteId}
-                                className="p-3.5 hover:bg-slate-50 transition flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs"
-                              >
-                                <div className="min-w-0 flex-1">
-                                  <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-1 flex-wrap">
-                                    <span>{dev.sittingDate}</span>
-                                    <span>·</span>
-                                    <span>{dev.category || 'Likumprojekts'}</span>
-                                    <span>·</span>
-                                    {dev.deviationType === 'OPPOSITE' ? (
-                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded font-sans font-bold text-[10px] bg-rose-50 text-rose-800 border border-rose-200">
-                                        Pretējs balsojums
-                                      </span>
-                                    ) : (
-                                      <span className="inline-flex items-center px-1.5 py-0.5 rounded font-sans font-bold text-[10px] bg-amber-50 text-amber-800 border border-amber-200">
-                                        Pozīcijas nianse (Pret vs Atturas)
-                                      </span>
-                                    )}
-                                  </div>
-                                  <div className="font-semibold text-slate-900 leading-snug line-clamp-2" title={dev.title}>
-                                    {dev.title}
-                                  </div>
-                                </div>
-
-                                <div className="flex items-center gap-3 shrink-0">
-                                  <div className="text-right">
-                                    <div className="text-[10px] text-slate-400 font-medium">Deputāts</div>
-                                    <div className="mt-0.5">{getDecisionBadge(dev.decision)}</div>
-                                  </div>
-
-                                  <div className="text-right">
-                                    <div className="text-[10px] text-slate-400 font-medium">Frakcijas līnija</div>
-                                    <div className="mt-0.5">{getDecisionBadge(dev.factionLine)}</div>
-                                  </div>
-
-                                  {onSelectVote && (
-                                    <button
-                                      type="button"
-                                      onClick={() => onSelectVote(dev.voteId)}
-                                      className="p-1 text-slate-400 hover:text-slate-900 transition cursor-pointer"
-                                      title="Atvērt šo balsojumu"
-                                    >
-                                      <ChevronRight className="h-4 w-4" />
-                                    </button>
-                                  )}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-
-                        {/* Constitutional education note for deviations */}
-                        <div className="rounded-xl border border-slate-200 bg-slate-50/80 p-4 flex items-start gap-3 text-xs text-slate-600 leading-relaxed">
-                          <Info className="h-4 w-4 text-slate-500 flex-shrink-0 mt-0.5" />
-                          <div>
-                            <strong className="text-slate-800">Kāpēc nodalām pretēju balsojumu no pozīcijas nianses?</strong> Saskaņā ar Satversmes 24. pantu, gan balss „Pret”, gan „Atturas” matemātiski darbojas vienādi — abas novērš lēmuma pieņemšanu. Tādēļ balsojums „Pret”, kamēr frakcija „Atturas” (vai otrādi), ir taktiska nianse, nevis pretējs mērķis. Par būtisku domstarpību uzskatāms tikai pretējs balsojums — kad viena puse balsojusi „Par”, bet otra to bloķējusi.
-                          </div>
-                        </div>
-                      </div>
+                      )}
                     </>
                   )}
                 </div>
