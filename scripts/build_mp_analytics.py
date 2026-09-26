@@ -143,30 +143,44 @@ def build_analytics():
                                       (faction_line == "PAR" and decision in ("PRET", "ATTURAS"))
                         dev_type = "OPPOSITE" if is_opposite else "NUANCE"
                         b_num = v.get("billNumber")
-                        parent_title = bill_parent_titles.get(b_num) if b_num else None
+                        v_title = v.get("simplifiedTitle") or v.get("officialTitle", "")
+                        is_amendment = (v.get("voteType") == "priekslikums") or ("priekšlikums" in v_title.lower()) or ("priekšlikumu" in v_title.lower())
+                        reading_stage = v.get("readingStage") or ("Likuma pieņemšana" if v.get("voteType") == "likums" else "Likumprojekts")
+                        parent_title = bill_parent_titles.get(b_num) if (b_num and is_amendment) else None
+
                         deviations.append({
                             "voteId": vid,
-                            "title": v.get("simplifiedTitle") or v.get("officialTitle"),
+                            "title": v_title,
                             "sittingDate": v.get("sittingDate", ""),
                             "decision": decision,
                             "factionLine": faction_line,
                             "result": v.get("result", "PIENEMTS"),
                             "category": v.get("category", {}).get("label", "Valsts pārvalde"),
                             "deviationType": dev_type,
-                            "parentBillTitle": parent_title
+                            "parentBillTitle": parent_title,
+                            "readingStage": reading_stage,
+                            "voteType": v.get("voteType"),
+                            "isAmendment": is_amendment
                         })
 
             b_num = v.get("billNumber")
-            parent_title = bill_parent_titles.get(b_num) if b_num else None
+            v_title = v.get("simplifiedTitle") or v.get("officialTitle", "")
+            is_amendment = (v.get("voteType") == "priekslikums") or ("priekšlikums" in v_title.lower()) or ("priekšlikumu" in v_title.lower())
+            reading_stage = v.get("readingStage") or ("Likuma pieņemšana" if v.get("voteType") == "likums" else "Likumprojekts")
+            parent_title = bill_parent_titles.get(b_num) if (b_num and is_amendment) else None
+
             history.append({
                 "voteId": vid,
-                "title": v.get("simplifiedTitle") or v.get("officialTitle"),
+                "title": v_title,
                 "sittingDate": v.get("sittingDate", ""),
                 "decision": decision,
                 "result": v.get("result", "PIENEMTS"),
                 "category": v.get("category", {}).get("label", "Valsts pārvalde"),
                 "categoryId": v.get("category", {}).get("id", "administracija"),
-                "parentBillTitle": parent_title
+                "parentBillTitle": parent_title,
+                "readingStage": reading_stage,
+                "voteType": v.get("voteType"),
+                "isAmendment": is_amendment
             })
 
         # Calculate percentages

@@ -208,6 +208,62 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
     }
   };
 
+  const renderVoteItemDetails = (item: {
+    title: string;
+    sittingDate: string;
+    parentBillTitle?: string;
+    readingStage?: string;
+    voteType?: string;
+    isAmendment?: boolean;
+    category?: string;
+  }) => {
+    const isAmendment =
+      item.isAmendment ??
+      (item.voteType === 'priekslikums' ||
+        item.readingStage === 'Priekšlikums' ||
+        /priekšlikum/i.test(item.title));
+
+    const isRedundantParent =
+      Boolean(item.parentBillTitle &&
+      item.parentBillTitle.trim().toLowerCase() === item.title.trim().toLowerCase());
+
+    if (isAmendment && !isRedundantParent && item.parentBillTitle) {
+      return (
+        <>
+          <div
+            className="text-[10px] sm:text-[11px] font-mono text-slate-500 mb-0.5 line-clamp-2 break-words leading-tight"
+            title={item.parentBillTitle}
+          >
+            <span className="font-semibold text-slate-700">{item.parentBillTitle}</span>
+            <span className="mx-1 text-slate-400">·</span>
+            <span className="text-slate-400">{item.sittingDate}</span>
+          </div>
+          <div className="font-bold text-slate-900 text-xs sm:text-sm leading-snug">
+            {item.title}
+          </div>
+        </>
+      );
+    }
+
+    return (
+      <>
+        <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono text-slate-500 mb-0.5">
+          <span className="font-semibold text-slate-600">
+            {item.readingStage || item.category || 'Likumprojekts'}
+          </span>
+          <span className="text-slate-400">·</span>
+          <span className="text-slate-400">{item.sittingDate}</span>
+        </div>
+        <div
+          className="font-bold text-slate-900 text-xs sm:text-sm leading-snug line-clamp-2 break-words"
+          title={item.title}
+        >
+          {item.title}
+        </div>
+      </>
+    );
+  };
+
   const mpFaction = dossier?.faction || faction;
 
   return (
@@ -332,7 +388,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
         </div>
 
         {/* MODAL BODY */}
-        <div ref={modalBodyRef} className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-6 space-y-6">
+        <div ref={modalBodyRef} className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-6 pb-12 sm:pb-16 space-y-6">
           {loading && (
             <div className="py-16 text-center text-slate-400">
               <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-slate-400 border-t-transparent" />
@@ -490,7 +546,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
 
               {/* TAB 2: FACTION COHESION & DEVIATIONS (Card 3) */}
               {activeTab === 'cohesion' && (
-                <div className="space-y-6">
+                <div className="space-y-6 pb-8">
                   {dossier.cohesion.isIndependent ? (
                     <div className="rounded-xl border border-slate-200 bg-slate-50 p-8 text-center text-slate-600">
                       <UserCheck className="mx-auto h-8 w-8 text-slate-400 mb-2" />
@@ -560,152 +616,102 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                           </p>
                         </div>
                       ) : (
-                        <div className="space-y-6">
+                        <div className="rounded-xl border border-slate-200 bg-white overflow-hidden shadow-2xs divide-y divide-slate-100">
+                          {/* UNIFIED TABLE COLUMN HEADER - RENDERED ONLY ONCE AT THE VERY TOP */}
+                          <div className="flex items-center justify-between px-3.5 py-2 bg-slate-50 border-b border-slate-200 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                            <span>Likumprojekts vai priekšlikums</span>
+                            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                              <span className="w-[100px] text-center">Deputāts</span>
+                              <span className="w-[100px] text-center">Frakcija</span>
+                              <span className="w-[20px]" />
+                            </div>
+                          </div>
+
                           {/* SECTION A: ATKLĀTA PRETRUNA AR FRAKCIJU (Rebel / Opposing votes) */}
                           {oppositeDeviations.length > 0 && (
-                            <div className="space-y-2">
-                              <div className="flex items-center gap-2 px-1">
-                                <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
-                                <h4 className="text-xs font-bold text-slate-900">
-                                  Atklāta pretruna ar frakciju ({oppositeDeviations.length})
-                                </h4>
+                            <>
+                              <div className="px-3.5 py-2 bg-rose-50/70 border-b border-rose-100 flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
+                                  <h4 className="text-xs font-bold text-slate-900">
+                                    Atklāta pretruna ar frakciju ({oppositeDeviations.length})
+                                  </h4>
+                                </div>
                               </div>
 
-                              <div className="rounded-xl border border-rose-200/80 bg-white overflow-hidden shadow-2xs divide-y divide-slate-100">
-                                {/* Table header */}
-                                <div className="flex items-center justify-between px-3.5 py-1.5 bg-rose-50/50 border-b border-rose-100 text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                                  <span>Likumprojekts vai priekšlikums</span>
+                              {oppositeDeviations.map((dev) => (
+                                <div
+                                  key={dev.voteId}
+                                  onClick={() => onSelectVote?.(dev.voteId, activeTab)}
+                                  className={`p-3.5 transition-colors flex items-center justify-between gap-3 text-xs ${
+                                    onSelectVote ? 'hover:bg-slate-50 cursor-pointer group' : ''
+                                  }`}
+                                >
+                                  <div className="min-w-0 flex-1 pr-2">
+                                    {renderVoteItemDetails(dev)}
+                                  </div>
+
                                   <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                                    <span className="w-[100px] text-center">Deputāts</span>
-                                    <span className="w-[100px] text-center">Frakcija</span>
-                                    <span className="w-[20px]" />
+                                    <div className="w-[100px] flex justify-center">
+                                      {getDecisionBadge(dev.decision)}
+                                    </div>
+                                    <div className="w-[100px] flex justify-center">
+                                      {getDecisionBadge(dev.factionLine)}
+                                    </div>
+                                    <div className="w-[20px] flex justify-center">
+                                      {onSelectVote && (
+                                        <ChevronRight className="h-4 w-4 text-slate-300 group-hover:text-slate-900 transition-colors" />
+                                      )}
+                                    </div>
                                   </div>
                                 </div>
-
-                                {oppositeDeviations.map((dev) => (
-                                  <div
-                                    key={dev.voteId}
-                                    onClick={() => onSelectVote?.(dev.voteId, activeTab)}
-                                    className={`p-3.5 transition-colors flex items-center justify-between gap-3 text-xs ${
-                                      onSelectVote ? 'hover:bg-slate-50 cursor-pointer group' : ''
-                                    }`}
-                                  >
-                                    <div className="min-w-0 flex-1 pr-2">
-                                      <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-0.5 truncate">
-                                        {dev.parentBillTitle ? (
-                                          <>
-                                            <span className="font-semibold text-slate-600 truncate max-w-[280px] sm:max-w-md" title={dev.parentBillTitle}>
-                                              {dev.parentBillTitle}
-                                            </span>
-                                            <span>·</span>
-                                            <span>{dev.sittingDate}</span>
-                                          </>
-                                        ) : (
-                                          <>
-                                            <span>{dev.sittingDate}</span>
-                                            <span>·</span>
-                                            <span>{dev.category || 'Likumprojekts'}</span>
-                                          </>
-                                        )}
-                                      </div>
-                                      <div className="font-semibold text-slate-900 leading-snug line-clamp-2" title={dev.title}>
-                                        {dev.title}
-                                      </div>
-                                    </div>
-
-                                    <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                                      <div className="w-[100px] flex justify-center">
-                                        {getDecisionBadge(dev.decision)}
-                                      </div>
-                                      <div className="w-[100px] flex justify-center">
-                                        {getDecisionBadge(dev.factionLine)}
-                                      </div>
-                                      <div className="w-[20px] flex justify-center">
-                                        {onSelectVote && (
-                                          <ChevronRight className="h-4 w-4 text-slate-300 group-hover:text-slate-900 transition-colors" />
-                                        )}
-                                      </div>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
+                              ))}
+                            </>
                           )}
 
                           {/* SECTION B: BALSOJUMA TOŅA ATŠĶIRĪBAS (Nuance: Pret vs Atturas) */}
                           {nuanceDeviations.length > 0 && (
-                            <div className="space-y-2">
-                              <div className="px-1">
+                            <>
+                              <div className="px-3.5 py-2.5 bg-amber-50/60 border-b border-amber-100">
                                 <div className="flex items-center gap-2">
                                   <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
                                   <h4 className="text-xs font-bold text-slate-900">
                                     Balsojuma toņa atšķirības ({nuanceDeviations.length})
                                   </h4>
                                 </div>
-                                <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">
+                                <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
                                   Satversmes 24. panta izpratnē abas balsis panāca to pašu iznākumu (likuma noraidīšanu), bet atšķīrās balsojuma veids (Pret vai Atturas).
                                 </p>
                               </div>
 
-                              <div className="rounded-xl border border-slate-200 bg-white overflow-hidden shadow-2xs divide-y divide-slate-100">
-                                {/* Table header */}
-                                <div className="flex items-center justify-between px-3.5 py-1.5 bg-slate-50 border-b border-slate-200 text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                                  <span>Likumprojekts vai priekšlikums</span>
+                              {nuanceDeviations.map((dev) => (
+                                <div
+                                  key={dev.voteId}
+                                  onClick={() => onSelectVote?.(dev.voteId, activeTab)}
+                                  className={`p-3.5 transition-colors flex items-center justify-between gap-3 text-xs ${
+                                    onSelectVote ? 'hover:bg-slate-50 cursor-pointer group' : ''
+                                  }`}
+                                >
+                                  <div className="min-w-0 flex-1 pr-2">
+                                    {renderVoteItemDetails(dev)}
+                                  </div>
+
                                   <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                                    <span className="w-[100px] text-center">Deputāts</span>
-                                    <span className="w-[100px] text-center">Frakcija</span>
-                                    <span className="w-[20px]" />
+                                    <div className="w-[100px] flex justify-center">
+                                      {getDecisionBadge(dev.decision)}
+                                    </div>
+                                    <div className="w-[100px] flex justify-center">
+                                      {getDecisionBadge(dev.factionLine)}
+                                    </div>
+                                    <div className="w-[20px] flex justify-center">
+                                      {onSelectVote && (
+                                        <ChevronRight className="h-4 w-4 text-slate-300 group-hover:text-slate-900 transition-colors" />
+                                      )}
+                                    </div>
                                   </div>
                                 </div>
-
-                                {nuanceDeviations.map((dev) => (
-                                  <div
-                                    key={dev.voteId}
-                                    onClick={() => onSelectVote?.(dev.voteId, activeTab)}
-                                    className={`p-3.5 transition-colors flex items-center justify-between gap-3 text-xs ${
-                                      onSelectVote ? 'hover:bg-slate-50 cursor-pointer group' : ''
-                                    }`}
-                                  >
-                                    <div className="min-w-0 flex-1 pr-2">
-                                      <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-0.5 truncate">
-                                        {dev.parentBillTitle ? (
-                                          <>
-                                            <span className="font-semibold text-slate-600 truncate max-w-[280px] sm:max-w-md" title={dev.parentBillTitle}>
-                                              {dev.parentBillTitle}
-                                            </span>
-                                            <span>·</span>
-                                            <span>{dev.sittingDate}</span>
-                                          </>
-                                        ) : (
-                                          <>
-                                            <span>{dev.sittingDate}</span>
-                                            <span>·</span>
-                                            <span>{dev.category || 'Likumprojekts'}</span>
-                                          </>
-                                        )}
-                                      </div>
-                                      <div className="font-semibold text-slate-900 leading-snug line-clamp-2" title={dev.title}>
-                                        {dev.title}
-                                      </div>
-                                    </div>
-
-                                    <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                                      <div className="w-[100px] flex justify-center">
-                                        {getDecisionBadge(dev.decision)}
-                                      </div>
-                                      <div className="w-[100px] flex justify-center">
-                                        {getDecisionBadge(dev.factionLine)}
-                                      </div>
-                                      <div className="w-[20px] flex justify-center">
-                                        {onSelectVote && (
-                                          <ChevronRight className="h-4 w-4 text-slate-300 group-hover:text-slate-900 transition-colors" />
-                                        )}
-                                      </div>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
+                              ))}
+                            </>
                           )}
                         </div>
                       )}
@@ -716,7 +722,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
 
               {/* TAB 3: VOTING HISTORY (Card 4) */}
               {activeTab === 'history' && (
-                <div className="space-y-4">
+                <div className="space-y-4 pb-8">
                   {/* Search and decision filter */}
                   <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 rounded-xl border border-slate-200 bg-slate-50 p-2.5">
                     <div className="relative flex-1">
@@ -781,26 +787,7 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                         }`}
                       >
                         <div className="min-w-0 flex-1 pr-2">
-                          <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-0.5 truncate">
-                            {item.parentBillTitle ? (
-                              <>
-                                <span className="font-semibold text-slate-600 truncate max-w-[280px] sm:max-w-md" title={item.parentBillTitle}>
-                                  {item.parentBillTitle}
-                                </span>
-                                <span>·</span>
-                                <span>{item.sittingDate}</span>
-                              </>
-                            ) : (
-                              <>
-                                <span>{item.sittingDate}</span>
-                                <span>·</span>
-                                <span>{item.category || 'Likumprojekts'}</span>
-                              </>
-                            )}
-                          </div>
-                          <div className="font-semibold text-slate-900 leading-snug line-clamp-1" title={item.title}>
-                            {item.title}
-                          </div>
+                          {renderVoteItemDetails(item)}
                         </div>
 
                         <div className="flex items-center gap-2.5 shrink-0">

@@ -86,6 +86,9 @@ export interface MpDeviation {
   category?: string;
   deviationType: 'OPPOSITE' | 'NUANCE';
   parentBillTitle?: string;
+  readingStage?: string;
+  voteType?: string;
+  isAmendment?: boolean;
 }
 
 export interface MpCohesion {
@@ -108,6 +111,9 @@ export interface MpVoteHistoryItem {
   category?: string;
   categoryId?: string;
   parentBillTitle?: string;
+  readingStage?: string;
+  voteType?: string;
+  isAmendment?: boolean;
 }
 
 export interface MpDossier {
