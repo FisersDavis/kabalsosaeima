@@ -96,6 +96,21 @@ def check_local_integrity(update_metadata=False):
     if len(active_mps) < 100:
         warnings.append(f"Atrasti tikai {len(active_mps)} aktīvi deputāti mps.json failā (paredzēti 100).")
 
+    # 2b. Check MP summaries & dossiers (Step 2 contract)
+    summaries_file = os.path.join(DATA_DIR, 'mp_summaries.json')
+    dossiers_dir = os.path.join(DATA_DIR, 'mp_dossiers')
+    if os.path.exists(summaries_file):
+        summaries = load_json(summaries_file)
+        for m in active_mps:
+            mid = m['id']
+            if mid not in summaries:
+                errors.append(f"Deputātam `{mid}` ({m['name']}) trūkst kopsavilkuma datu `public/data/mp_summaries.json`.")
+            dossier_path = os.path.join(dossiers_dir, f"{mid}.json")
+            if not os.path.exists(dossier_path):
+                errors.append(f"Deputātam `{mid}` ({m['name']}) trūkst 4-karšu profila fails `public/data/mp_dossiers/{mid}.json`.")
+    else:
+        warnings.append("`public/data/mp_summaries.json` fails vēl nav atrasts.")
+
     faction_ids = {f['id'] for f in factions}
 
     # 3. Check all votes

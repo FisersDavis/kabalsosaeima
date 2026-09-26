@@ -1,5 +1,5 @@
 import React from 'react';
-import type { MP, Faction } from '../types';
+import type { MP, Faction, MpSummaryMap } from '../types';
 import { normalizeLatvianSearch } from '../types';
 import { Search, Users, X, Info } from 'lucide-react';
 
@@ -13,6 +13,7 @@ interface MpDirectoryViewProps {
   activeOnly: boolean;
   onActiveOnlyToggle: (activeOnly: boolean) => void;
   onSelectMp?: (mp: MP) => void;
+  mpSummaries?: MpSummaryMap;
 }
 
 export const MpDirectoryView: React.FC<MpDirectoryViewProps> = ({
@@ -25,6 +26,7 @@ export const MpDirectoryView: React.FC<MpDirectoryViewProps> = ({
   activeOnly,
   onActiveOnlyToggle,
   onSelectMp,
+  mpSummaries,
 }) => {
   // Map faction id to faction object for fast lookup
   const factionMap = React.useMemo(() => {
@@ -218,40 +220,72 @@ export const MpDirectoryView: React.FC<MpDirectoryViewProps> = ({
             {filteredMps.map((mp) => {
               const faction = factionMap.get(mp.factionId);
               const initials = getInitials(mp.name);
+              const summary = mpSummaries?.[mp.id];
 
               return (
                 <div
                   key={mp.id}
                   onClick={() => onSelectMp?.(mp)}
-                  className="rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs flex flex-col justify-between hover:border-slate-300 hover:shadow-xs transition group text-left cursor-default"
+                  className="rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs flex flex-col justify-between hover:border-slate-400 hover:shadow-xs transition group text-left cursor-pointer"
                 >
-                  <div className="flex items-start gap-3">
-                    {/* Initials Avatar with faction colored indicator */}
-                    <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 text-white shadow-2xs"
-                      style={{ backgroundColor: faction?.color || '#475569' }}
-                    >
-                      {initials}
-                    </div>
-
-                    <div className="min-w-0 flex-1">
-                      <div className="text-xs font-bold text-slate-900 group-hover:text-slate-800 transition line-clamp-1" title={mp.name}>
-                        {mp.name}
+                  <div>
+                    <div className="flex items-start gap-3">
+                      {/* Initials Avatar with faction colored indicator */}
+                      <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 text-white shadow-2xs"
+                        style={{ backgroundColor: faction?.color || '#475569' }}
+                      >
+                        {initials}
                       </div>
 
-                      <div className="mt-1 flex items-center gap-1.5 flex-wrap">
+                      <div className="min-w-0 flex-1">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-slate-800 transition line-clamp-1" title={mp.name}>
+                          {mp.name}
+                        </div>
+
+                        <div className="mt-1 flex items-center gap-1.5 flex-wrap">
+                          <span
+                            className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold text-white"
+                            style={{ backgroundColor: faction?.color || '#475569' }}
+                          >
+                            {faction?.shortName || mp.factionId.toUpperCase()}
+                          </span>
+
+                          <span className="text-[10px] text-slate-400 font-mono">
+                            Nr. {mp.seatNumber}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Summary metrics pills */}
+                    {summary && (
+                      <div className="mt-2.5 flex items-center gap-1.5 flex-wrap text-[10px]">
                         <span
-                          className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold text-white"
-                          style={{ backgroundColor: faction?.color || '#475569' }}
+                          className={`inline-flex items-center px-1.5 py-0.5 rounded font-mono font-medium ${
+                            summary.presentPct >= 80
+                              ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
+                              : 'bg-slate-100 text-slate-700'
+                          }`}
+                          title={`Klātbūtne: ${summary.presentPct}%`}
                         >
-                          {faction?.shortName || mp.factionId.toUpperCase()}
+                          Klātbūtne: {summary.presentPct} %
                         </span>
 
-                        <span className="text-[10px] text-slate-400 font-mono">
-                          Nr. {mp.seatNumber}
-                        </span>
+                        {!summary.isIndependent && summary.cohesionPct !== null ? (
+                          <span
+                            className="inline-flex items-center px-1.5 py-0.5 rounded font-mono font-medium bg-slate-50 text-slate-700 border border-slate-200"
+                            title={`Vienotība ar frakciju: ${summary.cohesionPct}%`}
+                          >
+                            Vienotība: {summary.cohesionPct} %
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-slate-100 text-slate-500 font-medium">
+                            Neatkarīgais
+                          </span>
+                        )}
                       </div>
-                    </div>
+                    )}
                   </div>
 
                   {/* Status & tags */}
@@ -274,8 +308,8 @@ export const MpDirectoryView: React.FC<MpDirectoryViewProps> = ({
                       </span>
                     )}
 
-                    <span className="text-slate-400 text-[9px] group-hover:text-slate-600 transition flex items-center gap-0.5">
-                      Sēdvieta Nr. {mp.seatNumber}
+                    <span className="text-slate-400 group-hover:text-slate-900 group-hover:underline transition text-[10px] font-medium flex items-center gap-0.5">
+                      Profils →
                     </span>
                   </div>
                 </div>

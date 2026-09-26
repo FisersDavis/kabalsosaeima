@@ -1,0 +1,3717 @@
+{
+  "mp": {
+    "id": "mp-92",
+    "name": "Iļja Ivanovs",
+    "factionId": "st",
+    "seatNumber": 92,
+    "row": 4,
+    "col": 22,
+    "isActive": true
+  },
+  "faction": {
+    "id": "st",
+    "name": "Stabilitātei!",
+    "shortName": "S!",
+    "color": "#475569",
+    "seats": 8
+  },
+  "totalVotes": 400,
+  "attendance": {
+    "presentCount": 286,
+    "presentPct": 71.5,
+    "withheldCount": 52,
+    "withheldPct": 13.0,
+    "absentCount": 62,
+    "absentPct": 15.5
+  },
+  "votesBreakdown": {
+    "par": 218,
+    "pret": 68,
+    "atturas": 0,
+    "nebalso": 52,
+    "navRegistrets": 62
+  },
+  "cohesion": {
+    "isIndependent": false,
+    "cohesionPct": 94.8,
+    "activeTotalCount": 154,
+    "activeAlignedCount": 146,
+    "deviationsCount": 8,
+    "deviations": [
+      {
+        "voteId": "22a9fd7a-b432-4e79-9be8-f74b08b274a4",
+        "title": "Par likumprojekta Grozījumi Rail Baltica projekta īstenošanas likumā",
+        "sittingDate": "12.02.2026",
+        "decision": "PRET",
+        "factionLine": "PAR",
+        "result": "PIENEMTS",
+        "category": "Veselība un Labklājība"
+      },
+      {
+        "voteId": "886feaf3-2645-45dd-898e-768e86791ad5",
+        "title": "Tiesnešu un prokuroru speciālās pensijas likums",
+        "sittingDate": "12.02.2026",
+        "decision": "PAR",
+        "factionLine": "PRET",
+        "result": "PIENEMTS",
+        "category": "Veselība un Labklājība"
+      },
+      {
+        "voteId": "f46e76dd-eb3c-4105-9b7d-2fbef45cd72d",
+        "title": "31. priekšlikums",
+        "sittingDate": "12.02.2026",
+        "decision": "PAR",
+        "factionLine": "PRET",
+        "result": "NORAIDITS",
+        "category": "Valsts pārvalde"
+      },
+      {
+        "voteId": "2b8a98ab-fc76-410d-bc2b-87f957466499",
+        "title": "32. priekšlikums",
+        "sittingDate": "12.02.2026",
+        "decision": "PAR",
+        "factionLine": "PRET",
+        "result": "PIENEMTS",
+        "category": "Valsts pārvalde"
+      },
+      {
+        "voteId": "09fe2eb8-5b1c-460a-8da2-6faef4a3c566",
+        "title": "Grozījumi Trauksmes celšanas likumā",
+        "sittingDate": "12.02.2026",
+        "decision": "PRET",
+        "factionLine": "PAR",
+        "result": "PIENEMTS",
+        "category": "Valsts pārvalde"
+      },
+      {
+        "voteId": "375e82f9-8c09-4ade-9511-3e48845c4cac",
+        "title": "Grozījumi Ieguldījumu brokeru sabiedrību likumā",
+        "sittingDate": "12.02.2026",
+        "decision": "PAR",
+        "factionLine": "PRET",
+        "result": "PIENEMTS",
+        "category": "Valsts pārvalde"
+      },
+      {
+        "voteId": "805c32ee-765e-4c1c-90d5-a792f5529bf4",
+        "title": "Grozījumi Latvijas Bankas likumā",
+        "sittingDate": "12.02.2026",
+        "decision": "PAR",
+        "factionLine": "PRET",
+        "result": "PIENEMTS",
+        "category": "Valsts pārvalde"
+      },
+      {
+        "voteId": "61c2f7fb-0e96-46c9-8869-60f984e13ff3",
+        "title": "Grozījumi Kredītiestāžu likumā",
+        "sittingDate": "12.02.2026",
+        "decision": "PAR",
+        "factionLine": "PRET",
+        "result": "PIENEMTS",
+        "category": "Budžets un Nodokļi"
+      }
+    ]
+  },
+  "votingHistory": [
+    {
+      "voteId": "22a9fd7a-b432-4e79-9be8-f74b08b274a4",
+      "title": "Par likumprojekta Grozījumi Rail Baltica projekta īstenošanas likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "cd4bceb5-311e-46a0-a7eb-79b7e3428f6a",
+      "title": "Grozījumi Informācijas atklātības likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "9e386a12-b87b-4f6e-a56a-d444253cbd5b",
+      "title": "Grozījumi Tiesībsarga likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d2ebd103-d1f0-4d16-892d-f3476a4af274",
+      "title": "Grozījumi Publisko iepirkumu likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "f83945ce-676b-40d8-afd8-9bc9890bdae0",
+      "title": "Par Rīgas rajona tiesas tiesneses Maijas Dreimanes atbrīvošanu no tiesneša amata",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "3cca049c-ffcd-48ec-b6bc-d33e56318974",
+      "title": "Par Zemgales rajona tiesas tiesneses Initas Dzerkales atbrīvošanu no tiesneša amata",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "50e33125-f5d8-4860-b0c1-0d539065c046",
+      "title": "Par Zemgales rajona tiesas tiesneses Ineses Mudeles atbrīvošanu no tiesneša amata",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "ec2e43d3-83ed-4713-bd14-869559362cd3",
+      "title": "Par Latgales apgabaltiesas tiesneses Dagmāras Skudras atbrīvošanu no tiesneša amata",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "c35a5634-b087-49f3-8ba9-6b89b19d542a",
+      "title": "Deputātu Lindas Liepiņas, Edmunda Zivtiņa, Maijas Armaņevas, Viktorijas Pleškānes, Ilzes Stobovas, Mārča Jencīša, Jeļenas Kļaviņas, Jekaterinas Drelingas, Ričarda Šlesera, Ramonas Petravičas pieprasījums Ministru prezidentei Evikai Siliņai \"Par valdības praksi – slēpt sabiedrībai svarīgu informāciju, būtiski ierobežojot parlamentārās kontroles iespējas un sabiedrības informētību, kas nonāk klajā pretrunā ar Satversmi\"",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "886feaf3-2645-45dd-898e-768e86791ad5",
+      "title": "Tiesnešu un prokuroru speciālās pensijas likums",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "9dbfe79d-bf32-4d37-adc6-79b3af3a2814",
+      "title": "Grozījumi Latgales speciālās ekonomiskās zonas likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "27ab82e9-0773-49ab-aed2-90ce3417f0fc",
+      "title": "1. priekšlikums",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "861811dd-01fa-474f-8c45-9ce5cf16f0d2",
+      "title": "Grozījumi Enerģētikas likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "ec4c73da-1d48-4a4c-8859-6991bb34a566",
+      "title": "2. priekšlikums",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "1c455c44-98ca-4d08-86eb-93171a277877",
+      "title": "3. priekšlikums",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "18935af8-4927-4c09-b05b-74b658437b52",
+      "title": "Grozījumi Korupcijas novēršanas un apkarošanas biroja likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "410f569a-ed3f-4cfd-8f55-ef5017e491b5",
+      "title": "Grozījumi likumā “Par tautas nobalsošanu, likumu ierosināšanu un Eiropas pilsoņu iniciatīvu”",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "480fcfa1-1409-474e-81a8-d90fff17e624",
+      "title": "Kuldīgas vecpilsētas saglabāšanas un aizsardzības likums",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "fc902884-1c28-4f85-8f3b-f901a6f6be7c",
+      "title": "7. priekšlikums",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "2ca0352d-ba8c-4261-92e4-51584b34d42a",
+      "title": "10. priekšlikums",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "92439577-36ff-4bc9-9bfa-c769915634bf",
+      "title": "11. priekšlikums",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "49cc9597-fc59-4da6-a55e-92de6dcedbdc",
+      "title": "12. priekšlikums",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "c172ef8b-c249-4085-a628-791f087a09e5",
+      "title": "13. priekšlikums",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "fc17004c-7f8d-41bd-a438-20c564b2ad05",
+      "title": "14. priekšlikums",
+      "sittingDate": "12.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "854df65c-0871-420b-8f09-de4c8b81ac94",
+      "title": "Grozījums Rēzeknes speciālās ekonomiskās zonas likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "a695ff78-931f-498b-a9b5-2d8a8f7a13ce",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "94a20c68-484a-4072-8a79-8dd7510d169a",
+      "title": "Grozījums Liepājas speciālās ekonomiskās zonas likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "cab311ab-e5bf-4a87-9d60-df3a1cd7d96d",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d2d7278a-6db6-40cf-9917-16caf916b408",
+      "title": "Grozījumi Tūrisma likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "ba1b214d-1ffd-4a75-897a-aec9fe941fce",
+      "title": "Grozījums Krimināllikumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "f46e76dd-eb3c-4105-9b7d-2fbef45cd72d",
+      "title": "31. priekšlikums",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "2b8a98ab-fc76-410d-bc2b-87f957466499",
+      "title": "32. priekšlikums",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "6f178dc5-16cf-457a-be6e-78ccff7a6a3b",
+      "title": "Grozījumi Sociālā uzņēmuma likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "454b6558-a5f9-48fe-8a0e-83b0020c2d56",
+      "title": "Grozījumi likumā “Par interešu konflikta novēršanu valsts amatpersonu darbībā”",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "6d9b6333-c934-4e0a-a624-ae2ac4cad6be",
+      "title": "Grozījumi Vēlētāju reģistra likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d2e33e04-9e7a-45f9-b616-d1a97c6ba223",
+      "title": "Par priekšlikumu iesniegšanas termiņa pagarināšanu likumprojekta “Grozījumi likumā \"Par valsts kompensāciju cietušajiem\"” (Nr.1156/Lp14) otrajam lasījumam līdz 2026. gada 25. februārim",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d9fff894-ce9e-4ac3-bef4-c8679ac24a24",
+      "title": "Par Saeimas deputāta Igora Judina atsaukšanu no Nacionālās drošības komisijas",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "9007abca-d613-48ae-8dfb-18abc8dd67fb",
+      "title": "Par atbalstu Ukrainas sportistiem, godinot Ukrainas aizstāvēšanas karā kritušo biedru piemiņu Milānas - Kortīnas 2026. gada Olimpiskajās spēlēs",
+      "sittingDate": "12.02.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "18878196-4011-4840-9962-24fa803df4c7",
+      "title": "Par Transatlantiskās sadarbības nozīmi miera un drošības nodrošināšanai",
+      "sittingDate": "05.02.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "62175a46-af2b-4538-af26-50ffbbae71a3",
+      "title": "Par lēmuma projekta Par aicinājumu iestāties par Latvijas interesēm Eiropas Savienības daudzgadu budžeta finanšu shēmā 2028. – 2034. gadam iekļaušanu Saeimas sēdes darba kārtībā",
+      "sittingDate": "05.02.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "f19ffe1c-1787-45c0-af04-b59be5577817",
+      "title": "Grozījumi Pievienotās vērtības nodokļa likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "3e09bb0e-d9ce-4c6b-abde-245cd96ab7c2",
+      "title": "Grozījumi Pievienotās vērtības nodokļa likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "aa10a883-dc33-4fcd-b7e4-f1026474874f",
+      "title": "Grozījumi Pievienotās vērtības nodokļa likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "df978517-dd1c-4769-b4dc-1afed5ce3dd7",
+      "title": "Grozījumi Pievienotās vērtības nodokļa likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "d8c87526-b9f4-45a9-b12b-f8eca142e9e0",
+      "title": "Grozījumi Pievienotās vērtības nodokļa likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "cfcdf980-089c-4031-af21-11b51dc5c8d4",
+      "title": "Par priekšlikumu termiņu 31.10.2026",
+      "sittingDate": "05.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "cadfbf5c-2808-4096-a24d-d211afb0dc63",
+      "title": "Par priekšlikumu termiņu 15.10.2026",
+      "sittingDate": "05.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "7397f09b-af47-48cd-b5f2-6731479d0f4e",
+      "title": "Deputātu Jāņa Vitenberga, Uģa Mitrevica, Artūra Butāna, Ilzes Indriksones, Raivja Dzintara, Edvīna Šnores, Jāņa Grasberga, Naura Puntuļa, Jurģa Klotiņa, Edmunda Teirumnieka pieprasījums viedās administrācijas un reģionālās attīstības ministram Raimondam Čudaram \"Par Bauskas novada teritorijas plānojuma un Preiļu novada teritorijas plānojuma saistošo noteikumu darbības daļēju apturēšanu\"",
+      "sittingDate": "05.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "866371fc-5eb5-4700-b4a1-862bdb71a317",
+      "title": "Deputātu Ramonas Petravičas, Edmunda Zivtiņa, Lindas Liepiņas, Kristapa Krištopana, Ilzes Stobovas, Maijas Armaņevas, Ričarda Šlesera, Viktorijas Pleškānes, Jekaterinas Drelingas, Mārča Jencīša pieprasījums viedās administrācijas un reģionālās attīstības ministram Raimondam Čudaram \"Par apšaubāmajiem rīkojumiem saistībā ar Bauskas un Preiļu novadu teritoriju plānojuma apturēšanu\"",
+      "sittingDate": "05.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "cde5fde8-8a12-4556-9aac-e391d8036c8e",
+      "title": "Grozījumi Patērētāju ārpustiesas strīdu risinātāju likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "66430a59-4b10-442b-b252-f5fe19ec4e57",
+      "title": "Grozījumi Noziedzīgi iegūtu līdzekļu legalizācijas un terorisma un proliferācijas finansēšanas novēršanas likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "cfddb4e5-c04b-4b08-a05d-028452921a34",
+      "title": "Grozījumi Narkotisko un psihotropo vielu un zāļu, kā arī prekursoru likumīgās aprites likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "91f34b1e-9713-4877-9ba8-ca8dd93c4821",
+      "title": "1. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "773a4357-57a1-437a-b78e-9d256d4a8459",
+      "title": "4. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "90e32e1e-15cc-478f-80fd-b515d6318928",
+      "title": "Dzīvojamo īres māju apbūves tiesību likums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "7173483c-353d-460c-b9dc-08e75f6c45a9",
+      "title": "Grozījums Valsts pārvaldes iekārtas likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "94bdd071-daa8-478d-9704-9c32ce7c45cf",
+      "title": "Grozījumi Iesniegumu likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d1612626-c1a7-401d-9383-6d9ed9e4b9f5",
+      "title": "Grozījumi Izglītības likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "da5e7298-2f9d-47fa-9610-ec0bde33a819",
+      "title": "2. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "689b3e30-6991-4a50-ae2b-5b7300bfe8c5",
+      "title": "8. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "14cd6244-a504-4e03-8b60-ab01595d0599",
+      "title": "11. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "29caac19-906d-45ac-b0b0-e18d59bb7a6f",
+      "title": "13. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "079a76ed-380f-4baf-a149-35d275bcd846",
+      "title": "21. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "aab55221-4768-4723-b318-186ca77f63c1",
+      "title": "Sabiedrības interesēs iesaistīto personu aizsardzības likums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "7e08c026-a24f-4055-8b18-e334372290ae",
+      "title": "Par priekšlikumu termiņu 01.05.2026",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "fd042b71-f148-48bc-81a6-1a6496df47e4",
+      "title": "Grozījumi Civilprocesa likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "64f958ba-2e74-4234-8c7f-4c20d3af3e0e",
+      "title": "Grozījumi Bērnu tiesību aizsardzības likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "5952a8ea-b9ca-43ef-b6e7-a569b0e9e01b",
+      "title": "Grozījums Vispārējās izglītības likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "667f104c-d346-4243-a978-ad40b0bdbcb6",
+      "title": "Grozījumi Pacientu tiesību likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "76546f45-5fdb-4991-9007-c6183c56a1fe",
+      "title": "Grozījums Starptautisko skolu likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "74c91fc0-b291-4a2e-b1fc-ff6cac564da9",
+      "title": "Grozījums Izglītības likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "c82093a0-3b10-49f2-91d8-61873b2d548b",
+      "title": "Grozījumi Grāmatvedības likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "6e8b0271-ed5c-4578-9b43-cfe0a2744041",
+      "title": "Grozījumi Epidemioloģiskās drošības likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "efe8c6b9-4ea1-49e7-8ad8-62d5ead60360",
+      "title": "3. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "13fabf57-9e8d-4cd6-a305-2a52c39c8b5f",
+      "title": "4. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "75d79227-2bb8-4296-b12c-8f3a34b5203d",
+      "title": "Grozījumi Administratīvās atbildības likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "8b1d0056-6f8a-43bb-909b-87de73780451",
+      "title": "1. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "316f8f40-e461-436e-bbfd-d43983652748",
+      "title": "2. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "04f5ba8d-6af0-4d61-a2b7-aececd11a0ca",
+      "title": "3. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "4a57272a-1468-41b8-921d-6fb7955c433f",
+      "title": "4. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "1b49d570-adce-44c8-ab69-a70c86c1ffd6",
+      "title": "5. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "ff7a7ba2-578a-4cf7-a77d-5111b355cb5c",
+      "title": "6. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "1b4847df-02d4-41c0-9b12-a74f8c114e87",
+      "title": "7. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "43251a67-21c1-4560-8705-fd4a566a5e65",
+      "title": "8. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "295224bb-9bc8-42ed-bad2-6cb6c9d28fa0",
+      "title": "9. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "a611f939-9447-468b-9a08-effd7e760b44",
+      "title": "14. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "6d57824e-bbd8-48a3-a42d-027119dc634a",
+      "title": "15. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "ad3caa15-1507-4cdf-9341-ab647e67b504",
+      "title": "16. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "2ddc2bc1-ae80-4b4c-8602-e4e7cc30dcc8",
+      "title": "17. priekšlikums",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "6907fe53-b9f7-422e-bf13-fce77f8c7166",
+      "title": "Grozījumi Teritorijas attīstības plānošanas likumā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "9fc64fd6-5e01-4fa9-8cd7-9657f9fb6b2c",
+      "title": "Par aicinājumu Ministru prezidentam iestāties par Latvijas lauksaimniekiem godīgiem Eiropas vidējā līmeņa maksājumiem Eiropas Savienības daudzgadu budžeta finanšu shēmā 2028. – 2034. gadam",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "b47205ec-6921-47b9-b6da-5a90e150ba25",
+      "title": "Par aicinājumu iestāties par Latvijas interesēm Eiropas Savienības daudzgadu budžeta finanšu shēmā 2028. – 2034. gadam",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "b3e7cff2-4bb2-4cd8-991d-d305043285a2",
+      "title": "Par iekļaušanu nākamās sēdes darba kārtībā",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "e2c61c86-d191-4403-8f4d-60a38e013fb9",
+      "title": "Par nodošanu Ārlietu komisijai",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "4c943544-e51d-40b1-acf6-3e049ca042ad",
+      "title": "Par nodošanu Cilvēktiesību un sabiedrisko lietu komisijai",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "3951e906-24d1-4d8a-b541-d87c1a45e5f9",
+      "title": "Grozījumi likumā “Par zemes privatizāciju lauku apvidos”",
+      "sittingDate": "05.02.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "514c9fff-a7c4-4edd-8c2c-7f25bc830840",
+      "title": "Par neuzticības izteikšanu Ministru prezidentei Evikai Siliņai",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "eb2c86a3-28e6-4b0f-91ed-9908f163edbb",
+      "title": "Par Latvijas Republikas valdības un Saūda Arābijas Karalistes valdības nolīgumu par gaisa satiksmi",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "9a8a6288-51d3-4adf-be32-8e292f38dc37",
+      "title": "Par Latvijas Republikas valdības un Lihtenšteinas Firstistes valdības konvenciju par nodokļu dubultās uzlikšanas novēršanu attiecībā uz ienākuma un kapitāla nodokļiem un par ļaunprātīgas izvairīšanās no nodokļu maksāšanas un nodokļu nemaksāšanas novēršanu un tās protokolu",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "317c896f-e758-43be-9198-614a1bd74b97",
+      "title": "Grozījums Pasta likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "09fe2eb8-5b1c-460a-8da2-6faef4a3c566",
+      "title": "Grozījumi Trauksmes celšanas likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "c0a02b50-82e9-4d68-908c-bb128cf7d9c1",
+      "title": "Grozījumi likumā “Par sabiedrisko pakalpojumu regulatoriem”",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "a06a7ed2-3458-46fd-b89b-f247211ed94b",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "8f6b367e-1689-45b7-b63e-fa9395620ba8",
+      "title": "Grozījumi Dzelzceļa likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "cc334ea6-da63-4bbc-84b8-2172e4e94253",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "12.02.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "f822fba0-56f5-40da-aa47-5e32c790df94",
+      "title": "Grozījumi likumā “Par nodokļiem un nodevām”",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "fc423004-0774-4b91-817c-09cb2e963efd",
+      "title": "Grozījumi Imigrācijas likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "1c5fed8f-da18-4283-a0a5-ea035deee338",
+      "title": "Grozījumi Farmācijas likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "653dbe29-a4c2-4bf6-9a18-b86bdf654b94",
+      "title": "Grozījumi Valsts aizsardzības mācības un Jaunsardzes likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "f1cdd874-a1b7-4d8a-907f-e4e23578bc2e",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "12.02.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "683b21ba-e6e1-4f0e-94fb-b2d6f4e40c28",
+      "title": "Grozījumi Zinātniskās darbības likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "2a7bbd8a-f94a-4a6d-9df8-8a80e5eceffc",
+      "title": "Grozījumi Augstskolu likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "aec12624-bc6c-4ecd-864f-4acaa2cb16c1",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "1b97d0ec-4f6f-43cc-a75f-ff1adf1e7245",
+      "title": "Grozījumi Izglītības likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "a4a8d587-05e0-4644-aafb-664e07c3b60d",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "12.02.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "375e82f9-8c09-4ade-9511-3e48845c4cac",
+      "title": "Grozījumi Ieguldījumu brokeru sabiedrību likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "805c32ee-765e-4c1c-90d5-a792f5529bf4",
+      "title": "Grozījumi Latvijas Bankas likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "61c2f7fb-0e96-46c9-8869-60f984e13ff3",
+      "title": "Grozījumi Kredītiestāžu likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "c1f9e024-453b-476d-9601-5612355a1c8d",
+      "title": "Grozījumi Dzīvesvietas deklarēšanas likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "832a31f6-9ff9-47d4-9762-600c2377d0e1",
+      "title": "Grozījumi Negodīgas tirdzniecības prakses aizlieguma likumā",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "ce980980-ddbe-49b8-8cb9-078f6c92c6a1",
+      "title": "Par priekšlikumu iesniegšanas termiņa pagarināšanu likumprojekta “Grozījumi Dzīvokļa īpašuma likumā” (Nr. 1153/Lp14) otrajam lasījumam līdz 2026. gada 27.februārim",
+      "sittingDate": "12.02.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "ae4cebdd-f85b-4a94-a147-7c1137655b27",
+      "title": "Grozījumi Saeimas vēlēšanu likumā",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "d90e80fa-938c-43d5-93cf-b37af8ea79c3",
+      "title": "Grozījums Meža likumā",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "ea34b46e-1f83-4708-b235-26b7bd2b8c57",
+      "title": "Par neuzticības izteikšanu aizsardzības ministram Andrim Sprūdam",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "83a3673f-d0e0-41d8-85a0-2a1c94e01c89",
+      "title": "Par Jura Rancāna iecelšanu par rajona (pilsētas) tiesas tiesnesi",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "e589c8da-3e86-48d2-9fbd-34ee506163ea",
+      "title": "Par Madaras Šenbrūnas iecelšanu par rajona (pilsētas) tiesas tiesnesi",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "11d7a445-5083-415a-b527-5e55e4ab16ec",
+      "title": "Grozījums Lauksaimniecības un lauku attīstības likumā",
+      "sittingDate": "01.04.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "84f441bf-bc47-4b51-a49d-b6be713d9ae5",
+      "title": "Tiesnešu un prokuroru speciālās pensijas likums",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "f9bba193-0d7a-4917-b522-6011dce3a517",
+      "title": "Par Konvenciju, ar kuru izveido Starptautisko prasību komisiju Ukrainai",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "95693943-a27d-48ac-b8d6-4d9d0133f150",
+      "title": "Grozījumi Fizisko personu reģistra likumā",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "e6f4c4ea-640f-4303-85c9-1cea705435c2",
+      "title": "Nacionālās koncertzāles “Rīgas filharmonija” likums",
+      "sittingDate": "01.04.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "f76f06d5-2c52-4d08-9134-fd46a8540e46",
+      "title": "4. priekšlikums",
+      "sittingDate": "01.04.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "8bfcd429-3895-496d-8263-b62208c21d51",
+      "title": "Grozījumi Konsulārās palīdzības un konsulāro pakalpojumu likumā",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "27efea37-73e9-4b8a-b4e1-3c6bd1c6f431",
+      "title": "Kapsētu likums",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "705fd04f-a1a6-4b70-a8a2-9a716218f05a",
+      "title": "Grozījums Bērnu tiesību aizsardzības likumā",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "f53daa72-f844-4eba-84ba-cfa26770f91c",
+      "title": "Grozījumi Atkritumu apsaimniekošanas likumā",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "f246073a-c2a6-42b0-8d4b-d947c4214790",
+      "title": "Grozījumi Būvniecības likumā",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "a5835abe-6947-4162-ab84-4912722d53fc",
+      "title": "Par priekšlikumu iesniegšanas termiņa pagarināšanu likumprojekta “Klīnisko universitātes slimnīcu likums” (Nr.1223/Lp14) otrajam lasījumam līdz 2026. gada 24. aprīlim",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "ef964173-1662-4eb3-9a4a-b8e4dc96ae29",
+      "title": "Par priekšlikumu iesniegšanas termiņa pagarināšanu likumprojekta “Grozījumi Valsts un pašvaldību institūciju amatpersonu un darbinieku atlīdzības likumā” (Nr.1224/Lp14) otrajam lasījumam līdz 2026. gada 24. aprīlim",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "7f6c3af9-cc21-4e40-89f8-748da515f345",
+      "title": "Par priekšlikumu iesniegšanas termiņa pagarināšanu likumprojekta “Grozījumi Ārstniecības likumā” (Nr.1225/Lp14) otrajam lasījumam līdz 2026. gada 24. aprīlim",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "1f2d8245-428d-4062-8588-32fab4bbdd0c",
+      "title": "Par priekšlikumu iesniegšanas termiņa pagarināšanu likumprojekta “Imigrācijas likums” (Nr.56/Lp14) trešajam lasījumam līdz 2026. gada 9. aprīlim",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "31af631b-fab6-487d-80e2-f7c5359503cd",
+      "title": "Par priekšlikumu iesniegšanas termiņa pagarināšanu likumprojekta “Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums” (Nr.57/Lp14) trešajam lasījumam līdz 2026. gada 9. aprīlim",
+      "sittingDate": "01.04.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "7518beb2-7653-4d4a-afc1-f1096d34b358",
+      "title": "Par 11 391 Latvijas pilsoņa kolektīvā iesnieguma “Nodrošināt iespēju brīvprātīgi izņemt 2. pensiju līmeņa uzkrāto kapitālu” turpmāko virzību",
+      "sittingDate": "01.04.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "8ea133d5-b0fe-4bcf-b5cd-80f7f3dd74d8",
+      "title": "Par 10 946 Latvijas pilsoņu kolektīvā iesnieguma “Par pensiju 2. līmeņa brīvprātīgumu un 6% mazākiem nodokļiem” turpmāko virzību",
+      "sittingDate": "01.04.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "83dba27e-05b0-4131-a927-b01dc6b6988f",
+      "title": "Grozījums Saeimas vēlēšanu likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "72d8bacd-154b-4158-9cc0-c76c42c23e82",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "1dc03e5b-7d7c-4c51-85dc-8e43a845c7b6",
+      "title": "Grozījums Saeimas vēlēšanu likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "b9cf291d-4872-4f89-af09-a8d497c5e68d",
+      "title": "Grozījumi Izglītības likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "bea99d72-3c01-4be1-8df3-7ad709eea676",
+      "title": "Grozījumi Saeimas vēlēšanu likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "3fd02bd4-2325-4d62-b593-c329680a4360",
+      "title": "Grozījumi likumā “Par nekustamā īpašuma nodokli”",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "8e61ff7a-6590-45f8-adc4-57e6323559d3",
+      "title": "Grozījumi Ceļu satiksmes likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "163a9588-93f9-443f-bd1f-f964111a6be3",
+      "title": "Deputātu Aivas Vīksnas, Edgara Tavara, Edvarda Smiltēna, Lindas Matisones, Česlava Batņas, Māra Kučinska, Laura Lizbovska, Edgara Putras, Ingmāra Līdakas, Andra Kulberga pieprasījums veselības ministram Hosamam Abu Meri \"Par rīcību saistībā ar 1. tipa cukura diabēta pacientiem nepieciešamo medicīnisko tehnoloģiju pieejamību Latvijā\"",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "0a1da8c9-f65c-407d-9ea8-bf00790a101b",
+      "title": "Degvielas cenu pieauguma ierobežošanas likums",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "80c7c03a-a205-4f42-90b6-144f11ce7838",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d59c2090-6f3e-4431-8d5d-284bcc436735",
+      "title": "Degvielas cenu pieauguma ierobežošanas likums",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "21c44bf3-7840-48e5-8015-1fb5efc46b86",
+      "title": "5. priekšlikums",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "014d89b6-d2c6-49c5-b8c1-6e0a1a3822cb",
+      "title": "Grozījumi Militārā poligona “Sēlija” izveides likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "ca13c4fa-7d65-475b-8fea-3d3c456ded52",
+      "title": "Par 2009. gada Honkongas Starptautisko konvenciju par kuģu drošu un videi nekaitīgu pārstrādi",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "40e9c40a-73ce-4f45-b856-b41030556db2",
+      "title": "Par Latvijas Republikas un Šrilankas Demokrātiskās Sociālistiskās Republikas nolīgumu par notiesāto personu nodošanu soda izciešanai",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "05138a03-b899-452c-bb5b-d814e144ec9e",
+      "title": "Grozījumi Zinātniskās darbības likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "cb0ac930-786f-4955-a8c3-55cbef480835",
+      "title": "Grozījumi Gaisa kuģu pasažieru datu apstrādes likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "fa74e77d-52eb-4ec4-97e0-5e49712cd9cb",
+      "title": "Grozījums Imigrācijas likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "8ecdf2fa-18c1-42ed-a3b4-3c79429d37c1",
+      "title": "1. priekšlikums",
+      "sittingDate": "26.03.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "2670644d-32e3-420a-b6ae-c185c7efc3a1",
+      "title": "5. priekšlikums",
+      "sittingDate": "26.03.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "f1bddcf1-c794-4f38-ae56-540cd84f6a5c",
+      "title": "Grozījumi Sociālā uzņēmuma likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "976d7dc8-6ecf-48ca-a85f-7d44f99f83fc",
+      "title": "Sporta likums",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d083448e-ed07-4efb-8da0-f0537bb30500",
+      "title": "Grozījumi Iekšējās drošības fonda, Patvēruma, migrācijas un integrācijas fonda un Finansiāla atbalsta instrumenta robežu pārvaldībai un vīzu politikai 2021.–2027. gada plānošanas perioda vadības likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "780d2317-ca1e-4815-a413-5c0bb07116fb",
+      "title": "Grozījumi Civilprocesa likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "595dbef2-72dc-40c9-a07a-a16b90e9a796",
+      "title": "Biobanku likums",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "0519f0b2-15f3-4321-aed0-dce9594f74e4",
+      "title": "Grozījumi Farmācijas likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "ee08fef2-eb3e-4479-be9d-93a172ba2f87",
+      "title": "Par Partnerības nolīgumu starp Eiropas Savienību un tās dalībvalstīm, no vienas puses, un Āfrikas, Karību jūras reģiona un Klusā okeāna valstu organizācijas dalībvalstīm, no otras puses",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "96d46e23-4002-4006-80e7-4df5f6b94451",
+      "title": "Grozījumi Imigrācijas likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "fbc8f4f0-01ce-4b78-a08d-caecdc7ef2ae",
+      "title": "4. priekšlikums",
+      "sittingDate": "26.03.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "53f8eb73-4f57-433d-a10c-fdd29f2805f5",
+      "title": "7. priekšlikums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "7797468f-be38-4fd9-873b-5130637b7c4c",
+      "title": "16. priekšlikums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "99f5cdc2-4e92-4ae2-b172-bc968bd88f92",
+      "title": "17. priekšlikums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "769d4d70-8dca-4322-9c64-fdfe50fc9ba3",
+      "title": "19. priekšlikums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "0fc904cb-70bb-4bd6-bbf3-3bfa3157eee9",
+      "title": "20. priekšlikums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "783f424f-7b0f-4a09-8cc8-1e2151cab0d5",
+      "title": "Grozījumi Kredītiestāžu likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "4dccdd3d-f8c1-4a06-8a23-a423a29502c2",
+      "title": "Grozījumi Latvijas Bankas likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "e4bc27e1-b700-4f5f-a6a8-28135418d142",
+      "title": "Grozījumi Ieguldījumu brokeru sabiedrību likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "235e5e0a-0d05-4cff-b7d0-7eea519dcc9e",
+      "title": "Grozījumi Dzīvokļa īpašuma likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "f64590ea-5300-4237-be6f-9e8467e8727e",
+      "title": "Grozījums Lauksaimniecības un lauku attīstības likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "5032d474-645d-44e1-8da5-b84739a27b20",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "26.03.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "04bc1a2a-b56e-4b9f-b64f-182a4791da6a",
+      "title": "Grozījums Valsts aizsardzības finansēšanas likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "e0943b5f-7bee-4864-b2c4-863fa7f3c7d2",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "ed66265a-197f-4ff4-a418-f32bd7d8883e",
+      "title": "Grozījums Valsts aizsardzības finansēšanas likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "d8174b5c-c30b-487c-a88a-96a44d98dad9",
+      "title": "Grozījumi Vides aizsardzības likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "8b450b93-545b-40a5-ad60-b8365883ffb0",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "9f7beba7-11a5-44c5-890e-2d45d3c786c1",
+      "title": "Grozījumi likumā “Par zemes dzīlēm”",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "f4f41314-c426-4348-a0e4-04f1078af9c1",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "b579cc2a-c67d-49bf-aa19-b15552d127ab",
+      "title": "Grozījumi likumā “Par radiācijas drošību un kodoldrošību”",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "921c2545-14a7-474f-99ac-33b2ffb98431",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "00dbae2a-bbf6-4de1-b4d7-78b7928df2b5",
+      "title": "Grozījumi Ķīmisko vielu likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "25fdd065-014b-4137-8d73-2a72b2acdbcc",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "5f1392fd-0bd2-4559-9381-67888ba9b850",
+      "title": "Grozījumi likumā “Par piesārņojumu”",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "4779eaea-5900-4354-b2c8-36d1dcd260c7",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "c052bb4a-7e9c-40fb-8bb9-76d687d8a56f",
+      "title": "Grozījumi Ūdens apsaimniekošanas likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "51e2860a-9577-40ac-9874-8ae5c0de5286",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "f7207a7a-0e95-40eb-80cc-c2b9f936e67a",
+      "title": "Grozījumi likumā “Par ietekmes uz vidi novērtējumu”",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "1a82b4a4-07ed-4014-ba2f-4dd4ca3936e3",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "01058ef1-a99c-410a-b8c5-ad2f99855e47",
+      "title": "Grozījumi Sugu un biotopu aizsardzības likumā",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "b647e104-7463-426f-bc92-b95afe5e553f",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "52ed9f5e-e307-4963-ba2d-94bfd30142f7",
+      "title": "Grozījumi likumā “Par zemes privatizāciju lauku apvidos”",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "efa25390-ce53-4b6d-af89-018c98001694",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d18f23e6-2923-4530-8d43-c7f28be29ad7",
+      "title": "Grozījumi likumā “Par zemes privatizāciju lauku apvidos”",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "c0ab68e0-1c53-4337-9f39-9b9cf236fbf4",
+      "title": "Par priekšlikumu iesniegšanas termiņa pagarināšanu likuma “Grozījumi Kriminālprocesā un administratīvo pārkāpumu lietvedībā nodarītā kaitējuma atlīdzināšanas likumā” (Nr. 1019/Lp14) otrreizējai caurlūkošanai līdz 2026. gada 9. aprīlim un izskatīšanu 2026. gada 7. maija Saeimas sēdē",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "eccc9d2c-6a2b-45c5-9bfe-2a77f804967c",
+      "title": "Par Saeimas Parlamentārās izmeklēšanas komisijas par Rīgas valstspilsētas centralizētās siltumapgādes sadārdzinājuma iemesliem un enerģētiskās drošības riskiem nākotnē darbības laika pagarināšanu",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d5186cb2-6b44-4d8f-8ec4-6067c9437c17",
+      "title": "Par importētāju un eksportētāju saraksta publicēšanu, kuri veic darījumus ar Krievijas Federāciju un Baltkrievijas Republiku",
+      "sittingDate": "26.03.2026",
+      "decision": "NEBALSO",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "62876002-beb6-411b-af42-3a5226a5c4fc",
+      "title": "Par 10 177 Latvijas pilsoņu kolektīvā iesnieguma “Par atklātu algu valsts pārvaldē” turpmāko virzību",
+      "sittingDate": "26.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "096c8060-fc19-4379-8ea1-5155e0b2ae33",
+      "title": "Par likumprojekta Grozījumi Krimināllikumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "691254b4-ed38-46c1-b347-311e8e9f9830",
+      "title": "Grozījumi Narkotisko un psihotropo vielu un zāļu, kā arī prekursoru likumīgās aprites likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "d63b01f8-90dc-4351-a600-f04657630888",
+      "title": "Grozījumi Krimināllikumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "4cda8d45-11b7-4c70-a65e-7f83259a7233",
+      "title": "Grozījums likumā “Par Krimināllikuma spēkā stāšanās un piemērošanas kārtību”",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "75569785-14e3-40c2-ba3a-44821ae4b2aa",
+      "title": "Grozījumi Valsts kontroles likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "06ed8433-ea14-4f14-84a9-1810bc2a1818",
+      "title": "Grozījumi Saeimas kārtības rullī",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "1a81abc0-a945-47e8-bb7f-5a36347c1d7c",
+      "title": "Par atbildīgās komisijas maiņu likumprojektam “Grozījumi Konkurences likumā” (Nr. 1063/Lp14), nosakot, ka atbildīgā komisija ir Juridiskā komisija",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "1c7c3c10-dd1f-4cea-bf5c-df3fc1c98d87",
+      "title": "Par Rīgas pilsētas tiesas tiesneses Inas Besakirskas atbrīvošanu no tiesneša amata",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "271fbd97-6739-45c1-b165-845bb3cea26b",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "48637e55-8108-4e8f-92c1-adb026f54470",
+      "title": "Deputātu Edgara Tavara, Aivas Vīksnas, Edvarda Smiltēna, Andra Kulberga, Edgara Putras, Māra Kučinska, Laura Lizbovska, Lindas Matisones, Česlava Batņas, Raimonda Bergmaņa pieprasījums finanšu ministram Arvilam Ašeradenam \"Par sabiedrības informēšanas pasākumiem, to saturu un lietderību saistībā ar 2026. gada valsts budžetu\"",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "acbdb237-0dde-4f23-882f-95a80c598794",
+      "title": "Deputātu Lindas Liepiņas, Kristapa Krištopana, Viktorijas Pleškānes, Edmunda Zivtiņa, Ilzes Stobovas, Jeļenas Kļaviņas, Mārča Jencīša, Jekaterinas Drelingas, Ričarda Šlesera, Ramonas Petravičas pieprasījums Ministru prezidentei Evikai Siliņai \"Par LNSP lēmumu par izcilāko sportistu apbalvošanu\"",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "0e3d1b1d-089a-4c94-ab8c-2ffc4d64c075",
+      "title": "Grozījumi Autoceļu lietošanas nodevas likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "bec5a949-625d-4d49-9e10-bae5eee21749",
+      "title": "1. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "2b23c879-cfef-4356-903a-654f2ff65721",
+      "title": "2. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "45b79d2f-fcac-45c5-8576-611f811188d9",
+      "title": "3. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "3aa2375c-9053-4c15-a00d-eaf792e8ea31",
+      "title": "4. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "0cf4b1ba-86cf-4967-80d5-83b4ba81ad0a",
+      "title": "6. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "13fe0bb2-d021-42a8-b4c7-32411a965ff8",
+      "title": "7. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "527724dd-dc53-4ad6-a305-d25067c53599",
+      "title": "9. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "3152b9f4-5691-4ece-83ba-195bb8767a3d",
+      "title": "10. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "b92eb65a-c1b1-40aa-8ca9-26ca11623411",
+      "title": "11. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "5b7cdaa9-b9cb-45f1-9d0d-f6f7dca1b98d",
+      "title": "13. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "4a1f487c-8b02-45f6-93b3-1ca946e2ea04",
+      "title": "15. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d5e21ba5-db41-42be-a3d4-eb43aef467e8",
+      "title": "16. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "0a5e0e9b-494e-49e8-ae37-624f93d2696e",
+      "title": "17. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "dc593189-6b1f-4cab-89f0-04ce2ef151b2",
+      "title": "18. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d64ff719-2ae9-4655-b7c0-b433aeb1f824",
+      "title": "19. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "3574935d-0437-47aa-a5c3-2409c83627c9",
+      "title": "20. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d0ede316-5add-495c-a229-dea130563941",
+      "title": "21. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "46eb7094-da72-4eaf-a252-c4855cefd7a7",
+      "title": "23. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d0403df9-c9ac-4f97-8e94-41a516b245f1",
+      "title": "Grozījumi Tiesu ekspertu likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "8ea3c07f-3572-4472-aa78-ec44507d16d2",
+      "title": "Grozījumi Satversmes tiesas likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "1f110c37-0634-4512-a0b1-86fba8f65ebb",
+      "title": "Grozījumi likumā “Par aviāciju”",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "37a91bfe-2c61-4153-9df4-fa5bac881859",
+      "title": "Grozījumi Bezdarbnieku un darba meklētāju atbalsta likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "16cbbd31-e30a-48f3-a1cc-b5c31bcf5210",
+      "title": "Grozījumi Ieslodzījuma vietu pārvaldes likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "b5eef142-578c-483a-9ae4-23822135d122",
+      "title": "Imigrācijas likums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "442d3402-0e2d-4172-8bfa-45aad3fc6710",
+      "title": "14. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "95156201-4f36-4628-970c-637890a02663",
+      "title": "15. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "1bf814eb-d55a-45df-a290-9098f0d5c40b",
+      "title": "18. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "f4a9a336-f32d-4f27-896e-7143caef8a35",
+      "title": "19. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "aa93c924-de66-41cd-b1bb-8d885551c6b7",
+      "title": "41. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "b503968a-e2a5-4069-b551-7efe483624a1",
+      "title": "42. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "0e7da64d-4bad-4e9a-bf77-5855180b72fc",
+      "title": "45. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "4c557d6b-94c7-484e-a005-f50cdbd21766",
+      "title": "52. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "58ef9946-6289-4f8c-b4ae-a5faac4972a0",
+      "title": "63. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "da24e030-dbe5-407b-bbdb-816238806507",
+      "title": "65. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "39f2854b-2672-4a19-bc70-e5dd26204586",
+      "title": "66. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "a670e7b8-10c6-49a8-b60c-8cc970cbc373",
+      "title": "68. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "e60178a2-ca4e-4262-81e7-ef029b2dde78",
+      "title": "69. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "fdfadb94-4570-45bb-aa5b-c429efb79bad",
+      "title": "70. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "1cf709f4-4044-4c50-8105-dfc6a54e2f66",
+      "title": "72. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "3c41ba90-34cd-488d-8029-6aeb670a087c",
+      "title": "73. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "bc76462a-c56f-4716-8de4-29b192c624fd",
+      "title": "74. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "c1907881-93e3-4aaf-9843-02a4aa8ad0d2",
+      "title": "75. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "87cfface-570a-41ff-a153-113f10281814",
+      "title": "76. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "4fa72de5-deb4-4537-a116-c05902ab62c6",
+      "title": "81. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "456253f2-a9ba-42fc-b841-9a9568ee33b7",
+      "title": "87. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "9e1c3ff7-8b78-4e95-a7cd-eef1a050451b",
+      "title": "103. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "ba5e5e11-540f-4816-b3b6-d3334786d84c",
+      "title": "119. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "e52b1c86-6e78-4466-a92f-9598a2ec7851",
+      "title": "Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "b77b7382-7ec0-43e7-9583-845f178c6501",
+      "title": "3. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "01fa1dec-c077-4648-8532-e5fd8d627e14",
+      "title": "4. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "NEBALSO",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "65057bc1-7a2d-4a13-8615-15f7782f96cb",
+      "title": "5. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "8e7e475e-112d-4793-8391-c42017903780",
+      "title": "7. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "66c51aec-d740-4afa-839c-cf696110498c",
+      "title": "11. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "4afc52f7-f0f2-46d3-b4bb-e1fa8588292f",
+      "title": "14. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "1edf27c5-93c9-42f3-a633-7863acc440d7",
+      "title": "15. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "3e0ab26c-e0a2-4ee9-a01a-c3a2f675552b",
+      "title": "16. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "2fd1b058-43f0-4124-961e-0b8077d6ef4e",
+      "title": "17. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "f6b40c82-2554-4cd2-9a16-b54f6d7509b3",
+      "title": "18. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "a4aa357e-c9c5-4fb7-81b7-8a1ad77a4957",
+      "title": "19. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "6c65b899-7798-4f44-afa3-4c2499b2abc5",
+      "title": "21. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "2625edf6-3a19-4d5f-aa85-353600871372",
+      "title": "22. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "5cf971a3-6a5e-4669-bac2-9204fdebf44d",
+      "title": "26. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "e33a3d59-ffd4-4dba-b460-78a7d52ba271",
+      "title": "27. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "05efc246-1013-4014-8359-9f46e8286287",
+      "title": "29. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "61de7267-1499-4038-99d1-efc531b3fb88",
+      "title": "32. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "a7ec6696-5912-43d5-bc5c-fa0607609d0e",
+      "title": "33. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "cb621fe3-5bb8-4533-b2d5-92cbe1aa5e02",
+      "title": "Grozījums Imigrācijas likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "73b987b1-ff8c-44ce-aa55-c370859dd65c",
+      "title": "Grozījumi Patērētāju tiesību aizsardzības likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "55467673-8ec0-456d-abec-172aa2439b2a",
+      "title": "Grozījumi Kredītinformācijas biroju likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "32e1b8ba-da39-41d3-bcc4-ce5dcc96a10f",
+      "title": "Grozījumi Patērētāju ārpustiesas strīdu risinātāju likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "21942710-5c3b-4bee-a728-dcd61bb1e8c4",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "22.01.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "c9781f7c-e91b-4ecf-8f3a-6927651bcb88",
+      "title": "Grozījumi Augstskolu likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "104efc2c-f372-4a16-a00b-9216ea55f8bc",
+      "title": "1. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "cbc3e054-7fde-45ed-8ec3-82231a6b5395",
+      "title": "2. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "c568a17e-0528-4205-a034-e3dcbbc50619",
+      "title": "3. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "b22f3033-c154-4f2a-9ff9-41c776e49b40",
+      "title": "Grozījumi Elektronisko sakaru likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "b4be435d-3390-4b6e-ae0d-583a0120e898",
+      "title": "5. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "NEBALSO",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "4cb6e417-150e-4238-8717-30e7e9665bf5",
+      "title": "Grozījumi Civilprocesa likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "e7b8e389-42cf-491f-81a5-cb1aede825be",
+      "title": "Grozījumi Kriminālprocesa likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "8aae07cc-2189-4a4a-a42b-8d06dd616856",
+      "title": "Grozījumi Publiskas personas kapitāla daļu un kapitālsabiedrību pārvaldības likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "9657012b-3c4c-4064-9ea8-bba151ac74ae",
+      "title": "Grozījumi Valsts pārvaldes iekārtas likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "89a57ca5-3180-40ef-8e20-11e6acad67c0",
+      "title": "Grozījumi Jaunatnes likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "7922d7ea-b0a4-428b-bede-820adc7ed3e9",
+      "title": "Grozījumi Gaisa kuģu pasažieru datu apstrādes likumā",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "f282de87-ea19-4d9a-a7ec-b27e71f4e1be",
+      "title": "4. priekšlikums",
+      "sittingDate": "22.01.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "07adb4e3-0517-4bb9-ab41-dbb530959ee1",
+      "title": "Par termiņa pagarināšanu Latvijas Nacionālo bruņoto spēku karavīru dalībai pret teroristisko organizāciju ISIL/Da’esh vērstajā starptautiskās koalīcijas militārajā operācijā Inherent Resolve",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "a56a3e05-7fc0-40d7-ab78-e096ddda659e",
+      "title": "Par 10 562 Latvijas pilsoņu kolektīvā iesnieguma “Autoceļu A9 (Liepājas šoseju) pārbūvēt par četru joslu ceļu” turpmāko virzību",
+      "sittingDate": "22.01.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "ffc75b79-fe38-49d6-93e7-2340f529c3cc",
+      "title": "Par likumprojekta Grozījumi Saeimas vēlēšanu likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "750a9b72-e07f-4ddb-9557-fcc384b122ad",
+      "title": "Par lēmuma projekta Par importētāju un eksportētāju saraksta publicēšanu, kuri veic darījumus ar Krievijas Federāciju un Baltkrievijas Republiku iekļaušanu Saeimas sēdes darba kārtībā",
+      "sittingDate": "19.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "75ebd6fc-41e9-4af7-bc54-556a769cbda7",
+      "title": "Par neuzticības izteikšanu satiksmes ministram Atim Švinkam",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "7e41de84-e98c-4c11-96cc-7ff26aac4723",
+      "title": "Grozījumi Valsts fondēto pensiju likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "a431f228-301a-4572-aaac-15a5f28712de",
+      "title": "Grozījumi Valsts fondēto pensiju likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "ce4f8e73-7068-4026-bdac-7547bb059b48",
+      "title": "Grozījumi Valsts fondēto pensiju likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "e4f10c3c-eafb-405f-9b5f-696f2a6e4860",
+      "title": "Grozījumi Valsts fondēto pensiju likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "18389c6e-cbae-43d2-801e-bdb5f9314084",
+      "title": "Nodibinājuma “Latgales vēstniecība GORS” likums",
+      "sittingDate": "19.03.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "c37fecd3-a23d-4331-a677-06bcfa7883e7",
+      "title": "Grozījumi Atkritumu apsaimniekošanas likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "c7eb650d-fca6-4be3-ba38-07bf93e0b4a9",
+      "title": "Par iekļaušanu nākamās sēdes darba kārtībā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "a2ec323e-abb8-44d9-b994-6f7ccae90828",
+      "title": "Par nodošanu Tautsaimniecības, agrārās, vides un reģionālās politikas komisijai",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "13a7f994-f2e6-474f-b20e-e6f5b34b6601",
+      "title": "Deklarācija par Latvijā Padomju Sociālistisko Republiku Savienības totalitārā komunistiskā okupācijas režīma laikā pielietoto represīvās psihiatrijas metožu nosodījumu",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "8f0c2034-642a-4e6b-a3d0-c661d72aba32",
+      "title": "Par iekļaušanu nākamās sēdes darba kārtībā",
+      "sittingDate": "19.03.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "c82c542a-2f91-4499-8e0a-cc97c3337747",
+      "title": "Deputātu Lindas Liepiņas, Kristapa Krištopana, Maijas Armaņevas, Ričarda Šlesera, Ilzes Stobovas, Jekaterinas Drelingas, Viktorijas Pleškānes, Mārča Jencīša, Ramonas Petravičas, Jeļenas Kļaviņas pieprasījums Ministru prezidentei Evikai Siliņai \"Par Latvijas sabiedriskā medija redakcionālās neatkarības nodrošināšanu, valdības komunikācijas modeli un informācijas atklātību pirms 15. Saeimas vēlēšanām\"",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "1bf2ecb2-70c7-4390-ab64-a7ce25dd5e47",
+      "title": "Deputātu Edgara Tavara, Edvarda Smiltēna, Lindas Liepiņas, Lindas Matisones, Maijas Armaņevas, Česlava Batņas, Kristapa Krištopana, Andreja Svilāna, Laura Lizbovska, Raimonda Bergmaņa, Edgara Putras pieprasījums ekonomikas ministram Viktoram Valainim, finanšu ministram Arvilam Ašeradenam \"Par amatpersonu atbildību un valsts bezdarbību saistībā ar nelikumīgajiem elektroenerģijas obligātā iepirkuma maksājumiem\"",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "04b0188d-a4b6-4d06-8040-a6d3bf972b29",
+      "title": "Grozījumi Valsts civildienesta likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "0a02cad2-50a2-4ac0-9067-f0ae3d3af0f8",
+      "title": "Grozījums Krimināllikumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "a00f879d-f402-4561-9116-b6814a89c979",
+      "title": "6. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "94066f3f-7285-4dd5-adb8-5fecac913817",
+      "title": "7. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "NEBALSO",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "27e6b0f6-f480-499e-bff5-e4f5786db732",
+      "title": "Grozījumi likumā “Par nodokļu piemērošanu brīvostās un speciālajās ekonomiskajās zonās”",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "e0e1f167-6a56-4f60-9da7-958dee18a5d8",
+      "title": "1. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "eaa8a12a-8bab-4440-b645-fbf63821b830",
+      "title": "Grozījumi Vēlētāju reģistra likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "f6de6ad3-2ce1-4a24-a14a-051823ca8f36",
+      "title": "Grozījumi Nacionālās kiberdrošības likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "c4c38ca6-6e59-4798-9671-4c1c71dd38ac",
+      "title": "Grozījumi Valsts robežsardzes likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "2a50daea-6c95-4b03-a06c-d5b4a2f7aed2",
+      "title": "Par Konvenciju, ar kuru izveido Starptautisko prasību komisiju Ukrainai",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "9267ff60-2bb8-47e6-a419-ca26146b872e",
+      "title": "Grozījumi Konsulārās palīdzības un konsulāro pakalpojumu likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "07766415-eb73-41a4-b843-672520fa21d7",
+      "title": "Grozījumi Biometrijas datu apstrādes sistēmas likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "121993f9-8a6d-49a7-9e01-fc4425720821",
+      "title": "Par individuālā taisnīguma nodrošināšanu Aleksandram Rīgam",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "e72787a0-1b6a-4981-8d2f-ca1d21fbfd80",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "19.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "202c44ff-d1d3-4f0c-a732-87ecfed1883c",
+      "title": "Par individuālā taisnīguma nodrošināšanu Aleksandram Rīgam",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "20de7641-a195-4c8c-8090-ee1a95d80058",
+      "title": "Grozījumi likumā “Par Latvijas un PSRS psihiatriskajās ārstniecības iestādēs laika posmā no 1940.gada 17.jūnija līdz 1991.gada 21.augustam nepamatoti ievietotajām personām”",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "e8875f53-22b7-4a4f-b489-7a708557d3f6",
+      "title": "Grozījumi likumā “Par politiski represētās personas statusa noteikšanu komunistiskajā un nacistiskajā režīmā cietušajiem”",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "d1ce93e5-d510-4444-8726-89cbc5a1448d",
+      "title": "Grozījumi likumā “Par valsts kompensāciju cietušajiem”",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "ea22be8c-2109-4c20-880c-f55ada0bb3da",
+      "title": "Grozījumi Valsts nodrošinātās juridiskās palīdzības likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "dae4a5ad-bb02-4a1e-b3a2-3ce293ac7a34",
+      "title": "Nacionālās koncertzāles “Rīgas filharmonija” likums",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "52807e4d-f3b2-4e94-81b4-3b078bddf8c0",
+      "title": "Grozījumi likumā “Par interešu konflikta novēršanu valsts amatpersonu darbībā”",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "4126f5f7-2501-4e84-af41-2a8e8f3528af",
+      "title": "2. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "b0ccbe84-b34e-4e5c-afbe-2fe2d9b0dd76",
+      "title": "3. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "886e7285-9df1-482e-9be3-04abff9359c2",
+      "title": "4. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "04a01171-d321-4fcf-be35-74d05f007460",
+      "title": "5. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "20cf3f16-51ac-4f4e-8471-47cfd07ecd9d",
+      "title": "8. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "8c5f8494-1a34-4155-8103-f9a6499afae0",
+      "title": "9. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "57f6df95-6e21-4dc9-a77e-c28c908ea47a",
+      "title": "10. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "8c76e63d-aa72-49a1-8738-2710518c4ecc",
+      "title": "11. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "38f9da9f-b17e-46b1-be15-db478084a8e2",
+      "title": "12. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "44f7c44d-3f12-4745-9a3f-2b4cb8167550",
+      "title": "13. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "644a7191-ca22-409a-b474-e97d5569f24e",
+      "title": "14. priekšlikums",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "e0c908cf-0ee6-4517-8149-a5f0dc68a8b6",
+      "title": "Grozījumi Militārā poligona “Sēlija” izveides likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "362dc403-45ed-4c13-b59c-51a36ba1c31b",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "19.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "3bcb1666-6117-48df-8f24-7ad1f0ac1805",
+      "title": "Par 10 471 Latvijas pilsoņa kolektīvā iesnieguma “Attaisnoto izdevumu palielināšana gada ienākumu deklarācijā” turpmāko virzību",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "e4841c5c-26d9-47f1-a41c-29434dcd8613",
+      "title": "Par likumprojekta Grozījumi Valsts fondēto pensiju likumā",
+      "sittingDate": "12.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "50b872dd-7906-4759-8797-a32f6f357281",
+      "title": "Par lēmuma projekta Par neatliekamie pasākumiem enerģētiskās krīzes un degvielas cenu kāpuma seku mazināšanai un degvielas cenu pazemināšanu iekļaušanu Saeimas sēdes darba kārtībā",
+      "sittingDate": "12.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "6194da59-a783-45d9-8441-8fcfe7f5456c",
+      "title": "Par likumprojekta Grozījumi Valsts fondēto pensiju likumā",
+      "sittingDate": "12.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "d7c77eb9-3e53-43d0-ac3a-ce4299c97a65",
+      "title": "Grozījums Lauksaimniecības un lauku attīstības likumā",
+      "sittingDate": "12.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "27cc7a45-f77d-4a0f-bfc7-cfa443531db3",
+      "title": "Grozījums Operatīvās darbības likumā",
+      "sittingDate": "12.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "3ce3ce70-4ad5-4664-a094-a70b02f188c0",
+      "title": "Par Latgales rajona tiesas tiesneša Vladimira Isajeva atbrīvošanu no tiesneša amata",
+      "sittingDate": "12.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "cb842b4d-042f-454b-98b1-4c1ac37dd52b",
+      "title": "Par Latgales rajona tiesas tiesneša Jāņa Šaušas atbrīvošanu no tiesneša amata",
+      "sittingDate": "12.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "8b606cc2-e43c-42f4-b1f9-58f35193fdb2",
+      "title": "Par Kurzemes rajona tiesas tiesneses Intas Kalniņas atbrīvošanu no tiesneša amata",
+      "sittingDate": "12.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "d1e31f55-3f5a-4523-b436-bd280e42810c",
+      "title": "Par Rīgas apgabaltiesas tiesneses Guntas Freimanes atbrīvošanu no tiesneša amata",
+      "sittingDate": "12.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "b5302bb6-7b28-4c48-b3e4-f18ce418ab62",
+      "title": "Par Rīgas apgabaltiesas tiesneses Ingūnas Amoliņas atbrīvošanu no tiesneša amata",
+      "sittingDate": "12.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "90b1316b-aed6-4d91-a3df-8720d20ac16b",
+      "title": "Deputātu Andra Kulberga, Edvarda Smiltēna, Lindas Matisones, Edgara Tavara, Edgara Putras, Laura Lizbovska, Māra Kučinska, Aivas Vīksnas, Andreja Svilāna, Jura Viļuma pieprasījums satiksmes ministram Atim Švinkam \"Par kompensāciju neizmaksāšanu par pasažieru pārvadājumiem komerciālajos maršrutos\"",
+      "sittingDate": "12.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "f9def65d-05c7-49dd-9df6-e637e7734ca0",
+      "title": "Grozījumi likumā “Par sabiedrisko pakalpojumu regulatoriem”",
+      "sittingDate": "12.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "c4d0de23-a0d5-4711-9b52-94cfb24a7942",
+      "title": "Grozījumi Augstskolu likumā",
+      "sittingDate": "12.03.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "a9184def-eac6-4264-9a86-91ad1cb12074",
+      "title": "Grozījumi Izglītības likumā",
+      "sittingDate": "12.03.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "5ecd8b39-390e-436c-8608-cb4954bc116d",
+      "title": "Grozījumi likumā “Par mērījumu vienotību”",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "453bfb6a-a3e1-4310-8ffd-7470a5416819",
+      "title": "Grozījums likumā “Par piesārņojumu”",
+      "sittingDate": "19.03.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "ebc55a9c-b99a-47ba-9892-0f2fe6654c08",
+      "title": "Grozījumi Bērnu tiesību aizsardzības likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "ecb6dfe2-1830-46fb-800d-e55b02b4f146",
+      "title": "Grozījumi Muitas likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "97b1cef2-5c5c-4d04-84c4-41757cc6eb31",
+      "title": "Sabiedrības interesēs iesaistīto personu aizsardzības likums",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "b09cd19d-c327-4a79-a095-cee4e9cbfd66",
+      "title": "Grozījumi Civilprocesa likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "9a234ca3-3ae7-4b94-a44c-c0625efb1cdf",
+      "title": "Grozījumi Latvijas Republikas Zemessardzes likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "fb9e7ef3-c3b2-4c10-8643-a88dc78ffddf",
+      "title": "Grozījums Operatīvās darbības likumā",
+      "sittingDate": "19.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "85051778-3d81-4237-b48d-835e946efa5a",
+      "title": "Grozījumi Valsts fondēto pensiju likumā",
+      "sittingDate": "05.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "9f896ac7-12a5-4df8-96b7-35b124e7727f",
+      "title": "Grozījumi Valsts fondēto pensiju likumā",
+      "sittingDate": "05.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "f2570883-a119-41f2-8bda-92a65b893439",
+      "title": "Grozījumi likumā “Par iedzīvotāju ienākuma nodokli”",
+      "sittingDate": "05.03.2026",
+      "decision": "PAR",
+      "result": "NORAIDITS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "9d0795f0-2239-4698-9fb3-d22044f98c82",
+      "title": "Ekonomiskās drošības nodokļa likums",
+      "sittingDate": "05.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "d65b82f5-9d9c-43d3-aa45-624aef41bee4",
+      "title": "Grozījumi likumā “Par nodokļiem un nodevām”",
+      "sittingDate": "05.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "19c766a7-7888-40a7-9b2c-bb42e7e80036",
+      "title": "Grozījumi Uzņēmumu ienākuma nodokļa likumā",
+      "sittingDate": "05.03.2026",
+      "decision": "PRET",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "a946e28b-6321-49d0-8db7-9bad2cd91a1a",
+      "title": "Par Andreja Jakobsona apstiprināšanu par Fiskālās disciplīnas padomes locekli",
+      "sittingDate": "05.03.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "76df49b7-1860-4c35-a604-c009f7a26ae2",
+      "title": "Par Intas Vasaraudzes apstiprināšanu par Fiskālās disciplīnas padomes locekli",
+      "sittingDate": "05.03.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "076d8503-7d90-407f-bc1d-924fdaf53338",
+      "title": "Grozījumi Elektronisko sakaru likumā",
+      "sittingDate": "05.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "f9f32bbe-1326-4044-9d8c-06715cefec52",
+      "title": "Grozījumi Zinātniskās darbības likumā",
+      "sittingDate": "05.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "991cac2d-fb03-4d45-bdba-094a4e10b8d9",
+      "title": "Grozījumi likumā “Par nodokļiem un nodevām”",
+      "sittingDate": "05.03.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Budžets un Nodokļi",
+      "categoryId": "budzets"
+    },
+    {
+      "voteId": "1dff4c92-5669-46e7-9a6d-1b8c1aa345df",
+      "title": "Par Latvijas Republikas un Šrilankas Demokrātiskās Sociālistiskās Republikas nolīgumu par notiesāto personu nodošanu soda izciešanai",
+      "sittingDate": "05.03.2026",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Veselība un Labklājība",
+      "categoryId": "socialie"
+    },
+    {
+      "voteId": "022de0f4-b088-4e7c-a936-5bcc0ad5628f",
+      "title": "Grozījumi Kriminālprocesa likumā",
+      "sittingDate": "05.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "ca85aa94-181c-4355-8f39-324983bea7ab",
+      "title": "Grozījumi Ukrainas civiliedzīvotāju atbalsta likumā",
+      "sittingDate": "05.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "040a9df9-89e8-411c-9173-0297134b19a3",
+      "title": "Steidzamības balsojums",
+      "sittingDate": "05.03.2026",
+      "decision": "NEBALSO",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "46303ed7-b290-4d07-93c8-208c1e39b5f2",
+      "title": "Grozījumi Ukrainas civiliedzīvotāju atbalsta likumā",
+      "sittingDate": "05.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts drošība un Aizsardzība",
+      "categoryId": "drosiba"
+    },
+    {
+      "voteId": "5c427bd2-6b19-438e-99c6-36cd469cacc1",
+      "title": "Par priekšlikumu iesniegšanas termiņa pagarināšanu likumprojekta “Nacionālās koncertzāles \"Rīgas filharmonija\" likums” (Nr.1217/Lp14) otrajam lasījumam līdz 2026. gada 9. martam",
+      "sittingDate": "05.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    },
+    {
+      "voteId": "dfeb8627-81c8-490a-a290-7e6735e1c8ad",
+      "title": "Par 10 107 Latvijas pilsoņu kolektīvā iesnieguma “Par Kurzemes piekrasti bez vēja elektrostacijām” turpmāko virzību",
+      "sittingDate": "05.03.2026",
+      "decision": "PAR",
+      "result": "PIENEMTS",
+      "category": "Ekonomika un Enerģētika",
+      "categoryId": "ekonomika"
+    },
+    {
+      "voteId": "edge-quorum-01",
+      "title": "Grozījumi Publisko personu mantas izšķērdēšanas novēršanas likumā",
+      "sittingDate": "14.03.2024",
+      "decision": "NEBALSO",
+      "result": "NAV_KVORUMA",
+      "category": "Tiesiskums un Korupcijas novēršana",
+      "categoryId": "tiesiskums"
+    },
+    {
+      "voteId": "edge-secret-01",
+      "title": "Valsts prezidenta vēlēšanas (Edgars Rinkēvičs)",
+      "sittingDate": "31.05.2023",
+      "decision": "NAV_REGISTRETS",
+      "result": "PIENEMTS",
+      "category": "Valsts pārvalde",
+      "categoryId": "administracija"
+    }
+  ]
+}

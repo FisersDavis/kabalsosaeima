@@ -1,10 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
-import type { Vote, MP, Faction, SaeimaTerm, SiteMetadata, ActiveNavTab } from './types';
+import type { Vote, MP, Faction, SaeimaTerm, SiteMetadata, ActiveNavTab, MpSummaryMap } from './types';
 import { isFinalDecisionVote, parseLatvianDate, normalizeLatvianSearch } from './types';
 import { Navbar } from './components/Navbar';
 import { FilterBar, type VoteTypeFilter } from './components/FilterBar';
 import { VoteCard } from './components/VoteCard';
 import { HemicycleModal } from './components/HemicycleModal';
+import { MpProfileModal } from './components/MpProfileModal';
 import { CivicInfoModal } from './components/CivicInfoModal';
 import { Footer } from './components/Footer';
 import { AlertCircle, Info, ChevronDown } from 'lucide-react';
@@ -25,10 +26,12 @@ export function App() {
   const [mps, setMps] = useState<MP[]>([]);
   const [factions, setFactions] = useState<Faction[]>([]);
   const [metadata, setMetadata] = useState<SiteMetadata | null>(null);
+  const [mpSummaries, setMpSummaries] = useState<MpSummaryMap>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const [selectedVote, setSelectedVote] = useState<Vote | null>(null);
+  const [selectedMp, setSelectedMp] = useState<MP | null>(null);
   const [civicModalTab, setCivicModalTab] = useState<'about' | 'methodology' | 'data' | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
@@ -53,12 +56,13 @@ export function App() {
       try {
         setLoading(true);
         const t = Date.now();
-        const [votesRes, mpsRes, factionsRes, termsRes, metaRes] = await Promise.all([
+        const [votesRes, mpsRes, factionsRes, termsRes, metaRes, summariesRes] = await Promise.all([
           fetch(`./data/votes.json?v=${t}`, { cache: 'no-store' }),
           fetch(`./data/mps.json?v=${t}`, { cache: 'no-store' }),
           fetch(`./data/factions.json?v=${t}`, { cache: 'no-store' }),
           fetch(`./data/terms.json?v=${t}`, { cache: 'no-store' }),
           fetch(`./data/metadata.json?v=${t}`, { cache: 'no-store' }).catch(() => null),
+          fetch(`./data/mp_summaries.json?v=${t}`, { cache: 'no-store' }).catch(() => null),
         ]);
 
         if (!votesRes.ok || !mpsRes.ok || !factionsRes.ok) {
@@ -74,6 +78,11 @@ export function App() {
         setVotes(votesData);
         setMps(mpsData);
         setFactions(factionsData);
+
+        if (summariesRes && summariesRes.ok) {
+          const summariesData = await summariesRes.json();
+          setMpSummaries(summariesData);
+        }
 
         if (termsRes.ok) {
           const termsData = await termsRes.json();
@@ -281,7 +290,7 @@ export function App() {
           </>
         )}
 
-        {/* TAB 2: Partijas & Deputāti */}
+        {/* TAB 2: Partijas un deputāti */}
         {activeTab === 'mps' && (
           <MpDirectoryView
             mps={mps}
@@ -292,6 +301,8 @@ export function App() {
             onFactionChange={setMpFactionFilter}
             activeOnly={mpActiveOnly}
             onActiveOnlyToggle={setMpActiveOnly}
+            onSelectMp={setSelectedMp}
+            mpSummaries={mpSummaries}
           />
         )}
 
@@ -315,6 +326,23 @@ export function App() {
           mps={mps}
           factions={factions}
           onClose={() => setSelectedVote(null)}
+          onSelectMp={setSelectedMp}
+        />
+      )}
+
+      {/* MP Profile Dossier Modal */}
+      {selectedMp && (
+        <MpProfileModal
+          mp={selectedMp}
+          faction={factions.find((f) => f.id === selectedMp.factionId)}
+          onClose={() => setSelectedMp(null)}
+          onSelectVote={(voteId) => {
+            const v = votes.find((item) => item.id === voteId);
+            if (v) {
+              setSelectedMp(null);
+              setSelectedVote(v);
+            }
+          }}
         />
       )}
 

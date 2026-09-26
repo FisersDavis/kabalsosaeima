@@ -7,6 +7,7 @@ interface HemicycleModalProps {
   mps: MP[];
   factions: Faction[];
   onClose: () => void;
+  onSelectMp?: (mp: MP) => void;
 }
 
 // Strips redundant Latvian parliamentary preamble filler from titles
@@ -58,6 +59,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
   mps,
   factions,
   onClose,
+  onSelectMp,
 }) => {
   const [hoveredMpId, setHoveredMpId] = useState<string | null>(null);
   const [selectedMpId, setSelectedMpId] = useState<string | null>(null);
@@ -558,11 +560,23 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
                       </div>
                     </div>
 
-                    <div className="shrink-0 text-right">
-                      <div className="text-[10px] uppercase font-mono text-slate-400 mb-0.5">
-                        Balsojums
+                    <div className="shrink-0 flex items-center gap-3">
+                      <div className="text-right">
+                        <div className="text-[10px] uppercase font-mono text-slate-400 mb-0.5">
+                          Balsojums
+                        </div>
+                        {getDecisionBadge(activeSeat.decision)}
                       </div>
-                      {getDecisionBadge(activeSeat.decision)}
+                      {onSelectMp && (
+                        <button
+                          type="button"
+                          onClick={() => onSelectMp(activeSeat.mp)}
+                          className="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 transition cursor-pointer"
+                          title="Skatīt deputāta profilu"
+                        >
+                          Profils →
+                        </button>
+                      )}
                     </div>
                   </div>
                 ) : (

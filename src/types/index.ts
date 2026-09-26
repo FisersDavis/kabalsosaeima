@@ -59,6 +59,73 @@ export interface FactionBreakdown {
   deviatingMps?: DeviatingMP[];
 }
 
+export interface MpAttendance {
+  presentCount: number;
+  presentPct: number;
+  withheldCount: number;
+  withheldPct: number;
+  absentCount: number;
+  absentPct: number;
+}
+
+export interface MpVotesBreakdown {
+  par: number;
+  pret: number;
+  atturas: number;
+  nebalso: number;
+  navRegistrets: number;
+}
+
+export interface MpDeviation {
+  voteId: string;
+  title: string;
+  sittingDate: string;
+  decision: VoteDecision;
+  factionLine: VoteDecision;
+  result: string;
+  category?: string;
+}
+
+export interface MpCohesion {
+  isIndependent: boolean;
+  cohesionPct: number | null;
+  activeTotalCount: number;
+  activeAlignedCount: number;
+  deviationsCount: number;
+  deviations: MpDeviation[];
+}
+
+export interface MpVoteHistoryItem {
+  voteId: string;
+  title: string;
+  sittingDate: string;
+  decision: VoteDecision;
+  result: string;
+  category?: string;
+  categoryId?: string;
+}
+
+export interface MpDossier {
+  mp: MP;
+  faction: Faction;
+  totalVotes: number;
+  attendance: MpAttendance;
+  votesBreakdown: MpVotesBreakdown;
+  cohesion: MpCohesion;
+  votingHistory: MpVoteHistoryItem[];
+}
+
+export interface MpSummary {
+  presentPct: number;
+  withheldPct: number;
+  absentPct: number;
+  cohesionPct: number | null;
+  deviationsCount: number;
+  isIndependent: boolean;
+}
+
+export type MpSummaryMap = Record<string, MpSummary>;
+
 export interface DebateArguments {
   proponents: string; // Sponsor / Rapporteur perspective
   opponents: string;  // Lead opposition debate thesis
