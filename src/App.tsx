@@ -20,7 +20,38 @@ export function App() {
     { term: 15, label: "15. Saeima", years: "2026–2030", isActive: false, description: "Vēlēšanas 2026. gada rudenī" }
   ]);
   const [selectedTerm, setSelectedTerm] = useState<number>(14);
-  const [activeTab, setActiveTab] = useState<ActiveNavTab>('votes');
+  const [activeTab, setActiveTab] = useState<ActiveNavTab>(() => {
+    if (typeof window !== 'undefined') {
+      const h = window.location.hash.toLowerCase();
+      if (h === '#radars' || h === '#tematiskais-radars' || h === '#issues') return 'issues';
+      if (h === '#deputati' || h === '#partijas' || h === '#mps') return 'mps';
+    }
+    return 'votes';
+  });
+
+  const handleSelectTab = (tab: ActiveNavTab) => {
+    setActiveTab(tab);
+    if (typeof window !== 'undefined') {
+      if (tab === 'issues') window.location.hash = '#radars';
+      else if (tab === 'mps') window.location.hash = '#deputati';
+      else window.location.hash = '#balsojumi';
+    }
+  };
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const h = window.location.hash.toLowerCase();
+      if (h === '#radars' || h === '#tematiskais-radars' || h === '#issues') {
+        setActiveTab('issues');
+      } else if (h === '#deputati' || h === '#partijas' || h === '#mps') {
+        setActiveTab('mps');
+      } else if (h === '#balsojumi' || h === '#votes') {
+        setActiveTab('votes');
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const [votes, setVotes] = useState<Vote[]>([]);
   const [mps, setMps] = useState<MP[]>([]);
@@ -178,7 +209,7 @@ export function App() {
         selectedTerm={selectedTerm}
         onSelectTerm={setSelectedTerm}
         activeTab={activeTab}
-        onSelectTab={setActiveTab}
+        onSelectTab={handleSelectTab}
         latestSittingDate={latestSittingDate}
         lastSyncDate={metadata?.formattedSyncDate}
         onOpenInfoModal={setCivicModalTab}
