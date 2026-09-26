@@ -22,6 +22,37 @@ interface MpProfileModalProps {
   onSelectVote?: (voteId: string) => void;
 }
 
+// Latvian grammar plural agreement helpers
+function formatOppositeCount(count: number): string {
+  if (count === 1 || (count % 10 === 1 && count % 100 !== 11)) {
+    return 'pretēja balss';
+  }
+  if (count === 0 || (count % 100 >= 11 && count % 100 <= 19) || count % 10 === 0) {
+    return 'pretēju balsu';
+  }
+  return 'pretējas balsis';
+}
+
+function formatNuanceCount(count: number): string {
+  if (count === 1 || (count % 10 === 1 && count % 100 !== 11)) {
+    return 'toņa nianse';
+  }
+  if (count === 0 || (count % 100 >= 11 && count % 100 <= 19) || count % 10 === 0) {
+    return 'toņa nianšu';
+  }
+  return 'toņa nianses';
+}
+
+function formatAlignedCount(count: number): string {
+  if (count === 1 || (count % 10 === 1 && count % 100 !== 11)) {
+    return 'vienots balsojums';
+  }
+  if (count === 0 || (count % 100 >= 11 && count % 100 <= 19) || count % 10 === 0) {
+    return 'vienotu balsojumu';
+  }
+  return 'vienoti balsojumi';
+}
+
 export const MpProfileModal: React.FC<MpProfileModalProps> = ({
   mp,
   faction,
@@ -481,25 +512,31 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                         </div>
 
                         <div className="flex items-center gap-2 sm:gap-3 self-stretch sm:self-auto border-t sm:border-t-0 sm:border-l border-slate-100 pt-3 sm:pt-0 sm:pl-6 text-right flex-wrap sm:flex-nowrap">
-                          <div className="p-2 sm:p-2.5 rounded-lg bg-emerald-50/60 border border-emerald-100 min-w-[90px] text-center">
+                          <div className="p-2 sm:p-2.5 rounded-lg bg-emerald-50/60 border border-emerald-100 min-w-[96px] text-center">
                             <div className="text-sm sm:text-base font-mono font-bold text-emerald-700">
                               {dossier.cohesion.activeAlignedCount}
                             </div>
-                            <div className="text-[10px] text-slate-500 font-medium">vienoti balsojumi</div>
+                            <div className="text-[10px] text-slate-500 font-medium">
+                              {formatAlignedCount(dossier.cohesion.activeAlignedCount)}
+                            </div>
                           </div>
 
-                          <div className="p-2 sm:p-2.5 rounded-lg bg-rose-50/60 border border-rose-100 min-w-[90px] text-center">
+                          <div className="p-2 sm:p-2.5 rounded-lg bg-rose-50/60 border border-rose-100 min-w-[96px] text-center">
                             <div className="text-sm sm:text-base font-mono font-bold text-rose-700">
                               {dossier.cohesion.oppositeCount ?? 0}
                             </div>
-                            <div className="text-[10px] text-rose-700 font-medium">pretējas balsis</div>
+                            <div className="text-[10px] text-rose-700 font-medium">
+                              {formatOppositeCount(dossier.cohesion.oppositeCount ?? 0)}
+                            </div>
                           </div>
 
-                          <div className="p-2 sm:p-2.5 rounded-lg bg-amber-50/60 border border-amber-100 min-w-[90px] text-center">
+                          <div className="p-2 sm:p-2.5 rounded-lg bg-amber-50/60 border border-amber-100 min-w-[96px] text-center">
                             <div className="text-sm sm:text-base font-mono font-bold text-amber-700">
                               {dossier.cohesion.nuanceCount ?? 0}
                             </div>
-                            <div className="text-[10px] text-amber-700 font-medium">pozīcijas nianses</div>
+                            <div className="text-[10px] text-amber-700 font-medium">
+                              {formatNuanceCount(dossier.cohesion.nuanceCount ?? 0)}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -518,64 +555,67 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                           {/* SECTION A: ATKLĀTA PRETRUNA AR FRAKCIJU (Rebel / Opposing votes) */}
                           {oppositeDeviations.length > 0 && (
                             <div className="space-y-2">
-                              <div className="flex items-center justify-between px-1">
-                                <div className="flex items-center gap-2">
-                                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
-                                  <h4 className="text-xs font-bold text-slate-900">
-                                    Atklāta pretruna ar frakciju ({oppositeDeviations.length})
-                                  </h4>
-                                </div>
-                                <span className="text-[11px] font-medium text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
-                                  Pretējs balsojums
-                                </span>
+                              <div className="flex items-center gap-2 px-1">
+                                <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
+                                <h4 className="text-xs font-bold text-slate-900">
+                                  Atklāta pretruna ar frakciju ({oppositeDeviations.length})
+                                </h4>
                               </div>
 
                               <div className="rounded-xl border border-rose-200/80 bg-white overflow-hidden shadow-2xs divide-y divide-slate-100">
                                 {/* Table header */}
                                 <div className="flex items-center justify-between px-3.5 py-1.5 bg-rose-50/50 border-b border-rose-100 text-[10px] font-bold uppercase tracking-wider text-slate-500">
                                   <span>Likumprojekts vai priekšlikums</span>
-                                  <div className="flex items-center gap-2 sm:gap-4 pr-6">
-                                    <span className="w-20 text-center">Deputāts</span>
-                                    <span className="w-24 text-center">Frakcija</span>
+                                  <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                                    <span className="w-[100px] text-center">Deputāts</span>
+                                    <span className="w-[100px] text-center">Frakcija</span>
+                                    <span className="w-[20px]" />
                                   </div>
                                 </div>
 
                                 {oppositeDeviations.map((dev) => (
                                   <div
                                     key={dev.voteId}
-                                    className="p-3.5 hover:bg-slate-50 transition flex items-center justify-between gap-3 text-xs"
+                                    onClick={() => onSelectVote?.(dev.voteId)}
+                                    className={`p-3.5 transition-colors flex items-center justify-between gap-3 text-xs ${
+                                      onSelectVote ? 'hover:bg-slate-50 cursor-pointer group' : ''
+                                    }`}
                                   >
-                                    <div className="min-w-0 flex-1">
-                                      <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-0.5">
-                                        <span>{dev.sittingDate}</span>
-                                        <span>·</span>
-                                        <span>{dev.category || 'Likumprojekts'}</span>
+                                    <div className="min-w-0 flex-1 pr-2">
+                                      <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-0.5 truncate">
+                                        {dev.parentBillTitle ? (
+                                          <>
+                                            <span className="font-semibold text-slate-600 truncate max-w-[280px] sm:max-w-md" title={dev.parentBillTitle}>
+                                              {dev.parentBillTitle}
+                                            </span>
+                                            <span>·</span>
+                                            <span>{dev.sittingDate}</span>
+                                          </>
+                                        ) : (
+                                          <>
+                                            <span>{dev.sittingDate}</span>
+                                            <span>·</span>
+                                            <span>{dev.category || 'Likumprojekts'}</span>
+                                          </>
+                                        )}
                                       </div>
                                       <div className="font-semibold text-slate-900 leading-snug line-clamp-2" title={dev.title}>
                                         {dev.title}
                                       </div>
                                     </div>
 
-                                    <div className="flex items-center gap-2 sm:gap-4 shrink-0">
-                                      <div className="w-20 flex justify-center">
+                                    <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                                      <div className="w-[100px] flex justify-center">
                                         {getDecisionBadge(dev.decision)}
                                       </div>
-                                      <div className="w-24 flex justify-center">
+                                      <div className="w-[100px] flex justify-center">
                                         {getDecisionBadge(dev.factionLine)}
                                       </div>
-
-                                      {onSelectVote ? (
-                                        <button
-                                          type="button"
-                                          onClick={() => onSelectVote(dev.voteId)}
-                                          className="p-1 text-slate-400 hover:text-slate-900 transition cursor-pointer"
-                                          title="Atvērt šo balsojumu"
-                                        >
-                                          <ChevronRight className="h-4 w-4" />
-                                        </button>
-                                      ) : (
-                                        <div className="w-4" />
-                                      )}
+                                      <div className="w-[20px] flex justify-center">
+                                        {onSelectVote && (
+                                          <ChevronRight className="h-4 w-4 text-slate-300 group-hover:text-slate-900 transition-colors" />
+                                        )}
+                                      </div>
                                     </div>
                                   </div>
                                 ))}
@@ -602,48 +642,56 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                                 {/* Table header */}
                                 <div className="flex items-center justify-between px-3.5 py-1.5 bg-slate-50 border-b border-slate-200 text-[10px] font-bold uppercase tracking-wider text-slate-500">
                                   <span>Likumprojekts vai priekšlikums</span>
-                                  <div className="flex items-center gap-2 sm:gap-4 pr-6">
-                                    <span className="w-20 text-center">Deputāts</span>
-                                    <span className="w-24 text-center">Frakcija</span>
+                                  <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                                    <span className="w-[100px] text-center">Deputāts</span>
+                                    <span className="w-[100px] text-center">Frakcija</span>
+                                    <span className="w-[20px]" />
                                   </div>
                                 </div>
 
                                 {nuanceDeviations.map((dev) => (
                                   <div
                                     key={dev.voteId}
-                                    className="p-3.5 hover:bg-slate-50 transition flex items-center justify-between gap-3 text-xs"
+                                    onClick={() => onSelectVote?.(dev.voteId)}
+                                    className={`p-3.5 transition-colors flex items-center justify-between gap-3 text-xs ${
+                                      onSelectVote ? 'hover:bg-slate-50 cursor-pointer group' : ''
+                                    }`}
                                   >
-                                    <div className="min-w-0 flex-1">
-                                      <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-0.5">
-                                        <span>{dev.sittingDate}</span>
-                                        <span>·</span>
-                                        <span>{dev.category || 'Likumprojekts'}</span>
+                                    <div className="min-w-0 flex-1 pr-2">
+                                      <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-0.5 truncate">
+                                        {dev.parentBillTitle ? (
+                                          <>
+                                            <span className="font-semibold text-slate-600 truncate max-w-[280px] sm:max-w-md" title={dev.parentBillTitle}>
+                                              {dev.parentBillTitle}
+                                            </span>
+                                            <span>·</span>
+                                            <span>{dev.sittingDate}</span>
+                                          </>
+                                        ) : (
+                                          <>
+                                            <span>{dev.sittingDate}</span>
+                                            <span>·</span>
+                                            <span>{dev.category || 'Likumprojekts'}</span>
+                                          </>
+                                        )}
                                       </div>
                                       <div className="font-semibold text-slate-900 leading-snug line-clamp-2" title={dev.title}>
                                         {dev.title}
                                       </div>
                                     </div>
 
-                                    <div className="flex items-center gap-2 sm:gap-4 shrink-0">
-                                      <div className="w-20 flex justify-center">
+                                    <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                                      <div className="w-[100px] flex justify-center">
                                         {getDecisionBadge(dev.decision)}
                                       </div>
-                                      <div className="w-24 flex justify-center">
+                                      <div className="w-[100px] flex justify-center">
                                         {getDecisionBadge(dev.factionLine)}
                                       </div>
-
-                                      {onSelectVote ? (
-                                        <button
-                                          type="button"
-                                          onClick={() => onSelectVote(dev.voteId)}
-                                          className="p-1 text-slate-400 hover:text-slate-900 transition cursor-pointer"
-                                          title="Atvērt šo balsojumu"
-                                        >
-                                          <ChevronRight className="h-4 w-4" />
-                                        </button>
-                                      ) : (
-                                        <div className="w-4" />
-                                      )}
+                                      <div className="w-[20px] flex justify-center">
+                                        {onSelectVote && (
+                                          <ChevronRight className="h-4 w-4 text-slate-300 group-hover:text-slate-900 transition-colors" />
+                                        )}
+                                      </div>
                                     </div>
                                   </div>
                                 ))}
@@ -718,13 +766,28 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                     {filteredHistory.slice(0, historyVisibleCount).map((item) => (
                       <div
                         key={item.voteId}
-                        className="p-3.5 hover:bg-slate-50 transition flex items-center justify-between gap-3 text-xs"
+                        onClick={() => onSelectVote?.(item.voteId)}
+                        className={`p-3.5 transition-colors flex items-center justify-between gap-3 text-xs ${
+                          onSelectVote ? 'hover:bg-slate-50 cursor-pointer group' : ''
+                        }`}
                       >
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-0.5">
-                            <span>{item.sittingDate}</span>
-                            <span>·</span>
-                            <span>{item.category || 'Likumprojekts'}</span>
+                        <div className="min-w-0 flex-1 pr-2">
+                          <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-0.5 truncate">
+                            {item.parentBillTitle ? (
+                              <>
+                                <span className="font-semibold text-slate-600 truncate max-w-[280px] sm:max-w-md" title={item.parentBillTitle}>
+                                  {item.parentBillTitle}
+                                </span>
+                                <span>·</span>
+                                <span>{item.sittingDate}</span>
+                              </>
+                            ) : (
+                              <>
+                                <span>{item.sittingDate}</span>
+                                <span>·</span>
+                                <span>{item.category || 'Likumprojekts'}</span>
+                              </>
+                            )}
                           </div>
                           <div className="font-semibold text-slate-900 leading-snug line-clamp-1" title={item.title}>
                             {item.title}
@@ -735,14 +798,9 @@ export const MpProfileModal: React.FC<MpProfileModalProps> = ({
                           {getDecisionBadge(item.decision)}
 
                           {onSelectVote && (
-                            <button
-                              type="button"
-                              onClick={() => onSelectVote(item.voteId)}
-                              className="p-1 text-slate-400 hover:text-slate-900 transition cursor-pointer"
-                              title="Skatīt balsojumu"
-                            >
-                              <ArrowRight className="h-3.5 w-3.5" />
-                            </button>
+                            <div className="w-5 flex justify-center">
+                              <ArrowRight className="h-3.5 w-3.5 text-slate-300 group-hover:text-slate-900 transition-colors" />
+                            </div>
                           )}
                         </div>
                       </div>

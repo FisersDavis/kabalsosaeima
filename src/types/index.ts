@@ -85,6 +85,7 @@ export interface MpDeviation {
   result: string;
   category?: string;
   deviationType: 'OPPOSITE' | 'NUANCE';
+  parentBillTitle?: string;
 }
 
 export interface MpCohesion {
@@ -106,6 +107,7 @@ export interface MpVoteHistoryItem {
   result: string;
   category?: string;
   categoryId?: string;
+  parentBillTitle?: string;
 }
 
 export interface MpDossier {

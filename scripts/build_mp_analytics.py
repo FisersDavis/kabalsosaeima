@@ -62,6 +62,16 @@ def build_analytics():
     # Load all rollcalls into a fast lookup: mpId -> list of { voteId, decision }
     mp_votes_log = defaultdict(dict)
 
+    # Build parent bill titles lookup for bare proposals (e.g., "1. priekšlikums")
+    bill_parent_titles = {}
+    for v in votes:
+        b = v.get("billNumber")
+        t = v.get("simplifiedTitle") or v.get("officialTitle", "")
+        if b and not ("priekšlikums" in t.lower() or t.startswith("Par priekšlikumu")):
+            clean = t.replace("Par likumprojekta ", "").replace("Par likumprojektu ", "").replace("Likumprojekts ", "").strip()
+            if b not in bill_parent_titles or len(clean) > len(bill_parent_titles[b]):
+                bill_parent_titles[b] = clean
+
     rollcall_files = os.listdir(ROLLCALLS_DIR)
     for rf in rollcall_files:
         if not rf.endswith(".json"):
@@ -132,6 +142,8 @@ def build_analytics():
                         is_opposite = (decision == "PAR" and faction_line in ("PRET", "ATTURAS")) or \
                                       (faction_line == "PAR" and decision in ("PRET", "ATTURAS"))
                         dev_type = "OPPOSITE" if is_opposite else "NUANCE"
+                        b_num = v.get("billNumber")
+                        parent_title = bill_parent_titles.get(b_num) if b_num else None
                         deviations.append({
                             "voteId": vid,
                             "title": v.get("simplifiedTitle") or v.get("officialTitle"),
@@ -140,9 +152,12 @@ def build_analytics():
                             "factionLine": faction_line,
                             "result": v.get("result", "PIENEMTS"),
                             "category": v.get("category", {}).get("label", "Valsts pārvalde"),
-                            "deviationType": dev_type
+                            "deviationType": dev_type,
+                            "parentBillTitle": parent_title
                         })
 
+            b_num = v.get("billNumber")
+            parent_title = bill_parent_titles.get(b_num) if b_num else None
             history.append({
                 "voteId": vid,
                 "title": v.get("simplifiedTitle") or v.get("officialTitle"),
@@ -150,7 +165,8 @@ def build_analytics():
                 "decision": decision,
                 "result": v.get("result", "PIENEMTS"),
                 "category": v.get("category", {}).get("label", "Valsts pārvalde"),
-                "categoryId": v.get("category", {}).get("id", "administracija")
+                "categoryId": v.get("category", {}).get("id", "administracija"),
+                "parentBillTitle": parent_title
             })
 
         # Calculate percentages
