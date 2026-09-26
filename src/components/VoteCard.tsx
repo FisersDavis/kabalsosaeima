@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import type { Vote, FactionBreakdown } from '../types';
 import {
   Check,
@@ -14,6 +14,93 @@ import {
 interface VoteCardProps {
   vote: Vote;
   onSelect: (vote: Vote) => void;
+  showFactionStances?: boolean;
+}
+
+const SEAT_ORDER = ['JV', 'ZZS', 'AS', 'NA', 'PRO', 'LPV', 'S!', 'PIEFR'];
+
+interface FactionStanceBadge {
+  shortName: string;
+  stance: 'PAR' | 'PRET' | 'NEB' | '—';
+  badgeClass: string;
+  tooltip: string;
+}
+
+function getFactionStanceBadges(factionBreakdown: FactionBreakdown[] | undefined): FactionStanceBadge[] {
+  if (!factionBreakdown) return [];
+
+  const fbMap = new Map<string, FactionBreakdown>();
+  factionBreakdown.forEach((fb) => {
+    fbMap.set(fb.shortName.toUpperCase(), fb);
+    fbMap.set(fb.factionId.toUpperCase(), fb);
+  });
+
+  return SEAT_ORDER.map((short) => {
+    const fb = fbMap.get(short) || fbMap.get(short === 'S!' ? 'ST' : short === 'PIEFR' ? 'IND' : short);
+    if (!fb) {
+      return {
+        shortName: short,
+        stance: '—',
+        badgeClass: 'bg-slate-50 text-slate-400 border border-slate-200',
+        tooltip: `${short}: nav datu`,
+      };
+    }
+
+    const fid = fb.factionId.toLowerCase();
+    const isIndependent = short === 'PIEFR' || fid === 'piefr' || fid === 'ind';
+
+    if (isIndependent) {
+      return {
+        shortName: short,
+        stance: '—',
+        badgeClass: 'bg-slate-50 text-slate-500 border border-slate-200',
+        tooltip: `${short} (neatkarīgie deputāti): frakcijas disciplīna netiek piemērota`,
+      };
+    }
+
+    const p = fb.votes.par || 0;
+    const pr = fb.votes.pret || 0;
+    const a = fb.votes.atturas || 0;
+    const nb = fb.votes.nebalso || 0;
+    const active = p + pr + a;
+    const block = pr + a;
+
+    const tallyStr = `${p} Par · ${pr} Pret · ${a} Atturas · ${nb} Nebalsoja`;
+
+    if (active === 0 || nb > active) {
+      return {
+        shortName: short,
+        stance: 'NEB',
+        badgeClass: 'bg-slate-100 text-slate-600 border border-slate-200 font-medium',
+        tooltip: `${short}: ${tallyStr} (vairākums nebalsoja)`,
+      };
+    }
+
+    if (p > block) {
+      return {
+        shortName: short,
+        stance: 'PAR',
+        badgeClass: 'bg-emerald-50 text-emerald-800 border border-emerald-300 font-bold',
+        tooltip: `${short}: ${tallyStr} (atbalstīja)`,
+      };
+    }
+
+    if (block > p) {
+      return {
+        shortName: short,
+        stance: 'PRET',
+        badgeClass: 'bg-rose-50 text-rose-800 border border-rose-300 font-bold',
+        tooltip: `${short}: ${tallyStr} (noraidīja)`,
+      };
+    }
+
+    return {
+      shortName: short,
+      stance: '—',
+      badgeClass: 'bg-slate-50 text-slate-500 border border-slate-200',
+      tooltip: `${short}: ${tallyStr} (balsis sadalījās vienādi)`,
+    };
+  });
 }
 
 // Strips redundant Latvian parliamentary preamble filler from titles
@@ -61,9 +148,13 @@ function getResponsibleCommittee(summary?: string): string | null {
   return null;
 }
 
-export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
+export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionStances }) => {
   const [copied, setCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const factionStanceBadges = useMemo(() => {
+    return showFactionStances ? getFactionStanceBadges(vote.factionBreakdown) : [];
+  }, [showFactionStances, vote.factionBreakdown]);
 
   const isApproved = vote.result === 'PIENEMTS';
   const isQuorumBreak = vote.result === 'NAV_KVORUMA';
@@ -213,6 +304,26 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect }) => {
           </>
         )}
       </div>
+
+      {/* Row 3.5: Faction Majority Stances Strip (Continuous, seat-ordered, no coalition delimiters) */}
+      {showFactionStances && factionStanceBadges.length > 0 && (
+        <div className="mt-2 pt-1.5 border-t border-slate-100 flex flex-wrap items-center gap-1.5 text-xs">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 select-none mr-0.5">
+            Frakciju pozīcijas:
+          </span>
+          <div className="flex flex-wrap items-center gap-1">
+            {factionStanceBadges.map((badge) => (
+              <span
+                key={badge.shortName}
+                title={badge.tooltip}
+                className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono cursor-default ${badge.badgeClass}`}
+              >
+                {badge.shortName} {badge.stance}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Row 4: Single Expand Action Trigger + Rebel MPs indicator */}
       <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between">

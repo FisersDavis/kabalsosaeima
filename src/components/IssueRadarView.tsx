@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import type { Vote, Faction, FactionBreakdown } from '../types';
+import type { Vote, Faction } from '../types';
 import { normalizeLatvianSearch, parseLatvianDate } from '../types';
 import { VoteCard } from './VoteCard';
 import {
@@ -26,8 +26,7 @@ interface IssueRadarViewProps {
   onSelectCategory?: (categoryId: string) => void;
 }
 
-export type RadarMatrixMetric = 'COALITION_ALIGNMENT' | 'VOTE_PAR';
-export type RadarContentiousFilter = 'CONTENTIOUS_ONLY' | 'ALL_VOTES' | 'COALITION_SPLIT_ONLY' | 'TIGHT_MARGIN_ONLY';
+export type RadarContentiousFilter = 'CONTENTIOUS_ONLY' | 'ALL_VOTES' | 'MAJOR_SPLIT_ONLY' | 'TIGHT_MARGIN_ONLY';
 
 interface CivicDomainConfig {
   id: string;
@@ -105,49 +104,16 @@ const CIVIC_DOMAINS: CivicDomainConfig[] = [
 
 const INITIAL_PAGE_SIZE = 25;
 
-// Helper to get majority active decision for a faction in a vote
-function getFactionMajority(
-  fbList: FactionBreakdown[] | undefined,
-  factionId: string
-): 'PAR' | 'PRET' | 'ATTURAS' | 'NEBALSO' | null {
-  if (!fbList) return null;
-  const fb = fbList.find(
-    (item) => item.factionId.toLowerCase() === factionId.toLowerCase() || item.shortName.toUpperCase() === factionId.toUpperCase()
-  );
-  if (!fb) return null;
-
-  const par = fb.votes.par || 0;
-  const pret = fb.votes.pret || 0;
-  const atturas = fb.votes.atturas || 0;
-  const nebalso = fb.votes.nebalso || 0;
-  const active = par + pret + atturas;
-
-  if (active === 0) {
-    return nebalso > 0 ? 'NEBALSO' : null;
-  }
-  if (par >= pret && par >= atturas) return 'PAR';
-  if (pret >= par && pret >= atturas) return 'PRET';
-  return 'ATTURAS';
+// Pure objective criteria: large split (≥ 15 Pret votes)
+function isMajorSplitVote(v: Vote, threshold = 15): boolean {
+  return (v.counts.pret || 0) >= threshold;
 }
 
-// Check if a vote had a tight margin (difference between PAR and PRET+ATTURAS <= 10)
+// Pure objective criteria: tight margin (difference between PAR and PRET+ATTURAS ≤ 10)
 function isTightMarginVote(v: Vote, threshold = 10): boolean {
   const par = v.counts.par || 0;
   const block = (v.counts.pret || 0) + (v.counts.atturas || 0);
   return Math.abs(par - block) <= threshold && (par + block) >= 30;
-}
-
-// Check if coalition partners (JV, ZZS, PRO) voted against each other
-function isCoalitionSplitVote(v: Vote): boolean {
-  const jv = getFactionMajority(v.factionBreakdown, 'jv');
-  const zzs = getFactionMajority(v.factionBreakdown, 'zzs');
-  const pro = getFactionMajority(v.factionBreakdown, 'pro');
-
-  const activeDecisions = [jv, zzs, pro].filter((d): d is 'PAR' | 'PRET' | 'ATTURAS' => d === 'PAR' || d === 'PRET' || d === 'ATTURAS');
-  if (activeDecisions.length < 2) return false;
-
-  const distinct = new Set(activeDecisions);
-  return distinct.size > 1;
 }
 
 export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
@@ -157,51 +123,47 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
   onSelectCategory,
 }) => {
   const [selectedDomainId, setSelectedDomainId] = useState<string>('ALL');
-  // Default to contentious votes (anomalies, coalition splits & tight margins)
+  // Default to contentious votes (anomalies, substantial splits & tight margins)
   const [contentiousFilter, setContentiousFilter] = useState<RadarContentiousFilter>('CONTENTIOUS_ONLY');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [visibleCount, setVisibleCount] = useState<number>(INITIAL_PAGE_SIZE);
-  const [matrixMetric, setMatrixMetric] = useState<RadarMatrixMetric>('COALITION_ALIGNMENT');
 
-  // Parliamentary factions (Coalition: JV, ZZS, PRO | Opposition: AS, NA, LPV, S! | Independent: PIEFR)
-  const coalitionFactions = useMemo(() => {
-    return (factions.length > 0 ? factions : [
+  // Standard institutional order: mandate size (seat count) descending, unaffiliated MPs anchored at the end
+  const orderedFactions = useMemo(() => {
+    const defaultList: Faction[] = [
       { id: 'jv', shortName: 'JV', name: 'Jaunā VIENOTĪBA', color: '#00529B', seats: 26 },
       { id: 'zzs', shortName: 'ZZS', name: 'Zaļo un Zemnieku savienība', color: '#006837', seats: 16 },
-      { id: 'pro', shortName: 'PRO', name: 'PROGRESĪVIE', color: '#E30613', seats: 10 },
-    ]).filter((f) => ['jv', 'zzs', 'pro'].includes(f.id.toLowerCase()) || ['jv', 'zzs', 'pro'].includes(f.shortName.toLowerCase()));
-  }, [factions]);
-
-  const oppositionFactions = useMemo(() => {
-    return (factions.length > 0 ? factions : [
       { id: 'as', shortName: 'AS', name: 'APVIENOTAIS SARAKSTS', color: '#1E3A8A', seats: 15 },
-      { id: 'na', shortName: 'NA', name: 'Nacionālā apvienība', color: '#8B0000', seats: 13 },
-      { id: 'lpv', shortName: 'LPV', name: 'Latvija pirmajā vietā', color: '#F58220', seats: 8 },
-      { id: 'st', shortName: 'S!', name: '"Stabilitātei!"', color: '#00AEEF', seats: 10 },
-    ]).filter((f) => ['as', 'na', 'lpv', 's!', 'st'].includes(f.id.toLowerCase()) || ['as', 'na', 'lpv', 's!'].includes(f.shortName.toLowerCase()));
+      { id: 'na', shortName: 'NA', name: 'Nacionālā apvienība', color: '#8B0000', seats: 12 },
+      { id: 'pro', shortName: 'PRO', name: 'PROGRESĪVIE', color: '#E30613', seats: 10 },
+      { id: 'lpv', shortName: 'LPV', name: 'Latvija pirmajā vietā', color: '#F58220', seats: 9 },
+      { id: 'st', shortName: 'S!', name: '"Stabilitātei!"', color: '#00AEEF', seats: 8 },
+      { id: 'ind', shortName: 'PIEFR', name: 'Pie frakcijām nepiederošie', color: '#64748B', seats: 4 },
+    ];
+
+    if (!factions || factions.length === 0) {
+      return defaultList;
+    }
+
+    return [...factions].sort((a, b) => {
+      const aInd = ['ind', 'piefr'].includes(a.id.toLowerCase()) || ['ind', 'piefr'].includes(a.shortName.toLowerCase());
+      const bInd = ['ind', 'piefr'].includes(b.id.toLowerCase()) || ['ind', 'piefr'].includes(b.shortName.toLowerCase());
+      if (aInd && !bInd) return 1;
+      if (!aInd && bInd) return -1;
+      return b.seats - a.seats;
+    });
   }, [factions]);
 
-  const independentFactions = useMemo(() => {
-    return (factions.length > 0 ? factions : [
-      { id: 'ind', shortName: 'PIEFR', name: 'Pie frakcijām nepiederošie', color: '#64748B', seats: 2 },
-    ]).filter((f) => ['piefr', 'ind'].includes(f.id.toLowerCase()) || ['piefr', 'ind'].includes(f.shortName.toLowerCase()));
-  }, [factions]);
-
-  const orderedFactions = useMemo(() => {
-    return [...coalitionFactions, ...oppositionFactions, ...independentFactions];
-  }, [coalitionFactions, oppositionFactions, independentFactions]);
-
-  // 1. TOPIC COMPARISON MATRIX DATA
+  // 1. TOPIC COMPARISON MATRIX DATA: Raw affirmative voting rate (% PAR) per domain
   const heatmapData = useMemo(() => {
-    const stats: Record<
-      string,
-      Record<string, { alignedCount: number; alignedTotal: number; parCount: number; activeTotal: number }>
-    > = {};
+    // domainId -> factionShortName/Id -> { parCount, activeTotal }
+    const stats: Record<string, Record<string, { parCount: number; activeTotal: number }>> = {};
 
     CIVIC_DOMAINS.forEach((d) => {
       stats[d.id] = {};
       orderedFactions.forEach((f) => {
-        stats[d.id][f.id] = { alignedCount: 0, alignedTotal: 0, parCount: 0, activeTotal: 0 };
+        stats[d.id][f.id] = { parCount: 0, activeTotal: 0 };
+        stats[d.id][f.shortName] = stats[d.id][f.id];
       });
     });
 
@@ -209,41 +171,19 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
       const catId = v.category?.id;
       if (!catId || !stats[catId]) return;
 
-      // Coalition line: sum active votes of JV + ZZS + PRO
-      let cPar = 0;
-      let cBlock = 0;
-      const fDecisions: Record<string, 'PAR' | 'PRET' | 'ATTURAS' | 'NEBALSO' | null> = {};
-
       (v.factionBreakdown || []).forEach((fb) => {
-        const fid = fb.factionId?.toLowerCase() || fb.shortName?.toLowerCase();
-        const maj = getFactionMajority(v.factionBreakdown, fid);
-        fDecisions[fid] = maj;
+        const fid = fb.factionId?.toLowerCase();
+        const short = fb.shortName;
+        const target = stats[catId][fid] || stats[catId][short];
 
-        if (['jv', 'zzs', 'pro'].includes(fid)) {
-          cPar += fb.votes.par || 0;
-          cBlock += (fb.votes.pret || 0) + (fb.votes.atturas || 0);
-        }
-
-        if (stats[catId][fid]) {
-          const act = (fb.votes.par || 0) + (fb.votes.pret || 0) + (fb.votes.atturas || 0);
-          stats[catId][fid].parCount += fb.votes.par || 0;
-          stats[catId][fid].activeTotal += act;
+        if (target) {
+          const p = fb.votes.par || 0;
+          const pr = fb.votes.pret || 0;
+          const a = fb.votes.atturas || 0;
+          target.parCount += p;
+          target.activeTotal += (p + pr + a);
         }
       });
-
-      if (cPar + cBlock > 0) {
-        const coalitionLine = cPar >= cBlock ? 'PAR' : 'PRET';
-
-        orderedFactions.forEach((f) => {
-          const fDec = fDecisions[f.id];
-          if (fDec && fDec !== 'NEBALSO') {
-            stats[catId][f.id].alignedTotal += 1;
-            if (fDec === coalitionLine) {
-              stats[catId][f.id].alignedCount += 1;
-            }
-          }
-        });
-      }
     });
 
     return stats;
@@ -260,7 +200,7 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
       let contentiousCount = 0;
 
       dVotes.forEach((v) => {
-        const isSplit = isCoalitionSplitVote(v);
+        const isSplit = isMajorSplitVote(v);
         const isTight = isTightMarginVote(v);
         if (isSplit || isTight) {
           contentiousCount += 1;
@@ -290,7 +230,7 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
       if (selectedDomainId !== 'ALL' && v.category?.id !== selectedDomainId) return;
       totalInScope += 1;
 
-      const isSplit = isCoalitionSplitVote(v);
+      const isSplit = isMajorSplitVote(v);
       const isTight = isTightMarginVote(v);
 
       if (isSplit) splitInScope += 1;
@@ -308,12 +248,12 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
         // Domain filter
         if (selectedDomainId !== 'ALL' && v.category?.id !== selectedDomainId) return false;
 
-        // Contentious / Scope filter
-        const isSplit = isCoalitionSplitVote(v);
+        // Pure objective criteria filter
+        const isSplit = isMajorSplitVote(v);
         const isTight = isTightMarginVote(v);
 
         if (contentiousFilter === 'CONTENTIOUS_ONLY' && !isSplit && !isTight) return false;
-        if (contentiousFilter === 'COALITION_SPLIT_ONLY' && !isSplit) return false;
+        if (contentiousFilter === 'MAJOR_SPLIT_ONLY' && !isSplit) return false;
         if (contentiousFilter === 'TIGHT_MARGIN_ONLY' && !isTight) return false;
 
         // Search query
@@ -349,7 +289,7 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
     setVisibleCount(INITIAL_PAGE_SIZE);
   };
 
-  // Muted, institutional cell color styling
+  // Muted, institutional cell color styling based on % PAR
   const getCellColorClass = (pct: number) => {
     if (pct >= 90) return 'bg-emerald-50/90 text-emerald-800 border-emerald-200/80 font-bold';
     if (pct >= 75) return 'bg-emerald-50/40 text-emerald-700 border-emerald-100 font-medium';
@@ -375,7 +315,7 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
               </h2>
             </div>
             <p className="text-xs text-slate-600 mt-1 max-w-2xl leading-relaxed">
-              Parlamentārās saskaņas un šķelšanās radars. Salīdziniet frakciju nostājas pa nozarēm un atklājiet, kuros jautājumos koalīcija un opozīcija sadarbojas, bet kuros — šķeļas.
+              Parlamentārās saskaņas un šķelšanās radars. Salīdziniet frakciju nostājas pa nozarēm un atklājiet likumprojektus ar asākajām pretrunām vai ciešākajiem balsojumiem.
             </p>
           </div>
           <div className="text-right flex-shrink-0 self-start sm:self-auto">
@@ -386,102 +326,34 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
         </div>
       </section>
 
-      {/* 2. POLISHED TOP HEATMAP MATRIX WITH COALITION VS OPPOSITION ANCHOR */}
+      {/* 2. THE TOPIC COMPARISON MATRIX (INSTITUTIONAL RADAR HEATMAP) */}
       <section className="rounded-xl border border-slate-200 bg-white shadow-2xs overflow-hidden">
         <div className="p-3.5 border-b border-slate-200 bg-slate-50/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
             <h3 className="text-xs font-bold text-slate-900 uppercase tracking-wide flex items-center gap-1.5">
-              <span>Frakciju un nozaru saskaņas matrica</span>
+              <span>Frakciju un nozaru atbalsta matrica</span>
               <span className="text-[10px] text-slate-500 lowercase font-normal">
                 (noklikšķiniet uz nozares, lai filtrētu balsojumus)
               </span>
             </h3>
             <p className="text-[11px] text-slate-600 mt-0.5">
-              {matrixMetric === 'COALITION_ALIGNMENT'
-                ? 'Rāda, cik % balsojumu konkrētā frakcija balsojusi vienoti ar valdības koalīcijas vairākumu (JV+ZZS+PRO).'
-                : 'Rāda, cik % no aktīvajām balsīm konkrētā frakcija šajā nozarē balsojusi "PAR".'}
+              Rāda, cik % no aktīvajām balsīm katra frakcija attiecīgajā nozarē balsojusi "PAR". Frakcijas sakārtotas pēc mandātu skaita.
             </p>
           </div>
 
-          {/* Metric Switcher */}
-          <div className="inline-flex rounded-lg border border-slate-200 bg-white p-0.5 text-xs shadow-2xs">
-            <button
-              type="button"
-              onClick={() => setMatrixMetric('COALITION_ALIGNMENT')}
-              className={`px-2.5 py-1 rounded-md font-semibold transition cursor-pointer ${
-                matrixMetric === 'COALITION_ALIGNMENT'
-                  ? 'bg-slate-900 text-white shadow-2xs'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              Koalīcijas saskaņa %
-            </button>
-            <button
-              type="button"
-              onClick={() => setMatrixMetric('VOTE_PAR')}
-              className={`px-2.5 py-1 rounded-md font-semibold transition cursor-pointer ${
-                matrixMetric === 'VOTE_PAR'
-                  ? 'bg-slate-900 text-white shadow-2xs'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              Balsots "PAR" %
-            </button>
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] text-slate-500 font-mono">
+              Metrika: <strong>Balsots "PAR" %</strong>
+            </span>
           </div>
         </div>
 
-        {/* Heatmap Table with Clear Coalition / Opposition Grouping */}
+        {/* Heatmap Table: Clean, Single Institutional Header Row, Seat-Ordered */}
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse min-w-[760px]">
             <thead>
-              {/* Row 1: Bloc Grouping Headers */}
-              <tr className="border-b border-slate-200 bg-slate-100/90 text-[10px] text-slate-700 font-bold uppercase tracking-wider select-none">
-                <th scope="col" className="py-1.5 px-3 w-56 border-r border-slate-200">
-                  Nozare / Temats
-                </th>
-
-                {/* Coalition Header */}
-                <th
-                  scope="col"
-                  colSpan={coalitionFactions.length}
-                  className="py-1.5 px-1 text-center bg-blue-50/60 text-blue-900 border-r-2 border-r-slate-300"
-                >
-                  <div className="flex items-center justify-center gap-1">
-                    <span className="h-1.5 w-1.5 rounded-full bg-blue-600" />
-                    <span>Koalīcija</span>
-                  </div>
-                </th>
-
-                {/* Opposition Header */}
-                <th
-                  scope="col"
-                  colSpan={oppositionFactions.length}
-                  className="py-1.5 px-1 text-center bg-slate-50 text-slate-800 border-r border-r-slate-200"
-                >
-                  <div className="flex items-center justify-center gap-1">
-                    <span className="h-1.5 w-1.5 rounded-full bg-slate-500" />
-                    <span>Opozīcija</span>
-                  </div>
-                </th>
-
-                {/* Independent Header */}
-                <th
-                  scope="col"
-                  colSpan={independentFactions.length}
-                  className="py-1.5 px-1 text-center text-slate-600 border-r border-r-slate-200"
-                >
-                  Neatk.
-                </th>
-
-                {/* Consensus Header */}
-                <th scope="col" className="py-1.5 px-2 text-center w-20">
-                  Konsenss
-                </th>
-              </tr>
-
-              {/* Row 2: Faction Short Names */}
-              <tr className="border-b border-slate-200 bg-slate-50/70 text-[10px] text-slate-600 font-bold uppercase tracking-wider select-none">
-                <th scope="col" className="py-2 px-3 border-r border-slate-200">
+              <tr className="border-b border-slate-200 bg-slate-100/80 text-[10px] text-slate-700 font-bold uppercase tracking-wider select-none">
+                <th scope="col" className="py-2.5 px-3 w-56">
                   {selectedDomainId !== 'ALL' ? (
                     <button
                       type="button"
@@ -491,45 +363,18 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
                       ← Rādīt visas nozares
                     </button>
                   ) : (
-                    <span className="text-slate-500 font-normal">Noklikšķiniet rindā</span>
+                    <span>Nozare / Temats</span>
                   )}
                 </th>
 
-                {/* Coalition Faction Columns */}
-                {coalitionFactions.map((f, idx) => (
+                {/* All 8 Factions in Single Sequence Ordered Strictly by Seat Count */}
+                {orderedFactions.map((f) => (
                   <th
                     key={f.id}
                     scope="col"
-                    className={`py-2 px-1 text-center w-14 ${
-                      idx === coalitionFactions.length - 1 ? 'border-r-2 border-r-slate-300' : ''
-                    }`}
+                    className="py-2.5 px-1 text-center w-14"
+                    title={`${f.name} (${f.seats} mandāti)`}
                   >
-                    <div className="inline-flex flex-col items-center">
-                      <span className="h-1.5 w-3.5 rounded-full mb-0.5" style={{ backgroundColor: f.color }} />
-                      <span className="text-[10px] font-mono font-bold text-slate-800">{f.shortName}</span>
-                    </div>
-                  </th>
-                ))}
-
-                {/* Opposition Faction Columns */}
-                {oppositionFactions.map((f, idx) => (
-                  <th
-                    key={f.id}
-                    scope="col"
-                    className={`py-2 px-1 text-center w-14 ${
-                      idx === oppositionFactions.length - 1 ? 'border-r border-r-slate-200' : ''
-                    }`}
-                  >
-                    <div className="inline-flex flex-col items-center">
-                      <span className="h-1.5 w-3.5 rounded-full mb-0.5" style={{ backgroundColor: f.color }} />
-                      <span className="text-[10px] font-mono font-bold text-slate-800">{f.shortName}</span>
-                    </div>
-                  </th>
-                ))}
-
-                {/* Independent Factions */}
-                {independentFactions.map((f) => (
-                  <th key={f.id} scope="col" className="py-2 px-1 text-center w-14 border-r border-r-slate-200">
                     <div className="inline-flex flex-col items-center">
                       <span className="h-1.5 w-3.5 rounded-full mb-0.5" style={{ backgroundColor: f.color }} />
                       <span className="text-[10px] font-mono font-bold text-slate-800">{f.shortName}</span>
@@ -538,7 +383,7 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
                 ))}
 
                 {/* Overall Consensus */}
-                <th scope="col" className="py-2 px-2 text-center w-20">
+                <th scope="col" className="py-2.5 px-2 text-center w-20">
                   Konsenss
                 </th>
               </tr>
@@ -561,7 +406,7 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
                     }`}
                   >
                     {/* Domain Title with Icon and Count */}
-                    <td className="py-2.5 px-3 align-middle border-r border-slate-200">
+                    <td className="py-2.5 px-3 align-middle">
                       <div className="flex items-center justify-between gap-1">
                         <div className="flex items-center gap-2 truncate">
                           <div className={`p-1 rounded ${domain.iconBg} ${domain.iconColor} flex-shrink-0`}>
@@ -580,92 +425,16 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
                       </div>
                     </td>
 
-                    {/* Coalition Cells */}
-                    {coalitionFactions.map((f, idx) => {
-                      const fStats = heatmapData[domain.id]?.[f.id];
-                      let pct = 0;
-                      let tooltip = '';
-
-                      if (matrixMetric === 'COALITION_ALIGNMENT') {
-                        pct = fStats && fStats.alignedTotal > 0
-                          ? Math.round((fStats.alignedCount / fStats.alignedTotal) * 100)
-                          : 0;
-                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.alignedCount || 0}/${fStats?.alignedTotal || 0} (${pct}%) vienoti ar koalīcijas līniju`;
-                      } else {
-                        pct = fStats && fStats.activeTotal > 0
-                          ? Math.round((fStats.parCount / fStats.activeTotal) * 100)
-                          : 0;
-                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.parCount || 0}/${fStats?.activeTotal || 0} (${pct}%) PAR`;
-                      }
+                    {/* Faction Support Rate Cells */}
+                    {orderedFactions.map((f) => {
+                      const fStats = heatmapData[domain.id]?.[f.id] || heatmapData[domain.id]?.[f.shortName];
+                      const pct = fStats && fStats.activeTotal > 0
+                        ? Math.round((fStats.parCount / fStats.activeTotal) * 100)
+                        : 0;
+                      const tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.parCount || 0}/${fStats?.activeTotal || 0} (${pct}%) PAR`;
 
                       return (
-                        <td
-                          key={f.id}
-                          className={`py-2 px-1 text-center align-middle ${
-                            idx === coalitionFactions.length - 1 ? 'border-r-2 border-r-slate-300' : ''
-                          }`}
-                          title={tooltip}
-                        >
-                          <span className={`inline-block w-10 py-0.5 rounded text-[11px] font-mono border ${getCellColorClass(pct)}`}>
-                            {pct}%
-                          </span>
-                        </td>
-                      );
-                    })}
-
-                    {/* Opposition Cells */}
-                    {oppositionFactions.map((f, idx) => {
-                      const fStats = heatmapData[domain.id]?.[f.id];
-                      let pct = 0;
-                      let tooltip = '';
-
-                      if (matrixMetric === 'COALITION_ALIGNMENT') {
-                        pct = fStats && fStats.alignedTotal > 0
-                          ? Math.round((fStats.alignedCount / fStats.alignedTotal) * 100)
-                          : 0;
-                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.alignedCount || 0}/${fStats?.alignedTotal || 0} (${pct}%) vienoti ar koalīcijas līniju`;
-                      } else {
-                        pct = fStats && fStats.activeTotal > 0
-                          ? Math.round((fStats.parCount / fStats.activeTotal) * 100)
-                          : 0;
-                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.parCount || 0}/${fStats?.activeTotal || 0} (${pct}%) PAR`;
-                      }
-
-                      return (
-                        <td
-                          key={f.id}
-                          className={`py-2 px-1 text-center align-middle ${
-                            idx === oppositionFactions.length - 1 ? 'border-r border-r-slate-200' : ''
-                          }`}
-                          title={tooltip}
-                        >
-                          <span className={`inline-block w-10 py-0.5 rounded text-[11px] font-mono border ${getCellColorClass(pct)}`}>
-                            {pct}%
-                          </span>
-                        </td>
-                      );
-                    })}
-
-                    {/* Independent Cells */}
-                    {independentFactions.map((f) => {
-                      const fStats = heatmapData[domain.id]?.[f.id];
-                      let pct = 0;
-                      let tooltip = '';
-
-                      if (matrixMetric === 'COALITION_ALIGNMENT') {
-                        pct = fStats && fStats.alignedTotal > 0
-                          ? Math.round((fStats.alignedCount / fStats.alignedTotal) * 100)
-                          : 0;
-                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.alignedCount || 0}/${fStats?.alignedTotal || 0} (${pct}%) vienoti ar koalīciju`;
-                      } else {
-                        pct = fStats && fStats.activeTotal > 0
-                          ? Math.round((fStats.parCount / fStats.activeTotal) * 100)
-                          : 0;
-                        tooltip = `${domain.shortTitle} · ${f.shortName}: ${fStats?.parCount || 0}/${fStats?.activeTotal || 0} (${pct}%) PAR`;
-                      }
-
-                      return (
-                        <td key={f.id} className="py-2 px-1 text-center align-middle border-r border-r-slate-200" title={tooltip}>
+                        <td key={f.id} className="py-2 px-1 text-center align-middle" title={tooltip}>
                           <span className={`inline-block w-10 py-0.5 rounded text-[11px] font-mono border ${getCellColorClass(pct)}`}>
                             {pct}%
                           </span>
@@ -687,7 +456,7 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
         </div>
       </section>
 
-      {/* 3. COMPACT TOPIC FILTER PILLS STRIP (REPLACING THE REDUNDANT 6 CARDS) */}
+      {/* 3. COMPACT TOPIC FILTER PILLS STRIP */}
       <section className="rounded-xl border border-slate-200 bg-white p-3 shadow-2xs">
         <div className="flex items-center justify-between gap-2 mb-2 pb-1.5 border-b border-slate-100">
           <div className="flex items-center gap-1.5">
@@ -758,7 +527,7 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
           })}
         </div>
 
-        {/* Selected Domain Banner (if a single topic is chosen) */}
+        {/* Selected Domain Banner */}
         {activeDomainObj && (
           <div className="mt-2.5 pt-2.5 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
             <div className="text-xs text-slate-600 leading-relaxed">
@@ -790,7 +559,7 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
                   ? 'bg-rose-700 text-white shadow-2xs font-bold'
                   : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
               }`}
-              title="Rādīt tikai balsojumus, kuros koalīcija šķēlās vai starpība bija ≤ 10 balsīm"
+              title="Rādīt balsojumus ar būtisku opozīciju (≥ 15 pret) vai ciešu iznākumu (starpība ≤ 10)"
             >
               <Flame className="h-3.5 w-3.5" />
               <span>Tikai šķelšanās un saspringtie</span>
@@ -844,20 +613,21 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
           </div>
         </div>
 
-        {/* Sub-Filters for Specific Fracture Types (only visible when contentious or all is active) */}
+        {/* Objective Sub-Filters for Specific Fracture Types */}
         <div className="flex flex-wrap items-center gap-1.5 pt-1 text-xs text-slate-600">
           <span className="text-[11px] font-medium text-slate-500">Detalizētāk:</span>
 
           <button
             type="button"
-            onClick={() => handleSelectContentious('COALITION_SPLIT_ONLY')}
+            onClick={() => handleSelectContentious('MAJOR_SPLIT_ONLY')}
             className={`px-2 py-0.5 rounded text-[11px] transition cursor-pointer border ${
-              contentiousFilter === 'COALITION_SPLIT_ONLY'
+              contentiousFilter === 'MAJOR_SPLIT_ONLY'
                 ? 'bg-rose-50 text-rose-900 border-rose-300 font-bold shadow-2xs'
                 : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
             }`}
+            title="Balsojumi, kuros vismaz 15 deputāti balsoja Pret"
           >
-            Koalīcijas šķelšanās ({filterCounts.splitInScope})
+            Lielā šķelšanās (≥ 15 pret) ({filterCounts.splitInScope})
           </button>
 
           <button
@@ -868,23 +638,24 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
                 ? 'bg-amber-50 text-amber-900 border-amber-300 font-bold shadow-2xs'
                 : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
             }`}
+            title="Balsojumi ar ļoti ciešu iznākumu (starpība ≤ 10 balsīm)"
           >
-            Saspringtie balsojumi ({filterCounts.tightInScope})
+            Saspringtie balsojumi (≤ 10 balsīm) ({filterCounts.tightInScope})
           </button>
         </div>
       </section>
 
-      {/* 5. CLEAN VOTE CARDS FEED (USING CONSISTENT VoteCard COMPONENT) */}
+      {/* 5. CLEAN VOTE CARDS FEED (WITH FACTION STANCE PILLS) */}
       <section className="space-y-3">
         <div className="flex items-center justify-between px-1 text-xs text-slate-600">
           <div className="font-semibold text-slate-800">
             {activeDomainObj ? `${activeDomainObj.title} — ` : ''}
             {contentiousFilter === 'CONTENTIOUS_ONLY'
               ? 'Šķelšanās un saspringtie balsojumi'
-              : contentiousFilter === 'COALITION_SPLIT_ONLY'
-              ? 'Koalīcijas partneru šķelšanās balsojumi'
+              : contentiousFilter === 'MAJOR_SPLIT_ONLY'
+              ? 'Lielā šķelšanās (≥ 15 pret)'
               : contentiousFilter === 'TIGHT_MARGIN_ONLY'
-              ? 'Saspringtie balsojumi (≤ 10 balsīm)'
+              ? 'Saspringtie balsojumi (starpība ≤ 10 balsīm)'
               : 'Visi balsojumi'}
           </div>
 
@@ -917,7 +688,12 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
         ) : (
           <div className="space-y-3">
             {visibleVotes.map((vote) => (
-              <VoteCard key={vote.id} vote={vote} onSelect={onSelectVote} />
+              <VoteCard
+                key={vote.id}
+                vote={vote}
+                onSelect={onSelectVote}
+                showFactionStances={true}
+              />
             ))}
           </div>
         )}
@@ -944,7 +720,7 @@ export const IssueRadarView: React.FC<IssueRadarViewProps> = ({
       <footer className="rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 flex items-start gap-3 text-xs text-slate-600">
         <Info className="h-4 w-4 text-slate-500 flex-shrink-0 mt-0.5" />
         <div className="leading-relaxed">
-          <strong className="text-slate-800">Par radara metodoloģiju:</strong> Matrica aprēķina katras frakcijas saskaņu ar valdības koalīcijas (JV, ZZS, PRO) vairākumu. Saspringtie balsojumi atlasa lēmumus, kuros starpība starp atbalstu un noraidījumu bija ≤ 10 balsīm, bet koalīcijas šķelšanās fiksē gadījumus, kad valdības partijas balsojušas savstarpēji pretēji. Visi dati balstīti uz oficiālajiem Saeimas plenārsēžu protokoliem.
+          <strong className="text-slate-800">Par radara metodoloģiju:</strong> Matrica aprēķina katras frakcijas aktīvo deputātu atbalsta īpatsvaru (balsots "PAR" %) konkrētajā nozarē. Frakcijas sakārtotas pēc mandātu skaita Saeimā. Saspringtie balsojumi atlasa lēmumus ar balsu starpību ≤ 10, bet lielā šķelšanās fiksē likumprojektus, kuros vismaz 15 deputāti balsoja pret. Visi dati balstīti uz oficiālajiem Saeimas plenārsēžu protokoliem bez politiskiem pieņēmumiem.
         </div>
       </footer>
     </div>
