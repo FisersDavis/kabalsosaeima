@@ -12,14 +12,17 @@ import xml.etree.ElementTree as ET
 import re
 import os
 import sys
+import time
 from datetime import datetime
 
 sys.stdout.reconfigure(encoding='utf-8')
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-VOTES_FILE = os.path.join(BASE_DIR, 'public', 'data', 'votes.json')
-MPS_FILE = os.path.join(BASE_DIR, 'public', 'data', 'mps.json')
-FACTIONS_FILE = os.path.join(BASE_DIR, 'public', 'data', 'factions.json')
+DATA_DIR = os.path.join(BASE_DIR, 'public', 'data')
+VOTES_FILE = os.path.join(DATA_DIR, 'votes.json')
+MPS_FILE = os.path.join(DATA_DIR, 'mps.json')
+FACTIONS_FILE = os.path.join(DATA_DIR, 'factions.json')
+ROLLCALLS_DIR = os.path.join(DATA_DIR, 'rollcalls')
 
 FACTION_MAP = {
     'JV': 'jv',
@@ -128,15 +131,28 @@ def simplify_title(official_title):
         return t[0].upper() + t[1:]
     return official_title
 
+def fetch_with_retry(url, is_json=False, retries=3, backoff=2):
+    """Edge Case 5: HTTP retry with exponential backoff for network resilience."""
+    for attempt in range(1, retries + 1):
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) kabalsosaeima.lv/1.0'}
+            )
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                raw = resp.read().decode('utf-8', errors='replace')
+                return json.loads(raw) if is_json else raw
+        except Exception as e:
+            if attempt == retries:
+                raise e
+            print(f"[*] Brīdinājums: Ielāde neizdevās ({e}), mēģina vēlreiz {attempt}/{retries} pēc {backoff * attempt}s...")
+            time.sleep(backoff * attempt)
+
 def fetch_json(url):
-    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) kabalsosaeima.lv/1.0'})
-    with urllib.request.urlopen(req, timeout=15) as resp:
-        return json.loads(resp.read().decode('utf-8'))
+    return fetch_with_retry(url, is_json=True)
 
 def fetch_xml(url):
-    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) kabalsosaeima.lv/1.0'})
-    with urllib.request.urlopen(req, timeout=20) as resp:
-        return resp.read().decode('utf-8', errors='replace')
+    return fetch_with_retry(url, is_json=False)
 
 def run_ingestion():
     print("=" * 60)
@@ -522,10 +538,28 @@ def run_ingestion():
     print(f"      Total MPs in registry: {len(updated_mps)} (added {added_substitutes} substitute deputies).")
 
     # Save to disk
-    print("[4/4] Writing datasets to public/data/...")
+    print("[4/4] Writing datasets to public/data/ (Case 10: compact feed + lazy rollcalls)...")
+    os.makedirs(ROLLCALLS_DIR, exist_ok=True)
+    compact_votes = []
+    saved_rc = 0
+
+    for v in parsed_votes:
+        mp_votes = v.get('mpVotes')
+        vid = v.get('id')
+        if mp_votes and len(mp_votes) > 0:
+            rc_file = os.path.join(ROLLCALLS_DIR, f"{vid}.json")
+            with open(rc_file, 'w', encoding='utf-8') as f:
+                json.dump(mp_votes, f, ensure_ascii=False)
+            saved_rc += 1
+        
+        # Omit large mpVotes from feed payload
+        v_compact = {k: val for k, val in v.items() if k != 'mpVotes'}
+        compact_votes.append(v_compact)
+
     with open(VOTES_FILE, 'w', encoding='utf-8') as f:
-        json.dump(parsed_votes, f, ensure_ascii=False, indent=2)
-    print(f"      [OK] Saved {len(parsed_votes)} votes to {VOTES_FILE}")
+        json.dump(compact_votes, f, ensure_ascii=False, indent=2)
+    print(f"      [OK] Saved {len(compact_votes)} compact votes to {VOTES_FILE}")
+    print(f"      [OK] Saved {saved_rc} roll-call bundles to {ROLLCALLS_DIR}")
 
     with open(MPS_FILE, 'w', encoding='utf-8') as f:
         json.dump(updated_mps, f, ensure_ascii=False, indent=2)

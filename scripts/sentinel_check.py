@@ -31,6 +31,7 @@ MPS_FILE = os.path.join(DATA_DIR, 'mps.json')
 FACTIONS_FILE = os.path.join(DATA_DIR, 'factions.json')
 TERMS_FILE = os.path.join(DATA_DIR, 'terms.json')
 METADATA_FILE = os.path.join(DATA_DIR, 'metadata.json')
+ROLLCALLS_DIR = os.path.join(DATA_DIR, 'rollcalls')
 REPORT_FILE = os.path.join(BASE_DIR, 'alert_report.md')
 
 def load_json(filepath):
@@ -51,9 +52,28 @@ def parse_latvian_date(date_str):
         pass
     return datetime.min
 
+def is_parliament_in_recess(dt=None):
+    """
+    Edge Case 8: Checks whether Saeima is in scheduled seasonal recess:
+    - Winter recess: Dec 22 - Jan 10
+    - Summer recess: Jun 20 - Sep 1
+    """
+    if dt is None:
+        dt = datetime.now()
+    m, d = dt.month, dt.day
+    if (m == 12 and d >= 22) or (m == 1 and d <= 10):
+        return True, "Ziemas sesiju starplaiks"
+    if (m == 6 and d >= 20) or m in (7, 8) or (m == 9 and d <= 1):
+        return True, "Vasaras sesiju starplaiks"
+    return False, ""
+
 def check_local_integrity(update_metadata=False):
     errors = []
     warnings = []
+
+    in_recess, recess_name = is_parliament_in_recess()
+    if in_recess:
+        print(f"[*] Piezīme: Saeima atrodas sesiju starplaikā ({recess_name}). Jaunu sēžu trūkums ir normāls.")
 
     print("[*] Running local dataset integrity audit...")
 
@@ -99,13 +119,23 @@ def check_local_integrity(update_metadata=False):
 
         # Secret ballots don't require full MP roll-call validation
         if not v.get('isSecret'):
-            if total_recorded != 100:
+            # Edge Case 3: Temporary mandate vacancies (tolerates 98-100 recorded MPs)
+            if total_recorded < 98 or total_recorded > 100:
                 errors.append(
-                    f"Balsojumā `{vid}` ({v.get('officialTitle', '')[:40]}...) kopējais deputātu skaits ir {total_recorded}, nevis 100."
+                    f"Balsojumā `{vid}` ({v.get('officialTitle', '')[:40]}...) kopējais deputātu skaits ir {total_recorded}, nevis 98-100."
+                )
+            elif total_recorded < 100:
+                warnings.append(
+                    f"Balsojumā `{vid}` kopējais deputātu skaits ir {total_recorded} (īslaicīga vakance starp mandātu maiņām)."
                 )
 
-            # Check individual mpVotes if present
-            mp_votes = v.get('mpVotes', [])
+            # Check individual mpVotes if present (inlined or lazy-loaded rollcall)
+            mp_votes = v.get('mpVotes')
+            if not mp_votes:
+                rc_path = os.path.join(ROLLCALLS_DIR, f"{vid}.json")
+                if os.path.exists(rc_path):
+                    mp_votes = load_json(rc_path)
+
             if mp_votes:
                 par_mps = sum(1 for m in mp_votes if m.get('decision') == 'PAR')
                 pret_mps = sum(1 for m in mp_votes if m.get('decision') == 'PRET')
@@ -117,23 +147,47 @@ def check_local_integrity(update_metadata=False):
                 if atturas_mps != atturas:
                     errors.append(f"Balsojumā `{vid}` mpVotes ATTURAS skaits ({atturas_mps}) nesakrīt ar counts.atturas ({atturas}).")
 
-        # Constitutional Quorum Check (Satversmes 24. pants)
+        # Edge Case 9: Constitutional Amendments Check (Satversmes 76. pants: 2/3 majority with >= 67 present)
+        is_const_amendment = (
+            "satversm" in v.get('officialTitle', '').lower() and 
+            ("grozījum" in v.get('officialTitle', '').lower() or "likumprojekts" in v.get('officialTitle', '').lower())
+        )
         result = v.get('result')
-        if total_present < 50:
-            if result != 'NAV_KVORUMA':
-                errors.append(
-                    f"Balsojumā `{vid}` piedalījās tikai {total_present} deputāti (< 50), bet rezultāts ir `{result}`, nevis `NAV_KVORUMA`."
-                )
-        elif par > (pret + atturas):
-            if result != 'PIENEMTS':
-                errors.append(
-                    f"Balsojumā `{vid}` Par ({par}) > Pret+Atturas ({pret + atturas}), bet rezultāts ir `{result}`, nevis `PIENEMTS`."
-                )
+
+        if is_const_amendment:
+            # Satversmes 76.p.: vismaz divas trešdaļas no visiem deputātiem (vismaz 67)
+            if total_present < 67:
+                if result != 'NAV_KVORUMA':
+                    errors.append(
+                        f"Satversmes grozījumu balsojumā `{vid}` kvorumam nepieciešami vismaz 67 deputāti (bija {total_present}), bet rezultāts ir `{result}`."
+                    )
+            elif par >= (2 * total_present / 3.0):
+                if result != 'PIENEMTS':
+                    errors.append(
+                        f"Satversmes grozījumu balsojumā `{vid}` sasniegts 2/3 vairākums (Par {par}/{total_present}), bet rezultāts ir `{result}`."
+                    )
+            else:
+                if result != 'NORAIDITS':
+                    errors.append(
+                        f"Satversmes grozījumu balsojumā `{vid}` nav sasniegts 2/3 vairākums (Par {par}/{total_present}), bet rezultāts ir `{result}`."
+                    )
         else:
-            if result != 'NORAIDITS':
-                errors.append(
-                    f"Balsojumā `{vid}` Par ({par}) <= Pret+Atturas ({pret + atturas}), bet rezultāts ir `{result}`, nevis `NORAIDITS`."
-                )
+            # Regular Votes (Satversmes 24. pants: Par > Pret + Atturas, kvorums >= 50)
+            if total_present < 50:
+                if result != 'NAV_KVORUMA':
+                    errors.append(
+                        f"Balsojumā `{vid}` piedalījās tikai {total_present} deputāti (< 50), bet rezultāts ir `{result}`, nevis `NAV_KVORUMA`."
+                    )
+            elif par > (pret + atturas):
+                if result != 'PIENEMTS':
+                    errors.append(
+                        f"Balsojumā `{vid}` Par ({par}) > Pret+Atturas ({pret + atturas}), bet rezultāts ir `{result}`, nevis `PIENEMTS`."
+                    )
+            else:
+                if result != 'NORAIDITS':
+                    errors.append(
+                        f"Balsojumā `{vid}` Par ({par}) <= Pret+Atturas ({pret + atturas}), bet rezultāts ir `{result}`, nevis `NORAIDITS`."
+                    )
 
         # Date tracking
         s_date = v.get('sittingDate')

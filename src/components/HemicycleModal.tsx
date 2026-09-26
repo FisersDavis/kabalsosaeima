@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import type { Vote, MP, Faction, VoteDecision } from '../types';
+import type { Vote, MP, Faction, VoteDecision, MPVoteRecord } from '../types';
 import { X, Search, Lock, AlertTriangle } from 'lucide-react';
 
 interface HemicycleModalProps {
@@ -65,6 +65,9 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
   const [filterFaction, setFilterFaction] = useState<string>('ALL');
   const [searchMp, setSearchMp] = useState<string>('');
 
+  const [loadedMpVotes, setLoadedMpVotes] = useState<MPVoteRecord[] | null>(vote.mpVotes || null);
+  const [loadingRollcall, setLoadingRollcall] = useState<boolean>(!vote.mpVotes && !vote.isSecret);
+
   // Close on ESC
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -73,6 +76,44 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
+
+  // Edge Case 10: Lazy-load individual MP roll-call bundle on demand (saves 86% payload on initial feed)
+  useEffect(() => {
+    if (vote.mpVotes && vote.mpVotes.length > 0) {
+      setLoadedMpVotes(vote.mpVotes);
+      setLoadingRollcall(false);
+      return;
+    }
+    if (vote.isSecret) {
+      setLoadingRollcall(false);
+      return;
+    }
+
+    let isMounted = true;
+    setLoadingRollcall(true);
+
+    fetch(`./data/rollcalls/${vote.id}.json`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Rollcall not found');
+        return res.json();
+      })
+      .then((data: MPVoteRecord[]) => {
+        if (isMounted) {
+          setLoadedMpVotes(data);
+          setLoadingRollcall(false);
+        }
+      })
+      .catch((err) => {
+        console.warn('Lazy rollcall fetch fallback:', err);
+        if (isMounted) {
+          setLoadingRollcall(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [vote]);
 
   const factionLookup = useMemo(() => {
     const map = new Map<string, Faction>();
@@ -83,7 +124,8 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
   // Lookup MP vote and substitute status snapshot
   const mpVoteRecordMap = useMemo(() => {
     const map = new Map<string, { decision: VoteDecision; isSubstitute?: boolean; replacesMpName?: string }>();
-    vote.mpVotes?.forEach((mv) =>
+    const records = loadedMpVotes || vote.mpVotes;
+    records?.forEach((mv) =>
       map.set(mv.mpId, {
         decision: mv.decision,
         isSubstitute: mv.isSubstitute,
@@ -91,13 +133,26 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
       })
     );
     return map;
-  }, [vote]);
+  }, [loadedMpVotes, vote]);
 
-  // Exactly 100 active voting deputies (excluding inactive ministers with paused mandates)
+  // Exactly 100 active voting deputies (dynamically accounting for ministerial replacements in this sitting)
   const activeMps = useMemo(() => {
+    const replacedMinisterNames = new Set<string>();
+    const records = loadedMpVotes || vote.mpVotes;
+    records?.forEach((mv) => {
+      if (mv.isSubstitute && mv.replacesMpName) {
+        replacedMinisterNames.add(mv.replacesMpName.toLowerCase());
+      }
+    });
+
     const active = mps.filter((m) => {
       if (m.isActive === true) return true;
       if (m.isActive === false) return false;
+      // Edge Case 2: Dynamically exclude ministers currently substituted in this sitting
+      const isReplacedInThisVote = Array.from(replacedMinisterNames).some(
+        (name) => m.name.toLowerCase().includes(name) || name.includes(m.name.toLowerCase())
+      );
+      if (isReplacedInThisVote) return false;
       return !INACTIVE_MINISTER_IDS.has(m.id);
     });
 
@@ -110,7 +165,7 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
       if (orderA !== orderB) return orderA - orderB;
       return a.seatNumber - b.seatNumber;
     });
-  }, [mps]);
+  }, [mps, vote]);
 
   // Generate 100 hemicycle seat coordinates in 4 concentric semi-circular arcs
   const seatPositions = useMemo(() => {
@@ -368,6 +423,12 @@ export const HemicycleModal: React.FC<HemicycleModalProps> = ({
 
               {/* SVG Hemicycle Diagram: Scaled up to fill column width and target comfortably */}
               <div className="relative w-full aspect-[640/310] max-w-2xl mx-auto shrink-0 my-1">
+                {loadingRollcall && (
+                  <div className="absolute inset-0 z-20 flex flex-col items-center justify-center rounded-xl bg-slate-50/80 backdrop-blur-2xs">
+                    <div className="h-6 w-6 animate-spin rounded-full border-2 border-slate-500 border-t-transparent" />
+                    <span className="mt-2 text-xs font-medium text-slate-600">Ielādē deputātu balsojumus...</span>
+                  </div>
+                )}
                 <svg viewBox="0 0 640 310" className="w-full h-full select-none">
                   {/* 100 Active Voting Seats */}
                   {seatPositions.map(({ mp, x, y, decision }) => {

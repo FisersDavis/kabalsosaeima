@@ -70,6 +70,11 @@ export function App() {
         if (termsRes.ok) {
           const termsData = await termsRes.json();
           setTerms(termsData);
+          // Edge Case 1: Dynamically auto-select active parliament term (e.g. 15. Saeima when elected)
+          const activeTerm = termsData.find((t: SaeimaTerm) => t.isActive);
+          if (activeTerm) {
+            setSelectedTerm(activeTerm.term);
+          }
         }
 
         if (metaRes && metaRes.ok) {
