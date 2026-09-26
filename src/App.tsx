@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import type { Vote, MP, Faction, SaeimaTerm, SiteMetadata } from './types';
+import type { Vote, MP, Faction, SaeimaTerm, SiteMetadata, ActiveNavTab } from './types';
 import { isFinalDecisionVote, parseLatvianDate } from './types';
 import { Navbar } from './components/Navbar';
 import { FilterBar, type VoteTypeFilter } from './components/FilterBar';
@@ -8,6 +8,8 @@ import { HemicycleModal } from './components/HemicycleModal';
 import { CivicInfoModal } from './components/CivicInfoModal';
 import { Footer } from './components/Footer';
 import { AlertCircle, Info, ChevronDown } from 'lucide-react';
+import { MpDirectoryView } from './components/MpDirectoryView';
+import { IssueRadarView } from './components/IssueRadarView';
 
 const PAGE_SIZE = 30;
 
@@ -17,6 +19,7 @@ export function App() {
     { term: 15, label: "15. Saeima", years: "2026–2030", isActive: false, description: "Vēlēšanas 2026. gada rudenī" }
   ]);
   const [selectedTerm, setSelectedTerm] = useState<number>(14);
+  const [activeTab, setActiveTab] = useState<ActiveNavTab>('votes');
 
   const [votes, setVotes] = useState<Vote[]>([]);
   const [mps, setMps] = useState<MP[]>([]);
@@ -33,6 +36,11 @@ export function App() {
   const [selectedOutcome, setSelectedOutcome] = useState<'ALL' | 'PIENEMTS' | 'NORAIDITS' | 'NAV_KVORUMA'>('ALL');
   const [tier1Only, setTier1Only] = useState<boolean>(false);
   const [visibleCount, setVisibleCount] = useState<number>(PAGE_SIZE);
+
+  // States for 'Partijas & Deputāti' directory
+  const [mpSearch, setMpSearch] = useState<string>('');
+  const [mpFactionFilter, setMpFactionFilter] = useState<string>('ALL');
+  const [mpActiveOnly, setMpActiveOnly] = useState<boolean>(true);
 
   // Reset pagination when any filter changes
   useEffect(() => {
@@ -157,114 +165,146 @@ export function App() {
         terms={terms}
         selectedTerm={selectedTerm}
         onSelectTerm={setSelectedTerm}
+        activeTab={activeTab}
+        onSelectTab={setActiveTab}
         latestSittingDate={latestSittingDate}
         lastSyncDate={metadata?.formattedSyncDate}
         onOpenInfoModal={setCivicModalTab}
       />
 
       <main className="flex-1 mx-auto w-full max-w-5xl px-4 py-3 sm:px-6 lg:px-8 space-y-3">
-        {/* Future / Empty Term Notice */}
-        {!loading && termVotes.length === 0 && (
-          <div className="rounded-xl border border-slate-300 bg-slate-50 p-6 flex items-start gap-4">
-            <Info className="h-5 w-5 text-slate-500 flex-shrink-0 mt-0.5" />
-            <div className="space-y-1">
-              <h3 className="text-sm font-bold text-slate-900">
-                {activeTermObj?.label} vēl nav uzsākusi darbu
-              </h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Šī sasaukuma sēžu balsojumi tiks automātiski sinhronizēti no Saeimas atvērtajiem datiem, tiklīdz jaunais parlaments sanāks uz savu pirmo sēdi.
-              </p>
-              <button
-                type="button"
-                onClick={() => setSelectedTerm(14)}
-                className="mt-2 text-xs font-semibold text-slate-800 hover:underline"
-              >
-                Pārslēgties uz 14. Saeimu (2022–2026) →
-              </button>
-            </div>
-          </div>
+        {/* TAB 1: Balsojumi Feed */}
+        {activeTab === 'votes' && (
+          <>
+            {/* Future / Empty Term Notice */}
+            {!loading && termVotes.length === 0 && (
+              <div className="rounded-xl border border-slate-300 bg-slate-50 p-6 flex items-start gap-4">
+                <Info className="h-5 w-5 text-slate-500 flex-shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <h3 className="text-sm font-bold text-slate-900">
+                    {activeTermObj?.label} vēl nav uzsākusi darbu
+                  </h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Šī sasaukuma sēžu balsojumi tiks automātiski sinhronizēti no Saeimas atvērtajiem datiem, tiklīdz jaunais parlaments sanāks uz savu pirmo sēdi.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedTerm(14)}
+                    className="mt-2 text-xs font-semibold text-slate-800 hover:underline"
+                  >
+                    Pārslēgties uz 14. Saeimu (2022–2026) →
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Filter Controls (Consolidated 1-Row Toolbar) */}
+            {termVotes.length > 0 && (
+              <section className="sticky top-[57px] z-30 -mx-1 rounded-xl bg-white/95 p-2 shadow-2xs backdrop-blur-md border border-slate-200">
+                <FilterBar
+                  searchQuery={searchQuery}
+                  onSearchChange={setSearchQuery}
+                  selectedCategory={selectedCategory}
+                  onCategoryChange={setSelectedCategory}
+                  selectedVoteType={selectedVoteType}
+                  onVoteTypeChange={setSelectedVoteType}
+                  selectedOutcome={selectedOutcome}
+                  onOutcomeChange={setSelectedOutcome}
+                  categories={categories}
+                  tier1Only={tier1Only}
+                  onTier1Toggle={setTier1Only}
+                  totalFiltered={filteredVotes.length}
+                />
+              </section>
+            )}
+
+            {/* Vote Cards Feed */}
+            <section className="space-y-4">
+              {loading && (
+                <div className="rounded-xl border border-slate-200 bg-white p-12 text-center text-slate-400">
+                  <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-slate-400 border-t-transparent" />
+                  <p className="mt-3 text-xs">Ielādē Saeimas sēžu datus...</p>
+                </div>
+              )}
+
+              {error && (
+                <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-center text-red-800">
+                  <AlertCircle className="mx-auto h-7 w-7 mb-2" />
+                  <p className="text-xs font-medium">{error}</p>
+                </div>
+              )}
+
+              {!loading && !error && termVotes.length > 0 && filteredVotes.length === 0 && (
+                <div className="rounded-xl border border-dashed border-slate-300 bg-white p-12 text-center text-slate-500">
+                  <p className="text-sm font-semibold">Nav atrasts neviens balsojums</p>
+                  <p className="text-xs text-slate-400 mt-1">
+                    Pamēģiniet mainīt meklēšanas vārdu vai noņemt kādu no filtriem.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearchQuery('');
+                      setSelectedCategory('ALL');
+                      setSelectedVoteType('ALL');
+                      setSelectedOutcome('ALL');
+                      setTier1Only(false);
+                    }}
+                    className="mt-3 rounded border border-slate-300 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-200 transition"
+                  >
+                    Atiestatīt visus filtrus
+                  </button>
+                </div>
+              )}
+
+              {!loading && !error && visibleVotes.map((vote) => (
+                <VoteCard
+                  key={vote.id}
+                  vote={vote}
+                  onSelect={(v) => setSelectedVote(v)}
+                />
+              ))}
+
+              {/* Progressive Loading Trigger */}
+              {!loading && !error && visibleCount < filteredVotes.length && (
+                <div className="pt-2 pb-6 text-center">
+                  <button
+                    type="button"
+                    onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
+                    className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-2.5 text-xs font-semibold text-slate-800 shadow-sm hover:bg-slate-50 hover:border-slate-400 transition"
+                  >
+                    <ChevronDown className="h-4 w-4 text-slate-500" />
+                    Rādīt vēl {PAGE_SIZE} balsojumus (atlikuši {filteredVotes.length - visibleCount})
+                  </button>
+                </div>
+              )}
+            </section>
+          </>
         )}
 
-        {/* Filter Controls (Consolidated 1-Row Toolbar) */}
-        {termVotes.length > 0 && (
-          <section className="sticky top-[57px] z-30 -mx-1 rounded-xl bg-white/95 p-2 shadow-2xs backdrop-blur-md border border-slate-200">
-            <FilterBar
-              searchQuery={searchQuery}
-              onSearchChange={setSearchQuery}
-              selectedCategory={selectedCategory}
-              onCategoryChange={setSelectedCategory}
-              selectedVoteType={selectedVoteType}
-              onVoteTypeChange={setSelectedVoteType}
-              selectedOutcome={selectedOutcome}
-              onOutcomeChange={setSelectedOutcome}
-              categories={categories}
-              tier1Only={tier1Only}
-              onTier1Toggle={setTier1Only}
-              totalFiltered={filteredVotes.length}
-            />
-          </section>
+        {/* TAB 2: Partijas & Deputāti */}
+        {activeTab === 'mps' && (
+          <MpDirectoryView
+            mps={mps}
+            factions={factions}
+            searchQuery={mpSearch}
+            onSearchChange={setMpSearch}
+            selectedFaction={mpFactionFilter}
+            onFactionChange={setMpFactionFilter}
+            activeOnly={mpActiveOnly}
+            onActiveOnlyToggle={setMpActiveOnly}
+          />
         )}
 
-        {/* Vote Cards Feed */}
-        <section className="space-y-4">
-          {loading && (
-            <div className="rounded-xl border border-slate-200 bg-white p-12 text-center text-slate-400">
-              <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-slate-400 border-t-transparent" />
-              <p className="mt-3 text-xs">Ielādē Saeimas sēžu datus...</p>
-            </div>
-          )}
-
-          {error && (
-            <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-center text-red-800">
-              <AlertCircle className="mx-auto h-7 w-7 mb-2" />
-              <p className="text-xs font-medium">{error}</p>
-            </div>
-          )}
-
-          {!loading && !error && termVotes.length > 0 && filteredVotes.length === 0 && (
-            <div className="rounded-xl border border-dashed border-slate-300 bg-white p-12 text-center text-slate-500">
-              <p className="text-sm font-semibold">Nav atrasts neviens balsojums</p>
-              <p className="text-xs text-slate-400 mt-1">
-                Pamēģiniet mainīt meklēšanas vārdu vai noņemt kādu no filtriem.
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchQuery('');
-                  setSelectedCategory('ALL');
-                  setSelectedVoteType('ALL');
-                  setSelectedOutcome('ALL');
-                  setTier1Only(false);
-                }}
-                className="mt-3 rounded border border-slate-300 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-200 transition"
-              >
-                Atiestatīt visus filtrus
-              </button>
-            </div>
-          )}
-
-          {!loading && !error && visibleVotes.map((vote) => (
-            <VoteCard
-              key={vote.id}
-              vote={vote}
-              onSelect={(v) => setSelectedVote(v)}
-            />
-          ))}
-
-          {/* Progressive Loading Trigger */}
-          {!loading && !error && visibleCount < filteredVotes.length && (
-            <div className="pt-2 pb-6 text-center">
-              <button
-                type="button"
-                onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-2.5 text-xs font-semibold text-slate-800 shadow-sm hover:bg-slate-50 hover:border-slate-400 transition"
-              >
-                <ChevronDown className="h-4 w-4 text-slate-500" />
-                Rādīt vēl {PAGE_SIZE} balsojumus (atlikuši {filteredVotes.length - visibleCount})
-              </button>
-            </div>
-          )}
-        </section>
+        {/* TAB 3: Tematiskais radars */}
+        {activeTab === 'issues' && (
+          <IssueRadarView
+            votes={termVotes}
+            onSelectCategory={(categoryId) => {
+              setSelectedCategory(categoryId);
+              setActiveTab('votes');
+            }}
+          />
+        )}
       </main>
 
       {/* Hemicycle Modal */}

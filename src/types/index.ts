@@ -1,4 +1,5 @@
 export type VoteDecision = 'PAR' | 'PRET' | 'ATTURAS' | 'NEBALSO' | 'NAV_REGISTRETS';
+export type ActiveNavTab = 'votes' | 'mps' | 'issues';
 
 export interface SaeimaTerm {
   term: number;
@@ -14,6 +15,7 @@ export interface Faction {
   shortName: string;
   color: string;
   seats: number;
+  isCoalition?: boolean;
 }
 
 export interface MP {

@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-import type { SaeimaTerm } from '../types';
-import { Database, ChevronDown, Check, ExternalLink } from 'lucide-react';
+import type { SaeimaTerm, ActiveNavTab } from '../types';
+import { Database, ChevronDown, Check, ExternalLink, Vote, Users, Layers } from 'lucide-react';
 
 interface NavbarProps {
   totalVotesCount: number;
   terms: SaeimaTerm[];
   selectedTerm: number;
   onSelectTerm: (term: number) => void;
+  activeTab: ActiveNavTab;
+  onSelectTab: (tab: ActiveNavTab) => void;
   latestSittingDate?: string;
   lastSyncDate?: string;
   onOpenInfoModal: (tab: 'about' | 'methodology' | 'data') => void;
@@ -17,6 +19,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   terms,
   selectedTerm,
   onSelectTerm,
+  activeTab,
+  onSelectTab,
   latestSittingDate,
   lastSyncDate,
   onOpenInfoModal,
@@ -208,9 +212,63 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
-        {/* Subtitle / Civic Mission */}
-        <div className="text-[11px] text-slate-500 border-t border-slate-100 pt-1.5">
-          <span>Objektīvi dati par katru balsojumu Saeimā · Atvērtā parlamenta reģistrs</span>
+        {/* Navigation Switcher Tabs */}
+        <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 pt-2">
+          <nav className="flex items-center gap-1 sm:gap-1.5" aria-label="Sadaļu izvēle">
+            <button
+              type="button"
+              onClick={() => onSelectTab('votes')}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                activeTab === 'votes'
+                  ? 'bg-slate-900 text-white shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+            >
+              <Vote className="h-3.5 w-3.5" />
+              <span>Balsojumi</span>
+              <span className={`ml-0.5 text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                activeTab === 'votes' ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-500'
+              }`}>
+                {totalVotesCount}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => onSelectTab('mps')}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                activeTab === 'mps'
+                  ? 'bg-slate-900 text-white shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+            >
+              <Users className="h-3.5 w-3.5" />
+              <span>Partijas & Deputāti</span>
+              <span className={`ml-0.5 text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                activeTab === 'mps' ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-500'
+              }`}>
+                100
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => onSelectTab('issues')}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                activeTab === 'issues'
+                  ? 'bg-slate-900 text-white shadow-2xs'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+              }`}
+            >
+              <Layers className="h-3.5 w-3.5" />
+              <span>Tematiskais radars</span>
+            </button>
+          </nav>
+
+          {/* Subtitle / Civic Mission */}
+          <div className="hidden sm:block text-[11px] text-slate-400">
+            <span>Objektīvi dati · Atvērtā parlamenta reģistrs</span>
+          </div>
         </div>
       </div>
     </header>
