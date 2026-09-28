@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import type { Vote, FactionBreakdown } from '../types';
 import {
   Check,
@@ -8,13 +8,15 @@ import {
   RefreshCw,
   Lock,
   ExternalLink,
-  Users
+  Users,
+  FileText
 } from 'lucide-react';
 
 interface VoteCardProps {
   vote: Vote;
   onSelect: (vote: Vote) => void;
   showFactionStances?: boolean;
+  isTargeted?: boolean;
 }
 
 const SEAT_ORDER = ['JV', 'ZZS', 'AS', 'NA', 'PRO', 'LPV', 'S!', 'PIEFR'];
@@ -152,9 +154,16 @@ function getResponsibleCommittee(summary?: string): string | null {
   return null;
 }
 
-export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionStances }) => {
+export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionStances, isTargeted }) => {
   const [copied, setCopied] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(isTargeted || false);
+  const [showFullSummary, setShowFullSummary] = useState(false);
+
+  useEffect(() => {
+    if (isTargeted) {
+      setIsExpanded(true);
+    }
+  }, [isTargeted]);
 
   const groupedBlocs = useMemo(() => {
     return showFactionStances ? getGroupedFactionBlocs(vote.factionBreakdown) : { par: [], pret: [], cits: [] };
@@ -201,11 +210,21 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionS
   const committee = getResponsibleCommittee(vote.summary);
   const cleanedTitle = cleanVoteTitle(vote.simplifiedTitle || vote.officialTitle);
   const cleanBillNr = vote.billNumber ? vote.billNumber.replace(/^(Nr\.\s*|#)/, '') : '';
+  const cleanSummary = vote.summary?.trim() || null;
+  const dossierUrl = cleanBillNr
+    ? `https://titania.saeima.lv/LIVS14/SaeimaLIVS14_Content.nsf/webAll?SearchView&Query=([Title]=*${encodeURIComponent(cleanBillNr)}*)`
+    : null;
+  const stenogramUrl = 'https://www.saeima.lv/lv/transcripts';
+  const protocolUrl = vote.protocolUrl || 'https://www.saeima.lv/lv/likumdosana/balsojumi';
 
   return (
     <article
       id={`balsojums-${vote.id}`}
-      className="rounded-xl border border-slate-200/90 bg-white p-4 shadow-2xs transition hover:border-slate-300 hover:shadow-xs"
+      className={`rounded-xl border bg-white p-4 shadow-2xs transition hover:border-slate-300 hover:shadow-xs ${
+        isTargeted
+          ? 'ring-2 ring-emerald-500/50 border-emerald-400 bg-emerald-50/15'
+          : 'border-slate-200/90'
+      }`}
     >
       {/* Revote Notice (if applicable) */}
       {vote.isRevote && (
@@ -308,6 +327,28 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionS
           </>
         )}
       </div>
+
+      {/* Row 3.2: Plain-Language Summary Preview */}
+      {cleanSummary && (
+        <div className="mt-2 text-xs text-slate-600 leading-relaxed bg-slate-50/90 rounded-lg px-3 py-2 border border-slate-100">
+          <p className={showFullSummary ? '' : 'line-clamp-2'}>
+            <span className="font-semibold text-slate-800 mr-1.5">Būtība:</span>
+            {cleanSummary}
+          </p>
+          {cleanSummary.length > 140 && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowFullSummary(!showFullSummary);
+              }}
+              className="mt-1 text-[11px] font-semibold text-emerald-700 hover:text-emerald-800 hover:underline cursor-pointer"
+            >
+              {showFullSummary ? 'Rādīt mazāk ↑' : 'Lasīt visu skaidrojumu ↓'}
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Row 3.5: Grouped Faction Blocs (Par / Pret / Cits) */}
       {showFactionStances && (groupedBlocs.par.length > 0 || groupedBlocs.pret.length > 0 || groupedBlocs.cits.length > 0) && (
@@ -494,19 +535,35 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionS
           )}
 
           {/* TIER 3: Interactive Exploration & Official Proof */}
-          <div className="border-t border-slate-100 pt-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
-            {/* Left: Primary interactive drill-down */}
-            <button
-              type="button"
-              onClick={() => onSelect(vote)}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-800 hover:bg-slate-100 hover:border-slate-300 transition cursor-pointer shadow-2xs"
-            >
-              <Users className="h-3.5 w-3.5 text-emerald-700" />
-              <span>Kā balsoja katrs deputāts</span>
-            </button>
+          <div className="border-t border-slate-100 pt-2.5 flex flex-wrap items-center justify-between gap-2.5 text-xs">
+            {/* Left: Primary interactive drill-down & Saeima Dossier */}
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={() => onSelect(vote)}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-800 hover:bg-slate-100 hover:border-slate-300 transition cursor-pointer shadow-2xs"
+              >
+                <Users className="h-3.5 w-3.5 text-emerald-700" />
+                <span>Kā balsoja katrs deputāts</span>
+              </button>
+
+              {dossierUrl && (
+                <a
+                  href={dossierUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-200 bg-emerald-50/70 px-2.5 py-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-100/90 hover:border-emerald-300 transition shadow-2xs"
+                  title="Atvērt likumprojekta gaitas karti un visus grozījumus Saeimas mājaslapā"
+                >
+                  <FileText className="h-3.5 w-3.5 text-emerald-700" />
+                  <span>Saeimas titullapa</span>
+                  <ExternalLink className="h-3 w-3 text-emerald-600/70" />
+                </a>
+              )}
+            </div>
 
             {/* Right: Clean secondary link list */}
-            <div className="flex items-center gap-3 text-slate-500 text-[11px]">
+            <div className="flex flex-wrap items-center gap-2 text-slate-500 text-[11px]">
               <button
                 type="button"
                 onClick={handleCopy}
@@ -520,32 +577,47 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionS
                 ) : (
                   <>
                     <Copy className="h-3.5 w-3.5 text-slate-400" />
-                    <span>Kopīgot saiti</span>
+                    <span>Kopīgot</span>
                   </>
                 )}
               </button>
-              {vote.protocolUrl && (
+
+              <span className="text-slate-300">·</span>
+
+              <a
+                href={stenogramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-slate-500 hover:text-slate-800 transition"
+                title="Skatīt sēdes debašu stenogrammas Saeimas portālā"
+              >
+                <span>Stenogramma</span>
+                <ExternalLink className="h-3 w-3 text-slate-400" />
+              </a>
+
+              {protocolUrl && (
                 <>
                   <span className="text-slate-300">·</span>
                   <a
-                    href={vote.protocolUrl}
+                    href={protocolUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-slate-500 hover:text-slate-800 transition"
+                    title="Skatīt oficiālo Saeimas balsojuma protokolu"
                   >
-                    <span>Oficiālais protokols</span>
+                    <span>Protokols</span>
                     <ExternalLink className="h-3 w-3 text-slate-400" />
                   </a>
                 </>
               )}
+
               <span className="text-slate-300">·</span>
               <button
                 type="button"
                 onClick={() => setIsExpanded(false)}
                 className="inline-flex items-center gap-0.5 text-slate-500 hover:text-slate-800 transition cursor-pointer"
               >
-                <span>Aizvērt</span>
-                <span className="text-xs">↑</span>
+                <span>Aizvērt ↑</span>
               </button>
             </div>
           </div>

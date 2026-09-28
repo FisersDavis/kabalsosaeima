@@ -20,11 +20,20 @@ export function App() {
     { term: 15, label: "15. Saeima", years: "2026–2030", isActive: false, description: "Vēlēšanas 2026. gada rudenī" }
   ]);
   const [selectedTerm, setSelectedTerm] = useState<number>(14);
+  const [targetedVoteId, setTargetedVoteId] = useState<string | null>(() => {
+    if (typeof window !== 'undefined') {
+      const match = window.location.hash.match(/#balsojums-([a-zA-Z0-9-]+)/i);
+      return match ? match[1] : null;
+    }
+    return null;
+  });
+
   const [activeTab, setActiveTab] = useState<ActiveNavTab>(() => {
     if (typeof window !== 'undefined') {
       const h = window.location.hash.toLowerCase();
       if (h.startsWith('#radars') || h.startsWith('#tematiskais-radars') || h.startsWith('#issues')) return 'issues';
       if (h === '#deputati' || h === '#partijas' || h === '#mps') return 'mps';
+      if (h.includes('balsojums-')) return 'votes';
     }
     return 'votes';
   });
@@ -40,7 +49,14 @@ export function App() {
 
   useEffect(() => {
     const handleHashChange = () => {
-      const h = window.location.hash.toLowerCase();
+      const rawHash = window.location.hash;
+      const h = rawHash.toLowerCase();
+      const voteMatch = rawHash.match(/#balsojums-([a-zA-Z0-9-]+)/i);
+      if (voteMatch) {
+        setActiveTab('votes');
+        setTargetedVoteId(voteMatch[1]);
+        return;
+      }
       if (h.startsWith('#radars') || h.startsWith('#tematiskais-radars') || h.startsWith('#issues')) {
         setActiveTab('issues');
       } else if (h === '#deputati' || h === '#partijas' || h === '#mps') {
@@ -182,6 +198,24 @@ export function App() {
     return filteredVotes.slice(0, visibleCount);
   }, [filteredVotes, visibleCount]);
 
+  // Auto-scroll and expand when a specific vote is targeted via deep link
+  useEffect(() => {
+    if (!targetedVoteId || filteredVotes.length === 0) return;
+    const idx = filteredVotes.findIndex((v) => v.id === targetedVoteId);
+    if (idx !== -1) {
+      if (idx >= visibleCount) {
+        setVisibleCount(idx + 10);
+      }
+      const timer = setTimeout(() => {
+        const el = document.getElementById(`balsojums-${targetedVoteId}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 350);
+      return () => clearTimeout(timer);
+    }
+  }, [targetedVoteId, filteredVotes, visibleCount]);
+
   const activeTermObj = terms.find((t) => t.term === selectedTerm);
 
   // Dynamically determine true latest sitting date chronologically
@@ -303,6 +337,7 @@ export function App() {
                 <VoteCard
                   key={vote.id}
                   vote={vote}
+                  isTargeted={vote.id === targetedVoteId}
                   onSelect={(v) => {
                     setReturnToMpAfterVote(null);
                     setReturnToVoteAfterMp(null);
