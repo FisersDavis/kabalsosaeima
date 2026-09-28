@@ -1,8 +1,6 @@
 name: Saeima Thursday Sync & Deploy
 
 on:
-  push:
-    branches: ["main"] # Automatically deploy on new commits
   schedule:
     # Runs every Thursday at 19:00 UTC (22:00 Riga time) after Saeima plenary sittings
     - cron: '0 19 * * 4'
@@ -15,7 +13,7 @@ permissions:
   issues: write
 
 concurrency:
-  group: 'pages'
+  group: 'thursday-sync'
   cancel-in-progress: true
 
 jobs:
