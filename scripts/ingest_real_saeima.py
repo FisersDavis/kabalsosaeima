@@ -421,7 +421,8 @@ def run_ingestion():
                     'billNumber': bill_number,
                     'simplifiedTitle': simplify_title(title),
                     'summary': summary_text,
-                    'protocolUrl': f"https://www.saeima.lv/lv/likumdosana/balsojumi",
+                    'protocolUrl': None,
+                    'stenogramUrl': None,
                     'category': detect_category(title, section),
                     'result': outcome,
                     'counts': {

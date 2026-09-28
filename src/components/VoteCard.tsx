@@ -9,7 +9,7 @@ import {
   Lock,
   ExternalLink,
   Users,
-  FileText
+  Info
 } from 'lucide-react';
 
 interface VoteCardProps {
@@ -158,6 +158,7 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionS
   const [copied, setCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(isTargeted || false);
   const [showFullSummary, setShowFullSummary] = useState(false);
+  const [expandedSpeechIndices, setExpandedSpeechIndices] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     if (isTargeted) {
@@ -211,11 +212,10 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionS
   const cleanedTitle = cleanVoteTitle(vote.simplifiedTitle || vote.officialTitle);
   const cleanBillNr = vote.billNumber ? vote.billNumber.replace(/^(Nr\.\s*|#)/, '') : '';
   const cleanSummary = vote.summary?.trim() || null;
-  const dossierUrl = cleanBillNr
-    ? `https://titania.saeima.lv/LIVS14/SaeimaLIVS14_Content.nsf/webAll?SearchView&Query=([Title]=*${encodeURIComponent(cleanBillNr)}*)`
+  const stenogramUrl = vote.stenogramUrl || null;
+  const protocolUrl = vote.protocolUrl && !vote.protocolUrl.endsWith('/balsojumi') && !vote.protocolUrl.endsWith('saeima.lv')
+    ? vote.protocolUrl
     : null;
-  const stenogramUrl = 'https://www.saeima.lv/lv/transcripts';
-  const protocolUrl = vote.protocolUrl || 'https://www.saeima.lv/lv/likumdosana/balsojumi';
 
   return (
     <article
@@ -328,24 +328,120 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionS
         )}
       </div>
 
-      {/* Row 3.2: Plain-Language Summary Preview */}
-      {cleanSummary && (
-        <div className="mt-2 text-xs text-slate-600 leading-relaxed bg-slate-50/90 rounded-lg px-3 py-2 border border-slate-100">
-          <p className={showFullSummary ? '' : 'line-clamp-2'}>
-            <span className="font-semibold text-slate-800 mr-1.5">Būtība:</span>
-            {cleanSummary}
-          </p>
-          {cleanSummary.length > 140 && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowFullSummary(!showFullSummary);
-              }}
-              className="mt-1 text-[11px] font-semibold text-emerald-700 hover:text-emerald-800 hover:underline cursor-pointer"
-            >
-              {showFullSummary ? 'Rādīt mazāk ↑' : 'Lasīt visu skaidrojumu ↓'}
-            </button>
+      {/* Row 3.2: Structured Purpose & Debate Overview */}
+      {(vote.purpose || cleanSummary) && (
+        <div className="mt-2.5 text-xs text-slate-700 leading-relaxed bg-slate-50/90 rounded-lg p-3 border border-slate-200/80 space-y-2">
+          {/* Section 1: Purpose / Essence */}
+          <div>
+            <div className="flex items-center gap-1.5 font-semibold text-slate-900 mb-0.5">
+              <span>
+                {vote.voteType === 'priekslikums' || vote.readingStage === 'Priekšlikums'
+                  ? 'Priekšlikuma būtība:'
+                  : vote.voteType === 'procedura'
+                  ? 'Balsojuma būtība:'
+                  : 'Likuma mērķis:'}
+              </span>
+            </div>
+            <p className={`text-slate-600 ${showFullSummary ? '' : 'line-clamp-2'}`}>
+              {vote.purpose || cleanSummary}
+            </p>
+            {((vote.purpose || cleanSummary || '').length > 140) && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowFullSummary(!showFullSummary);
+                }}
+                className="mt-1 text-[11px] font-semibold text-emerald-700 hover:text-emerald-800 hover:underline cursor-pointer"
+              >
+                {showFullSummary ? 'Rādīt mazāk ↑' : 'Lasīt visu skaidrojumu ↓'}
+              </button>
+            )}
+          </div>
+
+          {/* Section 2: Debates & Arguments (or legal absence notice) */}
+          {vote.debateArguments && (
+            <div className="pt-2 border-t border-slate-200/60">
+              {vote.debateArguments.hasDebates ? (
+                <div className="space-y-2">
+                  <span className="font-semibold text-slate-900 block text-[11px] uppercase tracking-wider text-slate-500">
+                    Sēdes debates:
+                  </span>
+                  {vote.debateArguments.debaters && vote.debateArguments.debaters.length > 0 ? (
+                    vote.debateArguments.debaters.map((deb, idx) => {
+                      const isPar = deb.opinion === 'Par';
+                      const isSpeechExpanded = !!expandedSpeechIndices[idx];
+                      return (
+                        <div
+                          key={idx}
+                          className={`rounded-md p-2.5 text-xs transition ${
+                            isPar
+                              ? 'bg-emerald-50/70 border border-emerald-200/80 text-emerald-950'
+                              : 'bg-rose-50/70 border border-rose-200/80 text-rose-950'
+                          }`}
+                        >
+                          <div className="flex items-center gap-1.5 font-semibold text-xs mb-1">
+                            <span className="select-none text-xs">{isPar ? '🟢' : '🔴'}</span>
+                            <span className={isPar ? 'text-emerald-950 font-bold' : 'text-rose-950 font-bold'}>
+                              Runāja &ldquo;{deb.opinion}&rdquo;: {deb.name} ({deb.fraction})
+                            </span>
+                          </div>
+                          <p className="text-slate-700 leading-relaxed italic text-[11.5px] whitespace-pre-line font-serif">
+                            &bdquo;{isSpeechExpanded ? deb.fullSpeech : deb.preview}&ldquo;
+                          </p>
+                          {deb.fullSpeech && deb.fullSpeech !== deb.preview && (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setExpandedSpeechIndices((prev) => ({
+                                  ...prev,
+                                  [idx]: !prev[idx],
+                                }));
+                              }}
+                              className={`mt-1.5 inline-flex items-center gap-1 text-[11px] font-semibold cursor-pointer ${
+                                isPar ? 'text-emerald-800 hover:text-emerald-950' : 'text-rose-800 hover:text-rose-950'
+                              } hover:underline`}
+                            >
+                              <span>{isSpeechExpanded ? 'Rādīt mazāk ↑' : 'Lasīt pilno runu ↓'}</span>
+                            </button>
+                          )}
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <>
+                      {vote.debateArguments.proponents && (
+                        <div className="flex items-start gap-1.5 bg-emerald-50/60 border border-emerald-100 rounded-md p-2 text-slate-700">
+                          <span className="text-emerald-700 font-bold text-xs select-none">🟢</span>
+                          <div>
+                            <strong className="text-emerald-950 font-semibold mr-1">Atbalstītāji:</strong>
+                            <span>{vote.debateArguments.proponents}</span>
+                          </div>
+                        </div>
+                      )}
+                      {vote.debateArguments.opponents && (
+                        <div className="flex items-start gap-1.5 bg-rose-50/60 border border-rose-100 rounded-md p-2 text-slate-700">
+                          <span className="text-rose-700 font-bold text-xs select-none">🔴</span>
+                          <div>
+                            <strong className="text-rose-950 font-semibold mr-1">Iebildumi:</strong>
+                            <span>{vote.debateArguments.opponents}</span>
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              ) : (
+                <div className="flex items-center gap-1.5 text-[11px] text-slate-500 italic">
+                  <Info className="h-3.5 w-3.5 text-slate-400 flex-shrink-0" />
+                  <span>
+                    {vote.debateArguments.noDebateReason ||
+                      "Debates plenārsēdē nenotika — saskaņā ar sēdes stenogrammu neviens deputāts debatēm nebija pieteicies."}
+                  </span>
+                </div>
+              )}
+            </div>
           )}
         </div>
       )}
@@ -546,20 +642,6 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionS
                 <Users className="h-3.5 w-3.5 text-emerald-700" />
                 <span>Kā balsoja katrs deputāts</span>
               </button>
-
-              {dossierUrl && (
-                <a
-                  href={dossierUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-200 bg-emerald-50/70 px-2.5 py-1.5 text-xs font-semibold text-emerald-800 hover:bg-emerald-100/90 hover:border-emerald-300 transition shadow-2xs"
-                  title="Atvērt likumprojekta gaitas karti un visus grozījumus Saeimas mājaslapā"
-                >
-                  <FileText className="h-3.5 w-3.5 text-emerald-700" />
-                  <span>Saeimas titullapa</span>
-                  <ExternalLink className="h-3 w-3 text-emerald-600/70" />
-                </a>
-              )}
             </div>
 
             {/* Right: Clean secondary link list */}
@@ -582,18 +664,21 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionS
                 )}
               </button>
 
-              <span className="text-slate-300">·</span>
-
-              <a
-                href={stenogramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-slate-500 hover:text-slate-800 transition"
-                title="Skatīt sēdes debašu stenogrammas Saeimas portālā"
-              >
-                <span>Stenogramma</span>
-                <ExternalLink className="h-3 w-3 text-slate-400" />
-              </a>
+              {stenogramUrl && (
+                <>
+                  <span className="text-slate-300">·</span>
+                  <a
+                    href={stenogramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-slate-500 hover:text-slate-800 transition"
+                    title="Skatīt sēdes debašu stenogrammu pie šī balsojuma Saeimas portālā"
+                  >
+                    <span>Stenogramma</span>
+                    <ExternalLink className="h-3 w-3 text-slate-400" />
+                  </a>
+                </>
+              )}
 
               {protocolUrl && (
                 <>
@@ -603,9 +688,9 @@ export const VoteCard: React.FC<VoteCardProps> = ({ vote, onSelect, showFactionS
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-slate-500 hover:text-slate-800 transition"
-                    title="Skatīt oficiālo Saeimas balsojuma protokolu"
+                    title="Skatīt oficiālo Saeimas balsošanas protokolu (elektroniskās sistēmas izdruku)"
                   >
-                    <span>Protokols</span>
+                    <span>Balsošana</span>
                     <ExternalLink className="h-3 w-3 text-slate-400" />
                   </a>
                 </>

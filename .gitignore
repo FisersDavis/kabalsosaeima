@@ -31,3 +31,9 @@ __pycache__/
 radar_preview_*.png
 radar_v2_*.png
 radar_v3_*.png
+
+# Scraping caches
+scripts/debates_raw/
+scripts/transcripts_raw/
+scripts/transcripts_cache.json
+

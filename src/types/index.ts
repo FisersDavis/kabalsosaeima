@@ -139,10 +139,21 @@ export interface MpSummary {
 
 export type MpSummaryMap = Record<string, MpSummary>;
 
+export interface DebaterSpeech {
+  name: string;
+  fraction: string;
+  opinion: 'Par' | 'Pret';
+  preview: string;
+  fullSpeech: string;
+}
+
 export interface DebateArguments {
-  proponents: string; // Sponsor / Rapporteur perspective
-  opponents: string;  // Lead opposition debate thesis
+  hasDebates: boolean;
+  debaters?: DebaterSpeech[];
+  proponents?: string; // Sponsor / Rapporteur perspective
+  opponents?: string;  // Lead opposition debate thesis
   rapporteur?: string; // Ziņotājs / Atbildīgā komisija
+  noDebateReason?: string; // Official reason if no debates took place
 }
 
 export interface Vote {
@@ -164,9 +175,11 @@ export interface Vote {
   officialTitle: string;
   billNumber: string;
   simplifiedTitle: string;
+  purpose?: string;
   summary: string;
   debateArguments?: DebateArguments;
   protocolUrl?: string;
+  stenogramUrl?: string;
   category: {
     id: string;
     label: string;
