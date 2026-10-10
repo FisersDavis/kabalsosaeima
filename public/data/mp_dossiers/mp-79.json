@@ -6,7 +6,9 @@
     "seatNumber": 79,
     "row": 4,
     "col": 9,
-    "isActive": false
+    "isActive": false,
+    "saeimaId": "AD63D92850016FD7C22588E0002AE272",
+    "slug": "girts-lapins"
   },
   "faction": {
     "id": "na",
@@ -15,13 +17,13 @@
     "color": "#881337",
     "seats": 12
   },
-  "totalVotes": 400,
+  "totalVotes": 398,
   "attendance": {
     "presentCount": 0,
     "presentPct": 0.0,
     "withheldCount": 0,
     "withheldPct": 0.0,
-    "absentCount": 400,
+    "absentCount": 398,
     "absentPct": 100.0
   },
   "votesBreakdown": {
@@ -29,7 +31,7 @@
     "pret": 0,
     "atturas": 0,
     "nebalso": 0,
-    "navRegistrets": 400
+    "navRegistrets": 398
   },
   "cohesion": {
     "isIndependent": false,
@@ -187,7 +189,7 @@
     },
     {
       "voteId": "27ab82e9-0773-49ab-aed2-90ce3417f0fc",
-      "title": "1. priekšlikums",
+      "title": "1. priekšlikums: Grozījumi Latgales speciālās ekonomiskās zonas likumā",
       "sittingDate": "12.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -213,7 +215,7 @@
     },
     {
       "voteId": "ec4c73da-1d48-4a4c-8859-6991bb34a566",
-      "title": "2. priekšlikums",
+      "title": "2. priekšlikums: Grozījumi Enerģētikas likumā",
       "sittingDate": "12.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -226,7 +228,7 @@
     },
     {
       "voteId": "1c455c44-98ca-4d08-86eb-93171a277877",
-      "title": "3. priekšlikums",
+      "title": "3. priekšlikums: Grozījumi Enerģētikas likumā",
       "sittingDate": "12.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -278,7 +280,7 @@
     },
     {
       "voteId": "fc902884-1c28-4f85-8f3b-f901a6f6be7c",
-      "title": "7. priekšlikums",
+      "title": "7. priekšlikums: Kuldīgas vecpilsētas saglabāšanas un aizsardzības likums",
       "sittingDate": "12.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -291,7 +293,7 @@
     },
     {
       "voteId": "2ca0352d-ba8c-4261-92e4-51584b34d42a",
-      "title": "10. priekšlikums",
+      "title": "10. priekšlikums: Kuldīgas vecpilsētas saglabāšanas un aizsardzības likums",
       "sittingDate": "12.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -304,7 +306,7 @@
     },
     {
       "voteId": "92439577-36ff-4bc9-9bfa-c769915634bf",
-      "title": "11. priekšlikums",
+      "title": "11. priekšlikums: Kuldīgas vecpilsētas saglabāšanas un aizsardzības likums",
       "sittingDate": "12.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -317,7 +319,7 @@
     },
     {
       "voteId": "49cc9597-fc59-4da6-a55e-92de6dcedbdc",
-      "title": "12. priekšlikums",
+      "title": "12. priekšlikums: Kuldīgas vecpilsētas saglabāšanas un aizsardzības likums",
       "sittingDate": "12.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -330,7 +332,7 @@
     },
     {
       "voteId": "c172ef8b-c249-4085-a628-791f087a09e5",
-      "title": "13. priekšlikums",
+      "title": "13. priekšlikums: Kuldīgas vecpilsētas saglabāšanas un aizsardzības likums",
       "sittingDate": "12.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -343,7 +345,7 @@
     },
     {
       "voteId": "fc17004c-7f8d-41bd-a438-20c564b2ad05",
-      "title": "14. priekšlikums",
+      "title": "14. priekšlikums: Kuldīgas vecpilsētas saglabāšanas un aizsardzības likums",
       "sittingDate": "12.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -434,7 +436,7 @@
     },
     {
       "voteId": "f46e76dd-eb3c-4105-9b7d-2fbef45cd72d",
-      "title": "31. priekšlikums",
+      "title": "31. priekšlikums: Grozījums Krimināllikumā",
       "sittingDate": "12.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -447,7 +449,7 @@
     },
     {
       "voteId": "2b8a98ab-fc76-410d-bc2b-87f957466499",
-      "title": "32. priekšlikums",
+      "title": "32. priekšlikums: Grozījums Krimināllikumā",
       "sittingDate": "12.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -720,7 +722,7 @@
     },
     {
       "voteId": "91f34b1e-9713-4877-9ba8-ca8dd93c4821",
-      "title": "1. priekšlikums",
+      "title": "1. priekšlikums: Grozījumi Narkotisko un psihotropo vielu un zāļu, kā arī prekursoru likumīgās aprites likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -733,7 +735,7 @@
     },
     {
       "voteId": "773a4357-57a1-437a-b78e-9d256d4a8459",
-      "title": "4. priekšlikums",
+      "title": "4. priekšlikums: Grozījumi Narkotisko un psihotropo vielu un zāļu, kā arī prekursoru likumīgās aprites likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -798,7 +800,7 @@
     },
     {
       "voteId": "da5e7298-2f9d-47fa-9610-ec0bde33a819",
-      "title": "2. priekšlikums",
+      "title": "2. priekšlikums: Grozījumi Izglītības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -811,7 +813,7 @@
     },
     {
       "voteId": "689b3e30-6991-4a50-ae2b-5b7300bfe8c5",
-      "title": "8. priekšlikums",
+      "title": "8. priekšlikums: Grozījumi Izglītības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -824,7 +826,7 @@
     },
     {
       "voteId": "14cd6244-a504-4e03-8b60-ab01595d0599",
-      "title": "11. priekšlikums",
+      "title": "11. priekšlikums: Grozījumi Izglītības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -837,7 +839,7 @@
     },
     {
       "voteId": "29caac19-906d-45ac-b0b0-e18d59bb7a6f",
-      "title": "13. priekšlikums",
+      "title": "13. priekšlikums: Grozījumi Izglītības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -850,7 +852,7 @@
     },
     {
       "voteId": "079a76ed-380f-4baf-a149-35d275bcd846",
-      "title": "21. priekšlikums",
+      "title": "21. priekšlikums: Grozījumi Izglītības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -993,7 +995,7 @@
     },
     {
       "voteId": "efe8c6b9-4ea1-49e7-8ad8-62d5ead60360",
-      "title": "3. priekšlikums",
+      "title": "3. priekšlikums: Grozījumi Epidemioloģiskās drošības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -1006,7 +1008,7 @@
     },
     {
       "voteId": "13fabf57-9e8d-4cd6-a305-2a52c39c8b5f",
-      "title": "4. priekšlikums",
+      "title": "4. priekšlikums: Grozījumi Epidemioloģiskās drošības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -1032,7 +1034,7 @@
     },
     {
       "voteId": "8b1d0056-6f8a-43bb-909b-87de73780451",
-      "title": "1. priekšlikums",
+      "title": "1. priekšlikums: Grozījumi Administratīvās atbildības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -1045,7 +1047,7 @@
     },
     {
       "voteId": "316f8f40-e461-436e-bbfd-d43983652748",
-      "title": "2. priekšlikums",
+      "title": "2. priekšlikums: Grozījumi Administratīvās atbildības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -1058,7 +1060,7 @@
     },
     {
       "voteId": "04f5ba8d-6af0-4d61-a2b7-aececd11a0ca",
-      "title": "3. priekšlikums",
+      "title": "3. priekšlikums: Grozījumi Administratīvās atbildības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -1071,7 +1073,7 @@
     },
     {
       "voteId": "4a57272a-1468-41b8-921d-6fb7955c433f",
-      "title": "4. priekšlikums",
+      "title": "4. priekšlikums: Grozījumi Administratīvās atbildības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -1084,7 +1086,7 @@
     },
     {
       "voteId": "1b49d570-adce-44c8-ab69-a70c86c1ffd6",
-      "title": "5. priekšlikums",
+      "title": "5. priekšlikums: Grozījumi Administratīvās atbildības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -1097,7 +1099,7 @@
     },
     {
       "voteId": "ff7a7ba2-578a-4cf7-a77d-5111b355cb5c",
-      "title": "6. priekšlikums",
+      "title": "6. priekšlikums: Grozījumi Administratīvās atbildības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -1110,7 +1112,7 @@
     },
     {
       "voteId": "1b4847df-02d4-41c0-9b12-a74f8c114e87",
-      "title": "7. priekšlikums",
+      "title": "7. priekšlikums: Grozījumi Administratīvās atbildības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -1123,7 +1125,7 @@
     },
     {
       "voteId": "43251a67-21c1-4560-8705-fd4a566a5e65",
-      "title": "8. priekšlikums",
+      "title": "8. priekšlikums: Grozījumi Administratīvās atbildības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -1136,7 +1138,7 @@
     },
     {
       "voteId": "295224bb-9bc8-42ed-bad2-6cb6c9d28fa0",
-      "title": "9. priekšlikums",
+      "title": "9. priekšlikums: Grozījumi Administratīvās atbildības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -1149,7 +1151,7 @@
     },
     {
       "voteId": "a611f939-9447-468b-9a08-effd7e760b44",
-      "title": "14. priekšlikums",
+      "title": "14. priekšlikums: Grozījumi Administratīvās atbildības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -1162,7 +1164,7 @@
     },
     {
       "voteId": "6d57824e-bbd8-48a3-a42d-027119dc634a",
-      "title": "15. priekšlikums",
+      "title": "15. priekšlikums: Grozījumi Administratīvās atbildības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -1175,7 +1177,7 @@
     },
     {
       "voteId": "ad3caa15-1507-4cdf-9341-ab647e67b504",
-      "title": "16. priekšlikums",
+      "title": "16. priekšlikums: Grozījumi Administratīvās atbildības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -1188,7 +1190,7 @@
     },
     {
       "voteId": "2ddc2bc1-ae80-4b4c-8602-e4e7cc30dcc8",
-      "title": "17. priekšlikums",
+      "title": "17. priekšlikums: Grozījumi Administratīvās atbildības likumā",
       "sittingDate": "05.02.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -1747,7 +1749,7 @@
     },
     {
       "voteId": "f76f06d5-2c52-4d08-9134-fd46a8540e46",
-      "title": "4. priekšlikums",
+      "title": "4. priekšlikums: Nacionālās koncertzāles “Rīgas filharmonija” likums",
       "sittingDate": "01.04.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -2059,7 +2061,7 @@
     },
     {
       "voteId": "21c44bf3-7840-48e5-8015-1fb5efc46b86",
-      "title": "5. priekšlikums",
+      "title": "5. priekšlikums: Degvielas cenu pieauguma ierobežošanas likums",
       "sittingDate": "26.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -2150,7 +2152,7 @@
     },
     {
       "voteId": "8ecdf2fa-18c1-42ed-a3b4-3c79429d37c1",
-      "title": "1. priekšlikums",
+      "title": "1. priekšlikums: Grozījums Imigrācijas likumā",
       "sittingDate": "26.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -2163,7 +2165,7 @@
     },
     {
       "voteId": "2670644d-32e3-420a-b6ae-c185c7efc3a1",
-      "title": "5. priekšlikums",
+      "title": "5. priekšlikums: Grozījums Imigrācijas likumā",
       "sittingDate": "26.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -2280,7 +2282,7 @@
     },
     {
       "voteId": "fbc8f4f0-01ce-4b78-a08d-caecdc7ef2ae",
-      "title": "4. priekšlikums",
+      "title": "4. priekšlikums: Grozījumi Imigrācijas likumā",
       "sittingDate": "26.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -2293,7 +2295,7 @@
     },
     {
       "voteId": "53f8eb73-4f57-433d-a10c-fdd29f2805f5",
-      "title": "7. priekšlikums",
+      "title": "7. priekšlikums: Grozījumi Imigrācijas likumā",
       "sittingDate": "26.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -2306,7 +2308,7 @@
     },
     {
       "voteId": "7797468f-be38-4fd9-873b-5130637b7c4c",
-      "title": "16. priekšlikums",
+      "title": "16. priekšlikums: Grozījumi Imigrācijas likumā",
       "sittingDate": "26.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -2319,7 +2321,7 @@
     },
     {
       "voteId": "99f5cdc2-4e92-4ae2-b172-bc968bd88f92",
-      "title": "17. priekšlikums",
+      "title": "17. priekšlikums: Grozījumi Imigrācijas likumā",
       "sittingDate": "26.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -2332,7 +2334,7 @@
     },
     {
       "voteId": "769d4d70-8dca-4322-9c64-fdfe50fc9ba3",
-      "title": "19. priekšlikums",
+      "title": "19. priekšlikums: Grozījumi Imigrācijas likumā",
       "sittingDate": "26.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -2345,7 +2347,7 @@
     },
     {
       "voteId": "0fc904cb-70bb-4bd6-bbf3-3bfa3157eee9",
-      "title": "20. priekšlikums",
+      "title": "20. priekšlikums: Grozījumi Imigrācijas likumā",
       "sittingDate": "26.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -2930,7 +2932,7 @@
     },
     {
       "voteId": "bec5a949-625d-4d49-9e10-bae5eee21749",
-      "title": "1. priekšlikums",
+      "title": "1. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -2943,7 +2945,7 @@
     },
     {
       "voteId": "2b23c879-cfef-4356-903a-654f2ff65721",
-      "title": "2. priekšlikums",
+      "title": "2. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -2956,7 +2958,7 @@
     },
     {
       "voteId": "45b79d2f-fcac-45c5-8576-611f811188d9",
-      "title": "3. priekšlikums",
+      "title": "3. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -2969,7 +2971,7 @@
     },
     {
       "voteId": "3aa2375c-9053-4c15-a00d-eaf792e8ea31",
-      "title": "4. priekšlikums",
+      "title": "4. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -2982,7 +2984,7 @@
     },
     {
       "voteId": "0cf4b1ba-86cf-4967-80d5-83b4ba81ad0a",
-      "title": "6. priekšlikums",
+      "title": "6. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -2995,7 +2997,7 @@
     },
     {
       "voteId": "13fe0bb2-d021-42a8-b4c7-32411a965ff8",
-      "title": "7. priekšlikums",
+      "title": "7. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3008,7 +3010,7 @@
     },
     {
       "voteId": "527724dd-dc53-4ad6-a305-d25067c53599",
-      "title": "9. priekšlikums",
+      "title": "9. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3021,7 +3023,7 @@
     },
     {
       "voteId": "3152b9f4-5691-4ece-83ba-195bb8767a3d",
-      "title": "10. priekšlikums",
+      "title": "10. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3034,7 +3036,7 @@
     },
     {
       "voteId": "b92eb65a-c1b1-40aa-8ca9-26ca11623411",
-      "title": "11. priekšlikums",
+      "title": "11. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3047,7 +3049,7 @@
     },
     {
       "voteId": "5b7cdaa9-b9cb-45f1-9d0d-f6f7dca1b98d",
-      "title": "13. priekšlikums",
+      "title": "13. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3060,7 +3062,7 @@
     },
     {
       "voteId": "4a1f487c-8b02-45f6-93b3-1ca946e2ea04",
-      "title": "15. priekšlikums",
+      "title": "15. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3073,7 +3075,7 @@
     },
     {
       "voteId": "d5e21ba5-db41-42be-a3d4-eb43aef467e8",
-      "title": "16. priekšlikums",
+      "title": "16. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -3086,7 +3088,7 @@
     },
     {
       "voteId": "0a5e0e9b-494e-49e8-ae37-624f93d2696e",
-      "title": "17. priekšlikums",
+      "title": "17. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3099,7 +3101,7 @@
     },
     {
       "voteId": "dc593189-6b1f-4cab-89f0-04ce2ef151b2",
-      "title": "18. priekšlikums",
+      "title": "18. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3112,7 +3114,7 @@
     },
     {
       "voteId": "d64ff719-2ae9-4655-b7c0-b433aeb1f824",
-      "title": "19. priekšlikums",
+      "title": "19. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3125,7 +3127,7 @@
     },
     {
       "voteId": "3574935d-0437-47aa-a5c3-2409c83627c9",
-      "title": "20. priekšlikums",
+      "title": "20. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3138,7 +3140,7 @@
     },
     {
       "voteId": "d0ede316-5add-495c-a229-dea130563941",
-      "title": "21. priekšlikums",
+      "title": "21. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3151,7 +3153,7 @@
     },
     {
       "voteId": "46eb7094-da72-4eaf-a252-c4855cefd7a7",
-      "title": "23. priekšlikums",
+      "title": "23. priekšlikums: Grozījumi Autoceļu lietošanas nodevas likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -3242,7 +3244,7 @@
     },
     {
       "voteId": "442d3402-0e2d-4172-8bfa-45aad3fc6710",
-      "title": "14. priekšlikums",
+      "title": "14. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3255,7 +3257,7 @@
     },
     {
       "voteId": "95156201-4f36-4628-970c-637890a02663",
-      "title": "15. priekšlikums",
+      "title": "15. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3268,7 +3270,7 @@
     },
     {
       "voteId": "1bf814eb-d55a-45df-a290-9098f0d5c40b",
-      "title": "18. priekšlikums",
+      "title": "18. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -3281,7 +3283,7 @@
     },
     {
       "voteId": "f4a9a336-f32d-4f27-896e-7143caef8a35",
-      "title": "19. priekšlikums",
+      "title": "19. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -3294,7 +3296,7 @@
     },
     {
       "voteId": "aa93c924-de66-41cd-b1bb-8d885551c6b7",
-      "title": "41. priekšlikums",
+      "title": "41. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3307,7 +3309,7 @@
     },
     {
       "voteId": "b503968a-e2a5-4069-b551-7efe483624a1",
-      "title": "42. priekšlikums",
+      "title": "42. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3320,7 +3322,7 @@
     },
     {
       "voteId": "0e7da64d-4bad-4e9a-bf77-5855180b72fc",
-      "title": "45. priekšlikums",
+      "title": "45. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -3333,7 +3335,7 @@
     },
     {
       "voteId": "4c557d6b-94c7-484e-a005-f50cdbd21766",
-      "title": "52. priekšlikums",
+      "title": "52. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -3346,7 +3348,7 @@
     },
     {
       "voteId": "58ef9946-6289-4f8c-b4ae-a5faac4972a0",
-      "title": "63. priekšlikums",
+      "title": "63. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3359,7 +3361,7 @@
     },
     {
       "voteId": "da24e030-dbe5-407b-bbdb-816238806507",
-      "title": "65. priekšlikums",
+      "title": "65. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3372,7 +3374,7 @@
     },
     {
       "voteId": "39f2854b-2672-4a19-bc70-e5dd26204586",
-      "title": "66. priekšlikums",
+      "title": "66. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3385,7 +3387,7 @@
     },
     {
       "voteId": "a670e7b8-10c6-49a8-b60c-8cc970cbc373",
-      "title": "68. priekšlikums",
+      "title": "68. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -3398,7 +3400,7 @@
     },
     {
       "voteId": "e60178a2-ca4e-4262-81e7-ef029b2dde78",
-      "title": "69. priekšlikums",
+      "title": "69. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3411,7 +3413,7 @@
     },
     {
       "voteId": "fdfadb94-4570-45bb-aa5b-c429efb79bad",
-      "title": "70. priekšlikums",
+      "title": "70. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3424,7 +3426,7 @@
     },
     {
       "voteId": "1cf709f4-4044-4c50-8105-dfc6a54e2f66",
-      "title": "72. priekšlikums",
+      "title": "72. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3437,7 +3439,7 @@
     },
     {
       "voteId": "3c41ba90-34cd-488d-8029-6aeb670a087c",
-      "title": "73. priekšlikums",
+      "title": "73. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3450,7 +3452,7 @@
     },
     {
       "voteId": "bc76462a-c56f-4716-8de4-29b192c624fd",
-      "title": "74. priekšlikums",
+      "title": "74. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3463,7 +3465,7 @@
     },
     {
       "voteId": "c1907881-93e3-4aaf-9843-02a4aa8ad0d2",
-      "title": "75. priekšlikums",
+      "title": "75. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3476,7 +3478,7 @@
     },
     {
       "voteId": "87cfface-570a-41ff-a153-113f10281814",
-      "title": "76. priekšlikums",
+      "title": "76. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3489,7 +3491,7 @@
     },
     {
       "voteId": "4fa72de5-deb4-4537-a116-c05902ab62c6",
-      "title": "81. priekšlikums",
+      "title": "81. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -3502,7 +3504,7 @@
     },
     {
       "voteId": "456253f2-a9ba-42fc-b841-9a9568ee33b7",
-      "title": "87. priekšlikums",
+      "title": "87. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -3515,7 +3517,7 @@
     },
     {
       "voteId": "9e1c3ff7-8b78-4e95-a7cd-eef1a050451b",
-      "title": "103. priekšlikums",
+      "title": "103. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -3528,7 +3530,7 @@
     },
     {
       "voteId": "ba5e5e11-540f-4816-b3b6-d3334786d84c",
-      "title": "119. priekšlikums",
+      "title": "119. priekšlikums: Imigrācijas likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3554,7 +3556,7 @@
     },
     {
       "voteId": "b77b7382-7ec0-43e7-9583-845f178c6501",
-      "title": "3. priekšlikums",
+      "title": "3. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3567,7 +3569,7 @@
     },
     {
       "voteId": "01fa1dec-c077-4648-8532-e5fd8d627e14",
-      "title": "4. priekšlikums",
+      "title": "4. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3580,7 +3582,7 @@
     },
     {
       "voteId": "65057bc1-7a2d-4a13-8615-15f7782f96cb",
-      "title": "5. priekšlikums",
+      "title": "5. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3593,7 +3595,7 @@
     },
     {
       "voteId": "8e7e475e-112d-4793-8391-c42017903780",
-      "title": "7. priekšlikums",
+      "title": "7. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3606,7 +3608,7 @@
     },
     {
       "voteId": "66c51aec-d740-4afa-839c-cf696110498c",
-      "title": "11. priekšlikums",
+      "title": "11. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3619,7 +3621,7 @@
     },
     {
       "voteId": "4afc52f7-f0f2-46d3-b4bb-e1fa8588292f",
-      "title": "14. priekšlikums",
+      "title": "14. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3632,7 +3634,7 @@
     },
     {
       "voteId": "1edf27c5-93c9-42f3-a633-7863acc440d7",
-      "title": "15. priekšlikums",
+      "title": "15. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3645,7 +3647,7 @@
     },
     {
       "voteId": "3e0ab26c-e0a2-4ee9-a01a-c3a2f675552b",
-      "title": "16. priekšlikums",
+      "title": "16. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3658,7 +3660,7 @@
     },
     {
       "voteId": "2fd1b058-43f0-4124-961e-0b8077d6ef4e",
-      "title": "17. priekšlikums",
+      "title": "17. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3671,7 +3673,7 @@
     },
     {
       "voteId": "f6b40c82-2554-4cd2-9a16-b54f6d7509b3",
-      "title": "18. priekšlikums",
+      "title": "18. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3684,7 +3686,7 @@
     },
     {
       "voteId": "a4aa357e-c9c5-4fb7-81b7-8a1ad77a4957",
-      "title": "19. priekšlikums",
+      "title": "19. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3697,7 +3699,7 @@
     },
     {
       "voteId": "6c65b899-7798-4f44-afa3-4c2499b2abc5",
-      "title": "21. priekšlikums",
+      "title": "21. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3710,7 +3712,7 @@
     },
     {
       "voteId": "2625edf6-3a19-4d5f-aa85-353600871372",
-      "title": "22. priekšlikums",
+      "title": "22. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3723,7 +3725,7 @@
     },
     {
       "voteId": "5cf971a3-6a5e-4669-bac2-9204fdebf44d",
-      "title": "26. priekšlikums",
+      "title": "26. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3736,7 +3738,7 @@
     },
     {
       "voteId": "e33a3d59-ffd4-4dba-b460-78a7d52ba271",
-      "title": "27. priekšlikums",
+      "title": "27. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3749,7 +3751,7 @@
     },
     {
       "voteId": "05efc246-1013-4014-8359-9f46e8286287",
-      "title": "29. priekšlikums",
+      "title": "29. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3762,7 +3764,7 @@
     },
     {
       "voteId": "61de7267-1499-4038-99d1-efc531b3fb88",
-      "title": "32. priekšlikums",
+      "title": "32. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3775,7 +3777,7 @@
     },
     {
       "voteId": "a7ec6696-5912-43d5-bc5c-fa0607609d0e",
-      "title": "33. priekšlikums",
+      "title": "33. priekšlikums: Savienības pilsoņu un viņu ģimenes locekļu ieceļošanas un uzturēšanās Latvijas Republikā likums",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3866,7 +3868,7 @@
     },
     {
       "voteId": "104efc2c-f372-4a16-a00b-9216ea55f8bc",
-      "title": "1. priekšlikums",
+      "title": "1. priekšlikums: Grozījumi Augstskolu likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3879,7 +3881,7 @@
     },
     {
       "voteId": "cbc3e054-7fde-45ed-8ec3-82231a6b5395",
-      "title": "2. priekšlikums",
+      "title": "2. priekšlikums: Grozījumi Augstskolu likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3892,7 +3894,7 @@
     },
     {
       "voteId": "c568a17e-0528-4205-a034-e3dcbbc50619",
-      "title": "3. priekšlikums",
+      "title": "3. priekšlikums: Grozījumi Augstskolu likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -3918,7 +3920,7 @@
     },
     {
       "voteId": "b4be435d-3390-4b6e-ae0d-583a0120e898",
-      "title": "5. priekšlikums",
+      "title": "5. priekšlikums: Grozījumi Elektronisko sakaru likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -4009,7 +4011,7 @@
     },
     {
       "voteId": "f282de87-ea19-4d9a-a7ec-b27e71f4e1be",
-      "title": "4. priekšlikums",
+      "title": "4. priekšlikums: Grozījumi Gaisa kuģu pasažieru datu apstrādes likumā",
       "sittingDate": "22.01.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -4269,7 +4271,7 @@
     },
     {
       "voteId": "a00f879d-f402-4561-9116-b6814a89c979",
-      "title": "6. priekšlikums",
+      "title": "6. priekšlikums: Grozījums Krimināllikumā",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -4282,7 +4284,7 @@
     },
     {
       "voteId": "94066f3f-7285-4dd5-adb8-5fecac913817",
-      "title": "7. priekšlikums",
+      "title": "7. priekšlikums: Grozījums Krimināllikumā",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -4308,7 +4310,7 @@
     },
     {
       "voteId": "e0e1f167-6a56-4f60-9da7-958dee18a5d8",
-      "title": "1. priekšlikums",
+      "title": "1. priekšlikums: Grozījumi likumā “Par nodokļu piemērošanu brīvostās un speciālajās ekonomiskajās zonās”",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "NORAIDITS",
@@ -4516,7 +4518,7 @@
     },
     {
       "voteId": "4126f5f7-2501-4e84-af41-2a8e8f3528af",
-      "title": "2. priekšlikums",
+      "title": "2. priekšlikums: Grozījumi likumā “Par interešu konflikta novēršanu valsts amatpersonu darbībā”",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -4529,7 +4531,7 @@
     },
     {
       "voteId": "b0ccbe84-b34e-4e5c-afbe-2fe2d9b0dd76",
-      "title": "3. priekšlikums",
+      "title": "3. priekšlikums: Grozījumi likumā “Par interešu konflikta novēršanu valsts amatpersonu darbībā”",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -4542,7 +4544,7 @@
     },
     {
       "voteId": "886e7285-9df1-482e-9be3-04abff9359c2",
-      "title": "4. priekšlikums",
+      "title": "4. priekšlikums: Grozījumi likumā “Par interešu konflikta novēršanu valsts amatpersonu darbībā”",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -4555,7 +4557,7 @@
     },
     {
       "voteId": "04a01171-d321-4fcf-be35-74d05f007460",
-      "title": "5. priekšlikums",
+      "title": "5. priekšlikums: Grozījumi likumā “Par interešu konflikta novēršanu valsts amatpersonu darbībā”",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -4568,7 +4570,7 @@
     },
     {
       "voteId": "20cf3f16-51ac-4f4e-8471-47cfd07ecd9d",
-      "title": "8. priekšlikums",
+      "title": "8. priekšlikums: Grozījumi likumā “Par interešu konflikta novēršanu valsts amatpersonu darbībā”",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -4581,7 +4583,7 @@
     },
     {
       "voteId": "8c5f8494-1a34-4155-8103-f9a6499afae0",
-      "title": "9. priekšlikums",
+      "title": "9. priekšlikums: Grozījumi likumā “Par interešu konflikta novēršanu valsts amatpersonu darbībā”",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -4594,7 +4596,7 @@
     },
     {
       "voteId": "57f6df95-6e21-4dc9-a77e-c28c908ea47a",
-      "title": "10. priekšlikums",
+      "title": "10. priekšlikums: Grozījumi likumā “Par interešu konflikta novēršanu valsts amatpersonu darbībā”",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -4607,7 +4609,7 @@
     },
     {
       "voteId": "8c76e63d-aa72-49a1-8738-2710518c4ecc",
-      "title": "11. priekšlikums",
+      "title": "11. priekšlikums: Grozījumi likumā “Par interešu konflikta novēršanu valsts amatpersonu darbībā”",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -4620,7 +4622,7 @@
     },
     {
       "voteId": "38f9da9f-b17e-46b1-be15-db478084a8e2",
-      "title": "12. priekšlikums",
+      "title": "12. priekšlikums: Grozījumi likumā “Par interešu konflikta novēršanu valsts amatpersonu darbībā”",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -4633,7 +4635,7 @@
     },
     {
       "voteId": "44f7c44d-3f12-4745-9a3f-2b4cb8167550",
-      "title": "13. priekšlikums",
+      "title": "13. priekšlikums: Grozījumi likumā “Par interešu konflikta novēršanu valsts amatpersonu darbībā”",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -4646,7 +4648,7 @@
     },
     {
       "voteId": "644a7191-ca22-409a-b474-e97d5569f24e",
-      "title": "14. priekšlikums",
+      "title": "14. priekšlikums: Grozījumi likumā “Par interešu konflikta novēršanu valsts amatpersonu darbībā”",
       "sittingDate": "19.03.2026",
       "decision": "NAV_REGISTRETS",
       "result": "PIENEMTS",
@@ -5213,32 +5215,6 @@
       "categoryId": "ekonomika",
       "parentBillTitle": null,
       "readingStage": "Likuma pieņemšana",
-      "voteType": "likums",
-      "isAmendment": false
-    },
-    {
-      "voteId": "edge-quorum-01",
-      "title": "Grozījumi Publisko personu mantas izšķērdēšanas novēršanas likumā",
-      "sittingDate": "14.03.2024",
-      "decision": "NAV_REGISTRETS",
-      "result": "NAV_KVORUMA",
-      "category": "Tiesiskums un Korupcijas novēršana",
-      "categoryId": "tiesiskums",
-      "parentBillTitle": null,
-      "readingStage": "2. lasījums",
-      "voteType": "likums",
-      "isAmendment": false
-    },
-    {
-      "voteId": "edge-secret-01",
-      "title": "Valsts prezidenta vēlēšanas (Edgars Rinkēvičs)",
-      "sittingDate": "31.05.2023",
-      "decision": "NAV_REGISTRETS",
-      "result": "PIENEMTS",
-      "category": "Valsts pārvalde",
-      "categoryId": "administracija",
-      "parentBillTitle": null,
-      "readingStage": "Amatpersonu vēlēšanas",
       "voteType": "likums",
       "isAmendment": false
     }

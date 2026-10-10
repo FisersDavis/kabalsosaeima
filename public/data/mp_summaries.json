@@ -20,9 +20,9 @@
     "isIndependent": false
   },
   "mp-3": {
-    "presentPct": 78.2,
+    "presentPct": 78.4,
     "withheldPct": 4.5,
-    "absentPct": 17.2,
+    "absentPct": 17.1,
     "cohesionPct": 98.1,
     "deviationsCount": 6,
     "oppositeCount": 0,
@@ -30,9 +30,9 @@
     "isIndependent": false
   },
   "mp-4": {
-    "presentPct": 82.8,
-    "withheldPct": 10.0,
-    "absentPct": 7.2,
+    "presentPct": 82.9,
+    "withheldPct": 10.1,
+    "absentPct": 7.0,
     "cohesionPct": 92.1,
     "deviationsCount": 26,
     "oppositeCount": 0,
@@ -40,9 +40,9 @@
     "isIndependent": false
   },
   "mp-5": {
-    "presentPct": 97.5,
+    "presentPct": 97.7,
     "withheldPct": 2.0,
-    "absentPct": 0.5,
+    "absentPct": 0.3,
     "cohesionPct": 98.5,
     "deviationsCount": 6,
     "oppositeCount": 1,
@@ -60,9 +60,9 @@
     "isIndependent": false
   },
   "mp-7": {
-    "presentPct": 74.8,
+    "presentPct": 74.9,
     "withheldPct": 0.8,
-    "absentPct": 24.5,
+    "absentPct": 24.4,
     "cohesionPct": 94.6,
     "deviationsCount": 16,
     "oppositeCount": 1,
@@ -90,19 +90,19 @@
     "isIndependent": false
   },
   "mp-10": {
-    "presentPct": 64.2,
+    "presentPct": 64.3,
     "withheldPct": 0.8,
-    "absentPct": 35.0,
-    "cohesionPct": 98.1,
+    "absentPct": 34.9,
+    "cohesionPct": 98.0,
     "deviationsCount": 5,
     "oppositeCount": 1,
     "nuanceCount": 4,
     "isIndependent": false
   },
   "mp-11": {
-    "presentPct": 98.5,
-    "withheldPct": 0.2,
-    "absentPct": 1.2,
+    "presentPct": 98.7,
+    "withheldPct": 0.3,
+    "absentPct": 1.0,
     "cohesionPct": 97.7,
     "deviationsCount": 9,
     "oppositeCount": 1,
@@ -110,9 +110,9 @@
     "isIndependent": false
   },
   "mp-12": {
-    "presentPct": 98.8,
+    "presentPct": 99.0,
     "withheldPct": 0.5,
-    "absentPct": 0.8,
+    "absentPct": 0.5,
     "cohesionPct": 97.2,
     "deviationsCount": 11,
     "oppositeCount": 0,
@@ -120,9 +120,9 @@
     "isIndependent": false
   },
   "mp-13": {
-    "presentPct": 98.8,
+    "presentPct": 99.0,
     "withheldPct": 1.0,
-    "absentPct": 0.2,
+    "absentPct": 0.0,
     "cohesionPct": 97.0,
     "deviationsCount": 12,
     "oppositeCount": 0,
@@ -130,19 +130,19 @@
     "isIndependent": false
   },
   "mp-14": {
-    "presentPct": 97.2,
-    "withheldPct": 2.2,
-    "absentPct": 0.5,
-    "cohesionPct": 96.7,
+    "presentPct": 97.5,
+    "withheldPct": 2.3,
+    "absentPct": 0.3,
+    "cohesionPct": 96.6,
     "deviationsCount": 13,
     "oppositeCount": 1,
     "nuanceCount": 12,
     "isIndependent": false
   },
   "mp-15": {
-    "presentPct": 99.0,
-    "withheldPct": 0.2,
-    "absentPct": 0.8,
+    "presentPct": 99.2,
+    "withheldPct": 0.3,
+    "absentPct": 0.5,
     "cohesionPct": 99.0,
     "deviationsCount": 4,
     "oppositeCount": 1,
@@ -150,9 +150,9 @@
     "isIndependent": false
   },
   "mp-16": {
-    "presentPct": 90.0,
+    "presentPct": 90.2,
     "withheldPct": 0.8,
-    "absentPct": 9.2,
+    "absentPct": 9.0,
     "cohesionPct": 99.4,
     "deviationsCount": 2,
     "oppositeCount": 0,
@@ -160,9 +160,9 @@
     "isIndependent": false
   },
   "mp-17": {
-    "presentPct": 94.5,
+    "presentPct": 94.7,
     "withheldPct": 2.8,
-    "absentPct": 2.8,
+    "absentPct": 2.5,
     "cohesionPct": 92.6,
     "deviationsCount": 28,
     "oppositeCount": 2,
@@ -170,9 +170,9 @@
     "isIndependent": false
   },
   "mp-18": {
-    "presentPct": 93.5,
+    "presentPct": 93.7,
     "withheldPct": 0.8,
-    "absentPct": 5.8,
+    "absentPct": 5.5,
     "cohesionPct": 98.1,
     "deviationsCount": 7,
     "oppositeCount": 1,
@@ -180,10 +180,10 @@
     "isIndependent": false
   },
   "mp-19": {
-    "presentPct": 98.2,
+    "presentPct": 98.5,
     "withheldPct": 1.0,
-    "absentPct": 0.8,
-    "cohesionPct": 94.7,
+    "absentPct": 0.5,
+    "cohesionPct": 94.6,
     "deviationsCount": 21,
     "oppositeCount": 0,
     "nuanceCount": 21,
@@ -200,9 +200,9 @@
     "isIndependent": false
   },
   "mp-21": {
-    "presentPct": 90.0,
+    "presentPct": 90.2,
     "withheldPct": 6.8,
-    "absentPct": 3.2,
+    "absentPct": 3.0,
     "cohesionPct": 70.8,
     "deviationsCount": 105,
     "oppositeCount": 103,
@@ -220,43 +220,23 @@
     "isIndependent": false
   },
   "mp-23": {
-    "presentPct": 91.2,
-    "withheldPct": 0.2,
-    "absentPct": 8.5,
+    "presentPct": 91.5,
+    "withheldPct": 0.3,
+    "absentPct": 8.3,
     "cohesionPct": 97.8,
     "deviationsCount": 8,
     "oppositeCount": 0,
     "nuanceCount": 8,
     "isIndependent": false
   },
-  "mp-24": {
-    "presentPct": 0.0,
-    "withheldPct": 0.0,
-    "absentPct": 100.0,
-    "cohesionPct": 100.0,
-    "deviationsCount": 0,
-    "oppositeCount": 0,
-    "nuanceCount": 0,
-    "isIndependent": false
-  },
   "mp-25": {
-    "presentPct": 37.5,
-    "withheldPct": 10.5,
+    "presentPct": 37.4,
+    "withheldPct": 10.6,
     "absentPct": 52.0,
-    "cohesionPct": 72.0,
+    "cohesionPct": 71.8,
     "deviationsCount": 42,
     "oppositeCount": 40,
     "nuanceCount": 2,
-    "isIndependent": false
-  },
-  "mp-26": {
-    "presentPct": 0.0,
-    "withheldPct": 0.0,
-    "absentPct": 100.0,
-    "cohesionPct": 100.0,
-    "deviationsCount": 0,
-    "oppositeCount": 0,
-    "nuanceCount": 0,
     "isIndependent": false
   },
   "mp-27": {
@@ -280,9 +260,9 @@
     "isIndependent": false
   },
   "mp-29": {
-    "presentPct": 69.5,
+    "presentPct": 69.6,
     "withheldPct": 2.8,
-    "absentPct": 27.8,
+    "absentPct": 27.6,
     "cohesionPct": 96.0,
     "deviationsCount": 11,
     "oppositeCount": 4,
@@ -290,9 +270,9 @@
     "isIndependent": false
   },
   "mp-30": {
-    "presentPct": 94.0,
+    "presentPct": 94.2,
     "withheldPct": 0.0,
-    "absentPct": 6.0,
+    "absentPct": 5.8,
     "cohesionPct": 93.1,
     "deviationsCount": 26,
     "oppositeCount": 2,
@@ -300,9 +280,9 @@
     "isIndependent": false
   },
   "mp-31": {
-    "presentPct": 91.5,
+    "presentPct": 91.7,
     "withheldPct": 6.8,
-    "absentPct": 1.8,
+    "absentPct": 1.5,
     "cohesionPct": 97.3,
     "deviationsCount": 10,
     "oppositeCount": 4,
@@ -310,9 +290,9 @@
     "isIndependent": false
   },
   "mp-32": {
-    "presentPct": 98.0,
+    "presentPct": 98.2,
     "withheldPct": 1.8,
-    "absentPct": 0.2,
+    "absentPct": 0.0,
     "cohesionPct": 88.5,
     "deviationsCount": 45,
     "oppositeCount": 6,
@@ -320,9 +300,9 @@
     "isIndependent": false
   },
   "mp-33": {
-    "presentPct": 73.8,
+    "presentPct": 73.9,
     "withheldPct": 0.5,
-    "absentPct": 25.8,
+    "absentPct": 25.6,
     "cohesionPct": 95.6,
     "deviationsCount": 13,
     "oppositeCount": 6,
@@ -340,9 +320,9 @@
     "isIndependent": false
   },
   "mp-35": {
-    "presentPct": 72.0,
+    "presentPct": 72.1,
     "withheldPct": 11.8,
-    "absentPct": 16.2,
+    "absentPct": 16.1,
     "cohesionPct": 96.2,
     "deviationsCount": 11,
     "oppositeCount": 0,
@@ -350,9 +330,9 @@
     "isIndependent": false
   },
   "mp-36": {
-    "presentPct": 83.0,
+    "presentPct": 83.2,
     "withheldPct": 2.0,
-    "absentPct": 15.0,
+    "absentPct": 14.8,
     "cohesionPct": 96.4,
     "deviationsCount": 12,
     "oppositeCount": 8,
@@ -360,9 +340,9 @@
     "isIndependent": false
   },
   "mp-37": {
-    "presentPct": 64.2,
+    "presentPct": 64.3,
     "withheldPct": 19.8,
-    "absentPct": 16.0,
+    "absentPct": 15.8,
     "cohesionPct": 92.2,
     "deviationsCount": 20,
     "oppositeCount": 8,
@@ -370,9 +350,9 @@
     "isIndependent": false
   },
   "mp-38": {
-    "presentPct": 88.5,
+    "presentPct": 88.7,
     "withheldPct": 8.8,
-    "absentPct": 2.8,
+    "absentPct": 2.5,
     "cohesionPct": 97.7,
     "deviationsCount": 8,
     "oppositeCount": 3,
@@ -380,9 +360,9 @@
     "isIndependent": false
   },
   "mp-39": {
-    "presentPct": 98.0,
+    "presentPct": 98.2,
     "withheldPct": 1.5,
-    "absentPct": 0.5,
+    "absentPct": 0.3,
     "cohesionPct": 97.2,
     "deviationsCount": 11,
     "oppositeCount": 4,
@@ -390,8 +370,8 @@
     "isIndependent": false
   },
   "mp-40": {
-    "presentPct": 44.8,
-    "withheldPct": 0.2,
+    "presentPct": 44.7,
+    "withheldPct": 0.3,
     "absentPct": 55.0,
     "cohesionPct": 97.2,
     "deviationsCount": 5,
@@ -420,9 +400,9 @@
     "isIndependent": false
   },
   "mp-43": {
-    "presentPct": 95.8,
-    "withheldPct": 0.2,
-    "absentPct": 4.0,
+    "presentPct": 96.0,
+    "withheldPct": 0.3,
+    "absentPct": 3.8,
     "cohesionPct": 99.2,
     "deviationsCount": 3,
     "oppositeCount": 1,
@@ -430,9 +410,9 @@
     "isIndependent": false
   },
   "mp-44": {
-    "presentPct": 82.8,
+    "presentPct": 82.9,
     "withheldPct": 0.5,
-    "absentPct": 16.8,
+    "absentPct": 16.6,
     "cohesionPct": 99.7,
     "deviationsCount": 1,
     "oppositeCount": 0,
@@ -440,9 +420,9 @@
     "isIndependent": false
   },
   "mp-45": {
-    "presentPct": 79.2,
-    "withheldPct": 1.2,
-    "absentPct": 19.5,
+    "presentPct": 79.4,
+    "withheldPct": 1.3,
+    "absentPct": 19.3,
     "cohesionPct": 98.4,
     "deviationsCount": 5,
     "oppositeCount": 1,
@@ -460,9 +440,9 @@
     "isIndependent": false
   },
   "mp-47": {
-    "presentPct": 85.0,
+    "presentPct": 85.2,
     "withheldPct": 1.0,
-    "absentPct": 14.0,
+    "absentPct": 13.8,
     "cohesionPct": 98.2,
     "deviationsCount": 6,
     "oppositeCount": 2,
@@ -470,9 +450,9 @@
     "isIndependent": false
   },
   "mp-48": {
-    "presentPct": 84.0,
-    "withheldPct": 0.2,
-    "absentPct": 15.8,
+    "presentPct": 84.2,
+    "withheldPct": 0.3,
+    "absentPct": 15.6,
     "cohesionPct": 98.2,
     "deviationsCount": 6,
     "oppositeCount": 1,
@@ -490,9 +470,9 @@
     "isIndependent": false
   },
   "mp-50": {
-    "presentPct": 88.8,
+    "presentPct": 88.9,
     "withheldPct": 6.8,
-    "absentPct": 4.5,
+    "absentPct": 4.3,
     "cohesionPct": 80.8,
     "deviationsCount": 68,
     "oppositeCount": 36,
@@ -520,9 +500,9 @@
     "isIndependent": false
   },
   "mp-53": {
-    "presentPct": 84.2,
+    "presentPct": 84.4,
     "withheldPct": 3.5,
-    "absentPct": 12.2,
+    "absentPct": 12.1,
     "cohesionPct": 98.5,
     "deviationsCount": 5,
     "oppositeCount": 3,
@@ -531,8 +511,8 @@
   },
   "mp-54": {
     "presentPct": 61.8,
-    "withheldPct": 34.8,
-    "absentPct": 3.5,
+    "withheldPct": 34.9,
+    "absentPct": 3.3,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -540,9 +520,9 @@
     "isIndependent": false
   },
   "mp-55": {
-    "presentPct": 86.8,
+    "presentPct": 86.9,
     "withheldPct": 4.8,
-    "absentPct": 8.5,
+    "absentPct": 8.3,
     "cohesionPct": 97.4,
     "deviationsCount": 9,
     "oppositeCount": 4,
@@ -550,9 +530,9 @@
     "isIndependent": false
   },
   "mp-56": {
-    "presentPct": 67.5,
-    "withheldPct": 8.2,
-    "absentPct": 24.2,
+    "presentPct": 67.6,
+    "withheldPct": 8.3,
+    "absentPct": 24.1,
     "cohesionPct": 99.3,
     "deviationsCount": 2,
     "oppositeCount": 2,
@@ -560,9 +540,9 @@
     "isIndependent": false
   },
   "mp-57": {
-    "presentPct": 87.2,
+    "presentPct": 87.4,
     "withheldPct": 5.8,
-    "absentPct": 7.0,
+    "absentPct": 6.8,
     "cohesionPct": 98.9,
     "deviationsCount": 4,
     "oppositeCount": 4,
@@ -572,7 +552,7 @@
   "mp-58": {
     "presentPct": 67.8,
     "withheldPct": 12.8,
-    "absentPct": 19.5,
+    "absentPct": 19.3,
     "cohesionPct": 98.9,
     "deviationsCount": 3,
     "oppositeCount": 1,
@@ -580,9 +560,9 @@
     "isIndependent": false
   },
   "mp-59": {
-    "presentPct": 64.2,
+    "presentPct": 64.3,
     "withheldPct": 17.8,
-    "absentPct": 18.0,
+    "absentPct": 17.8,
     "cohesionPct": 93.8,
     "deviationsCount": 16,
     "oppositeCount": 1,
@@ -590,9 +570,9 @@
     "isIndependent": false
   },
   "mp-60": {
-    "presentPct": 93.0,
+    "presentPct": 93.2,
     "withheldPct": 6.5,
-    "absentPct": 0.5,
+    "absentPct": 0.3,
     "cohesionPct": 78.7,
     "deviationsCount": 78,
     "oppositeCount": 57,
@@ -620,8 +600,8 @@
     "isIndependent": false
   },
   "mp-63": {
-    "presentPct": 46.8,
-    "withheldPct": 12.0,
+    "presentPct": 46.7,
+    "withheldPct": 12.1,
     "absentPct": 41.2,
     "cohesionPct": 98.9,
     "deviationsCount": 2,
@@ -640,10 +620,10 @@
     "isIndependent": false
   },
   "mp-65": {
-    "presentPct": 79.5,
+    "presentPct": 79.6,
     "withheldPct": 4.5,
-    "absentPct": 16.0,
-    "cohesionPct": 76.4,
+    "absentPct": 15.8,
+    "cohesionPct": 76.3,
     "deviationsCount": 74,
     "oppositeCount": 62,
     "nuanceCount": 12,
@@ -660,9 +640,9 @@
     "isIndependent": false
   },
   "mp-67": {
-    "presentPct": 87.2,
-    "withheldPct": 5.2,
-    "absentPct": 7.5,
+    "presentPct": 87.4,
+    "withheldPct": 5.3,
+    "absentPct": 7.3,
     "cohesionPct": 97.1,
     "deviationsCount": 10,
     "oppositeCount": 7,
@@ -670,9 +650,9 @@
     "isIndependent": false
   },
   "mp-68": {
-    "presentPct": 66.5,
+    "presentPct": 66.6,
     "withheldPct": 1.5,
-    "absentPct": 32.0,
+    "absentPct": 31.9,
     "cohesionPct": 98.5,
     "deviationsCount": 4,
     "oppositeCount": 3,
@@ -681,8 +661,8 @@
   },
   "mp-69": {
     "presentPct": 42.5,
-    "withheldPct": 2.2,
-    "absentPct": 55.2,
+    "withheldPct": 2.3,
+    "absentPct": 55.3,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -690,19 +670,19 @@
     "isIndependent": false
   },
   "mp-70": {
-    "presentPct": 65.2,
-    "withheldPct": 5.2,
-    "absentPct": 29.5,
-    "cohesionPct": 98.9,
-    "deviationsCount": 3,
+    "presentPct": 65.3,
+    "withheldPct": 5.3,
+    "absentPct": 29.4,
+    "cohesionPct": 99.2,
+    "deviationsCount": 2,
     "oppositeCount": 1,
-    "nuanceCount": 2,
+    "nuanceCount": 1,
     "isIndependent": false
   },
   "mp-71": {
-    "presentPct": 67.0,
-    "withheldPct": 7.8,
-    "absentPct": 25.2,
+    "presentPct": 67.3,
+    "withheldPct": 7.5,
+    "absentPct": 25.1,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -710,9 +690,9 @@
     "isIndependent": false
   },
   "mp-72": {
-    "presentPct": 83.2,
-    "withheldPct": 14.2,
-    "absentPct": 2.5,
+    "presentPct": 83.7,
+    "withheldPct": 14.1,
+    "absentPct": 2.3,
     "cohesionPct": 99.1,
     "deviationsCount": 3,
     "oppositeCount": 2,
@@ -720,9 +700,9 @@
     "isIndependent": false
   },
   "mp-73": {
-    "presentPct": 66.0,
-    "withheldPct": 7.8,
-    "absentPct": 26.2,
+    "presentPct": 66.3,
+    "withheldPct": 7.5,
+    "absentPct": 26.1,
     "cohesionPct": 99.2,
     "deviationsCount": 2,
     "oppositeCount": 1,
@@ -730,9 +710,9 @@
     "isIndependent": false
   },
   "mp-74": {
-    "presentPct": 94.5,
-    "withheldPct": 5.0,
-    "absentPct": 0.5,
+    "presentPct": 95.0,
+    "withheldPct": 4.8,
+    "absentPct": 0.3,
     "cohesionPct": 98.7,
     "deviationsCount": 5,
     "oppositeCount": 5,
@@ -740,9 +720,9 @@
     "isIndependent": false
   },
   "mp-75": {
-    "presentPct": 82.0,
-    "withheldPct": 8.2,
-    "absentPct": 9.8,
+    "presentPct": 82.4,
+    "withheldPct": 8.0,
+    "absentPct": 9.5,
     "cohesionPct": 99.4,
     "deviationsCount": 2,
     "oppositeCount": 1,
@@ -759,20 +739,10 @@
     "nuanceCount": 0,
     "isIndependent": false
   },
-  "mp-77": {
-    "presentPct": 0.0,
-    "withheldPct": 0.0,
-    "absentPct": 100.0,
-    "cohesionPct": 100.0,
-    "deviationsCount": 0,
-    "oppositeCount": 0,
-    "nuanceCount": 0,
-    "isIndependent": false
-  },
   "mp-78": {
-    "presentPct": 63.7,
-    "withheldPct": 8.5,
-    "absentPct": 27.8,
+    "presentPct": 64.1,
+    "withheldPct": 8.3,
+    "absentPct": 27.6,
     "cohesionPct": 98.4,
     "deviationsCount": 4,
     "oppositeCount": 3,
@@ -810,9 +780,9 @@
     "isIndependent": false
   },
   "mp-82": {
-    "presentPct": 89.5,
-    "withheldPct": 6.2,
-    "absentPct": 4.2,
+    "presentPct": 89.9,
+    "withheldPct": 6.0,
+    "absentPct": 4.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -820,9 +790,9 @@
     "isIndependent": false
   },
   "mp-83": {
-    "presentPct": 74.8,
-    "withheldPct": 17.5,
-    "absentPct": 7.8,
+    "presentPct": 75.1,
+    "withheldPct": 17.3,
+    "absentPct": 7.5,
     "cohesionPct": 63.8,
     "deviationsCount": 104,
     "oppositeCount": 91,
@@ -830,9 +800,9 @@
     "isIndependent": false
   },
   "mp-84": {
-    "presentPct": 91.5,
-    "withheldPct": 5.5,
-    "absentPct": 3.0,
+    "presentPct": 92.0,
+    "withheldPct": 5.3,
+    "absentPct": 2.8,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -840,9 +810,9 @@
     "isIndependent": false
   },
   "mp-85": {
-    "presentPct": 72.8,
-    "withheldPct": 4.2,
-    "absentPct": 23.0,
+    "presentPct": 73.1,
+    "withheldPct": 4.0,
+    "absentPct": 22.9,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -860,9 +830,9 @@
     "isIndependent": false
   },
   "mp-87": {
-    "presentPct": 78.8,
-    "withheldPct": 9.2,
-    "absentPct": 12.0,
+    "presentPct": 79.1,
+    "withheldPct": 9.0,
+    "absentPct": 11.8,
     "cohesionPct": 99.7,
     "deviationsCount": 1,
     "oppositeCount": 1,
@@ -870,9 +840,9 @@
     "isIndependent": false
   },
   "mp-88": {
-    "presentPct": 57.0,
-    "withheldPct": 11.2,
-    "absentPct": 31.8,
+    "presentPct": 57.3,
+    "withheldPct": 11.1,
+    "absentPct": 31.7,
     "cohesionPct": 99.6,
     "deviationsCount": 1,
     "oppositeCount": 1,
@@ -890,9 +860,9 @@
     "isIndependent": false
   },
   "mp-90": {
-    "presentPct": 78.2,
-    "withheldPct": 17.0,
-    "absentPct": 4.8,
+    "presentPct": 78.6,
+    "withheldPct": 16.8,
+    "absentPct": 4.5,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -900,9 +870,9 @@
     "isIndependent": false
   },
   "mp-91": {
-    "presentPct": 75.2,
-    "withheldPct": 11.0,
-    "absentPct": 13.8,
+    "presentPct": 75.6,
+    "withheldPct": 10.8,
+    "absentPct": 13.6,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -910,9 +880,9 @@
     "isIndependent": false
   },
   "mp-92": {
-    "presentPct": 71.5,
-    "withheldPct": 13.0,
-    "absentPct": 15.5,
+    "presentPct": 71.9,
+    "withheldPct": 12.8,
+    "absentPct": 15.3,
     "cohesionPct": 94.8,
     "deviationsCount": 8,
     "oppositeCount": 8,
@@ -920,9 +890,9 @@
     "isIndependent": false
   },
   "mp-93": {
-    "presentPct": 63.5,
-    "withheldPct": 25.8,
-    "absentPct": 10.8,
+    "presentPct": 63.8,
+    "withheldPct": 25.6,
+    "absentPct": 10.6,
     "cohesionPct": 95.9,
     "deviationsCount": 6,
     "oppositeCount": 6,
@@ -930,9 +900,9 @@
     "isIndependent": false
   },
   "mp-94": {
-    "presentPct": 89.8,
-    "withheldPct": 9.8,
-    "absentPct": 0.5,
+    "presentPct": 90.2,
+    "withheldPct": 9.5,
+    "absentPct": 0.3,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -950,9 +920,9 @@
     "isIndependent": false
   },
   "mp-96": {
-    "presentPct": 35.2,
-    "withheldPct": 9.5,
-    "absentPct": 55.2,
+    "presentPct": 35.4,
+    "withheldPct": 9.3,
+    "absentPct": 55.3,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -970,9 +940,9 @@
     "isIndependent": true
   },
   "mp-98": {
-    "presentPct": 70.0,
-    "withheldPct": 9.0,
-    "absentPct": 21.0,
+    "presentPct": 70.4,
+    "withheldPct": 8.8,
+    "absentPct": 20.9,
     "cohesionPct": null,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -980,9 +950,9 @@
     "isIndependent": true
   },
   "mp-99": {
-    "presentPct": 87.2,
-    "withheldPct": 10.0,
-    "absentPct": 2.8,
+    "presentPct": 87.7,
+    "withheldPct": 9.8,
+    "absentPct": 2.5,
     "cohesionPct": null,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -990,9 +960,9 @@
     "isIndependent": true
   },
   "mp-100": {
-    "presentPct": 95.5,
-    "withheldPct": 3.2,
-    "absentPct": 1.2,
+    "presentPct": 96.0,
+    "withheldPct": 3.0,
+    "absentPct": 1.0,
     "cohesionPct": null,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -1000,9 +970,9 @@
     "isIndependent": true
   },
   "mp-101": {
-    "presentPct": 96.5,
-    "withheldPct": 3.2,
-    "absentPct": 0.2,
+    "presentPct": 97.0,
+    "withheldPct": 3.0,
+    "absentPct": 0.0,
     "cohesionPct": 89.9,
     "deviationsCount": 39,
     "oppositeCount": 0,
@@ -1010,9 +980,9 @@
     "isIndependent": false
   },
   "mp-102": {
-    "presentPct": 85.2,
-    "withheldPct": 1.5,
-    "absentPct": 13.2,
+    "presentPct": 85.7,
+    "withheldPct": 1.3,
+    "absentPct": 13.1,
     "cohesionPct": 98.2,
     "deviationsCount": 6,
     "oppositeCount": 3,
@@ -1020,9 +990,9 @@
     "isIndependent": false
   },
   "mp-103": {
-    "presentPct": 91.5,
-    "withheldPct": 6.5,
-    "absentPct": 2.0,
+    "presentPct": 92.0,
+    "withheldPct": 6.3,
+    "absentPct": 1.8,
     "cohesionPct": 99.7,
     "deviationsCount": 1,
     "oppositeCount": 1,
@@ -1030,9 +1000,9 @@
     "isIndependent": false
   },
   "mp-104": {
-    "presentPct": 73.2,
-    "withheldPct": 16.2,
-    "absentPct": 10.5,
+    "presentPct": 73.6,
+    "withheldPct": 16.1,
+    "absentPct": 10.3,
     "cohesionPct": 98.3,
     "deviationsCount": 5,
     "oppositeCount": 1,
@@ -1040,9 +1010,9 @@
     "isIndependent": false
   },
   "mp-105": {
-    "presentPct": 98.2,
-    "withheldPct": 0.8,
-    "absentPct": 1.0,
+    "presentPct": 98.7,
+    "withheldPct": 0.5,
+    "absentPct": 0.8,
     "cohesionPct": 98.2,
     "deviationsCount": 7,
     "oppositeCount": 1,
@@ -1050,9 +1020,9 @@
     "isIndependent": false
   },
   "mp-106": {
-    "presentPct": 88.2,
-    "withheldPct": 11.0,
-    "absentPct": 0.8,
+    "presentPct": 88.7,
+    "withheldPct": 10.8,
+    "absentPct": 0.5,
     "cohesionPct": 99.5,
     "deviationsCount": 1,
     "oppositeCount": 1,
@@ -1060,9 +1030,9 @@
     "isIndependent": false
   },
   "mp-107": {
-    "presentPct": 83.0,
-    "withheldPct": 15.2,
-    "absentPct": 1.8,
+    "presentPct": 83.4,
+    "withheldPct": 15.1,
+    "absentPct": 1.5,
     "cohesionPct": null,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -1070,9 +1040,9 @@
     "isIndependent": true
   },
   "mp-108": {
-    "presentPct": 98.2,
-    "withheldPct": 1.5,
-    "absentPct": 0.2,
+    "presentPct": 98.7,
+    "withheldPct": 1.3,
+    "absentPct": 0.0,
     "cohesionPct": 98.0,
     "deviationsCount": 8,
     "oppositeCount": 1,
@@ -1080,9 +1050,9 @@
     "isIndependent": false
   },
   "mp-109": {
-    "presentPct": 92.5,
-    "withheldPct": 5.5,
-    "absentPct": 2.0,
+    "presentPct": 93.0,
+    "withheldPct": 5.3,
+    "absentPct": 1.8,
     "cohesionPct": 99.2,
     "deviationsCount": 3,
     "oppositeCount": 2,
@@ -1090,9 +1060,9 @@
     "isIndependent": false
   },
   "mp-110": {
-    "presentPct": 94.0,
-    "withheldPct": 1.8,
-    "absentPct": 4.2,
+    "presentPct": 94.5,
+    "withheldPct": 1.5,
+    "absentPct": 4.0,
     "cohesionPct": 97.6,
     "deviationsCount": 9,
     "oppositeCount": 3,
@@ -1100,9 +1070,9 @@
     "isIndependent": false
   },
   "mp-111": {
-    "presentPct": 90.8,
-    "withheldPct": 9.0,
-    "absentPct": 0.2,
+    "presentPct": 91.2,
+    "withheldPct": 8.8,
+    "absentPct": 0.0,
     "cohesionPct": 100.0,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -1110,9 +1080,9 @@
     "isIndependent": false
   },
   "mp-112": {
-    "presentPct": 94.2,
-    "withheldPct": 2.2,
-    "absentPct": 3.5,
+    "presentPct": 94.7,
+    "withheldPct": 2.0,
+    "absentPct": 3.3,
     "cohesionPct": 93.4,
     "deviationsCount": 25,
     "oppositeCount": 1,
@@ -1120,9 +1090,9 @@
     "isIndependent": false
   },
   "mp-113": {
-    "presentPct": 99.0,
-    "withheldPct": 0.8,
-    "absentPct": 0.2,
+    "presentPct": 99.5,
+    "withheldPct": 0.5,
+    "absentPct": 0.0,
     "cohesionPct": 97.5,
     "deviationsCount": 10,
     "oppositeCount": 3,
@@ -1130,9 +1100,9 @@
     "isIndependent": false
   },
   "mp-114": {
-    "presentPct": 40.0,
-    "withheldPct": 10.2,
-    "absentPct": 49.8,
+    "presentPct": 40.2,
+    "withheldPct": 10.1,
+    "absentPct": 49.7,
     "cohesionPct": 99.4,
     "deviationsCount": 1,
     "oppositeCount": 0,
@@ -1140,9 +1110,9 @@
     "isIndependent": false
   },
   "mp-115": {
-    "presentPct": 93.8,
-    "withheldPct": 4.5,
-    "absentPct": 1.8,
+    "presentPct": 94.2,
+    "withheldPct": 4.3,
+    "absentPct": 1.5,
     "cohesionPct": 96.0,
     "deviationsCount": 15,
     "oppositeCount": 12,
@@ -1150,9 +1120,9 @@
     "isIndependent": false
   },
   "mp-116": {
-    "presentPct": 99.2,
-    "withheldPct": 0.5,
-    "absentPct": 0.2,
+    "presentPct": 99.7,
+    "withheldPct": 0.3,
+    "absentPct": 0.0,
     "cohesionPct": 99.5,
     "deviationsCount": 2,
     "oppositeCount": 0,
@@ -1160,9 +1130,9 @@
     "isIndependent": false
   },
   "mp-117": {
-    "presentPct": 88.0,
-    "withheldPct": 9.2,
-    "absentPct": 2.8,
+    "presentPct": 88.4,
+    "withheldPct": 9.0,
+    "absentPct": 2.5,
     "cohesionPct": null,
     "deviationsCount": 0,
     "oppositeCount": 0,
@@ -1170,9 +1140,9 @@
     "isIndependent": true
   },
   "mp-118": {
-    "presentPct": 97.0,
-    "withheldPct": 2.5,
-    "absentPct": 0.5,
+    "presentPct": 97.5,
+    "withheldPct": 2.3,
+    "absentPct": 0.3,
     "cohesionPct": 98.7,
     "deviationsCount": 5,
     "oppositeCount": 1,
@@ -1180,9 +1150,9 @@
     "isIndependent": false
   },
   "mp-119": {
-    "presentPct": 96.2,
-    "withheldPct": 1.5,
-    "absentPct": 2.2,
+    "presentPct": 96.7,
+    "withheldPct": 1.3,
+    "absentPct": 2.0,
     "cohesionPct": 98.7,
     "deviationsCount": 5,
     "oppositeCount": 0,
@@ -1190,9 +1160,9 @@
     "isIndependent": false
   },
   "mp-120": {
-    "presentPct": 95.2,
-    "withheldPct": 4.5,
-    "absentPct": 0.2,
+    "presentPct": 95.7,
+    "withheldPct": 4.3,
+    "absentPct": 0.0,
     "cohesionPct": 92.4,
     "deviationsCount": 29,
     "oppositeCount": 5,
@@ -1200,9 +1170,9 @@
     "isIndependent": false
   },
   "mp-121": {
-    "presentPct": 98.8,
-    "withheldPct": 0.8,
-    "absentPct": 0.5,
+    "presentPct": 99.2,
+    "withheldPct": 0.5,
+    "absentPct": 0.3,
     "cohesionPct": 96.7,
     "deviationsCount": 13,
     "oppositeCount": 0,
@@ -1210,9 +1180,9 @@
     "isIndependent": false
   },
   "mp-122": {
-    "presentPct": 95.0,
-    "withheldPct": 0.8,
-    "absentPct": 4.2,
+    "presentPct": 95.5,
+    "withheldPct": 0.5,
+    "absentPct": 4.0,
     "cohesionPct": 97.6,
     "deviationsCount": 9,
     "oppositeCount": 0,
@@ -1220,9 +1190,9 @@
     "isIndependent": false
   },
   "mp-123": {
-    "presentPct": 89.5,
-    "withheldPct": 7.2,
-    "absentPct": 3.2,
+    "presentPct": 89.9,
+    "withheldPct": 7.0,
+    "absentPct": 3.0,
     "cohesionPct": 97.5,
     "deviationsCount": 9,
     "oppositeCount": 7,
@@ -1230,9 +1200,9 @@
     "isIndependent": false
   },
   "mp-124": {
-    "presentPct": 79.8,
-    "withheldPct": 1.5,
-    "absentPct": 18.8,
+    "presentPct": 80.2,
+    "withheldPct": 1.3,
+    "absentPct": 18.6,
     "cohesionPct": 96.9,
     "deviationsCount": 10,
     "oppositeCount": 4,
@@ -1240,9 +1210,9 @@
     "isIndependent": false
   },
   "mp-125": {
-    "presentPct": 79.0,
-    "withheldPct": 4.8,
-    "absentPct": 16.2,
+    "presentPct": 79.4,
+    "withheldPct": 4.5,
+    "absentPct": 16.1,
     "cohesionPct": 95.3,
     "deviationsCount": 15,
     "oppositeCount": 0,
@@ -1250,9 +1220,9 @@
     "isIndependent": false
   },
   "mp-126": {
-    "presentPct": 99.0,
-    "withheldPct": 0.5,
-    "absentPct": 0.5,
+    "presentPct": 99.5,
+    "withheldPct": 0.3,
+    "absentPct": 0.3,
     "cohesionPct": 99.0,
     "deviationsCount": 4,
     "oppositeCount": 0,
@@ -1260,9 +1230,9 @@
     "isIndependent": false
   },
   "mp-127": {
-    "presentPct": 90.0,
-    "withheldPct": 0.8,
-    "absentPct": 9.2,
+    "presentPct": 90.5,
+    "withheldPct": 0.5,
+    "absentPct": 9.0,
     "cohesionPct": 98.1,
     "deviationsCount": 7,
     "oppositeCount": 0,
@@ -1270,9 +1240,9 @@
     "isIndependent": false
   },
   "mp-128": {
-    "presentPct": 82.2,
-    "withheldPct": 6.0,
-    "absentPct": 11.8,
+    "presentPct": 82.7,
+    "withheldPct": 5.8,
+    "absentPct": 11.6,
     "cohesionPct": 95.7,
     "deviationsCount": 14,
     "oppositeCount": 11,
@@ -1280,9 +1250,9 @@
     "isIndependent": false
   },
   "mp-129": {
-    "presentPct": 89.0,
-    "withheldPct": 2.5,
-    "absentPct": 8.5,
+    "presentPct": 89.4,
+    "withheldPct": 2.3,
+    "absentPct": 8.3,
     "cohesionPct": 99.2,
     "deviationsCount": 3,
     "oppositeCount": 2,
@@ -1290,8 +1260,8 @@
     "isIndependent": false
   },
   "mp-130": {
-    "presentPct": 36.5,
-    "withheldPct": 3.8,
+    "presentPct": 36.7,
+    "withheldPct": 3.5,
     "absentPct": 59.8,
     "cohesionPct": null,
     "deviationsCount": 0,
@@ -1380,16 +1350,6 @@
     "isIndependent": false
   },
   "mp-139": {
-    "presentPct": 0.0,
-    "withheldPct": 0.0,
-    "absentPct": 100.0,
-    "cohesionPct": 100.0,
-    "deviationsCount": 0,
-    "oppositeCount": 0,
-    "nuanceCount": 0,
-    "isIndependent": false
-  },
-  "mp-140": {
     "presentPct": 0.0,
     "withheldPct": 0.0,
     "absentPct": 100.0,
