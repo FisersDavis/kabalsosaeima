@@ -93,6 +93,7 @@ type Vote struct {
 	Summary         string             `json:"summary"`
 	Purpose         string             `json:"purpose"`
 	ProtocolURL     string             `json:"protocolUrl"`
+	StenogramURL    string             `json:"stenogramUrl"`
 	Category        VoteCategory       `json:"category"`
 	Result          string             `json:"result"`
 	Counts          VoteCounts         `json:"counts"`

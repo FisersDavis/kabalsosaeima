@@ -565,4 +565,32 @@ type MPDirectoryProps struct {
 	Store       *data.Store
 }
 
+// SaeimaBillSearchURL generates a direct search link to the Saeima legal database for a bill.
+func SaeimaBillSearchURL(billNr string) string {
+	clean := CleanBillNr(billNr)
+	if clean == "" {
+		return "https://www.saeima.lv/lv/likumdosana/"
+	}
+	return fmt.Sprintf("https://titania.saeima.lv/LIVS14/SaeimaLIVS2_DK.nsf/webAll?SearchView&Query=([Title]=*%s*)", clean)
+}
+
+// VoteProtocolURL returns the official protocol URL, or an official bill search fallback.
+func VoteProtocolURL(v data.Vote) string {
+	if v.ProtocolURL != "" {
+		return v.ProtocolURL
+	}
+	if v.BillNumber != "" {
+		return SaeimaBillSearchURL(v.BillNumber)
+	}
+	return "https://www.saeima.lv/lv/likumdosana/balsojumi/"
+}
+
+// VoteProtocolURLFromPtr returns VoteProtocolURL for a pointer to data.Vote.
+func VoteProtocolURLFromPtr(v *data.Vote) string {
+	if v == nil {
+		return "https://www.saeima.lv"
+	}
+	return VoteProtocolURL(*v)
+}
+
 
