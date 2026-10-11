@@ -15,9 +15,9 @@ graph TD
 
     Node0["✅ Step 0: Data Reconciliation<br/>• Scrape official mandates from saeima.lv<br/>• Purge synthetic votes (edge-quorum-01, edge-secret-01)<br/>• Reconcile 139 MPs & Titania UNIDs"]:::done
     
-    Node1["🎯 Step 1: Golden Test Snapshot<br/>• Freeze testdata/golden/<br/>• Copy votes, mps, rollcalls, mp_summaries<br/>• Immutable baseline for parity testing"]:::ready
+    Node1["✅ Step 1: Golden Test Snapshot<br/>• Freeze testdata/golden/<br/>• Copy votes, mps, rollcalls, mp_summaries<br/>• Immutable baseline for parity testing"]:::done
     
-    Node2["⏳ Step 2: Go Toolchain Setup<br/>• Initialize go.mod (Go 1.24)<br/>• tool templ directive<br/>• Standalone Tailwind CLI (bin/tailwindcss.exe)"]:::ready
+    Node2["🎯 Step 2: Go Toolchain Setup<br/>• Initialize go.mod (Go 1.24)<br/>• tool templ directive<br/>• Standalone Tailwind CLI (bin/tailwindcss.exe)"]:::ready
 
     Node3["⏳ Step 3: Go Data Loader & Validator<br/>• internal/data/models.go<br/>• loader.go (index once, build lookup maps)<br/>• validate.go (>100 active fails, rollcall check)"]:::blocked
 
@@ -54,14 +54,14 @@ graph TD
 
 ---
 
-### [ ] Step 1: Golden Test Snapshot (NEXT UP)
+### [x] Step 1: Golden Test Snapshot
 - **Branch:** `refactor/go-ssg`
 - **Objective:** Freeze an immutable copy of the current clean data so that Go unit tests test against a fixed ground truth.
 - **Tasks:**
   1. Create directory `testdata/golden/`.
   2. Copy `public/data/votes.json`, `public/data/mps.json`, `public/data/mandates.json`, `public/data/mp_summaries.json`, and `public/data/rollcalls/` into `testdata/golden/`.
   3. Verify file integrity and size.
-- **Verification Gate:** `testdata/golden/` exists, contains all 398 votes and 139 MPs, and is committed.
+- **Verification Gate (PASSED):** `testdata/golden/` exists, contains all 398 votes, 139 MPs, 139 mandates, 136 summaries, and 398 rollcalls, and is committed.
 
 ---
 
