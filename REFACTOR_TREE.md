@@ -21,9 +21,9 @@ graph TD
 
     Node3["✅ Step 3: Go Data Loader & Validator<br/>• internal/data/models.go<br/>• loader.go (index once, build lookup maps)<br/>• validate.go (>100 active fails, rollcall check)"]:::done
 
-    Node4["🎯 Step 4: Stats Engine & Golden Parity<br/>• internal/stats/ (attendance, cohesion)<br/>• Pure functions with table-driven tests<br/>• Assert 100% equivalence with testdata/golden/"]:::ready
+    Node4["✅ Step 4: Stats Engine & Golden Parity<br/>• internal/stats/ (attendance, cohesion)<br/>• Pure functions with table-driven tests<br/>• Assert 100% equivalence with testdata/golden/"]:::done
 
-    Node5["⏳ Step 5: Templ Views & UI Components<br/>• Base layout with meta/OG tags & redirect.js<br/>• Pre-rendered vote cards with data-* attributes<br/>• Accessible Hemicycle SVG wrapped in &lt;a&gt; links<br/>• filter.js (~50 LOC DOM show/hide + URL sync)"]:::blocked
+    Node5["🎯 Step 5: Templ Views & UI Components<br/>• Base layout with meta/OG tags & redirect.js<br/>• Pre-rendered vote cards with data-* attributes<br/>• Accessible Hemicycle SVG wrapped in &lt;a&gt; links<br/>• filter.js (~50 LOC DOM show/hide + URL sync)"]:::ready
 
     Node6["⏳ Step 6: SSG CLI & CI Pipeline<br/>• cmd/build/main.go -> generates dist/<br/>• cmd/serve/main.go -> local preview<br/>• Update thursday_sync.yml & sentinel_check.py<br/>• Final Parity Check -> Delete legacy src/ & package.json<br/>• Merge refactor/go-ssg into main"]:::blocked
 
@@ -86,18 +86,18 @@ graph TD
 
 ---
 
-### [ ] Step 4: Stats Engine & Golden Parity (NEXT UP)
+### [x] Step 4: Stats Engine & Golden Parity
 - **Package:** `internal/stats`
 - **Tasks:**
   1. `attendance.go`: Calculate attendance denominator *only* over active mandate intervals.
   2. `cohesion.go`: Faction unity using historical rollcall `factionId`.
   3. `timeline.go`: Group bill readings (1st, 2nd, 3rd) and amendments by bill number.
   4. `stats_test.go`: Compare calculated stats against `testdata/golden/mp_summaries.json` for all continuous MPs.
-- **Verification Gate:** `go test -v ./internal/stats/...` passes with 100% equivalence.
+- **Verification Gate (PASSED):** `go test -v ./internal/stats/...` passes with 100% equivalence (86 continuous MPs, documented ministers and switchers, bill timeline grouping).
 
 ---
 
-### [ ] Step 5: Templ Views & UI Components
+### [ ] Step 5: Templ Views & UI Components (NEXT UP)
 - **Package:** `internal/views`
 - **Tasks:**
   1. `layout.templ`: HTML5 shell, OpenGraph tags, Tailwind CSS, `assets/js/redirect.js`.
