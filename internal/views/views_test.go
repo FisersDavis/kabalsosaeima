@@ -55,6 +55,49 @@ func TestCleanBillNr(t *testing.T) {
 	}
 }
 
+func TestMeaningfulVotePurpose(t *testing.T) {
+	// Formulaic boilerplates should be suppressed
+	if got := MeaningfulVotePurpose("Saeimas izskatīts likumprojekts (2. lasījums): Grozījumi likumā"); got != "" {
+		t.Errorf("Expected empty string for mechanical purpose, got %q", got)
+	}
+	if got := MeaningfulVotePurpose("Procedūras lēmums Saeimas sēdes gaitā. Grozījumi likumā."); got != "" {
+		t.Errorf("Expected empty string for procedural purpose, got %q", got)
+	}
+	if got := MeaningfulVotePurpose("Priekšlikums likumprojektam „Grozījumi likumā” (Nr. 123/Lp14)."); got != "" {
+		t.Errorf("Expected empty string for generic proposal purpose, got %q", got)
+	}
+
+	// Substantive context should be preserved
+	civic := "Likumprojekts paredzēja paaugstināt amatpersonu atbildību par informācijas nesniegšanu."
+	if got := MeaningfulVotePurpose(civic); got != civic {
+		t.Errorf("Expected %q, got %q", civic, got)
+	}
+}
+
+func TestExtractResponsibleCommittee(t *testing.T) {
+	summary := "Likumprojekts izskatīts Saeimas sēdē. Oficiālais reģistrācijas numurs: 1135/Lp14. Atbildīgā komisija: Tautsaimniecības, agrārās, vides un reģionālās politikas komisija."
+	expected := "Tautsaimniecības, agrārās, vides un reģionālās politikas komisija"
+	if got := ExtractResponsibleCommittee(summary); got != expected {
+		t.Errorf("ExtractResponsibleCommittee failed: got %q, want %q", got, expected)
+	}
+
+	if got := ExtractResponsibleCommittee("Nav norādīta komisija."); got != "" {
+		t.Errorf("Expected empty string when no committee is present, got %q", got)
+	}
+}
+
+func TestPurposeLabel(t *testing.T) {
+	if got := PurposeLabel("priekslikums", "Priekšlikums", "3. priekšlikums"); got != "Priekšlikuma būtība" {
+		t.Errorf("Expected 'Priekšlikuma būtība', got %q", got)
+	}
+	if got := PurposeLabel("procedura", "Darba kārtība", "Par darba kārtību"); got != "Lēmuma pamatojums" {
+		t.Errorf("Expected 'Lēmuma pamatojums', got %q", got)
+	}
+	if got := PurposeLabel("likums", "3. lasījums", "Grozījumi likumā"); got != "Likuma mērķis" {
+		t.Errorf("Expected 'Likuma mērķis', got %q", got)
+	}
+}
+
 func loadGoldenStore(t *testing.T) *data.Store {
 	t.Helper()
 	goldenDir := filepath.Join("..", "..", "testdata", "golden")

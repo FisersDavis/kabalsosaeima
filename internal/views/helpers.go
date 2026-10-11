@@ -58,6 +58,51 @@ func ResolveMPSlug(store *data.Store, mpID string) string {
 	return mpID
 }
 
+// MeaningfulVotePurpose extracts substantive civic context if purpose is not generic boilerplate.
+// Returns empty string if purpose is only a mechanical repetition of stage/number or empty.
+func MeaningfulVotePurpose(purpose string) string {
+	s := strings.TrimSpace(purpose)
+	if s == "" {
+		return ""
+	}
+	// Filter out formulaic robotic boilerplates
+	if strings.HasPrefix(s, "Saeimas izskatīts likumprojekts") {
+		return ""
+	}
+	if strings.HasPrefix(s, "Procedūras lēmums Saeimas sēdes gaitā") {
+		return ""
+	}
+	if strings.HasPrefix(s, "Priekšlikums likumprojektam") {
+		return ""
+	}
+	return s
+}
+
+var committeeRegex = regexp.MustCompile(`(?i)Atbildīgā komisija:\s*([^.]+)`)
+
+// ExtractResponsibleCommittee extracts committee name from legal summary text if present.
+func ExtractResponsibleCommittee(summary string) string {
+	m := committeeRegex.FindStringSubmatch(summary)
+	if len(m) > 1 {
+		return strings.TrimSpace(m[1])
+	}
+	return ""
+}
+
+// PurposeLabel returns an appropriate label for context based on whether the vote is a proposal or a law.
+func PurposeLabel(voteType, readingStage, title string) string {
+	vt := strings.ToLower(voteType)
+	rs := strings.ToLower(readingStage)
+	t := strings.ToLower(title)
+	if vt == "priekslikums" || strings.Contains(rs, "priekšlikum") || strings.Contains(t, "priekšlikum") {
+		return "Priekšlikuma būtība"
+	}
+	if vt == "procedura" || strings.Contains(rs, "procedūr") || strings.Contains(rs, "darba kārtīb") {
+		return "Lēmuma pamatojums"
+	}
+	return "Likuma mērķis"
+}
+
 
 // DecisionColor returns standard chromatic colors for parliamentary decisions.
 func DecisionColor(decision string) string {

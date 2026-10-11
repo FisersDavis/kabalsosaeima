@@ -38,6 +38,10 @@ templ Vote(props VoteProps) {
 						if props.Vote.ReadingStage != "" {
 							<span class="text-slate-600 font-medium">{ props.Vote.ReadingStage }</span>
 						}
+						{{ committee := ExtractResponsibleCommittee(props.Vote.Summary) }}
+						if committee != "" {
+							<span class="text-slate-500">· Atbildīgā: { committee }</span>
+						}
 					</div>
 
 					<h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 leading-snug">
@@ -51,10 +55,18 @@ templ Vote(props VoteProps) {
 					}
 				</div>
 
-				<!-- Summary -->
-				if props.Vote.Summary != "" {
+				<!-- Purpose / Summary -->
+				{{
+					meaningfulPurpose := MeaningfulVotePurpose(props.Vote.Purpose)
+				}}
+				if meaningfulPurpose != "" {
 					<div class="rounded-lg bg-slate-50 p-4 border border-slate-100 text-xs sm:text-sm text-slate-700 leading-relaxed space-y-1.5">
-						<div class="font-semibold text-slate-900">Likuma mērķis un kopsavilkums:</div>
+						<div class="font-semibold text-slate-900">{ PurposeLabel(props.Vote.VoteType, props.Vote.ReadingStage, props.Vote.SimplifiedTitle) } un pamatojums:</div>
+						<p>{ meaningfulPurpose }</p>
+					</div>
+				} else if props.Vote.Summary != "" {
+					<div class="rounded-lg bg-slate-50 p-4 border border-slate-100 text-xs sm:text-sm text-slate-700 leading-relaxed space-y-1.5">
+						<div class="font-semibold text-slate-900">Informācija par likumprojektu:</div>
 						<p>{ strings.TrimSpace(props.Vote.Summary) }</p>
 					</div>
 				}

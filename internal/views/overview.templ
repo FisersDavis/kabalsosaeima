@@ -168,10 +168,12 @@ templ Overview(props OverviewProps) {
 							}
 						</div>
 
-						<!-- Summary / Purpose -->
-						if v.Summary != "" {
-							<p class="text-xs text-slate-600 leading-relaxed bg-slate-50/80 rounded-lg p-2.5 border border-slate-100 line-clamp-2">
-								{ strings.TrimSpace(v.Summary) }
+						<!-- Meaningful Civic Purpose (if substantive context exists) -->
+						{{ meaningfulContext := MeaningfulVotePurpose(v.Purpose) }}
+						if meaningfulContext != "" {
+							<p class="text-xs text-slate-600 leading-relaxed bg-slate-50/80 rounded-lg p-2.5 border border-slate-100 line-clamp-3">
+								<span class="font-semibold text-slate-800">{ PurposeLabel(v.VoteType, v.ReadingStage, v.SimplifiedTitle) }: </span>
+								{ meaningfulContext }
 							</p>
 						}
 

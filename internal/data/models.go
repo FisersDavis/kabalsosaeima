@@ -91,6 +91,7 @@ type Vote struct {
 	BillNumber      string             `json:"billNumber"`
 	SimplifiedTitle string             `json:"simplifiedTitle"`
 	Summary         string             `json:"summary"`
+	Purpose         string             `json:"purpose"`
 	ProtocolURL     string             `json:"protocolUrl"`
 	Category        VoteCategory       `json:"category"`
 	Result          string             `json:"result"`
