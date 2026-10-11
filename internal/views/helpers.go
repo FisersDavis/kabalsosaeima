@@ -255,17 +255,29 @@ func ResultBadgeClass(result string) string {
 
 // HemicycleSeat represents a single focusable seat in the Saeima chamber.
 type HemicycleSeat struct {
-	MpID         string
-	Name         string
-	Slug         string
-	FactionID    string
-	FactionShort string
-	FactionColor string
-	Decision     string
-	Color        string
-	ChamberSeat  int
-	X            float64
-	Y            float64
+	MpID             string
+	Name             string
+	Slug             string
+	FactionID        string
+	FactionShort     string
+	FactionColor     string
+	FactionTextColor string
+	Decision         string
+	Color            string
+	ChamberSeat      int
+	X                float64
+	Y                float64
+}
+
+// FactionTextColor returns readable foreground text color for a faction background.
+func FactionTextColor(factionID string, customText string) string {
+	if customText != "" {
+		return customText
+	}
+	if strings.EqualFold(factionID, "as") {
+		return "#713F12" // Dark warm brown on golden yellow
+	}
+	return "#ffffff" // White on dark backgrounds
 }
 
 // ResolveMPFactionOnDate determines an MP's faction at a specific vote date.
@@ -439,6 +451,7 @@ func BuildHemicycleSeats(store *data.Store, v *data.Vote) []HemicycleSeat {
 
 		fShort := dep.factionID
 		fColor := "#64748B"
+		fTextColor := FactionTextColor(dep.factionID, "")
 		if fMeta != nil {
 			if fMeta.ShortName != "" {
 				fShort = fMeta.ShortName
@@ -446,6 +459,7 @@ func BuildHemicycleSeats(store *data.Store, v *data.Vote) []HemicycleSeat {
 			if fMeta.Color != "" {
 				fColor = fMeta.Color
 			}
+			fTextColor = FactionTextColor(dep.factionID, fMeta.TextColor)
 		}
 
 		slug := dep.mp.Slug
@@ -454,17 +468,18 @@ func BuildHemicycleSeats(store *data.Store, v *data.Vote) []HemicycleSeat {
 		}
 
 		seats = append(seats, HemicycleSeat{
-			MpID:         dep.mp.ID,
-			Name:         dep.mp.Name,
-			Slug:         slug,
-			FactionID:    dep.factionID,
-			FactionShort: fShort,
-			FactionColor: fColor,
-			Decision:     dep.decision,
-			Color:        DecisionColor(dep.decision),
-			ChamberSeat:  i + 1,
-			X:            coord.x,
-			Y:            coord.y,
+			MpID:             dep.mp.ID,
+			Name:             dep.mp.Name,
+			Slug:             slug,
+			FactionID:        dep.factionID,
+			FactionShort:     fShort,
+			FactionColor:     fColor,
+			FactionTextColor: fTextColor,
+			Decision:         dep.decision,
+			Color:            DecisionColor(dep.decision),
+			ChamberSeat:      i + 1,
+			X:                coord.x,
+			Y:                coord.y,
 		})
 	}
 

@@ -120,6 +120,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 
 				color := "#64748B"
 				fShort := mp.FactionID
+				textColor := FactionTextColor(mp.FactionID, "")
 				if faction != nil {
 					if faction.Color != "" {
 						color = faction.Color
@@ -127,6 +128,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 					if faction.ShortName != "" {
 						fShort = faction.ShortName
 					}
+					textColor = FactionTextColor(mp.FactionID, faction.TextColor)
 				}
 
 				activeStr := "false"
@@ -140,7 +142,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 				var templ_7745c5c3_Var6 templ.SafeURL
 				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(fmt.Sprintf("/deputati/%s/", slug)))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 121, Col: 62}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 123, Col: 62}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 				if templ_7745c5c3_Err != nil {
@@ -153,7 +155,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 				var templ_7745c5c3_Var7 string
 				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.ResolveAttributeValue(mp.Name)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 123, Col: 25}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 125, Col: 25}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var7)
 				if templ_7745c5c3_Err != nil {
@@ -166,7 +168,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 				var templ_7745c5c3_Var8 string
 				templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.ResolveAttributeValue(mp.FactionID)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 124, Col: 33}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 126, Col: 33}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var8)
 				if templ_7745c5c3_Err != nil {
@@ -179,20 +181,20 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 				var templ_7745c5c3_Var9 string
 				templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.ResolveAttributeValue(activeStr)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 125, Col: 29}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 127, Col: 29}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var9)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "\"><div><div class=\"flex items-start gap-3\"><!-- Initials Avatar --><div class=\"w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 text-white shadow-2xs\" style=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "\"><div><div class=\"flex items-start gap-3\"><!-- Initials Avatar --><div class=\"w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs\" style=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var10 string
-				templ_7745c5c3_Var10, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(fmt.Sprintf("background-color: %s", color))
+				templ_7745c5c3_Var10, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(fmt.Sprintf("background-color: %s; color: %s;", color, textColor))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 132, Col: 59}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 134, Col: 82}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 				if templ_7745c5c3_Err != nil {
@@ -205,7 +207,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 				var templ_7745c5c3_Var11 string
 				templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(initials)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 134, Col: 19}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 136, Col: 19}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 				if templ_7745c5c3_Err != nil {
@@ -218,7 +220,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 				var templ_7745c5c3_Var12 string
 				templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.ResolveAttributeValue(mp.Name)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 140, Col: 25}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 142, Col: 25}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var12)
 				if templ_7745c5c3_Err != nil {
@@ -231,20 +233,20 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 				var templ_7745c5c3_Var13 string
 				templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(mp.Name)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 142, Col: 19}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 144, Col: 19}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</div><div class=\"mt-1 flex items-center gap-1.5 flex-wrap\"><span class=\"inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold text-white\" style=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</div><div class=\"mt-1 flex items-center gap-1.5 flex-wrap\"><span class=\"inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold shadow-2xs\" style=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var14 string
-				templ_7745c5c3_Var14, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(fmt.Sprintf("background-color: %s", color))
+				templ_7745c5c3_Var14, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(fmt.Sprintf("background-color: %s; color: %s;", color, textColor))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 148, Col: 61}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 150, Col: 84}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 				if templ_7745c5c3_Err != nil {
@@ -257,7 +259,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 				var templ_7745c5c3_Var15 string
 				templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(fShort)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 150, Col: 19}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 152, Col: 19}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 				if templ_7745c5c3_Err != nil {
@@ -275,7 +277,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 					var templ_7745c5c3_Var16 string
 					templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d", mp.SeatNumber))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 155, Col: 50}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 157, Col: 50}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 					if templ_7745c5c3_Err != nil {
@@ -328,7 +330,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 					var templ_7745c5c3_Var19 string
 					templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.1f%%", item.Attendance.PresentPct))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 182, Col: 62}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 184, Col: 62}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
 					if templ_7745c5c3_Err != nil {
@@ -356,7 +358,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 					var templ_7745c5c3_Var20 string
 					templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.1f%%", *item.Cohesion.CohesionPct))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 198, Col: 62}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 200, Col: 62}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
 					if templ_7745c5c3_Err != nil {
@@ -384,7 +386,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 					var templ_7745c5c3_Var21 string
 					templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.ResolveAttributeValue(mandate.Note)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 215, Col: 93}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 217, Col: 93}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var21)
 					if templ_7745c5c3_Err != nil {
@@ -397,7 +399,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 					var templ_7745c5c3_Var22 string
 					templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinStringErrs(mandate.Note)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 216, Col: 23}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 218, Col: 23}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
 					if templ_7745c5c3_Err != nil {

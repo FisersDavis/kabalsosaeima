@@ -180,8 +180,8 @@ templ Vote(props VoteProps) {
 											</td>
 											<td class="py-2 px-4 text-center">
 												<span
-													class="inline-flex rounded px-1.5 py-0.5 font-mono text-[10px] font-bold text-white"
-													style={ fmt.Sprintf("background-color: %s", seat.FactionColor) }
+													class="inline-flex rounded px-1.5 py-0.5 font-mono text-[10px] font-bold shadow-2xs"
+													style={ fmt.Sprintf("background-color: %s; color: %s;", seat.FactionColor, seat.FactionTextColor) }
 												>
 													{ seat.FactionShort }
 												</span>

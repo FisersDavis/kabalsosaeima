@@ -38,6 +38,10 @@ templ MPView(props MPProps) {
 									fName = props.Faction.Name
 								}
 							}
+							textColor := FactionTextColor(props.MP.FactionID, "")
+							if props.Faction != nil {
+								textColor = FactionTextColor(props.MP.FactionID, props.Faction.TextColor)
+							}
 							initials := ""
 							parts := strings.Fields(props.MP.Name)
 							if len(parts) >= 2 {
@@ -47,8 +51,8 @@ templ MPView(props MPProps) {
 							}
 						}}
 						<div
-							class="w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg text-white shadow-xs shrink-0"
-							style={ fmt.Sprintf("background-color: %s", color) }
+							class="w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg shadow-xs shrink-0"
+							style={ fmt.Sprintf("background-color: %s; color: %s;", color, textColor) }
 						>
 							{ strings.ToUpper(initials) }
 						</div>
@@ -59,8 +63,8 @@ templ MPView(props MPProps) {
 									{ props.MP.Name }
 								</h1>
 								<span
-									class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold text-white shadow-2xs"
-									style={ fmt.Sprintf("background-color: %s", color) }
+									class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold shadow-2xs"
+									style={ fmt.Sprintf("background-color: %s; color: %s;", color, textColor) }
 								>
 									{ fShort }
 								</span>

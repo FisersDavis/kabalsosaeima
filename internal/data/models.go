@@ -113,4 +113,5 @@ type Faction struct {
 	Name      string `json:"name"`
 	ShortName string `json:"shortName"`
 	Color     string `json:"color"`
+	TextColor string `json:"textColor,omitempty"`
 }

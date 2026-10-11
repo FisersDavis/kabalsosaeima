@@ -514,14 +514,14 @@ func Vote(props VoteProps) templ.Component {
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 48, "</a></td><td class=\"py-2 px-4 text-center\"><span class=\"inline-flex rounded px-1.5 py-0.5 font-mono text-[10px] font-bold text-white\" style=\"")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 48, "</a></td><td class=\"py-2 px-4 text-center\"><span class=\"inline-flex rounded px-1.5 py-0.5 font-mono text-[10px] font-bold shadow-2xs\" style=\"")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 					var templ_7745c5c3_Var32 string
-					templ_7745c5c3_Var32, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(fmt.Sprintf("background-color: %s", seat.FactionColor))
+					templ_7745c5c3_Var32, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(fmt.Sprintf("background-color: %s; color: %s;", seat.FactionColor, seat.FactionTextColor))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `vote.templ`, Line: 184, Col: 75}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `vote.templ`, Line: 184, Col: 110}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var32))
 					if templ_7745c5c3_Err != nil {

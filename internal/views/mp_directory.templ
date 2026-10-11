@@ -102,6 +102,7 @@ templ MPDirectory(props MPDirectoryProps) {
 
 						color := "#64748B"
 						fShort := mp.FactionID
+						textColor := FactionTextColor(mp.FactionID, "")
 						if faction != nil {
 							if faction.Color != "" {
 								color = faction.Color
@@ -109,6 +110,7 @@ templ MPDirectory(props MPDirectoryProps) {
 							if faction.ShortName != "" {
 								fShort = faction.ShortName
 							}
+							textColor = FactionTextColor(mp.FactionID, faction.TextColor)
 						}
 
 						activeStr := "false"
@@ -128,8 +130,8 @@ templ MPDirectory(props MPDirectoryProps) {
 							<div class="flex items-start gap-3">
 								<!-- Initials Avatar -->
 								<div
-									class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 text-white shadow-2xs"
-									style={ fmt.Sprintf("background-color: %s", color) }
+									class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs"
+									style={ fmt.Sprintf("background-color: %s; color: %s;", color, textColor) }
 								>
 									{ initials }
 								</div>
@@ -144,8 +146,8 @@ templ MPDirectory(props MPDirectoryProps) {
 
 									<div class="mt-1 flex items-center gap-1.5 flex-wrap">
 										<span
-											class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold text-white"
-											style={ fmt.Sprintf("background-color: %s", color) }
+											class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold shadow-2xs"
+											style={ fmt.Sprintf("background-color: %s; color: %s;", color, textColor) }
 										>
 											{ fShort }
 										</span>
