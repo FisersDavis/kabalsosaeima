@@ -1,0 +1,102 @@
+package views
+
+import (
+	"fmt"
+)
+
+templ Bill(props BillProps) {
+	@Layout(props.LayoutProps) {
+		<div class="space-y-6">
+			<!-- Breadcrumb Navigation -->
+			<nav class="flex items-center gap-2 text-xs text-slate-500">
+				<a href="/" class="hover:text-slate-900 hover:underline transition">← Visi balsojumi</a>
+				<span>/</span>
+				<span class="font-mono text-slate-700">Likumprojekti</span>
+				<span>/</span>
+				<span class="font-mono text-slate-900 font-semibold">Nr. { CleanBillNr(props.Timeline.BillNumber) }</span>
+			</nav>
+
+			<!-- Bill Header -->
+			<section class="rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-2xs space-y-3">
+				<div class="flex flex-wrap items-center gap-2">
+					<span class="rounded bg-slate-100 px-2 py-0.5 font-mono text-xs font-bold text-slate-800">
+						Nr. { CleanBillNr(props.Timeline.BillNumber) }
+					</span>
+					<span class="text-xs text-slate-500">
+						Kopā { fmt.Sprint(props.Timeline.TotalVotes) } { "balsojumi" }
+					</span>
+				</div>
+
+				<h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 leading-snug">
+					{ props.Timeline.Title }
+				</h1>
+
+				<p class="text-xs text-slate-500 leading-relaxed">
+					Likumprojekta parlamentārā virzība cauri lasījumiem un sēžu balsojumiem 14. Saeimā.
+				</p>
+			</section>
+
+			<!-- Chronological Stages Timeline -->
+			<section class="space-y-6">
+				for stageIdx, stage := range props.Timeline.Stages {
+					<div class="rounded-xl border border-slate-200 bg-white overflow-hidden shadow-2xs space-y-0">
+						<!-- Stage Header -->
+						<div class="px-5 py-3.5 bg-slate-50/90 border-b border-slate-200 flex items-center justify-between">
+							<div class="flex items-center gap-2.5">
+								<span class="flex h-6 w-6 items-center justify-center rounded-full bg-slate-900 text-white font-mono text-xs font-bold">
+									{ fmt.Sprint(stageIdx + 1) }
+								</span>
+								<h2 class="text-sm font-bold text-slate-900">
+									{ stage.StageName }
+								</h2>
+							</div>
+							<span class="text-xs font-mono text-slate-500">
+								{ fmt.Sprint(len(stage.Votes)) } balsojumi
+							</span>
+						</div>
+
+						<!-- Stage Votes List -->
+						<div class="divide-y divide-slate-100">
+							for _, v := range stage.Votes {
+								<div class="p-4 sm:p-5 hover:bg-slate-50/60 transition space-y-2">
+									<div class="flex flex-wrap items-start justify-between gap-2">
+										<h3 class="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+											<a href={ templ.SafeURL(fmt.Sprintf("/balsojumi/%s/", v.ID)) } class="hover:text-emerald-700 transition">
+												{ CleanVoteTitle(v.SimplifiedTitle) }
+											</a>
+										</h3>
+										<span class={ "rounded px-2 py-0.5 text-xs font-semibold shadow-2xs shrink-0 " + ResultBadgeClass(v.Result) }>
+											{ ResultLabel(v.Result) }
+										</span>
+									</div>
+
+									<!-- Vote Tally and Date -->
+									<div class="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 font-mono">
+										<div class="flex items-center gap-2 sm:gap-3">
+											<span>{ v.SittingDate } · { v.SittingTime }</span>
+											<span class="text-slate-300">·</span>
+											<span class="text-emerald-700 font-bold">{ fmt.Sprint(v.Counts.Par) } Par</span>
+											<span class="text-slate-300">·</span>
+											<span class="text-rose-700 font-bold">{ fmt.Sprint(v.Counts.Pret) } Pret</span>
+											<span class="text-slate-300">·</span>
+											<span class="text-amber-700 font-bold">{ fmt.Sprint(v.Counts.Atturas) } Atturas</span>
+											<span class="text-slate-300">·</span>
+											<span class="text-slate-400 font-bold">{ fmt.Sprint(v.Counts.Nebalso) } Nebalsoja</span>
+										</div>
+
+										<a
+											href={ templ.SafeURL(fmt.Sprintf("/balsojumi/%s/", v.ID)) }
+											class="text-emerald-800 hover:text-emerald-950 font-semibold font-sans transition"
+										>
+											Sēžu zāle →
+										</a>
+									</div>
+								</div>
+							}
+						</div>
+					</div>
+				}
+			</section>
+		</div>
+	}
+}

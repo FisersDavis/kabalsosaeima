@@ -1,0 +1,135 @@
+package views
+
+templ Layout(props LayoutProps) {
+	<!DOCTYPE html>
+	<html lang="lv" class="h-full bg-slate-50 text-slate-900 antialiased">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>{ props.Title }</title>
+			<meta name="description" content={ props.Description }/>
+			<meta property="og:title" content={ props.Title }/>
+			<meta property="og:description" content={ props.Description }/>
+			<meta property="og:type" content="website"/>
+			<meta property="og:url" content={ props.CanonicalURL }/>
+			<meta property="og:locale" content="lv_LV"/>
+			<meta name="twitter:card" content="summary_large_image"/>
+			<link rel="canonical" href={ props.CanonicalURL }/>
+			<link rel="stylesheet" href="/assets/styles.css"/>
+			<script src="/assets/js/redirect.js"></script>
+		</head>
+		<body class="min-h-full flex flex-col font-sans bg-slate-50">
+			<!-- Header -->
+			<header class="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md">
+				<div class="mx-auto flex max-w-5xl flex-col gap-2.5 px-4 py-3 sm:px-6 lg:px-8">
+					<div class="flex flex-wrap items-center justify-between gap-3">
+						<!-- Brand + Sasaukums -->
+						<div class="flex items-center gap-3">
+							<a href="/" class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 bg-slate-900 text-white shadow-xs hover:bg-slate-800 transition">
+								<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M3 20a9 9 0 0 1 18 0"></path>
+									<path d="M7 20a5 5 0 0 1 10 0"></path>
+									<circle cx="12" cy="11" r="1.5" fill="currentColor"></circle>
+								</svg>
+							</a>
+							<div class="flex flex-wrap items-center gap-2 sm:gap-3">
+								<a href="/" class="text-base sm:text-lg font-bold tracking-tight text-slate-900 hover:text-emerald-700 transition">
+									Kā Balso Saeima
+								</a>
+								<span class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-800 shadow-2xs">
+									<span class="h-2 w-2 rounded-full bg-emerald-500 shadow-2xs"></span>
+									<span>14. Saeima (2022–2026)</span>
+								</span>
+							</div>
+						</div>
+
+						<!-- Official Links -->
+						<div class="flex items-center gap-3 text-xs text-slate-600">
+							<a
+								href="https://www.saeima.lv/lv/likumdosana/balsojumi"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="inline-flex items-center gap-1 font-medium text-slate-700 hover:text-slate-900 hover:underline"
+								title="Oficiālie Saeimas protokoli"
+							>
+								<span>saeima.lv</span>
+								<svg class="h-3 w-3 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+							</a>
+						</div>
+					</div>
+
+					<!-- Navigation Tabs -->
+					<div class="flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 pt-2">
+						<nav class="flex items-center gap-1 sm:gap-1.5" aria-label="Sadaļu izvēle">
+							<a
+								href="/"
+								class={ NavLinkClass(props.ActiveNav == "votes") }
+							>
+								<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"></path><path d="M5 7c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v12H5V7Z"></path><path d="M22 19H2"></path></svg>
+								<span>Balsojumi</span>
+							</a>
+							<a
+								href="/deputati/"
+								class={ NavLinkClass(props.ActiveNav == "mps") }
+							>
+								<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+								<span>Partijas un deputāti</span>
+								<span class="ml-0.5 text-[10px] px-1.5 py-0.2 rounded-full font-mono bg-slate-100 text-slate-600">100</span>
+							</a>
+						</nav>
+						<div class="hidden sm:block text-[11px] text-slate-400">
+							<span>Objektīvi dati · Atvērtā parlamenta reģistrs</span>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<!-- Main Content -->
+			<main class="flex-1 mx-auto w-full max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
+				{ children... }
+			</main>
+
+			<!-- Footer -->
+			<footer class="mt-16 border-t border-slate-200 bg-white/70 py-10">
+				<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6">
+					<div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+						<div class="max-w-md space-y-2">
+							<span class="font-sans text-base font-bold tracking-tight text-slate-900">
+								kābalso<span class="text-emerald-600">saeima</span><span class="text-slate-400 font-mono text-sm font-normal">.lv</span>
+							</span>
+							<p className="text-xs text-slate-500 leading-relaxed">
+								Neitrāls un atvērts Latvijas Republikas Saeimas balsojumu un lēmumu pārlūks.
+								Mērķis ir sniegt skaidru, faktos balstītu informāciju ikvienam pilsonim un vēlētājam.
+							</p>
+						</div>
+
+						<div class="space-y-2 text-xs text-slate-500">
+							<div class="font-semibold text-slate-900">Oficiālie datu avoti:</div>
+							<ul class="space-y-1">
+								<li>
+									<a href="https://www.saeima.lv" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 hover:text-emerald-700">
+										<span>Saeimas sēžu stenogrammas un protokoli (saeima.lv)</span>
+									</a>
+								</li>
+								<li>
+									<a href="https://data.gov.lv" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 hover:text-emerald-700">
+										<span>Latvijas Atvērto datu portāls (data.gov.lv)</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-[11px] text-slate-500 leading-relaxed">
+						<strong class="text-slate-700">Metodoloģiskā piezīme:</strong> Saeimas procedūrā statusā <em>Nebalsoja</em> tiek iekļauti deputāti, kuri ir reģistrējušies sēžu zālē, bet nav nospieduši nevienu no balsošanas pogām (bieži izmantota taktika kvoruma noraušanai), kā arī deputāti, kuri balsojuma brīdī nebija klātesoši. Visi dati tiek atjaunoti automātiski pēc katras kārtējās ceturtdienas sēdes.
+					</div>
+
+					<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100 text-xs text-slate-400">
+						<p>© 2026 kābalsosaeima.lv · Atvērtā koda pilsoniskā iniciatīva</p>
+						<span>Veidots sabiedrības informēšanai un atklātībai</span>
+					</div>
+				</div>
+			</footer>
+		</body>
+	</html>
+}

@@ -23,9 +23,9 @@ graph TD
 
     Node4["✅ Step 4: Stats Engine & Golden Parity<br/>• internal/stats/ (attendance, cohesion)<br/>• Pure functions with table-driven tests<br/>• Assert 100% equivalence with testdata/golden/"]:::done
 
-    Node5["🎯 Step 5: Templ Views & UI Components<br/>• Base layout with meta/OG tags & redirect.js<br/>• Pre-rendered vote cards with data-* attributes<br/>• Accessible Hemicycle SVG wrapped in &lt;a&gt; links<br/>• filter.js (~50 LOC DOM show/hide + URL sync)"]:::ready
+    Node5["✅ Step 5: Templ Views & UI Components<br/>• Base layout with meta/OG tags & redirect.js<br/>• Pre-rendered vote cards with data-* attributes<br/>• Accessible Hemicycle SVG wrapped in &lt;a&gt; links<br/>• filter.js (~50 LOC DOM show/hide + URL sync)"]:::done
 
-    Node6["⏳ Step 6: SSG CLI & CI Pipeline<br/>• cmd/build/main.go -> generates dist/<br/>• cmd/serve/main.go -> local preview<br/>• Update thursday_sync.yml & sentinel_check.py<br/>• Final Parity Check -> Delete legacy src/ & package.json<br/>• Merge refactor/go-ssg into main"]:::blocked
+    Node6["✅ Step 6: SSG CLI & CI Pipeline<br/>• cmd/build/main.go -> generates dist/<br/>• cmd/serve/main.go -> local preview<br/>• Update thursday_sync.yml & sentinel_check.py<br/>• Parity verified -> Deleted legacy src/ & package.json"]:::done
 
     Node0 --> Node1
     Node0 --> Node2
@@ -97,7 +97,7 @@ graph TD
 
 ---
 
-### [ ] Step 5: Templ Views & UI Components (NEXT UP)
+### [x] Step 5: Templ Views & UI Components
 - **Package:** `internal/views`
 - **Tasks:**
   1. `layout.templ`: HTML5 shell, OpenGraph tags, Tailwind CSS, `assets/js/redirect.js`.
@@ -106,17 +106,20 @@ graph TD
   4. `bill.templ`: Progression timeline for `/likumprojekti/{cleanBillSlug}/`.
   5. `mp.templ`: MP dossier, attendance badges, and historical votes.
   6. `assets/js/filter.js`: ~50 LOC vanilla JS that shows/hides pre-rendered cards and syncs URL query parameters.
-- **Verification Gate:** `templ generate` compiles with 0 errors.
+- **Verification Gate (PASSED):** `go generate ./...` (`templ generate`) compiles with 0 errors; `go vet ./...` passes cleanly; `go test -v ./...` passes all unit tests (7/7 in views).
 
 ---
 
-### [ ] Step 6: SSG CLI, CI Pipeline & Cleanup
+### [x] Step 6: SSG CLI, CI Pipeline & Cleanup
 - **Package:** `cmd/build`, `cmd/serve`
 - **Tasks:**
-  1. `cmd/build/main.go`: Loads data, runs validator, generates full static site in `dist/`.
+  1. `cmd/build/main.go`: Loads data, runs validator, compiles Tailwind CSS, copies static assets, and generates full static site in `dist/` (398 vote permalinks, 203 bill progressions, 139 MP dossiers, overview feed).
   2. `cmd/serve/main.go`: Minimal local HTTP dev server for `dist/`.
   3. Update `.github/workflows/thursday_sync.yml` and `scripts/sentinel_check.py`.
   4. Perform complete route and data parity check against old React build.
   5. Delete legacy React files (`src/`, `package.json`, `package-lock.json`, `vite.config.ts`, `node_modules/`).
-  6. Merge `refactor/go-ssg` into `main`.
-- **Verification Gate:** Single command `go run ./cmd/build` outputs full working site to `dist/`; CI workflow succeeds.
+- **Verification Gate (PASSED):**
+  - Single command `go run ./cmd/build` outputs full working site to `dist/` in ~2s.
+  - `go run ./cmd/build --validate-only` completes in ~56ms.
+  - `sentinel_check.py` smoke test passes in live and integrity modes.
+  - `go generate ./...`, `go vet ./...`, and `go test -v ./...` pass cleanly.

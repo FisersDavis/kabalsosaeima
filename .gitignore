@@ -40,3 +40,8 @@ scripts/transcripts_cache.json
 # Binaries
 bin/
 
+# Local developer & agent notes, checklists, prompts
+notes/
+*.local.md
+user_experience_testing_checklist.md
+page_by_page_debugging_prompts.md

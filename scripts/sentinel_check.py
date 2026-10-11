@@ -252,7 +252,7 @@ def check_live_site(live_url):
                 errors.append(f"Mājaslapa `{base_url}` atgrieza HTTP kodu {res.status}")
             else:
                 html = res.read().decode('utf-8', errors='ignore')
-                if 'Kā Balso Saeima' not in html and 'root' not in html:
+                if 'Kā Balso Saeima' not in html and 'vote-card' not in html and 'root' not in html:
                     warnings.append("Mājaslapas HTML nesatur paredzētos elementus.")
     except Exception as e:
         errors.append(f"Neizdevās sasniegt mājaslapu `{base_url}`: {e}")
