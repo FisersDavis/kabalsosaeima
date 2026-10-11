@@ -19,9 +19,9 @@ graph TD
     
     Node2["✅ Step 2: Go Toolchain Setup<br/>• Initialize go.mod (Go 1.24)<br/>• tool templ directive<br/>• Standalone Tailwind CLI (bin/tailwindcss.exe)"]:::done
 
-    Node3["🎯 Step 3: Go Data Loader & Validator<br/>• internal/data/models.go<br/>• loader.go (index once, build lookup maps)<br/>• validate.go (>100 active fails, rollcall check)"]:::ready
+    Node3["✅ Step 3: Go Data Loader & Validator<br/>• internal/data/models.go<br/>• loader.go (index once, build lookup maps)<br/>• validate.go (>100 active fails, rollcall check)"]:::done
 
-    Node4["⏳ Step 4: Stats Engine & Golden Parity<br/>• internal/stats/ (attendance, cohesion)<br/>• Pure functions with table-driven tests<br/>• Assert 100% equivalence with testdata/golden/"]:::blocked
+    Node4["🎯 Step 4: Stats Engine & Golden Parity<br/>• internal/stats/ (attendance, cohesion)<br/>• Pure functions with table-driven tests<br/>• Assert 100% equivalence with testdata/golden/"]:::ready
 
     Node5["⏳ Step 5: Templ Views & UI Components<br/>• Base layout with meta/OG tags & redirect.js<br/>• Pre-rendered vote cards with data-* attributes<br/>• Accessible Hemicycle SVG wrapped in &lt;a&gt; links<br/>• filter.js (~50 LOC DOM show/hide + URL sync)"]:::blocked
 
@@ -76,17 +76,17 @@ graph TD
 
 ---
 
-### [ ] Step 3: Go Data Loader & Validator (NEXT UP)
+### [x] Step 3: Go Data Loader & Validator
 - **Package:** `internal/data`
 - **Tasks:**
-  1. `models.go`: Strongly-typed Go structs for Vote, MP, Rollcall, Mandate.
-  2. `loader.go`: "Parse once, index once" into startup lookup maps (`votesByID`, `deputyByID`, `votesByDeputy`).
+  1. `models.go`: Strongly-typed Go structs for Vote, MP, Rollcall, Mandate, Faction.
+  2. `loader.go`: "Parse once, index once" into startup lookup maps (`votesByID`, `mpByID`, `mandateByMpID`, `rollcallsByMP`).
   3. `validate.go`: Required fields check, rollcall participation invariant, and chamber size ceiling ($>100$ fails build).
-- **Verification Gate:** `go test -v ./internal/data/...` passes against `testdata/golden/`.
+- **Verification Gate (PASSED):** `go test -v ./internal/data/...` passes against `testdata/golden/` (398 votes, 139 MPs, 139 mandates, 0 violations, ceiling assertion catches artificial breach).
 
 ---
 
-### [ ] Step 4: Stats Engine & Golden Parity
+### [ ] Step 4: Stats Engine & Golden Parity (NEXT UP)
 - **Package:** `internal/stats`
 - **Tasks:**
   1. `attendance.go`: Calculate attendance denominator *only* over active mandate intervals.
