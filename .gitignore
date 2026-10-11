@@ -37,3 +37,6 @@ scripts/debates_raw/
 scripts/transcripts_raw/
 scripts/transcripts_cache.json
 
+# Binaries
+bin/
+

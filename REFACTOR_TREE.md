@@ -17,9 +17,9 @@ graph TD
     
     Node1["✅ Step 1: Golden Test Snapshot<br/>• Freeze testdata/golden/<br/>• Copy votes, mps, rollcalls, mp_summaries<br/>• Immutable baseline for parity testing"]:::done
     
-    Node2["🎯 Step 2: Go Toolchain Setup<br/>• Initialize go.mod (Go 1.24)<br/>• tool templ directive<br/>• Standalone Tailwind CLI (bin/tailwindcss.exe)"]:::ready
+    Node2["✅ Step 2: Go Toolchain Setup<br/>• Initialize go.mod (Go 1.24)<br/>• tool templ directive<br/>• Standalone Tailwind CLI (bin/tailwindcss.exe)"]:::done
 
-    Node3["⏳ Step 3: Go Data Loader & Validator<br/>• internal/data/models.go<br/>• loader.go (index once, build lookup maps)<br/>• validate.go (>100 active fails, rollcall check)"]:::blocked
+    Node3["🎯 Step 3: Go Data Loader & Validator<br/>• internal/data/models.go<br/>• loader.go (index once, build lookup maps)<br/>• validate.go (>100 active fails, rollcall check)"]:::ready
 
     Node4["⏳ Step 4: Stats Engine & Golden Parity<br/>• internal/stats/ (attendance, cohesion)<br/>• Pure functions with table-driven tests<br/>• Assert 100% equivalence with testdata/golden/"]:::blocked
 
@@ -65,18 +65,18 @@ graph TD
 
 ---
 
-### [ ] Step 2: Go Toolchain Setup
+### [x] Step 2: Go Toolchain Setup
 - **Branch:** `refactor/go-ssg`
 - **Tasks:**
-  1. Initialize `go.mod` for `github.com/FisersDavis/kabalsosaeima` (Go 1.24).
+  1. Initialize `go.mod` for `github.com/FisersDavis/kabalsosaeima` (Go 1.24+).
   2. Add `tool (github.com/a-h/templ/cmd/templ)` in `go.mod`.
   3. Download standalone Tailwind CLI into `bin/tailwindcss.exe`.
-  4. Create `assets/input.css` with `@source "../../internal/views/**/*.templ"`.
-- **Verification Gate:** `go vet ./...` succeeds; `templ --version` works via Go tool; `./bin/tailwindcss.exe --help` executes.
+  4. Create `assets/input.css` with `@source "../internal/views/**/*.templ"`.
+- **Verification Gate (PASSED):** Go toolchain installed (Go 1.27.0); `go tool templ version` works (`v0.3.1070`); `./bin/tailwindcss.exe --help` executes cleanly.
 
 ---
 
-### [ ] Step 3: Go Data Loader & Validator
+### [ ] Step 3: Go Data Loader & Validator (NEXT UP)
 - **Package:** `internal/data`
 - **Tasks:**
   1. `models.go`: Strongly-typed Go structs for Vote, MP, Rollcall, Mandate.
