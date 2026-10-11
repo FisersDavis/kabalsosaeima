@@ -134,6 +134,97 @@ func DecisionLabel(decision string) string {
 	}
 }
 
+// DecisionBadgeClass returns Tailwind utility classes for decision pills.
+func DecisionBadgeClass(decision string) string {
+	switch strings.ToUpper(strings.TrimSpace(decision)) {
+	case "PAR":
+		return "bg-emerald-50 text-emerald-700 border-emerald-200"
+	case "PRET":
+		return "bg-rose-50 text-rose-700 border-rose-200"
+	case "ATTURAS":
+		return "bg-amber-50 text-amber-700 border-amber-200"
+	case "NEBALSO":
+		return "bg-slate-50 text-slate-600 border-slate-200"
+	default:
+		return "bg-slate-50 text-slate-500 border-slate-200"
+	}
+}
+
+// FactionDecisionSummary represents a faction's stance with vote count.
+type FactionDecisionSummary struct {
+	FactionID string
+	ShortName string
+	Count     int
+}
+
+// FactionStanceGroup groups factions that shared the same stance on a vote.
+type FactionStanceGroup struct {
+	Decision string
+	Factions []FactionDecisionSummary
+}
+
+// GroupFactionDecisions categorizes factions into PAR, PRET, ATTURAS, NEBALSO groups.
+func GroupFactionDecisions(breakdowns []data.FactionBreakdown) []FactionStanceGroup {
+	type bucket struct {
+		decision string
+		factions []FactionDecisionSummary
+	}
+	par := bucket{decision: "PAR"}
+	pret := bucket{decision: "PRET"}
+	att := bucket{decision: "ATTURAS"}
+	neb := bucket{decision: "NEBALSO"}
+
+	for _, fb := range breakdowns {
+		p := fb.Votes.Par
+		pr := fb.Votes.Pret
+		a := fb.Votes.Atturas
+		n := fb.Votes.Nebalso
+
+		maxActive := p
+		bestDec := "PAR"
+		bestCount := p
+
+		if pr > maxActive {
+			maxActive = pr
+			bestDec = "PRET"
+			bestCount = pr
+		}
+		if a > maxActive {
+			maxActive = a
+			bestDec = "ATTURAS"
+			bestCount = a
+		}
+
+		if maxActive > 0 {
+			switch bestDec {
+			case "PAR":
+				par.factions = append(par.factions, FactionDecisionSummary{FactionID: fb.FactionID, ShortName: fb.ShortName, Count: bestCount})
+			case "PRET":
+				pret.factions = append(pret.factions, FactionDecisionSummary{FactionID: fb.FactionID, ShortName: fb.ShortName, Count: bestCount})
+			case "ATTURAS":
+				att.factions = append(att.factions, FactionDecisionSummary{FactionID: fb.FactionID, ShortName: fb.ShortName, Count: bestCount})
+			}
+		} else if n > 0 {
+			neb.factions = append(neb.factions, FactionDecisionSummary{FactionID: fb.FactionID, ShortName: fb.ShortName, Count: n})
+		}
+	}
+
+	var res []FactionStanceGroup
+	if len(par.factions) > 0 {
+		res = append(res, FactionStanceGroup{Decision: "PAR", Factions: par.factions})
+	}
+	if len(pret.factions) > 0 {
+		res = append(res, FactionStanceGroup{Decision: "PRET", Factions: pret.factions})
+	}
+	if len(att.factions) > 0 {
+		res = append(res, FactionStanceGroup{Decision: "ATTURAS", Factions: att.factions})
+	}
+	if len(neb.factions) > 0 {
+		res = append(res, FactionStanceGroup{Decision: "NEBALSOJA", Factions: neb.factions})
+	}
+	return res
+}
+
 // ResultLabel returns user-facing Latvian outcome description.
 func ResultLabel(result string) string {
 	switch result {

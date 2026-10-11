@@ -98,6 +98,41 @@ func TestPurposeLabel(t *testing.T) {
 	}
 }
 
+func TestGroupFactionDecisions(t *testing.T) {
+	fbs := []data.FactionBreakdown{
+		{
+			FactionID: "jv",
+			ShortName: "JV",
+			Votes:     data.FactionVotes{Par: 0, Pret: 24, Atturas: 0, Nebalso: 0},
+		},
+		{
+			FactionID: "lpv",
+			ShortName: "LPV",
+			Votes:     data.FactionVotes{Par: 8, Pret: 0, Atturas: 0, Nebalso: 0},
+		},
+		{
+			FactionID: "pro",
+			ShortName: "PRO",
+			Votes:     data.FactionVotes{Par: 0, Pret: 0, Atturas: 10, Nebalso: 0},
+		},
+	}
+
+	groups := GroupFactionDecisions(fbs)
+	if len(groups) != 3 {
+		t.Fatalf("Expected 3 stance groups, got %d", len(groups))
+	}
+
+	if groups[0].Decision != "PAR" || groups[0].Factions[0].ShortName != "LPV" || groups[0].Factions[0].Count != 8 {
+		t.Errorf("Unexpected PAR group: %+v", groups[0])
+	}
+	if groups[1].Decision != "PRET" || groups[1].Factions[0].ShortName != "JV" || groups[1].Factions[0].Count != 24 {
+		t.Errorf("Unexpected PRET group: %+v", groups[1])
+	}
+	if groups[2].Decision != "ATTURAS" || groups[2].Factions[0].ShortName != "PRO" || groups[2].Factions[0].Count != 10 {
+		t.Errorf("Unexpected ATTURAS group: %+v", groups[2])
+	}
+}
+
 func loadGoldenStore(t *testing.T) *data.Store {
 	t.Helper()
 	goldenDir := filepath.Join("..", "..", "testdata", "golden")

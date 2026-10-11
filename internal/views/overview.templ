@@ -177,40 +177,24 @@ templ Overview(props OverviewProps) {
 							</p>
 						}
 
-						<!-- Faction Breakdown Ledger Bars -->
-						if len(v.FactionBreakdown) > 0 && !v.IsSecret {
-							<div class="pt-2 border-t border-slate-100 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-								for _, fb := range v.FactionBreakdown {
-									{{
-										total := fb.Votes.Par + fb.Votes.Pret + fb.Votes.Atturas + fb.Votes.Nebalso
-										parPct := 0.0
-										pretPct := 0.0
-										attPct := 0.0
-										nebPct := 0.0
-										if total > 0 {
-											parPct = float64(fb.Votes.Par) / float64(total) * 100
-											pretPct = float64(fb.Votes.Pret) / float64(total) * 100
-											attPct = float64(fb.Votes.Atturas) / float64(total) * 100
-											nebPct = float64(fb.Votes.Nebalso) / float64(total) * 100
-										}
-									}}
-									<div class="flex flex-col gap-1">
-										<div class="flex items-center justify-between text-[11px]">
-											<span class="font-bold text-slate-800">{ fb.ShortName }</span>
-											<span class="font-mono text-slate-500">{ fmt.Sprint(fb.Votes.Par) }/{ fmt.Sprint(fb.Votes.Pret) }</span>
-										</div>
-										<div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden flex">
-											if parPct > 0 {
-												<div style={ fmt.Sprintf("width: %.1f%%", parPct) } class="bg-emerald-600 h-full"></div>
-											}
-											if pretPct > 0 {
-												<div style={ fmt.Sprintf("width: %.1f%%", pretPct) } class="bg-rose-600 h-full"></div>
-											}
-											if attPct > 0 {
-												<div style={ fmt.Sprintf("width: %.1f%%", attPct) } class="bg-amber-500 h-full"></div>
-											}
-											if nebPct > 0 {
-												<div style={ fmt.Sprintf("width: %.1f%%", nebPct) } class="bg-slate-300 h-full"></div>
+						<!-- Faction Breakdown Grouped by Stance (Option 3) -->
+						{{ stanceGroups := GroupFactionDecisions(v.FactionBreakdown) }}
+						if len(stanceGroups) > 0 && !v.IsSecret {
+							<div class="pt-2 border-t border-slate-100 space-y-1.5 text-xs">
+								for _, sg := range stanceGroups {
+									<div class="flex flex-wrap items-center gap-2">
+										<span class={ "inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold border tracking-wider min-w-[54px] justify-center " + DecisionBadgeClass(sg.Decision) }>
+											{ sg.Decision }
+										</span>
+										<div class="flex flex-wrap items-center gap-1.5 text-xs">
+											for i, f := range sg.Factions {
+												<span class="text-slate-800 font-medium">
+													{ f.ShortName }
+													<span class="text-slate-500 font-mono text-[11px]">({ fmt.Sprint(f.Count) })</span>
+												</span>
+												if i < len(sg.Factions)-1 {
+													<span class="text-slate-300">·</span>
+												}
 											}
 										</div>
 									</div>
