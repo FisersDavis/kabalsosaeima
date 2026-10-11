@@ -125,15 +125,45 @@ templ Vote(props VoteProps) {
 							</div>
 						</div>
 
-						<!-- Pre-rendered SVG Hemicycle with focusable <a> seat elements -->
-						<div class="relative w-full aspect-[640/310] max-w-2xl mx-auto">
+						<!-- Pre-rendered SVG Hemicycle with focusable <a> seat elements and floating card tooltip -->
+						<div class="relative w-full aspect-[640/310] max-w-2xl mx-auto" data-hemicycle-container>
+							<!-- Floating Instant UI Tooltip -->
+							<div
+								id="seat-tooltip"
+								class="absolute z-30 -translate-x-1/2 -translate-y-full opacity-0 pointer-events-none transition-opacity duration-75 ease-out shadow-lg rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs min-w-[170px]"
+								role="tooltip"
+							>
+								<div class="flex items-center justify-between gap-2 pb-1 border-b border-slate-100">
+									<span class="font-bold text-slate-900 truncate" data-tooltip-name>Deputāts</span>
+									<span
+										class="inline-flex rounded px-1.5 py-0.2 font-mono text-[10px] font-bold shadow-2xs shrink-0"
+										data-tooltip-faction
+									>
+										JV
+									</span>
+								</div>
+								<div class="flex items-center justify-between pt-1 text-[11px]">
+									<span class="text-slate-500">Balsojums:</span>
+									<span class="font-bold" data-tooltip-decision>PAR</span>
+								</div>
+								<!-- Tooltip pointer arrow -->
+								<div class="absolute left-1/2 -bottom-1 -translate-x-1/2 w-2 h-2 bg-white border-r border-b border-slate-200 rotate-45"></div>
+							</div>
+
 							<svg viewBox="0 0 640 310" class="w-full h-full select-none" role="img" aria-label="Saeimas sēžu zāles balsojums">
 								for _, seat := range props.Seats {
 									<a
 										href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", seat.Slug)) }
-										class="cursor-pointer focus:outline-none rounded-full"
+										class="cursor-pointer focus:outline-none group/seat"
 										aria-label={ fmt.Sprintf("%s (%s): %s", seat.Name, seat.FactionShort, DecisionLabel(seat.Decision)) }
 										tabindex="0"
+										data-seat-link
+										data-name={ seat.Name }
+										data-faction={ seat.FactionShort }
+										data-faction-color={ seat.FactionColor }
+										data-faction-text-color={ seat.FactionTextColor }
+										data-decision={ DecisionLabel(seat.Decision) }
+										data-decision-color={ seat.Color }
 									>
 										<circle
 											cx={ fmt.Sprintf("%.1f", seat.X) }
@@ -142,7 +172,7 @@ templ Vote(props VoteProps) {
 											fill={ seat.Color }
 											stroke="#ffffff"
 											stroke-width="1.5"
-											class="transition-all hover:stroke-slate-900"
+											class="transition-all hover:stroke-slate-900 hover:r-9 group-focus/seat:stroke-emerald-600 group-focus/seat:stroke-[2.5px] group-focus/seat:r-9"
 										>
 											<title>{ fmt.Sprintf("%s (%s): %s", seat.Name, seat.FactionShort, DecisionLabel(seat.Decision)) }</title>
 										</circle>
@@ -156,11 +186,30 @@ templ Vote(props VoteProps) {
 						</p>
 					</div>
 
-					<!-- Accessible Chamber Audit Table -->
+					<!-- Accessible Chamber Audit Table with Instant Search -->
 					<div class="rounded-xl border border-slate-200 bg-white overflow-hidden shadow-2xs space-y-0">
-						<div class="px-4 py-3 bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-800">
-							Deputātu saraksts ({ fmt.Sprint(len(props.Seats)) } deputāti)
+						<div class="px-4 py-3 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
+							<div class="font-bold text-slate-800 flex items-center gap-2">
+								<span>Deputātu saraksts</span>
+								<span id="deputy-visible-count" class="px-2 py-0.5 rounded-full bg-slate-200/80 font-mono text-[10px] text-slate-700 font-semibold">
+									{ fmt.Sprint(len(props.Seats)) } deputāti
+								</span>
+							</div>
+
+							<!-- Search / Filter input -->
+							<div class="relative w-full sm:w-64">
+								<input
+									type="search"
+									id="deputy-search-input"
+									placeholder="Meklēt pēc vārda vai frakcijas..."
+									class="w-full rounded-lg border border-slate-300 bg-white px-3 py-1.5 pl-8 text-xs placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+								/>
+								<svg class="absolute left-2.5 top-2 h-3.5 w-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+								</svg>
+							</div>
 						</div>
+
 						<div class="max-h-96 overflow-y-auto divide-y divide-slate-100 text-xs">
 							<table class="w-full text-left">
 								<thead class="sticky top-0 bg-slate-100/95 text-[11px] text-slate-500 uppercase font-semibold">
@@ -170,9 +219,15 @@ templ Vote(props VoteProps) {
 										<th class="py-2 px-4 text-right">Lēmums</th>
 									</tr>
 								</thead>
-								<tbody class="divide-y divide-slate-100">
+								<tbody id="rollcall-table-body" class="divide-y divide-slate-100">
 									for _, seat := range props.Seats {
-										<tr class="hover:bg-slate-50/80 transition">
+										<tr
+											class="hover:bg-slate-50/80 transition"
+											data-deputy-row
+											data-deputy-name={ seat.Name }
+											data-deputy-faction={ seat.FactionShort }
+											data-deputy-decision={ DecisionLabel(seat.Decision) }
+										>
 											<td class="py-2 px-4 font-medium text-slate-900">
 												<a href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", seat.Slug)) } class="hover:text-emerald-700 hover:underline">
 													{ seat.Name }
@@ -200,6 +255,8 @@ templ Vote(props VoteProps) {
 							</table>
 						</div>
 					</div>
+
+					<script src="/assets/js/hemicycle-tooltip.js"></script>
 				}
 
 				<!-- Official Verification & Data Provenance -->
