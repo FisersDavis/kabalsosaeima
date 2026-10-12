@@ -1,4 +1,4 @@
-// Zero-latency client-side MP filter and URL parameter synchronization
+// Zero-latency client-side MP table filter, column sorting and URL parameter synchronization
 (function() {
   function normalizeText(str) {
     if (!str) return '';
@@ -17,9 +17,14 @@
     var resetBtn = document.getElementById('mp-filter-reset');
     var countEl = document.getElementById('mp-filter-count');
     var emptyState = document.getElementById('mp-empty-state');
-    var cards = document.querySelectorAll('.mp-card');
+    var tbody = document.getElementById('mp-tbody');
+    var rows = Array.prototype.slice.call(document.querySelectorAll('.mp-row'));
+    var sortHeaders = document.querySelectorAll('th[data-sort]');
 
-    if (!cards.length) return;
+    if (!rows.length || !tbody) return;
+
+    var currentSortKey = 'name';
+    var currentSortAsc = true;
 
     function applyFilter() {
       var query = searchInput ? normalizeText(searchInput.value) : '';
@@ -27,21 +32,21 @@
       var activeOnly = activeToggle ? activeToggle.getAttribute('data-active') === 'true' : false;
 
       var visible = 0;
-      for (var i = 0; i < cards.length; i++) {
-        var card = cards[i];
-        var cardName = normalizeText(card.getAttribute('data-name') || '');
-        var cardFaction = card.getAttribute('data-faction') || '';
-        var cardActive = card.getAttribute('data-active') === 'true';
+      for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var rowName = normalizeText(row.getAttribute('data-name') || '');
+        var rowFaction = row.getAttribute('data-faction-id') || '';
+        var rowActive = row.getAttribute('data-active') === 'true';
 
-        var matchQuery = !query || cardName.indexOf(query) !== -1;
-        var matchFaction = faction === 'ALL' || cardFaction === faction;
-        var matchActive = !activeOnly || cardActive;
+        var matchQuery = !query || rowName.indexOf(query) !== -1;
+        var matchFaction = faction === 'ALL' || rowFaction === faction;
+        var matchActive = !activeOnly || rowActive;
 
         if (matchQuery && matchFaction && matchActive) {
-          card.classList.remove('hidden');
+          row.classList.remove('hidden');
           visible++;
         } else {
-          card.classList.add('hidden');
+          row.classList.add('hidden');
         }
       }
 
@@ -69,6 +74,66 @@
 
       var newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
       window.history.replaceState(null, '', newUrl);
+    }
+
+    function sortTable(key, asc) {
+      currentSortKey = key;
+      currentSortAsc = asc;
+
+      rows.sort(function(a, b) {
+        var valA, valB;
+        if (key === 'attendance' || key === 'cohesion') {
+          valA = parseFloat(a.getAttribute('data-' + key) || '-2');
+          valB = parseFloat(b.getAttribute('data-' + key) || '-2');
+          return asc ? valA - valB : valB - valA;
+        } else if (key === 'faction') {
+          valA = (a.getAttribute('data-faction') || '').trim();
+          valB = (b.getAttribute('data-faction') || '').trim();
+          var cmp = valA.localeCompare(valB, 'lv');
+          if (cmp !== 0) return asc ? cmp : -cmp;
+          // Tie-break by name
+          var nameA = (a.getAttribute('data-name') || '').trim();
+          var nameB = (b.getAttribute('data-name') || '').trim();
+          return nameA.localeCompare(nameB, 'lv');
+        } else {
+          valA = (a.getAttribute('data-name') || '').trim();
+          valB = (b.getAttribute('data-name') || '').trim();
+          var cmpName = valA.localeCompare(valB, 'lv');
+          return asc ? cmpName : -cmpName;
+        }
+      });
+
+      // Update sort indicators on headers
+      for (var i = 0; i < sortHeaders.length; i++) {
+        var th = sortHeaders[i];
+        var thKey = th.getAttribute('data-sort');
+        var icon = th.querySelector('.sort-icon');
+        if (icon) {
+          if (thKey === key) {
+            icon.textContent = asc ? '↑' : '↓';
+            icon.className = 'sort-icon text-slate-900 font-mono text-[11px] font-bold';
+          } else {
+            icon.textContent = '↕';
+            icon.className = 'sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]';
+          }
+        }
+      }
+
+      // Re-append sorted rows
+      for (var j = 0; j < rows.length; j++) {
+        tbody.appendChild(rows[j]);
+      }
+    }
+
+    // Set up column sort handlers
+    for (var h = 0; h < sortHeaders.length; h++) {
+      (function(header) {
+        header.addEventListener('click', function() {
+          var key = header.getAttribute('data-sort');
+          var asc = (currentSortKey === key) ? !currentSortAsc : (key === 'name' || key === 'faction');
+          sortTable(key, asc);
+        });
+      })(sortHeaders[h]);
     }
 
     // Restore from URL parameters
@@ -118,6 +183,8 @@
       });
     }
 
+    // Default initial sort by name ascending
+    sortTable('name', true);
     applyFilter();
   }
 

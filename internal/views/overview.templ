@@ -12,46 +12,59 @@ templ Overview(props OverviewProps) {
 		<div class="space-y-4">
 			<!-- Filter Toolbar -->
 			<section class="sticky top-[57px] z-30 rounded-xl bg-white/95 p-3 shadow-2xs backdrop-blur-md border border-slate-200 space-y-2.5">
-				<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+				<!-- Search Row & Filtri Toggle Button -->
+				<div class="flex items-center gap-2">
+					<div class="relative flex-1">
+						<svg class="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+						<input
+							type="text"
+							id="filter-search"
+							placeholder="Meklēt likumu vai atslēgvārdu..."
+							class="w-full rounded-lg border border-slate-200 bg-white py-1.5 pl-9 pr-3 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400 shadow-2xs"
+						/>
+					</div>
+
+					<button
+						type="button"
+						id="filter-toggle-btn"
+						aria-expanded="false"
+						aria-controls="filter-panel"
+						class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700 shadow-2xs transition cursor-pointer shrink-0"
+					>
+						<svg class="h-3.5 w-3.5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+						</svg>
+						<span>Filtri</span>
+						<span id="filter-badge" class="hidden rounded-full bg-slate-900 px-1.5 py-0.2 text-[10px] font-bold text-white">0</span>
+					</button>
+
+					<button
+						type="button"
+						id="filter-reset"
+						class="hidden inline-flex items-center rounded-lg border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-200 transition cursor-pointer whitespace-nowrap shrink-0"
+					>
+						Notīrīt
+					</button>
+				</div>
+
+				<!-- Collapsible Filter Drawer containing Gala lēmumi, Stage, Category, Outcome -->
+				<div id="filter-panel" class="hidden pt-2 border-t border-slate-100 flex flex-wrap items-center gap-2">
 					<!-- Tier 1 Segmented Switch -->
-					<div class="inline-flex rounded-lg bg-slate-100 p-0.5 border border-slate-200 text-xs font-medium self-start sm:self-auto shadow-2xs">
+					<div class="inline-flex rounded-lg bg-slate-100 p-0.5 border border-slate-200 text-xs font-medium shadow-2xs shrink-0">
 						<button
 							type="button"
 							id="filter-tier1"
 							data-active="false"
-							class="rounded-md px-3 py-1.5 transition cursor-pointer font-medium bg-white text-slate-700 shadow-2xs hover:text-slate-900"
+							class="rounded-md px-2.5 py-1 transition cursor-pointer font-medium bg-white text-slate-700 shadow-2xs hover:text-slate-900"
 						>
 							Gala lēmumi (3. lasījums)
 						</button>
 					</div>
 
-					<!-- Search Input + Reset -->
-					<div class="flex items-center gap-2 flex-1 max-w-full sm:max-w-md">
-						<div class="relative flex-1">
-							<svg class="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-							<input
-								type="text"
-								id="filter-search"
-								placeholder="Meklēt likumu vai atslēgvārdu..."
-								class="w-full rounded-lg border border-slate-200 bg-white py-1.5 pl-9 pr-3 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400"
-							/>
-						</div>
-						<button
-							type="button"
-							id="filter-reset"
-							class="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-200 transition cursor-pointer whitespace-nowrap"
-						>
-							Notīrīt
-						</button>
-					</div>
-				</div>
-
-				<!-- Secondary Dropdown Filters -->
-				<div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100">
 					<!-- Stage / Vote Type -->
 					<select
 						id="filter-stage"
-						class="rounded-lg border border-slate-200 bg-white py-1 px-2.5 text-xs text-slate-700 font-medium focus:border-slate-400 focus:outline-none cursor-pointer hover:border-slate-300"
+						class="rounded-lg border border-slate-200 bg-white py-1 px-2.5 text-xs text-slate-700 font-medium focus:border-slate-400 focus:outline-none cursor-pointer hover:border-slate-300 shadow-2xs"
 					>
 						<option value="ALL">Visi balsojumi</option>
 						<option value="likums">Likumu pieņemšana</option>
@@ -62,7 +75,7 @@ templ Overview(props OverviewProps) {
 					<!-- Category / Topic -->
 					<select
 						id="filter-category"
-						class="rounded-lg border border-slate-200 bg-white py-1 px-2.5 text-xs text-slate-700 font-medium focus:border-slate-400 focus:outline-none cursor-pointer hover:border-slate-300"
+						class="rounded-lg border border-slate-200 bg-white py-1 px-2.5 text-xs text-slate-700 font-medium focus:border-slate-400 focus:outline-none cursor-pointer hover:border-slate-300 shadow-2xs"
 					>
 						<option value="ALL">Visi temati</option>
 						for _, cat := range props.Categories {
@@ -73,15 +86,16 @@ templ Overview(props OverviewProps) {
 					<!-- Outcome -->
 					<select
 						id="filter-outcome"
-						class="rounded-lg border border-slate-200 bg-white py-1 px-2.5 text-xs text-slate-700 font-medium focus:border-slate-400 focus:outline-none cursor-pointer hover:border-slate-300"
+						class="rounded-lg border border-slate-200 bg-white py-1 px-2.5 text-xs text-slate-700 font-medium focus:border-slate-400 focus:outline-none cursor-pointer hover:border-slate-300 shadow-2xs"
 					>
 						<option value="ALL">Visi rezultāti</option>
 						<option value="PIENEMTS">Pieņemtie</option>
 						<option value="NORAIDITS">Noraidītie</option>
 					</select>
+				</div>
 
-					<!-- Counter -->
-					<span id="filter-count" class="text-[11px] text-slate-400 font-mono ml-auto">
+				<div class="flex items-center justify-between text-[11px] text-slate-400 pt-0.5">
+					<span id="filter-count" class="font-mono">
 						Atrasti { fmt.Sprint(len(props.Votes)) } balsojumi
 					</span>
 				</div>

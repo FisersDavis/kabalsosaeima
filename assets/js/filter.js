@@ -20,6 +20,9 @@
     var countEl = document.getElementById('filter-count');
     var emptyState = document.getElementById('filter-empty-state');
     var emptyResetBtn = document.getElementById('filter-empty-reset');
+    var toggleBtn = document.getElementById('filter-toggle-btn');
+    var filterPanel = document.getElementById('filter-panel');
+    var filterBadge = document.getElementById('filter-badge');
     var cards = document.querySelectorAll('.vote-card');
 
     if (!cards.length) return;
@@ -30,6 +33,37 @@
       var category = categorySelect ? categorySelect.value : 'ALL';
       var outcome = outcomeSelect ? outcomeSelect.value : 'ALL';
       var tier1 = tier1Toggle ? tier1Toggle.getAttribute('data-active') === 'true' : false;
+
+      var activeDrawerFilters = 0;
+      if (stage !== 'ALL') activeDrawerFilters++;
+      if (category !== 'ALL') activeDrawerFilters++;
+      if (outcome !== 'ALL') activeDrawerFilters++;
+      if (tier1) activeDrawerFilters++;
+
+      if (filterBadge) {
+        if (activeDrawerFilters > 0) {
+          filterBadge.textContent = activeDrawerFilters;
+          filterBadge.classList.remove('hidden');
+        } else {
+          filterBadge.classList.add('hidden');
+        }
+      }
+
+      if (toggleBtn) {
+        if (activeDrawerFilters > 0) {
+          toggleBtn.classList.add('border-slate-800', 'bg-slate-100', 'font-semibold');
+        } else {
+          toggleBtn.classList.remove('border-slate-800', 'bg-slate-100', 'font-semibold');
+        }
+      }
+
+      if (resetBtn) {
+        if (query || activeDrawerFilters > 0) {
+          resetBtn.classList.remove('hidden');
+        } else {
+          resetBtn.classList.add('hidden');
+        }
+      }
 
       var visible = 0;
       for (var i = 0; i < cards.length; i++) {
@@ -107,6 +141,25 @@
     if (outcomeSelect && urlParams.get('outcome')) outcomeSelect.value = urlParams.get('outcome');
     if (tier1Toggle && urlParams.get('tier1') === '1') {
       setTier1State(true);
+    }
+
+    // Auto-expand filter panel if URL params activate any drawer filter
+    if (filterPanel && ((stageSelect && stageSelect.value !== 'ALL') || (categorySelect && categorySelect.value !== 'ALL') || (outcomeSelect && outcomeSelect.value !== 'ALL') || (tier1Toggle && tier1Toggle.getAttribute('data-active') === 'true'))) {
+      filterPanel.classList.remove('hidden');
+      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    if (toggleBtn && filterPanel) {
+      toggleBtn.addEventListener('click', function() {
+        var isHidden = filterPanel.classList.contains('hidden');
+        if (isHidden) {
+          filterPanel.classList.remove('hidden');
+          toggleBtn.setAttribute('aria-expanded', 'true');
+        } else {
+          filterPanel.classList.add('hidden');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
     }
 
     if (searchInput) searchInput.addEventListener('input', applyFilter);

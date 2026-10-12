@@ -395,12 +395,12 @@ func MPView(props MPProps) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "%</span></div></div><div class=\"rounded-lg bg-slate-50 p-3 text-[11px] text-slate-600 leading-relaxed border border-slate-100\"><strong class=\"text-slate-800\">Kāpēc deputāti dažkārt nebalso?</strong> Saskaņā ar Satversmes 24. pantu Saeima var lemt, ja sēdē piedalās vismaz 50 deputāti (kvorums). Reģistrēšanās zālē, bet apzināta atturēšanās nospiest pogu ir parlamentārs instruments kvoruma noraušanai.</div></section><!-- Faction Cohesion Section --><section class=\"rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-2xs space-y-4\"><div class=\"flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4\"><div><div class=\"text-xs uppercase font-semibold text-slate-400\">Frakcijas vienotības rādītājs</div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 32, "%</span></div></div><div class=\"rounded-lg bg-slate-50 p-3 text-[11px] text-slate-600 leading-relaxed border border-slate-100\"><strong class=\"text-slate-800\">Kāpēc deputāti dažkārt nebalso?</strong> Saskaņā ar Satversmes 24. pantu Saeima var lemt, ja sēdē piedalās vismaz 50 deputāti (kvorums). Reģistrēšanās zālē, bet apzināta atturēšanās nospiest pogu ir parlamentārs instruments kvoruma noraušanai.</div></section><!-- Faction Cohesion Section --><section class=\"rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-2xs space-y-4\"><div class=\"flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4\"><div><div class=\"text-xs uppercase font-semibold text-slate-400\">Balsojumu sakritība ar partiju</div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			if props.Cohesion.IsIndependent {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "<div class=\"mt-1 text-sm font-bold text-slate-700\">Neatkarīgais deputāts</div><p class=\"text-xs text-slate-500 mt-0.5\">Deputāts nepieder pie frakcijas, tāpēc vienotības rādītājs netiek rēķināts.</p>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "<div class=\"mt-1 text-sm font-bold text-slate-700\">Neatkarīgais deputāts</div><p class=\"text-xs text-slate-500 mt-0.5\">Deputāts nepieder pie frakcijas, tāpēc partijas balsojumu sakritība netiek rēķināta.</p>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -745,7 +745,36 @@ func MPView(props MPProps) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 69, "</div></section></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 69, "</div></section><!-- Official Verification & Data Sources Section --><section class=\"rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-2xs space-y-3\"><div class=\"flex items-center justify-between text-xs\"><span class=\"font-bold text-slate-900 flex items-center gap-1.5\"><svg class=\"w-4 h-4 text-emerald-700\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z\"></path></svg> <span>Oficiālie datu avoti un caurskatāmība</span></span> <span class=\"text-[11px] text-slate-400\">Avots: Latvijas Republikas Saeima</span></div><div class=\"grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			titaniaURL := ""
+			if props.Mandate != nil && props.Mandate.Source != "" {
+				titaniaURL = props.Mandate.Source
+			} else if props.MP.SaeimaID != "" {
+				titaniaURL = fmt.Sprintf("https://titania.saeima.lv/Personal/Deputati/Saeima14_DepWeb_Public.nsf/0/%s?OpenDocument", props.MP.SaeimaID)
+			}
+			if titaniaURL != "" {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 70, "<a href=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var42 templ.SafeURL
+				templ_7745c5c3_Var42, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(titaniaURL))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp.templ`, Line: 358, Col: 39}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var42))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 71, "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"flex items-start gap-2.5 p-3 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-slate-100 hover:border-slate-300 transition group\"><span class=\"text-base leading-none\">🏛️</span><div class=\"min-w-0 flex-1\"><div class=\"font-semibold text-slate-900 group-hover:text-emerald-800 flex items-center gap-1\"><span>Oficiālais Saeimas deputāta dosjē</span> <svg class=\"w-3 h-3 text-slate-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 02 2h10a2 2 0 0 02-2v-4M14 4h6m0 0v6m0-6L10 14\"></path></svg></div><p class=\"text-[11px] text-slate-500 mt-0.5 line-clamp-1\">Biogrāfija, amati komisijās, debašu runas un likumdošanas priekšlikumi (titania.saeima.lv)</p></div></a> ")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 72, "<a href=\"https://www.saeima.lv/lv/14-saeimas-deputati/deputati-14-saeima\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"flex items-start gap-2.5 p-3 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-slate-100 hover:border-slate-300 transition group\"><span class=\"text-base leading-none\">📋</span><div class=\"min-w-0 flex-1\"><div class=\"font-semibold text-slate-900 group-hover:text-blue-800 flex items-center gap-1\"><span>14. Saeimas deputātu reģistrs</span> <svg class=\"w-3 h-3 text-slate-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 02 2h10a2 2 0 0 02-2v-4M14 4h6m0 0v6m0-6L10 14\"></path></svg></div><p class=\"text-[11px] text-slate-500 mt-0.5 line-clamp-1\">Latvijas Republikas Saeimas oficiālais deputātu un frakciju sastāvs (saeima.lv)</p></div></a></div></section></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

@@ -430,11 +430,14 @@ func TestRenderMPDirectory(t *testing.T) {
 	}
 
 	html := buf.String()
-	if !strings.Contains(html, "mp-card") {
-		t.Error("Rendered HTML missing .mp-card")
+	if !strings.Contains(html, "mp-row") {
+		t.Error("Rendered HTML missing .mp-row")
 	}
 	if !strings.Contains(html, "data-name") {
 		t.Error("Rendered HTML missing data-name attribute")
+	}
+	if !strings.Contains(html, "data-sort") {
+		t.Error("Rendered HTML missing data-sort attribute")
 	}
 	if !strings.Contains(html, "mp-filter.js") {
 		t.Error("Rendered HTML missing mp-filter.js")

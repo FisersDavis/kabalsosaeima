@@ -15,7 +15,7 @@ templ MPDirectory(props MPDirectoryProps) {
 						14. Saeimas deputāti un frakcijas
 					</h1>
 					<p class="mt-1 text-sm text-slate-600">
-						Pārskats par visiem deputātiem, viņu frakciju piederību, sēžu apmeklētību un frakcijas disciplīnu.
+						Pārskats par visiem deputātiem, viņu frakciju piederību, sēžu apmeklētību un balsojumu sakritību ar partiju.
 					</p>
 				</div>
 				<div class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-2xs shrink-0">
@@ -59,7 +59,7 @@ templ MPDirectory(props MPDirectoryProps) {
 								type="text"
 								id="mp-filter-search"
 								placeholder="Meklēt deputātu pēc vārda vai uzvārda..."
-								class="w-full rounded-lg border border-slate-200 bg-white py-1.5 pl-9 pr-3 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400"
+								class="w-full rounded-lg border border-slate-200 bg-white py-1.5 pl-9 pr-3 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400 shadow-2xs"
 							/>
 						</div>
 						<button
@@ -74,153 +74,179 @@ templ MPDirectory(props MPDirectoryProps) {
 
 				<div class="flex items-center justify-between text-[11px] text-slate-500 pt-1">
 					<span id="mp-filter-count">Rāda visus deputātus</span>
-					<span class="text-slate-400">Sakārtots alfabētiski pēc vārda</span>
+					<span class="text-slate-400">Klikšķiniet uz kolonnas virsraksta, lai kārtotu</span>
 				</div>
 			</section>
 
-			<!-- Deputies Grid -->
-			<div id="mp-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-				for _, item := range props.Items {
-					{{
-						mp := item.MP
-						mandate := item.Mandate
-						faction := item.Faction
-						slug := mp.Slug
-						if slug == "" {
-							slug = mp.ID
-						}
-
-						// Avatar Initials
-						initials := ""
-						parts := strings.Fields(mp.Name)
-						if len(parts) >= 2 {
-							initials = string([]rune(parts[0])[0:1]) + string([]rune(parts[len(parts)-1])[0:1])
-						} else if len(mp.Name) > 0 {
-							initials = string([]rune(mp.Name)[0:1])
-						}
-						initials = strings.ToUpper(initials)
-
-						color := "#64748B"
-						fShort := mp.FactionID
-						textColor := FactionTextColor(mp.FactionID, "")
-						if faction != nil {
-							if faction.Color != "" {
-								color = faction.Color
-							}
-							if faction.ShortName != "" {
-								fShort = faction.ShortName
-							}
-							textColor = FactionTextColor(mp.FactionID, faction.TextColor)
-						}
-
-						activeStr := "false"
-						if mp.IsActive {
-							activeStr = "true"
-						}
-					}}
-
-					<a
-						href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", slug)) }
-						class="mp-card rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs flex flex-col justify-between hover:border-slate-300 hover:shadow-md transition-all group text-left cursor-pointer"
-						data-name={ mp.Name }
-						data-faction={ mp.FactionID }
-						data-active={ activeStr }
-					>
-						<div>
-							<div class="flex items-start gap-3">
-								<!-- Initials Avatar -->
-								<div
-									class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 shadow-2xs"
-									style={ fmt.Sprintf("background-color: %s; color: %s;", color, textColor) }
-								>
-									{ initials }
-								</div>
-
-								<div class="min-w-0 flex-1">
-									<div
-										class="text-xs font-bold text-slate-900 group-hover:text-slate-700 transition line-clamp-2 min-h-[34px] leading-snug"
-										title={ mp.Name }
-									>
-										{ mp.Name }
+			<!-- Deputies Table -->
+			<div class="rounded-xl border border-slate-200 bg-white shadow-2xs overflow-hidden">
+				<div class="overflow-x-auto">
+					<table class="w-full text-left text-xs border-collapse">
+						<thead class="bg-slate-50/90 border-b border-slate-200 text-[11px] font-semibold text-slate-600">
+							<tr>
+								<th scope="col" class="py-3 px-3.5 sm:px-4 cursor-pointer hover:text-slate-900 group select-none transition" data-sort="name" title="Kārtot pēc vārda">
+									<div class="flex items-center gap-1.5">
+										<span>Deputāts</span>
+										<span class="sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]">↕</span>
 									</div>
-
-									<div class="mt-1 flex items-center gap-1.5 flex-wrap">
-										<span
-											class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold shadow-2xs"
-											style={ fmt.Sprintf("background-color: %s; color: %s;", color, textColor) }
-										>
-											{ fShort }
-										</span>
-
-										if mp.SeatNumber > 0 {
-											<span class="text-[10px] text-slate-400 font-mono">
-												Nr. { fmt.Sprintf("%d", mp.SeatNumber) }
-											</span>
-										}
-
-										if !mp.IsActive {
-											<span class="inline-flex items-center px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 text-[9px] font-medium">
-												Mandāts neaktīvs
-											</span>
-										}
+								</th>
+								<th scope="col" class="py-3 px-3.5 sm:px-4 cursor-pointer hover:text-slate-900 group select-none transition" data-sort="faction" title="Kārtot pēc frakcijas">
+									<div class="flex items-center gap-1.5">
+										<span>Frakcija</span>
+										<span class="sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]">↕</span>
 									</div>
-								</div>
-							</div>
-
-							<!-- Metrics Lockup -->
-							<div class="mt-3 pt-2.5 border-t border-slate-100 grid grid-cols-2 gap-2 text-center">
-								<!-- Attendance -->
-								<div class="rounded-lg bg-slate-50/80 p-2 border border-slate-100">
-									if item.Attendance.TotalEligibleVotes > 0 {
-										{{
-											attColor := "text-slate-800"
-											if item.Attendance.PresentPct >= 85 {
-												attColor = "text-emerald-700"
-											} else if item.Attendance.PresentPct < 70 {
-												attColor = "text-rose-600"
-											}
-										}}
-										<div class={ fmt.Sprintf("font-mono text-sm font-bold %s", attColor) }>
-											{ fmt.Sprintf("%.1f%%", item.Attendance.PresentPct) }
-										</div>
-									} else {
-										<div class="font-mono text-sm font-bold text-slate-400">
-											—
-										</div>
+								</th>
+								<th scope="col" class="py-3 px-3.5 sm:px-4 text-right cursor-pointer hover:text-slate-900 group select-none transition" data-sort="attendance" title="Kārtot pēc klātbūtnes">
+									<div class="flex items-center justify-end gap-1.5">
+										<span>Klātbūtne</span>
+										<span class="sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]">↕</span>
+									</div>
+								</th>
+								<th scope="col" class="py-3 px-3.5 sm:px-4 text-right cursor-pointer hover:text-slate-900 group select-none transition" data-sort="cohesion" title="Kārtot pēc balsojumu sakritības">
+									<div class="flex items-center justify-end gap-1.5">
+										<span>Balsojumu sakritība ar partiju</span>
+										<span class="sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]">↕</span>
+									</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody id="mp-tbody" class="divide-y divide-slate-100">
+							for _, item := range props.Items {
+								{{
+									mp := item.MP
+									mandate := item.Mandate
+									faction := item.Faction
+									slug := mp.Slug
+									if slug == "" {
+										slug = mp.ID
 									}
-									<div class="text-[9px] uppercase font-semibold tracking-wider text-slate-400 mt-0.5">
-										Klātbūtne
-									</div>
-								</div>
 
-								<!-- Cohesion -->
-								<div class="rounded-lg bg-slate-50/80 p-2 border border-slate-100">
+									// Avatar Initials
+									initials := ""
+									parts := strings.Fields(mp.Name)
+									if len(parts) >= 2 {
+										initials = string([]rune(parts[0])[0:1]) + string([]rune(parts[len(parts)-1])[0:1])
+									} else if len(mp.Name) > 0 {
+										initials = string([]rune(mp.Name)[0:1])
+									}
+									initials = strings.ToUpper(initials)
+
+									color := "#64748B"
+									fShort := mp.FactionID
+									fName := "Pie frakcijām nepiederošs"
+									textColor := FactionTextColor(mp.FactionID, "")
+									if faction != nil {
+										if faction.Color != "" {
+											color = faction.Color
+										}
+										if faction.ShortName != "" {
+											fShort = faction.ShortName
+										}
+										if faction.Name != "" {
+											fName = faction.Name
+										}
+										textColor = FactionTextColor(mp.FactionID, faction.TextColor)
+									}
+
+									activeStr := "false"
+									if mp.IsActive {
+										activeStr = "true"
+									}
+
+									cohesionVal := -1.0
 									if !item.Cohesion.IsIndependent && item.Cohesion.CohesionPct != nil {
-										<div class="font-mono text-sm font-bold text-slate-800">
-											{ fmt.Sprintf("%.1f%%", *item.Cohesion.CohesionPct) }
-										</div>
-										<div class="text-[9px] uppercase font-semibold tracking-wider text-slate-400 mt-0.5">
-											Vienotība
-										</div>
-									} else {
-										<div class="font-mono text-sm font-bold text-slate-400">
-											—
-										</div>
-										<div class="text-[9px] uppercase font-semibold tracking-wider text-slate-400 mt-0.5" title="Neatkarīgais deputāts">
-											Neatkarīgais
-										</div>
+										cohesionVal = *item.Cohesion.CohesionPct
 									}
-								</div>
-							</div>
+								}}
 
-							if mandate != nil && mandate.Note != "" && !mp.IsActive {
-								<div class="mt-2 text-[10px] text-slate-500 italic line-clamp-1" title={ mandate.Note }>
-									{ mandate.Note }
-								</div>
+								<tr
+									class="mp-row hover:bg-slate-50/80 transition group"
+									data-name={ mp.Name }
+									data-faction={ fShort }
+									data-faction-id={ mp.FactionID }
+									data-active={ activeStr }
+									data-attendance={ fmt.Sprintf("%.2f", item.Attendance.PresentPct) }
+									data-cohesion={ fmt.Sprintf("%.2f", cohesionVal) }
+								>
+									<!-- Deputāts Column -->
+									<td class="py-3 px-3.5 sm:px-4">
+										<a href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", slug)) } class="flex items-center gap-2.5 sm:gap-3 group-hover:text-emerald-800 transition">
+											<div
+												class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-[11px] shrink-0 shadow-2xs"
+												style={ fmt.Sprintf("background-color: %s; color: %s;", color, textColor) }
+											>
+												{ initials }
+											</div>
+											<div class="min-w-0">
+												<div class="font-bold text-slate-900 group-hover:text-emerald-700 transition flex items-center gap-1.5 flex-wrap">
+													<span>{ mp.Name }</span>
+													if !mp.IsActive {
+														<span class="inline-flex items-center px-1.5 py-0.2 rounded bg-slate-100 text-slate-600 text-[9px] font-medium border border-slate-200">
+															Neaktīvs
+														</span>
+													}
+												</div>
+												if mandate != nil && mandate.Note != "" && !mp.IsActive {
+													<div class="text-[10px] text-slate-400 line-clamp-1 italic max-w-xs sm:max-w-md" title={ mandate.Note }>
+														{ mandate.Note }
+													</div>
+												}
+											</div>
+										</a>
+									</td>
+
+									<!-- Faction Column -->
+									<td class="py-3 px-3.5 sm:px-4">
+										<div class="flex items-center gap-1.5">
+											<span
+												class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold shadow-2xs shrink-0"
+												style={ fmt.Sprintf("background-color: %s; color: %s;", color, textColor) }
+											>
+												{ fShort }
+											</span>
+											<span class="hidden md:inline text-xs text-slate-500 truncate max-w-[200px]" title={ fName }>
+												{ fName }
+											</span>
+										</div>
+									</td>
+
+									<!-- Attendance Column -->
+									<td class="py-3 px-3.5 sm:px-4 text-right">
+										if item.Attendance.TotalEligibleVotes > 0 {
+											{{
+												attColor := "text-slate-800"
+												if item.Attendance.PresentPct >= 85 {
+													attColor = "text-emerald-700"
+												} else if item.Attendance.PresentPct < 70 {
+													attColor = "text-rose-600"
+												}
+											}}
+											<div class={ fmt.Sprintf("font-mono text-xs sm:text-sm font-bold %s", attColor) }>
+												{ fmt.Sprintf("%.1f%%", item.Attendance.PresentPct) }
+											</div>
+											<div class="text-[10px] text-slate-400 font-mono">
+												{ fmt.Sprint(item.Attendance.PresentCount) }/{ fmt.Sprint(item.Attendance.TotalEligibleVotes) }
+											</div>
+										} else {
+											<span class="font-mono text-xs text-slate-400">—</span>
+										}
+									</td>
+
+									<!-- Voting Alignment Column -->
+									<td class="py-3 px-3.5 sm:px-4 text-right">
+										if !item.Cohesion.IsIndependent && item.Cohesion.CohesionPct != nil {
+											<div class="font-mono text-xs sm:text-sm font-bold text-slate-800">
+												{ fmt.Sprintf("%.1f%%", *item.Cohesion.CohesionPct) }
+											</div>
+										} else {
+											<span class="font-mono text-xs text-slate-400" title="Pie frakcijām nepiederošs deputāts">—</span>
+										}
+									</td>
+								</tr>
 							}
-						</div>
-					</a>
-				}
+						</tbody>
+					</table>
+				</div>
 			</div>
 
 			<!-- Empty State -->
@@ -239,7 +265,7 @@ templ MPDirectory(props MPDirectoryProps) {
 				</div>
 			</div>
 
-			<!-- MP Directory Filter Script -->
+			<!-- MP Directory Filter & Sort Script -->
 			<script src="/assets/js/mp-filter.js"></script>
 		</div>
 	}

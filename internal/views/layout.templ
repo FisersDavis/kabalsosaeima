@@ -25,11 +25,11 @@ templ Layout(props LayoutProps) {
 					<div class="flex flex-wrap items-center justify-between gap-3">
 						<!-- Brand + Sasaukums -->
 						<div class="flex items-center gap-3">
-							<a href="/" class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 bg-slate-900 text-white shadow-xs hover:bg-slate-800 transition">
-								<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<path d="M3 20a9 9 0 0 1 18 0"></path>
-									<path d="M7 20a5 5 0 0 1 10 0"></path>
-									<circle cx="12" cy="11" r="1.5" fill="currentColor"></circle>
+							<a href="/" class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 bg-slate-900 text-white shadow-xs hover:bg-slate-800 transition" aria-label="Sākumlapa">
+								<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M2.5 19a9.5 9.5 0 0 1 19 0"></path>
+									<path d="M6.5 19a5.5 5.5 0 0 1 11 0"></path>
+									<circle cx="12" cy="9.5" r="2" fill="currentColor"></circle>
 								</svg>
 							</a>
 							<div class="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -43,8 +43,8 @@ templ Layout(props LayoutProps) {
 							</div>
 						</div>
 
-						<!-- Official Links -->
-						<div class="flex items-center gap-3 text-xs text-slate-600">
+						<!-- Official Links (hidden on mobile to keep header clean) -->
+						<div class="hidden sm:flex items-center gap-3 text-xs text-slate-600">
 							<a
 								href="https://www.saeima.lv/lv/likumdosana/balsojumi"
 								target="_blank"
