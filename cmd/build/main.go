@@ -9,6 +9,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strings"
 	"time"
 
 	"github.com/FisersDavis/kabalsosaeima/internal/data"
@@ -250,6 +251,11 @@ func renderPages(store *data.Store, outDir string) error {
 			title = views.CleanVoteTitle(v.OfficialTitle)
 		}
 
+		var timeline *stats.BillTimeline
+		if v.BillNumber != "" {
+			timeline = timelines[strings.TrimSpace(v.BillNumber)]
+		}
+
 		voteProps := views.VoteProps{
 			LayoutProps: views.LayoutProps{
 				Title:        fmt.Sprintf("%s - Kā Balso Saeima", title),
@@ -260,6 +266,7 @@ func renderPages(store *data.Store, outDir string) error {
 			Vote:     v,
 			Seats:    seats,
 			BillSlug: billSlug,
+			Timeline: timeline,
 			Store:    store,
 		}
 

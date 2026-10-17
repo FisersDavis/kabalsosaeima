@@ -14,9 +14,11 @@ templ Layout(props LayoutProps) {
 			<meta property="og:url" content={ props.CanonicalURL }/>
 			<meta property="og:locale" content="lv_LV"/>
 			<meta name="twitter:card" content="summary_large_image"/>
+			<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 			<link rel="canonical" href={ props.CanonicalURL }/>
 			<link rel="stylesheet" href="/assets/styles.css"/>
 			<script src="/assets/js/redirect.js"></script>
+			<script src="/assets/js/debates.js"></script>
 		</head>
 		<body class="min-h-full flex flex-col font-sans bg-slate-50">
 			<!-- Header -->
@@ -25,12 +27,8 @@ templ Layout(props LayoutProps) {
 					<div class="flex flex-wrap items-center justify-between gap-3">
 						<!-- Brand + Sasaukums -->
 						<div class="flex items-center gap-3">
-							<a href="/" class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 bg-slate-900 text-white shadow-xs hover:bg-slate-800 transition" aria-label="Sākumlapa">
-								<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<path d="M2.5 19a9.5 9.5 0 0 1 19 0"></path>
-									<path d="M6.5 19a5.5 5.5 0 0 1 11 0"></path>
-									<circle cx="12" cy="9.5" r="2" fill="currentColor"></circle>
-								</svg>
+							<a href="/" class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 bg-slate-900 text-white shadow-xs hover:bg-slate-800 transition p-1.5 overflow-hidden [&>svg]:h-full [&>svg]:w-full" aria-label="Sākumlapa">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" width="500" height="500" aria-label="Kā balso Saeima"><path fill="#0f172a" d="M0 0h88v88H0z"/><g fill="none" stroke="#f8fafc" stroke-width="6" stroke-dasharray="21.25 5"><path d="M8.2 58.4a35.8 35.8 0 0 1 71.6 0" pathLength="100"/><path d="M17.8 58.4a26.2 26.2 0 0 1 52.4 0" pathLength="100"/></g><path fill="#f8fafc" d="M32 49h24v9.4H32z"/></svg>
 							</a>
 							<div class="flex flex-wrap items-center gap-2 sm:gap-3">
 								<a href="/" class="text-base sm:text-lg font-bold tracking-tight text-slate-900 hover:text-emerald-700 transition">

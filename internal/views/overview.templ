@@ -112,68 +112,34 @@ templ Overview(props OverviewProps) {
 						data-outcome={ v.Result }
 						data-tier1={ fmt.Sprintf("%t", v.IsTier1) }
 					>
-						<!-- Title + Outcome Badge -->
-						<div class="flex items-start justify-between gap-3">
-							<h3 class="text-base sm:text-lg font-bold leading-snug text-slate-900">
-								<a href={ templ.SafeURL(fmt.Sprintf("/balsojumi/%s/", v.ID)) } class="hover:text-emerald-700 transition">
-									{ CleanVoteTitle(v.SimplifiedTitle) }
-								</a>
-								<span class={ "inline-flex items-center align-middle rounded-md border px-2 py-0.5 text-xs font-semibold shadow-2xs whitespace-nowrap ml-2 -translate-y-px " + ResultBadgeClass(v.Result) }>
-									{ ResultLabel(v.Result) }
-								</span>
-							</h3>
-						</div>
-
-						<!-- Vote Tally Split -->
-						<div class="flex items-center text-xs font-mono">
-							<div class="flex items-center gap-2 sm:gap-2.5 text-slate-600">
-								<span>
-									<strong class="tabular-nums font-bold text-emerald-700">{ fmt.Sprint(v.Counts.Par) }</strong>
-									<span class="font-sans text-[11px] text-slate-500">Par</span>
-								</span>
-								<span class="text-slate-300">·</span>
-								<span>
-									<strong class="tabular-nums font-bold text-rose-700">{ fmt.Sprint(v.Counts.Pret) }</strong>
-									<span class="font-sans text-[11px] text-slate-500">Pret</span>
-								</span>
-								<span class="text-slate-300">·</span>
-								<span>
-									<strong class="tabular-nums font-bold text-amber-700">{ fmt.Sprint(v.Counts.Atturas) }</strong>
-									<span class="font-sans text-[11px] text-slate-500">Atturas</span>
-								</span>
-								<span class="text-slate-300">·</span>
-								<span>
-									<strong class="tabular-nums font-bold text-slate-400">{ fmt.Sprint(v.Counts.Nebalso) }</strong>
-									<span class="font-sans text-[11px] text-slate-400">Nebalsoja</span>
-								</span>
-							</div>
-						</div>
-
-						<!-- Metadata Row -->
-						<div class="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-400 font-normal">
-							<span class="text-slate-600 font-medium">{ v.Category.Label }</span>
-							<span>·</span>
+						<!-- Metadata Eyebrow -->
+						<div class="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-400 font-medium tracking-wide">
 							<span class="font-mono text-slate-500">{ v.SittingDate }</span>
 
 							if v.ReadingStage != "" && v.ReadingStage != "Darba kārtība" && v.ReadingStage != "Procedūra" {
 								<span>·</span>
-								<span class="text-slate-500">{ v.ReadingStage }</span>
+								<span class="uppercase tracking-wider text-slate-600 text-[10px] font-semibold">{ v.ReadingStage }</span>
 							}
 
 							if v.BillNumber != "" {
 								<span>·</span>
 								<a
 									href={ templ.SafeURL(fmt.Sprintf("/likumprojekti/%s/", stats.CleanBillSlug(v.BillNumber))) }
-									class="font-mono text-slate-600 hover:text-emerald-700 hover:underline"
+									class="font-mono text-slate-500 hover:text-emerald-700 hover:underline"
 									title="Skatīt likumprojekta gaitu"
 								>
 									Nr. { CleanBillNr(v.BillNumber) }
 								</a>
 							}
 
+							if v.Category.Label != "" {
+								<span>·</span>
+								<span class="text-slate-500">{ v.Category.Label }</span>
+							}
+
 							if v.IsUrgent {
 								<span>·</span>
-								<span class="font-semibold text-amber-700">Steidzams</span>
+								<span class="font-semibold text-amber-700 uppercase tracking-wider text-[10px]">Steidzams</span>
 							}
 
 							if v.IsSecret {
@@ -182,41 +148,181 @@ templ Overview(props OverviewProps) {
 							}
 						</div>
 
-						<!-- Meaningful Civic Purpose (if substantive context exists) -->
+						<!-- Title + Outcome Badge with score -->
+						<div class="flex items-start justify-between gap-3">
+							<h3 class="text-base sm:text-lg font-bold leading-snug text-slate-900">
+								<a href={ templ.SafeURL(fmt.Sprintf("/balsojumi/%s/", v.ID)) } class="hover:text-emerald-700 transition">
+									{ CleanVoteTitle(v.SimplifiedTitle) }
+								</a>
+							</h3>
+							<span class={ "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold shadow-2xs whitespace-nowrap shrink-0 " + ResultBadgeClass(v.Result) }>
+								{ ResultLabel(v.Result) }
+								if v.Counts.Par > 0 || v.Counts.Pret > 0 {
+									<span class="font-mono ml-2 text-[11px] font-semibold opacity-90 tabular-nums">{ fmt.Sprint(v.Counts.Par) } : { fmt.Sprint(v.Counts.Pret) }</span>
+								}
+							</span>
+						</div>
+
+						<!-- Meaningful Civic Purpose (Editorial subheader without bureaucratic prefix) -->
 						{{ meaningfulContext := MeaningfulVotePurpose(v.Purpose) }}
 						if meaningfulContext != "" {
-							<p class="text-xs text-slate-600 leading-relaxed bg-slate-50/80 rounded-lg p-2.5 border border-slate-100 line-clamp-3">
-								<span class="font-semibold text-slate-800">{ PurposeLabel(v.VoteType, v.ReadingStage, v.SimplifiedTitle) }: </span>
+							<p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed border-l-2 border-slate-300 pl-3 py-0.5">
 								{ meaningfulContext }
 							</p>
 						}
 
-						<!-- Faction Breakdown Grouped by Stance (Option 3) -->
-						{{ stanceGroups := GroupFactionDecisions(v.FactionBreakdown) }}
-						if len(stanceGroups) > 0 && !v.IsSecret {
-							<div class="pt-2 border-t border-slate-100 space-y-1.5 text-xs">
-								for _, sg := range stanceGroups {
-									<div class="flex flex-wrap items-center gap-2">
-										<span class={ "inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold border tracking-wider min-w-[54px] justify-center " + DecisionBadgeClass(sg.Decision) }>
-											{ sg.Decision }
-										</span>
-										<div class="flex flex-wrap items-center gap-1.5 text-xs">
-											for i, f := range sg.Factions {
-												<span class="text-slate-800 font-medium">
-													{ f.ShortName }
-													<span class="text-slate-500 font-mono text-[11px]">({ fmt.Sprint(f.Count) })</span>
-												</span>
-												if i < len(sg.Factions)-1 {
-													<span class="text-slate-300">·</span>
+						<!-- Sēdes Debates (Adaptive: Single Spotlight vs 2-Column Duel) -->
+						{{ keyDebs := KeyDebaters(v.DebateArguments) }}
+						if len(keyDebs) > 0 {
+							<div class="debate-section pt-1 space-y-2">
+								if len(keyDebs) == 1 {
+									{{ deb := keyDebs[0] }}
+									{{
+										isPar := strings.EqualFold(deb.Opinion, "Par")
+										borderBg := "border-emerald-200/90 bg-emerald-50/50"
+										dotColor := "bg-emerald-600"
+										titleColor := "text-emerald-950"
+										btnColor := "text-emerald-800 hover:text-emerald-950"
+										opinionLabel := "Par"
+										if !isPar {
+											borderBg = "border-rose-200/90 bg-rose-50/50"
+											dotColor = "bg-rose-600"
+											titleColor = "text-rose-950"
+											btnColor = "text-rose-800 hover:text-rose-950"
+											opinionLabel = "Pret"
+										}
+									}}
+									<div class={ "w-full rounded-lg border p-2.5 sm:p-3 transition flex flex-col justify-between " + borderBg }>
+										<div class="space-y-1.5">
+											<div class={ "flex items-center gap-1.5 text-xs font-bold " + titleColor }>
+												<span class={ "inline-block w-2.5 h-2.5 rounded-full shrink-0 " + dotColor }></span>
+												<span>Runāja "{ opinionLabel }": { deb.Name } ({ deb.Fraction })</span>
+											</div>
+											<div class="text-xs text-slate-700 leading-relaxed">
+												<p class="debate-preview italic">„{ deb.Preview }“</p>
+												if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
+													<div class="debate-full hidden max-h-52 overflow-y-auto pr-1 text-slate-800 space-y-1 font-normal not-italic">
+														<p>„{ deb.FullSpeech }“</p>
+													</div>
 												}
-											}
+											</div>
 										</div>
+										if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
+											<div class="pt-1.5">
+												<button
+													type="button"
+													class={ "debate-toggle-btn cursor-pointer text-[11px] font-semibold inline-flex items-center gap-1 select-none " + btnColor }
+												>
+													<span class="debate-btn-text">Lasīt pilno runu</span>
+													<span class="debate-arrow text-[10px]">↓</span>
+												</button>
+											</div>
+										}
+									</div>
+								} else {
+									<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+										for _, deb := range keyDebs {
+											if strings.EqualFold(deb.Opinion, "Par") {
+												<div class="rounded-lg border border-emerald-200/90 bg-emerald-50/50 p-2.5 sm:p-3 transition flex flex-col justify-between">
+													<div class="space-y-1.5">
+														<div class="flex items-center gap-1.5 text-xs font-bold text-emerald-950">
+															<span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0"></span>
+															<span>Runāja "Par": { deb.Name } ({ deb.Fraction })</span>
+														</div>
+														<div class="text-xs text-slate-700 leading-relaxed">
+															<p class="debate-preview italic">„{ deb.Preview }“</p>
+															if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
+																<div class="debate-full hidden max-h-52 overflow-y-auto pr-1 text-slate-800 space-y-1 font-normal not-italic">
+																	<p>„{ deb.FullSpeech }“</p>
+																</div>
+															}
+														</div>
+													</div>
+													if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
+														<div class="pt-1.5">
+															<button
+																type="button"
+																class="debate-toggle-btn cursor-pointer text-[11px] font-semibold text-emerald-800 hover:text-emerald-950 inline-flex items-center gap-1 select-none"
+															>
+																<span class="debate-btn-text">Lasīt pilno runu</span>
+																<span class="debate-arrow text-[10px]">↓</span>
+															</button>
+														</div>
+													}
+												</div>
+											} else {
+												<div class="rounded-lg border border-rose-200/90 bg-rose-50/50 p-2.5 sm:p-3 transition flex flex-col justify-between">
+													<div class="space-y-1.5">
+														<div class="flex items-center gap-1.5 text-xs font-bold text-rose-950">
+															<span class="inline-block w-2.5 h-2.5 rounded-full bg-rose-600 shrink-0"></span>
+															<span>Runāja "Pret": { deb.Name } ({ deb.Fraction })</span>
+														</div>
+														<div class="text-xs text-slate-700 leading-relaxed">
+															<p class="debate-preview italic">„{ deb.Preview }“</p>
+															if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
+																<div class="debate-full hidden max-h-52 overflow-y-auto pr-1 text-slate-800 space-y-1 font-normal not-italic">
+																	<p>„{ deb.FullSpeech }“</p>
+																</div>
+															}
+														</div>
+													</div>
+													if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
+														<div class="pt-1.5">
+															<button
+																type="button"
+																class="debate-toggle-btn cursor-pointer text-[11px] font-semibold text-rose-800 hover:text-rose-950 inline-flex items-center gap-1 select-none"
+															>
+																<span class="debate-btn-text">Lasīt pilno runu</span>
+																<span class="debate-arrow text-[10px]">↓</span>
+															</button>
+														</div>
+													}
+												</div>
+											}
+										}
+									</div>
+								}
+								if len(v.DebateArguments.Debaters) > len(keyDebs) {
+									<div class="text-right pt-0.5">
+										<a
+											href={ templ.SafeURL(fmt.Sprintf("/balsojumi/%s/", v.ID)) }
+											class="text-[11px] font-medium text-slate-500 hover:text-emerald-700 hover:underline transition"
+										>
+											Skatīt visus { fmt.Sprint(len(v.DebateArguments.Debaters)) } debatētājus sēdes lapā →
+										</a>
 									</div>
 								}
 							</div>
 						}
 
-						<!-- Deviations Note (if any) -->
+						<!-- Faction Breakdown Grouped by Stance (Side-by-side aligned with debate boxes) -->
+						{{ stanceGroups := GroupFactionDecisions(v.FactionBreakdown) }}
+						if len(stanceGroups) > 0 && !v.IsSecret {
+							<div class="pt-2 border-t border-slate-100">
+								<div class={ "text-xs", templ.KV("grid grid-cols-1 sm:grid-cols-2 gap-2.5", len(stanceGroups) > 1), templ.KV("w-full", len(stanceGroups) == 1) }>
+									for _, sg := range stanceGroups {
+										<div class="flex items-start gap-2 min-w-0">
+											<span class={ "inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold border tracking-wider min-w-[50px] justify-center shrink-0 mt-0.5 " + DecisionBadgeClass(sg.Decision) }>
+												{ sg.Decision }
+											</span>
+											<div class="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs leading-relaxed min-w-0">
+												for i, f := range sg.Factions {
+													<span class="text-slate-800 font-medium whitespace-nowrap">
+														{ f.ShortName }
+														<span class="text-slate-500 font-mono text-[11px]">({ fmt.Sprint(f.Count) })</span>
+													</span>
+													if i < len(sg.Factions)-1 {
+														<span class="text-slate-300">·</span>
+													}
+												}
+											</div>
+										</div>
+									}
+								</div>
+							</div>
+						}
+
+						<!-- Deviations Note (subtle) -->
 						{{
 							type devItem struct {
 								mp   data.DeviatingMP
@@ -230,107 +336,21 @@ templ Overview(props OverviewProps) {
 							}
 						}}
 						if len(devItems) > 0 {
-							<div class="pt-1.5 border-t border-slate-100 text-[11px] text-slate-600">
-								<span class="font-semibold text-slate-800">✦ Novirzes no frakcijas ({ fmt.Sprint(len(devItems)) }): </span>
+							<div class="pt-1.5 border-t border-slate-100 text-[11px] text-slate-500">
+								<span class="text-slate-600 font-medium">✦ Novirzes no frakcijas ({ fmt.Sprint(len(devItems)) }): </span>
 								for i, item := range devItems {
 									<a
 										href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", ResolveMPSlug(props.Store, item.mp.MpID))) }
-										class="font-medium text-slate-800 hover:text-emerald-700 hover:underline transition"
+										class="text-slate-700 hover:text-emerald-700 hover:underline transition"
 									>
 										{ item.mp.Name }
 									</a>
-									<span class="text-slate-500"> ({ item.fShort } { strings.ToLower(DecisionLabel(item.mp.Decision)) })</span>
+									<span class="text-slate-400"> ({ item.fShort } { strings.ToLower(DecisionLabel(item.mp.Decision)) })</span>
 									if i < len(devItems)-1 {
 										<span class="text-slate-300"> · </span>
 									}
 								}
 							</div>
-						}
-
-						<!-- Bill Progression Timeline Accordion (Option C) -->
-						{{
-							var billTimeline *stats.BillTimeline
-							if v.BillNumber != "" && props.BillTimelines != nil {
-								billTimeline = props.BillTimelines[strings.TrimSpace(v.BillNumber)]
-							}
-						}}
-						if billTimeline != nil {
-							if billTimeline.TotalVotes > 1 {
-								<div class="pt-1 border-t border-slate-100">
-									<details class="group/timeline rounded-lg border border-slate-200 bg-slate-50/70 overflow-hidden transition">
-										<summary class="flex items-center justify-between px-3 py-2 text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-100/70 cursor-pointer list-none select-none transition">
-											<span class="flex items-center gap-1.5">
-												<svg class="h-3.5 w-3.5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-												<span>Likumprojekta Nr. { CleanBillNr(v.BillNumber) } gaita ({ fmt.Sprint(billTimeline.TotalVotes) } balsojumi)</span>
-											</span>
-											<svg class="h-3.5 w-3.5 text-slate-400 group-open/timeline:rotate-180 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"></path></svg>
-										</summary>
-
-										<div class="px-3 pb-3 pt-1 border-t border-slate-200 bg-white space-y-2 text-xs">
-											<div class="flex items-center justify-between text-[11px] text-slate-500 pb-1 border-b border-slate-100">
-												<span class="font-medium text-slate-700">Hronoloģiskā secība pa lasījumiem un posmiem:</span>
-												<a
-													href={ templ.SafeURL(fmt.Sprintf("/likumprojekti/%s/", billTimeline.Slug)) }
-													class="font-semibold text-emerald-700 hover:text-emerald-900 hover:underline"
-												>
-													Atvērt pilno likumprojekta lapu →
-												</a>
-											</div>
-
-											<div class="space-y-1.5">
-												for _, stage := range billTimeline.Stages {
-													for _, sv := range stage.Votes {
-														{{
-															isCurrent := sv.ID == v.ID
-															borderCls := "border-slate-100 bg-slate-50/50 hover:bg-slate-50"
-															dotCls := "bg-slate-300"
-															if isCurrent {
-																borderCls = "border-emerald-300 bg-emerald-50/70 font-semibold"
-																dotCls = "bg-emerald-600"
-															}
-														}}
-														<div class={ "flex items-center justify-between p-2 rounded-lg border text-xs transition " + borderCls }>
-															<div class="flex items-center gap-2 min-w-0 pr-2">
-																<span class={ "h-2 w-2 rounded-full shrink-0 " + dotCls }></span>
-																<span class="font-medium text-slate-900 shrink-0">{ stage.StageName }</span>
-																<span class="text-slate-400 font-mono text-[11px] shrink-0">· { sv.SittingDate }</span>
-																<a
-																	href={ templ.SafeURL(fmt.Sprintf("/balsojumi/%s/", sv.ID)) }
-																	class="text-slate-600 hover:text-emerald-700 hover:underline truncate"
-																	title={ sv.OfficialTitle }
-																>
-																	{ CleanVoteTitle(sv.SimplifiedTitle) }
-																</a>
-															</div>
-															<div class="flex items-center gap-2 shrink-0 text-right">
-																<span class={ "inline-flex items-center rounded px-1.5 py-0.2 text-[10px] font-semibold border " + ResultBadgeClass(sv.Result) }>
-																	{ ResultLabel(sv.Result) }
-																</span>
-																<span class="font-mono text-[11px] text-slate-500">
-																	{ fmt.Sprint(sv.Counts.Par) }-{ fmt.Sprint(sv.Counts.Pret) }
-																</span>
-															</div>
-														</div>
-													}
-												}
-											</div>
-										</div>
-									</details>
-								</div>
-							} else {
-								<div class="pt-1 border-t border-slate-100">
-									<a
-										href={ templ.SafeURL(fmt.Sprintf("/likumprojekti/%s/", billTimeline.Slug)) }
-										class="flex items-center justify-between px-3 py-2 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-slate-100/70 text-xs font-medium text-slate-700 hover:text-slate-900 transition"
-									>
-										<span class="flex items-center gap-1.5">
-											<svg class="h-3.5 w-3.5 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-											<span>Likumprojekta Nr. { CleanBillNr(v.BillNumber) } gaita</span>
-										</span>
-										<span class="text-emerald-700 text-[11px] font-semibold hover:underline">Skatīt laika līniju →</span>
-									</a>
-								</div>
-							}
 						}
 
 						<!-- Action Footer -->
@@ -339,7 +359,7 @@ templ Overview(props OverviewProps) {
 								href={ templ.SafeURL(fmt.Sprintf("/balsojumi/%s/", v.ID)) }
 								class="inline-flex items-center gap-1.5 font-semibold text-emerald-800 hover:text-emerald-950 transition"
 							>
-								<span>Skatīt sēžu zāli un deputātus →</span>
+								<span>Skatīt sēžu zāli un likumprojekta gaitu →</span>
 							</a>
 							<div class="flex items-center gap-1.5 sm:gap-2">
 								<a

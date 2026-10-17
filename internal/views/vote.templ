@@ -105,6 +105,158 @@ templ Vote(props VoteProps) {
 					</div>
 				</div>
 
+				<!-- Bill Progression Timeline -->
+				if props.Timeline != nil && len(props.Timeline.Stages) > 0 {
+					<div class="rounded-xl border border-slate-200 bg-white p-4 sm:p-5 space-y-3 shadow-2xs">
+						<div class="flex items-center justify-between">
+							<div class="flex items-center gap-2">
+								<svg class="h-4 w-4 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+								<h2 class="text-sm font-bold text-slate-900">
+									Likumprojekta Nr. { CleanBillNr(props.Vote.BillNumber) } gaita ({ fmt.Sprint(props.Timeline.TotalVotes) } balsojumi)
+								</h2>
+							</div>
+							<a
+								href={ templ.SafeURL(fmt.Sprintf("/likumprojekti/%s/", props.Timeline.Slug)) }
+								class="text-xs font-semibold text-emerald-700 hover:text-emerald-900 hover:underline"
+							>
+								Atvērt pilno likumprojekta lapu →
+							</a>
+						</div>
+
+						<div class="space-y-1.5 pt-1">
+							for _, stage := range props.Timeline.Stages {
+								for _, sv := range stage.Votes {
+									{{
+										isCurrent := sv.ID == props.Vote.ID
+										borderCls := "border-slate-100 bg-slate-50/50 hover:bg-slate-50"
+										dotCls := "bg-slate-300"
+										if isCurrent {
+											borderCls = "border-emerald-300 bg-emerald-50/70 font-semibold shadow-2xs"
+											dotCls = "bg-emerald-600"
+										}
+									}}
+									<div class={ "flex items-center justify-between p-2.5 rounded-lg border text-xs transition " + borderCls }>
+										<div class="flex items-center gap-2 min-w-0 pr-2">
+											<span class={ "h-2 w-2 rounded-full shrink-0 " + dotCls }></span>
+											<span class="font-medium text-slate-900 shrink-0">{ stage.StageName }</span>
+											<span class="text-slate-400 font-mono text-[11px] shrink-0">· { sv.SittingDate }</span>
+											if isCurrent {
+												<span class="text-slate-900 font-semibold truncate" title={ sv.OfficialTitle }>
+													{ CleanVoteTitle(sv.SimplifiedTitle) }
+													<span class="ml-1 text-[10px] text-emerald-700 font-bold uppercase">(Šis balsojums)</span>
+												</span>
+											} else {
+												<a
+													href={ templ.SafeURL(fmt.Sprintf("/balsojumi/%s/", sv.ID)) }
+													class="text-slate-600 hover:text-emerald-700 hover:underline truncate"
+													title={ sv.OfficialTitle }
+												>
+													{ CleanVoteTitle(sv.SimplifiedTitle) }
+												</a>
+											}
+										</div>
+										<div class="flex items-center gap-2 shrink-0 text-right">
+											<span class={ "inline-flex items-center rounded px-1.5 py-0.2 text-[10px] font-semibold border " + ResultBadgeClass(sv.Result) }>
+												{ ResultLabel(sv.Result) }
+											</span>
+											<span class="font-mono text-[11px] text-slate-500">
+												{ fmt.Sprint(sv.Counts.Par) }-{ fmt.Sprint(sv.Counts.Pret) }
+											</span>
+										</div>
+									</div>
+								}
+							}
+						</div>
+					</div>
+				}
+
+				<!-- Sēdes Debates -->
+				if props.Vote.DebateArguments != nil && props.Vote.DebateArguments.HasDebates && len(props.Vote.DebateArguments.Debaters) > 0 {
+					<div class="debate-section rounded-xl border border-slate-200 bg-white p-4 sm:p-5 space-y-3 shadow-2xs">
+						<div class="flex items-center justify-between">
+							<div class="flex items-center gap-2">
+								<span class="text-base leading-none">🎙️</span>
+								<h2 class="text-sm font-bold text-slate-900 uppercase tracking-wider">
+									Sēdes debates ({ fmt.Sprint(len(props.Vote.DebateArguments.Debaters)) } runātāji)
+								</h2>
+							</div>
+							if props.Vote.StenogramURL != "" {
+								<a
+									href={ templ.SafeURL(props.Vote.StenogramURL) }
+									target="_blank"
+									rel="noopener noreferrer"
+									class="text-xs font-semibold text-blue-700 hover:text-blue-900 hover:underline inline-flex items-center gap-1"
+								>
+									<span>Pilna stenogramma</span>
+									<svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+								</a>
+							}
+						</div>
+
+						<div class="space-y-2.5 pt-1">
+							for _, deb := range props.Vote.DebateArguments.Debaters {
+								if strings.EqualFold(deb.Opinion, "Par") {
+									<div class="rounded-lg border border-emerald-200/90 bg-emerald-50/50 p-3 sm:p-4 transition flex flex-col justify-between">
+										<div class="space-y-1.5">
+											<div class="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-emerald-950">
+												<span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0"></span>
+												<span>Runāja "Par": { deb.Name } ({ deb.Fraction })</span>
+											</div>
+											<div class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+												<p class="debate-preview italic">„{ deb.Preview }“</p>
+												if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
+													<div class="debate-full hidden max-h-64 overflow-y-auto pr-1 text-slate-800 space-y-1 font-normal not-italic">
+														<p>„{ deb.FullSpeech }“</p>
+													</div>
+												}
+											</div>
+										</div>
+										if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
+											<div class="pt-2">
+												<button
+													type="button"
+													class="debate-toggle-btn cursor-pointer text-xs font-semibold text-emerald-800 hover:text-emerald-950 inline-flex items-center gap-1 select-none"
+												>
+													<span class="debate-btn-text">Lasīt pilno runu</span>
+													<span class="debate-arrow text-[10px]">↓</span>
+												</button>
+											</div>
+										}
+									</div>
+								} else {
+									<div class="rounded-lg border border-rose-200/90 bg-rose-50/50 p-3 sm:p-4 transition flex flex-col justify-between">
+										<div class="space-y-1.5">
+											<div class="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-rose-950">
+												<span class="inline-block w-2.5 h-2.5 rounded-full bg-rose-600 shrink-0"></span>
+												<span>Runāja "Pret": { deb.Name } ({ deb.Fraction })</span>
+											</div>
+											<div class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+												<p class="debate-preview italic">„{ deb.Preview }“</p>
+												if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
+													<div class="debate-full hidden max-h-64 overflow-y-auto pr-1 text-slate-800 space-y-1 font-normal not-italic">
+														<p>„{ deb.FullSpeech }“</p>
+													</div>
+												}
+											</div>
+										</div>
+										if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
+											<div class="pt-2">
+												<button
+													type="button"
+													class="debate-toggle-btn cursor-pointer text-xs font-semibold text-rose-800 hover:text-rose-950 inline-flex items-center gap-1 select-none"
+												>
+													<span class="debate-btn-text">Lasīt pilno runu</span>
+													<span class="debate-arrow text-[10px]">↓</span>
+												</button>
+											</div>
+										}
+									</div>
+								}
+							}
+						</div>
+					</div>
+				}
+
 				<!-- Hemicycle Section -->
 				if props.Vote.IsSecret {
 					<div class="rounded-xl border border-slate-200 bg-slate-50 p-8 text-center space-y-2">

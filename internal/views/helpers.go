@@ -143,7 +143,7 @@ func DecisionBadgeClass(decision string) string {
 		return "bg-rose-50 text-rose-700 border-rose-200"
 	case "ATTURAS":
 		return "bg-amber-50 text-amber-700 border-amber-200"
-	case "NEBALSO":
+	case "NEBALSO", "NEBALSOJA":
 		return "bg-slate-50 text-slate-600 border-slate-200"
 	default:
 		return "bg-slate-50 text-slate-500 border-slate-200"
@@ -526,7 +526,47 @@ type VoteProps struct {
 	Vote        *data.Vote
 	Seats       []HemicycleSeat
 	BillSlug    string
+	Timeline    *stats.BillTimeline
 	Store       *data.Store
+}
+
+// KeyDebaters selects up to 2 contrasting debaters (e.g. 1 Par and 1 Pret) for feed cards, ordered Par then Pret.
+func KeyDebaters(args *data.DebateArguments) []data.Debater {
+	if args == nil || !args.HasDebates || len(args.Debaters) == 0 {
+		return nil
+	}
+	if len(args.Debaters) <= 2 {
+		if len(args.Debaters) == 2 {
+			if strings.EqualFold(args.Debaters[0].Opinion, "Pret") && strings.EqualFold(args.Debaters[1].Opinion, "Par") {
+				return []data.Debater{args.Debaters[1], args.Debaters[0]}
+			}
+		}
+		return args.Debaters
+	}
+	var par *data.Debater
+	var pret *data.Debater
+	for i := range args.Debaters {
+		d := args.Debaters[i]
+		if strings.EqualFold(d.Opinion, "Par") && par == nil {
+			par = &d
+		} else if strings.EqualFold(d.Opinion, "Pret") && pret == nil {
+			pret = &d
+		}
+		if par != nil && pret != nil {
+			break
+		}
+	}
+	var res []data.Debater
+	if par != nil {
+		res = append(res, *par)
+	}
+	if pret != nil {
+		res = append(res, *pret)
+	}
+	if len(res) == 0 {
+		return args.Debaters[:2]
+	}
+	return res
 }
 
 // BillProps defines props for bill progression timeline pages.

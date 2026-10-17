@@ -72,6 +72,21 @@ type FactionBreakdown struct {
 	DeviatingMps []DeviatingMP `json:"deviatingMps"`
 }
 
+// Debater represents a parliamentary speaker and their argument on a vote.
+type Debater struct {
+	Name       string `json:"name"`
+	Fraction   string `json:"fraction"`
+	Opinion    string `json:"opinion"` // "Par" or "Pret"
+	Preview    string `json:"preview"`
+	FullSpeech string `json:"fullSpeech"`
+}
+
+// DebateArguments represents parliamentary debate speeches associated with a vote.
+type DebateArguments struct {
+	HasDebates bool      `json:"hasDebates"`
+	Debaters   []Debater `json:"debaters"`
+}
+
 // Vote represents a plenary vote from votes.json.
 type Vote struct {
 	ID              string             `json:"id"`
@@ -98,6 +113,7 @@ type Vote struct {
 	Result          string             `json:"result"`
 	Counts          VoteCounts         `json:"counts"`
 	FactionBreakdown []FactionBreakdown `json:"factionBreakdown"`
+	DebateArguments  *DebateArguments   `json:"debateArguments,omitempty"`
 }
 
 // RollcallRecord represents an MP's individual vote in a rollcall file.
