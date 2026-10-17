@@ -260,6 +260,7 @@ type HemicycleSeat struct {
 	Slug             string
 	FactionID        string
 	FactionShort     string
+	FactionName      string
 	FactionColor     string
 	FactionTextColor string
 	Decision         string
@@ -267,6 +268,8 @@ type HemicycleSeat struct {
 	ChamberSeat      int
 	X                float64
 	Y                float64
+	IsDeviating      bool
+	FactionLine      string
 }
 
 // FactionTextColor returns readable foreground text color for a faction background.
@@ -440,6 +443,14 @@ func BuildHemicycleSeats(store *data.Store, v *data.Vote) []HemicycleSeat {
 		return activeList[i].mp.SeatNumber < activeList[j].mp.SeatNumber
 	})
 
+	// Index deviating MPs for this vote
+	deviatingMap := make(map[string]data.DeviatingMP)
+	for _, fb := range v.FactionBreakdown {
+		for _, d := range fb.DeviatingMps {
+			deviatingMap[d.MpID] = d
+		}
+	}
+
 	// 3. Map active deputies to coordinate seats
 	var seats []HemicycleSeat
 	for i, coord := range coords {
@@ -450,11 +461,15 @@ func BuildHemicycleSeats(store *data.Store, v *data.Vote) []HemicycleSeat {
 		fMeta := store.FactionByID[dep.factionID]
 
 		fShort := dep.factionID
+		fName := "Pie frakcijām nepiederošs"
 		fColor := "#64748B"
 		fTextColor := FactionTextColor(dep.factionID, "")
 		if fMeta != nil {
 			if fMeta.ShortName != "" {
 				fShort = fMeta.ShortName
+			}
+			if fMeta.Name != "" {
+				fName = fMeta.Name
 			}
 			if fMeta.Color != "" {
 				fColor = fMeta.Color
@@ -467,12 +482,20 @@ func BuildHemicycleSeats(store *data.Store, v *data.Vote) []HemicycleSeat {
 			slug = dep.mp.ID
 		}
 
+		isDeviating := false
+		factionLine := ""
+		if dev, ok := deviatingMap[dep.mp.ID]; ok {
+			isDeviating = true
+			factionLine = dev.FactionLine
+		}
+
 		seats = append(seats, HemicycleSeat{
 			MpID:             dep.mp.ID,
 			Name:             dep.mp.Name,
 			Slug:             slug,
 			FactionID:        dep.factionID,
 			FactionShort:     fShort,
+			FactionName:      fName,
 			FactionColor:     fColor,
 			FactionTextColor: fTextColor,
 			Decision:         dep.decision,
@@ -480,10 +503,71 @@ func BuildHemicycleSeats(store *data.Store, v *data.Vote) []HemicycleSeat {
 			ChamberSeat:      i + 1,
 			X:                coord.x,
 			Y:                coord.y,
+			IsDeviating:      isDeviating,
+			FactionLine:      factionLine,
 		})
 	}
 
 	return seats
+}
+
+// ResolveMPSlugByName looks up an MP's slug from store by exact name.
+func ResolveMPSlugByName(store *data.Store, name string) string {
+	if store != nil {
+		cleanTarget := strings.TrimSpace(name)
+		for _, mp := range store.MPs {
+			if strings.EqualFold(strings.TrimSpace(mp.Name), cleanTarget) {
+				if mp.Slug != "" {
+					return mp.Slug
+				}
+				return mp.ID
+			}
+		}
+	}
+	return ""
+}
+
+// FormatVotesCount formats a count of votes with correct Latvian plural inflection.
+func FormatVotesCount(count int) string {
+	if count%10 == 1 && count%100 != 11 {
+		return fmt.Sprintf("%d balsojums", count)
+	}
+	return fmt.Sprintf("%d balsojumi", count)
+}
+
+// AvatarInitials returns uppercase letters representing a person's first and last name initials.
+func AvatarInitials(name string) string {
+	parts := strings.Fields(strings.TrimSpace(name))
+	if len(parts) >= 2 {
+		r1, _ := utf8.DecodeRuneInString(parts[0])
+		r2, _ := utf8.DecodeRuneInString(parts[len(parts)-1])
+		return strings.ToUpper(string(r1) + string(r2))
+	} else if len(parts) == 1 && len(parts[0]) > 0 {
+		r, _ := utf8.DecodeRuneInString(parts[0])
+		return strings.ToUpper(string(r))
+	}
+	return ""
+}
+
+// OrderedDebaters returns debaters with all "Par" speeches first, followed by "Pret" speeches.
+func OrderedDebaters(args *data.DebateArguments) []data.Debater {
+	if args == nil || !args.HasDebates || len(args.Debaters) == 0 {
+		return nil
+	}
+	var par []data.Debater
+	var pret []data.Debater
+	var other []data.Debater
+	for _, d := range args.Debaters {
+		if strings.EqualFold(d.Opinion, "Par") {
+			par = append(par, d)
+		} else if strings.EqualFold(d.Opinion, "Pret") {
+			pret = append(pret, d)
+		} else {
+			other = append(other, d)
+		}
+	}
+	res := append(par, pret...)
+	return append(res, other...)
 }
 
 // FormatPct formats float percentages nicely with 1 decimal place or integer.

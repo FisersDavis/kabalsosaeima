@@ -3,76 +3,121 @@ package views
 import (
 	"fmt"
 	"strings"
+	"github.com/FisersDavis/kabalsosaeima/internal/data"
 	"github.com/FisersDavis/kabalsosaeima/internal/stats"
 )
 
 templ Vote(props VoteProps) {
 	@Layout(props.LayoutProps) {
 		<div class="space-y-6">
-			<!-- Breadcrumb Navigation -->
-			<nav class="flex items-center gap-2 text-xs text-slate-500">
-				<a href="/" class="hover:text-slate-900 hover:underline transition">← Visi balsojumi</a>
-				if props.Vote.BillNumber != "" {
-					<span>/</span>
-					<a
-						href={ templ.SafeURL(fmt.Sprintf("/likumprojekti/%s/", stats.CleanBillSlug(props.Vote.BillNumber))) }
-						class="hover:text-slate-900 hover:underline transition font-mono"
-					>
-						Likumprojekts Nr. { CleanBillNr(props.Vote.BillNumber) }
-					</a>
-				}
-			</nav>
+			<!-- Breadcrumb Navigation & Share Button -->
+			<div class="flex flex-wrap items-center justify-between gap-3 text-xs">
+				<nav class="flex items-center gap-2 text-slate-500">
+					<a href="/" class="hover:text-slate-900 hover:underline transition">← Visi balsojumi</a>
+					if props.Vote.BillNumber != "" {
+						<span>/</span>
+						<a
+							href={ templ.SafeURL(fmt.Sprintf("/likumprojekti/%s/", stats.CleanBillSlug(props.Vote.BillNumber))) }
+							class="hover:text-slate-900 hover:underline transition font-mono"
+						>
+							Likumprojekts Nr. { CleanBillNr(props.Vote.BillNumber) }
+						</a>
+					}
+				</nav>
+				<button
+					type="button"
+					id="copy-link-btn"
+					class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-xs font-medium text-slate-700 shadow-2xs transition cursor-pointer"
+					title="Kopēt saiti uz šo balsojumu"
+				>
+					<svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+					<span id="copy-link-text">Kopēt saiti</span>
+				</button>
+			</div>
 
 			<!-- Header Article -->
 			<article class="rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-2xs space-y-4">
-				<!-- Title & Badges -->
-				<div class="space-y-2">
-					<div class="flex flex-wrap items-center gap-2 text-xs">
-						<span class={ "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold shadow-2xs " + ResultBadgeClass(props.Vote.Result) }>
-							{ ResultLabel(props.Vote.Result) }
-						</span>
-						<span class="font-mono text-slate-500">{ props.Vote.SittingDate } · { props.Vote.SittingTime }</span>
-						if props.Vote.BillNumber != "" {
-							<span class="font-mono text-slate-400">Nr. { CleanBillNr(props.Vote.BillNumber) }</span>
-						}
-						if props.Vote.ReadingStage != "" {
-							<span class="text-slate-600 font-medium">{ props.Vote.ReadingStage }</span>
-						}
-						{{ committee := ExtractResponsibleCommittee(props.Vote.Summary) }}
-						if committee != "" {
-							<span class="text-slate-500">· Atbildīgā: { committee }</span>
-						}
-					</div>
+				<!-- Metadata Eyebrow (Consistent with overview.templ) -->
+				<div class="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-500 font-medium tracking-wide">
+					<span class="font-mono text-slate-600">{ props.Vote.SittingDate }</span>
+					<span>·</span>
+					<span class="font-mono text-slate-500">{ props.Vote.SittingTime }</span>
 
-					<h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 leading-snug">
-						{ CleanVoteTitle(props.Vote.SimplifiedTitle) }
-					</h1>
+					if props.Vote.ReadingStage != "" && props.Vote.ReadingStage != "Darba kārtība" && props.Vote.ReadingStage != "Procedūra" {
+						<span>·</span>
+						<span class="uppercase tracking-wider text-slate-600 text-[10px] font-semibold">{ props.Vote.ReadingStage }</span>
+					} else if props.Vote.ReadingStage != "" {
+						<span>·</span>
+						<span class="text-slate-500">{ props.Vote.ReadingStage }</span>
+					}
 
-					if props.Vote.OfficialTitle != "" && props.Vote.OfficialTitle != props.Vote.SimplifiedTitle {
-						<p class="text-xs text-slate-500 leading-relaxed italic">
-							Oficiālais formulējums: { props.Vote.OfficialTitle }
-						</p>
+					if props.Vote.BillNumber != "" {
+						<span>·</span>
+						<a
+							href={ templ.SafeURL(fmt.Sprintf("/likumprojekti/%s/", stats.CleanBillSlug(props.Vote.BillNumber))) }
+							class="font-mono text-slate-500 hover:text-blue-700 hover:underline"
+							title="Skatīt likumprojekta gaitu"
+						>
+							Nr. { CleanBillNr(props.Vote.BillNumber) }
+						</a>
+					}
+
+					if props.Vote.Category.Label != "" {
+						<span>·</span>
+						<span class="text-slate-500">{ props.Vote.Category.Label }</span>
+					}
+
+					{{ committee := ExtractResponsibleCommittee(props.Vote.Summary) }}
+					if committee != "" {
+						<span>·</span>
+						<span class="text-slate-500">Atbildīgā: { committee }</span>
+					}
+
+					if props.Vote.IsUrgent {
+						<span>·</span>
+						<span class="font-semibold text-amber-700 uppercase tracking-wider text-[10px]">Steidzams</span>
+					}
+
+					if props.Vote.IsSecret {
+						<span>·</span>
+						<span class="text-slate-500">Aizklāts balsojums</span>
 					}
 				</div>
 
-				<!-- Purpose / Summary -->
-				{{
-					meaningfulPurpose := MeaningfulVotePurpose(props.Vote.Purpose)
-				}}
-				if meaningfulPurpose != "" {
-					<div class="rounded-lg bg-slate-50 p-4 border border-slate-100 text-xs sm:text-sm text-slate-700 leading-relaxed space-y-1.5">
-						<div class="font-semibold text-slate-900">{ PurposeLabel(props.Vote.VoteType, props.Vote.ReadingStage, props.Vote.SimplifiedTitle) } un pamatojums:</div>
-						<p>{ meaningfulPurpose }</p>
-					</div>
-				} else if props.Vote.Summary != "" {
-					<div class="rounded-lg bg-slate-50 p-4 border border-slate-100 text-xs sm:text-sm text-slate-700 leading-relaxed space-y-1.5">
-						<div class="font-semibold text-slate-900">Informācija par likumprojektu:</div>
-						<p>{ strings.TrimSpace(props.Vote.Summary) }</p>
-					</div>
+				<!-- Title + Outcome Badge with score (Consistent with overview.templ) -->
+				<div class="flex items-start justify-between gap-3">
+					<h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 leading-snug">
+						{ CleanVoteTitle(props.Vote.SimplifiedTitle) }
+					</h1>
+					<span class={ "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold shadow-2xs whitespace-nowrap shrink-0 " + ResultBadgeClass(props.Vote.Result) }>
+						{ ResultLabel(props.Vote.Result) }
+						if props.Vote.Counts.Par > 0 || props.Vote.Counts.Pret > 0 {
+							<span class="font-mono ml-2 text-[11px] font-semibold opacity-90 tabular-nums">{ fmt.Sprint(props.Vote.Counts.Par) } : { fmt.Sprint(props.Vote.Counts.Pret) }</span>
+						}
+					</span>
+				</div>
+
+				if props.Vote.OfficialTitle != "" && props.Vote.OfficialTitle != props.Vote.SimplifiedTitle {
+					<p class="text-xs text-slate-500 leading-relaxed italic">
+						Oficiālais formulējums: { props.Vote.OfficialTitle }
+					</p>
 				}
 
-				<!-- Tally Bar -->
-				<div class="rounded-xl border border-slate-200 bg-white p-4 space-y-2.5">
+				<!-- Meaningful Civic Purpose (Consistent with overview.templ) -->
+				{{ meaningfulPurpose := MeaningfulVotePurpose(props.Vote.Purpose) }}
+				if meaningfulPurpose != "" {
+					<p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed border-l-2 border-slate-300 pl-3 py-0.5">
+						{ meaningfulPurpose }
+					</p>
+				} else if props.Vote.Summary != "" {
+					<p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed border-l-2 border-slate-300 pl-3 py-0.5">
+						{ strings.TrimSpace(props.Vote.Summary) }
+					</p>
+				}
+
+				<!-- Tally Bar & Faction Breakdown (Consistent with landing page) -->
+				<div class="rounded-xl border border-slate-200 bg-white p-4 space-y-3 shadow-2xs">
+					<!-- Tally Numbers & Quorum Status -->
 					<div class="flex flex-wrap items-center justify-between text-xs sm:text-sm font-mono gap-3">
 						<div class="flex items-center gap-3 sm:gap-4">
 							<span>
@@ -96,13 +141,126 @@ templ Vote(props VoteProps) {
 							</span>
 						</div>
 
-						<div class="text-xs text-slate-500 font-sans">
-							Kopā piedalījās: <strong class="text-slate-900 font-mono">{ fmt.Sprint(props.Vote.Counts.TotalPresent) }</strong> deputāti
-							if props.Vote.Counts.TotalPresent < 50 {
-								<span class="ml-1 text-amber-700 font-semibold">(Nav kvoruma)</span>
+						<div class="text-xs text-slate-500 font-sans flex items-center gap-1.5 flex-wrap">
+							<span>Kopā piedalījās: <strong class="text-slate-900 font-mono">{ fmt.Sprint(props.Vote.Counts.TotalPresent) }</strong> deputāti</span>
+							<span class="text-slate-300">·</span>
+							if props.Vote.Counts.TotalPresent >= 50 {
+								<span class="inline-flex items-center gap-1 text-emerald-700 font-semibold text-[11px]">
+									<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+									<span>Kvorums sasniegts ({ fmt.Sprint(props.Vote.Counts.TotalPresent) }/50)</span>
+								</span>
+							} else {
+								<span class="inline-flex items-center gap-1 text-amber-700 font-semibold text-[11px]">
+									<span>Nav kvoruma ({ fmt.Sprint(props.Vote.Counts.TotalPresent) }/50)</span>
+								</span>
 							}
 						</div>
 					</div>
+
+					<!-- Proportional Stacked Progress Bar with 51-vote vertical threshold marker line -->
+					{{
+						totalCast := props.Vote.Counts.Par + props.Vote.Counts.Pret + props.Vote.Counts.Atturas + props.Vote.Counts.Nebalso
+						if totalCast == 0 {
+							totalCast = 100
+						}
+						parPct := float64(props.Vote.Counts.Par) * 100.0 / float64(totalCast)
+						pretPct := float64(props.Vote.Counts.Pret) * 100.0 / float64(totalCast)
+						attPct := float64(props.Vote.Counts.Atturas) * 100.0 / float64(totalCast)
+						nebPct := float64(props.Vote.Counts.Nebalso) * 100.0 / float64(totalCast)
+					}}
+					<div class="space-y-1.5 pt-0.5">
+						<div class="relative w-full h-3 bg-slate-100 rounded-full overflow-hidden flex">
+							if parPct > 0 {
+								<div style={ fmt.Sprintf("width: %.1f%%", parPct) } class="bg-emerald-600 h-full transition-all" title={ fmt.Sprintf("Par: %d (%.1f%%)", props.Vote.Counts.Par, parPct) }></div>
+							}
+							if pretPct > 0 {
+								<div style={ fmt.Sprintf("width: %.1f%%", pretPct) } class="bg-rose-600 h-full transition-all" title={ fmt.Sprintf("Pret: %d (%.1f%%)", props.Vote.Counts.Pret, pretPct) }></div>
+							}
+							if attPct > 0 {
+								<div style={ fmt.Sprintf("width: %.1f%%", attPct) } class="bg-amber-500 h-full transition-all" title={ fmt.Sprintf("Atturas: %d (%.1f%%)", props.Vote.Counts.Atturas, attPct) }></div>
+							}
+							if nebPct > 0 {
+								<div style={ fmt.Sprintf("width: %.1f%%", nebPct) } class="bg-slate-300 h-full transition-all" title={ fmt.Sprintf("Nebalsoja: %d (%.1f%%)", props.Vote.Counts.Nebalso, nebPct) }></div>
+							}
+						</div>
+						<div class="flex items-center justify-between text-[10px] text-slate-400 font-mono select-none px-0.5">
+							<span>0</span>
+							<span class="text-slate-500 font-sans">Saeimas zāles 100 vietu sadalījums</span>
+							<span>{ fmt.Sprint(totalCast) }</span>
+						</div>
+					</div>
+
+					<!-- Constitutional Procedure Explanation (Satversmes 24. pants) -->
+					<div class="rounded-lg bg-slate-50 border border-slate-200/80 p-2.5 text-[11px] text-slate-600 flex items-start gap-2">
+						<svg class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+						<div class="leading-relaxed">
+							if props.Vote.Result == "PIENEMTS" {
+								<strong class="text-slate-800">Kāpēc lēmums ir pieņemts?</strong> Saskaņā ar Satversmes 24. pantu un Saeimas kārtības rulli parastie lēmumi tiek pieņemti ar <em>klātesošo deputātu vienkāršu balsu vairākumu</em> (kvorums: vismaz 50 balsotāji). Tā kā balsošanā piedalījās { fmt.Sprint(props.Vote.Counts.TotalPresent) } deputāti un <strong>Par ({ fmt.Sprint(props.Vote.Counts.Par) })</strong> bija vairāk nekā <strong>Pret un Atturas ({ fmt.Sprint(props.Vote.Counts.Pret + props.Vote.Counts.Atturas) })</strong>, lēmums ir oficiāli pieņemts. Visas Saeimas 51 balss vairākums nepieciešams tikai atsevišķos Satversmē īpaši noteiktos gadījumos.
+							} else if props.Vote.Result == "NAV_KVORUMA" {
+								<strong class="text-slate-800">Kāpēc nav kvoruma?</strong> Saskaņā ar Satversmes 24. pantu balsojumā jāpiedalās vismaz pusei Saeimas deputātu (50). Piedalījās tikai { fmt.Sprint(props.Vote.Counts.TotalPresent) }, tādēļ lēmums nav spēkā.
+							} else {
+								<strong class="text-slate-800">Kāpēc lēmums ir noraidīts?</strong> Balsojumā Par nodoto balsu skaits ({ fmt.Sprint(props.Vote.Counts.Par) }) nebija lielāks par Pret un Atturas kopskaitu ({ fmt.Sprint(props.Vote.Counts.Pret + props.Vote.Counts.Atturas) }).
+							}
+						</div>
+					</div>
+
+					<!-- Faction Breakdown Grouped by Stance (Identical to overview.templ) -->
+					{{ stanceGroups := GroupFactionDecisions(props.Vote.FactionBreakdown) }}
+					if len(stanceGroups) > 0 && !props.Vote.IsSecret {
+						<div class="pt-2 border-t border-slate-100">
+							<div class={ "text-xs", templ.KV("grid grid-cols-1 sm:grid-cols-2 gap-2.5", len(stanceGroups) > 1), templ.KV("w-full", len(stanceGroups) == 1) }>
+								for _, sg := range stanceGroups {
+									<div class="flex items-start gap-2 min-w-0">
+										<span class={ "inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold border tracking-wider min-w-[50px] justify-center shrink-0 mt-0.5 " + DecisionBadgeClass(sg.Decision) }>
+											{ sg.Decision }
+										</span>
+										<div class="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs leading-relaxed min-w-0">
+											for i, f := range sg.Factions {
+												<span class="text-slate-800 font-medium whitespace-nowrap">
+													{ f.ShortName }
+													<span class="text-slate-500 font-mono text-[11px]">({ fmt.Sprint(f.Count) })</span>
+												</span>
+												if i < len(sg.Factions)-1 {
+													<span class="text-slate-300">·</span>
+												}
+											}
+										</div>
+									</div>
+								}
+							</div>
+						</div>
+					}
+
+					<!-- Deviations Note (Identical to overview.templ) -->
+					{{
+						type devItem struct {
+							mp     data.DeviatingMP
+							fShort string
+						}
+						var devItems []devItem
+						for _, fb := range props.Vote.FactionBreakdown {
+							for _, d := range fb.DeviatingMps {
+								devItems = append(devItems, devItem{mp: d, fShort: fb.ShortName})
+							}
+						}
+					}}
+					if len(devItems) > 0 {
+						<div class="pt-2 border-t border-slate-100 text-[11px] text-slate-500">
+							<span class="text-slate-600 font-medium">✦ Novirzes no frakcijas ({ fmt.Sprint(len(devItems)) }): </span>
+							for i, item := range devItems {
+								<a
+									href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", ResolveMPSlug(props.Store, item.mp.MpID))) }
+									class="text-slate-700 hover:text-emerald-700 hover:underline transition"
+								>
+									{ item.mp.Name }
+								</a>
+								<span class="text-slate-400"> ({ item.fShort } { strings.ToLower(DecisionLabel(item.mp.Decision)) })</span>
+								if i < len(devItems)-1 {
+									<span class="text-slate-300"> · </span>
+								}
+							}
+						</div>
+					}
 				</div>
 
 				<!-- Bill Progression Timeline -->
@@ -110,14 +268,14 @@ templ Vote(props VoteProps) {
 					<div class="rounded-xl border border-slate-200 bg-white p-4 sm:p-5 space-y-3 shadow-2xs">
 						<div class="flex items-center justify-between">
 							<div class="flex items-center gap-2">
-								<svg class="h-4 w-4 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+								<svg class="h-4 w-4 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
 								<h2 class="text-sm font-bold text-slate-900">
-									Likumprojekta Nr. { CleanBillNr(props.Vote.BillNumber) } gaita ({ fmt.Sprint(props.Timeline.TotalVotes) } balsojumi)
+									Likumprojekta Nr. { CleanBillNr(props.Vote.BillNumber) } gaita ({ FormatVotesCount(props.Timeline.TotalVotes) })
 								</h2>
 							</div>
 							<a
 								href={ templ.SafeURL(fmt.Sprintf("/likumprojekti/%s/", props.Timeline.Slug)) }
-								class="text-xs font-semibold text-emerald-700 hover:text-emerald-900 hover:underline"
+								class="text-xs font-semibold text-blue-700 hover:text-blue-900 hover:underline"
 							>
 								Atvērt pilno likumprojekta lapu →
 							</a>
@@ -131,8 +289,8 @@ templ Vote(props VoteProps) {
 										borderCls := "border-slate-100 bg-slate-50/50 hover:bg-slate-50"
 										dotCls := "bg-slate-300"
 										if isCurrent {
-											borderCls = "border-emerald-300 bg-emerald-50/70 font-semibold shadow-2xs"
-											dotCls = "bg-emerald-600"
+											borderCls = "border-blue-300 bg-blue-50/80 font-semibold shadow-2xs ring-1 ring-blue-300/50"
+											dotCls = "bg-blue-600"
 										}
 									}}
 									<div class={ "flex items-center justify-between p-2.5 rounded-lg border text-xs transition " + borderCls }>
@@ -143,12 +301,12 @@ templ Vote(props VoteProps) {
 											if isCurrent {
 												<span class="text-slate-900 font-semibold truncate" title={ sv.OfficialTitle }>
 													{ CleanVoteTitle(sv.SimplifiedTitle) }
-													<span class="ml-1 text-[10px] text-emerald-700 font-bold uppercase">(Šis balsojums)</span>
+													<span class="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-blue-100 text-blue-800 font-bold uppercase tracking-wider">Šis balsojums</span>
 												</span>
 											} else {
 												<a
 													href={ templ.SafeURL(fmt.Sprintf("/balsojumi/%s/", sv.ID)) }
-													class="text-slate-600 hover:text-emerald-700 hover:underline truncate"
+													class="text-slate-600 hover:text-blue-700 hover:underline truncate"
 													title={ sv.OfficialTitle }
 												>
 													{ CleanVoteTitle(sv.SimplifiedTitle) }
@@ -170,14 +328,15 @@ templ Vote(props VoteProps) {
 					</div>
 				}
 
-				<!-- Sēdes Debates -->
-				if props.Vote.DebateArguments != nil && props.Vote.DebateArguments.HasDebates && len(props.Vote.DebateArguments.Debaters) > 0 {
+				<!-- Sēdes Debates (Ordered Par on left, Pret on right) -->
+				{{ orderedDebs := OrderedDebaters(props.Vote.DebateArguments) }}
+				if len(orderedDebs) > 0 {
 					<div class="debate-section rounded-xl border border-slate-200 bg-white p-4 sm:p-5 space-y-3 shadow-2xs">
 						<div class="flex items-center justify-between">
 							<div class="flex items-center gap-2">
 								<span class="text-base leading-none">🎙️</span>
 								<h2 class="text-sm font-bold text-slate-900 uppercase tracking-wider">
-									Sēdes debates ({ fmt.Sprint(len(props.Vote.DebateArguments.Debaters)) } runātāji)
+									Sēdes debates ({ fmt.Sprint(len(orderedDebs)) } runātāji)
 								</h2>
 							</div>
 							if props.Vote.StenogramURL != "" {
@@ -193,65 +352,61 @@ templ Vote(props VoteProps) {
 							}
 						</div>
 
-						<div class="space-y-2.5 pt-1">
-							for _, deb := range props.Vote.DebateArguments.Debaters {
-								if strings.EqualFold(deb.Opinion, "Par") {
-									<div class="rounded-lg border border-emerald-200/90 bg-emerald-50/50 p-3 sm:p-4 transition flex flex-col justify-between">
-										<div class="space-y-1.5">
-											<div class="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-emerald-950">
-												<span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0"></span>
-												<span>Runāja "Par": { deb.Name } ({ deb.Fraction })</span>
-											</div>
-											<div class="text-xs sm:text-sm text-slate-700 leading-relaxed">
-												<p class="debate-preview italic">„{ deb.Preview }“</p>
-												if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
-													<div class="debate-full hidden max-h-64 overflow-y-auto pr-1 text-slate-800 space-y-1 font-normal not-italic">
-														<p>„{ deb.FullSpeech }“</p>
-													</div>
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+							for _, deb := range orderedDebs {
+								{{
+									isPar := strings.EqualFold(deb.Opinion, "Par")
+									borderBg := "border-emerald-200/90 bg-emerald-50/50"
+									dotColor := "bg-emerald-600"
+									titleColor := "text-emerald-950"
+									btnColor := "text-emerald-800 hover:text-emerald-950"
+									opinionLabel := "Par"
+									if !isPar {
+										borderBg = "border-rose-200/90 bg-rose-50/50"
+										dotColor = "bg-rose-600"
+										titleColor = "text-rose-950"
+										btnColor = "text-rose-800 hover:text-rose-950"
+										opinionLabel = "Pret"
+									}
+									mpSlug := ResolveMPSlugByName(props.Store, deb.Name)
+								}}
+								<div class={ "rounded-lg border p-3 sm:p-4 transition flex flex-col justify-between " + borderBg }>
+									<div class="space-y-1.5">
+										<div class={ "flex items-center gap-1.5 text-xs sm:text-sm font-bold " + titleColor }>
+											<span class={ "inline-block w-2.5 h-2.5 rounded-full shrink-0 " + dotColor }></span>
+											<span>
+												Runāja "{ opinionLabel }":
+												if mpSlug != "" {
+													<a href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", mpSlug)) } class="hover:underline ml-1">
+														{ deb.Name }
+													</a>
+												} else {
+													<span class="ml-1">{ deb.Name }</span>
 												}
-											</div>
+												<span class="font-normal opacity-90 ml-1">({ deb.Fraction })</span>
+											</span>
 										</div>
-										if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
-											<div class="pt-2">
-												<button
-													type="button"
-													class="debate-toggle-btn cursor-pointer text-xs font-semibold text-emerald-800 hover:text-emerald-950 inline-flex items-center gap-1 select-none"
-												>
-													<span class="debate-btn-text">Lasīt pilno runu</span>
-													<span class="debate-arrow text-[10px]">↓</span>
-												</button>
-											</div>
-										}
-									</div>
-								} else {
-									<div class="rounded-lg border border-rose-200/90 bg-rose-50/50 p-3 sm:p-4 transition flex flex-col justify-between">
-										<div class="space-y-1.5">
-											<div class="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-rose-950">
-												<span class="inline-block w-2.5 h-2.5 rounded-full bg-rose-600 shrink-0"></span>
-												<span>Runāja "Pret": { deb.Name } ({ deb.Fraction })</span>
-											</div>
-											<div class="text-xs sm:text-sm text-slate-700 leading-relaxed">
-												<p class="debate-preview italic">„{ deb.Preview }“</p>
-												if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
-													<div class="debate-full hidden max-h-64 overflow-y-auto pr-1 text-slate-800 space-y-1 font-normal not-italic">
-														<p>„{ deb.FullSpeech }“</p>
-													</div>
-												}
-											</div>
+										<div class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+											<p class="debate-preview italic">„{ deb.Preview }“</p>
+											if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
+												<div class="debate-full hidden max-h-64 overflow-y-auto pr-1 text-slate-800 space-y-1 font-normal not-italic">
+													<p>„{ deb.FullSpeech }“</p>
+												</div>
+											}
 										</div>
-										if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
-											<div class="pt-2">
-												<button
-													type="button"
-													class="debate-toggle-btn cursor-pointer text-xs font-semibold text-rose-800 hover:text-rose-950 inline-flex items-center gap-1 select-none"
-												>
-													<span class="debate-btn-text">Lasīt pilno runu</span>
-													<span class="debate-arrow text-[10px]">↓</span>
-												</button>
-											</div>
-										}
 									</div>
-								}
+									if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
+										<div class="pt-2">
+											<button
+												type="button"
+												class={ "debate-toggle-btn cursor-pointer text-xs font-semibold inline-flex items-center gap-1 select-none " + btnColor }
+											>
+												<span class="debate-btn-text">Lasīt pilno runu</span>
+												<span class="debate-arrow text-[10px]">↓</span>
+											</button>
+										</div>
+									}
+								</div>
 							}
 						</div>
 					</div>
@@ -267,13 +422,52 @@ templ Vote(props VoteProps) {
 					</div>
 				} else {
 					<div class="rounded-xl border border-slate-200 bg-slate-50/50 p-4 sm:p-6 space-y-4">
-						<div class="flex items-center justify-between text-xs">
+						<div class="flex flex-wrap items-center justify-between gap-2 text-xs">
 							<span class="font-bold text-slate-900">Saeimas sēžu zāle (100 vietas)</span>
-							<div class="flex items-center gap-3 text-[11px]">
-								<span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> Par</span>
-								<span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-rose-600"></span> Pret</span>
-								<span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Atturas</span>
-								<span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span> Nebalsoja</span>
+							<div class="flex flex-wrap items-center gap-1.5 text-[11px]" id="hemicycle-filter-group">
+								<button
+									type="button"
+									data-filter-decision="ALL"
+									class="px-2.5 py-1 rounded-md font-bold text-xs transition bg-slate-900 text-white shadow-2xs flex items-center gap-1.5 cursor-pointer"
+								>
+									Visi ({ fmt.Sprint(len(props.Seats)) })
+								</button>
+								<button
+									type="button"
+									data-filter-decision="PAR"
+									class="px-2.5 py-1 rounded-md font-medium text-xs text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition shadow-2xs flex items-center gap-1.5 cursor-pointer"
+								>
+									<span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+									<span>Par ({ fmt.Sprint(props.Vote.Counts.Par) })</span>
+								</button>
+								<button
+									type="button"
+									data-filter-decision="PRET"
+									class="px-2.5 py-1 rounded-md font-medium text-xs text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition shadow-2xs flex items-center gap-1.5 cursor-pointer"
+								>
+									<span class="w-2 h-2 rounded-full bg-rose-600"></span>
+									<span>Pret ({ fmt.Sprint(props.Vote.Counts.Pret) })</span>
+								</button>
+								if props.Vote.Counts.Atturas > 0 {
+									<button
+										type="button"
+										data-filter-decision="ATTURAS"
+										class="px-2.5 py-1 rounded-md font-medium text-xs text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition shadow-2xs flex items-center gap-1.5 cursor-pointer"
+									>
+										<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+										<span>Atturas ({ fmt.Sprint(props.Vote.Counts.Atturas) })</span>
+									</button>
+								}
+								if props.Vote.Counts.Nebalso > 0 {
+									<button
+										type="button"
+										data-filter-decision="NEBALSO"
+										class="px-2.5 py-1 rounded-md font-medium text-xs text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition shadow-2xs flex items-center gap-1.5 cursor-pointer"
+									>
+										<span class="w-2 h-2 rounded-full bg-slate-400"></span>
+										<span>Nebalsoja ({ fmt.Sprint(props.Vote.Counts.Nebalso) })</span>
+									</button>
+								}
 							</div>
 						</div>
 
@@ -306,7 +500,7 @@ templ Vote(props VoteProps) {
 								for _, seat := range props.Seats {
 									<a
 										href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", seat.Slug)) }
-										class="cursor-pointer focus:outline-none group/seat"
+										class="cursor-pointer focus:outline-none group/seat transition-opacity duration-150"
 										aria-label={ fmt.Sprintf("%s (%s): %s", seat.Name, seat.FactionShort, DecisionLabel(seat.Decision)) }
 										tabindex="0"
 										data-seat-link
@@ -314,7 +508,8 @@ templ Vote(props VoteProps) {
 										data-faction={ seat.FactionShort }
 										data-faction-color={ seat.FactionColor }
 										data-faction-text-color={ seat.FactionTextColor }
-										data-decision={ DecisionLabel(seat.Decision) }
+										data-decision={ seat.Decision }
+										data-decision-label={ DecisionLabel(seat.Decision) }
 										data-decision-color={ seat.Color }
 									>
 										<circle
@@ -338,71 +533,134 @@ templ Vote(props VoteProps) {
 						</p>
 					</div>
 
-					<!-- Accessible Chamber Audit Table with Instant Search -->
-					<div class="rounded-xl border border-slate-200 bg-white overflow-hidden shadow-2xs space-y-0">
-						<div class="px-4 py-3 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
-							<div class="font-bold text-slate-800 flex items-center gap-2">
+					<!-- Accessible Chamber Audit Table (Visually consistent with "Partijas un deputāti" page) -->
+					<div class="rounded-xl border border-slate-200 bg-white shadow-2xs overflow-hidden">
+						<!-- Table Toolbar Matching MP Directory -->
+						<div class="px-4 py-3 bg-slate-50/90 border-b border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 text-xs">
+							<div class="font-bold text-slate-800 flex items-center gap-2 shrink-0">
 								<span>Deputātu saraksts</span>
 								<span id="deputy-visible-count" class="px-2 py-0.5 rounded-full bg-slate-200/80 font-mono text-[10px] text-slate-700 font-semibold">
 									{ fmt.Sprint(len(props.Seats)) } deputāti
 								</span>
 							</div>
 
-							<!-- Search / Filter input -->
-							<div class="relative w-full sm:w-64">
-								<input
-									type="search"
-									id="deputy-search-input"
-									placeholder="Meklēt pēc vārda vai frakcijas..."
-									class="w-full rounded-lg border border-slate-300 bg-white px-3 py-1.5 pl-8 text-xs placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
-								/>
-								<svg class="absolute left-2.5 top-2 h-3.5 w-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-								</svg>
+							<!-- Faction filter & Search input matching MP Directory -->
+							<div class="flex items-center gap-2 flex-1 max-w-full sm:max-w-md justify-end">
+								if props.Store != nil && len(props.Store.Factions) > 0 {
+									<select
+										id="deputy-faction-filter"
+										class="rounded-lg border border-slate-200 bg-white py-1.5 px-3 text-xs text-slate-700 font-medium focus:border-slate-400 focus:outline-none cursor-pointer hover:border-slate-300 shadow-2xs"
+									>
+										<option value="ALL">Visas frakcijas</option>
+										for _, f := range props.Store.Factions {
+											<option value={ f.ShortName }>{ f.Name } ({ f.ShortName })</option>
+										}
+										<option value="PIEFR">Pie frakcijām nepiederošie</option>
+									</select>
+								}
+								<div class="relative flex-1">
+									<svg class="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+									<input
+										type="text"
+										id="deputy-search-input"
+										placeholder="Meklēt deputātu pēc vārda..."
+										class="w-full rounded-lg border border-slate-200 bg-white py-1.5 pl-9 pr-3 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400 shadow-2xs"
+									/>
+								</div>
 							</div>
 						</div>
 
-						<div class="max-h-96 overflow-y-auto divide-y divide-slate-100 text-xs">
-							<table class="w-full text-left">
-								<thead class="sticky top-0 bg-slate-100/95 text-[11px] text-slate-500 uppercase font-semibold">
+						<div class="overflow-x-auto max-h-[500px] overflow-y-auto">
+							<table class="w-full text-left text-xs border-collapse table-fixed">
+								<colgroup>
+									<col class="w-[44%] sm:w-[42%]"/>
+									<col class="w-[32%] sm:w-[38%]"/>
+									<col class="w-[24%] sm:w-[20%]"/>
+								</colgroup>
+								<thead class="sticky top-0 z-10 bg-slate-50/95 border-b border-slate-200 text-[11px] font-semibold text-slate-600 backdrop-blur-xs">
 									<tr>
-										<th class="py-2 px-4">Deputāts</th>
-										<th class="py-2 px-4 text-center">Frakcija</th>
-										<th class="py-2 px-4 text-right">Lēmums</th>
+										<th scope="col" class="py-3 px-3.5 sm:px-4 cursor-pointer hover:text-slate-900 group select-none transition" data-sort="name" title="Kārtot pēc vārda">
+											<div class="flex items-center gap-1.5">
+												<span>Deputāts</span>
+												<span class="sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]">↕</span>
+											</div>
+										</th>
+										<th scope="col" class="py-3 px-3.5 sm:px-4 cursor-pointer hover:text-slate-900 group select-none transition" data-sort="faction" title="Kārtot pēc frakcijas">
+											<div class="flex items-center gap-1.5">
+												<span>Frakcija</span>
+												<span class="sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]">↕</span>
+											</div>
+										</th>
+										<th scope="col" class="py-3 px-3.5 sm:px-4 text-right cursor-pointer hover:text-slate-900 group select-none transition" data-sort="decision" title="Kārtot pēc lēmuma">
+											<div class="flex items-center justify-end gap-1.5">
+												<span>Lēmums</span>
+												<span class="sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]">↕</span>
+											</div>
+										</th>
 									</tr>
 								</thead>
 								<tbody id="rollcall-table-body" class="divide-y divide-slate-100">
 									for _, seat := range props.Seats {
 										<tr
-											class="hover:bg-slate-50/80 transition"
+											class="deputy-row hover:bg-slate-50/80 transition group"
 											data-deputy-row
-											data-deputy-name={ seat.Name }
-											data-deputy-faction={ seat.FactionShort }
-											data-deputy-decision={ DecisionLabel(seat.Decision) }
+											data-name={ seat.Name }
+											data-faction={ seat.FactionShort }
+											data-decision={ seat.Decision }
 										>
-											<td class="py-2 px-4 font-medium text-slate-900">
-												<a href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", seat.Slug)) } class="hover:text-emerald-700 hover:underline">
-													{ seat.Name }
+											<!-- Deputāts Column with Avatar Circle -->
+											<td class="py-3 px-3.5 sm:px-4">
+												<a href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", seat.Slug)) } class="flex items-center gap-2.5 sm:gap-3 group-hover:text-emerald-800 transition min-w-0">
+													<div
+														class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-[11px] shrink-0 shadow-2xs"
+														style={ fmt.Sprintf("background-color: %s; color: %s;", seat.FactionColor, seat.FactionTextColor) }
+													>
+														{ AvatarInitials(seat.Name) }
+													</div>
+													<div class="min-w-0 font-bold text-slate-900 group-hover:text-emerald-700 transition flex items-center gap-1.5 flex-wrap">
+														<span class="truncate">{ seat.Name }</span>
+														if seat.IsDeviating {
+															<span
+																class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200 cursor-help shrink-0"
+																title={ fmt.Sprintf("Balsojis pretēji frakcijas līnijai (%s)", seat.FactionLine) }
+															>
+																✦ Novirze
+															</span>
+														}
+													</div>
 												</a>
 											</td>
-											<td class="py-2 px-4 text-center">
-												<span
-													class="inline-flex rounded px-1.5 py-0.5 font-mono text-[10px] font-bold shadow-2xs"
-													style={ fmt.Sprintf("background-color: %s; color: %s;", seat.FactionColor, seat.FactionTextColor) }
-												>
-													{ seat.FactionShort }
-												</span>
+
+											<!-- Faction Column with Pill and Full Name -->
+											<td class="py-3 px-3.5 sm:px-4">
+												<div class="flex items-center gap-1.5 min-w-0">
+													<span
+														class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold shadow-2xs shrink-0"
+														style={ fmt.Sprintf("background-color: %s; color: %s;", seat.FactionColor, seat.FactionTextColor) }
+													>
+														{ seat.FactionShort }
+													</span>
+													<span class="hidden sm:inline text-xs text-slate-500 truncate" title={ seat.FactionName }>
+														{ seat.FactionName }
+													</span>
+												</div>
 											</td>
-											<td class="py-2 px-4 text-right">
+
+											<!-- Decision Column with Badge -->
+											<td class="py-3 px-3.5 sm:px-4 text-right">
 												<span
-													class="inline-flex rounded px-2 py-0.5 text-[11px] font-bold"
-													style={ fmt.Sprintf("color: %s", seat.Color) }
+													class={ "inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold border tracking-wider shadow-2xs " + DecisionBadgeClass(seat.Decision) }
 												>
 													{ DecisionLabel(seat.Decision) }
 												</span>
 											</td>
 										</tr>
 									}
+									<tr id="rollcall-empty-row" class="hidden">
+										<td colspan="3" class="py-12 text-center text-slate-400 text-xs">
+											Nav atrasts neviens deputāts pēc izvēlētajiem filtriem.
+										</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>

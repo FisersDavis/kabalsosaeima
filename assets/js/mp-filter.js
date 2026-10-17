@@ -52,9 +52,18 @@
 
       if (countEl) {
         if (activeOnly) {
-          countEl.textContent = 'Atrasti ' + visible + ' ' + (visible === 1 ? 'aktīvs deputāts' : 'aktīvi deputāti');
+          countEl.textContent = visible + (visible % 10 === 1 && visible % 100 !== 11 ? ' aktīvs deputāts' : ' aktīvi deputāti');
         } else {
-          countEl.textContent = 'Atrasti ' + visible + ' ' + (visible === 1 ? 'deputāts' : 'deputāti');
+          countEl.textContent = visible + (visible % 10 === 1 && visible % 100 !== 11 ? ' deputāts' : ' deputāti');
+        }
+      }
+
+      var emptyRow = document.getElementById('mp-empty-row');
+      if (emptyRow) {
+        if (visible === 0) {
+          emptyRow.classList.remove('hidden');
+        } else {
+          emptyRow.classList.add('hidden');
         }
       }
 
