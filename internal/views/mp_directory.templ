@@ -12,7 +12,7 @@ templ MPDirectory(props MPDirectoryProps) {
 			<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
 				<div>
 					<h1 class="text-2xl font-bold tracking-tight text-slate-900">
-						14. Saeimas deputāti un frakcijas
+						{ fmt.Sprintf("%d. Saeimas deputāti un frakcijas", ActiveTermNumber(props.LayoutProps)) }
 					</h1>
 					<p class="mt-1 text-sm text-slate-600">
 						Pārskats par visiem deputātiem, viņu frakciju piederību, sēžu apmeklētību un balsojumu sakritību ar partiju.
@@ -173,7 +173,7 @@ templ MPDirectory(props MPDirectoryProps) {
 								>
 									<!-- Deputāts Column -->
 									<td class="py-3 px-3.5 sm:px-4">
-										<a href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", slug)) } class="flex items-center gap-2.5 sm:gap-3 group-hover:text-emerald-800 transition min-w-0">
+										<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/deputati/%s/", slug))) } class="flex items-center gap-2.5 sm:gap-3 group-hover:text-emerald-800 transition min-w-0">
 											<div
 												class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-[11px] shrink-0 shadow-2xs"
 												style={ fmt.Sprintf("background-color: %s; color: %s;", color, textColor) }

@@ -2,305 +2,531 @@
 """
 scripts/scrape_mandates.py
 
-Scrapes official deputy dossiers from Latvia Saeima's Titania system:
-- Discovers all 14. Saeima deputies and their unique Titania UNIDs
-- Fetches official mandate intervals (drawMand) with exact dates and reasons
-- Maps UNIDs to public/data/mps.json
-- Generates public/data/mandates.json with full provenance (source URL + fetchedAt)
-- Performs an audit against all rollcall vote files
-- Checks chamber size on EVERY sitting date in votes.json
+Multi-term official deputy & mandate scraper for kabalsosaeima.lv.
+Scrapes official Latvian Saeima deputy registries directly from saeima.lv:
+  https://www.saeima.lv/lv/sasaukumi/{term}-saeima/deputati/
+
+Features:
+- Supports 14. Saeima, 15. Saeima, and future Saeima terms (--term 15, --term 14, --all)
+- Polite rate-limited fetching with exponential backoff retries (never silently drops pages)
+- Parses structured `Mandāta vēsture` rows into exact [from, to) active mandate intervals
+- Fails loudly on unknown Latvian mandate status strings so no interval is ever misparsed
+- Preserves stable mpIds across re-runs and writes full source provenance (saeima.lv URL + fetchedAt)
+- Audits active chamber size (<= 100) on every sitting date in votes.json (if present)
 """
 
-import urllib.request
-import re
+import argparse
+import html as html_lib
 import json
 import os
+import re
 import sys
+import time
+import urllib.error
+import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
-from collections import defaultdict
 
-sys.stdout.reconfigure(encoding='utf-8')
+if sys.stdout.encoding != "utf-8":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(BASE_DIR, "public", "data")
-MPS_FILE = os.path.join(DATA_DIR, "mps.json")
-VOTES_FILE = os.path.join(DATA_DIR, "votes.json")
-ROLLCALLS_DIR = os.path.join(DATA_DIR, "rollcalls")
-MANDATES_FILE = os.path.join(DATA_DIR, "mandates.json")
+PUBLIC_DATA_DIR = os.path.join(BASE_DIR, "public", "data")
+TERMS_DIR = os.path.join(PUBLIC_DATA_DIR, "terms")
 
-TITANIA_VIEWS = [
-    "https://titania.saeima.lv/Personal/Deputati/Saeima14_DepWeb_Public.nsf/deputies?OpenView&lang=LV&count=1000",
-    "https://titania.saeima.lv/Personal/Deputati/Saeima14_DepWeb_Public.nsf/deputiesByMandate?OpenView&restricttocategory=1&lang=LV&count=1000",
-    "https://titania.saeima.lv/Personal/Deputati/Saeima14_DepWeb_Public.nsf/deputiesByMandate?OpenView&restricttocategory=2&lang=LV&count=1000",
-    "https://titania.saeima.lv/Personal/Deputati/Saeima14_DepWeb_Public.nsf/deputiesByMandateStart?OpenView&restricttocategory=1&lang=LV&count=1000",
-]
+# Official term metadata
+TERM_CONFIG = {
+    14: {
+        "term": 14,
+        "label": "14. Saeima",
+        "years": "2022–2026",
+        "isActive": False,
+        "basePath": "/14-saeima",
+        "startDate": "2022-11-01",
+        "endDate": "2026-11-03",
+        "description": "14. Saeimas sasaukums (01.11.2022.–03.11.2026.)",
+        "factions": [
+            {"id": "jv", "name": "Jaunā VIENOTĪBA", "shortName": "JV", "color": "#00529B"},
+            {"id": "zzs", "name": "Zaļo un Zemnieku savienība", "shortName": "ZZS", "color": "#1B5E20"},
+            {"id": "pro", "name": "PROGRESĪVIE", "shortName": "PRO", "color": "#EA580C"},
+            {"id": "as", "name": "APVIENOTAIS SARAKSTS", "shortName": "AS", "color": "#EAB308", "textColor": "#713F12"},
+            {"id": "na", "name": "Nacionālā apvienība", "shortName": "NA", "color": "#831843"},
+            {"id": "lpv", "name": "LATVIJA PIRMAJĀ VIETĀ", "shortName": "LPV", "color": "#E11D48"},
+            {"id": "st", "name": "Stabilitātei!", "shortName": "S!", "color": "#475569"},
+            {"id": "ind", "name": "Pie frakcijām nepiederošie", "shortName": "PIEFR", "color": "#94A3B8"},
+        ],
+    },
+    15: {
+        "term": 15,
+        "label": "15. Saeima",
+        "years": "2026–2030",
+        "isActive": True,
+        "basePath": "",
+        "startDate": "2026-11-03",
+        "endDate": None,
+        "description": "15. Saeimas sasaukums (ievēlēta 2026. gada oktobrī)",
+        "factions": [
+            {"id": "jv", "name": "Jaunā Vienotība", "shortName": "JV", "color": "#00529B"},
+            {"id": "as", "name": "APVIENOTAIS SARAKSTS", "shortName": "AS", "color": "#EAB308", "textColor": "#713F12"},
+            {"id": "na", "name": "Nacionālā apvienība", "shortName": "NA", "color": "#831843"},
+            {"id": "pro", "name": "PROGRESĪVIE", "shortName": "PRO", "color": "#EA580C"},
+            {"id": "lpv", "name": "LATVIJA PIRMAJĀ VIETĀ", "shortName": "LPV", "color": "#E11D48"},
+            {"id": "sv_aj", "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI", "shortName": "SV/AJ", "color": "#4C1D95"},
+            {"id": "ind", "name": "Pie frakcijām nepiederošie", "shortName": "PIEFR", "color": "#94A3B8"},
+        ],
+    },
+}
 
-def parse_latvian_date(d_str):
-    if not d_str or not d_str.strip():
+
+def slugify_name(name: str) -> str:
+    s = name.strip().lower()
+    replacements = {
+        "ā": "a", "č": "c", "ē": "e", "ģ": "g", "ī": "i",
+        "ķ": "k", "ļ": "l", "ņ": "n", "š": "s", "ū": "u", "ž": "z",
+    }
+    for k, v in replacements.items():
+        s = s.replace(k, v)
+    return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+
+
+def parse_latvian_date(d_str: str):
+    if not d_str:
         return None
-    try:
-        dt = datetime.strptime(d_str.strip(), "%d.%m.%Y")
-        return dt.strftime("%Y-%m-%d")
-    except Exception:
+    m = re.search(r"(\d{2})\.(\d{2})\.(\d{4})", d_str.strip())
+    if not m:
         return None
+    return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
 
-def fetch_url(url):
-    req = urllib.request.Request(
-        url,
-        headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) kabalsosaeima/1.0"}
+
+def map_faction_label(raw_label: str) -> str:
+    low = (raw_label or "").strip().lower()
+    if not low or "nepiederoš" in low or "piefr" in low:
+        return "ind"
+    if "vienotīb" in low or low == "jv":
+        return "jv"
+    if "zaļo un zemnieku" in low or low == "zzs":
+        return "zzs"
+    if "progresīv" in low or low == "pro":
+        return "pro"
+    if "apvienotais saraksts" in low or low == "as":
+        return "as"
+    if "nacionālā apvienība" in low or low == "na":
+        return "na"
+    if "latvija pirmajā vietā" in low or low == "lpv":
+        return "lpv"
+    if "stabilitāt" in low or low in ("st!", "s!"):
+        return "st"
+    if "suverēn" in low or "jaunlatvieš" in low or low == "sv/aj":
+        return "sv_aj"
+    raise ValueError(f"Unknown Saeima faction label on saeima.lv: {raw_label!r}")
+
+
+def fetch_url(url: str, retries: int = 5, timeout: int = 25) -> str:
+    last_err = None
+    for attempt in range(1, retries + 1):
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={
+                    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) kabalsosaeima.lv/2.0",
+                    "Accept": "text/html,application/xhtml+xml",
+                    "Accept-Language": "lv,en;q=0.5",
+                },
+            )
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.read().decode("utf-8", errors="replace")
+        except Exception as e:
+            last_err = e
+            wait = min(16, 1.5 * (2 ** (attempt - 1)))
+            if attempt < retries:
+                time.sleep(wait)
+    raise RuntimeError(f"Failed to fetch {url} after {retries} retries: {last_err}")
+
+
+def classify_mandate_event(status_text: str) -> str:
+    """Classify a Latvian mandate history status as 'START' or 'END'. Fails loudly if unknown."""
+    low = status_text.strip().lower()
+    start_markers = (
+        "apstiprināts",
+        "apstiprinātas",
+        "atjaunots",
+        "atjaunotas",
+        "ievēlēts",
+        "ievēlēta",
+        "stājies",
+        "stājusies",
     )
-    with urllib.request.urlopen(req, timeout=20) as resp:
-        return resp.read().decode('utf-8', errors='ignore')
+    end_markers = (
+        "nolicis",
+        "nolikusi",
+        "izbeigušās",
+        "izbeidzies",
+        "apturēts",
+        "apturētas",
+        "zaudējis",
+        "zaudējusi",
+        "atsaukts",
+        "atsaukta",
+        "izslēgts",
+        "izslēgta",
+        "miris",
+        "mirusi",
+        "beigušās",
+        "anulēts",
+    )
+    is_start = any(m in low for m in start_markers)
+    is_end = any(m in low for m in end_markers)
+    if is_start and not is_end:
+        return "START"
+    if is_end and not is_start:
+        return "END"
+    raise ValueError(f"Unrecognized Latvian mandate status text: {status_text!r}")
 
-def main():
+
+def parse_mandate_history(page_html: str, dep_url: str):
+    """Extract ordered mandate intervals and latest note from a saeima.lv deputy profile page."""
+    events = []
+    for m in re.finditer(r'class="mand-hist-row__body">(.*?)</div>', page_html, re.S):
+        body = m.group(1)
+        d_m = re.search(r'field--datums.*?__value">([^<]+)', body, re.S)
+        s_m = re.search(r'field--status.*?__value">([^<]+)', body, re.S)
+        p_m = re.search(r'field--piezimes.*?__value">([^<]+)', body, re.S)
+        date_iso = parse_latvian_date(html_lib.unescape(d_m.group(1))) if d_m else None
+        status = html_lib.unescape(s_m.group(1)).strip() if s_m else ""
+        note = html_lib.unescape(p_m.group(1)).strip() if p_m else ""
+        if date_iso and status:
+            kind = classify_mandate_event(status)
+            events.append((date_iso, kind, status, note))
+
+    if not events:
+        raise ValueError(f"No mand-hist-row entries found on deputy page: {dep_url}")
+
+    # Pages display newest-first. Reverse to process oldest-first, preserving page order on ties.
+    # On same-date ties, START before END unless page explicitly ordered otherwise; reversing
+    # newest-first order preserves exact chronological sequence of events!
+    events_chrono = list(reversed(events))
+    # Ensure monotonic by date while keeping intra-day reversed page order
+    events_chrono.sort(key=lambda e: e[0])
+
+    intervals = []
+    current_from = None
+    latest_note = ""
+
+    for date_iso, kind, status, note in events_chrono:
+        if note:
+            latest_note = note
+        elif status:
+            latest_note = status
+
+        if kind == "START":
+            if current_from is None:
+                current_from = date_iso
+            # If already active (e.g. "pagaidu -> pastāvīgais" confirmation without gap), keep continuous interval
+        elif kind == "END":
+            if current_from is not None:
+                intervals.append({"from": current_from, "to": date_iso})
+                current_from = None
+
+    if current_from is not None:
+        intervals.append({"from": current_from, "to": None})
+
+    # Deduplicate / merge contiguous intervals where prev.to == next.from
+    merged = []
+    for iv in intervals:
+        if merged and merged[-1]["to"] == iv["from"]:
+            merged[-1]["to"] = iv["to"]
+        elif merged and merged[-1]["from"] == iv["from"] and merged[-1]["to"] == iv["to"]:
+            continue
+        else:
+            merged.append(iv)
+
+    return merged, latest_note
+
+
+def parse_directory_page(list_html: str, term: int):
+    """Parse all deputies from https://www.saeima.lv/lv/sasaukumi/{term}-saeima/deputati/."""
+    deputies = []
+    # Each deputy card is inside an <li ... data-name="..." data-status="..." ...>...</li>
+    li_pattern = re.compile(
+        r'<li\s+([^>]*data-name="[^"]*"[^>]*)>(.*?)</li>',
+        re.S,
+    )
+    for m in li_pattern.finditer(list_html):
+        attrs = m.group(1)
+        inner = m.group(2)
+
+        link_m = re.search(
+            rf'<a[^>]+class="dep-card__name"[^>]+href="(/lv/sasaukumi/{term}-saeima/deputati/([^/"]+)/?)"[^>]*>([^<]+)</a>',
+            inner,
+            re.S,
+        )
+        if not link_m:
+            continue
+
+        rel_path = link_m.group(1)
+        saeima_slug = link_m.group(2).strip()
+        full_name = " ".join(html_lib.unescape(link_m.group(3)).split())
+
+        fac_m = re.search(r'class="dep-card__faction">([^<]*)<', inner, re.S)
+        faction_raw = html_lib.unescape(fac_m.group(1)).strip() if fac_m else ""
+        faction_id = map_faction_label(faction_raw)
+
+        status_m = re.search(r'data-status="([^"]*)"', attrs)
+        mandats_m = re.search(r'data-mandats="([^"]*)"', attrs)
+        data_status = status_m.group(1).strip() if status_m else ""
+        data_mandats = mandats_m.group(1).strip() if mandats_m else ""
+
+        deputies.append({
+            "saeimaId": saeima_slug,
+            "name": full_name,
+            "slug": slugify_name(full_name),
+            "factionId": faction_id,
+            "factionRaw": faction_raw,
+            "dataStatus": data_status,
+            "dataMandats": data_mandats,
+            "source": "https://www.saeima.lv" + (rel_path if rel_path.endswith("/") else rel_path + "/"),
+        })
+
+    if not deputies:
+        raise RuntimeError(f"Parsed 0 deputies from saeima.lv directory for {term}. Saeima — HTML structure may have changed!")
+    return deputies
+
+
+def is_mandate_active(intervals, iso_date: str) -> bool:
+    for iv in intervals:
+        f_dt = iv["from"]
+        t_dt = iv.get("to")
+        if f_dt <= iso_date and (t_dt is None or iso_date < t_dt):
+            return True
+    return False
+
+
+def scrape_term(term: int, max_workers: int = 3):
+    if term not in TERM_CONFIG:
+        raise ValueError(f"Unsupported Saeima term: {term}")
+
+    cfg = TERM_CONFIG[term]
+    term_dir = os.path.join(TERMS_DIR, str(term))
+    os.makedirs(term_dir, exist_ok=True)
+
+    mps_file = os.path.join(term_dir, "mps.json")
+    mandates_file = os.path.join(term_dir, "mandates.json")
+    factions_file = os.path.join(term_dir, "factions.json")
+    votes_file = os.path.join(term_dir, "votes.json")
+
     print("=" * 70)
-    print("1. DISCOVERING ALL 14. SAEIMA DEPUTIES FROM TITANIA...")
-    print("=" * 70)
-    
-    discovered_deps = {} # unid -> props
-    for u in TITANIA_VIEWS:
-        try:
-            html = fetch_url(u)
-            for m in re.finditer(r'(?:drawDep|drawMand)\(\{([^}]+)\}\)', html):
-                props = dict(re.findall(r'(\w+):"([^"]*)"', m.group(1)))
-                unid = props.get('unid')
-                if unid and unid not in discovered_deps:
-                    discovered_deps[unid] = props
-        except Exception as e:
-            print(f"[!] Error fetching view {u}: {e}")
-
-    print(f"[*] Discovered {len(discovered_deps)} unique deputies in Titania database.")
-
-    # 2. Fetch dossier and mandate history for each deputy
-    print("\n" + "=" * 70)
-    print("2. FETCHING OFFICIAL DOSSIERS & MANDATE INTERVALS...")
+    print(f"SCRAPING OFFICIAL MANDATES FOR {term}. SAEIMA (saeima.lv)")
     print("=" * 70)
 
-    fetched_at = datetime.now(timezone.utc).isoformat()
-    deputy_mandates = {} # unid -> {name, intervals: [{"from", "to", "reason"}], note, source}
+    list_url = f"https://www.saeima.lv/lv/sasaukumi/{term}-saeima/deputati/"
+    list_html = fetch_url(list_url)
+    deputies = parse_directory_page(list_html, term)
+    print(f"[1/4] Discovered {len(deputies)} deputies on {list_url}")
 
-    count = 0
-    total = len(discovered_deps)
-    for unid, info in discovered_deps.items():
-        count += 1
-        dossier_url = f"https://titania.saeima.lv/Personal/Deputati/Saeima14_DepWeb_Public.nsf/0/{unid}?OpenDocument"
-        if count % 25 == 0 or count == total:
-            print(f"[{count}/{total}] Fetching dossiers...")
-        
-        try:
-            html = fetch_url(dossier_url)
-            mands = re.findall(r'drawMand\(\{([^}]+)\}\)', html)
-            
-            raw_intervals = []
-            notes = []
-            for mand in mands:
-                props = dict(re.findall(r'(\w+):"([^"]*)"', mand))
-                dt_from = parse_latvian_date(props.get('dtF'))
-                dt_to = parse_latvian_date(props.get('dtT'))
-                reason = props.get('mrreason') or props.get('mfreason') or ''
-                if dt_from:
-                    raw_intervals.append((dt_from, dt_to, reason))
-                if props.get('mfreason'):
-                    notes.append(props.get('mfreason'))
-                elif props.get('mrreason'):
-                    notes.append(props.get('mrreason'))
+    # Load existing mps.json from THIS term only (never cross-contaminate across terms)
+    existing_mps = []
+    if os.path.exists(mps_file):
+        with open(mps_file, "r", encoding="utf-8") as f:
+            existing_mps = json.load(f)
 
-            # Deduplicate intervals
-            unique_intervals = []
-            seen_pairs = set()
-            for f_dt, t_dt, r in raw_intervals:
-                pair = (f_dt, t_dt)
-                if pair not in seen_pairs:
-                    seen_pairs.add(pair)
-                    unique_intervals.append({
-                        "from": f_dt,
-                        "to": t_dt,
-                        "reason": r
-                    })
+    existing_by_saeima_id = {}
+    existing_by_name = {}
+    used_existing_ids = set()
+    for m in existing_mps:
+        mid = m.get("id")
+        if not mid or mid in used_existing_ids:
+            continue
+        used_existing_ids.add(mid)
+        if m.get("saeimaId"):
+            existing_by_saeima_id[m["saeimaId"]] = m
+        if m.get("name"):
+            existing_by_name[" ".join(m["name"].lower().split())] = m
 
-            # Sort by from date
-            unique_intervals.sort(key=lambda x: x["from"])
-
-            latest_note = notes[-1] if notes else ""
-            deputy_mandates[unid] = {
-                "sname": info.get('sname', ''),
-                "name": info.get('name', ''),
-                "fullName": f"{info.get('name', '')} {info.get('sname', '')}".strip(),
-                "faction": info.get('shortStr', ''),
-                "intervals": unique_intervals,
-                "note": latest_note,
-                "source": dossier_url,
-                "fetchedAt": fetched_at
-            }
-        except Exception as e:
-            print(f"[!] Error fetching dossier for {unid}: {e}")
-
-    # 3. Match against local mps.json
-    print("\n" + "=" * 70)
-    print("3. RECONCILING WITH public/data/mps.json...")
-    print("=" * 70)
-
-    with open(MPS_FILE, "r", encoding="utf-8") as f:
-        local_mps = json.load(f)
-
-    # Name normalization mapping
-    SPECIAL_NAME_FIXES = {
-        "krišjānis kariņš": "arturs krišjānis kariņš",
+    SPECIAL_NAME_ALIASES = {
+        "arturs krišjānis kariņš": "krišjānis kariņš",
     }
 
-    titania_by_norm = {}
-    for unid, d in deputy_mandates.items():
-        norm = " ".join(d["fullName"].lower().split())
-        titania_by_norm[norm] = unid
+    max_mp_num = 0
+    for mid in used_existing_ids:
+        mm = re.match(r"^mp-(\d+)$", mid)
+        if mm:
+            max_mp_num = max(max_mp_num, int(mm.group(1)))
 
-    matched_mps = 0
-    unmatched_local_mps = []
-    mandates_output = []
+    # Fetch individual profile pages politely with small concurrency
+    print(f"[2/4] Fetching {len(deputies)} official deputy dossiers (workers={max_workers})...", flush=True)
+    fetched_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    mandate_results = {}
 
-    for mp in local_mps:
-        # Check by saeimaId first if already set
-        unid = mp.get("saeimaId")
-        if not unid:
-            norm_name = " ".join(mp["name"].lower().split())
-            if norm_name in SPECIAL_NAME_FIXES:
-                norm_name = SPECIAL_NAME_FIXES[norm_name]
-            unid = titania_by_norm.get(norm_name)
+    def worker(dep):
+        time.sleep(0.08)  # gentle pacing
+        page_html = fetch_url(dep["source"])
+        intervals, note = parse_mandate_history(page_html, dep["source"])
+        return dep["saeimaId"], intervals, note
 
-        if unid and unid in deputy_mandates:
-            matched_mps += 1
-            mp["saeimaId"] = unid
-            m_data = deputy_mandates[unid]
-            
-            clean_active = [
-                {"from": item["from"], "to": item["to"]}
-                for item in m_data["intervals"]
-            ]
-            mandates_output.append({
-                "mpId": mp["id"],
-                "saeimaId": unid,
-                "name": mp["name"],
-                "slug": mp.get("slug", ""),
-                "active": clean_active,
-                "note": m_data["note"],
-                "source": m_data["source"],
-                "fetchedAt": m_data["fetchedAt"]
-            })
+    completed = 0
+    with ThreadPoolExecutor(max_workers=max_workers) as pool:
+        futures = {pool.submit(worker, d): d for d in deputies}
+        for fut in as_completed(futures):
+            sid, intervals, note = fut.result()  # raises loudly on any error
+            mandate_results[sid] = (intervals, note)
+            completed += 1
+            if completed % 25 == 0 or completed == len(deputies):
+                print(f"      [{completed}/{len(deputies)}] fetched & parsed cleanly", flush=True)
+
+    # Build clean mps.json and mandates.json
+    print("[3/4] Reconciling MP registry and mandate intervals...", flush=True)
+    mps_out = []
+    mandates_out = []
+    used_slugs = set()
+    assigned_mp_ids = set()
+
+    # Determine reference date for isActive flag:
+    # - Active term: open-ended interval (to is None)
+    # - Concluded term (e.g. 14. Saeima ended 2026-11-03): held mandate on day before term end
+    term_end = cfg.get("endDate")
+    active_ref_date = None
+    if term_end:
+        dt_end = datetime.strptime(term_end, "%Y-%m-%d")
+        active_ref_date = datetime.fromordinal(dt_end.toordinal() - 1).strftime("%Y-%m-%d")
+
+    # Sort deputies deterministically by name for clean diffs
+    deputies.sort(key=lambda d: (d["slug"], d["saeimaId"]))
+
+    for idx, dep in enumerate(deputies):
+        sid = dep["saeimaId"]
+        norm_name = " ".join(dep["name"].lower().split())
+        alias_name = SPECIAL_NAME_ALIASES.get(norm_name, norm_name)
+
+        prev = existing_by_saeima_id.get(sid) or existing_by_name.get(norm_name) or existing_by_name.get(alias_name)
+        if prev and prev["id"] not in assigned_mp_ids:
+            mp_id = prev["id"]
         else:
-            unmatched_local_mps.append(mp)
+            max_mp_num += 1
+            while f"mp-{max_mp_num}" in assigned_mp_ids or f"mp-{max_mp_num}" in used_existing_ids:
+                max_mp_num += 1
+            mp_id = f"mp-{max_mp_num}"
+        assigned_mp_ids.add(mp_id)
 
-    print(f"[*] Successfully matched: {matched_mps} / {len(local_mps)} MPs.")
-    if unmatched_local_mps:
-        print(f"[!] Unmatched local MPs ({len(unmatched_local_mps)}):")
-        for u in unmatched_local_mps:
-            print(f"    - {u['id']}: {u['name']}")
+        slug = dep["slug"]
+        if slug in used_slugs:
+            slug = f"{slug}-{mp_id}"
+        used_slugs.add(slug)
 
-    # Save updated mps.json
-    with open(MPS_FILE, "w", encoding="utf-8") as f:
-        json.dump(local_mps, f, ensure_ascii=False, indent=2)
-    print(f"[OK] Updated {MPS_FILE} with saeimaId.")
+        intervals, note = mandate_results[sid]
+        if active_ref_date:
+            is_active = is_mandate_active(intervals, active_ref_date)
+        else:
+            is_active = any(iv.get("to") is None for iv in intervals)
 
-    # Save mandates.json
-    mandates_output.sort(key=lambda x: int(x["mpId"].split("-")[1]) if "-" in x["mpId"] else 0)
-    with open(MANDATES_FILE, "w", encoding="utf-8") as f:
-        json.dump(mandates_output, f, ensure_ascii=False, indent=2)
-    print(f"[OK] Written {len(mandates_output)} records to {MANDATES_FILE}.")
+        seat_num = prev.get("seatNumber", idx + 1) if prev else (idx + 1)
+        row = prev.get("row", (idx % 4) + 1) if prev else ((idx % 4) + 1)
+        col = prev.get("col", (idx % 25) + 1) if prev else ((idx % 25) + 1)
 
-    # 4. AUDIT & CONFLICT REPORT
-    print("\n" + "=" * 70)
-    print("4. RUNNING AUDIT & CONFLICT REPORT AGAINST ALL VOTES & ROLLCALLS...")
-    print("=" * 70)
+        mps_out.append({
+            "id": mp_id,
+            "name": dep["name"],
+            "factionId": dep["factionId"],
+            "seatNumber": seat_num,
+            "row": row,
+            "col": col,
+            "isActive": is_active,
+            "saeimaId": sid,
+            "slug": slug,
+        })
 
-    with open(VOTES_FILE, "r", encoding="utf-8") as f:
-        votes = json.load(f)
+        mandates_out.append({
+            "mpId": mp_id,
+            "saeimaId": sid,
+            "name": dep["name"],
+            "slug": slug,
+            "active": intervals,
+            "note": note,
+            "source": dep["source"],
+            "fetchedAt": fetched_at,
+        })
 
-    # Index mandate intervals by mpId
-    intervals_by_mp = {}
-    for m in mandates_output:
-        intervals_by_mp[m["mpId"]] = m["active"]
+    # Sort both files numerically by mpId
+    def mp_sort_key(item):
+        id_val = item.get("id") or item.get("mpId") or ""
+        mm = re.match(r"^mp-(\d+)$", id_val)
+        return (int(mm.group(1)) if mm else 999999, id_val)
 
-    def is_mandate_active(mp_id, date_str):
-        intervals = intervals_by_mp.get(mp_id, [])
-        for iv in intervals:
-            f_dt = iv["from"]
-            t_dt = iv.get("to")
-            if f_dt <= date_str:
-                if t_dt is None or date_str < t_dt:
-                    return True
-        return False
+    mps_out.sort(key=mp_sort_key)
+    mandates_out.sort(key=mp_sort_key)
 
-    rollcall_conflicts = []
-    total_rollcall_votes_audited = 0
-    votes_by_id = {v["id"]: v for v in votes}
+    # Audit chamber size right now!
+    today_iso = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    check_date = active_ref_date or today_iso
+    active_count = sum(1 for m in mandates_out if is_mandate_active(m["active"], check_date))
+    print(f"      Active mandates on {check_date}: {active_count} (total deputies in term: {len(mps_out)})")
+    if active_count > 100:
+        raise RuntimeError(f"FATAL CEILING VIOLATION: {active_count} active mandates (>100) on {check_date} for {term}. Saeima!")
 
-    rc_files = [f for f in os.listdir(ROLLCALLS_DIR) if f.endswith(".json")]
-    print(f"[*] Auditing {len(rc_files)} rollcall files against {len(votes)} votes...")
+    # Write factions.json, mps.json, mandates.json
+    with open(factions_file, "w", encoding="utf-8") as f:
+        json.dump(cfg["factions"], f, ensure_ascii=False, indent=2)
+    with open(mps_file, "w", encoding="utf-8") as f:
+        json.dump(mps_out, f, ensure_ascii=False, indent=2)
+    with open(mandates_file, "w", encoding="utf-8") as f:
+        json.dump(mandates_out, f, ensure_ascii=False, indent=2)
 
-    for rf in rc_files:
-        vid = rf[:-5]
-        v_meta = votes_by_id.get(vid)
-        if not v_meta:
-            continue
-        
-        sitting_date_raw = v_meta.get("sittingDate") or v_meta.get("sessionDate")
-        iso_date = parse_latvian_date(sitting_date_raw)
-        if not iso_date:
-            continue
+    print(f"[4/4] Saved {len(mps_out)} MPs and {len(mandates_out)} mandates to {term_dir}")
 
-        rc_path = os.path.join(ROLLCALLS_DIR, rf)
-        with open(rc_path, "r", encoding="utf-8") as f:
-            records = json.load(f)
+    # Optional: audit against existing votes.json in this term
+    if os.path.exists(votes_file):
+        with open(votes_file, "r", encoding="utf-8") as f:
+            votes = json.load(f)
+        dates = sorted({parse_latvian_date(v.get("sittingDate", "")) for v in votes if v.get("sittingDate")})
+        anomalies = []
+        for d in dates:
+            if not d:
+                continue
+            cnt = sum(1 for m in mandates_out if is_mandate_active(m["active"], d))
+            if cnt > 100:
+                raise RuntimeError(f"FATAL CEILING VIOLATION: {cnt} active mandates on sitting date {d}!")
+            if cnt < 100:
+                anomalies.append((d, cnt))
+        if anomalies:
+            print(f"      Notice: {len(anomalies)} sitting dates had <100 active mandates (temporary vacancies).")
 
-        for rec in records:
-            mp_id = rec.get("mpId")
-            decision = rec.get("decision")
-            total_rollcall_votes_audited += 1
+    # Update public/data/terms.json
+    terms_json_path = os.path.join(PUBLIC_DATA_DIR, "terms.json")
+    terms_list = [
+        {
+            "term": TERM_CONFIG[t]["term"],
+            "label": TERM_CONFIG[t]["label"],
+            "years": TERM_CONFIG[t]["years"],
+            "isActive": TERM_CONFIG[t]["isActive"],
+            "basePath": TERM_CONFIG[t]["basePath"],
+            "description": TERM_CONFIG[t]["description"],
+        }
+        for t in sorted(TERM_CONFIG.keys(), reverse=True)
+    ]
+    with open(terms_json_path, "w", encoding="utf-8") as f:
+        json.dump(terms_list, f, ensure_ascii=False, indent=2)
 
-            if decision in ["PAR", "PRET", "ATTURAS", "NEBALSO"]:
-                if not is_mandate_active(mp_id, iso_date):
-                    rollcall_conflicts.append({
-                        "voteId": vid,
-                        "date": iso_date,
-                        "mpId": mp_id,
-                        "name": rec.get("name"),
-                        "decision": decision,
-                        "title": v_meta.get("simplifiedTitle") or v_meta.get("officialTitle")
-                    })
 
-    # Count active mandates on EVERY sitting date in votes.json (rollcall or not)
-    all_sitting_dates = sorted(list({
-        parse_latvian_date(v.get("sittingDate") or v.get("sessionDate"))
-        for v in votes
-        if v.get("sittingDate") or v.get("sessionDate")
-    }))
+def main():
+    parser = argparse.ArgumentParser(description="Scrape official Saeima deputy mandates from saeima.lv")
+    parser.add_argument("--term", type=int, choices=[14, 15], help="Specific Saeima term to scrape (14 or 15)")
+    parser.add_argument("--all", action="store_true", help="Scrape both 14. and 15. Saeima")
+    parser.add_argument("--workers", type=int, default=3, help="Concurrent HTTP workers (default: 3)")
+    args = parser.parse_args()
 
-    chamber_anomalies = []
-    for d in all_sitting_dates:
-        active_on_date = [m["mpId"] for m in mandates_output if is_mandate_active(m["mpId"], d)]
-        count_active = len(active_on_date)
-        if count_active != 100:
-            chamber_anomalies.append((d, count_active))
+    if args.all:
+        terms = [15, 14]
+    elif args.term:
+        terms = [args.term]
+    else:
+        # Default: active term (15. Saeima)
+        terms = [15]
 
-    print("\n" + "#" * 70)
-    print("                    CONFLICT REPORT SUMMARY")
-    print("#" * 70)
-    print(f"Total Rollcall Votes Audited: {total_rollcall_votes_audited}")
-    print(f"Total Unique Sitting Dates (Every Vote): {len(all_sitting_dates)}")
-    print(f"Rollcall Participation Conflicts: {len(rollcall_conflicts)}")
-    print(f"Dates with != 100 active mandates: {len(chamber_anomalies)}")
+    for t in terms:
+        scrape_term(t, max_workers=args.workers)
 
-    if rollcall_conflicts:
-        print("\n--- ROLLCALL PARTICIPATION CONFLICTS ---")
-        for c in rollcall_conflicts:
-            print(f"  • {c['name']} ({c['mpId']}) on {c['date']} in vote {c['voteId']}")
-
-    if chamber_anomalies:
-        print("\n--- CHAMBER SIZE AUDIT (Dates where active mandates != 100) ---")
-        for d, cnt in chamber_anomalies:
-            status = "EXCEEDS 100 (FATAL)" if cnt > 100 else "VACANCY (< 100)"
-            print(f"  • Date: {d} -> {cnt} active mandates ({status})")
-
-    print("\n" + "#" * 70)
-    print("Step 0 finished.")
 
 if __name__ == "__main__":
     main()

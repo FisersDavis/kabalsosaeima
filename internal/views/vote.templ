@@ -13,11 +13,11 @@ templ Vote(props VoteProps) {
 			<!-- Breadcrumb Navigation & Share Button -->
 			<div class="flex flex-wrap items-center justify-between gap-3 text-xs">
 				<nav class="flex items-center gap-2 text-slate-500">
-					<a href="/" class="hover:text-slate-900 hover:underline transition">← Visi balsojumi</a>
+					<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, "/")) } class="hover:text-slate-900 hover:underline transition">← Visi balsojumi</a>
 					if props.Vote.BillNumber != "" {
 						<span>/</span>
 						<a
-							href={ templ.SafeURL(fmt.Sprintf("/likumprojekti/%s/", stats.CleanBillSlug(props.Vote.BillNumber))) }
+							href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/likumprojekti/%s/", stats.CleanBillSlug(props.Vote.BillNumber)))) }
 							class="hover:text-slate-900 hover:underline transition font-mono"
 						>
 							Likumprojekts Nr. { CleanBillNr(props.Vote.BillNumber) }
@@ -54,7 +54,7 @@ templ Vote(props VoteProps) {
 					if props.Vote.BillNumber != "" {
 						<span>·</span>
 						<a
-							href={ templ.SafeURL(fmt.Sprintf("/likumprojekti/%s/", stats.CleanBillSlug(props.Vote.BillNumber))) }
+							href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/likumprojekti/%s/", stats.CleanBillSlug(props.Vote.BillNumber)))) }
 							class="font-mono text-slate-500 hover:text-blue-700 hover:underline"
 							title="Skatīt likumprojekta gaitu"
 						>
@@ -249,7 +249,7 @@ templ Vote(props VoteProps) {
 							<span class="text-slate-600 font-medium">✦ Novirzes no frakcijas ({ fmt.Sprint(len(devItems)) }): </span>
 							for i, item := range devItems {
 								<a
-									href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", ResolveMPSlug(props.Store, item.mp.MpID))) }
+									href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/deputati/%s/", ResolveMPSlug(props.Store, item.mp.MpID)))) }
 									class="text-slate-700 hover:text-emerald-700 hover:underline transition"
 								>
 									{ item.mp.Name }
@@ -274,55 +274,65 @@ templ Vote(props VoteProps) {
 								</h2>
 							</div>
 							<a
-								href={ templ.SafeURL(fmt.Sprintf("/likumprojekti/%s/", props.Timeline.Slug)) }
+								href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/likumprojekti/%s/", props.Timeline.Slug))) }
 								class="text-xs font-semibold text-blue-700 hover:text-blue-900 hover:underline"
 							>
 								Atvērt pilno likumprojekta lapu →
 							</a>
 						</div>
 
+						{{ compactEntries, totalTimelineVotes := CompactTimelineVotes(props.Timeline, props.Vote.ID, 12) }}
 						<div class="space-y-1.5 pt-1">
-							for _, stage := range props.Timeline.Stages {
-								for _, sv := range stage.Votes {
-									{{
-										isCurrent := sv.ID == props.Vote.ID
-										borderCls := "border-slate-100 bg-slate-50/50 hover:bg-slate-50"
-										dotCls := "bg-slate-300"
+							for _, entry := range compactEntries {
+								{{
+									sv := entry.Vote
+									isCurrent := sv.ID == props.Vote.ID
+									borderCls := "border-slate-100 bg-slate-50/50 hover:bg-slate-50"
+									dotCls := "bg-slate-300"
+									if isCurrent {
+										borderCls = "border-blue-300 bg-blue-50/80 font-semibold shadow-2xs ring-1 ring-blue-300/50"
+										dotCls = "bg-blue-600"
+									}
+								}}
+								<div class={ "flex items-center justify-between p-2.5 rounded-lg border text-xs transition " + borderCls }>
+									<div class="flex items-center gap-2 min-w-0 pr-2">
+										<span class={ "h-2 w-2 rounded-full shrink-0 " + dotCls }></span>
+										<span class="font-medium text-slate-900 shrink-0">{ entry.StageName }</span>
+										<span class="text-slate-400 font-mono text-[11px] shrink-0">· { sv.SittingDate }</span>
 										if isCurrent {
-											borderCls = "border-blue-300 bg-blue-50/80 font-semibold shadow-2xs ring-1 ring-blue-300/50"
-											dotCls = "bg-blue-600"
+											<span class="text-slate-900 font-semibold truncate" title={ sv.OfficialTitle }>
+												{ CleanVoteTitle(sv.SimplifiedTitle) }
+												<span class="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-blue-100 text-blue-800 font-bold uppercase tracking-wider">Šis balsojums</span>
+											</span>
+										} else {
+											<a
+												href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/balsojumi/%s/", sv.ID))) }
+												class="text-slate-600 hover:text-blue-700 hover:underline truncate"
+												title={ sv.OfficialTitle }
+											>
+												{ CleanVoteTitle(sv.SimplifiedTitle) }
+											</a>
 										}
-									}}
-									<div class={ "flex items-center justify-between p-2.5 rounded-lg border text-xs transition " + borderCls }>
-										<div class="flex items-center gap-2 min-w-0 pr-2">
-											<span class={ "h-2 w-2 rounded-full shrink-0 " + dotCls }></span>
-											<span class="font-medium text-slate-900 shrink-0">{ stage.StageName }</span>
-											<span class="text-slate-400 font-mono text-[11px] shrink-0">· { sv.SittingDate }</span>
-											if isCurrent {
-												<span class="text-slate-900 font-semibold truncate" title={ sv.OfficialTitle }>
-													{ CleanVoteTitle(sv.SimplifiedTitle) }
-													<span class="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-blue-100 text-blue-800 font-bold uppercase tracking-wider">Šis balsojums</span>
-												</span>
-											} else {
-												<a
-													href={ templ.SafeURL(fmt.Sprintf("/balsojumi/%s/", sv.ID)) }
-													class="text-slate-600 hover:text-blue-700 hover:underline truncate"
-													title={ sv.OfficialTitle }
-												>
-													{ CleanVoteTitle(sv.SimplifiedTitle) }
-												</a>
-											}
-										</div>
-										<div class="flex items-center gap-2 shrink-0 text-right">
-											<span class={ "inline-flex items-center rounded px-1.5 py-0.2 text-[10px] font-semibold border " + ResultBadgeClass(sv.Result) }>
-												{ ResultLabel(sv.Result) }
-											</span>
-											<span class="font-mono text-[11px] text-slate-500">
-												{ fmt.Sprint(sv.Counts.Par) }-{ fmt.Sprint(sv.Counts.Pret) }
-											</span>
-										</div>
 									</div>
-								}
+									<div class="flex items-center gap-2 shrink-0 text-right">
+										<span class={ "inline-flex items-center rounded px-1.5 py-0.2 text-[10px] font-semibold border " + ResultBadgeClass(sv.Result) }>
+											{ ResultLabel(sv.Result) }
+										</span>
+										<span class="font-mono text-[11px] text-slate-500">
+											{ fmt.Sprint(sv.Counts.Par) }/{ fmt.Sprint(sv.Counts.Pret) }
+										</span>
+									</div>
+								</div>
+							}
+							if totalTimelineVotes > len(compactEntries) {
+								<div class="pt-1 text-center">
+									<a
+										href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/likumprojekti/%s/", props.Timeline.Slug))) }
+										class="text-xs font-medium text-blue-700 hover:text-blue-900 hover:underline"
+									>
+										Skatīt visus { fmt.Sprint(totalTimelineVotes) } šī likumprojekta balsojumus →
+									</a>
+								</div>
 							}
 						</div>
 					</div>
@@ -377,7 +387,7 @@ templ Vote(props VoteProps) {
 											<span>
 												Runāja "{ opinionLabel }":
 												if mpSlug != "" {
-													<a href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", mpSlug)) } class="hover:underline ml-1">
+													<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/deputati/%s/", mpSlug))) } class="hover:underline ml-1">
 														{ deb.Name }
 													</a>
 												} else {
@@ -499,8 +509,8 @@ templ Vote(props VoteProps) {
 							<svg viewBox="0 0 640 310" class="w-full h-full select-none" role="img" aria-label="Saeimas sēžu zāles balsojums">
 								for _, seat := range props.Seats {
 									<a
-										href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", seat.Slug)) }
-										class="cursor-pointer focus:outline-none group/seat transition-opacity duration-150"
+										href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/deputati/%s/", seat.Slug))) }
+										class="hc-seat"
 										aria-label={ fmt.Sprintf("%s (%s): %s", seat.Name, seat.FactionShort, DecisionLabel(seat.Decision)) }
 										tabindex="0"
 										data-seat-link
@@ -517,9 +527,7 @@ templ Vote(props VoteProps) {
 											cy={ fmt.Sprintf("%.1f", seat.Y) }
 											r="8"
 											fill={ seat.Color }
-											stroke="#ffffff"
-											stroke-width="1.5"
-											class="transition-all hover:stroke-slate-900 hover:[r:9px] group-focus/seat:stroke-emerald-600 group-focus/seat:stroke-[2.5px] group-focus/seat:[r:9px]"
+											class="hc-dot"
 										>
 											<title>{ fmt.Sprintf("%s (%s): %s", seat.Name, seat.FactionShort, DecisionLabel(seat.Decision)) }</title>
 										</circle>
@@ -600,58 +608,26 @@ templ Vote(props VoteProps) {
 								</thead>
 								<tbody id="rollcall-table-body" class="divide-y divide-slate-100">
 									for _, seat := range props.Seats {
-										<tr
-											class="deputy-row hover:bg-slate-50/80 transition group"
-											data-deputy-row
-											data-name={ seat.Name }
-											data-faction={ seat.FactionShort }
-											data-decision={ seat.Decision }
-										>
-											<!-- Deputāts Column with Avatar Circle -->
-											<td class="py-3 px-3.5 sm:px-4">
-												<a href={ templ.SafeURL(fmt.Sprintf("/deputati/%s/", seat.Slug)) } class="flex items-center gap-2.5 sm:gap-3 group-hover:text-emerald-800 transition min-w-0">
-													<div
-														class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-[11px] shrink-0 shadow-2xs"
-														style={ fmt.Sprintf("background-color: %s; color: %s;", seat.FactionColor, seat.FactionTextColor) }
-													>
-														{ AvatarInitials(seat.Name) }
-													</div>
-													<div class="min-w-0 font-bold text-slate-900 group-hover:text-emerald-700 transition flex items-center gap-1.5 flex-wrap">
+										<tr class="deputy-row rc-row" data-deputy-row data-name={ seat.Name } data-faction={ seat.FactionShort } data-decision={ seat.Decision }>
+											<td class="rc-td">
+												<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/deputati/%s/", seat.Slug))) } class="rc-link">
+													<div class={ "rc-av fc-" + seat.FactionID }>{ AvatarInitials(seat.Name) }</div>
+													<div class="rc-nm">
 														<span class="truncate">{ seat.Name }</span>
 														if seat.IsDeviating {
-															<span
-																class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200 cursor-help shrink-0"
-																title={ fmt.Sprintf("Balsojis pretēji frakcijas līnijai (%s)", seat.FactionLine) }
-															>
-																✦ Novirze
-															</span>
+															<span class="inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200 cursor-help shrink-0" title={ fmt.Sprintf("Balsojis pretēji frakcijas līnijai (%s)", seat.FactionLine) }>✦ Novirze</span>
 														}
 													</div>
 												</a>
 											</td>
-
-											<!-- Faction Column with Pill and Full Name -->
-											<td class="py-3 px-3.5 sm:px-4">
-												<div class="flex items-center gap-1.5 min-w-0">
-													<span
-														class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold shadow-2xs shrink-0"
-														style={ fmt.Sprintf("background-color: %s; color: %s;", seat.FactionColor, seat.FactionTextColor) }
-													>
-														{ seat.FactionShort }
-													</span>
-													<span class="hidden sm:inline text-xs text-slate-500 truncate" title={ seat.FactionName }>
-														{ seat.FactionName }
-													</span>
+											<td class="rc-td">
+												<div class="rc-fac">
+													<span class={ "rc-pill fc-" + seat.FactionID }>{ seat.FactionShort }</span>
+													<span class="rc-fname">{ seat.FactionName }</span>
 												</div>
 											</td>
-
-											<!-- Decision Column with Badge -->
-											<td class="py-3 px-3.5 sm:px-4 text-right">
-												<span
-													class={ "inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold border tracking-wider shadow-2xs " + DecisionBadgeClass(seat.Decision) }
-												>
-													{ DecisionLabel(seat.Decision) }
-												</span>
+											<td class="rc-td text-right">
+												<span class={ "rc-badge dc-" + seat.Decision }>{ DecisionLabel(seat.Decision) }</span>
 											</td>
 										</tr>
 									}
@@ -723,7 +699,7 @@ templ Vote(props VoteProps) {
 							</a>
 						} else if props.Vote.BillNumber != "" {
 							<a
-								href={ templ.SafeURL(SaeimaBillSearchURL(props.Vote.BillNumber)) }
+								href={ templ.SafeURL(SaeimaBillSearchURLForTerm(ActiveTermNumber(props.LayoutProps), props.Vote.BillNumber)) }
 								target="_blank"
 								rel="noopener noreferrer"
 								class="flex items-start gap-2.5 p-3 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-slate-100 hover:border-slate-300 transition group"

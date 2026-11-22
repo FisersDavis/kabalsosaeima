@@ -37,8 +37,8 @@ jobs:
       - name: Fetch and verify Saeima votes
         id: sync_step
         run: |
-          python scripts/ingest_real_saeima.py
-          python scripts/scrape_mandates.py
+          python scripts/scrape_mandates.py --term 15
+          python scripts/ingest_real_saeima.py --term 15
           python scripts/sentinel_check.py --mode integrity --update-metadata
           go run ./cmd/build --validate-only
 
@@ -53,6 +53,9 @@ jobs:
             REPORT="$REPORT\n\n[🔍 Pārbaudīt GitHub Action žurnālu](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
           fi
           
+          # Ensure label exists so alert creation never silently fails
+          gh label create "automated-alert" --color "d93f0b" --description "Automated data sync or healthcheck alert" --force || true
+
           # Check if an alert issue is already open to avoid spam
           EXISTING_ISSUE=$(gh issue list --state open --label "automated-alert" --json number -q '.[0].number' 2>/dev/null || true)
           if [ -z "$EXISTING_ISSUE" ]; then

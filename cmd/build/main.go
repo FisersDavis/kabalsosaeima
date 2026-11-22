@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"io"
@@ -9,6 +10,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"sort"
 	"strings"
 	"time"
 
@@ -17,47 +19,51 @@ import (
 	"github.com/FisersDavis/kabalsosaeima/internal/views"
 )
 
+type termConfig struct {
+	Term        int    `json:"term"`
+	Label       string `json:"label"`
+	Years       string `json:"years"`
+	IsActive    bool   `json:"isActive"`
+	BasePath    string `json:"basePath"`
+	Description string `json:"description"`
+}
+
+type loadedTerm struct {
+	Config  termConfig
+	DataDir string
+	Store   *data.Store
+}
+
 func main() {
 	validateOnly := flag.Bool("validate-only", false, "Run data validation only without generating dist/")
-	dataDirFlag := flag.String("data-dir", "", "Path to data directory (defaults to 'data' or 'public/data')")
+	dataDirFlag := flag.String("data-dir", "", "Path to single-term data directory (optional; defaults to multi-term public/data/terms/)")
 	outDirFlag := flag.String("out-dir", "dist", "Output directory for static site")
 	flag.Parse()
 
 	start := time.Now()
 	fmt.Println("=== Kā Balso Saeima: Static Site Generator ===")
 
-	// 1. Resolve data directory
-	dataDir := *dataDirFlag
-	if dataDir == "" {
-		if fi, err := os.Stat("data"); err == nil && fi.IsDir() {
-			dataDir = "data"
-		} else if fi, err := os.Stat("public/data"); err == nil && fi.IsDir() {
-			dataDir = "public/data"
-		} else {
-			dataDir = "data"
-		}
-	}
-
-	fmt.Printf("[1/6] Loading dataset from: %s\n", dataDir)
-	store, err := data.Load(dataDir)
+	// 1. Discover and load dataset(s)
+	terms, err := discoverAndLoadTerms(*dataDirFlag)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error loading data: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Printf("      Loaded %d votes, %d MPs, %d mandates, %d rollcalls\n",
-		len(store.Votes), len(store.MPs), len(store.Mandates), len(store.Rollcalls))
 
-	// 2. Validate invariants
+	// 2. Validate invariants for every loaded term
 	fmt.Println("[2/6] Validating parliamentary and mandate invariants...")
-	warnings, err := store.Validate()
-	for _, w := range warnings {
-		fmt.Printf("      [WARN] %s\n", w)
+	for _, lt := range terms {
+		fmt.Printf("      Validating %s (%s)...\n", lt.Config.Label, lt.DataDir)
+		warnings, err := lt.Store.Validate()
+		for _, w := range warnings {
+			fmt.Printf("      [WARN] [%s] %s\n", lt.Config.Label, w)
+		}
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "FATAL VALIDATION ERROR [%s]: %v\n", lt.Config.Label, err)
+			os.Exit(1)
+		}
 	}
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "FATAL VALIDATION ERROR: %v\n", err)
-		os.Exit(1)
-	}
-	fmt.Println("      Validation passed cleanly!")
+	fmt.Println("      Validation passed cleanly for all terms!")
 
 	if *validateOnly {
 		fmt.Printf("\nDone (--validate-only completed in %v).\n", time.Since(start))
@@ -80,21 +86,167 @@ func main() {
 		os.Exit(1)
 	}
 
-	// 5. Copy static assets (JS, public files)
-	fmt.Println("[5/6] Copying static assets...")
-	if err := copyStaticAssets(outDir, dataDir); err != nil {
-		fmt.Fprintf(os.Stderr, "Error copying assets: %v\n", err)
+	// 5. Copy shared static assets & per-term open-data JSON bundles
+	fmt.Println("[5/6] Copying static assets & open-data JSON bundles...")
+	if err := copySharedAssets(outDir); err != nil {
+		fmt.Fprintf(os.Stderr, "Error copying shared assets: %v\n", err)
 		os.Exit(1)
 	}
+	for _, lt := range terms {
+		termOutDir := termOutputDir(outDir, lt.Config.BasePath)
+		if err := copyTermData(lt.DataDir, filepath.Join(termOutDir, "data"), lt.Config.IsActive); err != nil {
+			fmt.Fprintf(os.Stderr, "Error copying data for %s: %v\n", lt.Config.Label, err)
+			os.Exit(1)
+		}
+	}
 
-	// 6. Pre-render HTML pages
+	// 6. Pre-render HTML pages for every term
 	fmt.Println("[6/6] Pre-rendering static HTML pages...")
-	if err := renderPages(store, outDir); err != nil {
-		fmt.Fprintf(os.Stderr, "Page generation failed: %v\n", err)
-		os.Exit(1)
+	navTerms := make([]views.TermNavItem, 0, len(terms))
+	for _, lt := range terms {
+		navTerms = append(navTerms, views.TermNavItem{
+			Term:     lt.Config.Term,
+			Label:    lt.Config.Label,
+			Years:    lt.Config.Years,
+			BasePath: lt.Config.BasePath,
+			IsActive: lt.Config.IsActive,
+		})
+	}
+
+	for _, lt := range terms {
+		termOutDir := termOutputDir(outDir, lt.Config.BasePath)
+		fmt.Printf("   -> Rendering %s into %s/ ...\n", lt.Config.Label, termOutDir)
+		if err := renderTermPages(lt, navTerms, termOutDir); err != nil {
+			fmt.Fprintf(os.Stderr, "Page generation failed for %s: %v\n", lt.Config.Label, err)
+			os.Exit(1)
+		}
 	}
 
 	fmt.Printf("\nSite generation complete in %v! Output in %s/\n", time.Since(start), outDir)
+}
+
+func termOutputDir(outDir, basePath string) string {
+	bp := strings.Trim(basePath, "/")
+	if bp == "" {
+		return outDir
+	}
+	return filepath.Join(outDir, bp)
+}
+
+func discoverAndLoadTerms(explicitDataDir string) ([]loadedTerm, error) {
+	// Explicit single-term override (used by tests or --data-dir validation)
+	if explicitDataDir != "" {
+		fmt.Printf("[1/6] Loading single-term dataset from: %s\n", explicitDataDir)
+		store, err := data.Load(explicitDataDir)
+		if err != nil {
+			return nil, err
+		}
+		termNum := store.Metadata.SaeimaTerm
+		if termNum == 0 {
+			termNum = 14
+		}
+		years := "2022–2026"
+		if termNum == 15 {
+			years = "2026–2030"
+		}
+		fmt.Printf("      Loaded %d votes, %d MPs, %d mandates, %d rollcalls\n",
+			len(store.Votes), len(store.MPs), len(store.Mandates), len(store.Rollcalls))
+		return []loadedTerm{
+			{
+				Config: termConfig{
+					Term:     termNum,
+					Label:    fmt.Sprintf("%d. Saeima", termNum),
+					Years:    years,
+					IsActive: true,
+					BasePath: "",
+				},
+				DataDir: explicitDataDir,
+				Store:   store,
+			},
+		}, nil
+	}
+
+	// Default: detect multi-term public/data/terms/
+	rootDataDir := "public/data"
+	if fi, err := os.Stat("data/terms"); err == nil && fi.IsDir() {
+		rootDataDir = "data"
+	}
+	termsDir := filepath.Join(rootDataDir, "terms")
+	if fi, err := os.Stat(termsDir); err == nil && fi.IsDir() {
+		fmt.Printf("[1/6] Loading multi-term datasets from: %s\n", termsDir)
+		var configs []termConfig
+		termsJSON := filepath.Join(rootDataDir, "terms.json")
+		if b, err := os.ReadFile(termsJSON); err == nil {
+			_ = json.Unmarshal(b, &configs)
+		}
+
+		// Discover any term directories that actually have votes.json
+		cfgByTerm := make(map[int]termConfig)
+		for _, c := range configs {
+			cfgByTerm[c.Term] = c
+		}
+
+		entries, err := os.ReadDir(termsDir)
+		if err != nil {
+			return nil, fmt.Errorf("reading %s: %w", termsDir, err)
+		}
+
+		var loaded []loadedTerm
+		for _, e := range entries {
+			if !e.IsDir() {
+				continue
+			}
+			var tNum int
+			if _, err := fmt.Sscanf(e.Name(), "%d", &tNum); err != nil {
+				continue
+			}
+			tDir := filepath.Join(termsDir, e.Name())
+			if _, err := os.Stat(filepath.Join(tDir, "votes.json")); err != nil {
+				continue
+			}
+
+			cfg, ok := cfgByTerm[tNum]
+			if !ok {
+				cfg = termConfig{
+					Term:     tNum,
+					Label:    fmt.Sprintf("%d. Saeima", tNum),
+					Years:    fmt.Sprintf("%d", 2022+(tNum-14)*4),
+					IsActive: false,
+					BasePath: fmt.Sprintf("/%d-saeima", tNum),
+				}
+			}
+
+			store, err := data.Load(tDir)
+			if err != nil {
+				return nil, fmt.Errorf("loading term %d from %s: %w", tNum, tDir, err)
+			}
+			if store.Metadata.SaeimaTerm == 0 {
+				store.Metadata.SaeimaTerm = tNum
+			}
+			fmt.Printf("      [%s] Loaded %d votes, %d MPs, %d mandates, %d rollcalls\n",
+				cfg.Label, len(store.Votes), len(store.MPs), len(store.Mandates), len(store.Rollcalls))
+			loaded = append(loaded, loadedTerm{
+				Config:  cfg,
+				DataDir: tDir,
+				Store:   store,
+			})
+		}
+
+		if len(loaded) > 0 {
+			// Sort newest term first (15, then 14)
+			sort.Slice(loaded, func(i, j int) bool {
+				return loaded[i].Config.Term > loaded[j].Config.Term
+			})
+			return loaded, nil
+		}
+	}
+
+	// Fallback to legacy single-term directory
+	fallbackDir := "public/data"
+	if fi, err := os.Stat("data"); err == nil && fi.IsDir() {
+		fallbackDir = "data"
+	}
+	return discoverAndLoadTerms(fallbackDir)
 }
 
 func compileTailwind(outDir string) error {
@@ -111,7 +263,6 @@ func compileTailwind(outDir string) error {
 		}
 	}
 
-	// Check if local binary exists, otherwise fallback to system tailwindcss
 	if _, err := exec.LookPath(tailwindBin); err != nil {
 		if sysBin, err := exec.LookPath("tailwindcss"); err == nil {
 			tailwindBin = sysBin
@@ -167,13 +318,11 @@ func copyDir(srcDir, dstDir string) error {
 	})
 }
 
-func copyStaticAssets(outDir, dataDir string) error {
-	// Copy JavaScript directory
+func copySharedAssets(outDir string) error {
 	if err := copyDir("assets/js", filepath.Join(outDir, "assets", "js")); err != nil {
 		return fmt.Errorf("copying assets/js: %w", err)
 	}
 
-	// Copy public root static files (CNAME, favicon.svg, icons.svg)
 	publicEntries, err := os.ReadDir("public")
 	if err == nil {
 		for _, entry := range publicEntries {
@@ -193,12 +342,12 @@ func copyStaticAssets(outDir, dataDir string) error {
 			}
 		}
 	}
+	return nil
+}
 
-	// Copy data directory to dist/data for API/client compatibility (sentinel smoke checks, download links)
-	// Skip unused 27 MB mp_dossiers/ directory to keep deployment artifact lean.
-	distData := filepath.Join(outDir, "data")
+func copyTermData(dataDir, distData string, includeRollcalls bool) error {
 	_ = os.RemoveAll(filepath.Join(distData, "mp_dossiers"))
-	if err := filepath.Walk(dataDir, func(path string, info os.FileInfo, err error) error {
+	return filepath.Walk(dataDir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
@@ -206,25 +355,46 @@ func copyStaticAssets(outDir, dataDir string) error {
 		if err != nil {
 			return err
 		}
-		if info.IsDir() && info.Name() == "mp_dossiers" {
+		if info.IsDir() && (info.Name() == "mp_dossiers" || info.Name() == "terms") {
 			return filepath.SkipDir
+		}
+		if !includeRollcalls && info.IsDir() && info.Name() == "rollcalls" {
+			return filepath.SkipDir
+		}
+		if info.Name() == "sync_state.json" {
+			return nil
 		}
 		target := filepath.Join(distData, rel)
 		if info.IsDir() {
 			return os.MkdirAll(target, 0755)
 		}
 		return copyFile(path, target)
-	}); err != nil {
-		return fmt.Errorf("copying data to dist/data: %w", err)
-	}
-
-	return nil
+	})
 }
 
-func renderPages(store *data.Store, outDir string) error {
-	ctx := context.Background()
+const overviewPageSize = 200
 
-	// Extract unique categories from votes
+func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string) error {
+	ctx := context.Background()
+	store := lt.Store
+	bp := lt.Config.BasePath
+	termLabel := lt.Config.Label
+
+	makeLayout := func(title, desc, relPath, activeNav string) views.LayoutProps {
+		return views.LayoutProps{
+			Title:        title,
+			Description:  desc,
+			CanonicalURL: "https://kabalsosaeima.lv" + views.TermURL(bp, relPath),
+			ActiveNav:    activeNav,
+			Metadata:     store.Metadata,
+			TermNumber:   lt.Config.Term,
+			TermYears:    lt.Config.Years,
+			BasePath:     bp,
+			Terms:        navTerms,
+		}
+	}
+
+	// Extract unique categories from votes (sorted deterministically)
 	catMap := make(map[string]data.VoteCategory)
 	for _, v := range store.Votes {
 		if v.Category.ID != "" {
@@ -235,90 +405,157 @@ func renderPages(store *data.Store, outDir string) error {
 	for _, c := range catMap {
 		categories = append(categories, c)
 	}
+	sort.Slice(categories, func(i, j int) bool {
+		return categories[i].Label < categories[j].Label
+	})
 
 	// Compute bill progression timelines
 	timelines := stats.GroupBillTimelines(store)
 
-	// 1. Overview Page: dist/index.html
-	fmt.Println("      Rendering dist/index.html...")
-	overviewProps := views.OverviewProps{
-		LayoutProps: views.LayoutProps{
-			Title:        "Kā Balso Saeima - 14. Saeimas balsojumu arhīvs un analītika",
-			Description:  "Pārskatāms un neatkarīgs 14. Saeimas balsojumu arhīvs ar frakciju disciplīnas un deputātu dalības analīzi.",
-			CanonicalURL: "https://kabalsosaeima.lv/",
-			ActiveNav:    "votes",
-			Metadata:     store.Metadata,
-		},
-		Votes:         store.Votes,
-		Categories:    categories,
-		Store:         store,
-		BillTimelines: timelines,
+	// 1. Overview Pages (paginated at overviewPageSize so even 7,950-vote archives stay ~1 MB/page)
+	totalVotes := len(store.Votes)
+	totalPages := (totalVotes + overviewPageSize - 1) / overviewPageSize
+	if totalPages < 1 {
+		totalPages = 1
 	}
-	if err := writeHTML(filepath.Join(outDir, "index.html"), views.Overview(overviewProps), ctx); err != nil {
-		return fmt.Errorf("rendering overview: %w", err)
+	for page := 1; page <= totalPages; page++ {
+		startIdx := (page - 1) * overviewPageSize
+		endIdx := startIdx + overviewPageSize
+		if endIdx > totalVotes {
+			endIdx = totalVotes
+		}
+		pageVotes := store.Votes[startIdx:endIdx]
+
+		relPath := "/"
+		outPath := filepath.Join(outDir, "index.html")
+		pageTitle := fmt.Sprintf("Kā Balso Saeima - %s balsojumu arhīvs un analītika", termLabel)
+		if page > 1 {
+			relPath = fmt.Sprintf("/lapa/%d/", page)
+			outPath = filepath.Join(outDir, "lapa", fmt.Sprint(page), "index.html")
+			pageTitle = fmt.Sprintf("Kā Balso Saeima - %s balsojumi (%d. lapa)", termLabel, page)
+		}
+
+		overviewProps := views.OverviewProps{
+			LayoutProps: makeLayout(
+				pageTitle,
+				fmt.Sprintf("Pārskatāms un neatkarīgs %s balsojumu arhīvs ar frakciju disciplīnas un deputātu dalības analīzi.", termLabel),
+				relPath,
+				"votes",
+			),
+			Votes:         pageVotes,
+			Categories:    categories,
+			Store:         store,
+			BillTimelines: timelines,
+			CurrentPage:   page,
+			TotalPages:    totalPages,
+			TotalVotes:    totalVotes,
+		}
+		if err := writeHTML(outPath, views.Overview(overviewProps), ctx); err != nil {
+			return fmt.Errorf("rendering overview page %d: %w", page, err)
+		}
 	}
 
-	// 2. Vote Pages: dist/balsojumi/{voteId}/index.html
-	fmt.Printf("      Rendering %d vote permalinks (dist/balsojumi/{id}/)...\n", len(store.Votes))
+	// 2. Vote Pages (parallelized across CPU workers)
+	fmt.Printf("      Rendering %d vote permalinks (%d overview pages)...\n", len(store.Votes), totalPages)
+	workers := runtime.NumCPU()
+	if workers < 2 {
+		workers = 2
+	}
+	voteJobs := make(chan int, len(store.Votes))
 	for i := range store.Votes {
-		v := &store.Votes[i]
-		seats := views.BuildHemicycleSeats(store, v)
-		billSlug := stats.CleanBillSlug(v.BillNumber)
+		voteJobs <- i
+	}
+	close(voteJobs)
 
-		title := views.CleanVoteTitle(v.SimplifiedTitle)
-		if title == "" {
-			title = views.CleanVoteTitle(v.OfficialTitle)
-		}
+	errCh := make(chan error, workers)
+	for w := 0; w < workers; w++ {
+		go func() {
+			for i := range voteJobs {
+				v := &store.Votes[i]
+				seats := views.BuildHemicycleSeats(store, v)
+				billSlug := stats.CleanBillSlug(v.BillNumber)
 
-		var timeline *stats.BillTimeline
-		if v.BillNumber != "" {
-			timeline = timelines[strings.TrimSpace(v.BillNumber)]
-		}
+				title := views.CleanVoteTitle(v.SimplifiedTitle)
+				if title == "" {
+					title = views.CleanVoteTitle(v.OfficialTitle)
+				}
 
-		voteProps := views.VoteProps{
-			LayoutProps: views.LayoutProps{
-				Title:        fmt.Sprintf("%s - Kā Balso Saeima", title),
-				Description:  v.Summary,
-				CanonicalURL: fmt.Sprintf("https://kabalsosaeima.lv/balsojumi/%s/", v.ID),
-				ActiveNav:    "votes",
-				Metadata:     store.Metadata,
-			},
-			Vote:     v,
-			Seats:    seats,
-			BillSlug: billSlug,
-			Timeline: timeline,
-			Store:    store,
-		}
+				var timeline *stats.BillTimeline
+				if v.BillNumber != "" {
+					timeline = timelines[strings.TrimSpace(v.BillNumber)]
+				}
 
-		votePath := filepath.Join(outDir, "balsojumi", v.ID, "index.html")
-		if err := writeHTML(votePath, views.Vote(voteProps), ctx); err != nil {
-			return fmt.Errorf("rendering vote %s: %w", v.ID, err)
+				voteProps := views.VoteProps{
+					LayoutProps: makeLayout(
+						fmt.Sprintf("%s - Kā Balso Saeima", title),
+						v.Summary,
+						fmt.Sprintf("/balsojumi/%s/", v.ID),
+						"votes",
+					),
+					Vote:     v,
+					Seats:    seats,
+					BillSlug: billSlug,
+					Timeline: timeline,
+					Store:    store,
+				}
+
+				votePath := filepath.Join(outDir, "balsojumi", v.ID, "index.html")
+				if err := writeHTML(votePath, views.Vote(voteProps), ctx); err != nil {
+					errCh <- fmt.Errorf("rendering vote %s: %w", v.ID, err)
+					return
+				}
+			}
+			errCh <- nil
+		}()
+	}
+	for w := 0; w < workers; w++ {
+		if err := <-errCh; err != nil {
+			return err
 		}
 	}
 
-	// 3. Bill Progression Pages: dist/likumprojekti/{slug}/index.html
-	fmt.Printf("      Rendering %d bill progression timelines (dist/likumprojekti/{slug}/)...\n", len(timelines))
+	// 3. Bill Progression Pages: {outDir}/likumprojekti/{slug}/index.html
+	fmt.Printf("      Rendering %d bill progression timelines...\n", len(timelines))
+	billList := make([]*stats.BillTimeline, 0, len(timelines))
 	for _, bt := range timelines {
-		billProps := views.BillProps{
-			LayoutProps: views.LayoutProps{
-				Title:        fmt.Sprintf("Likumprojekts Nr. %s: %s - Kā Balso Saeima", views.CleanBillNr(bt.BillNumber), bt.Title),
-				Description:  fmt.Sprintf("Likumprojekta %s gaitas hronoloģija un balsojumu vēsture 14. Saeimā.", bt.BillNumber),
-				CanonicalURL: fmt.Sprintf("https://kabalsosaeima.lv/likumprojekti/%s/", bt.Slug),
-				ActiveNav:    "votes",
-				Metadata:     store.Metadata,
-			},
-			Timeline: bt,
-			Store:    store,
-		}
+		billList = append(billList, bt)
+	}
+	billJobs := make(chan *stats.BillTimeline, len(billList))
+	for _, bt := range billList {
+		billJobs <- bt
+	}
+	close(billJobs)
 
-		billPath := filepath.Join(outDir, "likumprojekti", bt.Slug, "index.html")
-		if err := writeHTML(billPath, views.Bill(billProps), ctx); err != nil {
-			return fmt.Errorf("rendering bill %s: %w", bt.Slug, err)
+	for w := 0; w < workers; w++ {
+		go func() {
+			for bt := range billJobs {
+				billProps := views.BillProps{
+					LayoutProps: makeLayout(
+						fmt.Sprintf("Likumprojekts Nr. %s: %s - Kā Balso Saeima", views.CleanBillNr(bt.BillNumber), bt.Title),
+						fmt.Sprintf("Likumprojekta %s gaitas hronoloģija un balsojumu vēsture %d. Saeimā.", bt.BillNumber, lt.Config.Term),
+						fmt.Sprintf("/likumprojekti/%s/", bt.Slug),
+						"votes",
+					),
+					Timeline: bt,
+					Store:    store,
+				}
+				billPath := filepath.Join(outDir, "likumprojekti", bt.Slug, "index.html")
+				if err := writeHTML(billPath, views.Bill(billProps), ctx); err != nil {
+					errCh <- fmt.Errorf("rendering bill %s: %w", bt.Slug, err)
+					return
+				}
+			}
+			errCh <- nil
+		}()
+	}
+	for w := 0; w < workers; w++ {
+		if err := <-errCh; err != nil {
+			return err
 		}
 	}
 
 	// 4. MP Directory & Dossier Pages
-	fmt.Printf("      Rendering MP directory and %d MP dossiers (dist/deputati/)...\n", len(store.MPs))
+	fmt.Printf("      Rendering MP directory and %d MP dossiers...\n", len(store.MPs))
 	factionLines := stats.ComputeStoreFactionLines(store)
 
 	var dirItems []views.MPDirectoryItem
@@ -343,13 +580,12 @@ func renderPages(store *data.Store, outDir string) error {
 		})
 
 		mpProps := views.MPProps{
-			LayoutProps: views.LayoutProps{
-				Title:        fmt.Sprintf("%s - 14. Saeimas deputāta profils - Kā Balso Saeima", mp.Name),
-				Description:  fmt.Sprintf("Deputāta %s balsojumu statistika, frakcijas disciplīna un dalība 14. Saeimas sēdēs.", mp.Name),
-				CanonicalURL: fmt.Sprintf("https://kabalsosaeima.lv/deputati/%s/", slug),
-				ActiveNav:    "mps",
-				Metadata:     store.Metadata,
-			},
+			LayoutProps: makeLayout(
+				fmt.Sprintf("%s - %d. Saeimas deputāta profils - Kā Balso Saeima", mp.Name, lt.Config.Term),
+				fmt.Sprintf("Deputāta %s balsojumu statistika, frakcijas disciplīna un dalība %d. Saeimas sēdēs.", mp.Name, lt.Config.Term),
+				fmt.Sprintf("/deputati/%s/", slug),
+				"mps",
+			),
 			MP:         mp,
 			Mandate:    mandate,
 			Faction:    faction,
@@ -366,21 +602,20 @@ func renderPages(store *data.Store, outDir string) error {
 
 		if mp.Slug != "" && mp.Slug != mp.ID {
 			redirectPath := filepath.Join(outDir, "deputati", mp.ID, "index.html")
-			if err := writeRedirectStub(redirectPath, fmt.Sprintf("/deputati/%s/", slug)); err != nil {
+			if err := writeRedirectStub(redirectPath, views.TermURL(bp, fmt.Sprintf("/deputati/%s/", slug))); err != nil {
 				return fmt.Errorf("writing MP redirect stub %s: %w", mp.ID, err)
 			}
 		}
 	}
 
-	// Render Directory Index: dist/deputati/index.html
+	// Render Directory Index: {outDir}/deputati/index.html
 	dirProps := views.MPDirectoryProps{
-		LayoutProps: views.LayoutProps{
-			Title:        "14. Saeimas deputāti un frakcijas - Kā Balso Saeima",
-			Description:  "14. Saeimas deputātu saraksts, frakciju piederība, apmeklētības un frakcijas disciplīnas statistika.",
-			CanonicalURL: "https://kabalsosaeima.lv/deputati/",
-			ActiveNav:    "mps",
-			Metadata:     store.Metadata,
-		},
+		LayoutProps: makeLayout(
+			fmt.Sprintf("%d. Saeimas deputāti un frakcijas - Kā Balso Saeima", lt.Config.Term),
+			fmt.Sprintf("%d. Saeimas deputātu saraksts, frakciju piederība, apmeklētības un frakcijas disciplīnas statistika.", lt.Config.Term),
+			"/deputati/",
+			"mps",
+		),
 		Items:    dirItems,
 		Factions: store.Factions,
 		Store:    store,

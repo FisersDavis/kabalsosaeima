@@ -1,59 +1,45 @@
 [
   {
     "id": "jv",
-    "name": "Jaunā VIENOTĪBA",
+    "name": "Jaunā Vienotība",
     "shortName": "JV",
-    "color": "#00529B",
-    "seats": 26
-  },
-  {
-    "id": "zzs",
-    "name": "Zaļo un Zemnieku savienība",
-    "shortName": "ZZS",
-    "color": "#1B5E20",
-    "seats": 16
-  },
-  {
-    "id": "pro",
-    "name": "PROGRESĪVIE",
-    "shortName": "PRO",
-    "color": "#EA580C",
-    "seats": 10
+    "color": "#00529B"
   },
   {
     "id": "as",
     "name": "APVIENOTAIS SARAKSTS",
     "shortName": "AS",
     "color": "#EAB308",
-    "textColor": "#713F12",
-    "seats": 15
+    "textColor": "#713F12"
   },
   {
     "id": "na",
     "name": "Nacionālā apvienība",
     "shortName": "NA",
-    "color": "#831843",
-    "seats": 12
+    "color": "#831843"
+  },
+  {
+    "id": "pro",
+    "name": "PROGRESĪVIE",
+    "shortName": "PRO",
+    "color": "#EA580C"
   },
   {
     "id": "lpv",
     "name": "LATVIJA PIRMAJĀ VIETĀ",
     "shortName": "LPV",
-    "color": "#E11D48",
-    "seats": 9
+    "color": "#E11D48"
   },
   {
-    "id": "st",
-    "name": "Stabilitātei!",
-    "shortName": "S!",
-    "color": "#475569",
-    "seats": 8
+    "id": "sv_aj",
+    "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+    "shortName": "SV/AJ",
+    "color": "#4C1D95"
   },
   {
     "id": "ind",
     "name": "Pie frakcijām nepiederošie",
     "shortName": "PIEFR",
-    "color": "#94A3B8",
-    "seats": 4
+    "color": "#94A3B8"
   }
 ]

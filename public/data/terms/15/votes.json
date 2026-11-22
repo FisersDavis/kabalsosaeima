@@ -1,0 +1,2574 @@
+[
+  {
+    "id": "3114ab3b-18be-4a12-9ab6-96be4a564129",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-8",
+    "sessionDate": "20.11.2026",
+    "sittingDate": "20.11.2026",
+    "sittingTime": "12:43",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Likuma pieņemšana",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par Saeimas komisiju sastāvu",
+    "billNumber": "15/Lm15",
+    "simplifiedTitle": "Par Saeimas komisiju sastāvu",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 15/Lm15.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "administracija",
+      "label": "Valsts pārvalde"
+    },
+    "counts": {
+      "par": 94,
+      "pret": 0,
+      "atturas": 0,
+      "nebalso": 6,
+      "totalPresent": 94
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 34,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 8,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 2
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 15,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 15,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 9,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Debates plenārsēdē nenotika — saskaņā ar oficiālajiem sēdes datiem neviens deputāts debatēm nebija pieteicies."
+    }
+  },
+  {
+    "id": "37217e18-f035-4d42-a617-d7eb9d672e22",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-7",
+    "sessionDate": "20.11.2026",
+    "sittingDate": "20.11.2026",
+    "sittingTime": "11:37",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Likuma pieņemšana",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par Saeimas pārstāvjiem NATO Parlamentārās asamblejas rudens sesijā",
+    "billNumber": "13/Lm15",
+    "simplifiedTitle": "Par Saeimas pārstāvjiem NATO Parlamentārās asamblejas rudens sesijā",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 13/Lm15. Iesniedzējs / atbildīgā komisija: Deputāti Edvards Smiltēns, Ināra Mūrniece, Raimonds Bergmanis, Ramona Petraviča, Antoņina Ņenaševa, Ainars Latkovskis, Inese Lībiņa-Egnere, Raimonds Vējonis, Dāvis Melnalksnis, Raivis Kalējs.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "drosiba",
+      "label": "Valsts drošība un aizsardzība"
+    },
+    "counts": {
+      "par": 96,
+      "pret": 0,
+      "atturas": 0,
+      "nebalso": 4,
+      "totalPresent": 96
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 34,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 9,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 16,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 15,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 9,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Debates plenārsēdē nenotika — saskaņā ar oficiālajiem sēdes datiem neviens deputāts debatēm nebija pieteicies."
+    }
+  },
+  {
+    "id": "d5dcd8b0-0164-4ed2-b9b3-d25d7d167410",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-7",
+    "sessionDate": "20.11.2026",
+    "sittingDate": "20.11.2026",
+    "sittingTime": "11:36",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Likuma pieņemšana",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par Jurģa Klotiņa 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “Nacionālā apvienība \"Visu Latvijai!\"-\"Tēvzemei un Brīvībai/LNNK\"” kandidātu saraksta Rīgas vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "billNumber": "24/Lm15",
+    "simplifiedTitle": "Par Jurģa Klotiņa 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “Nacionālā apvienība \"Visu Latvijai!\"-\"Tēvzemei un Brīvībai/LNNK\"” kandidātu saraksta Rīgas vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 24/Lm15. Iesniedzējs / atbildīgā komisija: Pagaidu Mandātu ētikas un iesniegumu komisija.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "tiesiskums",
+      "label": "Tiesiskums un korupcijas novēršana"
+    },
+    "counts": {
+      "par": 94,
+      "pret": 0,
+      "atturas": 0,
+      "nebalso": 6,
+      "totalPresent": 94
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 34,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 9,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 16,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 15,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 3
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Debates plenārsēdē nenotika — saskaņā ar oficiālajiem sēdes datiem neviens deputāts debatēm nebija pieteicies."
+    }
+  },
+  {
+    "id": "331b4412-6930-4613-9203-c22a81f3df54",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-7",
+    "sessionDate": "20.11.2026",
+    "sittingDate": "20.11.2026",
+    "sittingTime": "11:32",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Likuma pieņemšana",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par Ģirta Lapiņa 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “Nacionālā apvienība \"Visu Latvijai!\"-\"Tēvzemei un Brīvībai/LNNK\"” kandidātu saraksta Rīgas vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "billNumber": "23/Lm15",
+    "simplifiedTitle": "Par Ģirta Lapiņa 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “Nacionālā apvienība \"Visu Latvijai!\"-\"Tēvzemei un Brīvībai/LNNK\"” kandidātu saraksta Rīgas vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 23/Lm15. Iesniedzējs / atbildīgā komisija: Pagaidu Mandātu ētikas un iesniegumu komisija.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "tiesiskums",
+      "label": "Tiesiskums un korupcijas novēršana"
+    },
+    "counts": {
+      "par": 90,
+      "pret": 0,
+      "atturas": 0,
+      "nebalso": 10,
+      "totalPresent": 90
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 34,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 3
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 16,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 13,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 2
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 3
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Debates plenārsēdē nenotika — saskaņā ar oficiālajiem sēdes datiem neviens deputāts debatēm nebija pieteicies."
+    }
+  },
+  {
+    "id": "bdc0df9f-d56f-4ba9-89e7-afdfa01ccdc9",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-7",
+    "sessionDate": "20.11.2026",
+    "sittingDate": "20.11.2026",
+    "sittingTime": "11:28",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Likuma pieņemšana",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par Jāņa Grasberga 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “Nacionālā apvienība \"Visu Latvijai!\"-\"Tēvzemei un Brīvībai/LNNK\"” kandidātu saraksta Vidzemes vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "billNumber": "22/Lm15",
+    "simplifiedTitle": "Par Jāņa Grasberga 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “Nacionālā apvienība \"Visu Latvijai!\"-\"Tēvzemei un Brīvībai/LNNK\"” kandidātu saraksta Vidzemes vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 22/Lm15. Iesniedzējs / atbildīgā komisija: Pagaidu Mandātu ētikas un iesniegumu komisija.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "tiesiskums",
+      "label": "Tiesiskums un korupcijas novēršana"
+    },
+    "counts": {
+      "par": 93,
+      "pret": 0,
+      "atturas": 0,
+      "nebalso": 7,
+      "totalPresent": 93
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 34,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 9,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 16,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 15,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 4
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Debates plenārsēdē nenotika — saskaņā ar oficiālajiem sēdes datiem neviens deputāts debatēm nebija pieteicies."
+    }
+  },
+  {
+    "id": "e5069953-8bc7-4ce3-aa01-347203ac769e",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-7",
+    "sessionDate": "20.11.2026",
+    "sittingDate": "20.11.2026",
+    "sittingTime": "11:25",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Likuma pieņemšana",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par Māra Dadža 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija” kandidātu saraksta Kurzemes vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "billNumber": "21/Lm15",
+    "simplifiedTitle": "Par Māra Dadža 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija” kandidātu saraksta Kurzemes vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 21/Lm15. Iesniedzējs / atbildīgā komisija: Pagaidu Mandātu ētikas un iesniegumu komisija.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "tiesiskums",
+      "label": "Tiesiskums un korupcijas novēršana"
+    },
+    "counts": {
+      "par": 92,
+      "pret": 0,
+      "atturas": 0,
+      "nebalso": 8,
+      "totalPresent": 92
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 34,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 9,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 16,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 15,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 5,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 5
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Debates plenārsēdē nenotika — saskaņā ar oficiālajiem sēdes datiem neviens deputāts debatēm nebija pieteicies."
+    }
+  },
+  {
+    "id": "1cabf751-492e-4b90-94de-2a4c561f5315",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-7",
+    "sessionDate": "20.11.2026",
+    "sittingDate": "20.11.2026",
+    "sittingTime": "11:21",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Likuma pieņemšana",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par Māra Trušeļa 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija” kandidātu saraksta Zemgales vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "billNumber": "20/Lm15",
+    "simplifiedTitle": "Par Māra Trušeļa 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija” kandidātu saraksta Zemgales vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 20/Lm15. Iesniedzējs / atbildīgā komisija: Pagaidu Mandātu ētikas un iesniegumu komisija.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "tiesiskums",
+      "label": "Tiesiskums un korupcijas novēršana"
+    },
+    "counts": {
+      "par": 91,
+      "pret": 0,
+      "atturas": 0,
+      "nebalso": 9,
+      "totalPresent": 91
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 34,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 9,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 16,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 15,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 4,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 6
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Debates plenārsēdē nenotika — saskaņā ar oficiālajiem sēdes datiem neviens deputāts debatēm nebija pieteicies."
+    }
+  },
+  {
+    "id": "e6676944-8b9c-4f05-88b5-8b18c9b6972f",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-7",
+    "sessionDate": "20.11.2026",
+    "sittingDate": "20.11.2026",
+    "sittingTime": "11:18",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Likuma pieņemšana",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par Valtera Bolevica 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija” kandidātu saraksta Rīgas vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "billNumber": "19/Lm15",
+    "simplifiedTitle": "Par Valtera Bolevica 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija” kandidātu saraksta Rīgas vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 19/Lm15. Iesniedzējs / atbildīgā komisija: Pagaidu Mandātu ētikas un iesniegumu komisija.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "tiesiskums",
+      "label": "Tiesiskums un korupcijas novēršana"
+    },
+    "counts": {
+      "par": 90,
+      "pret": 0,
+      "atturas": 0,
+      "nebalso": 10,
+      "totalPresent": 90
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 34,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 9,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 16,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 15,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 3,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 7
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Debates plenārsēdē nenotika — saskaņā ar oficiālajiem sēdes datiem neviens deputāts debatēm nebija pieteicies."
+    }
+  },
+  {
+    "id": "9fbdb5c3-6a54-498a-aadc-3033b3d5ce62",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-7",
+    "sessionDate": "20.11.2026",
+    "sittingDate": "20.11.2026",
+    "sittingTime": "11:15",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Likuma pieņemšana",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par Luīzes Utānes 15. Saeimas deputātes pilnvaru apstiprināšanu uz laiku, kamēr no partijas “APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija” kandidātu saraksta Vidzemes vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "billNumber": "18/Lm15",
+    "simplifiedTitle": "Par Luīzes Utānes 15. Saeimas deputātes pilnvaru apstiprināšanu uz laiku, kamēr no partijas “APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija” kandidātu saraksta Vidzemes vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 18/Lm15. Iesniedzējs / atbildīgā komisija: Pagaidu Mandātu ētikas un iesniegumu komisija.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "tiesiskums",
+      "label": "Tiesiskums un korupcijas novēršana"
+    },
+    "counts": {
+      "par": 88,
+      "pret": 0,
+      "atturas": 0,
+      "nebalso": 12,
+      "totalPresent": 88
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 34,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 9,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 16,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 14,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 2,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 8
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Debates plenārsēdē nenotika — saskaņā ar oficiālajiem sēdes datiem neviens deputāts debatēm nebija pieteicies."
+    }
+  },
+  {
+    "id": "64300f41-2601-4be4-b89e-1e809640d517",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-7",
+    "sessionDate": "20.11.2026",
+    "sittingDate": "20.11.2026",
+    "sittingTime": "11:11",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Likuma pieņemšana",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par Laura Gruntmaņa 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija” kandidātu saraksta Rīgas vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "billNumber": "17/Lm15",
+    "simplifiedTitle": "Par Laura Gruntmaņa 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija” kandidātu saraksta Rīgas vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 17/Lm15. Iesniedzējs / atbildīgā komisija: Pagaidu Mandātu ētikas un iesniegumu komisija.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "tiesiskums",
+      "label": "Tiesiskums un korupcijas novēršana"
+    },
+    "counts": {
+      "par": 88,
+      "pret": 0,
+      "atturas": 0,
+      "nebalso": 12,
+      "totalPresent": 88
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 34,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 9,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 16,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 15,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 1,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 9
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Debates plenārsēdē nenotika — saskaņā ar oficiālajiem sēdes datiem neviens deputāts debatēm nebija pieteicies."
+    }
+  },
+  {
+    "id": "2e7ef51b-8f9d-4f90-a08c-c5162bc3ac0b",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-7",
+    "sessionDate": "20.11.2026",
+    "sittingDate": "20.11.2026",
+    "sittingTime": "11:07",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Likuma pieņemšana",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par Jāņa Liepiņa 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija” kandidātu saraksta Rīgas vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "billNumber": "16/Lm15",
+    "simplifiedTitle": "Par Jāņa Liepiņa 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no partijas “APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija” kandidātu saraksta Rīgas vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 16/Lm15. Iesniedzējs / atbildīgā komisija: Pagaidu Mandātu ētikas un iesniegumu komisija.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "tiesiskums",
+      "label": "Tiesiskums un korupcijas novēršana"
+    },
+    "counts": {
+      "par": 85,
+      "pret": 0,
+      "atturas": 0,
+      "nebalso": 15,
+      "totalPresent": 85
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 7,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 32,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 3
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 9,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 16,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 15,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 0,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 10
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Debates plenārsēdē nenotika — saskaņā ar oficiālajiem sēdes datiem neviens deputāts debatēm nebija pieteicies."
+    }
+  },
+  {
+    "id": "1c215be5-79bc-4f6b-92c3-08da63c64954",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-5",
+    "sessionDate": "17.11.2026",
+    "sittingDate": "17.11.2026",
+    "sittingTime": "22:38",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": false,
+    "voteType": "procedura",
+    "readingStage": "Darba kārtība",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par iekļaušanu nākamās sēdes darba kārtībā",
+    "billNumber": "13/Lm15",
+    "simplifiedTitle": "Par iekļaušanu nākamās sēdes darba kārtībā",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 13/Lm15.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "socialie",
+      "label": "Veselība un labklājība"
+    },
+    "counts": {
+      "par": 83,
+      "pret": 15,
+      "atturas": 0,
+      "nebalso": 2,
+      "totalPresent": 98
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 41,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 10,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 10,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 16,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 0,
+          "pret": 15,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 0,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 2
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Procedūras balsojums bez debašu pieteikumiem."
+    }
+  },
+  {
+    "id": "276d3d4d-af36-49c2-9736-606cbd46ae1a",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-5",
+    "sessionDate": "17.11.2026",
+    "sittingDate": "17.11.2026",
+    "sittingTime": "22:37",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": false,
+    "voteType": "procedura",
+    "readingStage": "Nodošana komisijām",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par nodošanu Ārlietu komisijai",
+    "billNumber": "12/Lm15",
+    "simplifiedTitle": "Par nodošanu Ārlietu komisijai",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 12/Lm15.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "administracija",
+      "label": "Valsts pārvalde"
+    },
+    "counts": {
+      "par": 15,
+      "pret": 82,
+      "atturas": 0,
+      "nebalso": 3,
+      "totalPresent": 97
+    },
+    "result": "NORAIDITS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 0,
+          "pret": 6,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 0,
+          "pret": 41,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 0,
+          "pret": 10,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 0,
+          "pret": 10,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 0,
+          "pret": 15,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 15,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 0,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 2
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Procedūras balsojums bez debašu pieteikumiem."
+    }
+  },
+  {
+    "id": "81a76bdb-bc7c-4971-9305-145251a58354",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-5",
+    "sessionDate": "17.11.2026",
+    "sittingDate": "17.11.2026",
+    "sittingTime": "22:36",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": false,
+    "voteType": "procedura",
+    "readingStage": "Darba kārtība",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par iekļaušanu nākamās sēdes darba kārtībā",
+    "billNumber": "12/Lm15",
+    "simplifiedTitle": "Par iekļaušanu nākamās sēdes darba kārtībā",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 12/Lm15.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "socialie",
+      "label": "Veselība un labklājība"
+    },
+    "counts": {
+      "par": 15,
+      "pret": 81,
+      "atturas": 1,
+      "nebalso": 3,
+      "totalPresent": 97
+    },
+    "result": "NORAIDITS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 0,
+          "pret": 5,
+          "atturas": 1,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 0,
+          "pret": 41,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 0,
+          "pret": 10,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 0,
+          "pret": 10,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 0,
+          "pret": 15,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 15,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 0,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 2
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": true,
+      "debaters": [
+        {
+          "name": "Vjačeslavs Stepaņenko",
+          "fraction": "SV/AJ",
+          "opinion": "Par",
+          "preview": "Par · Dep. · uzstāšanās ilgums 03:21",
+          "fullSpeech": ""
+        }
+      ]
+    }
+  },
+  {
+    "id": "db63753a-85b0-4de5-b95d-d1985608aaa7",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-5",
+    "sessionDate": "17.11.2026",
+    "sittingDate": "17.11.2026",
+    "sittingTime": "22:31",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Likuma pieņemšana",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par Saeimas pastāvīgo komisiju izveidošanas principiem",
+    "billNumber": "11/Lm15",
+    "simplifiedTitle": "Par Saeimas pastāvīgo komisiju izveidošanas principiem",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 11/Lm15. Iesniedzējs / atbildīgā komisija: Deputāti Edvards Smiltēns, Ināra Mūrniece, Raimonds Vējonis, Ramona Petraviča, Antoņina Ņenaševa, Inese Lībiņa-Egnere, Andris Šuvajevs, Vjačeslavs Stepaņenko, Jūlija Stepaņenko, Agnese Lāce, Artūrs Butāns.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "administracija",
+      "label": "Valsts pārvalde"
+    },
+    "counts": {
+      "par": 93,
+      "pret": 0,
+      "atturas": 0,
+      "nebalso": 7,
+      "totalPresent": 93
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 6,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 39,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 2
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 10,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 10,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 15,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 13,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 2
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 0,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 2
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Debates plenārsēdē nenotika — saskaņā ar oficiālajiem sēdes datiem neviens deputāts debatēm nebija pieteicies."
+    }
+  },
+  {
+    "id": "dc879bf4-d144-4af1-9c94-9fdbcc213695",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-5",
+    "sessionDate": "17.11.2026",
+    "sittingDate": "17.11.2026",
+    "sittingTime": "22:27",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Uzticības balsojums",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par uzticības izteikšanu Ministru kabinetam",
+    "billNumber": "14/Lm15",
+    "simplifiedTitle": "Par uzticības izteikšanu Ministru kabinetam",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 14/Lm15. Iesniedzējs / atbildīgā komisija: Ministru prezidenta amata kandidāts Andris Kulbergs. Piezīme protokolā: Deputāts Edgars Dārznieks informē, ka ir kļūdījies balsojumā, viņa balsojums ir \"PRET\".Deputāte Natālija Ābola informē, ka ir kļūdījusies balsojumā, viņas balsojums ir \"PRET\".",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "tiesiskums",
+      "label": "Tiesiskums un korupcijas novēršana"
+    },
+    "counts": {
+      "par": 57,
+      "pret": 34,
+      "atturas": 0,
+      "nebalso": 9,
+      "totalPresent": 91
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 0,
+          "pret": 6,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "as",
+        "name": "APVIENOTAIS SARAKSTS",
+        "shortName": "AS",
+        "color": "#EAB308",
+        "votes": {
+          "par": 40,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 10,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "pro",
+        "name": "PROGRESĪVIE",
+        "shortName": "PRO",
+        "color": "#EA580C",
+        "votes": {
+          "par": 0,
+          "pret": 10,
+          "atturas": 0,
+          "nebalso": 0
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "lpv",
+        "name": "LATVIJA PIRMAJĀ VIETĀ",
+        "shortName": "LPV",
+        "color": "#E11D48",
+        "votes": {
+          "par": 7,
+          "pret": 5,
+          "atturas": 0,
+          "nebalso": 4
+        },
+        "deviatingMps": [
+          {
+            "mpId": "mp-91",
+            "name": "Olga Petkeviča",
+            "decision": "PRET",
+            "factionLine": "PAR"
+          },
+          {
+            "mpId": "mp-61",
+            "name": "Jekaterina Ivanova",
+            "decision": "PRET",
+            "factionLine": "PAR"
+          },
+          {
+            "mpId": "mp-9",
+            "name": "Aleksejs Mackevičs",
+            "decision": "PRET",
+            "factionLine": "PAR"
+          },
+          {
+            "mpId": "mp-108",
+            "name": "Viktorija Pleškāne",
+            "decision": "PRET",
+            "factionLine": "PAR"
+          },
+          {
+            "mpId": "mp-7",
+            "name": "Aleksandrs Bartaševičs",
+            "decision": "PRET",
+            "factionLine": "PAR"
+          }
+        ]
+      },
+      {
+        "factionId": "sv_aj",
+        "name": "SUVERĒNĀ VARA / APVIENĪBA JAUNLATVIEŠI",
+        "shortName": "SV/AJ",
+        "color": "#4C1D95",
+        "votes": {
+          "par": 0,
+          "pret": 13,
+          "atturas": 0,
+          "nebalso": 2
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 0,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 2
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": true,
+      "debaters": [
+        {
+          "name": "Andris Kulbergs",
+          "fraction": "PIEFR",
+          "opinion": "Debates",
+          "preview": "1x, MP kandidāts · uzstāšanās ilgums 22:14",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Inese Lībiņa-Egnere",
+          "fraction": "JV",
+          "opinion": "Frakc. viedoklis",
+          "preview": "Frakc. viedoklis · Dep. · uzstāšanās ilgums 08:35",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Artūrs Butāns",
+          "fraction": "NA",
+          "opinion": "Frakc. viedoklis",
+          "preview": "Frakc. viedoklis · Dep. · uzstāšanās ilgums 04:57",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Jūlija Stepaņenko",
+          "fraction": "SV/AJ",
+          "opinion": "Frakc. viedoklis",
+          "preview": "Frakc. viedoklis · Dep. · uzstāšanās ilgums 14:48",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Andris Šuvajevs",
+          "fraction": "PRO",
+          "opinion": "Frakc. viedoklis",
+          "preview": "Frakc. viedoklis · Dep. · uzstāšanās ilgums 11:02",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Ainārs Šlesers",
+          "fraction": "LPV",
+          "opinion": "Frakc. viedoklis",
+          "preview": "Frakc. viedoklis · Dep. · uzstāšanās ilgums 15:11",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Edmunds Jurēvics",
+          "fraction": "JV",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 12:36",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Inna Djeri",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 06:49",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Gita Plaude",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 08:10",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Aleksejs Ignatjevs",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 06:19",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Rūdolfs Brēmanis",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 15:04",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Andrejs Jakovļevs",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 10:56",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Andrejs Pagors",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 11:42",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Leontijs Morozs",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 05:42",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Natālija Ābola",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 05:38",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Jana Simanovska",
+          "fraction": "PRO",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 12:14",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Antoņina Ņenaševa",
+          "fraction": "PRO",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 11:43",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Mairita Lūse",
+          "fraction": "PRO",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 08:17",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Atis Švinka",
+          "fraction": "PRO",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 10:29",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Edgars Dārznieks",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 14:14",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Mārtiņš Hiršs",
+          "fraction": "PRO",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 03:35",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Jūlija Sohina",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 12:08",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Krista Burāne",
+          "fraction": "PRO",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 11:33",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Agnese Lāce",
+          "fraction": "PRO",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 09:00",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Andris Sprūds",
+          "fraction": "PRO",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 08:42",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Artūrs Klēbahs",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 13:21",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Ļubova Švecova",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 03:28",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Vjačeslavs Stepaņenko",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 07:44",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Karina Sprūde",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 17:55",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Rūdolfs Brēmanis",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "2x, Dep. · uzstāšanās ilgums 05:02",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Selma Teodora Levrence",
+          "fraction": "PRO",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 10:31",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Jūlija Stepaņenko",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "2x, Dep. · uzstāšanās ilgums 04:48",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Ainārs Šlesers",
+          "fraction": "LPV",
+          "opinion": "Debates",
+          "preview": "2x, Dep. · uzstāšanās ilgums 05:14",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Vjačeslavs Stepaņenko",
+          "fraction": "SV/AJ",
+          "opinion": "Debates",
+          "preview": "2x, Dep. · uzstāšanās ilgums 03:19",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Andris Kulbergs",
+          "fraction": "AS",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 05:36",
+          "fullSpeech": ""
+        }
+      ]
+    }
+  },
+  {
+    "id": "45264dbd-61f7-423e-b46b-2c6d58c97fdd",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-4",
+    "sessionDate": "03.11.2026",
+    "sittingDate": "03.11.2026",
+    "sittingTime": "19:43",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": true,
+    "voteType": "likums",
+    "readingStage": "Likuma pieņemšana",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par atteikšanos no deputātu grupu veidošanas sadarbības veicināšanai ar Krievijas Federācijas un Baltkrievijas Republikas parlamentiem",
+    "billNumber": "9/Lm15",
+    "simplifiedTitle": "Par atteikšanos no deputātu grupu veidošanas sadarbības veicināšanai ar Krievijas Federācijas un Baltkrievijas Republikas parlamentiem",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 9/Lm15. Iesniedzējs / atbildīgā komisija: Deputāti Ināra Mūrniece, Raimonds Bergmanis, Inese Lībiņa-Egnere, Baiba Braže, Andris Šuvajevs, Atis Švinka, Evika Siliņa, Linda Liepiņa, Ilze Indriksone, Jānis Dombrava, Edmunds Zivtiņš, Ramona Petraviča, Edvards Smiltēns.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "drosiba",
+      "label": "Valsts drošība un aizsardzība"
+    },
+    "counts": {
+      "par": 82,
+      "pret": 15,
+      "atturas": 0,
+      "nebalso": 3,
+      "totalPresent": 97
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 0,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 0,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 82,
+          "pret": 15,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": true,
+      "debaters": [
+        {
+          "name": "Ināra Mūrniece",
+          "fraction": "PIEFR",
+          "opinion": "Referents iesniedzēju vārdā",
+          "preview": "Referents iesniedzēju vārdā · Dep. · uzstāšanās ilgums 08:06",
+          "fullSpeech": ""
+        },
+        {
+          "name": "Rūdolfs Brēmanis",
+          "fraction": "PIEFR",
+          "opinion": "Debates",
+          "preview": "1x, Dep. · uzstāšanās ilgums 03:45",
+          "fullSpeech": ""
+        }
+      ]
+    }
+  },
+  {
+    "id": "e9e1ee17-68b3-4fb9-bd5b-a5b359d859f5",
+    "saeimaTerm": 15,
+    "sittingName": "15.Saeimas 2026.gada rudens sesija-2",
+    "sessionDate": "03.11.2026",
+    "sittingDate": "03.11.2026",
+    "sittingTime": "19:18",
+    "sittingType": "Ārkārtas plenārsēde",
+    "reading": null,
+    "isUrgent": false,
+    "isTier1": false,
+    "voteType": "procedura",
+    "readingStage": "Darba kārtība",
+    "isSecret": false,
+    "isRevote": false,
+    "officialTitle": "Par iekļaušanu nākamās sēdes darba kārtībā",
+    "billNumber": "9/Lm15",
+    "simplifiedTitle": "Par iekļaušanu nākamās sēdes darba kārtībā",
+    "summary": "Likumprojekts izskatīts 15. Saeimas sēdē. Oficiālais reģistrācijas numurs: 9/Lm15.",
+    "purpose": "",
+    "protocolUrl": "",
+    "stenogramUrl": "",
+    "category": {
+      "id": "socialie",
+      "label": "Veselība un labklājība"
+    },
+    "counts": {
+      "par": 80,
+      "pret": 15,
+      "atturas": 1,
+      "nebalso": 4,
+      "totalPresent": 96
+    },
+    "result": "PIENEMTS",
+    "factionBreakdown": [
+      {
+        "factionId": "jv",
+        "name": "Jaunā Vienotība",
+        "shortName": "JV",
+        "color": "#00529B",
+        "votes": {
+          "par": 0,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "na",
+        "name": "Nacionālā apvienība",
+        "shortName": "NA",
+        "color": "#831843",
+        "votes": {
+          "par": 0,
+          "pret": 0,
+          "atturas": 0,
+          "nebalso": 1
+        },
+        "deviatingMps": []
+      },
+      {
+        "factionId": "ind",
+        "name": "Pie frakcijām nepiederošie",
+        "shortName": "PIEFR",
+        "color": "#94A3B8",
+        "votes": {
+          "par": 80,
+          "pret": 15,
+          "atturas": 1,
+          "nebalso": 2
+        },
+        "deviatingMps": []
+      }
+    ],
+    "debateArguments": {
+      "hasDebates": false,
+      "noDebateReason": "Procedūras balsojums bez debašu pieteikumiem."
+    }
+  }
+]

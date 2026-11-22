@@ -292,37 +292,53 @@ func FactionTextColor(factionID string, customText string) string {
 func ResolveMPFactionOnDate(store *data.Store, mpID string, voteDate string) string {
 	mp := store.MPByID[mpID]
 	history := store.RollcallsByMP[mpID]
-	if len(history) == 0 {
+	n := len(history)
+	if n == 0 {
 		if mp != nil && mp.FactionID != "" {
 			return mp.FactionID
 		}
 		return "ind"
 	}
 
-	var beforeBest *data.MPVoteHistory
-	for i := range history {
-		h := &history[i]
-		if h.VoteDate <= voteDate {
-			if beforeBest == nil || h.VoteDate > beforeBest.VoteDate {
+	// Fast path: loader populates RollcallsByMP in descending VoteDate order -> O(log N) binary search
+	if n == 1 || history[0].VoteDate >= history[n-1].VoteDate {
+		// First index i where history[i].VoteDate <= voteDate (largest date <= voteDate)
+		idx := sort.Search(n, func(i int) bool {
+			return history[i].VoteDate <= voteDate
+		})
+		for i := idx; i < n; i++ {
+			if history[i].Record.FactionID != "" {
+				return history[i].Record.FactionID
+			}
+		}
+		// Fallback: nearest vote after voteDate (smallest date > voteDate)
+		for i := idx - 1; i >= 0; i-- {
+			if history[i].Record.FactionID != "" {
+				return history[i].Record.FactionID
+			}
+		}
+	} else {
+		// Unsorted fallback
+		var beforeBest *data.MPVoteHistory
+		for i := range history {
+			h := &history[i]
+			if h.VoteDate <= voteDate && (beforeBest == nil || h.VoteDate > beforeBest.VoteDate) {
 				beforeBest = h
 			}
 		}
-	}
-	if beforeBest != nil && beforeBest.Record.FactionID != "" {
-		return beforeBest.Record.FactionID
-	}
-
-	var afterBest *data.MPVoteHistory
-	for i := range history {
-		h := &history[i]
-		if h.VoteDate > voteDate {
-			if afterBest == nil || h.VoteDate < afterBest.VoteDate {
+		if beforeBest != nil && beforeBest.Record.FactionID != "" {
+			return beforeBest.Record.FactionID
+		}
+		var afterBest *data.MPVoteHistory
+		for i := range history {
+			h := &history[i]
+			if h.VoteDate > voteDate && (afterBest == nil || h.VoteDate < afterBest.VoteDate) {
 				afterBest = h
 			}
 		}
-	}
-	if afterBest != nil && afterBest.Record.FactionID != "" {
-		return afterBest.Record.FactionID
+		if afterBest != nil && afterBest.Record.FactionID != "" {
+			return afterBest.Record.FactionID
+		}
 	}
 
 	if mp != nil && mp.FactionID != "" {
@@ -333,7 +349,7 @@ func ResolveMPFactionOnDate(store *data.Store, mpID string, voteDate string) str
 
 // sectorIndex returns the parliamentary sector sort order for political factions.
 func sectorIndex(fid string) int {
-	sectors := []string{"pro", "jv", "zzs", "as", "na", "lpv", "st", "ind"}
+	sectors := []string{"pro", "jv", "zzs", "as", "na", "lpv", "sv_aj", "st", "ind"}
 	for idx, s := range sectors {
 		if strings.EqualFold(s, fid) {
 			return idx
@@ -594,6 +610,52 @@ func IsFinalReadingVote(v data.Vote) bool {
 	return strings.Contains(stage, "3. las") || strings.Contains(stage, "galīg") || strings.Contains(stage, "steidzam")
 }
 
+// TermNavItem represents a selectable Saeima parliamentary term in the header switcher.
+type TermNavItem struct {
+	Term     int
+	Label    string
+	Years    string
+	BasePath string // "" for active root term, "/14-saeima" for archive term
+	IsActive bool
+}
+
+// TermURL prefixes an internal absolute path with the term's BasePath.
+func TermURL(basePath, path string) string {
+	bp := strings.TrimRight(basePath, "/")
+	if bp == "" {
+		return path
+	}
+	if path == "" || path == "/" {
+		return bp + "/"
+	}
+	if !strings.HasPrefix(path, "/") {
+		path = "/" + path
+	}
+	return bp + path
+}
+
+// ActiveTermNumber returns the effective Saeima term number (defaults to 14 if unset).
+func ActiveTermNumber(lp LayoutProps) int {
+	if lp.TermNumber > 0 {
+		return lp.TermNumber
+	}
+	if lp.Metadata.SaeimaTerm > 0 {
+		return lp.Metadata.SaeimaTerm
+	}
+	return 14
+}
+
+// ActiveTermYears returns the year range label for the current term.
+func ActiveTermYears(lp LayoutProps) string {
+	if lp.TermYears != "" {
+		return lp.TermYears
+	}
+	if ActiveTermNumber(lp) == 15 {
+		return "2026–2030"
+	}
+	return "2022–2026"
+}
+
 // LayoutProps defines metadata and navigation state for base layout.
 type LayoutProps struct {
 	Title        string
@@ -601,6 +663,10 @@ type LayoutProps struct {
 	CanonicalURL string
 	ActiveNav    string // "votes", "mps"
 	Metadata     data.SiteMetadata
+	TermNumber   int
+	TermYears    string
+	BasePath     string
+	Terms        []TermNavItem
 }
 
 // NavLinkClass returns Tailwind classes for active vs inactive navbar links.
@@ -612,6 +678,90 @@ func NavLinkClass(isActive bool) string {
 }
 
 
+// OverviewPageURL returns the URL for a given 1-indexed overview archive page.
+func OverviewPageURL(basePath string, page int) string {
+	if page <= 1 {
+		return TermURL(basePath, "/")
+	}
+	return TermURL(basePath, fmt.Sprintf("/lapa/%d/", page))
+}
+
+// PaginationWindow returns a compact slice of page numbers with 0 representing an ellipsis.
+func PaginationWindow(current, total int) []int {
+	if total <= 7 {
+		out := make([]int, total)
+		for i := 1; i <= total; i++ {
+			out[i-1] = i
+		}
+		return out
+	}
+	var out []int
+	add := func(p int) {
+		if len(out) == 0 || out[len(out)-1] != p {
+			out = append(out, p)
+		}
+	}
+	add(1)
+	if current > 3 {
+		out = append(out, 0)
+	}
+	for p := current - 1; p <= current+1; p++ {
+		if p > 1 && p < total {
+			add(p)
+		}
+	}
+	if current < total-2 {
+		out = append(out, 0)
+	}
+	add(total)
+	return out
+}
+
+// CompactTimelineEntry pairs a stage label with a single vote for compact vote-page timeline previews.
+type CompactTimelineEntry struct {
+	StageName string
+	Vote      *data.Vote
+}
+
+// CompactTimelineVotes caps inline bill timeline previews on vote detail pages to maxItems
+// surrounding the current vote (avoiding duplicating 500+ budget amendments on every vote page).
+func CompactTimelineVotes(tl *stats.BillTimeline, currentVoteID string, maxItems int) ([]CompactTimelineEntry, int) {
+	if tl == nil {
+		return nil, 0
+	}
+	var all []CompactTimelineEntry
+	curIdx := -1
+	for _, st := range tl.Stages {
+		for _, v := range st.Votes {
+			if v.ID == currentVoteID {
+				curIdx = len(all)
+			}
+			all = append(all, CompactTimelineEntry{StageName: st.StageName, Vote: v})
+		}
+	}
+	total := len(all)
+	if maxItems <= 0 || total <= maxItems {
+		return all, total
+	}
+	if curIdx < 0 {
+		return all[:maxItems], total
+	}
+	half := maxItems / 2
+	start := curIdx - half
+	if start < 0 {
+		start = 0
+	}
+	end := start + maxItems
+	if end > total {
+		end = total
+		start = end - maxItems
+		if start < 0 {
+			start = 0
+		}
+	}
+	return all[start:end], total
+}
+
 // OverviewProps defines props for the vote overview list page.
 type OverviewProps struct {
 	LayoutProps   LayoutProps
@@ -619,6 +769,9 @@ type OverviewProps struct {
 	Categories    []data.VoteCategory
 	Store         *data.Store
 	BillTimelines map[string]*stats.BillTimeline
+	CurrentPage   int
+	TotalPages    int
+	TotalVotes    int
 }
 
 // VoteProps defines props for individual vote permalinks with hemicycle.
@@ -706,13 +859,32 @@ type MPDirectoryProps struct {
 	Store       *data.Store
 }
 
-// SaeimaBillSearchURL generates a direct search link to the Saeima legal database for a bill.
-func SaeimaBillSearchURL(billNr string) string {
+// SaeimaBillSearchURLForTerm generates a direct search link to the Saeima LIVS database for a specific term.
+func SaeimaBillSearchURLForTerm(term int, billNr string) string {
 	clean := CleanBillNr(billNr)
 	if clean == "" {
 		return "https://www.saeima.lv/lv/likumdosana/"
 	}
+	if term >= 15 {
+		return fmt.Sprintf("https://titania.saeima.lv/LIVS%d/saeimalivs%d.nsf/webAll?SearchView&Query=([Title]=*%s*)", term, term, clean)
+	}
 	return fmt.Sprintf("https://titania.saeima.lv/LIVS14/SaeimaLIVS2_DK.nsf/webAll?SearchView&Query=([Title]=*%s*)", clean)
+}
+
+// SaeimaBillSearchURL generates a direct search link to the Saeima legal database for a bill.
+func SaeimaBillSearchURL(billNr string) string {
+	if strings.Contains(strings.ToLower(billNr), "15") {
+		return SaeimaBillSearchURLForTerm(15, billNr)
+	}
+	return SaeimaBillSearchURLForTerm(14, billNr)
+}
+
+// SaeimaDeputiesRegistryURL returns the official saeima.lv deputy directory URL for the given term.
+func SaeimaDeputiesRegistryURL(term int) string {
+	if term <= 0 {
+		term = 14
+	}
+	return fmt.Sprintf("https://www.saeima.lv/lv/sasaukumi/%d-saeima/deputati/", term)
 }
 
 // VoteProtocolURL returns the official protocol URL, or an official bill search fallback.
@@ -721,9 +893,13 @@ func VoteProtocolURL(v data.Vote) string {
 		return v.ProtocolURL
 	}
 	if v.BillNumber != "" {
-		return SaeimaBillSearchURL(v.BillNumber)
+		term := v.SaeimaTerm
+		if term == 0 {
+			term = 14
+		}
+		return SaeimaBillSearchURLForTerm(term, v.BillNumber)
 	}
-	return "https://www.saeima.lv/lv/likumdosana/balsojumi/"
+	return "https://www.saeima.lv/lv/likumdosana/"
 }
 
 // VoteProtocolURLFromPtr returns VoteProtocolURL for a pointer to data.Vote.

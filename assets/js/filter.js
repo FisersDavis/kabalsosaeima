@@ -23,11 +23,21 @@
     var toggleBtn = document.getElementById('filter-toggle-btn');
     var filterPanel = document.getElementById('filter-panel');
     var filterBadge = document.getElementById('filter-badge');
+    var loadMoreWrap = document.getElementById('filter-load-more-wrap');
+    var loadMoreBtn = document.getElementById('filter-load-more');
+    var loadMoreText = document.getElementById('filter-load-more-text');
     var cards = document.querySelectorAll('.vote-card');
 
     if (!cards.length) return;
 
-    function applyFilter() {
+    var PAGE_SIZE = 50;
+    var visibleLimit = PAGE_SIZE;
+
+    function applyFilter(resetLimit) {
+      if (resetLimit !== false) {
+        visibleLimit = PAGE_SIZE;
+      }
+
       var query = searchInput ? normalizeText(searchInput.value) : '';
       var stage = stageSelect ? stageSelect.value : 'ALL';
       var category = categorySelect ? categorySelect.value : 'ALL';
@@ -65,7 +75,8 @@
         }
       }
 
-      var visible = 0;
+      var matched = 0;
+      var shown = 0;
       for (var i = 0; i < cards.length; i++) {
         var card = cards[i];
         var cardTitle = normalizeText(card.getAttribute('data-title') || '');
@@ -81,19 +92,40 @@
         var matchTier1 = !tier1 || cardTier1;
 
         if (matchQuery && matchStage && matchCat && matchOutcome && matchTier1) {
-          card.classList.remove('hidden');
-          visible++;
+          matched++;
+          if (shown < visibleLimit) {
+            card.classList.remove('hidden');
+            shown++;
+          } else {
+            card.classList.add('hidden');
+          }
         } else {
           card.classList.add('hidden');
         }
       }
 
       if (countEl) {
-        countEl.textContent = 'Atrasti ' + visible + ' ' + (visible === 1 ? 'balsojums' : 'balsojumi');
+        var suffix = (matched === 1 ? 'balsojums' : 'balsojumi');
+        if (shown < matched) {
+          countEl.textContent = 'Rādīti ' + shown + ' no ' + matched + ' ' + suffix;
+        } else {
+          countEl.textContent = 'Atrasti ' + matched + ' ' + suffix;
+        }
+      }
+
+      if (loadMoreWrap && loadMoreText) {
+        var remaining = matched - shown;
+        if (remaining > 0) {
+          var nextBatch = Math.min(PAGE_SIZE, remaining);
+          loadMoreText.textContent = 'Rādīt vēl ' + nextBatch + ' (atlikuši ' + remaining + ')';
+          loadMoreWrap.classList.remove('hidden');
+        } else {
+          loadMoreWrap.classList.add('hidden');
+        }
       }
 
       if (emptyState) {
-        if (visible === 0) {
+        if (matched === 0) {
           emptyState.classList.remove('hidden');
         } else {
           emptyState.classList.add('hidden');
@@ -130,7 +162,7 @@
       if (categorySelect) categorySelect.value = 'ALL';
       if (outcomeSelect) outcomeSelect.value = 'ALL';
       setTier1State(false);
-      applyFilter();
+      applyFilter(true);
     }
 
     // Restore from URL parameters
@@ -162,23 +194,30 @@
       });
     }
 
-    if (searchInput) searchInput.addEventListener('input', applyFilter);
-    if (stageSelect) stageSelect.addEventListener('change', applyFilter);
-    if (categorySelect) categorySelect.addEventListener('change', applyFilter);
-    if (outcomeSelect) outcomeSelect.addEventListener('change', applyFilter);
+    if (searchInput) searchInput.addEventListener('input', function() { applyFilter(true); });
+    if (stageSelect) stageSelect.addEventListener('change', function() { applyFilter(true); });
+    if (categorySelect) categorySelect.addEventListener('change', function() { applyFilter(true); });
+    if (outcomeSelect) outcomeSelect.addEventListener('change', function() { applyFilter(true); });
 
     if (tier1Toggle) {
       tier1Toggle.addEventListener('click', function() {
         var active = tier1Toggle.getAttribute('data-active') === 'true';
         setTier1State(!active);
-        applyFilter();
+        applyFilter(true);
+      });
+    }
+
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', function() {
+        visibleLimit += PAGE_SIZE;
+        applyFilter(false);
       });
     }
 
     if (resetBtn) resetBtn.addEventListener('click', resetAllFilters);
     if (emptyResetBtn) emptyResetBtn.addEventListener('click', resetAllFilters);
 
-    applyFilter();
+    applyFilter(true);
   }
 
   if (document.readyState === 'loading') {

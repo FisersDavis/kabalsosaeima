@@ -1,0 +1,81 @@
+{
+  "15.Saeimas 2026.gada rudens sesija-1": {
+    "deb_mod": "2026-11-07T02:00:04.197568",
+    "dk_date": "03.11.2026",
+    "dkp_mod": "2026-11-06T02:02:26.764627",
+    "vote_count": 0,
+    "vote_ids": [],
+    "vote_mod": "2026-11-06T02:01:59.955772"
+  },
+  "15.Saeimas 2026.gada rudens sesija-2": {
+    "deb_mod": "2026-11-06T02:00:33.658831",
+    "dk_date": "03.11.2026",
+    "dkp_mod": "2026-11-06T02:01:02.810745",
+    "vote_count": 1,
+    "vote_ids": [
+      "e9e1ee17-68b3-4fb9-bd5b-a5b359d859f5"
+    ],
+    "vote_mod": "2026-11-06T02:01:31.417483"
+  },
+  "15.Saeimas 2026.gada rudens sesija-3": {
+    "deb_mod": "2026-11-20T02:00:03.901337",
+    "dk_date": "18.11.2026",
+    "dkp_mod": "2026-11-19T02:00:04.211965",
+    "vote_count": 0,
+    "vote_ids": [],
+    "vote_mod": "2026-11-20T02:00:29.455810"
+  },
+  "15.Saeimas 2026.gada rudens sesija-4": {
+    "deb_mod": "2026-11-04T02:00:04.321473",
+    "dk_date": "03.11.2026",
+    "dkp_mod": "2026-11-05T02:00:04.614878",
+    "vote_count": 1,
+    "vote_ids": [
+      "45264dbd-61f7-423e-b46b-2c6d58c97fdd"
+    ],
+    "vote_mod": "2026-11-06T02:00:03.830689"
+  },
+  "15.Saeimas 2026.gada rudens sesija-5": {
+    "deb_mod": "2026-11-18T02:00:03.957619",
+    "dk_date": "17.11.2026",
+    "dkp_mod": "2026-11-21T02:02:51.379352",
+    "vote_count": 5,
+    "vote_ids": [
+      "dc879bf4-d144-4af1-9c94-9fdbcc213695",
+      "db63753a-85b0-4de5-b95d-d1985608aaa7",
+      "81a76bdb-bc7c-4971-9305-145251a58354",
+      "276d3d4d-af36-49c2-9736-606cbd46ae1a",
+      "1c215be5-79bc-4f6b-92c3-08da63c64954"
+    ],
+    "vote_mod": "2026-11-21T02:02:30.100919"
+  },
+  "15.Saeimas 2026.gada rudens sesija-7": {
+    "deb_mod": "2026-11-21T02:02:05.094718",
+    "dk_date": "20.11.2026",
+    "dkp_mod": "2026-11-21T02:01:43.872625",
+    "vote_count": 10,
+    "vote_ids": [
+      "2e7ef51b-8f9d-4f90-a08c-c5162bc3ac0b",
+      "64300f41-2601-4be4-b89e-1e809640d517",
+      "9fbdb5c3-6a54-498a-aadc-3033b3d5ce62",
+      "e6676944-8b9c-4f05-88b5-8b18c9b6972f",
+      "1cabf751-492e-4b90-94de-2a4c561f5315",
+      "e5069953-8bc7-4ce3-aa01-347203ac769e",
+      "bdc0df9f-d56f-4ba9-89e7-afdfa01ccdc9",
+      "331b4412-6930-4613-9203-c22a81f3df54",
+      "d5dcd8b0-0164-4ed2-b9b3-d25d7d167410",
+      "37217e18-f035-4d42-a617-d7eb9d672e22"
+    ],
+    "vote_mod": "2026-11-21T02:01:22.623917"
+  },
+  "15.Saeimas 2026.gada rudens sesija-8": {
+    "deb_mod": "2026-11-21T02:00:31.894497",
+    "dk_date": "20.11.2026",
+    "dkp_mod": "2026-11-21T02:00:03.668308",
+    "vote_count": 1,
+    "vote_ids": [
+      "3114ab3b-18be-4a12-9ab6-96be4a564129"
+    ],
+    "vote_mod": "2026-11-21T02:00:59.928663"
+  }
+}

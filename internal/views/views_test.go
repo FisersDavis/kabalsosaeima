@@ -444,3 +444,52 @@ func TestRenderMPDirectory(t *testing.T) {
 	}
 }
 
+func TestTermURLAndMultiTermSwitcher(t *testing.T) {
+	if got := TermURL("", "/deputati/"); got != "/deputati/" {
+		t.Errorf("TermURL('', '/deputati/') = %q, want /deputati/", got)
+	}
+	if got := TermURL("/14-saeima", "/"); got != "/14-saeima/" {
+		t.Errorf("TermURL('/14-saeima', '/') = %q, want /14-saeima/", got)
+	}
+	if got := TermURL("/14-saeima", "/balsojumi/abc/"); got != "/14-saeima/balsojumi/abc/" {
+		t.Errorf("TermURL('/14-saeima', '/balsojumi/abc/') = %q, want /14-saeima/balsojumi/abc/", got)
+	}
+
+	store := loadGoldenStore(t)
+	props := OverviewProps{
+		LayoutProps: LayoutProps{
+			Title:        "14. Saeima",
+			CanonicalURL: "https://kabalsosaeima.lv/14-saeima/",
+			ActiveNav:    "votes",
+			TermNumber:   14,
+			TermYears:    "2022–2026",
+			BasePath:     "/14-saeima",
+			Terms: []TermNavItem{
+				{Term: 15, Label: "15. Saeima", Years: "2026–2030", BasePath: "", IsActive: true},
+				{Term: 14, Label: "14. Saeima", Years: "2022–2026", BasePath: "/14-saeima", IsActive: false},
+			},
+		},
+		Votes: store.Votes[:2],
+		Store: store,
+	}
+
+	var buf bytes.Buffer
+	if err := Overview(props).Render(context.Background(), &buf); err != nil {
+		t.Fatalf("Failed to render multi-term Overview: %v", err)
+	}
+	html := buf.String()
+	if !strings.Contains(html, `aria-label="Saeimas sasaukuma izvēle"`) {
+		t.Error("Rendered multi-term HTML missing term switcher nav")
+	}
+	if !strings.Contains(html, `href="/14-saeima/deputati/"`) {
+		t.Error("Rendered 14. Saeima HTML missing scoped /14-saeima/deputati/ nav link")
+	}
+	if !strings.Contains(html, `href="/14-saeima/balsojumi/`) {
+		t.Error("Rendered 14. Saeima HTML missing scoped /14-saeima/balsojumi/ card link")
+	}
+	if !strings.Contains(html, "15. Saeima") {
+		t.Error("Rendered multi-term HTML missing 15. Saeima switcher option")
+	}
+}
+
+

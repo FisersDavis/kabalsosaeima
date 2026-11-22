@@ -9,7 +9,7 @@ templ Bill(props BillProps) {
 		<div class="space-y-6">
 			<!-- Breadcrumb Navigation -->
 			<nav class="flex items-center gap-2 text-xs text-slate-500">
-				<a href="/" class="hover:text-slate-900 hover:underline transition">← Visi balsojumi</a>
+				<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, "/")) } class="hover:text-slate-900 hover:underline transition">← Visi balsojumi</a>
 				<span>/</span>
 				<span class="font-mono text-slate-700">Likumprojekti</span>
 				<span>/</span>
@@ -32,7 +32,7 @@ templ Bill(props BillProps) {
 				</h1>
 
 				<p class="text-xs text-slate-500 leading-relaxed">
-					Likumprojekta parlamentārā virzība cauri lasījumiem un sēžu balsojumiem 14. Saeimā.
+					Likumprojekta parlamentārā virzība cauri lasījumiem un sēžu balsojumiem { fmt.Sprintf("%d. Saeimā.", ActiveTermNumber(props.LayoutProps)) }
 				</p>
 
 				<!-- Educational Note on Parliamentary Voting for Newcomers -->
@@ -82,7 +82,7 @@ templ Bill(props BillProps) {
 												</span>
 											}
 											<h3 class="text-sm sm:text-base font-bold text-slate-900 leading-snug">
-												<a href={ templ.SafeURL(fmt.Sprintf("/balsojumi/%s/", v.ID)) } class="hover:text-emerald-700 transition">
+												<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/balsojumi/%s/", v.ID))) } class="hover:text-emerald-700 transition">
 													{ CleanVoteTitle(v.SimplifiedTitle) }
 												</a>
 											</h3>
@@ -107,7 +107,7 @@ templ Bill(props BillProps) {
 										</div>
 
 										<a
-											href={ templ.SafeURL(fmt.Sprintf("/balsojumi/%s/", v.ID)) }
+											href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/balsojumi/%s/", v.ID))) }
 											class="text-emerald-800 hover:text-emerald-950 font-semibold font-sans transition"
 										>
 											Sēžu zāle →

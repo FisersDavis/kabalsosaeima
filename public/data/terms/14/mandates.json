@@ -1,0 +1,2203 @@
+[
+  {
+    "mpId": "mp-1",
+    "saeimaId": "14-evika-silina",
+    "name": "Evika Siliņa",
+    "slug": "evika-silina",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      },
+      {
+        "from": "2026-06-11",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-evika-silina/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-2",
+    "saeimaId": "14-arvils-aseradens",
+    "name": "Arvils Ašeradens",
+    "slug": "arvils-aseradens",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      },
+      {
+        "from": "2026-06-04",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-arvils-aseradens/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-3",
+    "saeimaId": "14-ainars-latkovskis",
+    "name": "Ainars Latkovskis",
+    "slug": "ainars-latkovskis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ainars-latkovskis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-4",
+    "saeimaId": "14-edmunds-jurevics",
+    "name": "Edmunds Jurēvics",
+    "slug": "edmunds-jurevics",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-edmunds-jurevics/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-5",
+    "saeimaId": "14-andrejs-judins",
+    "name": "Andrejs Judins",
+    "slug": "andrejs-judins",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-andrejs-judins/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-6",
+    "saeimaId": "14-inese-libina-egnere",
+    "name": "Inese Lībiņa-Egnere",
+    "slug": "inese-libina-egnere",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      },
+      {
+        "from": "2026-06-11",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-inese-libina-egnere/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-7",
+    "saeimaId": "14-zanda-kalnina-lukasevica",
+    "name": "Zanda Kalniņa-Lukaševica",
+    "slug": "zanda-kalnina-lukasevica",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-zanda-kalnina-lukasevica/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-8",
+    "saeimaId": "14-hosams-abu-meri",
+    "name": "Hosams Abu Meri",
+    "slug": "hosams-abu-meri",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2023-09-20"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-hosams-abu-meri/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-9",
+    "saeimaId": "14-janis-reirs",
+    "name": "Jānis Reirs",
+    "slug": "janis-reirs",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2025-02-26"
+      }
+    ],
+    "note": "Beidzis pildīt Saeimas deputāta pienākumus sakarā ar to, ka deputāta mandātu atjaunojusi Anda Čakša, kura bija nolikusi mandātu uz ministres amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-janis-reirs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-10",
+    "saeimaId": "14-agita-zarina-sture",
+    "name": "Agita Zariņa-Stūre",
+    "slug": "agita-zarina-sture",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-agita-zarina-sture/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-11",
+    "saeimaId": "14-anna-rancane",
+    "name": "Anna Rancāne",
+    "slug": "anna-rancane",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-anna-rancane/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-12",
+    "saeimaId": "14-atis-labucis",
+    "name": "Atis Labucis",
+    "slug": "atis-labucis",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-atis-labucis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-13",
+    "saeimaId": "14-gatis-liepins",
+    "name": "Gatis Liepiņš",
+    "slug": "gatis-liepins",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2026-06-11"
+      }
+    ],
+    "note": "Beidzis pildīt Saeimas deputāta pienākumus sakarā ar to, ka deputāta mandātu atjaunojusi Inese Lībiņa-Egnere, kura bija nolikusi mandātu uz ministres amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-gatis-liepins/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-14",
+    "saeimaId": "14-inga-berzina",
+    "name": "Inga Bērziņa",
+    "slug": "inga-berzina",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2023-09-20"
+      },
+      {
+        "from": "2025-06-19",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-inga-berzina/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-15",
+    "saeimaId": "14-ingrida-circene",
+    "name": "Ingrīda Circene",
+    "slug": "ingrida-circene",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2026-06-04"
+      }
+    ],
+    "note": "Beigusi pildīt Saeimas deputātes pienākumus sakarā ar to, ka deputāta mandātu atjaunojis Arvils Ašeradens, kurš bija nolicis mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ingrida-circene/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-16",
+    "saeimaId": "14-irma-kalnina",
+    "name": "Irma Kalniņa",
+    "slug": "irma-kalnina",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-irma-kalnina/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-17",
+    "saeimaId": "14-janis-patmalnieks",
+    "name": "Jānis Patmalnieks",
+    "slug": "janis-patmalnieks",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-janis-patmalnieks/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-18",
+    "saeimaId": "14-martins-dagis",
+    "name": "Mārtiņš Daģis",
+    "slug": "martins-dagis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-martins-dagis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-19",
+    "saeimaId": "14-martins-felss",
+    "name": "Mārtiņš Felss",
+    "slug": "martins-felss",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-martins-felss/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-20",
+    "saeimaId": "14-raimonds-cudars",
+    "name": "Raimonds Čudars",
+    "slug": "raimonds-cudars",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      },
+      {
+        "from": "2023-09-20",
+        "to": "2025-06-19"
+      },
+      {
+        "from": "2026-06-04",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-raimonds-cudars/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-21",
+    "saeimaId": "14-ugis-mitrevics",
+    "name": "Uģis Mitrevics",
+    "slug": "ugis-mitrevics",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ugis-mitrevics/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-22",
+    "saeimaId": "14-viktorija-baire",
+    "name": "Viktorija Baire",
+    "slug": "viktorija-baire",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2023-09-19"
+      },
+      {
+        "from": "2023-09-21",
+        "to": "2024-04-25"
+      }
+    ],
+    "note": "Beigusi pildīt Saeimas deputātes pienākumus sakarā ar to, ka deputāta mandātu atjaunojis Arturs Krišjānis Kariņš, kurš bija nolicis mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-viktorija-baire/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-23",
+    "saeimaId": "14-zane-skujina-rubene",
+    "name": "Zane Skujiņa-Rubene",
+    "slug": "zane-skujina-rubene",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-zane-skujina-rubene/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-25",
+    "saeimaId": "14-didzis-smits",
+    "name": "Didzis Šmits",
+    "slug": "didzis-smits",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      },
+      {
+        "from": "2023-09-20",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-didzis-smits/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-27",
+    "saeimaId": "14-viktors-valainis",
+    "name": "Viktors Valainis",
+    "slug": "viktors-valainis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2023-09-20"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-viktors-valainis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-28",
+    "saeimaId": "14-armands-krauze",
+    "name": "Armands Krauze",
+    "slug": "armands-krauze",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2023-09-20"
+      },
+      {
+        "from": "2026-05-21",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-armands-krauze/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-29",
+    "saeimaId": "14-augusts-brigmanis",
+    "name": "Augusts Brigmanis",
+    "slug": "augusts-brigmanis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-augusts-brigmanis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-30",
+    "saeimaId": "14-daiga-mierina",
+    "name": "Daiga Mieriņa",
+    "slug": "daiga-mierina",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-daiga-mierina/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-31",
+    "saeimaId": "14-gunars-kutris",
+    "name": "Gunārs Kūtris",
+    "slug": "gunars-kutris",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-gunars-kutris/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-32",
+    "saeimaId": "14-harijs-rokpelnis",
+    "name": "Harijs Rokpelnis",
+    "slug": "harijs-rokpelnis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-harijs-rokpelnis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-33",
+    "saeimaId": "14-janis-vucans",
+    "name": "Jānis Vucāns",
+    "slug": "janis-vucans",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-janis-vucans/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-34",
+    "saeimaId": "14-kaspars-melnis",
+    "name": "Kaspars Melnis",
+    "slug": "kaspars-melnis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2023-09-20"
+      },
+      {
+        "from": "2026-06-11",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-kaspars-melnis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-35",
+    "saeimaId": "14-liga-kozlovska",
+    "name": "Līga Kozlovska",
+    "slug": "liga-kozlovska",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-liga-kozlovska/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-36",
+    "saeimaId": "14-liga-klavina",
+    "name": "Līga Kļaviņa",
+    "slug": "liga-klavina",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-liga-klavina/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-37",
+    "saeimaId": "14-uldis-augulis",
+    "name": "Uldis Augulis",
+    "slug": "uldis-augulis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2023-09-20"
+      },
+      {
+        "from": "2025-02-27",
+        "to": "2026-06-04"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-uldis-augulis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-38",
+    "saeimaId": "14-valdis-maslovskis",
+    "name": "Valdis Maslovskis",
+    "slug": "valdis-maslovskis",
+    "active": [
+      {
+        "from": "2023-09-21",
+        "to": "2026-06-11"
+      }
+    ],
+    "note": "Beidzis pildīt Saeimas deputāta pienākumus sakarā ar to, ka deputāta mandātu atjaunojis Kaspars Melnis, kurš bija nolicis mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-valdis-maslovskis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-39",
+    "saeimaId": "14-juris-jakovins",
+    "name": "Juris Jakovins",
+    "slug": "juris-jakovins",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-juris-jakovins/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-40",
+    "saeimaId": "14-anita-brakovska",
+    "name": "Anita Brakovska",
+    "slug": "anita-brakovska",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-anita-brakovska/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-41",
+    "saeimaId": "14-andrejs-vilks",
+    "name": "Andrejs Vilks",
+    "slug": "andrejs-vilks",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2025-10-15"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-andrejs-vilks/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-42",
+    "saeimaId": "14-girts-stekerhofs",
+    "name": "Ģirts Štekerhofs",
+    "slug": "girts-stekerhofs",
+    "active": [
+      {
+        "from": "2023-09-21",
+        "to": "2025-02-26"
+      },
+      {
+        "from": "2026-06-04",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-girts-stekerhofs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-43",
+    "saeimaId": "14-andris-suvajevs",
+    "name": "Andris Šuvajevs",
+    "slug": "andris-suvajevs",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-andris-suvajevs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-44",
+    "saeimaId": "14-kaspars-briskens",
+    "name": "Kaspars Briškens",
+    "slug": "kaspars-briskens",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2023-09-20"
+      },
+      {
+        "from": "2025-02-27",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-kaspars-briskens/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-45",
+    "saeimaId": "14-antonina-nenaseva",
+    "name": "Antoņina Ņenaševa",
+    "slug": "antonina-nenaseva",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-antonina-nenaseva/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-46",
+    "saeimaId": "14-edgars-zelderis",
+    "name": "Edgars Zelderis",
+    "slug": "edgars-zelderis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2025-12-24"
+      }
+    ],
+    "note": "Miris 24.12.2025.",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-edgars-zelderis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-47",
+    "saeimaId": "14-jana-simanovska",
+    "name": "Jana Simanovska",
+    "slug": "jana-simanovska",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-jana-simanovska/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-48",
+    "saeimaId": "14-leila-rasima",
+    "name": "Leila Rasima",
+    "slug": "leila-rasima",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-leila-rasima/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-49",
+    "saeimaId": "14-mairita-luse",
+    "name": "Mairita Lūse",
+    "slug": "mairita-luse",
+    "active": [
+      {
+        "from": "2023-09-21",
+        "to": "2025-06-10"
+      }
+    ],
+    "note": "Izbeidzas 14.Saeimas deputātes pilnvaras",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-mairita-luse/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-50",
+    "saeimaId": "14-skaidrite-abrama",
+    "name": "Skaidrīte Ābrama",
+    "slug": "skaidrite-abrama",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-skaidrite-abrama/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-51",
+    "saeimaId": "14-atis-svinka",
+    "name": "Atis Švinka",
+    "slug": "atis-svinka",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2025-03-12"
+      },
+      {
+        "from": "2026-06-04",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-atis-svinka/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-52",
+    "saeimaId": "14-ervins-labanovskis",
+    "name": "Ervins Labanovskis",
+    "slug": "ervins-labanovskis",
+    "active": [
+      {
+        "from": "2023-09-21",
+        "to": "2025-02-26"
+      }
+    ],
+    "note": "Beidzis pildīt Saeimas deputāta pienākumus sakarā ar to, ka deputāta mandātu atjaunojis Kaspars Briškens, kurš bija nolicis mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ervins-labanovskis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-53",
+    "saeimaId": "14-edgars-tavars",
+    "name": "Edgars Tavars",
+    "slug": "edgars-tavars",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-06-11"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-edgars-tavars/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-54",
+    "saeimaId": "14-maris-kucinskis",
+    "name": "Māris Kučinskis",
+    "slug": "maris-kucinskis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      },
+      {
+        "from": "2023-09-20",
+        "to": "2026-06-04"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-maris-kucinskis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-55",
+    "saeimaId": "14-raimonds-bergmanis",
+    "name": "Raimonds Bergmanis",
+    "slug": "raimonds-bergmanis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-raimonds-bergmanis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-56",
+    "saeimaId": "14-edvards-smiltens",
+    "name": "Edvards Smiltēns",
+    "slug": "edvards-smiltens",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-06-04"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-edvards-smiltens/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-57",
+    "saeimaId": "14-ceslavs-batna",
+    "name": "Česlavs Batņa",
+    "slug": "ceslavs-batna",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ceslavs-batna/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-58",
+    "saeimaId": "14-ingmars-lidaka",
+    "name": "Ingmārs Līdaka",
+    "slug": "ingmars-lidaka",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ingmars-lidaka/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-59",
+    "saeimaId": "14-juris-vilums",
+    "name": "Juris Viļums",
+    "slug": "juris-vilums",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-juris-vilums/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-60",
+    "saeimaId": "14-linda-liepina",
+    "name": "Linda Liepiņa",
+    "slug": "linda-liepina",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-linda-liepina/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-61",
+    "saeimaId": "14-maris-sprindzuks",
+    "name": "Māris Sprindžuks",
+    "slug": "maris-sprindzuks",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      },
+      {
+        "from": "2023-09-20",
+        "to": "2025-06-10"
+      }
+    ],
+    "note": "Izbeidzas 14.Saeimas deputāta pilnvaras",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-maris-sprindzuks/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-62",
+    "saeimaId": "14-aiva-viksna",
+    "name": "Aiva Vīksna",
+    "slug": "aiva-viksna",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-aiva-viksna/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-63",
+    "saeimaId": "14-andris-kulbergs",
+    "name": "Andris Kulbergs",
+    "slug": "andris-kulbergs",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-06-04"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu uz Ministru prezidenta amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-andris-kulbergs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-64",
+    "saeimaId": "14-atis-deksnis",
+    "name": "Atis Deksnis",
+    "slug": "atis-deksnis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2023-09-25"
+      }
+    ],
+    "note": "Miris 25.09.2023.",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-atis-deksnis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-65",
+    "saeimaId": "14-igors-rajevs",
+    "name": "Igors Rajevs",
+    "slug": "igors-rajevs",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-igors-rajevs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-66",
+    "saeimaId": "14-ieva-brante",
+    "name": "Ieva Brante",
+    "slug": "ieva-brante",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2023-09-19"
+      },
+      {
+        "from": "2026-06-04",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ieva-brante/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-67",
+    "saeimaId": "14-lauris-lizbovskis",
+    "name": "Lauris Lizbovskis",
+    "slug": "lauris-lizbovskis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-lauris-lizbovskis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-68",
+    "saeimaId": "14-raivis-dzintars",
+    "name": "Raivis Dzintars",
+    "slug": "raivis-dzintars",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-raivis-dzintars/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-69",
+    "saeimaId": "14-janis-dombrava",
+    "name": "Jānis Dombrava",
+    "slug": "janis-dombrava",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-06-04"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-janis-dombrava/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-70",
+    "saeimaId": "14-ilze-indriksone",
+    "name": "Ilze Indriksone",
+    "slug": "ilze-indriksone",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      },
+      {
+        "from": "2023-09-20",
+        "to": "2026-06-11"
+      }
+    ],
+    "note": "Nolikusi Saeimas deputātes mandātu uz ministres amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ilze-indriksone/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-71",
+    "saeimaId": "14-arturs-butans",
+    "name": "Artūrs Butāns",
+    "slug": "arturs-butans",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-arturs-butans/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-72",
+    "saeimaId": "14-edvins-snore",
+    "name": "Edvīns Šnore",
+    "slug": "edvins-snore",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-edvins-snore/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-73",
+    "saeimaId": "14-inara-murniece",
+    "name": "Ināra Mūrniece",
+    "slug": "inara-murniece",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      },
+      {
+        "from": "2023-09-20",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-inara-murniece/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-74",
+    "saeimaId": "14-jurgis-klotins",
+    "name": "Jurģis Klotiņš",
+    "slug": "jurgis-klotins",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2023-09-19"
+      },
+      {
+        "from": "2024-07-25",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-jurgis-klotins/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-75",
+    "saeimaId": "14-nauris-puntulis",
+    "name": "Nauris Puntulis",
+    "slug": "nauris-puntulis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      },
+      {
+        "from": "2023-09-20",
+        "to": "2026-06-18"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-nauris-puntulis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-76",
+    "saeimaId": "14-rihards-kols",
+    "name": "Rihards Kols",
+    "slug": "rihards-kols",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2024-07-15"
+      }
+    ],
+    "note": "Zaudē Saeimas deputāta mandātu, jo ievēlēts par Eiropas Parlamenta deputātu",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-rihards-kols/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-78",
+    "saeimaId": "14-janis-grasbergs",
+    "name": "Jānis Grasbergs",
+    "slug": "janis-grasbergs",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-janis-grasbergs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-79",
+    "saeimaId": "14-girts-lapins",
+    "name": "Ģirts Lapiņš",
+    "slug": "girts-lapins",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2023-09-19"
+      }
+    ],
+    "note": "Beidzis pildīt Saeimas deputāta pienākumus sakarā ar to, ka deputāta mandātu atjaunojis Nauris Puntulis, kurš bija nolicis mandātu ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-girts-lapins/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-80",
+    "saeimaId": "14-ainars-slesers",
+    "name": "Ainārs Šlesers",
+    "slug": "ainars-slesers",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2025-06-10"
+      }
+    ],
+    "note": "Izbeidzas 14.Saeimas deputāta pilnvaras",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ainars-slesers/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-81",
+    "saeimaId": "14-arturs-krisjanis-karins",
+    "name": "Arturs Krišjānis Kariņš",
+    "slug": "arturs-krisjanis-karins",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      },
+      {
+        "from": "2024-04-25",
+        "to": "2024-09-04"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-arturs-krisjanis-karins/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-82",
+    "saeimaId": "14-marcis-jencitis",
+    "name": "Mārcis Jencītis",
+    "slug": "marcis-jencitis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-marcis-jencitis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-83",
+    "saeimaId": "14-olegs-burovs",
+    "name": "Oļegs Burovs",
+    "slug": "olegs-burovs",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-olegs-burovs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-84",
+    "saeimaId": "14-ramona-petravica",
+    "name": "Ramona Petraviča",
+    "slug": "ramona-petravica",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ramona-petravica/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-85",
+    "saeimaId": "14-ricards-slesers",
+    "name": "Ričards Šlesers",
+    "slug": "ricards-slesers",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ricards-slesers/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-86",
+    "saeimaId": "14-vilis-kristopans",
+    "name": "Vilis Krištopans",
+    "slug": "vilis-kristopans",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2024-07-15"
+      }
+    ],
+    "note": "Zaudē Saeimas deputāta mandātu, jo ievēlēts par Eiropas Parlamenta deputātu",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-vilis-kristopans/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-87",
+    "saeimaId": "14-edmunds-zivtins",
+    "name": "Edmunds Zivtiņš",
+    "slug": "edmunds-zivtins",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-edmunds-zivtins/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-88",
+    "saeimaId": "14-kristaps-kristopans",
+    "name": "Kristaps Krištopans",
+    "slug": "kristaps-kristopans",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-kristaps-kristopans/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-89",
+    "saeimaId": "14-aleksejs-roslikovs",
+    "name": "Aleksejs Rosļikovs",
+    "slug": "aleksejs-roslikovs",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2025-06-10"
+      }
+    ],
+    "note": "Izbeidzas 14.Saeimas deputāta pilnvaras",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-aleksejs-roslikovs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-90",
+    "saeimaId": "14-svetlana-culkova",
+    "name": "Svetlana Čulkova",
+    "slug": "svetlana-culkova",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-svetlana-culkova/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-91",
+    "saeimaId": "14-natalja-marcenko-jodko",
+    "name": "Nataļja Marčenko-Jodko",
+    "slug": "natalja-marcenko-jodko",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-natalja-marcenko-jodko/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-92",
+    "saeimaId": "14-ilja-ivanovs",
+    "name": "Iļja Ivanovs",
+    "slug": "ilja-ivanovs",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ilja-ivanovs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-93",
+    "saeimaId": "14-igors-judins",
+    "name": "Igors Judins",
+    "slug": "igors-judins",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-igors-judins/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-94",
+    "saeimaId": "14-jefimijs-klementjevs",
+    "name": "Jefimijs Klementjevs",
+    "slug": "jefimijs-klementjevs",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-jefimijs-klementjevs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-95",
+    "saeimaId": "14-viktors-pucka",
+    "name": "Viktors Pučka",
+    "slug": "viktors-pucka",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2025-09-03"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-viktors-pucka/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-96",
+    "saeimaId": "14-dmitrijs-kovalenko",
+    "name": "Dmitrijs Kovaļenko",
+    "slug": "dmitrijs-kovalenko",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-dmitrijs-kovalenko/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-97",
+    "saeimaId": "14-glorija-grevcova",
+    "name": "Glorija Grevcova",
+    "slug": "glorija-grevcova",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2024-02-15"
+      }
+    ],
+    "note": "Izslēgta no Saeimas sastāva",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-glorija-grevcova/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-98",
+    "saeimaId": "14-aleksandrs-kirsteins",
+    "name": "Aleksandrs Kiršteins",
+    "slug": "aleksandrs-kirsteins",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-aleksandrs-kirsteins/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-99",
+    "saeimaId": "14-viktorija-pleskane",
+    "name": "Viktorija Pleškāne",
+    "slug": "viktorija-pleskane",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-viktorija-pleskane/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-100",
+    "saeimaId": "14-andrejs-celapiters",
+    "name": "Andrejs Ceļapīters",
+    "slug": "andrejs-celapiters",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-andrejs-celapiters/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-101",
+    "saeimaId": "14-liene-gatere",
+    "name": "Liene Gātere",
+    "slug": "liene-gatere",
+    "active": [
+      {
+        "from": "2026-01-15",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-liene-gatere/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-102",
+    "saeimaId": "14-edmunds-cepuritis",
+    "name": "Edmunds Cepurītis",
+    "slug": "edmunds-cepuritis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-edmunds-cepuritis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-103",
+    "saeimaId": "14-ilze-stobova",
+    "name": "Ilze Stobova",
+    "slug": "ilze-stobova",
+    "active": [
+      {
+        "from": "2024-07-25",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ilze-stobova/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-104",
+    "saeimaId": "14-andris-berzins",
+    "name": "Andris Bērziņš",
+    "slug": "andris-berzins",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-andris-berzins/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-105",
+    "saeimaId": "14-inese-kalnina",
+    "name": "Inese Kalniņa",
+    "slug": "inese-kalnina",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-inese-kalnina/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-106",
+    "saeimaId": "14-vilis-sruogis",
+    "name": "Vilis Sruoģis",
+    "slug": "vilis-sruogis",
+    "active": [
+      {
+        "from": "2025-06-19",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-vilis-sruogis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-107",
+    "saeimaId": "14-amils-salimovs",
+    "name": "Amils Saļimovs",
+    "slug": "amils-salimovs",
+    "active": [
+      {
+        "from": "2024-02-22",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-amils-salimovs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-108",
+    "saeimaId": "14-selma-teodora-levrence",
+    "name": "Selma Teodora Levrence",
+    "slug": "selma-teodora-levrence",
+    "active": [
+      {
+        "from": "2025-06-12",
+        "to": "2026-05-13"
+      }
+    ],
+    "note": "Beigusi pildīt Saeimas deputātes pienākumus sakarā ar to, ka deputāta mandātu atjaunojis Andris Sprūds, kurš bija nolicis mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-selma-teodora-levrence/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-109",
+    "saeimaId": "14-edmunds-teirumnieks",
+    "name": "Edmunds Teirumnieks",
+    "slug": "edmunds-teirumnieks",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-edmunds-teirumnieks/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-110",
+    "saeimaId": "14-didzis-zemmers",
+    "name": "Didzis Zemmers",
+    "slug": "didzis-zemmers",
+    "active": [
+      {
+        "from": "2023-09-21",
+        "to": "2026-05-20"
+      }
+    ],
+    "note": "Beidzis pildīt Saeimas deputāta pienākumus sakarā ar to, ka deputāta mandātu atjaunojis Armands Krauze, kurš bija nolicis mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-didzis-zemmers/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-111",
+    "saeimaId": "14-maija-armaneva",
+    "name": "Maija Armaņeva",
+    "slug": "maija-armaneva",
+    "active": [
+      {
+        "from": "2025-06-12",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-maija-armaneva/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-112",
+    "saeimaId": "14-agnese-krasta",
+    "name": "Agnese Krasta",
+    "slug": "agnese-krasta",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-agnese-krasta/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-113",
+    "saeimaId": "14-ligita-gintere",
+    "name": "Ligita Gintere",
+    "slug": "ligita-gintere",
+    "active": [
+      {
+        "from": "2023-09-21",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ligita-gintere/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-114",
+    "saeimaId": "14-janis-vitenbergs",
+    "name": "Jānis Vitenbergs",
+    "slug": "janis-vitenbergs",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      },
+      {
+        "from": "2023-09-20",
+        "to": "2026-06-04"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-janis-vitenbergs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-115",
+    "saeimaId": "14-andrejs-svilans",
+    "name": "Andrejs Svilāns",
+    "slug": "andrejs-svilans",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2023-09-19"
+      },
+      {
+        "from": "2025-06-19",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-andrejs-svilans/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-116",
+    "saeimaId": "14-alina-gendele",
+    "name": "Alīna Gendele",
+    "slug": "alina-gendele",
+    "active": [
+      {
+        "from": "2023-09-21",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-alina-gendele/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-117",
+    "saeimaId": "14-jekaterina-drelinga",
+    "name": "Jekaterina Drelinga",
+    "slug": "jekaterina-drelinga",
+    "active": [
+      {
+        "from": "2022-11-17",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-jekaterina-drelinga/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-118",
+    "saeimaId": "14-ilze-vergina",
+    "name": "Ilze Vergina",
+    "slug": "ilze-vergina",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ilze-vergina/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-119",
+    "saeimaId": "14-janis-zarins",
+    "name": "Jānis Zariņš",
+    "slug": "janis-zarins",
+    "active": [
+      {
+        "from": "2025-06-19",
+        "to": "2026-06-04"
+      }
+    ],
+    "note": "Beidzis pildīt Saeimas deputāta pienākumus sakarā ar to, ka deputāta mandātu atjaunojis Raimonds Čudars, kurš bija nolicis mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-janis-zarins/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-120",
+    "saeimaId": "14-janis-dinevics",
+    "name": "Jānis Dinevičs",
+    "slug": "janis-dinevics",
+    "active": [
+      {
+        "from": "2025-10-16",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-janis-dinevics/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-121",
+    "saeimaId": "14-viesturs-zarins",
+    "name": "Viesturs Zariņš",
+    "slug": "viesturs-zarins",
+    "active": [
+      {
+        "from": "2024-09-05",
+        "to": "2026-06-11"
+      }
+    ],
+    "note": "Beidzis pildīt Saeimas deputāta pienākumus sakarā ar to, ka deputāta mandātu atjaunojusi Evika Siliņa, kura bija nolikusi mandātu uz ministres amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-viesturs-zarins/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-122",
+    "saeimaId": "14-davis-martins-daugavietis",
+    "name": "Dāvis Mārtiņš Daugavietis",
+    "slug": "davis-martins-daugavietis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-davis-martins-daugavietis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-123",
+    "saeimaId": "14-linda-matisone",
+    "name": "Linda Matisone",
+    "slug": "linda-matisone",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-linda-matisone/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-124",
+    "saeimaId": "14-gundars-daudze",
+    "name": "Gundars Daudze",
+    "slug": "gundars-daudze",
+    "active": [
+      {
+        "from": "2022-11-17",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-gundars-daudze/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-125",
+    "saeimaId": "14-anda-caksa",
+    "name": "Anda Čakša",
+    "slug": "anda-caksa",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      },
+      {
+        "from": "2025-02-27",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-anda-caksa/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-126",
+    "saeimaId": "14-janis-skrastins",
+    "name": "Jānis Skrastiņš",
+    "slug": "janis-skrastins",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-janis-skrastins/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-127",
+    "saeimaId": "14-ugis-rotbergs",
+    "name": "Uģis Rotbergs",
+    "slug": "ugis-rotbergs",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-ugis-rotbergs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-128",
+    "saeimaId": "14-edgars-putra",
+    "name": "Edgars Putra",
+    "slug": "edgars-putra",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2023-09-19"
+      },
+      {
+        "from": "2023-10-05",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-edgars-putra/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-129",
+    "saeimaId": "14-liga-rasnaca",
+    "name": "Līga Rasnača",
+    "slug": "liga-rasnaca",
+    "active": [
+      {
+        "from": "2025-03-13",
+        "to": "2026-06-04"
+      }
+    ],
+    "note": "Beigusi pildīt Saeimas deputātes pienākumus sakarā ar to, ka deputāta mandātu atjaunojis Atis Švinka, kurš bija nolicis mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-liga-rasnaca/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-130",
+    "saeimaId": "14-jelena-klavina",
+    "name": "Jeļena Kļaviņa",
+    "slug": "jelena-klavina",
+    "active": [
+      {
+        "from": "2025-09-04",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-jelena-klavina/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-131",
+    "saeimaId": "14-arnolds-jatnieks",
+    "name": "Arnolds Jātnieks",
+    "slug": "arnolds-jatnieks",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2023-09-19"
+      },
+      {
+        "from": "2026-06-04",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-arnolds-jatnieks/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-132",
+    "saeimaId": "14-andris-spruds",
+    "name": "Andris Sprūds",
+    "slug": "andris-spruds",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2023-09-20"
+      },
+      {
+        "from": "2026-05-14",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-andris-spruds/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-133",
+    "saeimaId": "14-davis-melnalksnis",
+    "name": "Dāvis Melnalksnis",
+    "slug": "davis-melnalksnis",
+    "active": [
+      {
+        "from": "2026-06-04",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-davis-melnalksnis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-134",
+    "saeimaId": "14-raivis-kalejs",
+    "name": "Raivis Kalējs",
+    "slug": "raivis-kalejs",
+    "active": [
+      {
+        "from": "2026-06-04",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-raivis-kalejs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-135",
+    "saeimaId": "14-janis-eglits",
+    "name": "Jānis Eglīts",
+    "slug": "janis-eglits",
+    "active": [
+      {
+        "from": "2026-06-04",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-janis-eglits/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-136",
+    "saeimaId": "14-normunds-dzintars",
+    "name": "Normunds Dzintars",
+    "slug": "normunds-dzintars",
+    "active": [
+      {
+        "from": "2022-12-15",
+        "to": "2023-09-19"
+      },
+      {
+        "from": "2026-06-11",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-normunds-dzintars/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-137",
+    "saeimaId": "14-edgars-rinkevics",
+    "name": "Edgars Rinkēvičs",
+    "slug": "edgars-rinkevics",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-12-14"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-edgars-rinkevics/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-140",
+    "saeimaId": "14-inga-priede",
+    "name": "Inga Priede",
+    "slug": "inga-priede",
+    "active": [
+      {
+        "from": "2026-06-11",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-inga-priede/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-138",
+    "saeimaId": "14-rihards-kozlovskis",
+    "name": "Rihards Kozlovskis",
+    "slug": "rihards-kozlovskis",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2023-09-20"
+      }
+    ],
+    "note": "Nolicis Saeimas deputāta mandātu uz ministra amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-rihards-kozlovskis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-141",
+    "saeimaId": "14-roberts-kipurs",
+    "name": "Roberts Ķipurs",
+    "slug": "roberts-kipurs",
+    "active": [
+      {
+        "from": "2026-06-18",
+        "to": "2026-11-03"
+      }
+    ],
+    "note": "Līdz ar 14. Saeimas pilnvaru beigām",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-roberts-kipurs/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-139",
+    "saeimaId": "14-girts-valdis-kristovskis",
+    "name": "Ģirts Valdis Kristovskis",
+    "slug": "girts-valdis-kristovskis",
+    "active": [
+      {
+        "from": "2023-09-21",
+        "to": "2025-06-18"
+      }
+    ],
+    "note": "Beidzis pildīt Saeimas deputāta pienākumus sakarā ar to, ka deputāta mandātu atjaunojusi Inga Bērziņa, kura bija nolikusi mandātu uz ministres amata pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-girts-valdis-kristovskis/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  },
+  {
+    "mpId": "mp-142",
+    "saeimaId": "14-nadezda-tretjakova",
+    "name": "Nadežda Tretjakova",
+    "slug": "nadezda-tretjakova",
+    "active": [
+      {
+        "from": "2022-11-01",
+        "to": "2022-11-16"
+      }
+    ],
+    "note": "Nolikusi Saeimas deputātes mandātu",
+    "source": "https://www.saeima.lv/lv/sasaukumi/14-saeima/deputati/14-nadezda-tretjakova/",
+    "fetchedAt": "2026-11-22T06:41:05Z"
+  }
+]

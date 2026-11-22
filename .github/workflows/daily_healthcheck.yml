@@ -40,6 +40,8 @@ jobs:
             REPORT="$REPORT\n\n[🔍 Pārbaudīt GitHub Action žurnālu](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
           fi
           
+          gh label create "automated-alert" --color "d93f0b" --description "Automated data sync or healthcheck alert" --force || true
+
           EXISTING_ISSUE=$(gh issue list --state open --label "automated-alert" --json number -q '.[0].number' 2>/dev/null || true)
           if [ -z "$EXISTING_ISSUE" ]; then
             gh issue create \
