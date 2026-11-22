@@ -1,6 +1,7 @@
 package views
 
 import (
+	"encoding/json"
 	"fmt"
 	"math"
 	"regexp"
@@ -281,6 +282,35 @@ func FactionTextColor(factionID string, customText string) string {
 		return "#713F12" // Dark warm brown on golden yellow
 	}
 	return "#ffffff" // White on dark backgrounds
+}
+
+// FactionsCompactJSON returns a compact JSON object mapping factionID -> [shortName, name, color, textColor]
+// so vote pages embed faction display metadata once instead of repeating it on every SVG seat and table row.
+func FactionsCompactJSON(store *data.Store) string {
+	if store == nil || len(store.Factions) == 0 {
+		return "{}"
+	}
+	m := make(map[string][4]string, len(store.Factions))
+	for _, f := range store.Factions {
+		short := f.ShortName
+		if short == "" {
+			short = f.ID
+		}
+		name := f.Name
+		if name == "" {
+			name = "Pie frakcijām nepiederošs"
+		}
+		color := f.Color
+		if color == "" {
+			color = "#64748B"
+		}
+		m[f.ID] = [4]string{short, name, color, FactionTextColor(f.ID, f.TextColor)}
+	}
+	b, err := json.Marshal(m)
+	if err != nil {
+		return "{}"
+	}
+	return string(b)
 }
 
 // ResolveMPFactionOnDate determines an MP's faction at a specific vote date.

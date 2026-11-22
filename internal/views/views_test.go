@@ -299,6 +299,16 @@ func TestRenderVotePermalink(t *testing.T) {
 	if !strings.Contains(html, "<title>") {
 		t.Error("Rendered HTML missing native <title> tooltip in SVG seats")
 	}
+	if !strings.Contains(html, "data-factions=") {
+		t.Error("Rendered HTML missing data-factions metadata on hemicycle container")
+	}
+	if !strings.Contains(html, `data-f="`) || !strings.Contains(html, `data-d="`) {
+		t.Error("Rendered HTML missing compact data-f / data-d attributes on SVG seats")
+	}
+	// Guard against HTML bloat that would push multi-term dist/ over GitHub Pages' 1 GB cap
+	if len(html) > 65*1024 {
+		t.Errorf("Rendered vote permalink too large (%d bytes > 65 KB budget)", len(html))
+	}
 }
 
 func TestRenderBillTimeline(t *testing.T) {

@@ -1,6 +1,22 @@
-// hemicycle-tooltip.js - Fast vanilla JS floating tooltip, interactive filters, search & column sorting for Saeima vote pages
+// hemicycle-tooltip.js - Fast vanilla JS floating tooltip, rollcall table hydration, interactive filters, search & column sorting for Saeima vote pages
 (function () {
   'use strict';
+
+  var DECISION_LABELS = {
+    PAR: 'PAR',
+    PRET: 'PRET',
+    ATTURAS: 'ATTURAS',
+    NEBALSO: 'NEBALSOJA',
+    NAV_REGISTRETS: 'NAV REĢISTRĒTS'
+  };
+
+  var DECISION_COLORS = {
+    PAR: '#059669',
+    PRET: '#e11d48',
+    ATTURAS: '#d97706',
+    NEBALSO: '#94a3b8',
+    NAV_REGISTRETS: '#94a3b8'
+  };
 
   function normalizeText(str) {
     if (!str) return '';
@@ -12,33 +28,170 @@
       .trim();
   }
 
+  function avatarInitials(name) {
+    var parts = (name || '').trim().split(/\s+/).filter(Boolean);
+    if (parts.length >= 2) {
+      var a = Array.from(parts[0])[0] || '';
+      var b = Array.from(parts[parts.length - 1])[0] || '';
+      return (a + b).toUpperCase();
+    }
+    if (parts.length === 1) {
+      return (Array.from(parts[0])[0] || '').toUpperCase();
+    }
+    return '';
+  }
+
+  function parseFactionsMap(container) {
+    if (!container) return {};
+    var raw = container.getAttribute('data-factions');
+    if (!raw) return {};
+    try {
+      return JSON.parse(raw) || {};
+    } catch (_) {
+      return {};
+    }
+  }
+
+  function extractSeatInfo(seatEl, factionsMap) {
+    var fid = seatEl.getAttribute('data-f') || 'ind';
+    var fMeta = factionsMap[fid];
+    var fShort = seatEl.getAttribute('data-faction') || (fMeta ? fMeta[0] : fid);
+    var fName = fMeta ? fMeta[1] : 'Pie frakcijām nepiederošs';
+    var fColor = seatEl.getAttribute('data-faction-color') || (fMeta ? fMeta[2] : '#64748B');
+    var fTextColor = seatEl.getAttribute('data-faction-text-color') || (fMeta ? fMeta[3] : '#FFFFFF');
+
+    var decision = (seatEl.getAttribute('data-d') || seatEl.getAttribute('data-decision') || 'NEBALSO').toUpperCase();
+    var decLabel = seatEl.getAttribute('data-decision-label') || DECISION_LABELS[decision] || 'NAV REĢISTRĒTS';
+    var decColor = seatEl.getAttribute('data-decision-color') || DECISION_COLORS[decision] || '#94a3b8';
+
+    var name = seatEl.getAttribute('data-name') || '';
+    if (!name) {
+      var titleEl = seatEl.querySelector('title');
+      var titleText = titleEl ? (titleEl.textContent || '') : '';
+      var idx = titleText.lastIndexOf(' (');
+      name = idx > 0 ? titleText.slice(0, idx) : titleText;
+    }
+
+    return {
+      el: seatEl,
+      href: seatEl.getAttribute('href') || '#',
+      name: name,
+      nameNorm: normalizeText(name),
+      factionId: fid,
+      factionShort: fShort,
+      factionShortUpper: fShort.toUpperCase(),
+      factionName: fName,
+      factionColor: fColor,
+      factionTextColor: fTextColor,
+      decision: decision,
+      decisionLabel: decLabel,
+      decisionColor: decColor,
+      devLine: seatEl.getAttribute('data-dev') || ''
+    };
+  }
+
+  function buildDeputyRow(info) {
+    var tr = document.createElement('tr');
+    tr.className = 'deputy-row rc-row';
+    tr.setAttribute('data-deputy-row', '');
+    tr.setAttribute('data-name', info.name);
+    tr.setAttribute('data-faction', info.factionShort);
+    tr.setAttribute('data-decision', info.decision);
+
+    // Col 1: Deputy avatar + name + optional deviation badge
+    var td1 = document.createElement('td');
+    td1.className = 'rc-td';
+
+    var link = document.createElement('a');
+    link.href = info.href;
+    link.className = 'rc-link';
+
+    var av = document.createElement('div');
+    av.className = 'rc-av fc-' + info.factionId;
+    av.style.backgroundColor = info.factionColor;
+    av.style.color = info.factionTextColor;
+    av.textContent = avatarInitials(info.name);
+    link.appendChild(av);
+
+    var nm = document.createElement('div');
+    nm.className = 'rc-nm';
+    var nmSpan = document.createElement('span');
+    nmSpan.className = 'truncate';
+    nmSpan.textContent = info.name;
+    nm.appendChild(nmSpan);
+
+    if (info.devLine) {
+      var devSpan = document.createElement('span');
+      devSpan.className = 'inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200 cursor-help shrink-0';
+      devSpan.title = 'Balsojis pretēji frakcijas līnijai (' + info.devLine + ')';
+      devSpan.textContent = '✦ Novirze';
+      nm.appendChild(devSpan);
+    }
+
+    link.appendChild(nm);
+    td1.appendChild(link);
+    tr.appendChild(td1);
+
+    // Col 2: Faction pill + full name
+    var td2 = document.createElement('td');
+    td2.className = 'rc-td';
+    var facDiv = document.createElement('div');
+    facDiv.className = 'rc-fac';
+
+    var pill = document.createElement('span');
+    pill.className = 'rc-pill fc-' + info.factionId;
+    pill.style.backgroundColor = info.factionColor;
+    pill.style.color = info.factionTextColor;
+    pill.textContent = info.factionShort;
+    facDiv.appendChild(pill);
+
+    var fname = document.createElement('span');
+    fname.className = 'rc-fname';
+    fname.textContent = info.factionName;
+    facDiv.appendChild(fname);
+
+    td2.appendChild(facDiv);
+    tr.appendChild(td2);
+
+    // Col 3: Decision badge
+    var td3 = document.createElement('td');
+    td3.className = 'rc-td text-right';
+    var badge = document.createElement('span');
+    badge.className = 'rc-badge dc-' + info.decision;
+    badge.textContent = info.decisionLabel;
+    td3.appendChild(badge);
+    tr.appendChild(td3);
+
+    return tr;
+  }
+
   function initHemicycle() {
     var hemicycleContainer = document.querySelector('[data-hemicycle-container]');
     var tooltip = document.getElementById('seat-tooltip');
+    var factionsMap = parseFactionsMap(hemicycleContainer);
+    var seatNodes = hemicycleContainer
+      ? Array.prototype.slice.call(hemicycleContainer.querySelectorAll('svg.hc a, [data-seat-link]'))
+      : [];
+    var seatInfos = seatNodes.map(function (el) {
+      return extractSeatInfo(el, factionsMap);
+    });
 
     if (hemicycleContainer && tooltip) {
       var nameEl = tooltip.querySelector('[data-tooltip-name]');
       var factionBadge = tooltip.querySelector('[data-tooltip-faction]');
       var decisionEl = tooltip.querySelector('[data-tooltip-decision]');
 
-      function showTooltip(seatEl) {
-        var name = seatEl.getAttribute('data-name') || '';
-        var faction = seatEl.getAttribute('data-faction') || '';
-        var fColor = seatEl.getAttribute('data-faction-color') || '#64748B';
-        var fTextColor = seatEl.getAttribute('data-faction-text-color') || '#FFFFFF';
-        var decisionLabel = seatEl.getAttribute('data-decision-label') || seatEl.getAttribute('data-decision') || '';
-        var decColor = seatEl.getAttribute('data-decision-color') || '#10B981';
-
-        nameEl.textContent = name;
-        factionBadge.textContent = faction;
-        factionBadge.style.backgroundColor = fColor;
-        factionBadge.style.color = fTextColor;
-        decisionEl.textContent = decisionLabel;
-        decisionEl.style.color = decColor;
+      function showTooltip(info) {
+        nameEl.textContent = info.name;
+        factionBadge.textContent = info.factionShort;
+        factionBadge.style.backgroundColor = info.factionColor;
+        factionBadge.style.color = info.factionTextColor;
+        decisionEl.textContent = info.decisionLabel;
+        decisionEl.style.color = info.decisionColor;
 
         // Position tooltip relative to container
         var containerRect = hemicycleContainer.getBoundingClientRect();
-        var seatRect = seatEl.getBoundingClientRect();
+        var seatRect = info.el.getBoundingClientRect();
 
         // Calculate center of seat relative to container
         var seatCenterX = seatRect.left + seatRect.width / 2 - containerRect.left;
@@ -55,23 +208,39 @@
         tooltip.classList.add('opacity-0', 'pointer-events-none');
       }
 
-      var seats = hemicycleContainer.querySelectorAll('[data-seat-link]');
-      seats.forEach(function (seat) {
-        seat.addEventListener('mouseenter', function () {
-          showTooltip(seat);
+      seatInfos.forEach(function (info) {
+        info.el.addEventListener('mouseenter', function () {
+          showTooltip(info);
         });
-        seat.addEventListener('focus', function () {
-          showTooltip(seat);
+        info.el.addEventListener('focus', function () {
+          showTooltip(info);
         });
-        seat.addEventListener('mouseleave', function () {
-          hideTooltip();
-        });
-        seat.addEventListener('blur', function () {
-          hideTooltip();
-        });
+        info.el.addEventListener('mouseleave', hideTooltip);
+        info.el.addEventListener('blur', hideTooltip);
       });
 
       hemicycleContainer.addEventListener('mouseleave', hideTooltip);
+    }
+
+    // Hydrate rollcall table synchronously from pre-rendered SVG seats
+    var rollcallTable = document.getElementById('rollcall-table-body');
+    var emptyRow = document.getElementById('rollcall-empty-row');
+    var rows = rollcallTable
+      ? Array.prototype.slice.call(rollcallTable.querySelectorAll('tr[data-deputy-row]'))
+      : [];
+
+    if (rollcallTable && rows.length === 0 && seatInfos.length > 0) {
+      var frag = document.createDocumentFragment();
+      seatInfos.forEach(function (info) {
+        var tr = buildDeputyRow(info);
+        rows.push(tr);
+        frag.appendChild(tr);
+      });
+      if (emptyRow) {
+        rollcallTable.insertBefore(frag, emptyRow);
+      } else {
+        rollcallTable.appendChild(frag);
+      }
     }
 
     // Filter & Sort State
@@ -83,26 +252,20 @@
 
     var searchInput = document.getElementById('deputy-search-input');
     var factionSelect = document.getElementById('deputy-faction-filter');
-    var rollcallTable = document.getElementById('rollcall-table-body');
     var countBadge = document.getElementById('deputy-visible-count');
     var filterBtns = document.querySelectorAll('[data-filter-decision]');
     var sortHeaders = document.querySelectorAll('th[data-sort]');
-    var allSeats = hemicycleContainer ? hemicycleContainer.querySelectorAll('[data-seat-link]') : [];
-    var rows = rollcallTable ? Array.prototype.slice.call(rollcallTable.querySelectorAll('tr[data-deputy-row]')) : [];
 
     function applyFilters() {
       // 1. Update Hemicycle seats opacity
-      allSeats.forEach(function (seat) {
-        var dec = (seat.getAttribute('data-decision') || '').toUpperCase();
-        var fac = (seat.getAttribute('data-faction') || '').toUpperCase();
-
-        var matchDec = (selectedDecision === 'ALL' || dec === selectedDecision);
-        var matchFac = (selectedFaction === 'ALL' || fac === selectedFaction);
+      seatInfos.forEach(function (info) {
+        var matchDec = (selectedDecision === 'ALL' || info.decision === selectedDecision);
+        var matchFac = (selectedFaction === 'ALL' || info.factionShortUpper === selectedFaction);
 
         if (matchDec && matchFac) {
-          seat.style.opacity = '1';
+          info.el.style.opacity = '1';
         } else {
-          seat.style.opacity = '0.15';
+          info.el.style.opacity = '0.15';
         }
       });
 
@@ -129,7 +292,6 @@
         countBadge.textContent = visible + (visible % 10 === 1 && visible % 100 !== 11 ? ' deputāts' : ' deputāti');
       }
 
-      var emptyRow = document.getElementById('rollcall-empty-row');
       if (emptyRow) {
         if (visible === 0) {
           emptyRow.classList.remove('hidden');
@@ -185,9 +347,15 @@
 
       // Re-append sorted rows
       if (rollcallTable) {
+        var frag = document.createDocumentFragment();
         rows.forEach(function (row) {
-          rollcallTable.appendChild(row);
+          frag.appendChild(row);
         });
+        if (emptyRow) {
+          rollcallTable.insertBefore(frag, emptyRow);
+        } else {
+          rollcallTable.appendChild(frag);
+        }
       }
     }
 

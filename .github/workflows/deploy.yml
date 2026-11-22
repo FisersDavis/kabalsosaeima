@@ -30,9 +30,8 @@ jobs:
       - name: Download standalone Tailwind CLI
         run: |
           mkdir -p bin
-          curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v4.3.3/tailwindcss-linux-x64
-          chmod +x tailwindcss-linux-x64
-          mv tailwindcss-linux-x64 bin/tailwindcss
+          curl -fsSL -o bin/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/download/v4.3.3/tailwindcss-linux-x64
+          chmod +x bin/tailwindcss
 
       - name: Run tests
         run: go test ./...

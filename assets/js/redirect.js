@@ -6,13 +6,13 @@
 
     var voteMatch = hash.match(/^#balsojums-([a-zA-Z0-9_-]+)/i);
     if (voteMatch) {
-      window.location.replace('/balsojumi/' + voteMatch[1] + '/');
+      window.location.replace('/14-saeima/balsojumi/' + voteMatch[1] + '/');
       return;
     }
 
     var mpMatch = hash.match(/^#deputats-([a-zA-Z0-9_-]+)/i);
     if (mpMatch) {
-      window.location.replace('/deputati/' + mpMatch[1] + '/');
+      window.location.replace('/14-saeima/deputati/' + mpMatch[1] + '/');
       return;
     }
 
