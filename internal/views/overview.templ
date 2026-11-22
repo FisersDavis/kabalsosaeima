@@ -9,9 +9,16 @@ import (
 
 templ Overview(props OverviewProps) {
 	@Layout(props.LayoutProps) {
-		<div class="space-y-4">
+		<div
+			id="overview-feed-root"
+			class="space-y-4"
+			data-base-path={ props.LayoutProps.BasePath }
+			data-total-pages={ fmt.Sprint(props.TotalPages) }
+			data-total-votes={ fmt.Sprint(props.TotalVotes) }
+			data-current-page={ fmt.Sprint(props.CurrentPage) }
+		>
 			<!-- Filter Toolbar -->
-			<section class="sticky top-[57px] z-30 rounded-xl bg-white/95 p-3 shadow-2xs backdrop-blur-md border border-slate-200 space-y-2.5">
+			<section class="sticky z-30 rounded-xl bg-white/95 p-3 shadow-2xs backdrop-blur-md border border-slate-200 space-y-2.5" style="top: var(--header-h, 104px);">
 				<!-- Search Row & Filtri Toggle Button -->
 				<div class="flex items-center gap-2">
 					<div class="relative flex-1">
@@ -95,15 +102,19 @@ templ Overview(props OverviewProps) {
 					</select>
 				</div>
 
-				<div class="flex items-center justify-between text-[11px] text-slate-400 pt-0.5">
+				<div class="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 pt-0.5">
 					<span id="filter-count" class="font-mono">
 						Atrasti { fmt.Sprint(len(props.Votes)) } balsojumi
 					</span>
+					<span id="filter-archive-status" class="hidden text-[11px] font-medium text-emerald-700"></span>
 				</div>
 			</section>
 
+			<!-- Cross-page Full Archive Search Results (populated on demand for multi-page terms from /data/votes.json) -->
+			<section id="filter-archive-results" class="hidden space-y-3.5"></section>
+
 			<!-- Vote Cards Feed -->
-			<section class="space-y-3.5">
+			<section id="static-vote-feed" class="space-y-3.5">
 				for _, v := range props.Votes {
 					<article
 						class="vote-card rounded-xl border border-slate-200 bg-white p-4 shadow-2xs transition hover:border-slate-300 hover:shadow-xs space-y-2.5"
@@ -356,7 +367,7 @@ templ Overview(props OverviewProps) {
 
 			<!-- Static Archive Pagination (for multi-page full-term archives) -->
 			if props.TotalPages > 1 {
-				<nav class="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs shadow-2xs" aria-label="Arhīva lapas">
+				<nav id="static-pagination" class="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs shadow-2xs" aria-label="Arhīva lapas">
 					<div class="text-slate-500 font-mono text-[11px]">
 						Lapa <strong class="text-slate-900">{ fmt.Sprint(props.CurrentPage) }</strong> no <strong class="text-slate-900">{ fmt.Sprint(props.TotalPages) }</strong> · Kopā { fmt.Sprint(props.TotalVotes) } balsojumi
 					</div>

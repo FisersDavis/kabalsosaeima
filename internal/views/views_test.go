@@ -610,5 +610,112 @@ func TestVoteProtocolAndBillURLsNoDeadEnds(t *testing.T) {
 	}
 }
 
+func TestConstitutionalAmendmentQuorumAndSecretVoteScript(t *testing.T) {
+	r3 := 3
+	satvVote := &data.Vote{
+		ID:              "satv-1",
+		SaeimaTerm:      14,
+		SittingDate:     "12.02.2026",
+		SittingTime:     "10:00",
+		VoteType:        "likums",
+		Reading:         &r3,
+		ReadingStage:    "3. lasījums (galīgais)",
+		OfficialTitle:   "Grozījumi Latvijas Republikas Satversmē",
+		SimplifiedTitle: "Grozījumi Latvijas Republikas Satversmē",
+		Result:          "PIENEMTS",
+		Counts:          data.VoteCounts{Par: 72, Pret: 10, Atturas: 0, Nebalso: 18, TotalPresent: 82},
+	}
+	if !IsConstitutionalAmendmentVote(satvVote) {
+		t.Fatal("Expected Satversme 3rd reading to be detected as constitutional amendment")
+	}
+	if got := VoteQuorumThreshold(satvVote); got != 67 {
+		t.Fatalf("Expected quorum threshold 67 for Satversme Art. 76, got %d", got)
+	}
+
+	var buf bytes.Buffer
+	err := Vote(VoteProps{
+		LayoutProps: LayoutProps{Title: "Satversme", CanonicalURL: "https://kabalsosaeima.lv/balsojumi/satv-1/"},
+		Vote:        satvVote,
+	}).Render(context.Background(), &buf)
+	if err != nil {
+		t.Fatalf("Render Satversme vote failed: %v", err)
+	}
+	html := buf.String()
+	if !strings.Contains(html, "Satversmes 76. pantu") || !strings.Contains(html, "82/67") {
+		t.Error("Expected Satversme Art. 76 explanation and 67 quorum threshold in rendered HTML")
+	}
+
+	// Secret vote must still load hemicycle-tooltip.js so the Copy Link button works
+	secretVote := &data.Vote{
+		ID:              "sec-1",
+		SaeimaTerm:      15,
+		SittingDate:     "20.11.2026",
+		SittingTime:     "11:00",
+		IsSecret:        true,
+		OfficialTitle:   "Amatpersonas vēlēšanas",
+		SimplifiedTitle: "Amatpersonas vēlēšanas",
+		Result:          "PIENEMTS",
+		Counts:          data.VoteCounts{Par: 60, Pret: 20, TotalPresent: 80},
+	}
+	buf.Reset()
+	if err := Vote(VoteProps{
+		LayoutProps: LayoutProps{Title: "Secret", CanonicalURL: "https://kabalsosaeima.lv/balsojumi/sec-1/"},
+		Vote:        secretVote,
+	}).Render(context.Background(), &buf); err != nil {
+		t.Fatalf("Render secret vote failed: %v", err)
+	}
+	if !strings.Contains(buf.String(), "/assets/js/hemicycle-tooltip.js") {
+		t.Error("Expected secret vote page to still load hemicycle-tooltip.js for copy-link button")
+	}
+}
+
+func TestNotFoundAndArchivedMPDirectoryAndOGImage(t *testing.T) {
+	var buf bytes.Buffer
+	err := NotFound(NotFoundProps{
+		LayoutProps: LayoutProps{
+			Title:        "Lapa nav atrasta (404)",
+			CanonicalURL: "https://kabalsosaeima.lv/404.html",
+			TermNumber:   15,
+			IsActiveTerm: true,
+		},
+	}).Render(context.Background(), &buf)
+	if err != nil {
+		t.Fatalf("Render NotFound failed: %v", err)
+	}
+	nfHTML := buf.String()
+	if !strings.Contains(nfHTML, "Lapa netika atrasta") {
+		t.Error("Expected Latvian 404 heading in NotFound view")
+	}
+	if !strings.Contains(nfHTML, `property="og:image" content="https://kabalsosaeima.lv/og-image.png"`) {
+		t.Error("Expected og:image meta tag in Layout")
+	}
+
+	// Archived 14. Saeima MP Directory should not label ended term as "aktīvi mandāti"
+	buf.Reset()
+	err = MPDirectory(MPDirectoryProps{
+		LayoutProps: LayoutProps{
+			Title:        "14. Saeimas deputāti",
+			CanonicalURL: "https://kabalsosaeima.lv/14-saeima/deputati/",
+			ActiveNav:    "mps",
+			TermNumber:   14,
+			BasePath:     "/14-saeima",
+			IsActiveTerm: false,
+		},
+		Items: []MPDirectoryItem{
+			{MP: &data.MP{ID: "mp-1", Name: "Test Deputy", Slug: "test-deputy", IsActive: true}},
+		},
+	}).Render(context.Background(), &buf)
+	if err != nil {
+		t.Fatalf("Render archived MPDirectory failed: %v", err)
+	}
+	dirHTML := buf.String()
+	if strings.Contains(dirHTML, "aktīvi mandāti") {
+		t.Error("Archived term MP directory must not display 'aktīvi mandāti'")
+	}
+	if !strings.Contains(dirHTML, "Beigu sastāvs") {
+		t.Error("Archived term MP directory should display 'Beigu sastāvs'")
+	}
+}
+
 
 

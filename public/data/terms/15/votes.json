@@ -292,8 +292,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/17F8B828738BA706C2258EB5002CB8A2?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-20-110125/",
     "category": {
-      "id": "tiesiskums",
-      "label": "Tiesiskums un korupcijas novēršana"
+      "id": "administracija",
+      "label": "Valsts pārvalde"
     },
     "counts": {
       "par": 94,
@@ -426,8 +426,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/284FF13DF4E39768C2258EB5002C7E4B?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-20-110125/",
     "category": {
-      "id": "tiesiskums",
-      "label": "Tiesiskums un korupcijas novēršana"
+      "id": "administracija",
+      "label": "Valsts pārvalde"
     },
     "counts": {
       "par": 90,
@@ -560,8 +560,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/6805E58555DACC44C2258EB5002C335A?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-20-110125/",
     "category": {
-      "id": "tiesiskums",
-      "label": "Tiesiskums un korupcijas novēršana"
+      "id": "administracija",
+      "label": "Valsts pārvalde"
     },
     "counts": {
       "par": 93,
@@ -694,8 +694,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/F06902B08B915267C2258EB5002C12CF?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-20-110125/",
     "category": {
-      "id": "tiesiskums",
-      "label": "Tiesiskums un korupcijas novēršana"
+      "id": "administracija",
+      "label": "Valsts pārvalde"
     },
     "counts": {
       "par": 92,
@@ -828,8 +828,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/955C5B27FFD3CA85C2258EB5002BE7B4?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-20-110125/",
     "category": {
-      "id": "tiesiskums",
-      "label": "Tiesiskums un korupcijas novēršana"
+      "id": "administracija",
+      "label": "Valsts pārvalde"
     },
     "counts": {
       "par": 91,
@@ -962,8 +962,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/9BCB7B152C3A870BC2258EB5002BC3E1?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-20-110125/",
     "category": {
-      "id": "tiesiskums",
-      "label": "Tiesiskums un korupcijas novēršana"
+      "id": "administracija",
+      "label": "Valsts pārvalde"
     },
     "counts": {
       "par": 90,
@@ -1096,8 +1096,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/24F27E09190DE713C2258EB5002B1F90?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-20-110125/",
     "category": {
-      "id": "tiesiskums",
-      "label": "Tiesiskums un korupcijas novēršana"
+      "id": "administracija",
+      "label": "Valsts pārvalde"
     },
     "counts": {
       "par": 88,
@@ -1230,8 +1230,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/673BEECC67A578CBC2258EB5002A8060?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-20-110125/",
     "category": {
-      "id": "tiesiskums",
-      "label": "Tiesiskums un korupcijas novēršana"
+      "id": "administracija",
+      "label": "Valsts pārvalde"
     },
     "counts": {
       "par": 88,
@@ -1364,8 +1364,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/046493C7B2477655C2258EB5002A39F2?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-20-110125/",
     "category": {
-      "id": "tiesiskums",
-      "label": "Tiesiskums un korupcijas novēršana"
+      "id": "administracija",
+      "label": "Valsts pārvalde"
     },
     "counts": {
       "par": 85,
@@ -1498,8 +1498,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/B28F1A9FEB2B9225C2258EB20040C762?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-17-145950/",
     "category": {
-      "id": "socialie",
-      "label": "Veselība un labklājība"
+      "id": "drosiba",
+      "label": "Valsts drošība un aizsardzība"
     },
     "counts": {
       "par": 83,
@@ -1632,8 +1632,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/870C446556416904C2258EB20024E37E?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-17-145950/",
     "category": {
-      "id": "administracija",
-      "label": "Valsts pārvalde"
+      "id": "drosiba",
+      "label": "Valsts drošība un aizsardzība"
     },
     "counts": {
       "par": 15,
@@ -1766,8 +1766,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/870C446556416904C2258EB20024E37E?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-17-145950/",
     "category": {
-      "id": "socialie",
-      "label": "Veselība un labklājība"
+      "id": "drosiba",
+      "label": "Valsts drošība un aizsardzība"
     },
     "counts": {
       "par": 15,
@@ -2044,8 +2044,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/F3DD1230EB7ACD69C2258EB20043948A?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-17-145950/",
     "category": {
-      "id": "tiesiskums",
-      "label": "Tiesiskums un korupcijas novēršana"
+      "id": "administracija",
+      "label": "Valsts pārvalde"
     },
     "counts": {
       "par": 57,
@@ -2639,8 +2639,8 @@
     "billUrl": "https://titania.saeima.lv/LIVS15/saeimalivs_lmp.nsf/0/8B8645E9277F6F8CC2258EA40057AD7E?OpenDocument",
     "stenogramUrl": "https://www.saeima.lv/lv/sasaukumi/15-saeima/stenogrammas/latvijas-republikas-saeimas-2026-gada-3-novembra-arkartas-sede/#vote_0",
     "category": {
-      "id": "socialie",
-      "label": "Veselība un labklājība"
+      "id": "drosiba",
+      "label": "Valsts drošība un aizsardzība"
     },
     "counts": {
       "par": 80,

@@ -6,8 +6,12 @@ import (
 )
 
 templ MPDirectory(props MPDirectoryProps) {
+	{{
+		isActiveTerm := IsLayoutTermActive(props.LayoutProps)
+		activeCount := DirectoryActiveCount(props.Items)
+	}}
 	@Layout(props.LayoutProps) {
-		<div class="space-y-6">
+		<div class="space-y-6" id="mp-directory-root" data-term-active={ fmt.Sprintf("%t", isActiveTerm) }>
 			<!-- Header & Description -->
 			<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
 				<div>
@@ -18,10 +22,17 @@ templ MPDirectory(props MPDirectoryProps) {
 						Pārskats par visiem deputātiem, viņu frakciju piederību, sēžu apmeklētību un balsojumu sakritību ar partiju.
 					</p>
 				</div>
-				<div class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-2xs shrink-0">
-					<span class="h-2 w-2 rounded-full bg-emerald-500"></span>
-					<span>100 aktīvi mandāti</span>
-				</div>
+				if isActiveTerm {
+					<div class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-2xs shrink-0">
+						<span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+						<span>{ fmt.Sprint(activeCount) } aktīvi mandāti</span>
+					</div>
+				} else {
+					<div class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-2xs shrink-0">
+						<span class="h-2 w-2 rounded-full bg-slate-400"></span>
+						<span>Arhīvs · { fmt.Sprint(len(props.Items)) } deputāti sasaukumā</span>
+					</div>
+				}
 			</div>
 
 			<!-- Deputies Table with Integrated Toolbar Matching Balsojumi Page -->
@@ -31,7 +42,11 @@ templ MPDirectory(props MPDirectoryProps) {
 					<div class="font-bold text-slate-800 flex items-center gap-2 shrink-0">
 						<span>Deputātu saraksts</span>
 						<span id="mp-filter-count" class="px-2 py-0.5 rounded-full bg-slate-200/80 font-mono text-[10px] text-slate-700 font-semibold">
-							100 aktīvi deputāti
+							if isActiveTerm {
+								{ fmt.Sprint(activeCount) } aktīvi deputāti
+							} else {
+								{ fmt.Sprint(activeCount) } noslēguma sastāvā
+							}
 						</span>
 					</div>
 
@@ -53,7 +68,11 @@ templ MPDirectory(props MPDirectoryProps) {
 							data-active="true"
 							class="rounded-lg border border-slate-900 bg-slate-900 px-3 py-1.5 text-xs font-medium text-white shadow-2xs transition cursor-pointer shrink-0"
 						>
-							Tikai aktīvie (100)
+							if isActiveTerm {
+								Tikai aktīvie ({ fmt.Sprint(activeCount) })
+							} else {
+								Beigu sastāvs ({ fmt.Sprint(activeCount) })
+							}
 						</button>
 
 						<div class="relative flex-1 min-w-[180px] max-w-full sm:max-w-xs">
@@ -261,7 +280,11 @@ templ MPDirectory(props MPDirectoryProps) {
 			<div class="rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 flex items-start gap-3 text-xs text-slate-600">
 				<svg class="h-4 w-4 text-slate-500 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
 				<div class="leading-relaxed">
-					<strong class="text-slate-800">Par mandātu aizvietošanu:</strong> Saskaņā ar Saeimas kārtības rulli, deputātam kļūstot par Ministru prezidentu vai ministru, viņa Saeimas mandāts tiek apturēts, un tā vietā nāk nākamais attiecīgā vēlēšanu saraksta kandidāts («mīkstais mandāts»). Šeit uzrādīti gan 100 šobrīd aktīvie deputāti, gan mandātu nolikušie locekļi.
+					if isActiveTerm {
+						<strong class="text-slate-800">Par mandātu aizvietošanu:</strong> Saskaņā ar Saeimas kārtības rulli, deputātam kļūstot par Ministru prezidentu vai ministru, viņa Saeimas mandāts tiek apturēts, un tā vietā nāk nākamais attiecīgā vēlēšanu saraksta kandidāts («mīkstais mandāts»). Šeit uzrādīti gan { fmt.Sprint(activeCount) } šobrīd aktīvie deputāti, gan mandātu nolikušie locekļi.
+					} else {
+						<strong class="text-slate-800">Par sasaukuma arhīvu un mandātu maiņu:</strong> { fmt.Sprintf("%d. Saeimas", ActiveTermNumber(props.LayoutProps)) } pilnvaras ir noslēgušās. Šeit uzrādīti gan { fmt.Sprint(activeCount) } noslēguma sastāva deputāti, gan visi pārējie sasaukuma gaitā strādājušie deputāti un ministri (kopā { fmt.Sprint(len(props.Items)) }).
+					}
 				</div>
 			</div>
 

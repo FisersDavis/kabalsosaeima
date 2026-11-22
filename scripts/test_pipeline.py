@@ -151,6 +151,23 @@ class TestIngestionRules(unittest.TestCase):
         # Dissolved 0-seat ST! faction is omitted
         self.assertNotIn("st", [fb["factionId"] for fb in v["factionBreakdown"]])
 
+    def test_detect_category_avoids_procedural_false_positives(self):
+        # Agenda motion ("darba kārtībā") about NATO must be drosiba, NOT socialie ("darba")
+        cat_nato = ingest_real_saeima.detect_category(
+            "Par iekļaušanu nākamās sēdes darba kārtībā. Par Saeimas pārstāvjiem NATO Parlamentārās asamblejas rudens sesijā (13/Lm15)"
+        )
+        self.assertEqual(cat_nato["id"], "drosiba")
+
+        # Mandate confirmation mentioning "Rīgas vēlēšanu apgabalā" must be administracija, NOT tiesiskums
+        cat_mandate = ingest_real_saeima.detect_category(
+            "Par Jurģa Klotiņa 15. Saeimas deputāta pilnvaru apstiprināšanu uz laiku, kamēr no kandidātu saraksta Rīgas vēlēšanu apgabalā ievēlētie deputāti pilda Ministru kabineta locekļu amata pienākumus"
+        )
+        self.assertEqual(cat_mandate["id"], "administracija")
+
+        # Cabinet confidence vote must be administracija
+        cat_cab = ingest_real_saeima.detect_category("Par uzticības izteikšanu Ministru kabinetam")
+        self.assertEqual(cat_cab["id"], "administracija")
+
 
 class TestEnrichmentContext(unittest.TestCase):
     def test_speaker_turn_extraction_with_and_without_parens(self):

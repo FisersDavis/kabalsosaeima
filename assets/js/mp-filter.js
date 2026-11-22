@@ -11,6 +11,8 @@
   }
 
   function initMpFilter() {
+    var dirRoot = document.getElementById('mp-directory-root');
+    var isActiveTerm = !dirRoot || dirRoot.getAttribute('data-term-active') !== 'false';
     var searchInput = document.getElementById('mp-filter-search');
     var factionSelect = document.getElementById('mp-filter-faction');
     var activeToggle = document.getElementById('mp-filter-active');
@@ -51,10 +53,13 @@
       }
 
       if (countEl) {
-        if (activeOnly) {
-          countEl.textContent = visible + (visible % 10 === 1 && visible % 100 !== 11 ? ' aktīvs deputāts' : ' aktīvi deputāti');
+        var isSingular = (visible % 10 === 1 && visible % 100 !== 11);
+        if (activeOnly && isActiveTerm) {
+          countEl.textContent = visible + (isSingular ? ' aktīvs deputāts' : ' aktīvi deputāti');
+        } else if (activeOnly && !isActiveTerm) {
+          countEl.textContent = visible + ' noslēguma sastāvā';
         } else {
-          countEl.textContent = visible + (visible % 10 === 1 && visible % 100 !== 11 ? ' deputāts' : ' deputāti');
+          countEl.textContent = visible + (isSingular ? ' deputāts' : ' deputāti');
         }
       }
 
@@ -206,9 +211,55 @@
     applyFilter();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMpFilter);
-  } else {
+  function initMpHistoryFilter() {
+    var searchInput = document.getElementById('mp-history-search');
+    var decisionSelect = document.getElementById('mp-history-decision');
+    var emptyEl = document.getElementById('mp-history-empty');
+    var rows = document.querySelectorAll('.mp-history-row');
+    if (!rows.length || (!searchInput && !decisionSelect)) return;
+
+    function applyHistoryFilter() {
+      var q = searchInput ? normalizeText(searchInput.value) : '';
+      var dec = decisionSelect ? decisionSelect.value : 'ALL';
+      var visible = 0;
+
+      for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var title = normalizeText(row.getAttribute('data-title') || '');
+        var rowDec = (row.getAttribute('data-decision') || '').toUpperCase();
+
+        var matchQ = !q || title.indexOf(q) !== -1;
+        var matchDec = (dec === 'ALL' || rowDec === dec);
+
+        if (matchQ && matchDec) {
+          row.classList.remove('hidden');
+          visible++;
+        } else {
+          row.classList.add('hidden');
+        }
+      }
+
+      if (emptyEl) {
+        if (visible === 0) {
+          emptyEl.classList.remove('hidden');
+        } else {
+          emptyEl.classList.add('hidden');
+        }
+      }
+    }
+
+    if (searchInput) searchInput.addEventListener('input', applyHistoryFilter);
+    if (decisionSelect) decisionSelect.addEventListener('change', applyHistoryFilter);
+  }
+
+  function initAll() {
     initMpFilter();
+    initMpHistoryFilter();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
   }
 })();

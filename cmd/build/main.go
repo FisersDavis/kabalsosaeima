@@ -113,13 +113,21 @@ func main() {
 		})
 	}
 
+	var sitemapURLs []string
 	for _, lt := range terms {
 		termOutDir := termOutputDir(outDir, lt.Config.BasePath)
 		fmt.Printf("   -> Rendering %s into %s/ ...\n", lt.Config.Label, termOutDir)
-		if err := renderTermPages(lt, navTerms, termOutDir); err != nil {
+		urls, err := renderTermPages(lt, navTerms, termOutDir)
+		if err != nil {
 			fmt.Fprintf(os.Stderr, "Page generation failed for %s: %v\n", lt.Config.Label, err)
 			os.Exit(1)
 		}
+		sitemapURLs = append(sitemapURLs, urls...)
+	}
+
+	if err := writeStandardSiteFiles(outDir, terms[0], navTerms, sitemapURLs); err != nil {
+		fmt.Fprintf(os.Stderr, "Failed writing 404/robots/sitemap: %v\n", err)
+		os.Exit(1)
 	}
 
 	fmt.Printf("\nSite generation complete in %v! Output in %s/\n", time.Since(start), outDir)
@@ -374,25 +382,44 @@ func copyTermData(dataDir, distData string, includeRollcalls bool) error {
 
 const overviewPageSize = 200
 
-func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string) error {
+func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string) ([]string, error) {
 	ctx := context.Background()
 	store := lt.Store
 	bp := lt.Config.BasePath
 	termLabel := lt.Config.Label
 
-	makeLayout := func(title, desc, relPath, activeNav string) views.LayoutProps {
-		return views.LayoutProps{
-			Title:        title,
-			Description:  desc,
-			CanonicalURL: "https://kabalsosaeima.lv" + views.TermURL(bp, relPath),
-			ActiveNav:    activeNav,
-			Metadata:     store.Metadata,
-			TermNumber:   lt.Config.Term,
-			TermYears:    lt.Config.Years,
-			BasePath:     bp,
-			Terms:        navTerms,
+	activeMPCount := 0
+	for i := range store.MPs {
+		if store.MPs[i].IsActive {
+			activeMPCount++
 		}
 	}
+	if activeMPCount == 0 {
+		activeMPCount = len(store.MPs)
+	}
+
+	makeLayout := func(title, desc, relPath, activeNav string) views.LayoutProps {
+		return views.LayoutProps{
+			Title:         title,
+			Description:   desc,
+			CanonicalURL:  "https://kabalsosaeima.lv" + views.TermURL(bp, relPath),
+			ActiveNav:     activeNav,
+			Metadata:      store.Metadata,
+			TermNumber:    lt.Config.Term,
+			TermYears:     lt.Config.Years,
+			BasePath:      bp,
+			IsActiveTerm:  lt.Config.IsActive,
+			ActiveMPCount: activeMPCount,
+			Terms:         navTerms,
+		}
+	}
+
+	var sitemapURLs []string
+	addSitemapURL := func(relPath string) {
+		sitemapURLs = append(sitemapURLs, "https://kabalsosaeima.lv"+views.TermURL(bp, relPath))
+	}
+	addSitemapURL("/")
+	addSitemapURL("/deputati/")
 
 	// Extract unique categories from votes (sorted deterministically)
 	catMap := make(map[string]data.VoteCategory)
@@ -451,7 +478,7 @@ func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string)
 			TotalVotes:    totalVotes,
 		}
 		if err := writeHTML(outPath, views.Overview(overviewProps), ctx); err != nil {
-			return fmt.Errorf("rendering overview page %d: %w", page, err)
+			return nil, fmt.Errorf("rendering overview page %d: %w", page, err)
 		}
 	}
 
@@ -463,6 +490,7 @@ func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string)
 	}
 	voteJobs := make(chan int, len(store.Votes))
 	for i := range store.Votes {
+		addSitemapURL(fmt.Sprintf("/balsojumi/%s/", store.Votes[i].ID))
 		voteJobs <- i
 	}
 	close(voteJobs)
@@ -510,7 +538,7 @@ func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string)
 	}
 	for w := 0; w < workers; w++ {
 		if err := <-errCh; err != nil {
-			return err
+			return nil, err
 		}
 	}
 
@@ -520,8 +548,12 @@ func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string)
 	for _, bt := range timelines {
 		billList = append(billList, bt)
 	}
+	sort.Slice(billList, func(i, j int) bool {
+		return billList[i].Slug < billList[j].Slug
+	})
 	billJobs := make(chan *stats.BillTimeline, len(billList))
 	for _, bt := range billList {
+		addSitemapURL(fmt.Sprintf("/likumprojekti/%s/", bt.Slug))
 		billJobs <- bt
 	}
 	close(billJobs)
@@ -550,7 +582,7 @@ func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string)
 	}
 	for w := 0; w < workers; w++ {
 		if err := <-errCh; err != nil {
-			return err
+			return nil, err
 		}
 	}
 
@@ -565,6 +597,7 @@ func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string)
 		if slug == "" {
 			slug = mp.ID
 		}
+		addSitemapURL(fmt.Sprintf("/deputati/%s/", slug))
 
 		att := stats.ComputeMPAttendance(store, mp.ID)
 		coh := stats.ComputeMPCohesion(store, mp.ID, factionLines)
@@ -597,13 +630,13 @@ func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string)
 
 		mpPath := filepath.Join(outDir, "deputati", slug, "index.html")
 		if err := writeHTML(mpPath, views.MPView(mpProps), ctx); err != nil {
-			return fmt.Errorf("rendering MP %s: %w", slug, err)
+			return nil, fmt.Errorf("rendering MP %s: %w", slug, err)
 		}
 
 		if mp.Slug != "" && mp.Slug != mp.ID {
 			redirectPath := filepath.Join(outDir, "deputati", mp.ID, "index.html")
 			if err := writeRedirectStub(redirectPath, views.TermURL(bp, fmt.Sprintf("/deputati/%s/", slug))); err != nil {
-				return fmt.Errorf("writing MP redirect stub %s: %w", mp.ID, err)
+				return nil, fmt.Errorf("writing MP redirect stub %s: %w", mp.ID, err)
 			}
 		}
 	}
@@ -622,9 +655,63 @@ func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string)
 	}
 	dirPath := filepath.Join(outDir, "deputati", "index.html")
 	if err := writeHTML(dirPath, views.MPDirectory(dirProps), ctx); err != nil {
-		return fmt.Errorf("rendering MP directory: %w", err)
+		return nil, fmt.Errorf("rendering MP directory: %w", err)
 	}
 
+	return sitemapURLs, nil
+}
+
+func writeStandardSiteFiles(outDir string, activeTerm loadedTerm, navTerms []views.TermNavItem, sitemapURLs []string) error {
+	ctx := context.Background()
+	activeMPCount := 0
+	for i := range activeTerm.Store.MPs {
+		if activeTerm.Store.MPs[i].IsActive {
+			activeMPCount++
+		}
+	}
+
+	// 1. Branded Latvian 404.html (includes redirect.js for legacy SPA hash links)
+	notFoundProps := views.NotFoundProps{
+		LayoutProps: views.LayoutProps{
+			Title:         "Lapa nav atrasta (404) - Kā Balso Saeima",
+			Description:   "Pieprasītā lapa netika atrasta. Pārlūkojiet 15. un 14. Saeimas balsojumu arhīvu.",
+			CanonicalURL:  "https://kabalsosaeima.lv/404.html",
+			ActiveNav:     "",
+			Metadata:      activeTerm.Store.Metadata,
+			TermNumber:    activeTerm.Config.Term,
+			TermYears:     activeTerm.Config.Years,
+			BasePath:      "",
+			IsActiveTerm:  activeTerm.Config.IsActive,
+			ActiveMPCount: activeMPCount,
+			Terms:         navTerms,
+		},
+	}
+	if err := writeHTML(filepath.Join(outDir, "404.html"), views.NotFound(notFoundProps), ctx); err != nil {
+		return fmt.Errorf("rendering 404.html: %w", err)
+	}
+
+	// 2. robots.txt
+	robots := "User-agent: *\nAllow: /\n\nSitemap: https://kabalsosaeima.lv/sitemap.xml\n"
+	if err := os.WriteFile(filepath.Join(outDir, "robots.txt"), []byte(robots), 0644); err != nil {
+		return fmt.Errorf("writing robots.txt: %w", err)
+	}
+
+	// 3. sitemap.xml
+	var sb strings.Builder
+	sb.WriteString(`<?xml version="1.0" encoding="UTF-8"?>` + "\n")
+	sb.WriteString(`<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">` + "\n")
+	for _, u := range sitemapURLs {
+		escaped := strings.NewReplacer("&", "&amp;", "<", "&lt;", ">", "&gt;", `"`, "&quot;", "'", "&apos;").Replace(u)
+		sb.WriteString("  <url><loc>")
+		sb.WriteString(escaped)
+		sb.WriteString("</loc></url>\n")
+	}
+	sb.WriteString("</urlset>\n")
+	if err := os.WriteFile(filepath.Join(outDir, "sitemap.xml"), []byte(sb.String()), 0644); err != nil {
+		return fmt.Errorf("writing sitemap.xml: %w", err)
+	}
+
+	fmt.Printf("   -> Wrote 404.html, robots.txt, and sitemap.xml (%d URLs)\n", len(sitemapURLs))
 	return nil
 }
 

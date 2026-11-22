@@ -141,23 +141,27 @@ templ Vote(props VoteProps) {
 							</span>
 						</div>
 
+						{{
+							isConstAmend := IsConstitutionalAmendmentVote(props.Vote)
+							quorumReq := VoteQuorumThreshold(props.Vote)
+						}}
 						<div class="text-xs text-slate-500 font-sans flex items-center gap-1.5 flex-wrap">
 							<span>Kopā piedalījās: <strong class="text-slate-900 font-mono">{ fmt.Sprint(props.Vote.Counts.TotalPresent) }</strong> deputāti</span>
 							<span class="text-slate-300">·</span>
-							if props.Vote.Counts.TotalPresent >= 50 {
+							if props.Vote.Counts.TotalPresent >= quorumReq {
 								<span class="inline-flex items-center gap-1 text-emerald-700 font-semibold text-[11px]">
 									<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-									<span>Kvorums sasniegts ({ fmt.Sprint(props.Vote.Counts.TotalPresent) }/50)</span>
+									<span>Kvorums sasniegts ({ fmt.Sprint(props.Vote.Counts.TotalPresent) }/{ fmt.Sprint(quorumReq) })</span>
 								</span>
 							} else {
 								<span class="inline-flex items-center gap-1 text-amber-700 font-semibold text-[11px]">
-									<span>Nav kvoruma ({ fmt.Sprint(props.Vote.Counts.TotalPresent) }/50)</span>
+									<span>Nav kvoruma ({ fmt.Sprint(props.Vote.Counts.TotalPresent) }/{ fmt.Sprint(quorumReq) })</span>
 								</span>
 							}
 						</div>
 					</div>
 
-					<!-- Proportional Stacked Progress Bar with 51-vote vertical threshold marker line -->
+					<!-- Proportional Stacked Progress Bar -->
 					{{
 						totalCast := props.Vote.Counts.Par + props.Vote.Counts.Pret + props.Vote.Counts.Atturas + props.Vote.Counts.Nebalso
 						if totalCast == 0 {
@@ -190,11 +194,19 @@ templ Vote(props VoteProps) {
 						</div>
 					</div>
 
-					<!-- Constitutional Procedure Explanation (Satversmes 24. pants) -->
+					<!-- Constitutional Procedure Explanation (Satversmes 24. / 76. pants) -->
 					<div class="rounded-lg bg-slate-50 border border-slate-200/80 p-2.5 text-[11px] text-slate-600 flex items-start gap-2">
 						<svg class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
 						<div class="leading-relaxed">
-							if props.Vote.Result == "PIENEMTS" {
+							if isConstAmend {
+								if props.Vote.Result == "PIENEMTS" {
+									<strong class="text-slate-800">Kāpēc Satversmes grozījums ir pieņemts?</strong> Saskaņā ar Satversmes 76. pantu grozījumiem Satversmē nepieciešama vismaz divu trešdaļu deputātu klātbūtne (kvorums: 67) un vismaz <em>divu trešdaļu klātesošo deputātu balsu vairākums</em>. Piedalījās { fmt.Sprint(props.Vote.Counts.TotalPresent) } deputāti, un <strong>Par</strong> balsoja { fmt.Sprint(props.Vote.Counts.Par) }.
+								} else if props.Vote.Result == "NAV_KVORUMA" {
+									<strong class="text-slate-800">Kāpēc nav kvoruma?</strong> Saskaņā ar Satversmes 76. pantu balsojumā par Satversmes grozījumiem jāpiedalās vismaz divām trešdaļām Saeimas locekļu (67). Piedalījās tikai { fmt.Sprint(props.Vote.Counts.TotalPresent) }, tādēļ lēmums nav spēkā.
+								} else {
+									<strong class="text-slate-800">Kāpēc Satversmes grozījums ir noraidīts?</strong> Saskaņā ar Satversmes 76. pantu nepieciešams vismaz divu trešdaļu klātesošo deputātu atbalsts, taču <strong>Par</strong> balsoja tikai { fmt.Sprint(props.Vote.Counts.Par) } no { fmt.Sprint(props.Vote.Counts.TotalPresent) } klātesošajiem.
+								}
+							} else if props.Vote.Result == "PIENEMTS" {
 								<strong class="text-slate-800">Kāpēc lēmums ir pieņemts?</strong> Saskaņā ar Satversmes 24. pantu un Saeimas kārtības rulli parastie lēmumi tiek pieņemti ar <em>klātesošo deputātu vienkāršu balsu vairākumu</em> (kvorums: vismaz 50 balsotāji). Tā kā balsošanā piedalījās { fmt.Sprint(props.Vote.Counts.TotalPresent) } deputāti un <strong>Par ({ fmt.Sprint(props.Vote.Counts.Par) })</strong> bija vairāk nekā <strong>Pret un Atturas ({ fmt.Sprint(props.Vote.Counts.Pret + props.Vote.Counts.Atturas) })</strong>, lēmums ir oficiāli pieņemts. Visas Saeimas 51 balss vairākums nepieciešams tikai atsevišķos Satversmē īpaši noteiktos gadījumos.
 							} else if props.Vote.Result == "NAV_KVORUMA" {
 								<strong class="text-slate-800">Kāpēc nav kvoruma?</strong> Saskaņā ar Satversmes 24. pantu balsojumā jāpiedalās vismaz pusei Saeimas deputātu (50). Piedalījās tikai { fmt.Sprint(props.Vote.Counts.TotalPresent) }, tādēļ lēmums nav spēkā.
@@ -620,9 +632,9 @@ templ Vote(props VoteProps) {
 							</noscript>
 						</div>
 					</div>
-
-					<script src="/assets/js/hemicycle-tooltip.js"></script>
 				}
+
+				<script src="/assets/js/hemicycle-tooltip.js"></script>
 
 				<!-- Official Verification & Data Provenance -->
 				<div class="pt-4 border-t border-slate-100 space-y-3">

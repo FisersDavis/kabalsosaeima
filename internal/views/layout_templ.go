@@ -96,27 +96,27 @@ func Layout(props LayoutProps) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\"><meta property=\"og:locale\" content=\"lv_LV\"><meta name=\"twitter:card\" content=\"summary_large_image\"><link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\"><link rel=\"canonical\" href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\"><meta property=\"og:locale\" content=\"lv_LV\"><meta property=\"og:image\" content=\"https://kabalsosaeima.lv/og-image.png\"><meta property=\"og:image:width\" content=\"1200\"><meta property=\"og:image:height\" content=\"630\"><meta property=\"og:image:alt\" content=\"Kā Balso Saeima — Latvijas Republikas Saeimas balsojumu arhīvs\"><meta name=\"twitter:card\" content=\"summary_large_image\"><meta name=\"twitter:image\" content=\"https://kabalsosaeima.lv/og-image.png\"><link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\"><link rel=\"canonical\" href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var7 templ.SafeURL
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinURLErrs(props.CanonicalURL)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 20, Col: 50}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 25, Col: 50}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\"><link rel=\"stylesheet\" href=\"/assets/styles.css\"><script src=\"/assets/js/redirect.js\"></script><script src=\"/assets/js/debates.js\"></script></head><body class=\"min-h-full flex flex-col font-sans bg-slate-50\"><!-- Header --><header class=\"sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md\"><div class=\"mx-auto flex max-w-5xl flex-col gap-2.5 px-4 py-3 sm:px-6 lg:px-8\"><div class=\"flex flex-wrap items-center justify-between gap-3\"><!-- Brand + Sasaukums Switcher --><div class=\"flex items-center gap-3\"><a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\"><link rel=\"stylesheet\" href=\"/assets/styles.css\"><script src=\"/assets/js/redirect.js\"></script><script src=\"/assets/js/debates.js\"></script></head><body class=\"min-h-full flex flex-col font-sans bg-slate-50\"><!-- Header --><header id=\"site-header\" class=\"sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md\"><div class=\"mx-auto flex max-w-5xl flex-col gap-2.5 px-4 py-3 sm:px-6 lg:px-8\"><div class=\"flex flex-wrap items-center justify-between gap-3\"><!-- Brand + Sasaukums Switcher --><div class=\"flex items-center gap-3\"><a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var8 templ.SafeURL
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(props.BasePath, "/")))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 32, Col: 60}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 37, Col: 60}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
@@ -129,7 +129,7 @@ func Layout(props LayoutProps) templ.Component {
 		var templ_7745c5c3_Var9 templ.SafeURL
 		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(props.BasePath, "/")))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 36, Col: 61}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 41, Col: 61}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
@@ -159,7 +159,7 @@ func Layout(props LayoutProps) templ.Component {
 					var templ_7745c5c3_Var10 templ.SafeURL
 					templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(href))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 52, Col: 39}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 57, Col: 39}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 					if templ_7745c5c3_Err != nil {
@@ -172,7 +172,7 @@ func Layout(props LayoutProps) templ.Component {
 					var templ_7745c5c3_Var11 string
 					templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.ResolveAttributeValue(fmt.Sprintf("%s (%s)", t.Label, t.Years))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 55, Col: 61}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 60, Col: 61}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var11)
 					if templ_7745c5c3_Err != nil {
@@ -195,7 +195,7 @@ func Layout(props LayoutProps) templ.Component {
 					var templ_7745c5c3_Var12 string
 					templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(t.Label)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 60, Col: 28}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 65, Col: 28}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 					if templ_7745c5c3_Err != nil {
@@ -208,7 +208,7 @@ func Layout(props LayoutProps) templ.Component {
 					var templ_7745c5c3_Var13 string
 					templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(t.Years)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 61, Col: 93}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 66, Col: 93}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 					if templ_7745c5c3_Err != nil {
@@ -226,7 +226,7 @@ func Layout(props LayoutProps) templ.Component {
 					var templ_7745c5c3_Var14 templ.SafeURL
 					templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(href))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 65, Col: 39}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 70, Col: 39}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 					if templ_7745c5c3_Err != nil {
@@ -239,7 +239,7 @@ func Layout(props LayoutProps) templ.Component {
 					var templ_7745c5c3_Var15 string
 					templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.ResolveAttributeValue(fmt.Sprintf("Pārslēgt uz %s (%s)", t.Label, t.Years))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 67, Col: 75}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 72, Col: 75}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var15)
 					if templ_7745c5c3_Err != nil {
@@ -262,7 +262,7 @@ func Layout(props LayoutProps) templ.Component {
 					var templ_7745c5c3_Var16 string
 					templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(t.Label)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 72, Col: 28}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 77, Col: 28}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 					if templ_7745c5c3_Err != nil {
@@ -275,7 +275,7 @@ func Layout(props LayoutProps) templ.Component {
 					var templ_7745c5c3_Var17 string
 					templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.JoinStringErrs(t.Years)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 73, Col: 93}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 78, Col: 93}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var17))
 					if templ_7745c5c3_Err != nil {
@@ -299,7 +299,7 @@ func Layout(props LayoutProps) templ.Component {
 			var templ_7745c5c3_Var18 string
 			templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d. Saeima (%s)", ActiveTermNumber(props), ActiveTermYears(props)))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 81, Col: 97}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 86, Col: 97}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var18))
 			if templ_7745c5c3_Err != nil {
@@ -317,7 +317,7 @@ func Layout(props LayoutProps) templ.Component {
 		var templ_7745c5c3_Var19 templ.SafeURL
 		templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(SaeimaDeputiesRegistryURL(ActiveTermNumber(props))))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 90, Col: 80}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 95, Col: 80}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var19))
 		if templ_7745c5c3_Err != nil {
@@ -339,7 +339,7 @@ func Layout(props LayoutProps) templ.Component {
 		var templ_7745c5c3_Var21 templ.SafeURL
 		templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(props.BasePath, "/")))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 106, Col: 58}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 111, Col: 58}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
 		if templ_7745c5c3_Err != nil {
@@ -370,7 +370,7 @@ func Layout(props LayoutProps) templ.Component {
 			var templ_7745c5c3_Var23 string
 			templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(props.Metadata.TotalVotes))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 112, Col: 146}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 117, Col: 146}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
 			if templ_7745c5c3_Err != nil {
@@ -397,7 +397,7 @@ func Layout(props LayoutProps) templ.Component {
 		var templ_7745c5c3_Var25 templ.SafeURL
 		templ_7745c5c3_Var25, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(props.BasePath, "/deputati/")))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 116, Col: 67}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 121, Col: 67}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var25))
 		if templ_7745c5c3_Err != nil {
@@ -416,7 +416,20 @@ func Layout(props LayoutProps) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "\"><svg class=\"h-3.5 w-3.5\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"></path><circle cx=\"9\" cy=\"7\" r=\"4\"></circle><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"></path><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"></path></svg> <span>Partijas un deputāti</span> <span class=\"ml-0.5 text-[10px] px-1.5 py-0.2 rounded-full font-mono bg-slate-100 text-slate-600\">100</span></a></nav><div class=\"hidden sm:block text-[11px] text-slate-400\"><span>Objektīvi dati · Atvērtā parlamenta reģistrs</span></div></div></div></header><!-- Main Content --><main class=\"flex-1 mx-auto w-full max-w-5xl px-4 py-4 sm:px-6 lg:px-8\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "\"><svg class=\"h-3.5 w-3.5\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"></path><circle cx=\"9\" cy=\"7\" r=\"4\"></circle><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"></path><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"></path></svg> <span>Partijas un deputāti</span> <span class=\"ml-0.5 text-[10px] px-1.5 py-0.2 rounded-full font-mono bg-slate-100 text-slate-600\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var27 string
+		templ_7745c5c3_Var27, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(EffectiveActiveMPCount(props)))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 126, Col: 149}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var27))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "</span></a></nav><div class=\"hidden sm:block text-[11px] text-slate-400\"><span>Objektīvi dati · Atvērtā parlamenta reģistrs</span></div></div></div></header><!-- Main Content --><main class=\"flex-1 mx-auto w-full max-w-5xl px-4 py-4 sm:px-6 lg:px-8\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -424,117 +437,117 @@ func Layout(props LayoutProps) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "</main><!-- Footer --><footer class=\"mt-16 border-t border-slate-200 bg-white/70 py-10\"><div class=\"mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6\"><div class=\"flex flex-col gap-6 md:flex-row md:items-start md:justify-between\"><div class=\"max-w-md space-y-2.5\"><span class=\"font-sans text-base font-bold tracking-tight text-slate-900\">kābalso<span class=\"text-emerald-600\">saeima</span><span class=\"text-slate-400 font-mono text-sm font-normal\">.lv</span></span><p class=\"text-xs text-slate-500 leading-relaxed\">Neitrāls un atvērts Latvijas Republikas Saeimas balsojumu un lēmumu pārlūks. Mērķis ir sniegt skaidru, faktos balstītu informāciju ikvienam pilsonim un vēlētājam.</p>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "</main><!-- Footer --><footer class=\"mt-16 border-t border-slate-200 bg-white/70 py-10\"><div class=\"mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6\"><div class=\"flex flex-col gap-6 md:flex-row md:items-start md:justify-between\"><div class=\"max-w-md space-y-2.5\"><span class=\"font-sans text-base font-bold tracking-tight text-slate-900\">kābalso<span class=\"text-emerald-600\">saeima</span><span class=\"text-slate-400 font-mono text-sm font-normal\">.lv</span></span><p class=\"text-xs text-slate-500 leading-relaxed\">Neitrāls un atvērts Latvijas Republikas Saeimas balsojumu un lēmumu pārlūks. Mērķis ir sniegt skaidru, faktos balstītu informāciju ikvienam pilsonim un vēlētājam.</p>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if props.Metadata.LatestSittingDate != "" || props.Metadata.TotalVotes > 0 {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "<div class=\"inline-flex flex-wrap items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-mono text-slate-600\"><span class=\"h-1.5 w-1.5 rounded-full bg-emerald-500\"></span> ")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "<div class=\"inline-flex flex-wrap items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-mono text-slate-600\"><span class=\"h-1.5 w-1.5 rounded-full bg-emerald-500\"></span> ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			if props.Metadata.LatestSittingDate != "" {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "<span>Pēdējā sēde: <strong class=\"font-semibold text-slate-800\">")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				var templ_7745c5c3_Var27 string
-				templ_7745c5c3_Var27, templ_7745c5c3_Err = templ.JoinStringErrs(props.Metadata.LatestSittingDate)
-				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 152, Col: 112}
-				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var27))
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "</strong></span> ")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-			}
-			if props.Metadata.FormattedSyncDate != "" {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "<span class=\"text-slate-300\">·</span> <span>Atjaunots: <strong class=\"font-semibold text-slate-800\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "<span>Pēdējā sēde: <strong class=\"font-semibold text-slate-800\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var28 string
-				templ_7745c5c3_Var28, templ_7745c5c3_Err = templ.JoinStringErrs(props.Metadata.FormattedSyncDate)
+				templ_7745c5c3_Var28, templ_7745c5c3_Err = templ.JoinStringErrs(props.Metadata.LatestSittingDate)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 156, Col: 106}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 157, Col: 112}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var28))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 44, "</strong></span> ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "</strong></span> ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
-			if props.Metadata.TotalVotes > 0 {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, "<span class=\"text-slate-300\">·</span> <span>")
+			if props.Metadata.FormattedSyncDate != "" {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 44, "<span class=\"text-slate-300\">·</span> <span>Atjaunots: <strong class=\"font-semibold text-slate-800\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var29 string
-				templ_7745c5c3_Var29, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(props.Metadata.TotalVotes))
+				templ_7745c5c3_Var29, templ_7745c5c3_Err = templ.JoinStringErrs(props.Metadata.FormattedSyncDate)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 160, Col: 55}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 161, Col: 106}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var29))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, " balsojumi</span>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, "</strong></span> ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 47, "</div>")
+			if props.Metadata.TotalVotes > 0 {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, "<span class=\"text-slate-300\">·</span> <span>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var30 string
+				templ_7745c5c3_Var30, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(props.Metadata.TotalVotes))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 165, Col: 55}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var30))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 47, " balsojumi</span>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 48, "</div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 48, "</div><div class=\"space-y-2 text-xs text-slate-500\"><div class=\"font-semibold text-slate-900\">Oficiālie datu avoti:</div><ul class=\"space-y-1\"><li><a href=\"https://www.saeima.lv\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-1 hover:text-emerald-700\"><span>Saeimas sēžu stenogrammas un protokoli (saeima.lv)</span></a></li><li><a href=\"https://data.gov.lv\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-1 hover:text-emerald-700\"><span>Latvijas Atvērto datu portāls (data.gov.lv)</span></a></li></ul></div></div><!-- Civic Info, Methodology & Open Data Expandable Sections --><div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 text-xs\"><details class=\"group rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 open:bg-white transition\"><summary class=\"font-semibold text-slate-800 cursor-pointer list-none flex items-center justify-between gap-2 select-none\"><span>Par projektu</span> <span class=\"text-slate-400 group-open:rotate-180 transition-transform text-[10px]\">▼</span></summary><p class=\"mt-2 text-[11px] text-slate-600 leading-relaxed\"><strong>Kā Balso Saeima</strong> ir pilsoniska iniciatīva, kas pārvērš Saeimas sēžu protokolus un stenogrammas viegli pārskatāmā formā bez politiskas interpretācijas. Visi lēmumi ir tieši sasaistīti ar oficiālajiem pirmavotiem.</p></details> <details class=\"group rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 open:bg-white transition\"><summary class=\"font-semibold text-slate-800 cursor-pointer list-none flex items-center justify-between gap-2 select-none\"><span>Metodoloģija</span> <span class=\"text-slate-400 group-open:rotate-180 transition-transform text-[10px]\">▼</span></summary><p class=\"mt-2 text-[11px] text-slate-600 leading-relaxed\">Kvorums (Satversmes 24. pants) prasa vismaz 50 balsojošus deputātus; reģistrēšanās zālē bez balsošanas pogas nospiešanas tiek uzskaitīta kā kvoruma manevrs. Deputātu apmeklētība un frakcijas disciplīna tiek rēķināta tikai par viņu aktīvā mandāta periodiem un faktisko frakciju katra balsojuma dienā.</p></details> <details class=\"group rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 open:bg-white transition\"><summary class=\"font-semibold text-slate-800 cursor-pointer list-none flex items-center justify-between gap-2 select-none\"><span>Kods un atvērtie dati</span> <span class=\"text-slate-400 group-open:rotate-180 transition-transform text-[10px]\">▼</span></summary><div class=\"mt-2 text-[11px] text-slate-600 leading-relaxed space-y-1.5\"><p>Projekta pirmkods un JSON datu kopas ir brīvi pieejamas pētniekiem un žurnālistiem:</p><div class=\"flex flex-wrap items-center gap-2 font-mono text-[10px]\"><a href=\"https://github.com/FisersDavis/kabalsosaeima\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-emerald-700 hover:underline font-semibold\">GitHub</a> <span class=\"text-slate-300\">·</span> <a href=\"")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var30 templ.SafeURL
-		templ_7745c5c3_Var30, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(props.BasePath, "/data/votes.json")))
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 215, Col: 77}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var30))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 49, "\" class=\"text-slate-700 hover:text-emerald-700 hover:underline\">votes.json</a> <span class=\"text-slate-300\">·</span> <a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 49, "</div><div class=\"space-y-2 text-xs text-slate-500\"><div class=\"font-semibold text-slate-900\">Oficiālie datu avoti:</div><ul class=\"space-y-1\"><li><a href=\"https://www.saeima.lv\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-1 hover:text-emerald-700\"><span>Saeimas sēžu stenogrammas un protokoli (saeima.lv)</span></a></li><li><a href=\"https://data.gov.lv\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-1 hover:text-emerald-700\"><span>Latvijas Atvērto datu portāls (data.gov.lv)</span></a></li></ul></div></div><!-- Civic Info, Methodology & Open Data Expandable Sections --><div class=\"grid grid-cols-1 md:grid-cols-3 gap-3 text-xs\"><details class=\"group rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 open:bg-white transition\"><summary class=\"font-semibold text-slate-800 cursor-pointer list-none flex items-center justify-between gap-2 select-none\"><span>Par projektu</span> <span class=\"text-slate-400 group-open:rotate-180 transition-transform text-[10px]\">▼</span></summary><p class=\"mt-2 text-[11px] text-slate-600 leading-relaxed\"><strong>Kā Balso Saeima</strong> ir pilsoniska iniciatīva, kas pārvērš Saeimas sēžu protokolus un stenogrammas viegli pārskatāmā formā bez politiskas interpretācijas. Visi lēmumi ir tieši sasaistīti ar oficiālajiem pirmavotiem.</p></details> <details class=\"group rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 open:bg-white transition\"><summary class=\"font-semibold text-slate-800 cursor-pointer list-none flex items-center justify-between gap-2 select-none\"><span>Metodoloģija</span> <span class=\"text-slate-400 group-open:rotate-180 transition-transform text-[10px]\">▼</span></summary><p class=\"mt-2 text-[11px] text-slate-600 leading-relaxed\">Kvorums (Satversmes 24. pants) prasa vismaz 50 balsojošus deputātus; reģistrēšanās zālē bez balsošanas pogas nospiešanas tiek uzskaitīta kā kvoruma manevrs. Deputātu apmeklētība un frakcijas disciplīna tiek rēķināta tikai par viņu aktīvā mandāta periodiem un faktisko frakciju katra balsojuma dienā.</p></details> <details class=\"group rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 open:bg-white transition\"><summary class=\"font-semibold text-slate-800 cursor-pointer list-none flex items-center justify-between gap-2 select-none\"><span>Kods un atvērtie dati</span> <span class=\"text-slate-400 group-open:rotate-180 transition-transform text-[10px]\">▼</span></summary><div class=\"mt-2 text-[11px] text-slate-600 leading-relaxed space-y-1.5\"><p>Projekta pirmkods un JSON datu kopas ir brīvi pieejamas pētniekiem un žurnālistiem:</p><div class=\"flex flex-wrap items-center gap-2 font-mono text-[10px]\"><a href=\"https://github.com/FisersDavis/kabalsosaeima\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-emerald-700 hover:underline font-semibold\">GitHub</a> <span class=\"text-slate-300\">·</span> <a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var31 templ.SafeURL
-		templ_7745c5c3_Var31, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(props.BasePath, "/data/mps.json")))
+		templ_7745c5c3_Var31, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(props.BasePath, "/data/votes.json")))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 217, Col: 75}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 220, Col: 77}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var31))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 50, "\" class=\"text-slate-700 hover:text-emerald-700 hover:underline\">mps.json</a> <span class=\"text-slate-300\">·</span> <a href=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 50, "\" class=\"text-slate-700 hover:text-emerald-700 hover:underline\">votes.json</a> <span class=\"text-slate-300\">·</span> <a href=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var32 templ.SafeURL
-		templ_7745c5c3_Var32, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(props.BasePath, "/data/mandates.json")))
+		templ_7745c5c3_Var32, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(props.BasePath, "/data/mps.json")))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 219, Col: 80}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 222, Col: 75}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var32))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 51, "\" class=\"text-slate-700 hover:text-emerald-700 hover:underline\">mandates.json</a></div></div></details></div><div class=\"rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-[11px] text-slate-500 leading-relaxed\"><strong class=\"text-slate-700\">Metodoloģiskā piezīme:</strong> Saeimas procedūrā statusā <em>Nebalsoja</em> tiek iekļauti deputāti, kuri ir reģistrējušies sēžu zālē, bet nav nospieduši nevienu no balsošanas pogām (bieži izmantota taktika kvoruma noraušanai), kā arī deputāti, kuri balsojuma brīdī nebija klātesoši. Visi dati tiek atjaunoti automātiski pēc katras kārtējās ceturtdienas sēdes.</div><div class=\"flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100 text-xs text-slate-400\"><p>© 2026 kābalsosaeima.lv · Atvērtā koda pilsoniskā iniciatīva</p><span>Veidots sabiedrības informēšanai un atklātībai</span></div></div></footer></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 51, "\" class=\"text-slate-700 hover:text-emerald-700 hover:underline\">mps.json</a> <span class=\"text-slate-300\">·</span> <a href=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var33 templ.SafeURL
+		templ_7745c5c3_Var33, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(props.BasePath, "/data/mandates.json")))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `layout.templ`, Line: 224, Col: 80}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var33))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 52, "\" class=\"text-slate-700 hover:text-emerald-700 hover:underline\">mandates.json</a></div></div></details></div><div class=\"rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-[11px] text-slate-500 leading-relaxed\"><strong class=\"text-slate-700\">Metodoloģiskā piezīme:</strong> Saeimas procedūrā statusā <em>Nebalsoja</em> tiek iekļauti deputāti, kuri ir reģistrējušies sēžu zālē, bet nav nospieduši nevienu no balsošanas pogām (bieži izmantota taktika kvoruma noraušanai), kā arī deputāti, kuri balsojuma brīdī nebija klātesoši. Visi dati tiek atjaunoti automātiski pēc katras kārtējās ceturtdienas sēdes.</div><div class=\"flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100 text-xs text-slate-400\"><p>© 2026 kābalsosaeima.lv · Atvērtā koda pilsoniskā iniciatīva</p><span>Veidots sabiedrības informēšanai un atklātībai</span></div></div></footer></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -693,15 +693,88 @@ func ActiveTermYears(lp LayoutProps) string {
 
 // LayoutProps defines metadata and navigation state for base layout.
 type LayoutProps struct {
-	Title        string
-	Description  string
-	CanonicalURL string
-	ActiveNav    string // "votes", "mps"
-	Metadata     data.SiteMetadata
-	TermNumber   int
-	TermYears    string
-	BasePath     string
-	Terms        []TermNavItem
+	Title         string
+	Description   string
+	CanonicalURL  string
+	ActiveNav     string // "votes", "mps"
+	Metadata      data.SiteMetadata
+	TermNumber    int
+	TermYears     string
+	BasePath      string
+	IsActiveTerm  bool
+	ActiveMPCount int
+	Terms         []TermNavItem
+}
+
+// EffectiveActiveMPCount returns the active deputy count badge value (defaults to 100).
+func EffectiveActiveMPCount(lp LayoutProps) int {
+	if lp.ActiveMPCount > 0 {
+		return lp.ActiveMPCount
+	}
+	return 100
+}
+
+// IsLayoutTermActive reports whether the currently rendered parliamentary term is active (not archived).
+func IsLayoutTermActive(lp LayoutProps) bool {
+	if lp.IsActiveTerm {
+		return true
+	}
+	if len(lp.Terms) > 0 {
+		cur := ActiveTermNumber(lp)
+		for _, t := range lp.Terms {
+			if t.Term == cur {
+				return t.IsActive
+			}
+		}
+	}
+	return lp.BasePath == ""
+}
+
+// DirectoryActiveCount counts how many items in an MP directory have IsActive == true.
+func DirectoryActiveCount(items []MPDirectoryItem) int {
+	n := 0
+	for _, it := range items {
+		if it.MP != nil && it.MP.IsActive {
+			n++
+		}
+	}
+	if n == 0 {
+		return len(items)
+	}
+	return n
+}
+
+// IsConstitutionalAmendmentVote reports whether a vote is a final-reading Satversme amendment
+// subject to Satversme Art. 76 (2/3 quorum = 67 MPs and 2/3 majority of present MPs).
+func IsConstitutionalAmendmentVote(v *data.Vote) bool {
+	if v == nil || v.VoteType != "likums" {
+		return false
+	}
+	titleLow := strings.ToLower(v.OfficialTitle)
+	if !strings.Contains(titleLow, "satversm") {
+		return false
+	}
+	if !strings.Contains(titleLow, "grozījum") && !strings.Contains(titleLow, "likumprojekts") {
+		return false
+	}
+	if v.Reading != nil && *v.Reading == 3 {
+		return true
+	}
+	stageLow := strings.ToLower(v.ReadingStage)
+	return strings.Contains(stageLow, "3. las") || strings.Contains(stageLow, "galīg")
+}
+
+// VoteQuorumThreshold returns the constitutional quorum requirement (67 for Satversme Art. 76, 50 for Art. 24).
+func VoteQuorumThreshold(v *data.Vote) int {
+	if IsConstitutionalAmendmentVote(v) {
+		return 67
+	}
+	return 50
+}
+
+// NotFoundProps defines props for the 404.html error page.
+type NotFoundProps struct {
+	LayoutProps LayoutProps
 }
 
 // NavLinkClass returns Tailwind classes for active vs inactive navbar links.

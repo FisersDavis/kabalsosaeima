@@ -296,14 +296,36 @@ templ MPView(props MPProps) {
 						visibleHistory = visibleHistory[:maxHistoryRows]
 					}
 				}}
-				<div class="px-5 py-3.5 bg-slate-50/90 border-b border-slate-200 flex items-center justify-between gap-2">
-					<h2 class="text-sm font-bold text-slate-900">
-						Balsojumu vēsture ({ fmt.Sprint(len(props.History)) } balsojumi)
-					</h2>
-					if len(props.History) > maxHistoryRows {
-						<span class="text-[11px] text-slate-500 font-mono">
-							Rādīti jaunākie { fmt.Sprint(maxHistoryRows) }
-						</span>
+				<div class="px-5 py-3.5 bg-slate-50/90 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+					<div class="flex items-center gap-2">
+						<h2 class="text-sm font-bold text-slate-900">
+							Balsojumu vēsture ({ fmt.Sprint(len(props.History)) } balsojumi)
+						</h2>
+						if len(props.History) > maxHistoryRows {
+							<span class="text-[11px] text-slate-500 font-mono">
+								· jaunākie { fmt.Sprint(maxHistoryRows) }
+							</span>
+						}
+					</div>
+					if len(props.History) > 0 {
+						<div class="flex items-center gap-2">
+							<select
+								id="mp-history-decision"
+								class="rounded-lg border border-slate-200 bg-white py-1 px-2 text-xs text-slate-700 font-medium focus:border-slate-400 focus:outline-none cursor-pointer shadow-2xs"
+							>
+								<option value="ALL">Visi lēmumi</option>
+								<option value="PAR">Par</option>
+								<option value="PRET">Pret</option>
+								<option value="ATTURAS">Atturas</option>
+								<option value="NEBALSO">Nebalsoja</option>
+							</select>
+							<input
+								type="text"
+								id="mp-history-search"
+								placeholder="Meklēt balsojumu..."
+								class="w-40 sm:w-52 rounded-lg border border-slate-200 bg-white py-1 px-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400 shadow-2xs"
+							/>
+						</div>
 					}
 				</div>
 
@@ -318,7 +340,11 @@ templ MPView(props MPProps) {
 								result = ResultLabel(voteObj.Result)
 							}
 						}}
-						<div class="p-3.5 flex items-center justify-between gap-3 hover:bg-slate-50/60 transition">
+						<div
+							class="mp-history-row p-3.5 flex items-center justify-between gap-3 hover:bg-slate-50/60 transition"
+							data-title={ strings.ToLower(title + " " + h.SittingDate) }
+							data-decision={ strings.ToUpper(h.Record.Decision) }
+						>
 							<div class="min-w-0 flex-1">
 								<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/balsojumi/%s/", h.VoteID))) } class="font-bold text-slate-900 hover:text-emerald-700 transition">
 									{ title }
@@ -341,7 +367,11 @@ templ MPView(props MPProps) {
 							</div>
 						</div>
 					}
+					<div id="mp-history-empty" class="hidden p-8 text-center text-slate-400 text-xs">
+						Nav atrasts neviens balsojums pēc izvēlētā filtra.
+					</div>
 				</div>
+				<script src="/assets/js/mp-filter.js"></script>
 			</section>
 
 			<!-- Official Verification & Data Sources Section -->

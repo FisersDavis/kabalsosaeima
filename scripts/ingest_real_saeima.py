@@ -92,7 +92,7 @@ CATEGORIES = [
     {
         "id": "socialie",
         "label": "Veselība un labklājība",
-        "keywords": ["pensij", "pabalst", "veselīb", "ārstniecīb", "bērn", "invalīd", "darba", "izglītīb", "sociāl", "pacient", "zāļu", "medicin", "skol"],
+        "keywords": ["pensij", "pabalst", "veselīb", "ārstniecīb", "bērn", "invalīd", "darba likum", "darba tirg", "darba aizsardz", "darba samaks", "darba attiecīb", "izglītīb", "sociāl", "pacient", "zāļu", "medicin", "skol"],
     },
     {
         "id": "administracija",
@@ -101,12 +101,33 @@ CATEGORIES = [
     },
 ]
 
+PARLIAMENTARY_GOVERNANCE_KEYWORDS = [
+    "pilnvaru apstiprināšan",
+    "pilnvaru izbeigšan",
+    "mandāta apstiprināšan",
+    "uzticības izteikšan",
+    "neuzticības izteikšan",
+    "saeimas komisiju sastāv",
+    "pastāvīgo komisiju izveidošan",
+    "saeimas prezidij",
+]
+
 
 def detect_category(title: str, section: str = "") -> dict:
     combined = f"{title} {section}".lower()
+    # Strip procedural agenda phrase so "darba kārtībā" never triggers labor/social keywords
+    cleaned = re.sub(r"darba\s+kārtīb\w*", " ", combined)
+
+    # Parliamentary mandate confirmations, Cabinet confidence, and committee setup belong to Valsts pārvalde
+    # (prevents "Rīgas vēlēšanu apgabalā" from misclassifying mandate confirmations as Tiesiskums)
+    if any(kw in cleaned for kw in PARLIAMENTARY_GOVERNANCE_KEYWORDS):
+        # Preserve foreign/security topics if a Prezidijs/agenda motion is specifically about NATO/defense
+        if not any(kw in cleaned for kw in CATEGORIES[0]["keywords"]):
+            return {"id": "administracija", "label": "Valsts pārvalde"}
+
     for cat in CATEGORIES:
         for kw in cat["keywords"]:
-            if kw in combined:
+            if kw in cleaned:
                 return {"id": cat["id"], "label": cat["label"]}
     return {"id": "administracija", "label": "Valsts pārvalde"}
 
