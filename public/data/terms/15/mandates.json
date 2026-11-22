@@ -1,0 +1,1637 @@
+[
+  {
+    "mpId": "mp-1",
+    "saeimaId": "15-agnese-kupaca",
+    "name": "Agnese Kupača",
+    "slug": "agnese-kupaca",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-agnese-kupaca/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-2",
+    "saeimaId": "15-agnese-lace",
+    "name": "Agnese Lāce",
+    "slug": "agnese-lace",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-agnese-lace/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-3",
+    "saeimaId": "15-ainars-latkovskis",
+    "name": "Ainars Latkovskis",
+    "slug": "ainars-latkovskis",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-ainars-latkovskis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-4",
+    "saeimaId": "15-ainars-slesers",
+    "name": "Ainārs Šlesers",
+    "slug": "ainars-slesers",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-ainars-slesers/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-5",
+    "saeimaId": "15-aiva-viksna",
+    "name": "Aiva Vīksna",
+    "slug": "aiva-viksna",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-aiva-viksna/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-6",
+    "saeimaId": "15-aivars-kraps",
+    "name": "Aivars Kraps",
+    "slug": "aivars-kraps",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-aivars-kraps/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-7",
+    "saeimaId": "15-aleksandrs-bartasevics",
+    "name": "Aleksandrs Bartaševičs",
+    "slug": "aleksandrs-bartasevics",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-aleksandrs-bartasevics/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-8",
+    "saeimaId": "15-aleksejs-ignatjevs",
+    "name": "Aleksejs Ignatjevs",
+    "slug": "aleksejs-ignatjevs",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-aleksejs-ignatjevs/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-9",
+    "saeimaId": "15-aleksejs-mackevics",
+    "name": "Aleksejs Mackevičs",
+    "slug": "aleksejs-mackevics",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-aleksejs-mackevics/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-10",
+    "saeimaId": "15-andis-caunitis",
+    "name": "Andis Caunītis",
+    "slug": "andis-caunitis",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-andis-caunitis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-11",
+    "saeimaId": "15-andrejs-jakovlevs",
+    "name": "Andrejs Jakovļevs",
+    "slug": "andrejs-jakovlevs",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-andrejs-jakovlevs/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-12",
+    "saeimaId": "15-andrejs-judins",
+    "name": "Andrejs Judins",
+    "slug": "andrejs-judins",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-andrejs-judins/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-13",
+    "saeimaId": "15-andrejs-klementjevs",
+    "name": "Andrejs Klementjevs",
+    "slug": "andrejs-klementjevs",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-andrejs-klementjevs/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-14",
+    "saeimaId": "15-andrejs-pagors",
+    "name": "Andrejs Pagors",
+    "slug": "andrejs-pagors",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-andrejs-pagors/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-15",
+    "saeimaId": "15-andrejs-svilans",
+    "name": "Andrejs Svilāns",
+    "slug": "andrejs-svilans",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-andrejs-svilans/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-16",
+    "saeimaId": "15-andris-kulbergs",
+    "name": "Andris Kulbergs",
+    "slug": "andris-kulbergs",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": "2026-11-20"
+      }
+    ],
+    "note": "Uz Ministru kabineta locekļa amata pienākumu pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-andris-kulbergs/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-17",
+    "saeimaId": "15-andris-skride",
+    "name": "Andris Skride",
+    "slug": "andris-skride",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-andris-skride/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-18",
+    "saeimaId": "15-andris-spruds",
+    "name": "Andris Sprūds",
+    "slug": "andris-spruds",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-andris-spruds/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-19",
+    "saeimaId": "15-andris-suvajevs",
+    "name": "Andris Šuvajevs",
+    "slug": "andris-suvajevs",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-andris-suvajevs/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-20",
+    "saeimaId": "15-anete-bike",
+    "name": "Anete Biķe",
+    "slug": "anete-bike",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-anete-bike/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-21",
+    "saeimaId": "15-antonina-nenaseva",
+    "name": "Antoņina Ņenaševa",
+    "slug": "antonina-nenaseva",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-antonina-nenaseva/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-22",
+    "saeimaId": "15-arturs-butans",
+    "name": "Artūrs Butāns",
+    "slug": "arturs-butans",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-arturs-butans/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-23",
+    "saeimaId": "15-arturs-klebahs",
+    "name": "Artūrs Klēbahs",
+    "slug": "arturs-klebahs",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-arturs-klebahs/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-24",
+    "saeimaId": "15-atis-svinka",
+    "name": "Atis Švinka",
+    "slug": "atis-svinka",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-atis-svinka/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-25",
+    "saeimaId": "15-baiba-atmane",
+    "name": "Baiba Atmane",
+    "slug": "baiba-atmane",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-baiba-atmane/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-26",
+    "saeimaId": "15-baiba-braze",
+    "name": "Baiba Braže",
+    "slug": "baiba-braze",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-baiba-braze/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-27",
+    "saeimaId": "15-ceslavs-batna",
+    "name": "Česlavs Batņa",
+    "slug": "ceslavs-batna",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": "2026-11-20"
+      }
+    ],
+    "note": "Uz Ministru kabineta locekļa amata pienākumu pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-ceslavs-batna/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-28",
+    "saeimaId": "15-dagnis-straubergs",
+    "name": "Dagnis Straubergs",
+    "slug": "dagnis-straubergs",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-dagnis-straubergs/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-29",
+    "saeimaId": "15-dana-slesere",
+    "name": "Dana Šlesere",
+    "slug": "dana-slesere",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-dana-slesere/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-30",
+    "saeimaId": "15-davis-melnalksnis",
+    "name": "Dāvis Melnalksnis",
+    "slug": "davis-melnalksnis",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-davis-melnalksnis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-31",
+    "saeimaId": "15-edgars-darznieks",
+    "name": "Edgars Dārznieks",
+    "slug": "edgars-darznieks",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-edgars-darznieks/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-32",
+    "saeimaId": "15-edgars-putra",
+    "name": "Edgars Putra",
+    "slug": "edgars-putra",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": "2026-11-20"
+      }
+    ],
+    "note": "Uz Ministru kabineta locekļa amata pienākumu pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-edgars-putra/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-33",
+    "saeimaId": "15-edgars-stelmahers",
+    "name": "Edgars Štelmahers",
+    "slug": "edgars-stelmahers",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": "2026-11-20"
+      }
+    ],
+    "note": "Uz Ministru kabineta locekļa amata pienākumu pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-edgars-stelmahers/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-34",
+    "saeimaId": "15-edgars-tavars",
+    "name": "Edgars Tavars",
+    "slug": "edgars-tavars",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": "2026-11-20"
+      }
+    ],
+    "note": "Uz Ministru kabineta locekļa amata pienākumu pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-edgars-tavars/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-35",
+    "saeimaId": "15-edmunds-jurevics",
+    "name": "Edmunds Jurēvics",
+    "slug": "edmunds-jurevics",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-edmunds-jurevics/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-36",
+    "saeimaId": "15-edmunds-zivtins",
+    "name": "Edmunds Zivtiņš",
+    "slug": "edmunds-zivtins",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-edmunds-zivtins/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-37",
+    "saeimaId": "15-eduards-zivtins",
+    "name": "Eduards Zivtiņš",
+    "slug": "eduards-zivtins",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-eduards-zivtins/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-38",
+    "saeimaId": "15-edvards-smiltens",
+    "name": "Edvards Smiltēns",
+    "slug": "edvards-smiltens",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-edvards-smiltens/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-39",
+    "saeimaId": "15-edvins-snore",
+    "name": "Edvīns Šnore",
+    "slug": "edvins-snore",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-edvins-snore/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-40",
+    "saeimaId": "15-evika-silina",
+    "name": "Evika Siliņa",
+    "slug": "evika-silina",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-evika-silina/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-41",
+    "saeimaId": "15-girts-lapins",
+    "name": "Ģirts Lapiņš",
+    "slug": "girts-lapins",
+    "active": [
+      {
+        "from": "2026-11-20",
+        "to": null
+      }
+    ],
+    "note": "Uz laiku, kamēr no Nacionālās apvienības \"Visu Latvijai!\"-\"Tēvzemei un Brīvībai/LNNK\" saraksta Rīgas vēlēšanu apgabala ievēlētais deputāts pilda Ministru kabineta locekļa amata pienākumus",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-girts-lapins/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-42",
+    "saeimaId": "15-gita-plaude",
+    "name": "Gita Plaude",
+    "slug": "gita-plaude",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-gita-plaude/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-43",
+    "saeimaId": "15-guntars-vitols",
+    "name": "Guntars Vītols",
+    "slug": "guntars-vitols",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-guntars-vitols/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-44",
+    "saeimaId": "15-ilmars-luksts",
+    "name": "Ilmārs Luksts",
+    "slug": "ilmars-luksts",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-ilmars-luksts/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-45",
+    "saeimaId": "15-ilze-indriksone",
+    "name": "Ilze Indriksone",
+    "slug": "ilze-indriksone",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": "2026-11-20"
+      }
+    ],
+    "note": "Uz Ministru kabineta locekļa amata pienākumu pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-ilze-indriksone/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-46",
+    "saeimaId": "15-inara-murniece",
+    "name": "Ināra Mūrniece",
+    "slug": "inara-murniece",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-inara-murniece/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-47",
+    "saeimaId": "15-inese-libina-egnere",
+    "name": "Inese Lībiņa-Egnere",
+    "slug": "inese-libina-egnere",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-inese-libina-egnere/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-48",
+    "saeimaId": "15-inga-berzina",
+    "name": "Inga Bērziņa",
+    "slug": "inga-berzina",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-inga-berzina/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-49",
+    "saeimaId": "15-inga-priede",
+    "name": "Inga Priede",
+    "slug": "inga-priede",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-inga-priede/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-50",
+    "saeimaId": "15-inna-djeri",
+    "name": "Inna Djeri",
+    "slug": "inna-djeri",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-inna-djeri/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-51",
+    "saeimaId": "15-ivars-abolins",
+    "name": "Ivars Āboliņš",
+    "slug": "ivars-abolins",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-ivars-abolins/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-52",
+    "saeimaId": "15-jana-simanovska",
+    "name": "Jana Simanovska",
+    "slug": "jana-simanovska",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-jana-simanovska/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-53",
+    "saeimaId": "15-janis-dombrava",
+    "name": "Jānis Dombrava",
+    "slug": "janis-dombrava",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": "2026-11-20"
+      }
+    ],
+    "note": "Uz Ministru kabineta locekļa amata pienākumu pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-janis-dombrava/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-54",
+    "saeimaId": "15-janis-dzerins",
+    "name": "Jānis Džeriņš",
+    "slug": "janis-dzerins",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-janis-dzerins/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-55",
+    "saeimaId": "15-janis-grasbergs",
+    "name": "Jānis Grasbergs",
+    "slug": "janis-grasbergs",
+    "active": [
+      {
+        "from": "2026-11-20",
+        "to": null
+      }
+    ],
+    "note": "Uz laiku, kamēr no Nacionālās apvienības \"Visu Latvijai!\"-\"Tēvzemei un Brīvībai/LNNK\" saraksta Vidzemes vēlēšanu apgabala ievēlētais deputāts pilda Ministru kabineta locekļa amata pienākumus",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-janis-grasbergs/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-56",
+    "saeimaId": "15-janis-jenzis",
+    "name": "Jānis Jenzis",
+    "slug": "janis-jenzis",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-janis-jenzis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-57",
+    "saeimaId": "15-janis-liepins",
+    "name": "Jānis Liepiņš",
+    "slug": "janis-liepins",
+    "active": [
+      {
+        "from": "2026-11-20",
+        "to": null
+      }
+    ],
+    "note": "Uz laiku, kamēr no APVIENOTĀ SARAKSTA - Latvijas Zaļā partijas, Latvijas Reģionu Apvienības, Liepājas partijas Rīgas vēlēšanu apgabala ievēlētais deputāts pilda Ministru kabineta locekļa amata pienākumus",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-janis-liepins/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-58",
+    "saeimaId": "15-janis-sterninieks",
+    "name": "Jānis Stērninieks",
+    "slug": "janis-sterninieks",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-janis-sterninieks/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-59",
+    "saeimaId": "15-janis-urtans",
+    "name": "Jānis Urtāns",
+    "slug": "janis-urtans",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-janis-urtans/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-60",
+    "saeimaId": "15-janis-vitenbergs",
+    "name": "Jānis Vitenbergs",
+    "slug": "janis-vitenbergs",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-janis-vitenbergs/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-61",
+    "saeimaId": "15-jekaterina-ivanova",
+    "name": "Jekaterina Ivanova",
+    "slug": "jekaterina-ivanova",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-jekaterina-ivanova/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-62",
+    "saeimaId": "15-jevgenija-safraneka",
+    "name": "Jevgēnija Šafraneka",
+    "slug": "jevgenija-safraneka",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-jevgenija-safraneka/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-63",
+    "saeimaId": "15-julija-sohina",
+    "name": "Jūlija Sohina",
+    "slug": "julija-sohina",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-julija-sohina/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-64",
+    "saeimaId": "15-julija-stepanenko",
+    "name": "Jūlija Stepaņenko",
+    "slug": "julija-stepanenko",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-julija-stepanenko/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-65",
+    "saeimaId": "15-jurgis-klotins",
+    "name": "Jurģis Klotiņš",
+    "slug": "jurgis-klotins",
+    "active": [
+      {
+        "from": "2026-11-20",
+        "to": null
+      }
+    ],
+    "note": "Uz laiku, kamēr no Nacionālās apvienības \"Visu Latvijai!\"-\"Tēvzemei un Brīvībai/LNNK\" saraksta Rīgas vēlēšanu apgabala ievēlētais deputāts pilda Ministru kabineta locekļa amata pienākumus",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-jurgis-klotins/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-66",
+    "saeimaId": "15-juris-lazdins",
+    "name": "Juris Lazdiņš",
+    "slug": "juris-lazdins",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-juris-lazdins/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-67",
+    "saeimaId": "15-juris-vilums",
+    "name": "Juris Viļums",
+    "slug": "juris-vilums",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-juris-vilums/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-68",
+    "saeimaId": "15-karina-mikelsone",
+    "name": "Karīna Miķelsone",
+    "slug": "karina-mikelsone",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-karina-mikelsone/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-69",
+    "saeimaId": "15-karina-sprude",
+    "name": "Karina Sprūde",
+    "slug": "karina-sprude",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-karina-sprude/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-70",
+    "saeimaId": "15-krista-burane",
+    "name": "Krista Burāne",
+    "slug": "krista-burane",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-krista-burane/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-71",
+    "saeimaId": "15-lauris-gruntmanis",
+    "name": "Lauris Gruntmanis",
+    "slug": "lauris-gruntmanis",
+    "active": [
+      {
+        "from": "2026-11-20",
+        "to": null
+      }
+    ],
+    "note": "Uz laiku, kamēr no APVIENOTĀ SARAKSTA - Latvijas Zaļā partijas, Latvijas Reģionu Apvienības, Liepājas partijas Rīgas vēlēšanu apgabala ievēlētais deputāts pilda Ministru kabineta locekļa amata pienākumus",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-lauris-gruntmanis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-72",
+    "saeimaId": "15-leontijs-morozs",
+    "name": "Leontijs Morozs",
+    "slug": "leontijs-morozs",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-leontijs-morozs/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-73",
+    "saeimaId": "15-liene-apine",
+    "name": "Liene Apine",
+    "slug": "liene-apine",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-liene-apine/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-74",
+    "saeimaId": "15-liga-mengelsone",
+    "name": "Līga Meņģelsone",
+    "slug": "liga-mengelsone",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-liga-mengelsone/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-75",
+    "saeimaId": "15-linda-liepina",
+    "name": "Linda Liepiņa",
+    "slug": "linda-liepina",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-linda-liepina/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-76",
+    "saeimaId": "15-linda-matisone",
+    "name": "Linda Matisone",
+    "slug": "linda-matisone",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-linda-matisone/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-77",
+    "saeimaId": "15-lubova-svecova",
+    "name": "Ļubova Švecova",
+    "slug": "lubova-svecova",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-lubova-svecova/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-78",
+    "saeimaId": "15-luize-utane",
+    "name": "Luīze Utāne",
+    "slug": "luize-utane",
+    "active": [
+      {
+        "from": "2026-11-20",
+        "to": null
+      }
+    ],
+    "note": "Uz laiku, kamēr no APVIENOTĀ SARAKSTA - Latvijas Zaļā partijas, Latvijas Reģionu Apvienības, Liepājas partijas Vidzemes vēlēšanu apgabala ievēlētais deputāts pilda Ministru kabineta locekļa amata pienākumus",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-luize-utane/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-79",
+    "saeimaId": "15-maija-armaneva",
+    "name": "Maija Armaņeva",
+    "slug": "maija-armaneva",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-maija-armaneva/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-80",
+    "saeimaId": "15-mairita-luse",
+    "name": "Mairita Lūse",
+    "slug": "mairita-luse",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-mairita-luse/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-81",
+    "saeimaId": "15-maris-dadzis",
+    "name": "Māris Dadzis",
+    "slug": "maris-dadzis",
+    "active": [
+      {
+        "from": "2026-11-20",
+        "to": null
+      }
+    ],
+    "note": "Uz laiku, kamēr no APVIENOTĀ SARAKSTA - Latvijas Zaļā partijas, Latvijas Reģionu Apvienības, Liepājas partijas Kurzemes vēlēšanu apgabala ievēlētais deputāts pilda Ministru kabineta locekļa amata pienākumus",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-maris-dadzis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-82",
+    "saeimaId": "15-maris-kucinskis",
+    "name": "Māris Kučinskis",
+    "slug": "maris-kucinskis",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-maris-kucinskis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-83",
+    "saeimaId": "15-maris-ozolins",
+    "name": "Māris Ozoliņš",
+    "slug": "maris-ozolins",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-maris-ozolins/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-84",
+    "saeimaId": "15-maris-truselis",
+    "name": "Māris Trušelis",
+    "slug": "maris-truselis",
+    "active": [
+      {
+        "from": "2026-11-20",
+        "to": null
+      }
+    ],
+    "note": "Uz laiku, kamēr no APVIENOTĀ SARAKSTA - Latvijas Zaļā partijas, Latvijas Reģionu Apvienības, Liepājas partijas Zemgales vēlēšanu apgabala ievēlētais deputāts pilda Ministru kabineta locekļa amata pienākumus",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-maris-truselis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-85",
+    "saeimaId": "15-martins-brencis",
+    "name": "Mārtiņš Brencis",
+    "slug": "martins-brencis",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-martins-brencis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-86",
+    "saeimaId": "15-martins-hirss",
+    "name": "Mārtiņš Hiršs",
+    "slug": "martins-hirss",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-martins-hirss/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-87",
+    "saeimaId": "15-martins-prisis",
+    "name": "Mārtiņš Prīsis",
+    "slug": "martins-prisis",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-martins-prisis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-88",
+    "saeimaId": "15-natalija-abola",
+    "name": "Natālija Ābola",
+    "slug": "natalija-abola",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-natalija-abola/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-89",
+    "saeimaId": "15-nauris-puntulis",
+    "name": "Nauris Puntulis",
+    "slug": "nauris-puntulis",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": "2026-11-20"
+      }
+    ],
+    "note": "Uz Ministru kabineta locekļa amata pienākumu pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-nauris-puntulis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-90",
+    "saeimaId": "15-nellija-kleinberga",
+    "name": "Nellija Kleinberga",
+    "slug": "nellija-kleinberga",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-nellija-kleinberga/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-91",
+    "saeimaId": "15-olga-petkevica",
+    "name": "Olga Petkeviča",
+    "slug": "olga-petkevica",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-olga-petkevica/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-92",
+    "saeimaId": "15-peteris-dimants",
+    "name": "Pēteris Dimants",
+    "slug": "peteris-dimants",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-peteris-dimants/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-93",
+    "saeimaId": "15-raimonds-bergmanis",
+    "name": "Raimonds Bergmanis",
+    "slug": "raimonds-bergmanis",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-raimonds-bergmanis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-94",
+    "saeimaId": "15-raimonds-vejonis",
+    "name": "Raimonds Vējonis",
+    "slug": "raimonds-vejonis",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-raimonds-vejonis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-95",
+    "saeimaId": "15-raivis-kalejs",
+    "name": "Raivis Kalējs",
+    "slug": "raivis-kalejs",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-raivis-kalejs/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-96",
+    "saeimaId": "15-ramona-petravica",
+    "name": "Ramona Petraviča",
+    "slug": "ramona-petravica",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-ramona-petravica/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-97",
+    "saeimaId": "15-regina-locmele",
+    "name": "Regīna Ločmele",
+    "slug": "regina-locmele",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-regina-locmele/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-98",
+    "saeimaId": "15-renars-putnins",
+    "name": "Renārs Putniņš",
+    "slug": "renars-putnins",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-renars-putnins/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-99",
+    "saeimaId": "15-roberts-zemaitis",
+    "name": "Roberts Žemaitis",
+    "slug": "roberts-zemaitis",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-roberts-zemaitis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-100",
+    "saeimaId": "15-rolands-keiss",
+    "name": "Rolands Keišs",
+    "slug": "rolands-keiss",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-rolands-keiss/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-101",
+    "saeimaId": "15-rudolfs-bremanis",
+    "name": "Rūdolfs Brēmanis",
+    "slug": "rudolfs-bremanis",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-rudolfs-bremanis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-102",
+    "saeimaId": "15-selma-teodora-levrence",
+    "name": "Selma Teodora Levrence",
+    "slug": "selma-teodora-levrence",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-selma-teodora-levrence/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-103",
+    "saeimaId": "15-ugis-mitrevics",
+    "name": "Uģis Mitrevics",
+    "slug": "ugis-mitrevics",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-ugis-mitrevics/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-104",
+    "saeimaId": "15-valdis-karklins",
+    "name": "Valdis Kārkliņš",
+    "slug": "valdis-karklins",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-valdis-karklins/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-105",
+    "saeimaId": "15-valdis-kotans",
+    "name": "Valdis Kotāns",
+    "slug": "valdis-kotans",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-valdis-kotans/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-106",
+    "saeimaId": "15-valters-bolevics",
+    "name": "Valters Bolevics",
+    "slug": "valters-bolevics",
+    "active": [
+      {
+        "from": "2026-11-20",
+        "to": null
+      }
+    ],
+    "note": "Uz laiku, kamēr no APVIENOTĀ SARAKSTA - Latvijas Zaļā partijas, Latvijas Reģionu Apvienības, Liepājas partijas Rīgas vēlēšanu apgabala ievēlētais deputāts pilda Ministru kabineta locekļa amata pienākumus",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-valters-bolevics/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-107",
+    "saeimaId": "15-viesturs-vitovskis",
+    "name": "Viesturs Vitovskis",
+    "slug": "viesturs-vitovskis",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": "2026-11-20"
+      }
+    ],
+    "note": "Uz Ministru kabineta locekļa amata pienākumu pildīšanas laiku",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-viesturs-vitovskis/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-108",
+    "saeimaId": "15-viktorija-pleskane",
+    "name": "Viktorija Pleškāne",
+    "slug": "viktorija-pleskane",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputātes mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-viktorija-pleskane/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  },
+  {
+    "mpId": "mp-109",
+    "saeimaId": "15-vjaceslavs-stepanenko",
+    "name": "Vjačeslavs Stepaņenko",
+    "slug": "vjaceslavs-stepanenko",
+    "active": [
+      {
+        "from": "2026-11-03",
+        "to": null
+      }
+    ],
+    "note": "Apstiprināts Saeimas deputāta mandāts",
+    "source": "https://www.saeima.lv/lv/sasaukumi/15-saeima/deputati/15-vjaceslavs-stepanenko/",
+    "fetchedAt": "2026-11-22T06:38:59Z"
+  }
+]

@@ -21,17 +21,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
-          node-version: 20
-          cache: npm
+          go-version-file: 'go.mod'
+          cache: true
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Download standalone Tailwind CLI
+        run: |
+          mkdir -p bin
+          curl -fsSL -o bin/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/download/v4.3.3/tailwindcss-linux-x64
+          chmod +x bin/tailwindcss
 
-      - name: Build production bundle
-        run: npm run build
+      - name: Run tests
+        run: go test ./...
+
+      - name: Build production static site
+        run: go run ./cmd/build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

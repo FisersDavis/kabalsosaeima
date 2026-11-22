@@ -28,11 +28,19 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+          cache: true
+
       - name: Fetch and verify Saeima votes
         id: sync_step
         run: |
-          python scripts/ingest_real_saeima.py
+          python scripts/scrape_mandates.py --term 15
+          python scripts/ingest_real_saeima.py --term 15
           python scripts/sentinel_check.py --mode integrity --update-metadata
+          go run ./cmd/build --validate-only
 
       - name: Alert on Failure (Create GitHub Issue & Email)
         if: failure() && steps.sync_step.outcome == 'failure'
@@ -45,6 +53,9 @@ jobs:
             REPORT="$REPORT\n\n[🔍 Pārbaudīt GitHub Action žurnālu](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
           fi
           
+          # Ensure label exists so alert creation never silently fails
+          gh label create "automated-alert" --color "d93f0b" --description "Automated data sync or healthcheck alert" --force || true
+
           # Check if an alert issue is already open to avoid spam
           EXISTING_ISSUE=$(gh issue list --state open --label "automated-alert" --json number -q '.[0].number' 2>/dev/null || true)
           if [ -z "$EXISTING_ISSUE" ]; then
@@ -73,17 +84,14 @@ jobs:
           git add public/data/
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(data): auto-sync Saeima voting records [skip ci]" && git push)
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
+      - name: Download standalone Tailwind CLI
+        run: |
+          mkdir -p bin
+          curl -fsSL -o bin/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/download/v4.3.3/tailwindcss-linux-x64
+          chmod +x bin/tailwindcss
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build static site
-        run: npm run build
+      - name: Build Go SSG static site
+        run: go run ./cmd/build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

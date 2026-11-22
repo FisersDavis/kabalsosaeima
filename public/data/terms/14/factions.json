@@ -1,0 +1,51 @@
+[
+  {
+    "id": "jv",
+    "name": "Jaunā VIENOTĪBA",
+    "shortName": "JV",
+    "color": "#00529B"
+  },
+  {
+    "id": "zzs",
+    "name": "Zaļo un Zemnieku savienība",
+    "shortName": "ZZS",
+    "color": "#1B5E20"
+  },
+  {
+    "id": "pro",
+    "name": "PROGRESĪVIE",
+    "shortName": "PRO",
+    "color": "#EA580C"
+  },
+  {
+    "id": "as",
+    "name": "APVIENOTAIS SARAKSTS",
+    "shortName": "AS",
+    "color": "#EAB308",
+    "textColor": "#713F12"
+  },
+  {
+    "id": "na",
+    "name": "Nacionālā apvienība",
+    "shortName": "NA",
+    "color": "#831843"
+  },
+  {
+    "id": "lpv",
+    "name": "LATVIJA PIRMAJĀ VIETĀ",
+    "shortName": "LPV",
+    "color": "#E11D48"
+  },
+  {
+    "id": "st",
+    "name": "Stabilitātei!",
+    "shortName": "S!",
+    "color": "#475569"
+  },
+  {
+    "id": "ind",
+    "name": "Pie frakcijām nepiederošie",
+    "shortName": "PIEFR",
+    "color": "#94A3B8"
+  }
+]
