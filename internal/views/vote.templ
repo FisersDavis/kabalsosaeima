@@ -519,7 +519,7 @@ templ Vote(props VoteProps) {
 											fill={ seat.Color }
 											stroke="#ffffff"
 											stroke-width="1.5"
-											class="transition-all hover:stroke-slate-900 hover:r-9 group-focus/seat:stroke-emerald-600 group-focus/seat:stroke-[2.5px] group-focus/seat:r-9"
+											class="transition-all hover:stroke-slate-900 hover:[r:9px] group-focus/seat:stroke-emerald-600 group-focus/seat:stroke-[2.5px] group-focus/seat:[r:9px]"
 										>
 											<title>{ fmt.Sprintf("%s (%s): %s", seat.Name, seat.FactionShort, DecisionLabel(seat.Decision)) }</title>
 										</circle>
@@ -555,7 +555,6 @@ templ Vote(props VoteProps) {
 										for _, f := range props.Store.Factions {
 											<option value={ f.ShortName }>{ f.Name } ({ f.ShortName })</option>
 										}
-										<option value="PIEFR">Pie frakcijām nepiederošie</option>
 									</select>
 								}
 								<div class="relative flex-1">

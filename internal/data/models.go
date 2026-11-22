@@ -132,3 +132,13 @@ type Faction struct {
 	Color     string `json:"color"`
 	TextColor string `json:"textColor,omitempty"`
 }
+
+// SiteMetadata holds sync timestamps and dataset health metadata from metadata.json.
+type SiteMetadata struct {
+	LastSync          string `json:"lastSync"`
+	FormattedSyncDate string `json:"formattedSyncDate"`
+	TotalVotes        int    `json:"totalVotes"`
+	LatestSittingDate string `json:"latestSittingDate"`
+	SaeimaTerm        int    `json:"saeimaTerm"`
+	Status            string `json:"status"`
+}

@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @source "../internal/views/**/*.templ";
+@source "../internal/views/**/*.go";
+@source "../assets/js/**/*.js";
 
 :root {
   color-scheme: light;

@@ -75,6 +75,15 @@
         }
       }
 
+      if (resetBtn) {
+        var isDefault = (!query && faction === 'ALL' && activeOnly === true);
+        if (isDefault) {
+          resetBtn.classList.add('hidden');
+        } else {
+          resetBtn.classList.remove('hidden');
+        }
+      }
+
       // Sync URL query params without reloading
       var params = new URLSearchParams();
       if (query) params.set('q', searchInput.value);
@@ -184,9 +193,9 @@
         if (searchInput) searchInput.value = '';
         if (factionSelect) factionSelect.value = 'ALL';
         if (activeToggle) {
-          activeToggle.setAttribute('data-active', 'false');
-          activeToggle.classList.remove('bg-slate-900', 'text-white', 'border-slate-900');
-          activeToggle.classList.add('bg-white', 'text-slate-700', 'border-slate-200');
+          activeToggle.setAttribute('data-active', 'true');
+          activeToggle.classList.add('bg-slate-900', 'text-white', 'border-slate-900');
+          activeToggle.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
         }
         applyFilter();
       });

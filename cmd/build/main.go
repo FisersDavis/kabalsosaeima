@@ -195,8 +195,26 @@ func copyStaticAssets(outDir, dataDir string) error {
 	}
 
 	// Copy data directory to dist/data for API/client compatibility (sentinel smoke checks, download links)
+	// Skip unused 27 MB mp_dossiers/ directory to keep deployment artifact lean.
 	distData := filepath.Join(outDir, "data")
-	if err := copyDir(dataDir, distData); err != nil {
+	_ = os.RemoveAll(filepath.Join(distData, "mp_dossiers"))
+	if err := filepath.Walk(dataDir, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		rel, err := filepath.Rel(dataDir, path)
+		if err != nil {
+			return err
+		}
+		if info.IsDir() && info.Name() == "mp_dossiers" {
+			return filepath.SkipDir
+		}
+		target := filepath.Join(distData, rel)
+		if info.IsDir() {
+			return os.MkdirAll(target, 0755)
+		}
+		return copyFile(path, target)
+	}); err != nil {
 		return fmt.Errorf("copying data to dist/data: %w", err)
 	}
 
@@ -229,6 +247,7 @@ func renderPages(store *data.Store, outDir string) error {
 			Description:  "Pārskatāms un neatkarīgs 14. Saeimas balsojumu arhīvs ar frakciju disciplīnas un deputātu dalības analīzi.",
 			CanonicalURL: "https://kabalsosaeima.lv/",
 			ActiveNav:    "votes",
+			Metadata:     store.Metadata,
 		},
 		Votes:         store.Votes,
 		Categories:    categories,
@@ -262,6 +281,7 @@ func renderPages(store *data.Store, outDir string) error {
 				Description:  v.Summary,
 				CanonicalURL: fmt.Sprintf("https://kabalsosaeima.lv/balsojumi/%s/", v.ID),
 				ActiveNav:    "votes",
+				Metadata:     store.Metadata,
 			},
 			Vote:     v,
 			Seats:    seats,
@@ -285,6 +305,7 @@ func renderPages(store *data.Store, outDir string) error {
 				Description:  fmt.Sprintf("Likumprojekta %s gaitas hronoloģija un balsojumu vēsture 14. Saeimā.", bt.BillNumber),
 				CanonicalURL: fmt.Sprintf("https://kabalsosaeima.lv/likumprojekti/%s/", bt.Slug),
 				ActiveNav:    "votes",
+				Metadata:     store.Metadata,
 			},
 			Timeline: bt,
 			Store:    store,
@@ -327,6 +348,7 @@ func renderPages(store *data.Store, outDir string) error {
 				Description:  fmt.Sprintf("Deputāta %s balsojumu statistika, frakcijas disciplīna un dalība 14. Saeimas sēdēs.", mp.Name),
 				CanonicalURL: fmt.Sprintf("https://kabalsosaeima.lv/deputati/%s/", slug),
 				ActiveNav:    "mps",
+				Metadata:     store.Metadata,
 			},
 			MP:         mp,
 			Mandate:    mandate,
@@ -341,6 +363,13 @@ func renderPages(store *data.Store, outDir string) error {
 		if err := writeHTML(mpPath, views.MPView(mpProps), ctx); err != nil {
 			return fmt.Errorf("rendering MP %s: %w", slug, err)
 		}
+
+		if mp.Slug != "" && mp.Slug != mp.ID {
+			redirectPath := filepath.Join(outDir, "deputati", mp.ID, "index.html")
+			if err := writeRedirectStub(redirectPath, fmt.Sprintf("/deputati/%s/", slug)); err != nil {
+				return fmt.Errorf("writing MP redirect stub %s: %w", mp.ID, err)
+			}
+		}
 	}
 
 	// Render Directory Index: dist/deputati/index.html
@@ -350,6 +379,7 @@ func renderPages(store *data.Store, outDir string) error {
 			Description:  "14. Saeimas deputātu saraksts, frakciju piederība, apmeklētības un frakcijas disciplīnas statistika.",
 			CanonicalURL: "https://kabalsosaeima.lv/deputati/",
 			ActiveNav:    "mps",
+			Metadata:     store.Metadata,
 		},
 		Items:    dirItems,
 		Factions: store.Factions,
@@ -379,4 +409,23 @@ func writeHTML(filePath string, comp renderable, ctx context.Context) error {
 	defer f.Close()
 
 	return comp.Render(ctx, f)
+}
+
+func writeRedirectStub(filePath, targetURL string) error {
+	if err := os.MkdirAll(filepath.Dir(filePath), 0755); err != nil {
+		return err
+	}
+	content := fmt.Sprintf(`<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv="refresh" content="0; url=%s"/>
+<link rel="canonical" href="https://kabalsosaeima.lv%s"/>
+<script>window.location.replace(%q);</script>
+<title>Pāradresācija...</title>
+</head>
+<body><a href="%s">Turpināt uz deputāta profilu</a></body>
+</html>
+`, targetURL, targetURL, targetURL, targetURL)
+	return os.WriteFile(filePath, []byte(content), 0644)
 }

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"time"
 )
@@ -15,6 +16,7 @@ type Store struct {
 	MPs             []MP
 	Mandates        []Mandate
 	Factions        []Faction
+	Metadata        SiteMetadata
 	Rollcalls       map[string][]RollcallRecord // keyed by voteID
 
 	// Indexed lookup maps
@@ -33,9 +35,10 @@ type Store struct {
 
 // MPVoteHistory associates a rollcall record with its vote sitting date.
 type MPVoteHistory struct {
-	VoteID   string
-	VoteDate string // YYYY-MM-DD
-	Record   RollcallRecord
+	VoteID      string
+	VoteDate    string // YYYY-MM-DD
+	SittingDate string // DD.MM.YYYY
+	Record      RollcallRecord
 }
 
 // ParseSittingDate converts Latvian format "DD.MM.YYYY" to ISO "YYYY-MM-DD".
@@ -131,9 +134,37 @@ func Load(dataDir string) (*Store, error) {
 	if err := json.Unmarshal(votesBytes, &s.Votes); err != nil {
 		return nil, fmt.Errorf("unmarshaling votes.json: %w", err)
 	}
+	// Sort votes chronologically descending by (SittingDate ISO DESC, SittingTime DESC, ID DESC)
+	sort.SliceStable(s.Votes, func(i, j int) bool {
+		di, _ := ParseSittingDate(s.Votes[i].SittingDate)
+		dj, _ := ParseSittingDate(s.Votes[j].SittingDate)
+		if di != dj {
+			return di > dj
+		}
+		if s.Votes[i].SittingTime != s.Votes[j].SittingTime {
+			return s.Votes[i].SittingTime > s.Votes[j].SittingTime
+		}
+		return s.Votes[i].ID > s.Votes[j].ID
+	})
 	for i := range s.Votes {
 		v := &s.Votes[i]
 		s.VoteByID[v.ID] = v
+	}
+
+	// 4b. Load metadata.json (if present) and populate fallbacks
+	metaPath := filepath.Join(dataDir, "metadata.json")
+	if metaBytes, err := os.ReadFile(metaPath); err == nil {
+		_ = json.Unmarshal(metaBytes, &s.Metadata)
+	}
+	s.Metadata.TotalVotes = len(s.Votes)
+	if s.Metadata.SaeimaTerm == 0 {
+		s.Metadata.SaeimaTerm = 14
+	}
+	if len(s.Votes) > 0 && s.Metadata.LatestSittingDate == "" {
+		s.Metadata.LatestSittingDate = s.Votes[0].SittingDate
+	}
+	if s.Metadata.FormattedSyncDate == "" {
+		s.Metadata.FormattedSyncDate = s.Metadata.LatestSittingDate
 	}
 
 	// 5. Load rollcalls
@@ -161,9 +192,10 @@ func Load(dataDir string) (*Store, error) {
 			mpMap[rec.MpID] = &records[j]
 
 			s.RollcallsByMP[rec.MpID] = append(s.RollcallsByMP[rec.MpID], MPVoteHistory{
-				VoteID:   v.ID,
-				VoteDate: isoDate,
-				Record:   rec,
+				VoteID:      v.ID,
+				VoteDate:    isoDate,
+				SittingDate: v.SittingDate,
+				Record:      rec,
 			})
 		}
 		s.RollcallByVoteAndMP[v.ID] = mpMap

@@ -4,11 +4,99 @@ import (
 	"regexp"
 	"sort"
 	"strings"
+	"unicode"
+	"unicode/utf8"
 
 	"github.com/FisersDavis/kabalsosaeima/internal/data"
 )
 
-var nonAlphanumericRegex = regexp.MustCompile(`[^a-z0-9]+`)
+var (
+	nonAlphanumericRegex = regexp.MustCompile(`[^a-z0-9]+`)
+	billPreamblePats     = []*regexp.Regexp{
+		regexp.MustCompile(`(?i)^\s*Par\s+likumprojekta\s+`),
+		regexp.MustCompile(`(?i)^\s*Par\s+likumprojektu\s+`),
+		regexp.MustCompile(`(?i)^\s*Likumprojekts\s+`),
+		regexp.MustCompile(`(?i)^\s*Par\s+lēmuma\s+projekta\s+`),
+		regexp.MustCompile(`(?i)^\s*Par\s+lēmuma\s+projektu\s+`),
+	}
+	billSuffixPats = []*regexp.Regexp{
+		regexp.MustCompile(`(?i)\s*\(\s*(?:Nr\.\s*)?\d+\/[A-Za-z0-9]+\s*\).*$`),
+		regexp.MustCompile(`(?i)\s*,\s*\d+\.\s*lasījums.*$`),
+		regexp.MustCompile(`(?i)\s+iekļaušanu\s+Saeimas\s+sēdes\s+darba\s+kārtībā.*$`),
+		regexp.MustCompile(`(?i)\s+izslēgšanu\s+no\s+Saeimas\s+sēdes\s+darba\s+kārtības.*$`),
+	}
+	colonLawPrefixPat = regexp.MustCompile(`(?i)^(?:\d+\.\s*priekšlikums|Par\s+priekšlikumu\s+termiņu[^:]*):\s*(.+)$`)
+)
+
+// cleanBillTitleCandidate strips parliamentary boilerplate from a candidate bill title.
+func cleanBillTitleCandidate(raw string) string {
+	t := strings.TrimSpace(raw)
+	if m := colonLawPrefixPat.FindStringSubmatch(t); len(m) > 1 {
+		t = strings.TrimSpace(m[1])
+	}
+	for _, pat := range billPreamblePats {
+		t = pat.ReplaceAllString(t, "")
+	}
+	for _, pat := range billSuffixPats {
+		t = pat.ReplaceAllString(t, "")
+	}
+	t = strings.TrimSpace(strings.Trim(t, ` "„”«»`))
+	if len(t) > 0 {
+		r, size := utf8.DecodeRuneInString(t)
+		return string(unicode.ToUpper(r)) + t[size:]
+	}
+	return strings.TrimSpace(raw)
+}
+
+func isProceduralOrAmendmentTitle(raw string) bool {
+	low := strings.ToLower(strings.TrimSpace(raw))
+	if colonLawPrefixPat.MatchString(raw) {
+		return false
+	}
+	prefixes := []string{
+		"par priekšlikumu",
+		"par iekļaušanu",
+		"par nodošanu",
+		"par izslēgšanu",
+		"par lēmuma projekta",
+		"steidzamības",
+	}
+	for _, p := range prefixes {
+		if strings.HasPrefix(low, p) {
+			return true
+		}
+	}
+	return strings.Contains(low, "priekšlikums")
+}
+
+func selectCanonicalBillTitle(votes []*data.Vote, fallback string) string {
+	// Pass 1: Substantive reading vote (voteType == "likums") that is not procedural/amendment boilerplate
+	for _, v := range votes {
+		raw := v.SimplifiedTitle
+		if raw == "" {
+			raw = v.OfficialTitle
+		}
+		if v.VoteType == "likums" && !isProceduralOrAmendmentTitle(raw) {
+			if cleaned := cleanBillTitleCandidate(raw); cleaned != "" {
+				return cleaned
+			}
+		}
+	}
+	// Pass 2: Any vote with a non-procedural/amendment title or a "<prefix>: <Law Title>" title
+	for _, v := range votes {
+		for _, raw := range []string{v.SimplifiedTitle, v.OfficialTitle} {
+			if raw == "" {
+				continue
+			}
+			if !isProceduralOrAmendmentTitle(raw) || strings.HasPrefix(strings.ToLower(strings.TrimSpace(raw)), "par lēmuma projekta ") {
+				if cleaned := cleanBillTitleCandidate(raw); cleaned != "" && !isProceduralOrAmendmentTitle(cleaned) {
+					return cleaned
+				}
+			}
+		}
+	}
+	return cleanBillTitleCandidate(fallback)
+}
 
 // CleanBillSlug converts a Saeima bill number like "1149/Lp14" or "Nr. 56/Lp14"
 // to a clean ASCII URL slug: "1149-lp14" or "56-lp14".
@@ -161,6 +249,13 @@ func GroupBillTimelines(store *data.Store) map[string]*BillTimeline {
 			dj, _ := data.ParseSittingDate(bt.Stages[j].SittingDate)
 			return di < dj
 		})
+
+		// Collect all votes for this bill to determine best canonical title
+		var allBillVotes []*data.Vote
+		for _, st := range bt.Stages {
+			allBillVotes = append(allBillVotes, st.Votes...)
+		}
+		bt.Title = selectCanonicalBillTitle(allBillVotes, bt.Title)
 	}
 
 	return timelines

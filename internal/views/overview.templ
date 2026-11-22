@@ -91,6 +91,7 @@ templ Overview(props OverviewProps) {
 						<option value="ALL">Visi rezultāti</option>
 						<option value="PIENEMTS">Pieņemtie</option>
 						<option value="NORAIDITS">Noraidītie</option>
+						<option value="NAV_KVORUMA">Nav kvoruma</option>
 					</select>
 				</div>
 
@@ -110,7 +111,7 @@ templ Overview(props OverviewProps) {
 						data-category={ v.Category.ID }
 						data-stage={ v.VoteType }
 						data-outcome={ v.Result }
-						data-tier1={ fmt.Sprintf("%t", v.IsTier1) }
+						data-tier1={ fmt.Sprintf("%t", IsFinalReadingVote(v)) }
 					>
 						<!-- Metadata Eyebrow -->
 						<div class="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-400 font-medium tracking-wide">

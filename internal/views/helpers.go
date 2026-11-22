@@ -578,12 +578,29 @@ func FormatPct(v float64) string {
 	return fmt.Sprintf("%.1f", v)
 }
 
+// IsFinalReadingVote returns true if a vote represents a final substantive adoption vote
+// (3rd reading, urgent 2nd reading, or final reading stage).
+func IsFinalReadingVote(v data.Vote) bool {
+	if v.VoteType != "likums" {
+		return false
+	}
+	if v.Reading != nil && *v.Reading == 3 {
+		return true
+	}
+	if v.Reading != nil && *v.Reading == 2 && v.IsUrgent {
+		return true
+	}
+	stage := strings.ToLower(v.ReadingStage)
+	return strings.Contains(stage, "3. las") || strings.Contains(stage, "galīg") || strings.Contains(stage, "steidzam")
+}
+
 // LayoutProps defines metadata and navigation state for base layout.
 type LayoutProps struct {
 	Title        string
 	Description  string
 	CanonicalURL string
-	ActiveNav    string // "votes", "mps", "radars"
+	ActiveNav    string // "votes", "mps"
+	Metadata     data.SiteMetadata
 }
 
 // NavLinkClass returns Tailwind classes for active vs inactive navbar links.

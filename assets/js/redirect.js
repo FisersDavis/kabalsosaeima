@@ -23,7 +23,7 @@
     }
 
     if (h.startsWith('#radars') || h.startsWith('#tematiskais-radars') || h.startsWith('#issues')) {
-      window.location.replace('/radars/');
+      window.location.replace('/');
       return;
     }
 

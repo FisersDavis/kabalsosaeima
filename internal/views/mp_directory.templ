@@ -45,7 +45,6 @@ templ MPDirectory(props MPDirectoryProps) {
 							for _, f := range props.Factions {
 								<option value={ f.ID }>{ f.Name } ({ f.ShortName })</option>
 							}
-							<option value="pie-frakcijam-nepiederosie-deputati">Pie frakcijām nepiederošie</option>
 						</select>
 
 						<button
@@ -70,7 +69,7 @@ templ MPDirectory(props MPDirectoryProps) {
 						<button
 							type="button"
 							id="mp-filter-reset"
-							class="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-200 transition cursor-pointer whitespace-nowrap shrink-0"
+							class="hidden inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-200 transition cursor-pointer whitespace-nowrap shrink-0"
 							title="Atiestatīt meklēšanu un filtrus"
 						>
 							Notīrīt

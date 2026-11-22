@@ -683,9 +683,9 @@ func MPView(props MPProps) templ.Component {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var38 string
-				templ_7745c5c3_Var38, templ_7745c5c3_Err = templ.JoinStringErrs(h.VoteDate)
+				templ_7745c5c3_Var38, templ_7745c5c3_Err = templ.JoinStringErrs(h.SittingDate)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp.templ`, Line: 315, Col: 21}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp.templ`, Line: 315, Col: 24}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var38))
 				if templ_7745c5c3_Err != nil {

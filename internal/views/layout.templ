@@ -1,5 +1,7 @@
 package views
 
+import "fmt"
+
 templ Layout(props LayoutProps) {
 	<!DOCTYPE html>
 	<html lang="lv" class="h-full bg-slate-50 text-slate-900 antialiased">
@@ -65,6 +67,9 @@ templ Layout(props LayoutProps) {
 							>
 								<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"></path><path d="M5 7c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v12H5V7Z"></path><path d="M22 19H2"></path></svg>
 								<span>Balsojumi</span>
+								if props.Metadata.TotalVotes > 0 {
+									<span class="ml-0.5 text-[10px] px-1.5 py-0.2 rounded-full font-mono bg-slate-100 text-slate-600">{ fmt.Sprint(props.Metadata.TotalVotes) }</span>
+								}
 							</a>
 							<a
 								href="/deputati/"
@@ -91,14 +96,30 @@ templ Layout(props LayoutProps) {
 			<footer class="mt-16 border-t border-slate-200 bg-white/70 py-10">
 				<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6">
 					<div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-						<div class="max-w-md space-y-2">
+						<div class="max-w-md space-y-2.5">
 							<span class="font-sans text-base font-bold tracking-tight text-slate-900">
 								kābalso<span class="text-emerald-600">saeima</span><span class="text-slate-400 font-mono text-sm font-normal">.lv</span>
 							</span>
-							<p className="text-xs text-slate-500 leading-relaxed">
+							<p class="text-xs text-slate-500 leading-relaxed">
 								Neitrāls un atvērts Latvijas Republikas Saeimas balsojumu un lēmumu pārlūks.
 								Mērķis ir sniegt skaidru, faktos balstītu informāciju ikvienam pilsonim un vēlētājam.
 							</p>
+							if props.Metadata.LatestSittingDate != "" || props.Metadata.TotalVotes > 0 {
+								<div class="inline-flex flex-wrap items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-mono text-slate-600">
+									<span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+									if props.Metadata.LatestSittingDate != "" {
+										<span>Pēdējā sēde: <strong class="font-semibold text-slate-800">{ props.Metadata.LatestSittingDate }</strong></span>
+									}
+									if props.Metadata.FormattedSyncDate != "" {
+										<span class="text-slate-300">·</span>
+										<span>Atjaunots: <strong class="font-semibold text-slate-800">{ props.Metadata.FormattedSyncDate }</strong></span>
+									}
+									if props.Metadata.TotalVotes > 0 {
+										<span class="text-slate-300">·</span>
+										<span>{ fmt.Sprint(props.Metadata.TotalVotes) } balsojumi</span>
+									}
+								</div>
+							}
 						</div>
 
 						<div class="space-y-2 text-xs text-slate-500">
@@ -116,6 +137,48 @@ templ Layout(props LayoutProps) {
 								</li>
 							</ul>
 						</div>
+					</div>
+
+					<!-- Civic Info, Methodology & Open Data Expandable Sections -->
+					<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+						<details class="group rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 open:bg-white transition">
+							<summary class="font-semibold text-slate-800 cursor-pointer list-none flex items-center justify-between gap-2 select-none">
+								<span>Par projektu</span>
+								<span class="text-slate-400 group-open:rotate-180 transition-transform text-[10px]">▼</span>
+							</summary>
+							<p class="mt-2 text-[11px] text-slate-600 leading-relaxed">
+								<strong>Kā Balso Saeima</strong> ir pilsoniska iniciatīva, kas pārvērš Saeimas sēžu protokolus un stenogrammas viegli pārskatāmā formā bez politiskas interpretācijas. Visi lēmumi ir tieši sasaistīti ar oficiālajiem pirmavotiem.
+							</p>
+						</details>
+
+						<details class="group rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 open:bg-white transition">
+							<summary class="font-semibold text-slate-800 cursor-pointer list-none flex items-center justify-between gap-2 select-none">
+								<span>Metodoloģija</span>
+								<span class="text-slate-400 group-open:rotate-180 transition-transform text-[10px]">▼</span>
+							</summary>
+							<p class="mt-2 text-[11px] text-slate-600 leading-relaxed">
+								Kvorums (Satversmes 24. pants) prasa vismaz 50 balsojošus deputātus; reģistrēšanās zālē bez balsošanas pogas nospiešanas tiek uzskaitīta kā kvoruma manevrs. Deputātu apmeklētība un frakcijas disciplīna tiek rēķināta tikai par viņu aktīvā mandāta periodiem un faktisko frakciju katra balsojuma dienā.
+							</p>
+						</details>
+
+						<details class="group rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 open:bg-white transition">
+							<summary class="font-semibold text-slate-800 cursor-pointer list-none flex items-center justify-between gap-2 select-none">
+								<span>Kods un atvērtie dati</span>
+								<span class="text-slate-400 group-open:rotate-180 transition-transform text-[10px]">▼</span>
+							</summary>
+							<div class="mt-2 text-[11px] text-slate-600 leading-relaxed space-y-1.5">
+								<p>Projekta pirmkods un JSON datu kopas ir brīvi pieejamas pētniekiem un žurnālistiem:</p>
+								<div class="flex flex-wrap items-center gap-2 font-mono text-[10px]">
+									<a href="https://github.com/FisersDavis/kabalsosaeima" target="_blank" rel="noopener noreferrer" class="text-emerald-700 hover:underline font-semibold">GitHub</a>
+									<span class="text-slate-300">·</span>
+									<a href="/data/votes.json" class="text-slate-700 hover:text-emerald-700 hover:underline">votes.json</a>
+									<span class="text-slate-300">·</span>
+									<a href="/data/mps.json" class="text-slate-700 hover:text-emerald-700 hover:underline">mps.json</a>
+									<span class="text-slate-300">·</span>
+									<a href="/data/mandates.json" class="text-slate-700 hover:text-emerald-700 hover:underline">mandates.json</a>
+								</div>
+							</div>
+						</details>
 					</div>
 
 					<div class="rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-[11px] text-slate-500 leading-relaxed">

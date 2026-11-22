@@ -28,11 +28,19 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+          cache: true
+
       - name: Fetch and verify Saeima votes
         id: sync_step
         run: |
           python scripts/ingest_real_saeima.py
+          python scripts/scrape_mandates.py
           python scripts/sentinel_check.py --mode integrity --update-metadata
+          go run ./cmd/build --validate-only
 
       - name: Alert on Failure (Create GitHub Issue & Email)
         if: failure() && steps.sync_step.outcome == 'failure'
@@ -72,12 +80,6 @@ jobs:
           git config --local user.name "Saeima Bot"
           git add public/data/
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(data): auto-sync Saeima voting records [skip ci]" && git push)
-
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: '1.24'
-          cache: true
 
       - name: Download standalone Tailwind CLI
         run: |

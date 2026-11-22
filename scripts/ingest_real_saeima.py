@@ -119,6 +119,7 @@ def determine_reading_stage(motive, reading, is_urgent, vote_type):
 
 def simplify_title(official_title):
     t = official_title.strip()
+    t = re.sub(r'^\s*Par\s+likumprojekta\s+', '', t, flags=re.IGNORECASE)
     t = re.sub(r'^\s*Par\s+likumprojektu\s+', '', t, flags=re.IGNORECASE)
     t = re.sub(r'^\s*Likumprojekts\s+', '', t, flags=re.IGNORECASE)
     t = re.sub(r'\s*\(\s*\d+/[A-Za-z0-9]+\s*\)\s*', ' ', t)
@@ -130,6 +131,27 @@ def simplify_title(official_title):
     if len(t) > 0:
         return t[0].upper() + t[1:]
     return official_title
+
+def slugify_name(name):
+    s = name.strip().lower()
+    replacements = {
+        'ā': 'a', 'č': 'c', 'ē': 'e', 'ģ': 'g', 'ī': 'i',
+        'ķ': 'k', 'ļ': 'l', 'ņ': 'n', 'š': 's', 'ū': 'u', 'ž': 'z'
+    }
+    for k, v in replacements.items():
+        s = s.replace(k, v)
+    return re.sub(r'[^a-z0-9]+', '-', s).strip('-')
+
+def parse_latvian_iso(date_str):
+    if not date_str:
+        return "0000-00-00"
+    m = re.search(r'(\d{2})\.(\d{2})\.(\d{4})', str(date_str))
+    if m:
+        return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
+    m_iso = re.search(r'(\d{4})-(\d{2})-(\d{2})', str(date_str))
+    if m_iso:
+        return m_iso.group(0)
+    return str(date_str)
 
 def fetch_with_retry(url, is_json=False, retries=3, backoff=2):
     """Edge Case 5: HTTP retry with exponential backoff for network resilience."""
@@ -164,10 +186,20 @@ def run_ingestion():
         factions_meta = json.load(f)
     factions_by_id = {f['id']: f for f in factions_meta}
 
-    # 2. Load existing MPs registry
+    # 2. Load existing MPs registry & existing votes (to preserve enriched fields)
     with open(MPS_FILE, 'r', encoding='utf-8') as f:
         existing_mps = json.load(f)
     mps_by_name = {m['name'].strip().lower(): m for m in existing_mps}
+
+    existing_votes_by_id = {}
+    if os.path.exists(VOTES_FILE):
+        try:
+            with open(VOTES_FILE, 'r', encoding='utf-8') as f:
+                for ev in json.load(f):
+                    if ev.get('id'):
+                        existing_votes_by_id[ev['id']] = ev
+        except Exception:
+            pass
 
     # 3. Discover 14th Saeima resources from data.gov.lv
     print("[1/4] Discovering Saeima plenary sittings from data.gov.lv CKAN API...")
@@ -188,11 +220,15 @@ def run_ingestion():
                 base = name[:-4]
                 dkp_resources[base] = r
 
-    common_sittings = sorted(list(set(vote_resources.keys()) & set(dkp_resources.keys())))
+    common_sittings = sorted(
+        list(set(vote_resources.keys()) & set(dkp_resources.keys())),
+        key=lambda s: (parse_latvian_iso(s), s)
+    )
     print(f"      Found {len(common_sittings)} sittings of the 14th Saeima with complete records.")
 
     # We prioritize 2024–2026 sittings to get the latest, most relevant legislative votes
     recent_sittings = [s for s in common_sittings if any(y in s for y in ['2026', '2025', '2024'])]
+    recent_sittings.sort(key=lambda s: (parse_latvian_iso(s), s))
     print(f"      Filtering for recent sittings (2024–2026): {len(recent_sittings)} sittings.")
 
     # 4. Ingest and parse votes
@@ -403,7 +439,8 @@ def run_ingestion():
                 if comm:
                     summary_text += f" Atbildīgā komisija: {comm}."
 
-                parsed_votes.append({
+                prev_vote = existing_votes_by_id.get(vote_id, {})
+                vote_obj = {
                     'id': vote_id,
                     'saeimaTerm': 14,
                     'sessionDate': date_str,
@@ -419,11 +456,12 @@ def run_ingestion():
                     'isRevote': False,
                     'officialTitle': title,
                     'billNumber': bill_number,
-                    'simplifiedTitle': simplify_title(title),
+                    'simplifiedTitle': prev_vote.get('simplifiedTitle') or simplify_title(title),
                     'summary': summary_text,
-                    'protocolUrl': None,
-                    'stenogramUrl': None,
-                    'category': detect_category(title, section),
+                    'purpose': prev_vote.get('purpose', ''),
+                    'protocolUrl': prev_vote.get('protocolUrl'),
+                    'stenogramUrl': prev_vote.get('stenogramUrl'),
+                    'category': prev_vote.get('category') or detect_category(title, section),
                     'result': outcome,
                     'counts': {
                         'par': par_count,
@@ -434,84 +472,17 @@ def run_ingestion():
                     },
                     'factionBreakdown': faction_breakdowns,
                     'mpVotes': mp_records
-                })
+                }
+                if prev_vote.get('debateArguments'):
+                    vote_obj['debateArguments'] = prev_vote['debateArguments']
+
+                parsed_votes.append(vote_obj)
                 print(f"      + [{vote_type.upper()}] [{outcome}] {bill_number} - {simplify_title(title)[:60]}...")
 
         except Exception as e:
             continue
 
     print(f"\n[3/4] Successfully ingested {len(parsed_votes)} Saeima votes from {sittings_scanned} full sittings.")
-
-    # Preserve representative edge-case examples (Quorum break Satversme Art. 24, Secret Ballot, Revote)
-    has_quorum_break = any(v['result'] == 'NAV_KVORUMA' for v in parsed_votes)
-    if not has_quorum_break and parsed_votes:
-        parsed_votes.append({
-            'id': 'edge-quorum-01',
-            'saeimaTerm': 14,
-            'sessionDate': '14.03.2024',
-            'sittingDate': '14.03.2024',
-            'sittingTime': '11:42',
-            'sittingType': 'Kārtējā plenārsēde',
-            'reading': 2,
-            'isUrgent': False,
-            'isTier1': True,
-            'voteType': 'likums',
-            'readingStage': '2. lasījums',
-            'isSecret': False,
-            'isRevote': False,
-            'officialTitle': 'Grozījumi Publisko personu finanšu līdzekļu un mantas izšķērdēšanas novēršanas likumā (512/Lp14)',
-            'billNumber': '512/Lp14',
-            'simplifiedTitle': 'Grozījumi Publisko personu mantas izšķērdēšanas novēršanas likumā',
-            'summary': 'Opozīcijas frakcijas izmantoja parlamentāro kvoruma noraušanas taktiku, reģistrējoties sēžu zālē, bet balsošanas brīdī nebalsojot. Kvorumam nepieciešami vismaz 50 balsojoši deputāti (Satversmes 24. pants).',
-            'protocolUrl': 'https://www.saeima.lv',
-            'category': {'id': 'tiesiskums', 'label': 'Tiesiskums & Korupcijas novēršana'},
-            'result': 'NAV_KVORUMA',
-            'counts': {
-                'par': 46,
-                'pret': 2,
-                'atturas': 1,
-                'nebalso': 51,
-                'totalPresent': 49
-            },
-            'factionBreakdown': parsed_votes[0]['factionBreakdown'] if parsed_votes else [],
-            'mpVotes': parsed_votes[0]['mpVotes'] if parsed_votes else []
-        })
-        print("      + Included canonical Quorum Tactic vote (Satversmes 24. panta kvoruma trūkums).")
-
-    has_secret = any(v.get('isSecret') for v in parsed_votes)
-    if not has_secret and parsed_votes:
-        parsed_votes.append({
-            'id': 'edge-secret-01',
-            'saeimaTerm': 14,
-            'sessionDate': '31.05.2023',
-            'sittingDate': '31.05.2023',
-            'sittingTime': '15:20',
-            'sittingType': 'Ārkārtas plenārsēde',
-            'reading': None,
-            'isUrgent': False,
-            'isTier1': True,
-            'voteType': 'likums',
-            'readingStage': 'Amatpersonu vēlēšanas',
-            'isSecret': True,
-            'isRevote': False,
-            'officialTitle': 'Latvijas Valsts prezidenta vēlēšanas (3. vēlēšanu kārta)',
-            'billNumber': 'Amata vēlēšanas',
-            'simplifiedTitle': 'Valsts prezidenta vēlēšanas (Edgars Rinkēvičs)',
-            'summary': 'Valsts prezidenta vēlēšanas saskaņā ar Satversmes 36. pantu un Saeimas kārtības rulli notiek aizklātā balsojumā. Individuālie deputātu balsojumi netiek fiksēti un nav publiski pieejami.',
-            'protocolUrl': 'https://www.saeima.lv',
-            'category': {'id': 'administracija', 'label': 'Valsts pārvalde'},
-            'result': 'PIENEMTS',
-            'counts': {
-                'par': 52,
-                'pret': 35,
-                'atturas': 0,
-                'nebalso': 13,
-                'totalPresent': 87
-            },
-            'factionBreakdown': [],
-            'mpVotes': []
-        })
-        print("      + Included canonical Secret Ballot vote (Satversmes 36. pants - Aizklāts balsojums).")
 
     # 5. Reconcile and update mps.json
     print("[3/4] Reconciling 100-MP hemicycle registry...")
@@ -528,6 +499,9 @@ def run_ingestion():
                 'seatNumber': next_seat,
                 'row': 4,
                 'col': len(updated_mps) % 25 + 1,
+                'isActive': True,
+                'saeimaId': '',
+                'slug': slugify_name(d_info['name']),
                 'isSubstitute': True,
                 'replacesMpName': "Ministru vai demisiju"
             }
@@ -537,6 +511,12 @@ def run_ingestion():
             added_substitutes += 1
 
     print(f"      Total MPs in registry: {len(updated_mps)} (added {added_substitutes} substitute deputies).")
+
+    # Sort parsed_votes chronologically descending by (YYYY-MM-DD, sittingTime, id)
+    parsed_votes.sort(
+        key=lambda v: (parse_latvian_iso(v.get('sittingDate')), v.get('sittingTime') or '', v.get('id') or ''),
+        reverse=True
+    )
 
     # Save to disk
     print("[4/4] Writing datasets to public/data/ (Case 10: compact feed + lazy rollcalls)...")
@@ -565,6 +545,11 @@ def run_ingestion():
     with open(MPS_FILE, 'w', encoding='utf-8') as f:
         json.dump(updated_mps, f, ensure_ascii=False, indent=2)
     print(f"      [OK] Saved {len(updated_mps)} MPs to {MPS_FILE}")
+
+    if added_substitutes > 0:
+        print("      [*] New deputies discovered; syncing official mandates from Titania...")
+        import scrape_mandates
+        scrape_mandates.main()
 
     print("\n[SUCCESS] Ingestion completed with 100% data integrity!")
 

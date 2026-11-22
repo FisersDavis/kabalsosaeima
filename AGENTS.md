@@ -49,7 +49,7 @@ internal/
       ├── bill.templ       # Bill progression timeline view
       ├── vote.templ       # Vote detail with accessible Hemicycle SVG (<title> + focusable)
       ├── mp.templ         # MP profile with dossier & active mandate denominator
-      └── radar.templ      # Pre-rendered SVG sector cards & faction comparator
+      └── mp_directory.templ # MP directory table with faction & active mandate filters
 assets/
   ├── input.css            # Tailwind v4 source with @source directives
   └── js/
