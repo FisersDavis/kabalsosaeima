@@ -492,4 +492,113 @@ func TestTermURLAndMultiTermSwitcher(t *testing.T) {
 	}
 }
 
+func TestDebaterStyleAndKeyDebaters(t *testing.T) {
+	// Neutral general debate speaker (e.g. Prime Minister candidate) must NEVER be mislabeled as "Pret"
+	pmCand := data.Debater{
+		Name:         "Andris Kulbergs",
+		Fraction:     "AS",
+		Opinion:      "Debates",
+		Role:         "Ministru prezidenta amata kandidāts",
+		Duration:     "22:14",
+		VoteDecision: "PAR",
+		Preview:      "Pirms nepilna pusgada 28. maijā es stāvēju šai pat tribīnē.",
+		FullSpeech:   "Godātais Saeimas priekšsēdētāj!\n\nPirms nepilna pusgada 28. maijā es stāvēju šai pat tribīnē.",
+	}
+	stPM := DebaterStyle(pmCand)
+	if strings.Contains(stPM.PrefixLabel, "Pret") {
+		t.Errorf("Neutral debate speaker mislabeled as Pret: %q", stPM.PrefixLabel)
+	}
+	if !stPM.HasRealSpeech || !stPM.CanExpand {
+		t.Errorf("Expected PM candidate speech to have HasRealSpeech=true and CanExpand=true, got %+v", stPM)
+	}
+	if stPM.VotePillText != "Balsoja PAR" {
+		t.Errorf("Expected VotePillText='Balsoja PAR', got %q", stPM.VotePillText)
+	}
+	if !strings.Contains(stPM.MetaSubtitle, "22:14") {
+		t.Errorf("Expected MetaSubtitle to include duration, got %q", stPM.MetaSubtitle)
+	}
+
+	// Legacy duration-only preview must NOT be treated as a real speech quote
+	legacyDeb := data.Debater{
+		Name:    "Test Speaker",
+		Opinion: "Debates",
+		Preview: "Frakc. viedoklis · Dep. · uzstāšanās ilgums 08:35",
+	}
+	stLegacy := DebaterStyle(legacyDeb)
+	if stLegacy.HasRealSpeech {
+		t.Errorf("Expected legacy duration-only preview to have HasRealSpeech=false")
+	}
+
+	// KeyDebaters on general debate picks contrasting presenter/PAR vs PRET
+	opp := data.Debater{
+		Name:         "Inese Lībiņa-Egnere",
+		Fraction:     "JV",
+		Opinion:      "Debates",
+		Role:         "Frakcijas viedoklis",
+		Duration:     "08:35",
+		VoteDecision: "PRET",
+		Preview:      "Dažas stundas kopš preses konferences...",
+		FullSpeech:   "Augsti godātais Saeimas priekšsēdētāja kungs!\n\nDažas stundas kopš preses konferences...",
+	}
+	ally := data.Debater{
+		Name:         "Artūrs Butāns",
+		Fraction:     "NA",
+		Opinion:      "Debates",
+		Role:         "Frakcijas viedoklis",
+		VoteDecision: "PAR",
+		Preview:      "Nacionālā apvienība redz Latviju...",
+		FullSpeech:   "Nacionālā apvienība redz Latviju...",
+	}
+	args := &data.DebateArguments{
+		HasDebates: true,
+		Debaters:   []data.Debater{pmCand, ally, opp},
+	}
+	picked := KeyDebaters(args)
+	if len(picked) != 2 || picked[0].Name != "Andris Kulbergs" || picked[1].Name != "Inese Lībiņa-Egnere" {
+		t.Errorf("Expected contrasting KeyDebaters [Andris Kulbergs, Inese Lībiņa-Egnere], got %+v", picked)
+	}
+
+	// SpeechParagraphs splits double-newline paragraphs cleanly
+	paras := SpeechParagraphs("Pirmais paragrāfs.\n\nOtrais paragrāfs.\n\n")
+	if len(paras) != 2 || paras[0] != "Pirmais paragrāfs." || paras[1] != "Otrais paragrāfs." {
+		t.Errorf("Unexpected SpeechParagraphs result: %+v", paras)
+	}
+}
+
+func TestVoteProtocolAndBillURLsNoDeadEnds(t *testing.T) {
+	// 1. Direct protocolUrl wins
+	v1 := data.Vote{
+		SaeimaTerm:  15,
+		ProtocolURL: "https://titania.saeima.lv/LIVS15/saeimalivs2_dk.nsf/0/51636DB89C39420BC2258EB20072DFB2?OpenDocument",
+		DkID:        "25552831-b992-409a-942e-51075d920c2c",
+		BillNumber:  "14/Lm15",
+	}
+	if got := VoteProtocolURL(v1); got != v1.ProtocolURL {
+		t.Errorf("VoteProtocolURL(v1) = %q, want %q", got, v1.ProtocolURL)
+	}
+
+	// 2. Missing protocolUrl falls back to exact sitting DK page (never SearchView dead end)
+	v2 := data.Vote{
+		SaeimaTerm: 15,
+		DkID:       "25552831-b992-409a-942e-51075d920c2c",
+		BillNumber: "14/Lm15",
+	}
+	got2 := VoteProtocolURL(v2)
+	if !strings.Contains(got2, "saeimalivs2_dk.nsf/DK?ReadForm&nr=25552831-b992-409a-942e-51075d920c2c") {
+		t.Errorf("VoteProtocolURL(v2) = %q, want DK?ReadForm fallback", got2)
+	}
+	if strings.Contains(got2, "SearchView") {
+		t.Errorf("VoteProtocolURL must never generate broken SearchView URL: %q", got2)
+	}
+
+	// 3. Lm decisions route to saeimalivs_lmp.nsf; Lp bills route to saeimalivs{term}.nsf (never 404 SaeimaLIVS2_DK.nsf/webAll)
+	if got := SaeimaBillSearchURLForTerm(15, "14/Lm15"); !strings.Contains(got, "/LIVS15/saeimalivs_lmp.nsf/webAll?OpenView") {
+		t.Errorf("Unexpected Lm15 bill URL: %q", got)
+	}
+	if got := SaeimaBillSearchURLForTerm(14, "1246/Lp14"); !strings.Contains(got, "/LIVS14/saeimalivs14.nsf/webAll?OpenView") {
+		t.Errorf("Unexpected Lp14 bill URL: %q", got)
+	}
+}
+
+
 

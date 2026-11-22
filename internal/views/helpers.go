@@ -565,7 +565,8 @@ func AvatarInitials(name string) string {
 	return ""
 }
 
-// OrderedDebaters returns debaters with all "Par" speeches first, followed by "Pret" speeches.
+// OrderedDebaters returns debaters ordered Par then Pret when explicit stances dominate,
+// or preserves chronological order for general debates (e.g. Cabinet confidence votes).
 func OrderedDebaters(args *data.DebateArguments) []data.Debater {
 	if args == nil || !args.HasDebates || len(args.Debaters) == 0 {
 		return nil
@@ -581,6 +582,10 @@ func OrderedDebaters(args *data.DebateArguments) []data.Debater {
 		} else {
 			other = append(other, d)
 		}
+	}
+	// If this is primarily a general debate without Par/Pret slots, keep original chronological speaking order
+	if len(other) > len(par)+len(pret) {
+		return args.Debaters
 	}
 	res := append(par, pret...)
 	return append(res, other...)
@@ -784,7 +789,116 @@ type VoteProps struct {
 	Store       *data.Store
 }
 
-// KeyDebaters selects up to 2 contrasting debaters (e.g. 1 Par and 1 Pret) for feed cards, ordered Par then Pret.
+// DebaterCardStyle holds pre-computed visual presentation metadata for a debater card.
+type DebaterCardStyle struct {
+	CardClass      string
+	DotClass       string
+	TitleClass     string
+	BtnClass       string
+	PrefixLabel    string
+	MetaSubtitle   string
+	VotePillText   string
+	VotePillClass  string
+	HasRealSpeech  bool
+	CanExpand      bool
+}
+
+// isMetadataOnlyPreview detects legacy duration-only strings that are not actual speech quotes.
+func isMetadataOnlyPreview(preview string) bool {
+	p := strings.TrimSpace(preview)
+	if p == "" {
+		return true
+	}
+	low := strings.ToLower(p)
+	return strings.Contains(low, "uzstāšanās ilgums") || low == "uzstājās debatēs saeimas sēdē."
+}
+
+// DebaterStyle returns honest visual presentation for a debater without mislabeling neutral debates as "Pret".
+func DebaterStyle(deb data.Debater) DebaterCardStyle {
+	var st DebaterCardStyle
+
+	op := strings.TrimSpace(deb.Opinion)
+	switch {
+	case strings.EqualFold(op, "Par"):
+		st.CardClass = "border-emerald-200/90 bg-emerald-50/50"
+		st.DotClass = "bg-emerald-600"
+		st.TitleClass = "text-emerald-950"
+		st.BtnClass = "text-emerald-800 hover:text-emerald-950"
+		st.PrefixLabel = `Runāja "Par":`
+	case strings.EqualFold(op, "Pret"):
+		st.CardClass = "border-rose-200/90 bg-rose-50/50"
+		st.DotClass = "bg-rose-600"
+		st.TitleClass = "text-rose-950"
+		st.BtnClass = "text-rose-800 hover:text-rose-950"
+		st.PrefixLabel = `Runāja "Pret":`
+	default:
+		// General debate speaker: tint subtly by verified rollcall decision if available, else neutral slate
+		switch strings.ToUpper(strings.TrimSpace(deb.VoteDecision)) {
+		case "PAR":
+			st.CardClass = "border-emerald-200/80 bg-emerald-50/40"
+			st.DotClass = "bg-emerald-600"
+			st.TitleClass = "text-slate-900"
+			st.BtnClass = "text-emerald-800 hover:text-emerald-950"
+		case "PRET":
+			st.CardClass = "border-rose-200/80 bg-rose-50/40"
+			st.DotClass = "bg-rose-600"
+			st.TitleClass = "text-slate-900"
+			st.BtnClass = "text-rose-800 hover:text-rose-950"
+		default:
+			st.CardClass = "border-slate-200 bg-slate-50/70"
+			st.DotClass = "bg-slate-500"
+			st.TitleClass = "text-slate-900"
+			st.BtnClass = "text-slate-700 hover:text-slate-950"
+		}
+		st.PrefixLabel = "Debatēs:"
+	}
+
+	var metaParts []string
+	if strings.TrimSpace(deb.Role) != "" {
+		metaParts = append(metaParts, strings.TrimSpace(deb.Role))
+	}
+	if strings.TrimSpace(deb.Duration) != "" {
+		metaParts = append(metaParts, "ilgums "+strings.TrimSpace(deb.Duration))
+	}
+	st.MetaSubtitle = strings.Join(metaParts, " · ")
+
+	switch strings.ToUpper(strings.TrimSpace(deb.VoteDecision)) {
+	case "PAR":
+		st.VotePillText = "Balsoja PAR"
+		st.VotePillClass = "bg-emerald-100/80 text-emerald-800 border-emerald-200"
+	case "PRET":
+		st.VotePillText = "Balsoja PRET"
+		st.VotePillClass = "bg-rose-100/80 text-rose-800 border-rose-200"
+	case "ATTURAS":
+		st.VotePillText = "Atturējās"
+		st.VotePillClass = "bg-amber-100/80 text-amber-800 border-amber-200"
+	}
+
+	fullClean := strings.TrimSpace(deb.FullSpeech)
+	prevClean := strings.TrimSpace(deb.Preview)
+	st.HasRealSpeech = fullClean != "" || !isMetadataOnlyPreview(prevClean)
+	st.CanExpand = fullClean != "" && fullClean != prevClean
+	return st
+}
+
+// SpeechParagraphs splits a verbatim speech into clean non-empty paragraphs for readable rendering.
+func SpeechParagraphs(text string) []string {
+	raw := strings.TrimSpace(text)
+	if raw == "" {
+		return nil
+	}
+	parts := strings.Split(raw, "\n\n")
+	var out []string
+	for _, p := range parts {
+		p = strings.TrimSpace(p)
+		if p != "" {
+			out = append(out, p)
+		}
+	}
+	return out
+}
+
+// KeyDebaters selects up to 2 contrasting debaters for feed cards, preferring speakers with real verbatim speeches.
 func KeyDebaters(args *data.DebateArguments) []data.Debater {
 	if args == nil || !args.HasDebates || len(args.Debaters) == 0 {
 		return nil
@@ -797,25 +911,88 @@ func KeyDebaters(args *data.DebateArguments) []data.Debater {
 		}
 		return args.Debaters
 	}
-	var par *data.Debater
-	var pret *data.Debater
-	for i := range args.Debaters {
-		d := args.Debaters[i]
-		if strings.EqualFold(d.Opinion, "Par") && par == nil {
-			par = &d
-		} else if strings.EqualFold(d.Opinion, "Pret") && pret == nil {
-			pret = &d
+
+	hasSpeech := func(d data.Debater) bool {
+		return strings.TrimSpace(d.FullSpeech) != "" || !isMetadataOnlyPreview(d.Preview)
+	}
+
+	// Pass 1: explicit Par + Pret (preferring those with verbatim speeches)
+	pickFirst := func(pred func(data.Debater) bool) *data.Debater {
+		for i := range args.Debaters {
+			if pred(args.Debaters[i]) && hasSpeech(args.Debaters[i]) {
+				d := args.Debaters[i]
+				return &d
+			}
 		}
-		if par != nil && pret != nil {
+		for i := range args.Debaters {
+			if pred(args.Debaters[i]) {
+				d := args.Debaters[i]
+				return &d
+			}
+		}
+		return nil
+	}
+
+	par := pickFirst(func(d data.Debater) bool {
+		return strings.EqualFold(d.Opinion, "Par") && !strings.EqualFold(d.VoteDecision, "PRET")
+	})
+	pret := pickFirst(func(d data.Debater) bool {
+		return strings.EqualFold(d.Opinion, "Pret") && !strings.EqualFold(d.VoteDecision, "PAR")
+	})
+	if par != nil && pret != nil {
+		return []data.Debater{*par, *pret}
+	}
+
+	// Pass 2: general debate without explicit Par/Pret slots -> pick contrasting presenter/supporter vs opponent
+	proSide := pickFirst(func(d data.Debater) bool {
+		rLow := strings.ToLower(d.Role)
+		return strings.Contains(rLow, "kandidāts") || strings.Contains(rLow, "referents")
+	})
+	if proSide == nil {
+		proSide = par
+	}
+	if proSide == nil {
+		proSide = pickFirst(func(d data.Debater) bool {
+			return strings.EqualFold(d.VoteDecision, "PAR")
+		})
+	}
+	conSide := pret
+	if conSide == nil {
+		conSide = pickFirst(func(d data.Debater) bool {
+			return strings.EqualFold(d.VoteDecision, "PRET") && (proSide == nil || d.Name != proSide.Name)
+		})
+	}
+
+	var res []data.Debater
+	if proSide != nil {
+		res = append(res, *proSide)
+	}
+	if conSide != nil {
+		res = append(res, *conSide)
+	}
+	if len(res) == 2 {
+		return res
+	}
+
+	// Fill up to 2 distinct speakers with speeches first
+	for i := range args.Debaters {
+		if len(res) >= 2 {
 			break
 		}
-	}
-	var res []data.Debater
-	if par != nil {
-		res = append(res, *par)
-	}
-	if pret != nil {
-		res = append(res, *pret)
+		d := args.Debaters[i]
+		if !hasSpeech(d) {
+			continue
+		}
+		dup := false
+		for _, existing := range res {
+			if existing.Name == d.Name {
+				dup = true
+				break
+			}
+		}
+		if !dup {
+			res = append(res, d)
+		}
 	}
 	if len(res) == 0 {
 		return args.Debaters[:2]
@@ -859,24 +1036,45 @@ type MPDirectoryProps struct {
 	Store       *data.Store
 }
 
-// SaeimaBillSearchURLForTerm generates a direct search link to the Saeima LIVS database for a specific term.
+// SaeimaBillSearchURLForTerm returns a guaranteed-working official Titania LIVS registry URL
+// for the right database (saeimalivs_lmp.nsf for Lm decisions, saeimalivs{term}.nsf for Lp bills).
 func SaeimaBillSearchURLForTerm(term int, billNr string) string {
-	clean := CleanBillNr(billNr)
+	if term <= 0 {
+		term = 14
+	}
+	clean := strings.ToLower(CleanBillNr(billNr))
 	if clean == "" {
-		return "https://www.saeima.lv/lv/likumdosana/"
+		return fmt.Sprintf("https://titania.saeima.lv/LIVS%d/saeimalivs%d.nsf/webAll?OpenView", term, term)
 	}
-	if term >= 15 {
-		return fmt.Sprintf("https://titania.saeima.lv/LIVS%d/saeimalivs%d.nsf/webAll?SearchView&Query=([Title]=*%s*)", term, term, clean)
+	if strings.Contains(clean, "/lm") {
+		return fmt.Sprintf("https://titania.saeima.lv/LIVS%d/saeimalivs_lmp.nsf/webAll?OpenView", term)
 	}
-	return fmt.Sprintf("https://titania.saeima.lv/LIVS14/SaeimaLIVS2_DK.nsf/webAll?SearchView&Query=([Title]=*%s*)", clean)
+	return fmt.Sprintf("https://titania.saeima.lv/LIVS%d/saeimalivs%d.nsf/webAll?OpenView", term, term)
 }
 
-// SaeimaBillSearchURL generates a direct search link to the Saeima legal database for a bill.
+// SaeimaBillSearchURL generates an official Titania LIVS link for a bill or decision number.
 func SaeimaBillSearchURL(billNr string) string {
 	if strings.Contains(strings.ToLower(billNr), "15") {
 		return SaeimaBillSearchURLForTerm(15, billNr)
 	}
 	return SaeimaBillSearchURLForTerm(14, billNr)
+}
+
+// VoteBillURL returns the direct official Titania document URL for a vote's bill/decision,
+// falling back to the working LIVS registry view.
+func VoteBillURL(v *data.Vote, fallbackTerm int) string {
+	if v != nil && v.BillURL != "" {
+		return v.BillURL
+	}
+	term := fallbackTerm
+	if v != nil && v.SaeimaTerm > 0 {
+		term = v.SaeimaTerm
+	}
+	billNr := ""
+	if v != nil {
+		billNr = v.BillNumber
+	}
+	return SaeimaBillSearchURLForTerm(term, billNr)
 }
 
 // SaeimaDeputiesRegistryURL returns the official saeima.lv deputy directory URL for the given term.
@@ -887,25 +1085,33 @@ func SaeimaDeputiesRegistryURL(term int) string {
 	return fmt.Sprintf("https://www.saeima.lv/lv/sasaukumi/%d-saeima/deputati/", term)
 }
 
-// VoteProtocolURL returns the official protocol URL, or an official bill search fallback.
+// VoteProtocolURL returns the exact official Titania voting protocol URL, with guaranteed-working
+// fallbacks to the sitting DK agenda/protocols page or official bill document (never a dead end).
 func VoteProtocolURL(v data.Vote) string {
 	if v.ProtocolURL != "" {
 		return v.ProtocolURL
 	}
-	if v.BillNumber != "" {
-		term := v.SaeimaTerm
-		if term == 0 {
-			term = 14
-		}
-		return SaeimaBillSearchURLForTerm(term, v.BillNumber)
+	term := v.SaeimaTerm
+	if term <= 0 {
+		term = 14
 	}
-	return "https://www.saeima.lv/lv/likumdosana/"
+	dkDB := "SaeimaLIVS2_DK.nsf"
+	if term >= 15 {
+		dkDB = "saeimalivs2_dk.nsf"
+	}
+	if v.DkID != "" {
+		return fmt.Sprintf("https://titania.saeima.lv/LIVS%d/%s/DK?ReadForm&nr=%s", term, dkDB, v.DkID)
+	}
+	if v.BillURL != "" {
+		return v.BillURL
+	}
+	return fmt.Sprintf("https://titania.saeima.lv/LIVS%d/%s/DK?ReadForm&calendar=1", term, dkDB)
 }
 
 // VoteProtocolURLFromPtr returns VoteProtocolURL for a pointer to data.Vote.
 func VoteProtocolURLFromPtr(v *data.Vote) string {
 	if v == nil {
-		return "https://www.saeima.lv"
+		return "https://titania.saeima.lv/LIVS15/saeimalivs2_dk.nsf/DK?ReadForm&calendar=1"
 	}
 	return VoteProtocolURL(*v)
 }

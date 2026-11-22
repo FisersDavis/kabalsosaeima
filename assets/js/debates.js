@@ -1,41 +1,32 @@
-// Synchronized debate expand/collapse across opposing debate cards
+// Per-card debate speech expand/collapse with accessible aria-expanded sync
 (function() {
   function initDebates() {
     document.addEventListener('click', function(e) {
       var btn = e.target.closest('.debate-toggle-btn');
       if (!btn) return;
-      var section = btn.closest('.debate-section');
-      if (!section) return;
+      var card = btn.closest('.debate-card') || btn.closest('.debate-section');
+      if (!card) return;
 
-      var isExpanded = section.classList.contains('is-expanded');
+      var isExpanded = card.classList.contains('is-expanded');
+      var preview = card.querySelector('.debate-preview');
+      var full = card.querySelector('.debate-full');
+      var label = btn.querySelector('.debate-btn-text');
+      var arrow = btn.querySelector('.debate-arrow');
+
       if (isExpanded) {
-        section.classList.remove('is-expanded');
-        section.querySelectorAll('.debate-preview').forEach(function(el) {
-          el.classList.remove('hidden');
-        });
-        section.querySelectorAll('.debate-full').forEach(function(el) {
-          el.classList.add('hidden');
-        });
-        section.querySelectorAll('.debate-toggle-btn').forEach(function(b) {
-          var label = b.querySelector('.debate-btn-text');
-          if (label) label.textContent = 'Lasīt pilno runu';
-          var arrow = b.querySelector('.debate-arrow');
-          if (arrow) arrow.textContent = '↓';
-        });
+        card.classList.remove('is-expanded');
+        if (preview) preview.classList.remove('hidden');
+        if (full) full.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+        if (label) label.textContent = 'Lasīt pilno runu';
+        if (arrow) arrow.textContent = '↓';
       } else {
-        section.classList.add('is-expanded');
-        section.querySelectorAll('.debate-preview').forEach(function(el) {
-          el.classList.add('hidden');
-        });
-        section.querySelectorAll('.debate-full').forEach(function(el) {
-          el.classList.remove('hidden');
-        });
-        section.querySelectorAll('.debate-toggle-btn').forEach(function(b) {
-          var label = b.querySelector('.debate-btn-text');
-          if (label) label.textContent = 'Samazināt runas';
-          var arrow = b.querySelector('.debate-arrow');
-          if (arrow) arrow.textContent = '↑';
-        });
+        card.classList.add('is-expanded');
+        if (preview) preview.classList.add('hidden');
+        if (full) full.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        if (label) label.textContent = 'Sakļaut runu';
+        if (arrow) arrow.textContent = '↑';
       }
     });
   }

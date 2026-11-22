@@ -361,7 +361,7 @@ func copyTermData(dataDir, distData string, includeRollcalls bool) error {
 		if !includeRollcalls && info.IsDir() && info.Name() == "rollcalls" {
 			return filepath.SkipDir
 		}
-		if info.Name() == "sync_state.json" {
+		if info.Name() == "sync_state.json" || info.Name() == "enrichment_cache.json" {
 			return nil
 		}
 		target := filepath.Join(distData, rel)

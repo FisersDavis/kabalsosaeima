@@ -74,11 +74,14 @@ type FactionBreakdown struct {
 
 // Debater represents a parliamentary speaker and their argument on a vote.
 type Debater struct {
-	Name       string `json:"name"`
-	Fraction   string `json:"fraction"`
-	Opinion    string `json:"opinion"` // "Par" or "Pret"
-	Preview    string `json:"preview"`
-	FullSpeech string `json:"fullSpeech"`
+	Name         string `json:"name"`
+	Fraction     string `json:"fraction"`
+	Opinion      string `json:"opinion"` // "Par", "Pret", or "Debates"
+	Role         string `json:"role,omitempty"`
+	Duration     string `json:"duration,omitempty"`
+	VoteDecision string `json:"voteDecision,omitempty"` // "PAR", "PRET", "ATTURAS", "NEBALSO"
+	Preview      string `json:"preview"`
+	FullSpeech   string `json:"fullSpeech"`
 }
 
 // DebateArguments represents parliamentary debate speeches associated with a vote.
@@ -89,29 +92,31 @@ type DebateArguments struct {
 
 // Vote represents a plenary vote from votes.json.
 type Vote struct {
-	ID              string             `json:"id"`
-	SaeimaTerm      int                `json:"saeimaTerm"`
-	SessionDate     string             `json:"sessionDate"`
-	SittingDate     string             `json:"sittingDate"`
-	SittingTime     string             `json:"sittingTime"`
-	SittingType     string             `json:"sittingType"`
-	Reading         *int               `json:"reading"`
-	IsUrgent        bool               `json:"isUrgent"`
-	IsTier1         bool               `json:"isTier1"`
-	VoteType        string             `json:"voteType"`
-	ReadingStage    string             `json:"readingStage"`
-	IsSecret        bool               `json:"isSecret"`
-	IsRevote        bool               `json:"isRevote"`
-	OfficialTitle   string             `json:"officialTitle"`
-	BillNumber      string             `json:"billNumber"`
-	SimplifiedTitle string             `json:"simplifiedTitle"`
-	Summary         string             `json:"summary"`
-	Purpose         string             `json:"purpose"`
-	ProtocolURL     string             `json:"protocolUrl"`
-	StenogramURL    string             `json:"stenogramUrl"`
-	Category        VoteCategory       `json:"category"`
-	Result          string             `json:"result"`
-	Counts          VoteCounts         `json:"counts"`
+	ID               string             `json:"id"`
+	SaeimaTerm       int                `json:"saeimaTerm"`
+	DkID             string             `json:"dkId,omitempty"`
+	SessionDate      string             `json:"sessionDate"`
+	SittingDate      string             `json:"sittingDate"`
+	SittingTime      string             `json:"sittingTime"`
+	SittingType      string             `json:"sittingType"`
+	Reading          *int               `json:"reading"`
+	IsUrgent         bool               `json:"isUrgent"`
+	IsTier1          bool               `json:"isTier1"`
+	VoteType         string             `json:"voteType"`
+	ReadingStage     string             `json:"readingStage"`
+	IsSecret         bool               `json:"isSecret"`
+	IsRevote         bool               `json:"isRevote"`
+	OfficialTitle    string             `json:"officialTitle"`
+	BillNumber       string             `json:"billNumber"`
+	SimplifiedTitle  string             `json:"simplifiedTitle"`
+	Summary          string             `json:"summary"`
+	Purpose          string             `json:"purpose"`
+	ProtocolURL      string             `json:"protocolUrl"`
+	BillURL          string             `json:"billUrl,omitempty"`
+	StenogramURL     string             `json:"stenogramUrl"`
+	Category         VoteCategory       `json:"category"`
+	Result           string             `json:"result"`
+	Counts           VoteCounts         `json:"counts"`
 	FactionBreakdown []FactionBreakdown `json:"factionBreakdown"`
 	DebateArguments  *DebateArguments   `json:"debateArguments,omitempty"`
 }

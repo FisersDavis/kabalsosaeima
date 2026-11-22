@@ -152,5 +152,49 @@ class TestIngestionRules(unittest.TestCase):
         self.assertNotIn("st", [fb["factionId"] for fb in v["factionBreakdown"]])
 
 
+class TestEnrichmentContext(unittest.TestCase):
+    def test_speaker_turn_extraction_with_and_without_parens(self):
+        import enrich_saeima_context as ec
+
+        sample_html = """
+        <p>Sēdes vadītājs. Uzsākam debates.</p>
+        <p>A.&nbsp;Kulbergs (Ministru prezidenta amata kandidāts).</p>
+        <p>Godātais Saeimas priekšsēdētāj! Cienījamās deputātes! Godātie deputāti!</p>
+        <p>Pirms nepilna pusgada 28. maijā es stāvēju šai pat tribīnē un runāju par reformām.</p>
+        <p>I.&nbsp;Mūrniece.</p>
+        <p>Vispirms šajā lēmuma projektā mēs esam atsaukušies uz 14. Saeimas paziņojumiem.</p>
+        <p>Sēdes vadītājs. Debates slēdzu.</p>
+        """
+        turns = ec.extract_speaker_turns(sample_html)
+        self.assertEqual(len(turns), 2)
+        self.assertEqual(turns[0]["surname"], "kulbergs")
+        self.assertEqual(turns[0]["initial"], "a")
+        self.assertIn("Pirms nepilna pusgada", turns[0]["fullSpeech"])
+        # Preview skips formal salutation paragraph and leads with substance
+        prev = ec.build_speech_preview(turns[0]["fullSpeech"])
+        self.assertTrue(prev.startswith("Pirms nepilna pusgada"))
+        # Parentheseless speaker header (e.g. 3 Nov sitting before factions formed) also matches
+        self.assertEqual(turns[1]["surname"], "mūrniece")
+        self.assertIn("14. Saeimas", turns[1]["fullSpeech"])
+
+    def test_truncate_does_not_split_latvian_ordinals(self):
+        import enrich_saeima_context as ec
+
+        txt = "Iesniedzējs: Deputāti. Saeima 3. novembra sēdē apstiprināja noteikumus par pastāvīgo komisiju izveidošanu un sadali starp frakcijām."
+        out = ec.truncate_clean(txt, 60)
+        self.assertFalse(out.endswith("3."))
+
+    def test_clean_titania_word_html_and_role_cleanup(self):
+        import enrich_saeima_context as ec
+
+        raw = "<head><title>2002</title></head><body>Paziņojuma teksts Drukāt Aizvērt 2002 Paziņojums Daru zināmu, ka Saeima šā gada 20. novembra sēdē apstiprinājusi deputāta pilnvaras uz laiku.</body>"
+        cleaned = ec.clean_titania_word_html(raw)
+        self.assertNotIn("2002", cleaned)
+        self.assertNotIn("Drukāt", cleaned)
+        self.assertEqual(ec.clean_debater_role("", "Dep.", ""), "")
+        self.assertEqual(ec.clean_debater_role("", "1x, Dep.", ""), "")
+        self.assertEqual(ec.clean_debater_role("", "1x, MP kandidāts", ""), "Ministru prezidenta amata kandidāts")
+
+
 if __name__ == "__main__":
     unittest.main()

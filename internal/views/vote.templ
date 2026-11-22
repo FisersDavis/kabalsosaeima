@@ -365,51 +365,62 @@ templ Vote(props VoteProps) {
 						<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
 							for _, deb := range orderedDebs {
 								{{
-									isPar := strings.EqualFold(deb.Opinion, "Par")
-									borderBg := "border-emerald-200/90 bg-emerald-50/50"
-									dotColor := "bg-emerald-600"
-									titleColor := "text-emerald-950"
-									btnColor := "text-emerald-800 hover:text-emerald-950"
-									opinionLabel := "Par"
-									if !isPar {
-										borderBg = "border-rose-200/90 bg-rose-50/50"
-										dotColor = "bg-rose-600"
-										titleColor = "text-rose-950"
-										btnColor = "text-rose-800 hover:text-rose-950"
-										opinionLabel = "Pret"
-									}
+									st := DebaterStyle(deb)
 									mpSlug := ResolveMPSlugByName(props.Store, deb.Name)
 								}}
-								<div class={ "rounded-lg border p-3 sm:p-4 transition flex flex-col justify-between " + borderBg }>
+								<div class={ "debate-card rounded-lg border p-3 sm:p-4 transition flex flex-col justify-between " + st.CardClass }>
 									<div class="space-y-1.5">
-										<div class={ "flex items-center gap-1.5 text-xs sm:text-sm font-bold " + titleColor }>
-											<span class={ "inline-block w-2.5 h-2.5 rounded-full shrink-0 " + dotColor }></span>
-											<span>
-												Runāja "{ opinionLabel }":
-												if mpSlug != "" {
-													<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/deputati/%s/", mpSlug))) } class="hover:underline ml-1">
-														{ deb.Name }
-													</a>
-												} else {
-													<span class="ml-1">{ deb.Name }</span>
-												}
-												<span class="font-normal opacity-90 ml-1">({ deb.Fraction })</span>
-											</span>
+										<div class="flex flex-wrap items-center justify-between gap-1.5">
+											<div class={ "flex items-center gap-1.5 text-xs sm:text-sm font-bold " + st.TitleClass }>
+												<span class={ "inline-block w-2.5 h-2.5 rounded-full shrink-0 " + st.DotClass }></span>
+												<span>
+													{ st.PrefixLabel }
+													if mpSlug != "" {
+														<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/deputati/%s/", mpSlug))) } class="hover:underline ml-1">
+															{ deb.Name }
+														</a>
+													} else {
+														<span class="ml-1">{ deb.Name }</span>
+													}
+													if deb.Fraction != "" {
+														<span class="font-normal opacity-80 ml-1">({ deb.Fraction })</span>
+													}
+												</span>
+											</div>
+											if st.VotePillText != "" {
+												<span class={ "inline-flex items-center rounded border px-1.5 py-0.2 text-[10px] font-semibold shrink-0 " + st.VotePillClass }>
+													{ st.VotePillText }
+												</span>
+											}
 										</div>
+										if st.MetaSubtitle != "" {
+											<div class="text-[11px] text-slate-500 font-medium">
+												{ st.MetaSubtitle }
+											</div>
+										}
 										<div class="text-xs sm:text-sm text-slate-700 leading-relaxed">
-											<p class="debate-preview italic">„{ deb.Preview }“</p>
-											if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
-												<div class="debate-full hidden max-h-64 overflow-y-auto pr-1 text-slate-800 space-y-1 font-normal not-italic">
-													<p>„{ deb.FullSpeech }“</p>
-												</div>
+											if st.HasRealSpeech {
+												<p class="debate-preview italic">„{ deb.Preview }“</p>
+												if st.CanExpand {
+													<div class="debate-full hidden max-h-72 overflow-y-auto pr-1.5 text-slate-800 space-y-2 font-normal not-italic">
+														for _, para := range SpeechParagraphs(deb.FullSpeech) {
+															<p>{ para }</p>
+														}
+													</div>
+												}
+											} else {
+												<p class="text-xs text-slate-500 not-italic">
+													Stenogrammas teksts vēl tiek sagatavots.
+												</p>
 											}
 										</div>
 									</div>
-									if deb.FullSpeech != "" && deb.FullSpeech != deb.Preview {
+									if st.CanExpand {
 										<div class="pt-2">
 											<button
 												type="button"
-												class={ "debate-toggle-btn cursor-pointer text-xs font-semibold inline-flex items-center gap-1 select-none " + btnColor }
+												aria-expanded="false"
+												class={ "debate-toggle-btn cursor-pointer text-xs font-semibold inline-flex items-center gap-1 select-none " + st.BtnClass }
 											>
 												<span class="debate-btn-text">Lasīt pilno runu</span>
 												<span class="debate-arrow text-[10px]">↓</span>
@@ -693,13 +704,14 @@ templ Vote(props VoteProps) {
 										<svg class="w-3 h-3 text-slate-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
 									</div>
 									<p class="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
-										Pilns sēdes norises teksts ar debašu uzstāšanās tiešo enkuru (saeima.lv)
+										Pilns sēdes norises teksts un debašu uzstāšanās (saeima.lv)
 									</p>
 								</div>
 							</a>
-						} else if props.Vote.BillNumber != "" {
+						}
+						if props.Vote.BillURL != "" || (props.Vote.StenogramURL == "" && props.Vote.BillNumber != "") {
 							<a
-								href={ templ.SafeURL(SaeimaBillSearchURLForTerm(ActiveTermNumber(props.LayoutProps), props.Vote.BillNumber)) }
+								href={ templ.SafeURL(VoteBillURL(props.Vote, ActiveTermNumber(props.LayoutProps))) }
 								target="_blank"
 								rel="noopener noreferrer"
 								class="flex items-start gap-2.5 p-3 rounded-lg border border-slate-200 bg-slate-50/70 hover:bg-slate-100 hover:border-slate-300 transition group"
@@ -707,11 +719,11 @@ templ Vote(props VoteProps) {
 								<span class="text-base leading-none">📋</span>
 								<div class="min-w-0 flex-1">
 									<div class="font-semibold text-slate-900 group-hover:text-emerald-800 flex items-center gap-1">
-										<span>Likumprojekta Nr. { CleanBillNr(props.Vote.BillNumber) } gaita</span>
+										<span>Dokumenta Nr. { CleanBillNr(props.Vote.BillNumber) } reģistrs</span>
 										<svg class="w-3 h-3 text-slate-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
 									</div>
 									<p class="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
-										Likumprojekta teksts, iesniegtie priekšlikumi un atzinumi (titania.saeima.lv)
+										Oficiālais teksts, iesniedzēji un izskatīšanas gaita (titania.saeima.lv)
 									</p>
 								</div>
 							</a>

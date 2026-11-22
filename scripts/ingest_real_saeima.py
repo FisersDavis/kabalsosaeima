@@ -278,30 +278,25 @@ def parse_debates_xml(deb_xml_text: str) -> dict:
                 continue
             seen.add(key)
 
-            op_low = raw_op.lower()
-            if "pret" in op_low:
+            op_low = raw_op.lower().strip()
+            if op_low == "pret" or "runāt pret" in op_low:
                 opinion = "Pret"
-            elif "par" in op_low:
+            elif op_low == "par" or "runāt par" in op_low:
                 opinion = "Par"
             else:
-                opinion = raw_op or "Debates"
+                opinion = "Debates"
 
-            preview_parts = []
-            if raw_op:
-                preview_parts.append(raw_op)
-            if info:
-                preview_parts.append(info)
-            if t_dur:
-                preview_parts.append(f"uzstāšanās ilgums {t_dur}")
-            preview = " · ".join(preview_parts) if preview_parts else "Uzstājās debatēs Saeimas sēdē."
-
-            debaters.append({
+            deb_obj = {
                 "name": full_name,
-                "fraction": frac or "PIEFR",
+                "fraction": frac,
                 "opinion": opinion,
-                "preview": preview,
+                "duration": t_dur,
+                "preview": "",
                 "fullSpeech": "",
-            })
+                "_rawOpinion": raw_op,
+                "_rawInfo": info,
+            }
+            debaters.append(deb_obj)
         if debaters:
             result[dkp_id] = debaters
     return result
@@ -330,6 +325,7 @@ def parse_sitting(sitting_name: str, term: int, v_res: dict, d_res: dict, deb_re
 
     # Extract sitting-level metadata from <DK>
     dk_el = d_root.find("DK")
+    dk_id = (dk_el.findtext("WORKSEQUENCEID") or "").strip().lower() if dk_el is not None else ""
     dk_date = (dk_el.findtext("DKDATE") or "").strip() if dk_el is not None else ""
     session_type_code = (dk_el.findtext("SESSIONTYPE") or "").strip() if dk_el is not None else ""
     if "ārkārtas" in sitting_name.lower() or session_type_code == "2":
@@ -365,6 +361,11 @@ def parse_sitting(sitting_name: str, term: int, v_res: dict, d_res: dict, deb_re
 
         title = (d_item.findtext("TITLE") or "").strip() if d_item is not None else ""
         if not title:
+            title = motive
+        # When DKP TITLE is a generic procedural stub ("Par iekļaušanu nākamās sēdes darba kārtībā")
+        # and VOTEMOTIVE carries the full subject ("Par iekļaušanu... Par Saeimas pārstāvjiem..."),
+        # prefer VOTEMOTIVE so viewers immediately know what is being voted on.
+        elif motive and len(motive) > len(title) + 12 and motive.lower().startswith(title.lower().rstrip(".")):
             title = motive
 
         bill_number = (d_item.findtext("LIVSDOCUMENTID") or "").strip() if d_item is not None else ""
@@ -517,9 +518,19 @@ def parse_sitting(sitting_name: str, term: int, v_res: dict, d_res: dict, deb_re
                 ),
             }
 
+        dkp_start = (d_item.findtext("DKP_DKPSTARTTIME") or "").strip() if d_item is not None else ""
+        dkp_end = (d_item.findtext("DKP_DKPENDTIME") or "").strip() if d_item is not None else ""
+        new_simplified = simplify_title(title)
+        prev_simplified = (prev_vote.get("simplifiedTitle") or "").strip()
+        if prev_simplified and len(new_simplified) <= len(prev_simplified) + 10:
+            simplified_title = prev_simplified
+        else:
+            simplified_title = new_simplified
+
         vote_obj = {
             "id": vote_id,
             "saeimaTerm": term,
+            "dkId": dk_id,
             "sittingName": sitting_name,
             "sessionDate": date_str,
             "sittingDate": date_str,
@@ -534,10 +545,11 @@ def parse_sitting(sitting_name: str, term: int, v_res: dict, d_res: dict, deb_re
             "isRevote": False,
             "officialTitle": title,
             "billNumber": bill_number,
-            "simplifiedTitle": prev_vote.get("simplifiedTitle") or simplify_title(title),
+            "simplifiedTitle": simplified_title,
             "summary": summary_text,
             "purpose": prev_vote.get("purpose", ""),
             "protocolUrl": prev_vote.get("protocolUrl", ""),
+            "billUrl": prev_vote.get("billUrl", ""),
             "stenogramUrl": prev_vote.get("stenogramUrl", ""),
             "category": prev_vote.get("category") or detect_category(title, section),
             "counts": {
@@ -551,6 +563,9 @@ def parse_sitting(sitting_name: str, term: int, v_res: dict, d_res: dict, deb_re
             "factionBreakdown": [],  # computed honestly from rollcalls + active mandates below
             "debateArguments": debate_args,
             "_mpVotes": mp_records,
+            "_dkpStartTime": dkp_start,
+            "_dkpEndTime": dkp_end,
+            "_voteMotive": motive,
         }
         votes_parsed.append(vote_obj)
 
@@ -763,7 +778,7 @@ def mirror_active_term_to_root(term_dir: str):
     shutil.copytree(src_rc, dst_rc)
 
 
-def ingest_term(term: int, ckan_resources: list, force: bool = False, max_workers: int = 4):
+def ingest_term(term: int, ckan_resources: list, force: bool = False, max_workers: int = 4, skip_enrich: bool = False):
     term_dir = os.path.join(TERMS_DIR, str(term))
     votes_file = os.path.join(term_dir, "votes.json")
     mps_file = os.path.join(term_dir, "mps.json")
@@ -840,13 +855,20 @@ def ingest_term(term: int, ckan_resources: list, force: bool = False, max_worker
         b_mod = (deb_res[s_name].get("last_modified") or deb_res[s_name].get("created") or "") if s_name in deb_res else ""
 
         prev_st = sync_state.get(s_name)
+        has_dk_ids = (
+            prev_st is not None
+            and all(
+                vid in existing_votes_by_id and (term != ACTIVE_TERM or existing_votes_by_id[vid].get("dkId"))
+                for vid in prev_st.get("vote_ids", [])
+            )
+        )
         if (
             not force
             and prev_st
             and prev_st.get("vote_mod") == v_mod
             and prev_st.get("dkp_mod") == d_mod
             and prev_st.get("deb_mod") == b_mod
-            and all(vid in existing_votes_by_id for vid in prev_st.get("vote_ids", []))
+            and has_dk_ids
         ):
             cached_sittings.append(s_name)
         else:
@@ -932,6 +954,39 @@ def ingest_term(term: int, ckan_resources: list, force: bool = False, max_worker
     print(f"[3/4] Recomputing truthful faction breakdowns & constitutional outcomes for {len(all_votes)} votes...")
     build_honest_faction_breakdowns(all_votes, rollcalls_by_vote, mps, mandates, factions)
 
+    # Enrich official protocol URLs, stenogrammas, verbatim debate speeches & civic descriptions
+    if not skip_enrich:
+        try:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            if script_dir not in sys.path:
+                sys.path.insert(0, script_dir)
+            from enrich_saeima_context import enrich_term_votes
+
+            enrich_term_votes(
+                term=term,
+                votes=all_votes,
+                rollcalls_by_vote=rollcalls_by_vote,
+                mps=mps,
+                factions=factions,
+                term_dir=term_dir,
+                max_sittings=0 if term == ACTIVE_TERM else 15,
+                force_refresh=force,
+            )
+        except Exception as e:
+            print(f"      [WARN] Enrichment step encountered a non-fatal error (continuing with verified XML data): {e}", flush=True)
+
+    # Ensure no internal temporary keys leak into JSON output
+    for v in all_votes:
+        for k in list(v.keys()):
+            if k.startswith("_"):
+                v.pop(k, None)
+        deb_args = v.get("debateArguments")
+        if isinstance(deb_args, dict) and isinstance(deb_args.get("debaters"), list):
+            for d in deb_args["debaters"]:
+                for k in list(d.keys()):
+                    if k.startswith("_"):
+                        d.pop(k, None)
+
     # Write outputs & prune orphan rollcall files
     print(f"[4/4] Writing verified datasets to {term_dir}...")
     valid_rc_files = set()
@@ -988,6 +1043,7 @@ def main():
     parser.add_argument("--term", type=int, choices=[14, 15], help="Specific Saeima term to ingest (14 or 15)")
     parser.add_argument("--all", action="store_true", help="Ingest both 15. and 14. Saeima")
     parser.add_argument("--force", action="store_true", help="Ignore sync_state.json cache and re-download all sittings")
+    parser.add_argument("--skip-enrich", action="store_true", help="Skip Titania/Saeima.lv context & stenogramma enrichment")
     parser.add_argument("--workers", type=int, default=4, help="Concurrent XML download workers (default: 4)")
     args = parser.parse_args()
 
@@ -1004,7 +1060,7 @@ def main():
         terms = [ACTIVE_TERM]
 
     for t in terms:
-        ingest_term(t, resources, force=args.force, max_workers=args.workers)
+        ingest_term(t, resources, force=args.force, max_workers=args.workers, skip_enrich=args.skip_enrich)
 
 
 if __name__ == "__main__":
