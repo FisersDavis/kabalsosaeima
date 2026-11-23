@@ -35,6 +35,9 @@ func ComputeMPAttendance(store *data.Store, mpID string) AttendanceStats {
 
 	var stats AttendanceStats
 	for _, vote := range store.Votes {
+		if vote.IsSecret {
+			continue
+		}
 		isoDate, err := data.ParseSittingDate(vote.SittingDate)
 		if err != nil {
 			continue

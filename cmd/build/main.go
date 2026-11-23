@@ -380,13 +380,12 @@ func copyTermData(dataDir, distData string, includeRollcalls bool) error {
 	})
 }
 
-const overviewPageSize = 200
+const overviewPageSize = 50
 
 func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string) ([]string, error) {
 	ctx := context.Background()
 	store := lt.Store
 	bp := lt.Config.BasePath
-	termLabel := lt.Config.Label
 
 	activeMPCount := 0
 	for i := range store.MPs {
@@ -439,7 +438,7 @@ func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string)
 	// Compute bill progression timelines
 	timelines := stats.GroupBillTimelines(store)
 
-	// 1. Overview Pages (paginated at overviewPageSize so even 7,950-vote archives stay ~1 MB/page)
+	// 1. Overview Pages (paginated at overviewPageSize=50 so 7,950-vote archives stay ~195 KB/page with zero dual pagination)
 	totalVotes := len(store.Votes)
 	totalPages := (totalVotes + overviewPageSize - 1) / overviewPageSize
 	if totalPages < 1 {
@@ -455,17 +454,17 @@ func renderTermPages(lt loadedTerm, navTerms []views.TermNavItem, outDir string)
 
 		relPath := "/"
 		outPath := filepath.Join(outDir, "index.html")
-		pageTitle := fmt.Sprintf("Kā Balso Saeima - %s balsojumu arhīvs un analītika", termLabel)
+		pageTitle := fmt.Sprintf("Kā Balso Saeima — %d. Saeimas balsojumu arhīvs un analītika", lt.Config.Term)
 		if page > 1 {
 			relPath = fmt.Sprintf("/lapa/%d/", page)
 			outPath = filepath.Join(outDir, "lapa", fmt.Sprint(page), "index.html")
-			pageTitle = fmt.Sprintf("Kā Balso Saeima - %s balsojumi (%d. lapa)", termLabel, page)
+			pageTitle = fmt.Sprintf("Kā Balso Saeima — %d. Saeimas balsojumi (%d. lapa)", lt.Config.Term, page)
 		}
 
 		overviewProps := views.OverviewProps{
 			LayoutProps: makeLayout(
 				pageTitle,
-				fmt.Sprintf("Pārskatāms un neatkarīgs %s balsojumu arhīvs ar frakciju disciplīnas un deputātu dalības analīzi.", termLabel),
+				fmt.Sprintf("Pārskatāms un neatkarīgs %d. Saeimas balsojumu arhīvs ar frakciju disciplīnas un deputātu dalības analīzi.", lt.Config.Term),
 				relPath,
 				"votes",
 			),
@@ -684,6 +683,7 @@ func writeStandardSiteFiles(outDir string, activeTerm loadedTerm, navTerms []vie
 			IsActiveTerm:  activeTerm.Config.IsActive,
 			ActiveMPCount: activeMPCount,
 			Terms:         navTerms,
+			NoIndex:       true,
 		},
 	}
 	if err := writeHTML(filepath.Join(outDir, "404.html"), views.NotFound(notFoundProps), ctx); err != nil {

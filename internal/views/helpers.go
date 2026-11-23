@@ -79,6 +79,45 @@ func MeaningfulVotePurpose(purpose string) string {
 	return s
 }
 
+// VoteHeadline returns the cleaned vote headline, falling back to OfficialTitle when SimplifiedTitle is empty.
+func VoteHeadline(v data.Vote) string {
+	if t := CleanVoteTitle(v.SimplifiedTitle); t != "" {
+		return t
+	}
+	return CleanVoteTitle(v.OfficialTitle)
+}
+
+// DisplayReadingStage returns an accurate Latvian reading/decision stage label,
+// distinguishing Saeima decisions (*/Lm*) from actual laws ("Likuma pieņemšana").
+func DisplayReadingStage(v data.Vote) string {
+	stage := strings.TrimSpace(v.ReadingStage)
+	if stage == "" {
+		return ""
+	}
+	if strings.EqualFold(stage, "Likuma pieņemšana") && strings.Contains(strings.ToLower(v.BillNumber), "/lm") {
+		return "Saeimas lēmums"
+	}
+	return stage
+}
+
+// MeaningfulVoteSummary returns summary text only when it is substantive (not robotic registration boilerplate).
+func MeaningfulVoteSummary(summary string) string {
+	s := strings.TrimSpace(summary)
+	if s == "" {
+		return ""
+	}
+	if strings.HasPrefix(s, "Likumprojekts izskatīts ") && strings.Contains(s, "Oficiālais reģistrācijas numurs:") {
+		return ""
+	}
+	if strings.HasPrefix(s, "Procedūras lēmums Saeimas sēdes gaitā") {
+		return ""
+	}
+	if strings.HasPrefix(s, "Priekšlikums likumprojektam") {
+		return ""
+	}
+	return s
+}
+
 var committeeRegex = regexp.MustCompile(`(?i)Atbildīgā komisija:\s*([^.]+)`)
 
 // ExtractResponsibleCommittee extracts committee name from legal summary text if present.
@@ -88,6 +127,19 @@ func ExtractResponsibleCommittee(summary string) string {
 		return strings.TrimSpace(m[1])
 	}
 	return ""
+}
+
+// ExtractSubmitterOrCommittee returns an accurate label ("Atbildīgā komisija" vs "Iesniedzējs")
+// and value from summary metadata, preventing PM nominees or individuals from being mislabeled as committees.
+func ExtractSubmitterOrCommittee(summary string) (string, string) {
+	val := ExtractResponsibleCommittee(summary)
+	if val == "" {
+		return "", ""
+	}
+	if strings.Contains(strings.ToLower(val), "komisij") {
+		return "Atbildīgā komisija", val
+	}
+	return "Iesniedzējs", val
 }
 
 // PurposeLabel returns an appropriate label for context based on whether the vote is a proposal or a law.
@@ -104,18 +156,17 @@ func PurposeLabel(voteType, readingStage, title string) string {
 	return "Likuma mērķis"
 }
 
-
-// DecisionColor returns standard chromatic colors for parliamentary decisions.
+// DecisionColor returns WCAG 2.1 AA compliant chromatic colors for parliamentary decisions on white backgrounds.
 func DecisionColor(decision string) string {
 	switch strings.ToUpper(strings.TrimSpace(decision)) {
 	case "PAR":
-		return "#059669" // Emerald 600
+		return "#047857" // Emerald 700 (5.48:1 on white)
 	case "PRET":
-		return "#e11d48" // Rose 600
+		return "#be123c" // Rose 700 (6.36:1 on white)
 	case "ATTURAS":
-		return "#d97706" // Amber 600
+		return "#b45309" // Amber 700 (5.02:1 on white)
 	default:
-		return "#94a3b8" // Slate 400
+		return "#525252" // Neutral 600 (7.00:1 on white)
 	}
 }
 
@@ -135,19 +186,19 @@ func DecisionLabel(decision string) string {
 	}
 }
 
-// DecisionBadgeClass returns Tailwind utility classes for decision pills.
+// DecisionBadgeClass returns Tailwind utility classes for decision labels.
 func DecisionBadgeClass(decision string) string {
 	switch strings.ToUpper(strings.TrimSpace(decision)) {
 	case "PAR":
-		return "bg-emerald-50 text-emerald-700 border-emerald-200"
+		return "text-emerald-800"
 	case "PRET":
-		return "bg-rose-50 text-rose-700 border-rose-200"
+		return "text-rose-800"
 	case "ATTURAS":
-		return "bg-amber-50 text-amber-700 border-amber-200"
+		return "text-amber-800"
 	case "NEBALSO", "NEBALSOJA":
-		return "bg-slate-50 text-slate-600 border-slate-200"
+		return "text-neutral-500"
 	default:
-		return "bg-slate-50 text-slate-500 border-slate-200"
+		return "text-neutral-500"
 	}
 }
 
@@ -240,18 +291,67 @@ func ResultLabel(result string) string {
 	}
 }
 
-// ResultBadgeClass returns Tailwind utility classes for outcome badges.
-func ResultBadgeClass(result string) string {
+// ResultTextClass returns semantic text color class for clean typographic outcome labels.
+func ResultTextClass(result string) string {
 	switch result {
 	case "PIENEMTS":
-		return "border-emerald-300 bg-emerald-50 text-emerald-800"
+		return "text-emerald-800"
 	case "NAV_KVORUMA":
-		return "border-amber-300 bg-amber-50 text-amber-900"
+		return "text-amber-800"
 	case "NORAIDITS":
-		return "border-rose-300 bg-rose-50 text-rose-800"
+		return "text-rose-800"
 	default:
-		return "border-slate-300 bg-slate-50 text-slate-800"
+		return "text-neutral-700"
 	}
+}
+
+var lvMonthsShort = [...]string{
+	"", "janv.", "febr.", "marts", "apr.", "maijs", "jūn.",
+	"jūl.", "aug.", "sept.", "okt.", "nov.", "dec.",
+}
+
+var lvMonthsLong = [...]string{
+	"", "janvāris", "februāris", "marts", "aprīlis", "maijs", "jūnijs",
+	"jūlijs", "augusts", "septembris", "oktobris", "novembris", "decembris",
+}
+
+// FormatLatvianDate converts DD.MM.YYYY or YYYY-MM-DD into a crisp newspaper date (e.g. "20. nov. 2026").
+func FormatLatvianDate(raw string) string {
+	s := strings.TrimSpace(raw)
+	if s == "" {
+		return ""
+	}
+	var day, month, year int
+	if _, err := fmt.Sscanf(s, "%d.%d.%d", &day, &month, &year); err == nil && month >= 1 && month <= 12 && year > 1900 {
+		return fmt.Sprintf("%d. %s %d", day, lvMonthsShort[month], year)
+	}
+	if _, err := fmt.Sscanf(s, "%d-%d-%d", &year, &month, &day); err == nil && month >= 1 && month <= 12 && year > 1900 {
+		return fmt.Sprintf("%d. %s %d", day, lvMonthsShort[month], year)
+	}
+	return s
+}
+
+// FormatLatvianDateLong converts DD.MM.YYYY or YYYY-MM-DD into a full editorial dateline ("2026. gada 20. novembris").
+func FormatLatvianDateLong(raw string) string {
+	s := strings.TrimSpace(raw)
+	if s == "" {
+		return ""
+	}
+	var day, month, year int
+	if _, err := fmt.Sscanf(s, "%d.%d.%d", &day, &month, &year); err == nil && month >= 1 && month <= 12 && year > 1900 {
+		return fmt.Sprintf("%d. gada %d. %s", year, day, lvMonthsLong[month])
+	}
+	if _, err := fmt.Sscanf(s, "%d-%d-%d", &year, &month, &day); err == nil && month >= 1 && month <= 12 && year > 1900 {
+		return fmt.Sprintf("%d. gada %d. %s", year, day, lvMonthsLong[month])
+	}
+	return s
+}
+
+// IsSameTitle returns true when officialTitle duplicates the cleaned H1 headline (ignoring trailing bill code).
+func IsSameTitle(official, simplified string) bool {
+	a := strings.ToLower(strings.TrimSpace(CleanVoteTitle(official)))
+	b := strings.ToLower(strings.TrimSpace(CleanVoteTitle(simplified)))
+	return a == "" || a == b
 }
 
 // HemicycleSeat represents a single focusable seat in the Saeima chamber.
@@ -302,7 +402,11 @@ func FactionsCompactJSON(store *data.Store) string {
 		}
 		color := f.Color
 		if color == "" {
-			color = "#64748B"
+			color = "#475569"
+		} else if strings.EqualFold(color, "#EA580C") {
+			color = "#C2410C" // WCAG AA >= 4.5:1 with white text
+		} else if strings.EqualFold(color, "#94A3B8") || strings.EqualFold(color, "#64748B") {
+			color = "#475569" // WCAG AA >= 4.5:1 with white text
 		}
 		m[f.ID] = [4]string{short, name, color, FactionTextColor(f.ID, f.TextColor)}
 	}
@@ -573,12 +677,97 @@ func ResolveMPSlugByName(store *data.Store, name string) string {
 	return ""
 }
 
+// isLatvianSingular returns true for counts ending in 1 except 11 (1, 21, 31, ...).
+func isLatvianSingular(count int) bool {
+	return count%10 == 1 && count%100 != 11
+}
+
 // FormatVotesCount formats a count of votes with correct Latvian plural inflection.
 func FormatVotesCount(count int) string {
-	if count%10 == 1 && count%100 != 11 {
+	if isLatvianSingular(count) {
 		return fmt.Sprintf("%d balsojums", count)
 	}
 	return fmt.Sprintf("%d balsojumi", count)
+}
+
+// FormatSpeakersCount formats debate speaker count with correct Latvian inflection.
+func FormatSpeakersCount(count int) string {
+	if isLatvianSingular(count) {
+		return fmt.Sprintf("%d runātājs", count)
+	}
+	return fmt.Sprintf("%d runātāji", count)
+}
+
+// FormatDeputiesCount formats deputy count with correct Latvian inflection.
+func FormatDeputiesCount(count int) string {
+	if isLatvianSingular(count) {
+		return fmt.Sprintf("%d deputāts", count)
+	}
+	return fmt.Sprintf("%d deputāti", count)
+}
+
+// FormatActiveDeputiesCount formats active deputy count with correct Latvian inflection.
+func FormatActiveDeputiesCount(count int) string {
+	if isLatvianSingular(count) {
+		return fmt.Sprintf("%d aktīvs deputāts", count)
+	}
+	return fmt.Sprintf("%d aktīvi deputāti", count)
+}
+
+// FormatActiveMandatesCount formats active mandate count with correct Latvian inflection.
+func FormatActiveMandatesCount(count int) string {
+	if isLatvianSingular(count) {
+		return fmt.Sprintf("%d aktīvs mandāts", count)
+	}
+	return fmt.Sprintf("%d aktīvi mandāti", count)
+}
+
+// FormatEligibleVotesDenominator formats "X no Y balsojuma/balsojumiem mandāta laikā" grammatically.
+func FormatEligibleVotesDenominator(present, total int) string {
+	if isLatvianSingular(total) {
+		return fmt.Sprintf("%d no %d balsojuma mandāta laikā", present, total)
+	}
+	return fmt.Sprintf("%d no %d balsojumiem mandāta laikā", present, total)
+}
+
+// FormatAllBillVotesLink formats the "Skatīt visus N šī likumprojekta balsojumus" CTA grammatically.
+func FormatAllBillVotesLink(count int) string {
+	if isLatvianSingular(count) {
+		return fmt.Sprintf("Skatīt %d šī likumprojekta balsojumu →", count)
+	}
+	return fmt.Sprintf("Skatīt visus %d šī likumprojekta balsojumus →", count)
+}
+
+// FormatSeatsCount formats chamber seat count with correct Latvian inflection.
+func FormatSeatsCount(count int) string {
+	if isLatvianSingular(count) {
+		return fmt.Sprintf("%d vieta", count)
+	}
+	return fmt.Sprintf("%d vietas", count)
+}
+
+// IsDecisionProject returns true when a registration number belongs to a Saeima decision (*/Lm*)
+// rather than a legislative bill (*/Lp*).
+func IsDecisionProject(billNr string) bool {
+	return strings.Contains(strings.ToLower(strings.TrimSpace(billNr)), "/lm")
+}
+
+// FormatDeviationTitle formats a vote title for MP deviation rows, appending bill context
+// when the vote is a bare numbered amendment or generic urgency vote.
+func FormatDeviationTitle(store *data.Store, voteID string) string {
+	if store == nil || store.VoteByID == nil {
+		return voteID
+	}
+	v := store.VoteByID[voteID]
+	if v == nil {
+		return voteID
+	}
+	title := VoteHeadline(*v)
+	isGeneric := v.VoteType == "priekslikums" || strings.EqualFold(strings.TrimSpace(title), "Steidzamības balsojums")
+	if isGeneric && v.BillNumber != "" && !strings.Contains(strings.ToLower(title), strings.ToLower(CleanBillNr(v.BillNumber))) {
+		return fmt.Sprintf("%s (Nr. %s)", title, CleanBillNr(v.BillNumber))
+	}
+	return title
 }
 
 // AvatarInitials returns uppercase letters representing a person's first and last name initials.
@@ -704,6 +893,7 @@ type LayoutProps struct {
 	IsActiveTerm  bool
 	ActiveMPCount int
 	Terms         []TermNavItem
+	NoIndex       bool
 }
 
 // EffectiveActiveMPCount returns the active deputy count badge value (defaults to 100).
@@ -780,9 +970,9 @@ type NotFoundProps struct {
 // NavLinkClass returns Tailwind classes for active vs inactive navbar links.
 func NavLinkClass(isActive bool) string {
 	if isActive {
-		return "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition shrink-0 bg-slate-900 text-white shadow-2xs"
+		return "inline-flex items-center gap-2 border-b-2 border-neutral-950 pb-2.5 text-sm font-semibold text-neutral-950 transition shrink-0"
 	}
-	return "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition shrink-0 text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+	return "inline-flex items-center gap-2 border-b-2 border-transparent pb-2.5 text-sm font-medium text-neutral-500 hover:text-neutral-950 hover:border-neutral-300 transition shrink-0"
 }
 
 
@@ -923,42 +1113,46 @@ func DebaterStyle(deb data.Debater) DebaterCardStyle {
 	op := strings.TrimSpace(deb.Opinion)
 	switch {
 	case strings.EqualFold(op, "Par"):
-		st.CardClass = "border-emerald-200/90 bg-emerald-50/50"
-		st.DotClass = "bg-emerald-600"
-		st.TitleClass = "text-emerald-950"
-		st.BtnClass = "text-emerald-800 hover:text-emerald-950"
-		st.PrefixLabel = `Runāja "Par":`
+		st.CardClass = "border-l-2 border-emerald-700 pl-4 py-1"
+		st.DotClass = "bg-emerald-700"
+		st.TitleClass = "text-neutral-950"
+		st.BtnClass = "text-emerald-800 hover:text-neutral-950 underline underline-offset-2"
+		st.PrefixLabel = "Runāja „Par“:"
 	case strings.EqualFold(op, "Pret"):
-		st.CardClass = "border-rose-200/90 bg-rose-50/50"
-		st.DotClass = "bg-rose-600"
-		st.TitleClass = "text-rose-950"
-		st.BtnClass = "text-rose-800 hover:text-rose-950"
-		st.PrefixLabel = `Runāja "Pret":`
+		st.CardClass = "border-l-2 border-rose-700 pl-4 py-1"
+		st.DotClass = "bg-rose-700"
+		st.TitleClass = "text-neutral-950"
+		st.BtnClass = "text-rose-800 hover:text-neutral-950 underline underline-offset-2"
+		st.PrefixLabel = "Runāja „Pret“:"
 	default:
-		// General debate speaker: tint subtly by verified rollcall decision if available, else neutral slate
+		// General debate speaker: tint subtly by verified rollcall decision if available, else neutral rule
 		switch strings.ToUpper(strings.TrimSpace(deb.VoteDecision)) {
 		case "PAR":
-			st.CardClass = "border-emerald-200/80 bg-emerald-50/40"
-			st.DotClass = "bg-emerald-600"
-			st.TitleClass = "text-slate-900"
-			st.BtnClass = "text-emerald-800 hover:text-emerald-950"
+			st.CardClass = "border-l-2 border-emerald-700/70 pl-4 py-1"
+			st.DotClass = "bg-emerald-700"
+			st.TitleClass = "text-neutral-950"
+			st.BtnClass = "text-emerald-800 hover:text-neutral-950 underline underline-offset-2"
 		case "PRET":
-			st.CardClass = "border-rose-200/80 bg-rose-50/40"
-			st.DotClass = "bg-rose-600"
-			st.TitleClass = "text-slate-900"
-			st.BtnClass = "text-rose-800 hover:text-rose-950"
+			st.CardClass = "border-l-2 border-rose-700/70 pl-4 py-1"
+			st.DotClass = "bg-rose-700"
+			st.TitleClass = "text-neutral-950"
+			st.BtnClass = "text-rose-800 hover:text-neutral-950 underline underline-offset-2"
 		default:
-			st.CardClass = "border-slate-200 bg-slate-50/70"
-			st.DotClass = "bg-slate-500"
-			st.TitleClass = "text-slate-900"
-			st.BtnClass = "text-slate-700 hover:text-slate-950"
+			st.CardClass = "border-l-2 border-neutral-300 pl-4 py-1"
+			st.DotClass = "bg-neutral-500"
+			st.TitleClass = "text-neutral-950"
+			st.BtnClass = "text-neutral-700 hover:text-neutral-950 underline underline-offset-2"
 		}
 		st.PrefixLabel = "Debatēs:"
 	}
 
 	var metaParts []string
-	if strings.TrimSpace(deb.Role) != "" {
-		metaParts = append(metaParts, strings.TrimSpace(deb.Role))
+	roleClean := strings.TrimSpace(deb.Role)
+	fracClean := strings.TrimSpace(deb.Fraction)
+	isDupFaction := roleClean != "" && fracClean != "" && (strings.EqualFold(roleClean, fracClean) ||
+		(strings.EqualFold(roleClean, "SV/JA") && strings.EqualFold(fracClean, "SV/AJ")))
+	if roleClean != "" && !isDupFaction {
+		metaParts = append(metaParts, roleClean)
 	}
 	if strings.TrimSpace(deb.Duration) != "" {
 		metaParts = append(metaParts, "ilgums "+strings.TrimSpace(deb.Duration))
@@ -968,13 +1162,13 @@ func DebaterStyle(deb data.Debater) DebaterCardStyle {
 	switch strings.ToUpper(strings.TrimSpace(deb.VoteDecision)) {
 	case "PAR":
 		st.VotePillText = "Balsoja PAR"
-		st.VotePillClass = "bg-emerald-100/80 text-emerald-800 border-emerald-200"
+		st.VotePillClass = "text-emerald-800"
 	case "PRET":
 		st.VotePillText = "Balsoja PRET"
-		st.VotePillClass = "bg-rose-100/80 text-rose-800 border-rose-200"
+		st.VotePillClass = "text-rose-800"
 	case "ATTURAS":
 		st.VotePillText = "Atturējās"
-		st.VotePillClass = "bg-amber-100/80 text-amber-800 border-amber-200"
+		st.VotePillClass = "text-amber-800"
 	}
 
 	fullClean := strings.TrimSpace(deb.FullSpeech)
@@ -1178,6 +1372,22 @@ func VoteBillURL(v *data.Vote, fallbackTerm int) string {
 		billNr = v.BillNumber
 	}
 	return SaeimaBillSearchURLForTerm(term, billNr)
+}
+
+// BillDirectURL returns the first direct official Titania BillURL found among a bill timeline's votes,
+// falling back to the working LIVS registry view.
+func BillDirectURL(tl *stats.BillTimeline, fallbackTerm int) string {
+	if tl != nil {
+		for _, st := range tl.Stages {
+			for _, v := range st.Votes {
+				if v != nil && strings.TrimSpace(v.BillURL) != "" {
+					return v.BillURL
+				}
+			}
+		}
+		return SaeimaBillSearchURLForTerm(fallbackTerm, tl.BillNumber)
+	}
+	return SaeimaBillSearchURLForTerm(fallbackTerm, "")
 }
 
 // SaeimaDeputiesRegistryURL returns the official saeima.lv deputy directory URL for the given term.
