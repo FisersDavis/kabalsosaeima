@@ -167,11 +167,11 @@
       var isActive = urlParams.get('active') === '1';
       activeToggle.setAttribute('data-active', isActive ? 'true' : 'false');
       if (isActive) {
-        activeToggle.classList.add('bg-slate-900', 'text-white', 'border-slate-900');
-        activeToggle.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
+        activeToggle.classList.add('bg-neutral-950', 'text-white', 'border-neutral-950');
+        activeToggle.classList.remove('bg-white', 'text-neutral-700', 'border-neutral-300');
       } else {
-        activeToggle.classList.remove('bg-slate-900', 'text-white', 'border-slate-900');
-        activeToggle.classList.add('bg-white', 'text-slate-700', 'border-slate-200');
+        activeToggle.classList.remove('bg-neutral-950', 'text-white', 'border-neutral-950');
+        activeToggle.classList.add('bg-white', 'text-neutral-700', 'border-neutral-300');
       }
     }
 
@@ -183,11 +183,11 @@
         var active = activeToggle.getAttribute('data-active') === 'true';
         activeToggle.setAttribute('data-active', active ? 'false' : 'true');
         if (!active) {
-          activeToggle.classList.add('bg-slate-900', 'text-white', 'border-slate-900');
-          activeToggle.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
+          activeToggle.classList.add('bg-neutral-950', 'text-white', 'border-neutral-950');
+          activeToggle.classList.remove('bg-white', 'text-neutral-700', 'border-neutral-300');
         } else {
-          activeToggle.classList.remove('bg-slate-900', 'text-white', 'border-slate-900');
-          activeToggle.classList.add('bg-white', 'text-slate-700', 'border-slate-200');
+          activeToggle.classList.remove('bg-neutral-950', 'text-white', 'border-neutral-950');
+          activeToggle.classList.add('bg-white', 'text-neutral-700', 'border-neutral-300');
         }
         applyFilter();
       });
@@ -199,8 +199,8 @@
         if (factionSelect) factionSelect.value = 'ALL';
         if (activeToggle) {
           activeToggle.setAttribute('data-active', 'true');
-          activeToggle.classList.add('bg-slate-900', 'text-white', 'border-slate-900');
-          activeToggle.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
+          activeToggle.classList.add('bg-neutral-950', 'text-white', 'border-neutral-950');
+          activeToggle.classList.remove('bg-white', 'text-neutral-700', 'border-neutral-300');
         }
         applyFilter();
       });

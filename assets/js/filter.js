@@ -134,89 +134,104 @@
     return node;
   }
 
-  function buildArchiveCard(v, basePath) {
-    var article = el('article', 'rounded-xl border border-slate-200 bg-white p-4 shadow-2xs transition hover:border-slate-300 hover:shadow-xs space-y-2.5');
-
-    // Eyebrow metadata
-    var eyebrow = el('div', 'flex flex-wrap items-center gap-1.5 text-[11px] text-slate-400 font-medium tracking-wide');
-    eyebrow.appendChild(el('span', 'font-mono text-slate-500', v.sittingDate || ''));
-
-    if (v.readingStage && v.readingStage !== 'Darba kārtība' && v.readingStage !== 'Procedūra') {
-      eyebrow.appendChild(el('span', '', '·'));
-      eyebrow.appendChild(el('span', 'uppercase tracking-wider text-slate-600 text-[10px] font-semibold', v.readingStage));
+  var LV_MONTHS = ['', 'janv.', 'febr.', 'marts', 'apr.', 'maijs', 'jūn.', 'jūl.', 'aug.', 'sept.', 'okt.', 'nov.', 'dec.'];
+  function formatLatvianDate(raw) {
+    var s = (raw || '').trim();
+    var m = s.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+    if (m) {
+      var mo = parseInt(m[2], 10);
+      if (mo >= 1 && mo <= 12) return parseInt(m[1], 10) + '. ' + LV_MONTHS[mo] + ' ' + m[3];
     }
-    if (v.billNumber) {
-      eyebrow.appendChild(el('span', '', '·'));
-      var billLink = el('a', 'font-mono text-slate-500 hover:text-emerald-700 hover:underline', 'Nr. ' + cleanBillNr(v.billNumber));
-      billLink.href = termUrl(basePath, '/likumprojekti/' + cleanBillSlug(v.billNumber) + '/');
-      billLink.title = 'Skatīt likumprojekta gaitu';
-      eyebrow.appendChild(billLink);
+    var m2 = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+    if (m2) {
+      var mo2 = parseInt(m2[2], 10);
+      if (mo2 >= 1 && mo2 <= 12) return parseInt(m2[3], 10) + '. ' + LV_MONTHS[mo2] + ' ' + m2[1];
+    }
+    return s;
+  }
+
+  function resultTextClass(res) {
+    if (res === 'PIENEMTS') return 'text-emerald-800';
+    if (res === 'NAV_KVORUMA') return 'text-amber-800';
+    if (res === 'NORAIDITS') return 'text-rose-800';
+    return 'text-neutral-700';
+  }
+
+  function buildArchiveCard(v, basePath) {
+    var counts = v.counts || {};
+    var par = counts.par || 0;
+    var pret = counts.pret || 0;
+    var att = counts.atturas || 0;
+    var neb = counts.nebalso || 0;
+    var total = par + pret + att + neb || 100;
+    var voteHref = termUrl(basePath, '/balsojumi/' + v.id + '/');
+
+    var article = el('article', 'grid grid-cols-1 md:grid-cols-[120px_1fr_176px] gap-y-2 md:gap-x-7 py-6 transition');
+
+    // Left column: date
+    var left = el('div', 'flex items-center justify-between md:flex-col md:items-start md:justify-start md:pt-1 gap-2');
+    left.appendChild(el('time', 'text-xs text-neutral-500 tabular-nums whitespace-nowrap', formatLatvianDate(v.sittingDate)));
+    var mobRes = el('div', 'flex md:hidden items-center gap-2 text-xs tabular-nums');
+    mobRes.appendChild(el('span', 'font-semibold uppercase tracking-wider text-[11px] ' + resultTextClass(v.result), resultLabel(v.result)));
+    if (par > 0 || pret > 0) {
+      mobRes.appendChild(el('span', 'text-neutral-700 font-semibold', par + ' : ' + pret));
+    }
+    left.appendChild(mobRes);
+    article.appendChild(left);
+
+    // Center column: eyebrow + serif title + summary
+    var center = el('div', 'min-w-0 space-y-2');
+    var eyebrow = el('div', 'flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-neutral-500');
+    if (v.readingStage) {
+      eyebrow.appendChild(el('span', 'font-semibold uppercase tracking-wider text-neutral-800', v.readingStage));
     }
     if (v.category && v.category.label) {
-      eyebrow.appendChild(el('span', '', '·'));
-      eyebrow.appendChild(el('span', 'text-slate-500', v.category.label));
+      eyebrow.appendChild(el('span', 'text-neutral-300', '|'));
+      eyebrow.appendChild(el('span', '', v.category.label));
     }
-    if (v.isUrgent) {
-      eyebrow.appendChild(el('span', '', '·'));
-      eyebrow.appendChild(el('span', 'font-semibold text-amber-700 uppercase tracking-wider text-[10px]', 'Steidzams'));
+    if (v.billNumber) {
+      eyebrow.appendChild(el('span', 'text-neutral-300', '|'));
+      var billLink = el('a', 'tabular-nums hover:text-neutral-950 hover:underline underline-offset-2 transition', 'Nr. ' + cleanBillNr(v.billNumber));
+      billLink.href = termUrl(basePath, '/likumprojekti/' + cleanBillSlug(v.billNumber) + '/');
+      eyebrow.appendChild(billLink);
     }
-    article.appendChild(eyebrow);
+    center.appendChild(eyebrow);
 
-    // Title + outcome badge
-    var header = el('div', 'flex items-start justify-between gap-3');
-    var h3 = el('h3', 'text-base sm:text-lg font-bold leading-snug text-slate-900');
-    var voteHref = termUrl(basePath, '/balsojumi/' + v.id + '/');
-    var titleLink = el('a', 'hover:text-emerald-700 transition', cleanVoteTitle(v.simplifiedTitle || v.officialTitle || v.id));
+    var h2 = el('h2', 'font-serif text-[20px] sm:text-[22px] font-semibold leading-[1.26] tracking-[-0.01em] text-neutral-950');
+    var titleLink = el('a', 'hover:underline decoration-1 underline-offset-4 decoration-neutral-400 transition', cleanVoteTitle(v.simplifiedTitle || v.officialTitle || v.id));
     titleLink.href = voteHref;
-    h3.appendChild(titleLink);
-    header.appendChild(h3);
+    h2.appendChild(titleLink);
+    center.appendChild(h2);
 
-    var badge = el('span', 'inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold shadow-2xs whitespace-nowrap shrink-0 ' + resultBadgeClass(v.result));
-    badge.appendChild(document.createTextNode(resultLabel(v.result)));
-    var counts = v.counts || {};
-    if ((counts.par || 0) > 0 || (counts.pret || 0) > 0) {
-      badge.appendChild(el('span', 'font-mono ml-2 text-[11px] font-semibold opacity-90 tabular-nums', (counts.par || 0) + ' : ' + (counts.pret || 0)));
-    }
-    header.appendChild(badge);
-    article.appendChild(header);
-
-    // Purpose context
     var ctx = meaningfulPurpose(v.purpose);
     if (ctx) {
-      article.appendChild(el('p', 'text-xs sm:text-[13px] text-slate-600 leading-relaxed border-l-2 border-slate-300 pl-3 py-0.5', ctx));
+      center.appendChild(el('p', 'text-sm text-neutral-600 leading-relaxed line-clamp-2', ctx));
     }
+    article.appendChild(center);
 
-    // Faction stance breakdown
-    var stanceGroups = groupFactionDecisions(v.factionBreakdown);
-    if (stanceGroups.length > 0 && !v.isSecret) {
-      var fbWrap = el('div', 'pt-2 border-t border-slate-100');
-      var grid = el('div', 'text-xs ' + (stanceGroups.length > 1 ? 'grid grid-cols-1 sm:grid-cols-2 gap-2.5' : 'w-full'));
-      stanceGroups.forEach(function(sg) {
-        var row = el('div', 'flex items-start gap-2 min-w-0');
-        row.appendChild(el('span', 'inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold border tracking-wider min-w-[50px] justify-center shrink-0 mt-0.5 ' + decisionBadgeClass(sg.decision), sg.decision));
-        var list = el('div', 'flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs leading-relaxed min-w-0');
-        sg.factions.forEach(function(f, idx) {
-          var item = el('span', 'text-slate-800 font-medium whitespace-nowrap');
-          item.appendChild(document.createTextNode(f.shortName + ' '));
-          item.appendChild(el('span', 'text-slate-500 font-mono text-[11px]', '(' + f.count + ')'));
-          list.appendChild(item);
-          if (idx < sg.factions.length - 1) {
-            list.appendChild(el('span', 'text-slate-300', '·'));
-          }
-        });
-        row.appendChild(list);
-        grid.appendChild(row);
-      });
-      fbWrap.appendChild(grid);
-      article.appendChild(fbWrap);
+    // Right column: outcome + tally + bar
+    var right = el('div', 'hidden md:flex flex-col justify-start gap-2.5 pt-1 pl-4 border-l border-neutral-100');
+    var rTop = el('div', 'space-y-2');
+    var rRow = el('div', 'flex items-baseline justify-between gap-2');
+    rRow.appendChild(el('span', 'text-[11px] font-bold uppercase tracking-wider ' + resultTextClass(v.result), resultLabel(v.result)));
+    if (par > 0 || pret > 0) {
+      rRow.appendChild(el('span', 'text-sm font-semibold text-neutral-950 tabular-nums', par + ' : ' + pret));
     }
+    rTop.appendChild(rRow);
 
-    // Footer action link
-    var footer = el('div', 'pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs');
-    var detailLink = el('a', 'inline-flex items-center gap-1.5 font-semibold text-emerald-800 hover:text-emerald-950 transition', 'Skatīt sēžu zāli un likumprojekta gaitu →');
+    var bar = el('div', 'w-full h-1.5 bg-neutral-100 overflow-hidden flex');
+    if (par > 0) { var s1 = el('div', 'bg-emerald-700 h-full'); s1.style.width = (par * 100 / total).toFixed(1) + '%'; bar.appendChild(s1); }
+    if (pret > 0) { var s2 = el('div', 'bg-rose-700 h-full'); s2.style.width = (pret * 100 / total).toFixed(1) + '%'; bar.appendChild(s2); }
+    if (att > 0) { var s3 = el('div', 'bg-amber-600 h-full'); s3.style.width = (att * 100 / total).toFixed(1) + '%'; bar.appendChild(s3); }
+    if (neb > 0) { var s4 = el('div', 'bg-neutral-300 h-full'); s4.style.width = (neb * 100 / total).toFixed(1) + '%'; bar.appendChild(s4); }
+    rTop.appendChild(bar);
+    rTop.appendChild(el('div', 'text-[11px] text-neutral-400 tabular-nums', par + ' par · ' + pret + ' pret' + (att > 0 ? ' · ' + att + ' att.' : '')));
+    right.appendChild(rTop);
+
+    var detailLink = el('a', 'text-xs font-medium text-neutral-500 hover:text-neutral-950 transition pt-3', 'Skatīt balsojumu →');
     detailLink.href = voteHref;
-    footer.appendChild(detailLink);
-    article.appendChild(footer);
+    right.appendChild(detailLink);
+    article.appendChild(right);
 
     return article;
   }
@@ -502,11 +517,11 @@
       if (!tier1Toggle) return;
       tier1Toggle.setAttribute('data-active', active ? 'true' : 'false');
       if (active) {
-        tier1Toggle.classList.add('bg-slate-900', 'text-white');
-        tier1Toggle.classList.remove('bg-white', 'text-slate-700', 'hover:text-slate-900');
+        tier1Toggle.classList.add('bg-neutral-950', 'text-white', 'border-neutral-950');
+        tier1Toggle.classList.remove('bg-white', 'text-neutral-700', 'border-neutral-300');
       } else {
-        tier1Toggle.classList.remove('bg-slate-900', 'text-white');
-        tier1Toggle.classList.add('bg-white', 'text-slate-700', 'hover:text-slate-900');
+        tier1Toggle.classList.remove('bg-neutral-950', 'text-white', 'border-neutral-950');
+        tier1Toggle.classList.add('bg-white', 'text-neutral-700', 'border-neutral-300');
       }
     }
 

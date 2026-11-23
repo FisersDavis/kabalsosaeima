@@ -4,7 +4,7 @@ import "fmt"
 
 templ Layout(props LayoutProps) {
 	<!DOCTYPE html>
-	<html lang="lv" class="h-full bg-slate-50 text-slate-900 antialiased">
+	<html lang="lv" class="h-full bg-white text-neutral-950 antialiased">
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -23,217 +23,203 @@ templ Layout(props LayoutProps) {
 			<meta name="twitter:image" content="https://kabalsosaeima.lv/og-image.png"/>
 			<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 			<link rel="canonical" href={ props.CanonicalURL }/>
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet"/>
 			<link rel="stylesheet" href="/assets/styles.css"/>
 			<script src="/assets/js/redirect.js"></script>
 			<script src="/assets/js/debates.js"></script>
 		</head>
-		<body class="min-h-full flex flex-col font-sans bg-slate-50">
-			<!-- Header -->
-			<header id="site-header" class="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md">
-				<div class="mx-auto flex max-w-5xl flex-col gap-2.5 px-4 py-3 sm:px-6 lg:px-8">
-					<div class="flex flex-wrap items-center justify-between gap-3">
-						<!-- Brand + Sasaukums Switcher -->
-						<div class="flex items-center gap-3">
-							<a href={ templ.SafeURL(TermURL(props.BasePath, "/")) } class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-300 bg-slate-900 text-white shadow-xs hover:bg-slate-800 transition p-1.5 overflow-hidden [&>svg]:h-full [&>svg]:w-full" aria-label="Sākumlapa">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" width="500" height="500" aria-label="Kā balso Saeima"><path fill="#0f172a" d="M0 0h88v88H0z"/><g fill="none" stroke="#f8fafc" stroke-width="6" stroke-dasharray="21.25 5"><path d="M8.2 58.4a35.8 35.8 0 0 1 71.6 0" pathLength="100"/><path d="M17.8 58.4a26.2 26.2 0 0 1 52.4 0" pathLength="100"/></g><path fill="#f8fafc" d="M32 49h24v9.4H32z"/></svg>
-							</a>
-							<div class="flex flex-wrap items-center gap-2 sm:gap-3">
-								<a href={ templ.SafeURL(TermURL(props.BasePath, "/")) } class="text-base sm:text-lg font-bold tracking-tight text-slate-900 hover:text-emerald-700 transition">
-									Kā Balso Saeima
-								</a>
-								if len(props.Terms) > 1 {
-									<nav class="inline-flex items-center rounded-lg border border-slate-200 bg-slate-100 p-0.5 shadow-2xs" aria-label="Saeimas sasaukuma izvēle">
-										for _, t := range props.Terms {
-											{{
-												isSelected := t.Term == ActiveTermNumber(props)
-												targetPath := "/"
-												if props.ActiveNav == "mps" {
-													targetPath = "/deputati/"
-												}
-												href := TermURL(t.BasePath, targetPath)
-											}}
-											if isSelected {
-												<a
-													href={ templ.SafeURL(href) }
-													aria-current="page"
-													class="inline-flex items-center gap-1.5 rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-slate-900 shadow-2xs transition"
-													title={ fmt.Sprintf("%s (%s)", t.Label, t.Years) }
-												>
-													if t.IsActive {
-														<span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-													}
-													<span>{ t.Label }</span>
-													<span class="hidden md:inline text-[10px] font-normal text-slate-400">({ t.Years })</span>
-												</a>
-											} else {
-												<a
-													href={ templ.SafeURL(href) }
-													class="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-white/60 transition"
-													title={ fmt.Sprintf("Pārslēgt uz %s (%s)", t.Label, t.Years) }
-												>
-													if t.IsActive {
-														<span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-													}
-													<span>{ t.Label }</span>
-													<span class="hidden md:inline text-[10px] font-normal text-slate-400">({ t.Years })</span>
-												</a>
-											}
-										}
-									</nav>
-								} else {
-									<span class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-800 shadow-2xs">
-										<span class="h-2 w-2 rounded-full bg-emerald-500 shadow-2xs"></span>
-										<span>{ fmt.Sprintf("%d. Saeima (%s)", ActiveTermNumber(props), ActiveTermYears(props)) }</span>
-									</span>
-								}
-							</div>
+		<body class="min-h-full flex flex-col font-sans bg-white text-neutral-950">
+			<!-- Newspaper Masthead -->
+			<header id="site-header" class="w-full bg-white">
+				<!-- Top Utility Bar -->
+				<div class="border-b border-neutral-200">
+					<div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-2 px-4 py-2 sm:px-6 lg:px-8 text-xs text-neutral-500">
+						<div class="flex items-center gap-2">
+							<span class="hidden sm:inline">Latvijas Republikas Saeimas balsojumu arhīvs</span>
+							<span class="sm:hidden">Saeimas balsojumu arhīvs</span>
+							if props.Metadata.LatestSittingDate != "" {
+								<span class="text-neutral-300">|</span>
+								<span class="tabular-nums">Pēdējā sēde: { FormatLatvianDate(props.Metadata.LatestSittingDate) }</span>
+							}
 						</div>
 
-						<!-- Official Links (hidden on mobile to keep header clean) -->
-						<div class="hidden sm:flex items-center gap-3 text-xs text-slate-600">
+						<div class="flex items-center gap-3">
+							if len(props.Terms) > 1 {
+								<nav class="inline-flex items-center gap-2" aria-label="Saeimas sasaukuma izvēle">
+									for i, t := range props.Terms {
+										{{
+											isSelected := t.Term == ActiveTermNumber(props)
+											targetPath := "/"
+											if props.ActiveNav == "mps" {
+												targetPath = "/deputati/"
+											}
+											href := TermURL(t.BasePath, targetPath)
+										}}
+										if i > 0 {
+											<span class="text-neutral-300" aria-hidden="true">/</span>
+										}
+										if isSelected {
+											<a
+												href={ templ.SafeURL(href) }
+												aria-current="page"
+												class="font-semibold text-neutral-950 underline underline-offset-4 decoration-neutral-950"
+												title={ fmt.Sprintf("%s (%s)", t.Label, t.Years) }
+											>
+												{ t.Label }
+											</a>
+										} else {
+											<a
+												href={ templ.SafeURL(href) }
+												class="text-neutral-500 hover:text-neutral-950 transition"
+												title={ fmt.Sprintf("Pārslēgt uz %s (%s)", t.Label, t.Years) }
+											>
+												{ t.Label }
+											</a>
+										}
+									}
+								</nav>
+							} else {
+								<span class="font-medium text-neutral-700">
+									{ fmt.Sprintf("%d. Saeima (%s)", ActiveTermNumber(props), ActiveTermYears(props)) }
+								</span>
+							}
+
+							<span class="hidden sm:inline text-neutral-300">|</span>
 							<a
 								href={ templ.SafeURL(SaeimaDeputiesRegistryURL(ActiveTermNumber(props))) }
 								target="_blank"
 								rel="noopener noreferrer"
-								class="inline-flex items-center gap-1 font-medium text-slate-700 hover:text-slate-900 hover:underline"
+								class="hidden sm:inline-flex items-center gap-1 text-neutral-500 hover:text-neutral-950 transition"
 								title="Oficiālais Saeimas portāls"
 							>
 								<span>saeima.lv</span>
-								<svg class="h-3 w-3 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+								<span aria-hidden="true">↗</span>
 							</a>
 						</div>
 					</div>
+				</div>
 
-					<!-- Navigation Tabs -->
-					<div class="flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 pt-2">
-						<nav class="flex items-center gap-1 sm:gap-1.5" aria-label="Sadaļu izvēle">
+				<!-- Masthead Wordmark -->
+				<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+					<div class="flex items-baseline justify-between gap-4 py-4 sm:py-5 border-b border-neutral-950">
+						<a href={ templ.SafeURL(TermURL(props.BasePath, "/")) } class="inline-flex items-center gap-2.5 group">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" class="h-6 w-6 sm:h-7 sm:w-7 text-neutral-950 shrink-0" aria-hidden="true">
+								<g fill="none" stroke="currentColor" stroke-width="6.5" stroke-dasharray="21.25 5">
+									<path d="M8.2 58.4a35.8 35.8 0 0 1 71.6 0" pathLength="100"></path>
+									<path d="M17.8 58.4a26.2 26.2 0 0 1 52.4 0" pathLength="100"></path>
+								</g>
+								<path fill="currentColor" d="M32 49h24v9.4H32z"></path>
+							</svg>
+							<span class="font-serif text-2xl sm:text-[32px] font-bold tracking-tight text-neutral-950 leading-none">
+								Kā Balso Saeima
+							</span>
+						</a>
+						<span class="hidden md:inline text-xs text-neutral-500">
+							{ fmt.Sprintf("%d. Saeima · %s", ActiveTermNumber(props), ActiveTermYears(props)) }
+						</span>
+					</div>
+
+					<!-- Primary Section Navigation (NYTimes-style hairline tabs) -->
+					<div class="flex items-center justify-between border-b border-neutral-200 pt-3">
+						<nav class="flex items-center gap-6" aria-label="Sadaļu izvēle">
 							<a
 								href={ templ.SafeURL(TermURL(props.BasePath, "/")) }
 								class={ NavLinkClass(props.ActiveNav == "votes") }
 							>
-								<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"></path><path d="M5 7c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v12H5V7Z"></path><path d="M22 19H2"></path></svg>
 								<span>Balsojumi</span>
 								if props.Metadata.TotalVotes > 0 {
-									<span class="ml-0.5 text-[10px] px-1.5 py-0.2 rounded-full font-mono bg-slate-100 text-slate-600">{ fmt.Sprint(props.Metadata.TotalVotes) }</span>
+									<span class="text-xs font-normal text-neutral-400 tabular-nums">{ fmt.Sprint(props.Metadata.TotalVotes) }</span>
 								}
 							</a>
 							<a
 								href={ templ.SafeURL(TermURL(props.BasePath, "/deputati/")) }
 								class={ NavLinkClass(props.ActiveNav == "mps") }
 							>
-								<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
 								<span>Partijas un deputāti</span>
-								<span class="ml-0.5 text-[10px] px-1.5 py-0.2 rounded-full font-mono bg-slate-100 text-slate-600">{ fmt.Sprint(EffectiveActiveMPCount(props)) }</span>
+								<span class="text-xs font-normal text-neutral-400 tabular-nums">{ fmt.Sprint(EffectiveActiveMPCount(props)) }</span>
 							</a>
 						</nav>
-						<div class="hidden sm:block text-[11px] text-slate-400">
-							<span>Objektīvi dati · Atvērtā parlamenta reģistrs</span>
+						<div class="hidden sm:block pb-2.5 text-xs text-neutral-400">
+							Neitrāls atvērtā parlamenta reģistrs
 						</div>
 					</div>
 				</div>
 			</header>
 
 			<!-- Main Content -->
-			<main class="flex-1 mx-auto w-full max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
+			<main class="flex-1 mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
 				{ children... }
 			</main>
 
-			<!-- Footer -->
-			<footer class="mt-16 border-t border-slate-200 bg-white/70 py-10">
-				<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-6">
-					<div class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-						<div class="max-w-md space-y-2.5">
-							<span class="font-sans text-base font-bold tracking-tight text-slate-900">
-								kābalso<span class="text-emerald-600">saeima</span><span class="text-slate-400 font-mono text-sm font-normal">.lv</span>
-							</span>
-							<p class="text-xs text-slate-500 leading-relaxed">
-								Neitrāls un atvērts Latvijas Republikas Saeimas balsojumu un lēmumu pārlūks.
-								Mērķis ir sniegt skaidru, faktos balstītu informāciju ikvienam pilsonim un vēlētājam.
+			<!-- Newspaper Colophon Footer -->
+			<footer class="mt-16 bg-white">
+				<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+					<div class="border-t-2 border-neutral-950 pt-8 pb-10 grid grid-cols-1 md:grid-cols-12 gap-8 text-xs text-neutral-600 leading-relaxed">
+						<!-- Col 1: Publication -->
+						<div class="md:col-span-5 space-y-2.5">
+							<div class="font-serif text-lg font-bold tracking-tight text-neutral-950">
+								Kā Balso Saeima
+							</div>
+							<p>
+								Neitrāla, atvērta pilsoniska iniciatīva, kas pārvērš Latvijas Republikas Saeimas sēžu protokolus un stenogrammas pārskatāmā, faktos balstītā arhīvā bez politiskas interpretācijas.
 							</p>
 							if props.Metadata.LatestSittingDate != "" || props.Metadata.TotalVotes > 0 {
-								<div class="inline-flex flex-wrap items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-mono text-slate-600">
-									<span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+								<p class="text-neutral-500 tabular-nums pt-1">
 									if props.Metadata.LatestSittingDate != "" {
-										<span>Pēdējā sēde: <strong class="font-semibold text-slate-800">{ props.Metadata.LatestSittingDate }</strong></span>
+										<span>Pēdējā sēde: { FormatLatvianDate(props.Metadata.LatestSittingDate) }</span>
 									}
 									if props.Metadata.FormattedSyncDate != "" {
-										<span class="text-slate-300">·</span>
-										<span>Atjaunots: <strong class="font-semibold text-slate-800">{ props.Metadata.FormattedSyncDate }</strong></span>
+										<span> · Atjaunots: { FormatLatvianDate(props.Metadata.FormattedSyncDate) }</span>
 									}
 									if props.Metadata.TotalVotes > 0 {
-										<span class="text-slate-300">·</span>
-										<span>{ fmt.Sprint(props.Metadata.TotalVotes) } balsojumi</span>
+										<span> · { FormatVotesCount(props.Metadata.TotalVotes) }</span>
 									}
-								</div>
+								</p>
 							}
 						</div>
 
-						<div class="space-y-2 text-xs text-slate-500">
-							<div class="font-semibold text-slate-900">Oficiālie datu avoti:</div>
-							<ul class="space-y-1">
+						<!-- Col 2: Official Sources & Open Data -->
+						<div class="md:col-span-3 space-y-2">
+							<div class="font-semibold uppercase tracking-wider text-[11px] text-neutral-950">Avoti un atvērtie dati</div>
+							<ul class="space-y-1.5">
 								<li>
-									<a href="https://www.saeima.lv" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 hover:text-emerald-700">
-										<span>Saeimas sēžu stenogrammas un protokoli (saeima.lv)</span>
+									<a href="https://www.saeima.lv" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-neutral-300 hover:decoration-neutral-950 hover:text-neutral-950 transition">
+										Saeimas sēžu protokoli (saeima.lv) ↗
 									</a>
 								</li>
 								<li>
-									<a href="https://data.gov.lv" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 hover:text-emerald-700">
-										<span>Latvijas Atvērto datu portāls (data.gov.lv)</span>
+									<a href="https://data.gov.lv" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-neutral-300 hover:decoration-neutral-950 hover:text-neutral-950 transition">
+										Atvērto datu portāls (data.gov.lv) ↗
 									</a>
+								</li>
+								<li>
+									<a href="https://github.com/FisersDavis/kabalsosaeima" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-neutral-300 hover:decoration-neutral-950 hover:text-neutral-950 transition">
+										Pirmkods GitHub ↗
+									</a>
+								</li>
+								<li class="pt-1 text-neutral-500">
+									JSON:
+									<a href={ templ.SafeURL(TermURL(props.BasePath, "/data/votes.json")) } class="underline underline-offset-2 decoration-neutral-300 hover:text-neutral-950 ml-1">votes.json</a>,
+									<a href={ templ.SafeURL(TermURL(props.BasePath, "/data/mps.json")) } class="underline underline-offset-2 decoration-neutral-300 hover:text-neutral-950 ml-1">mps.json</a>,
+									<a href={ templ.SafeURL(TermURL(props.BasePath, "/data/mandates.json")) } class="underline underline-offset-2 decoration-neutral-300 hover:text-neutral-950 ml-1">mandates.json</a>
 								</li>
 							</ul>
 						</div>
-					</div>
 
-					<!-- Civic Info, Methodology & Open Data Expandable Sections -->
-					<div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-						<details class="group rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 open:bg-white transition">
-							<summary class="font-semibold text-slate-800 cursor-pointer list-none flex items-center justify-between gap-2 select-none">
-								<span>Par projektu</span>
-								<span class="text-slate-400 group-open:rotate-180 transition-transform text-[10px]">▼</span>
-							</summary>
-							<p class="mt-2 text-[11px] text-slate-600 leading-relaxed">
-								<strong>Kā Balso Saeima</strong> ir pilsoniska iniciatīva, kas pārvērš Saeimas sēžu protokolus un stenogrammas viegli pārskatāmā formā bez politiskas interpretācijas. Visi lēmumi ir tieši sasaistīti ar oficiālajiem pirmavotiem.
+						<!-- Col 3: Methodology -->
+						<div class="md:col-span-4 space-y-2">
+							<div class="font-semibold uppercase tracking-wider text-[11px] text-neutral-950">Metodoloģija</div>
+							<p>
+								Saskaņā ar Satversmes 24. pantu kvorumam nepieciešami vismaz 50 balsojoši deputāti. Statusā <em>Nebalsoja</em> tiek iekļauti gan deputāti, kuri reģistrējās zālē, bet nenospieda pogu (kvoruma manevrs), gan promesošie. Apmeklētība un sakritība ar frakciju tiek rēķināta tikai par deputāta aktīvā mandāta periodiem un faktisko frakciju katra balsojuma dienā.
 							</p>
-						</details>
-
-						<details class="group rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 open:bg-white transition">
-							<summary class="font-semibold text-slate-800 cursor-pointer list-none flex items-center justify-between gap-2 select-none">
-								<span>Metodoloģija</span>
-								<span class="text-slate-400 group-open:rotate-180 transition-transform text-[10px]">▼</span>
-							</summary>
-							<p class="mt-2 text-[11px] text-slate-600 leading-relaxed">
-								Kvorums (Satversmes 24. pants) prasa vismaz 50 balsojošus deputātus; reģistrēšanās zālē bez balsošanas pogas nospiešanas tiek uzskaitīta kā kvoruma manevrs. Deputātu apmeklētība un frakcijas disciplīna tiek rēķināta tikai par viņu aktīvā mandāta periodiem un faktisko frakciju katra balsojuma dienā.
-							</p>
-						</details>
-
-						<details class="group rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 open:bg-white transition">
-							<summary class="font-semibold text-slate-800 cursor-pointer list-none flex items-center justify-between gap-2 select-none">
-								<span>Kods un atvērtie dati</span>
-								<span class="text-slate-400 group-open:rotate-180 transition-transform text-[10px]">▼</span>
-							</summary>
-							<div class="mt-2 text-[11px] text-slate-600 leading-relaxed space-y-1.5">
-								<p>Projekta pirmkods un JSON datu kopas ir brīvi pieejamas pētniekiem un žurnālistiem:</p>
-								<div class="flex flex-wrap items-center gap-2 font-mono text-[10px]">
-									<a href="https://github.com/FisersDavis/kabalsosaeima" target="_blank" rel="noopener noreferrer" class="text-emerald-700 hover:underline font-semibold">GitHub</a>
-									<span class="text-slate-300">·</span>
-									<a href={ templ.SafeURL(TermURL(props.BasePath, "/data/votes.json")) } class="text-slate-700 hover:text-emerald-700 hover:underline">votes.json</a>
-									<span class="text-slate-300">·</span>
-									<a href={ templ.SafeURL(TermURL(props.BasePath, "/data/mps.json")) } class="text-slate-700 hover:text-emerald-700 hover:underline">mps.json</a>
-									<span class="text-slate-300">·</span>
-									<a href={ templ.SafeURL(TermURL(props.BasePath, "/data/mandates.json")) } class="text-slate-700 hover:text-emerald-700 hover:underline">mandates.json</a>
-								</div>
-							</div>
-						</details>
+						</div>
 					</div>
 
-					<div class="rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-[11px] text-slate-500 leading-relaxed">
-						<strong class="text-slate-700">Metodoloģiskā piezīme:</strong> Saeimas procedūrā statusā <em>Nebalsoja</em> tiek iekļauti deputāti, kuri ir reģistrējušies sēžu zālē, bet nav nospieduši nevienu no balsošanas pogām (bieži izmantota taktika kvoruma noraušanai), kā arī deputāti, kuri balsojuma brīdī nebija klātesoši. Visi dati tiek atjaunoti automātiski pēc katras kārtējās ceturtdienas sēdes.
-					</div>
-
-					<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100 text-xs text-slate-400">
+					<div class="border-t border-neutral-200 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-neutral-400">
 						<p>© 2026 kābalsosaeima.lv · Atvērtā koda pilsoniskā iniciatīva</p>
-						<span>Veidots sabiedrības informēšanai un atklātībai</span>
+						<span>Veidots sabiedrības informēšanai un parlamenta atklātībai</span>
 					</div>
 				</div>
 			</footer>

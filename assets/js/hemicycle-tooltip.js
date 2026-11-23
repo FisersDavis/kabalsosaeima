@@ -98,7 +98,7 @@
     tr.setAttribute('data-faction', info.factionShort);
     tr.setAttribute('data-decision', info.decision);
 
-    // Col 1: Deputy avatar + name + optional deviation badge
+    // Col 1: Subtle faction dot + deputy name + optional deviation indicator
     var td1 = document.createElement('td');
     td1.className = 'rc-td';
 
@@ -106,23 +106,21 @@
     link.href = info.href;
     link.className = 'rc-link';
 
-    var av = document.createElement('div');
-    av.className = 'rc-av fc-' + info.factionId;
-    av.style.backgroundColor = info.factionColor;
-    av.style.color = info.factionTextColor;
-    av.textContent = avatarInitials(info.name);
-    link.appendChild(av);
+    var dot = document.createElement('span');
+    dot.className = 'rc-dot';
+    dot.style.backgroundColor = info.factionColor;
+    link.appendChild(dot);
 
     var nm = document.createElement('div');
     nm.className = 'rc-nm';
     var nmSpan = document.createElement('span');
-    nmSpan.className = 'truncate';
+    nmSpan.className = 'rc-nm-text truncate';
     nmSpan.textContent = info.name;
     nm.appendChild(nmSpan);
 
     if (info.devLine) {
       var devSpan = document.createElement('span');
-      devSpan.className = 'inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200 cursor-help shrink-0';
+      devSpan.className = 'text-[11px] font-medium text-amber-800 cursor-help shrink-0';
       devSpan.title = 'Balsojis pretēji frakcijas līnijai (' + info.devLine + ')';
       devSpan.textContent = '✦ Novirze';
       nm.appendChild(devSpan);
@@ -132,18 +130,16 @@
     td1.appendChild(link);
     tr.appendChild(td1);
 
-    // Col 2: Faction pill + full name
+    // Col 2: Faction short + full name
     var td2 = document.createElement('td');
     td2.className = 'rc-td';
     var facDiv = document.createElement('div');
     facDiv.className = 'rc-fac';
 
-    var pill = document.createElement('span');
-    pill.className = 'rc-pill fc-' + info.factionId;
-    pill.style.backgroundColor = info.factionColor;
-    pill.style.color = info.factionTextColor;
-    pill.textContent = info.factionShort;
-    facDiv.appendChild(pill);
+    var fshort = document.createElement('span');
+    fshort.className = 'rc-fshort';
+    fshort.textContent = info.factionShort;
+    facDiv.appendChild(fshort);
 
     var fname = document.createElement('span');
     fname.className = 'rc-fname';
@@ -153,7 +149,7 @@
     td2.appendChild(facDiv);
     tr.appendChild(td2);
 
-    // Col 3: Decision badge
+    // Col 3: Clean typographic decision label
     var td3 = document.createElement('td');
     td3.className = 'rc-td text-right';
     var badge = document.createElement('span');
@@ -376,9 +372,9 @@
 
         filterBtns.forEach(function (b) {
           if (b === btn) {
-            b.className = 'px-2.5 py-1 rounded-md font-bold text-xs transition bg-slate-900 text-white shadow-2xs flex items-center gap-1.5 cursor-pointer';
+            b.className = 'px-2.5 py-1 font-semibold text-xs transition bg-neutral-950 text-white inline-flex items-center gap-1.5 cursor-pointer tabular-nums';
           } else {
-            b.className = 'px-2.5 py-1 rounded-md font-medium text-xs text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition shadow-2xs flex items-center gap-1.5 cursor-pointer';
+            b.className = 'px-2.5 py-1 font-medium text-xs text-neutral-700 bg-white border border-neutral-200 hover:border-neutral-950 transition inline-flex items-center gap-1.5 cursor-pointer tabular-nums';
           }
         });
 

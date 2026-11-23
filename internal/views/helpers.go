@@ -135,19 +135,19 @@ func DecisionLabel(decision string) string {
 	}
 }
 
-// DecisionBadgeClass returns Tailwind utility classes for decision pills.
+// DecisionBadgeClass returns Tailwind utility classes for decision labels.
 func DecisionBadgeClass(decision string) string {
 	switch strings.ToUpper(strings.TrimSpace(decision)) {
 	case "PAR":
-		return "bg-emerald-50 text-emerald-700 border-emerald-200"
+		return "text-emerald-800"
 	case "PRET":
-		return "bg-rose-50 text-rose-700 border-rose-200"
+		return "text-rose-800"
 	case "ATTURAS":
-		return "bg-amber-50 text-amber-700 border-amber-200"
+		return "text-amber-800"
 	case "NEBALSO", "NEBALSOJA":
-		return "bg-slate-50 text-slate-600 border-slate-200"
+		return "text-neutral-500"
 	default:
-		return "bg-slate-50 text-slate-500 border-slate-200"
+		return "text-neutral-500"
 	}
 }
 
@@ -240,18 +240,81 @@ func ResultLabel(result string) string {
 	}
 }
 
-// ResultBadgeClass returns Tailwind utility classes for outcome badges.
+// ResultBadgeClass returns Tailwind utility classes for outcome labels.
 func ResultBadgeClass(result string) string {
 	switch result {
 	case "PIENEMTS":
-		return "border-emerald-300 bg-emerald-50 text-emerald-800"
+		return "text-emerald-800 bg-emerald-50/70 border-emerald-200/80"
 	case "NAV_KVORUMA":
-		return "border-amber-300 bg-amber-50 text-amber-900"
+		return "text-amber-800 bg-amber-50/70 border-amber-200/80"
 	case "NORAIDITS":
-		return "border-rose-300 bg-rose-50 text-rose-800"
+		return "text-rose-800 bg-rose-50/70 border-rose-200/80"
 	default:
-		return "border-slate-300 bg-slate-50 text-slate-800"
+		return "text-neutral-700 bg-neutral-100 border-neutral-200"
 	}
+}
+
+// ResultTextClass returns semantic text color class for clean typographic outcome labels.
+func ResultTextClass(result string) string {
+	switch result {
+	case "PIENEMTS":
+		return "text-emerald-800"
+	case "NAV_KVORUMA":
+		return "text-amber-800"
+	case "NORAIDITS":
+		return "text-rose-800"
+	default:
+		return "text-neutral-700"
+	}
+}
+
+var lvMonthsShort = [...]string{
+	"", "janv.", "febr.", "marts", "apr.", "maijs", "jūn.",
+	"jūl.", "aug.", "sept.", "okt.", "nov.", "dec.",
+}
+
+var lvMonthsLong = [...]string{
+	"", "janvāris", "februāris", "marts", "aprīlis", "maijs", "jūnijs",
+	"jūlijs", "augusts", "septembris", "oktobris", "novembris", "decembris",
+}
+
+// FormatLatvianDate converts DD.MM.YYYY or YYYY-MM-DD into a crisp newspaper date (e.g. "20. nov. 2026").
+func FormatLatvianDate(raw string) string {
+	s := strings.TrimSpace(raw)
+	if s == "" {
+		return ""
+	}
+	var day, month, year int
+	if _, err := fmt.Sscanf(s, "%d.%d.%d", &day, &month, &year); err == nil && month >= 1 && month <= 12 && year > 1900 {
+		return fmt.Sprintf("%d. %s %d", day, lvMonthsShort[month], year)
+	}
+	if _, err := fmt.Sscanf(s, "%d-%d-%d", &year, &month, &day); err == nil && month >= 1 && month <= 12 && year > 1900 {
+		return fmt.Sprintf("%d. %s %d", day, lvMonthsShort[month], year)
+	}
+	return s
+}
+
+// FormatLatvianDateLong converts DD.MM.YYYY or YYYY-MM-DD into a full editorial dateline ("2026. gada 20. novembris").
+func FormatLatvianDateLong(raw string) string {
+	s := strings.TrimSpace(raw)
+	if s == "" {
+		return ""
+	}
+	var day, month, year int
+	if _, err := fmt.Sscanf(s, "%d.%d.%d", &day, &month, &year); err == nil && month >= 1 && month <= 12 && year > 1900 {
+		return fmt.Sprintf("%d. gada %d. %s", year, day, lvMonthsLong[month])
+	}
+	if _, err := fmt.Sscanf(s, "%d-%d-%d", &year, &month, &day); err == nil && month >= 1 && month <= 12 && year > 1900 {
+		return fmt.Sprintf("%d. gada %d. %s", year, day, lvMonthsLong[month])
+	}
+	return s
+}
+
+// IsSameTitle returns true when officialTitle duplicates the cleaned H1 headline (ignoring trailing bill code).
+func IsSameTitle(official, simplified string) bool {
+	a := strings.ToLower(strings.TrimSpace(CleanVoteTitle(official)))
+	b := strings.ToLower(strings.TrimSpace(CleanVoteTitle(simplified)))
+	return a == "" || a == b
 }
 
 // HemicycleSeat represents a single focusable seat in the Saeima chamber.
@@ -780,9 +843,9 @@ type NotFoundProps struct {
 // NavLinkClass returns Tailwind classes for active vs inactive navbar links.
 func NavLinkClass(isActive bool) string {
 	if isActive {
-		return "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition shrink-0 bg-slate-900 text-white shadow-2xs"
+		return "inline-flex items-center gap-2 border-b-2 border-neutral-950 pb-2.5 text-sm font-semibold text-neutral-950 transition shrink-0"
 	}
-	return "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition shrink-0 text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+	return "inline-flex items-center gap-2 border-b-2 border-transparent pb-2.5 text-sm font-medium text-neutral-500 hover:text-neutral-950 hover:border-neutral-300 transition shrink-0"
 }
 
 
@@ -923,35 +986,35 @@ func DebaterStyle(deb data.Debater) DebaterCardStyle {
 	op := strings.TrimSpace(deb.Opinion)
 	switch {
 	case strings.EqualFold(op, "Par"):
-		st.CardClass = "border-emerald-200/90 bg-emerald-50/50"
-		st.DotClass = "bg-emerald-600"
-		st.TitleClass = "text-emerald-950"
-		st.BtnClass = "text-emerald-800 hover:text-emerald-950"
+		st.CardClass = "border-l-2 border-emerald-700 pl-4 py-1"
+		st.DotClass = "bg-emerald-700"
+		st.TitleClass = "text-neutral-950"
+		st.BtnClass = "text-emerald-800 hover:text-neutral-950 underline underline-offset-2"
 		st.PrefixLabel = `Runāja "Par":`
 	case strings.EqualFold(op, "Pret"):
-		st.CardClass = "border-rose-200/90 bg-rose-50/50"
-		st.DotClass = "bg-rose-600"
-		st.TitleClass = "text-rose-950"
-		st.BtnClass = "text-rose-800 hover:text-rose-950"
+		st.CardClass = "border-l-2 border-rose-700 pl-4 py-1"
+		st.DotClass = "bg-rose-700"
+		st.TitleClass = "text-neutral-950"
+		st.BtnClass = "text-rose-800 hover:text-neutral-950 underline underline-offset-2"
 		st.PrefixLabel = `Runāja "Pret":`
 	default:
-		// General debate speaker: tint subtly by verified rollcall decision if available, else neutral slate
+		// General debate speaker: tint subtly by verified rollcall decision if available, else neutral rule
 		switch strings.ToUpper(strings.TrimSpace(deb.VoteDecision)) {
 		case "PAR":
-			st.CardClass = "border-emerald-200/80 bg-emerald-50/40"
-			st.DotClass = "bg-emerald-600"
-			st.TitleClass = "text-slate-900"
-			st.BtnClass = "text-emerald-800 hover:text-emerald-950"
+			st.CardClass = "border-l-2 border-emerald-700/70 pl-4 py-1"
+			st.DotClass = "bg-emerald-700"
+			st.TitleClass = "text-neutral-950"
+			st.BtnClass = "text-emerald-800 hover:text-neutral-950 underline underline-offset-2"
 		case "PRET":
-			st.CardClass = "border-rose-200/80 bg-rose-50/40"
-			st.DotClass = "bg-rose-600"
-			st.TitleClass = "text-slate-900"
-			st.BtnClass = "text-rose-800 hover:text-rose-950"
+			st.CardClass = "border-l-2 border-rose-700/70 pl-4 py-1"
+			st.DotClass = "bg-rose-700"
+			st.TitleClass = "text-neutral-950"
+			st.BtnClass = "text-rose-800 hover:text-neutral-950 underline underline-offset-2"
 		default:
-			st.CardClass = "border-slate-200 bg-slate-50/70"
-			st.DotClass = "bg-slate-500"
-			st.TitleClass = "text-slate-900"
-			st.BtnClass = "text-slate-700 hover:text-slate-950"
+			st.CardClass = "border-l-2 border-neutral-300 pl-4 py-1"
+			st.DotClass = "bg-neutral-500"
+			st.TitleClass = "text-neutral-950"
+			st.BtnClass = "text-neutral-700 hover:text-neutral-950 underline underline-offset-2"
 		}
 		st.PrefixLabel = "Debatēs:"
 	}
@@ -968,13 +1031,13 @@ func DebaterStyle(deb data.Debater) DebaterCardStyle {
 	switch strings.ToUpper(strings.TrimSpace(deb.VoteDecision)) {
 	case "PAR":
 		st.VotePillText = "Balsoja PAR"
-		st.VotePillClass = "bg-emerald-100/80 text-emerald-800 border-emerald-200"
+		st.VotePillClass = "text-emerald-800"
 	case "PRET":
 		st.VotePillText = "Balsoja PRET"
-		st.VotePillClass = "bg-rose-100/80 text-rose-800 border-rose-200"
+		st.VotePillClass = "text-rose-800"
 	case "ATTURAS":
 		st.VotePillText = "Atturējās"
-		st.VotePillClass = "bg-amber-100/80 text-amber-800 border-amber-200"
+		st.VotePillClass = "text-amber-800"
 	}
 
 	fullClean := strings.TrimSpace(deb.FullSpeech)

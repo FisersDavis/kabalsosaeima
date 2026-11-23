@@ -10,7 +10,6 @@ import templruntime "github.com/a-h/templ/runtime"
 
 import (
 	"fmt"
-	"strings"
 )
 
 func MPDirectory(props MPDirectoryProps) templ.Component {
@@ -55,161 +54,159 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.ResolveAttributeValue(fmt.Sprintf("%t", isActiveTerm))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 14, Col: 98}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 13, Col: 98}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var3)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"><!-- Header & Description --><div class=\"flex flex-col sm:flex-row sm:items-center justify-between gap-4\"><div><h1 class=\"text-2xl font-bold tracking-tight text-slate-900\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"><!-- Editorial Section Header --><header class=\"flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-5 border-b border-neutral-200\"><div class=\"space-y-1.5\"><h1 class=\"font-serif text-3xl sm:text-4xl font-semibold tracking-[-0.015em] text-neutral-950 leading-tight\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d. Saeimas deputāti un frakcijas", ActiveTermNumber(props.LayoutProps)))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 19, Col: 94}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 18, Col: 94}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</h1><p class=\"mt-1 text-sm text-slate-600\">Pārskats par visiem deputātiem, viņu frakciju piederību, sēžu apmeklētību un balsojumu sakritību ar partiju.</p></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</h1><p class=\"text-sm text-neutral-600 max-w-2xl\">Pārskats par deputātu frakciju piederību, sēžu klātbūtni aktīvā mandāta laikā un balsojumu sakritību ar partiju.</p></div><div class=\"text-xs text-neutral-500 tabular-nums shrink-0\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			if isActiveTerm {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-2xs shrink-0\"><span class=\"h-2 w-2 rounded-full bg-emerald-500\"></span> <span>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<span class=\"font-semibold text-neutral-900\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var5 string
 				templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(activeCount))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 28, Col: 37}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 26, Col: 76}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, " aktīvi mandāti</span></div>")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-			} else {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<div class=\"inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-semibold text-slate-700 shadow-2xs shrink-0\"><span class=\"h-2 w-2 rounded-full bg-slate-400\"></span> <span>Arhīvs · ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, " aktīvi mandāti</span> <span class=\"mx-1.5 text-neutral-300\">·</span> <span>kopā ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var6 string
 				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(len(props.Items)))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 33, Col: 53}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 28, Col: 48}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, " deputāti sasaukumā</span></div>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, " sasaukumā</span>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div><!-- Deputies Table with Integrated Toolbar Matching Balsojumi Page --><div class=\"rounded-xl border border-slate-200 bg-white shadow-2xs overflow-hidden\"><!-- Table Toolbar Matching Balsojumi Page --><div class=\"px-4 py-3 bg-slate-50/90 border-b border-slate-200 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 text-xs\"><div class=\"font-bold text-slate-800 flex items-center gap-2 shrink-0\"><span>Deputātu saraksts</span> <span id=\"mp-filter-count\" class=\"px-2 py-0.5 rounded-full bg-slate-200/80 font-mono text-[10px] text-slate-700 font-semibold\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			if isActiveTerm {
-				var templ_7745c5c3_Var7 string
-				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(activeCount))
+			} else {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<span class=\"font-semibold text-neutral-900\">Arhīvs</span> <span class=\"mx-1.5 text-neutral-300\">·</span> <span>")
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 46, Col: 33}
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var7 string
+				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(len(props.Items)))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 32, Col: 42}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, " aktīvi deputāti")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-			} else {
-				var templ_7745c5c3_Var8 string
-				templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(activeCount))
-				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 48, Col: 33}
-				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, " noslēguma sastāvā")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, " deputāti sasaukumā</span>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</span></div><!-- Faction filter, Active toggle, Search input & Reset --><div class=\"flex flex-wrap items-center gap-2 flex-1 justify-end\"><select id=\"mp-filter-faction\" class=\"rounded-lg border border-slate-200 bg-white py-1.5 px-3 text-xs text-slate-700 font-medium focus:border-slate-400 focus:outline-none cursor-pointer hover:border-slate-300 shadow-2xs\"><option value=\"ALL\">Visas frakcijas</option> ")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</div></header><!-- Clean Single-Row Editorial Filter Toolbar --><section class=\"flex flex-col lg:flex-row lg:items-center justify-between gap-3\"><div class=\"flex flex-wrap items-center gap-2.5 flex-1\"><div class=\"relative flex-1 min-w-[200px] sm:max-w-xs\"><svg class=\"absolute left-0 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-400\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"11\" cy=\"11\" r=\"8\"></circle><path d=\"m21 21-4.3-4.3\"></path></svg> <input type=\"text\" id=\"mp-filter-search\" placeholder=\"Meklēt deputātu...\" class=\"w-full border-0 border-b border-neutral-300 bg-transparent py-1.5 pl-6 pr-2 text-sm text-neutral-950 placeholder:text-neutral-400 focus:border-neutral-950 focus:outline-none transition\"></div><select id=\"mp-filter-faction\" class=\"border border-neutral-300 bg-white py-1.5 px-2.5 text-xs text-neutral-800 focus:border-neutral-950 focus:outline-none cursor-pointer max-w-[240px]\"><option value=\"ALL\">Visas frakcijas</option> ")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			for _, f := range props.Factions {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<option value=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<option value=\"")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var8 string
+				templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.ResolveAttributeValue(f.ID)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 56, Col: 27}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var8)
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var9 string
-				templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.ResolveAttributeValue(f.ID)
+				templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(f.ShortName)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 61, Col: 28}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 56, Col: 43}
 				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var9)
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, " — ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var10 string
 				templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(f.Name)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 61, Col: 39}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 56, Col: 58}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, " (")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</option>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</select> <button type=\"button\" id=\"mp-filter-active\" data-active=\"true\" class=\"border border-neutral-950 bg-neutral-950 px-3 py-1.5 text-xs font-medium text-white transition cursor-pointer shrink-0 tabular-nums\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			if isActiveTerm {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "Tikai aktīvie (")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var11 string
-				templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(f.ShortName)
+				templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(activeCount))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 61, Col: 56}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 67, Col: 48}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, ")</option>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, ")")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</select> <button type=\"button\" id=\"mp-filter-active\" data-active=\"true\" class=\"rounded-lg border border-slate-900 bg-slate-900 px-3 py-1.5 text-xs font-medium text-white shadow-2xs transition cursor-pointer shrink-0\">")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			if isActiveTerm {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "Tikai aktīvie (")
+			} else {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "Beigu sastāvs (")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var12 string
 				templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(activeCount))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 72, Col: 49}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 69, Col: 48}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 				if templ_7745c5c3_Err != nil {
@@ -219,26 +216,41 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-			} else {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "Beigu sastāvs (")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "</button> <button type=\"button\" id=\"mp-filter-reset\" class=\"hidden text-xs font-medium text-neutral-500 hover:text-neutral-950 underline underline-offset-4 transition cursor-pointer whitespace-nowrap shrink-0\" title=\"Atiestatīt meklēšanu un filtrus\">Notīrīt</button></div><div class=\"text-xs text-neutral-500 tabular-nums shrink-0\"><span id=\"mp-filter-count\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			if isActiveTerm {
 				var templ_7745c5c3_Var13 string
 				templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(activeCount))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 74, Col: 49}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 86, Col: 32}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, ")")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, " aktīvi deputāti")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			} else {
+				var templ_7745c5c3_Var14 string
+				templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(activeCount))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 88, Col: 32}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, " noslēguma sastāvā")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "</button><div class=\"relative flex-1 min-w-[180px] max-w-full sm:max-w-xs\"><svg class=\"absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"11\" cy=\"11\" r=\"8\"></circle><path d=\"m21 21-4.3-4.3\"></path></svg> <input type=\"text\" id=\"mp-filter-search\" placeholder=\"Meklēt deputātu pēc vārda...\" class=\"w-full rounded-lg border border-slate-200 bg-white py-1.5 pl-9 pr-3 text-xs text-slate-900 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-400 shadow-2xs\"></div><button type=\"button\" id=\"mp-filter-reset\" class=\"hidden inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-200 transition cursor-pointer whitespace-nowrap shrink-0\" title=\"Atiestatīt meklēšanu un filtrus\">Notīrīt</button></div></div><div class=\"overflow-x-auto max-h-[640px] overflow-y-auto\"><table class=\"w-full text-left text-xs border-collapse table-fixed\"><colgroup><col class=\"w-[36%] sm:w-[34%]\"> <col class=\"w-[30%] sm:w-[34%]\"> <col class=\"w-[17%] sm:w-[16%]\"> <col class=\"w-[17%] sm:w-[16%]\"></colgroup> <thead class=\"sticky top-0 z-10 bg-slate-50/95 border-b border-slate-200 text-[11px] font-semibold text-slate-600 backdrop-blur-xs\"><tr><th scope=\"col\" class=\"py-3 px-3.5 sm:px-4 cursor-pointer hover:text-slate-900 group select-none transition\" data-sort=\"name\" title=\"Kārtot pēc vārda\"><div class=\"flex items-center gap-1.5\"><span>Deputāts</span> <span class=\"sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]\">↕</span></div></th><th scope=\"col\" class=\"py-3 px-3.5 sm:px-4 cursor-pointer hover:text-slate-900 group select-none transition\" data-sort=\"faction\" title=\"Kārtot pēc frakcijas\"><div class=\"flex items-center gap-1.5\"><span>Frakcija</span> <span class=\"sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]\">↕</span></div></th><th scope=\"col\" class=\"py-3 px-3.5 sm:px-4 text-right cursor-pointer hover:text-slate-900 group select-none transition\" data-sort=\"attendance\" title=\"Kārtot pēc klātbūtnes\"><div class=\"flex items-center justify-end gap-1.5\"><span>Klātbūtne</span> <span class=\"sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]\">↕</span></div></th><th scope=\"col\" class=\"py-3 px-3.5 sm:px-4 text-right cursor-pointer hover:text-slate-900 group select-none transition\" data-sort=\"cohesion\" title=\"Kārtot pēc balsojumu sakritības\"><div class=\"flex items-center justify-end gap-1.5\"><span>Balsojumu sakritība ar partiju</span> <span class=\"sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]\">↕</span></div></th></tr></thead> <tbody id=\"mp-tbody\" class=\"divide-y divide-slate-100\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "</span></div></section><!-- Newspaper Hairline Table --><div class=\"overflow-x-auto border-t border-neutral-950\"><table class=\"w-full text-left text-sm border-collapse table-fixed\"><colgroup><col class=\"w-[40%] sm:w-[36%]\"> <col class=\"w-[26%] sm:w-[34%]\"> <col class=\"w-[17%] sm:w-[15%]\"> <col class=\"w-[17%] sm:w-[15%]\"></colgroup> <thead class=\"border-b border-neutral-200 bg-white text-[11px] font-semibold uppercase tracking-wider text-neutral-500\"><tr><th scope=\"col\" class=\"py-3 px-2 sm:px-3 cursor-pointer hover:text-neutral-950 group select-none transition\" data-sort=\"name\" title=\"Kārtot pēc vārda\"><div class=\"flex items-center gap-1\"><span>Deputāts</span> <span class=\"sort-icon text-neutral-400 text-[10px]\">↕</span></div></th><th scope=\"col\" class=\"py-3 px-2 sm:px-3 cursor-pointer hover:text-neutral-950 group select-none transition\" data-sort=\"faction\" title=\"Kārtot pēc frakcijas\"><div class=\"flex items-center gap-1\"><span>Frakcija</span> <span class=\"sort-icon text-neutral-400 text-[10px]\">↕</span></div></th><th scope=\"col\" class=\"py-3 px-2 sm:px-3 text-right cursor-pointer hover:text-neutral-950 group select-none transition\" data-sort=\"attendance\" title=\"Kārtot pēc klātbūtnes\"><div class=\"flex items-center justify-end gap-1\"><span>Klātbūtne</span> <span class=\"sort-icon text-neutral-400 text-[10px]\">↕</span></div></th><th scope=\"col\" class=\"py-3 px-2 sm:px-3 text-right cursor-pointer hover:text-neutral-950 group select-none transition\" data-sort=\"cohesion\" title=\"Kārtot pēc balsojumu sakritības\"><div class=\"flex items-center justify-end gap-1\"><span class=\"hidden sm:inline\">Sakritība ar partiju</span> <span class=\"sm:hidden\">Sakritība</span> <span class=\"sort-icon text-neutral-400 text-[10px]\">↕</span></div></th></tr></thead> <tbody id=\"mp-tbody\" class=\"divide-y divide-neutral-100\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -251,20 +263,9 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 					slug = mp.ID
 				}
 
-				// Avatar Initials
-				initials := ""
-				parts := strings.Fields(mp.Name)
-				if len(parts) >= 2 {
-					initials = string([]rune(parts[0])[0:1]) + string([]rune(parts[len(parts)-1])[0:1])
-				} else if len(mp.Name) > 0 {
-					initials = string([]rune(mp.Name)[0:1])
-				}
-				initials = strings.ToUpper(initials)
-
-				color := "#64748B"
+				color := "#737373"
 				fShort := mp.FactionID
 				fName := "Pie frakcijām nepiederošs"
-				textColor := FactionTextColor(mp.FactionID, "")
 				if faction != nil {
 					if faction.Color != "" {
 						color = faction.Color
@@ -275,7 +276,6 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 					if faction.Name != "" {
 						fName = faction.Name
 					}
-					textColor = FactionTextColor(mp.FactionID, faction.TextColor)
 				}
 
 				activeStr := "false"
@@ -287,131 +287,118 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 				if !item.Cohesion.IsIndependent && item.Cohesion.CohesionPct != nil {
 					cohesionVal = *item.Cohesion.CohesionPct
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 22, "<tr class=\"mp-row hover:bg-slate-50/80 transition group\" data-name=\"")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				var templ_7745c5c3_Var14 string
-				templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.ResolveAttributeValue(mp.Name)
-				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 186, Col: 28}
-				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var14)
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "\" data-faction=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 23, "<tr class=\"mp-row hover:bg-neutral-50 transition group\" data-name=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var15 string
-				templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.ResolveAttributeValue(fShort)
+				templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.ResolveAttributeValue(mp.Name)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 187, Col: 30}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 171, Col: 27}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var15)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "\" data-faction-id=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 24, "\" data-faction=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var16 string
-				templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.ResolveAttributeValue(mp.FactionID)
+				templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.ResolveAttributeValue(fShort)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 188, Col: 39}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 172, Col: 29}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var16)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "\" data-active=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 25, "\" data-faction-id=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var17 string
-				templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.ResolveAttributeValue(activeStr)
+				templ_7745c5c3_Var17, templ_7745c5c3_Err = templ.ResolveAttributeValue(mp.FactionID)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 189, Col: 32}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 173, Col: 38}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var17)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "\" data-attendance=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 26, "\" data-active=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var18 string
-				templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.ResolveAttributeValue(fmt.Sprintf("%.2f", item.Attendance.PresentPct))
+				templ_7745c5c3_Var18, templ_7745c5c3_Err = templ.ResolveAttributeValue(activeStr)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 190, Col: 74}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 174, Col: 31}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var18)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "\" data-cohesion=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 27, "\" data-attendance=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var19 string
-				templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.ResolveAttributeValue(fmt.Sprintf("%.2f", cohesionVal))
+				templ_7745c5c3_Var19, templ_7745c5c3_Err = templ.ResolveAttributeValue(fmt.Sprintf("%.2f", item.Attendance.PresentPct))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 191, Col: 57}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 175, Col: 73}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var19)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "\"><!-- Deputāts Column --><td class=\"py-3 px-3.5 sm:px-4\"><a href=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 28, "\" data-cohesion=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				var templ_7745c5c3_Var20 templ.SafeURL
-				templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/deputati/%s/", slug))))
+				var templ_7745c5c3_Var20 string
+				templ_7745c5c3_Var20, templ_7745c5c3_Err = templ.ResolveAttributeValue(fmt.Sprintf("%.2f", cohesionVal))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 195, Col: 106}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 176, Col: 56}
 				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var20))
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var20)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "\" class=\"flex items-center gap-2.5 sm:gap-3 group-hover:text-emerald-800 transition min-w-0\"><div class=\"w-8 h-8 rounded-full flex items-center justify-center font-bold text-[11px] shrink-0 shadow-2xs\" style=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 29, "\"><!-- Deputāts Column --><td class=\"py-3.5 px-2 sm:px-3\"><a href=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				var templ_7745c5c3_Var21 string
-				templ_7745c5c3_Var21, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(fmt.Sprintf("background-color: %s; color: %s;", color, textColor))
+				var templ_7745c5c3_Var21 templ.SafeURL
+				templ_7745c5c3_Var21, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/deputati/%s/", slug))))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 198, Col: 85}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 180, Col: 105}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var21))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 30, "\" class=\"flex items-center gap-2.5 min-w-0\"><span class=\"w-2 h-2 rounded-full shrink-0\" style=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var22 string
-				templ_7745c5c3_Var22, templ_7745c5c3_Err = templ.JoinStringErrs(initials)
+				templ_7745c5c3_Var22, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(fmt.Sprintf("background-color: %s;", color))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 200, Col: 22}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 181, Col: 105}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var22))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "</div><div class=\"min-w-0\"><div class=\"font-bold text-slate-900 group-hover:text-emerald-700 transition flex items-center gap-1.5 flex-wrap\"><span class=\"truncate\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 31, "\"></span><div class=\"min-w-0\"><div class=\"font-medium text-neutral-950 group-hover:underline underline-offset-2 flex items-center gap-2 flex-wrap\"><span class=\"truncate\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var23 string
 				templ_7745c5c3_Var23, templ_7745c5c3_Err = templ.JoinStringErrs(mp.Name)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 204, Col: 45}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 184, Col: 44}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var23))
 				if templ_7745c5c3_Err != nil {
@@ -422,7 +409,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 					return templ_7745c5c3_Err
 				}
 				if !mp.IsActive {
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "<span class=\"inline-flex items-center px-1.5 py-0.2 rounded bg-slate-100 text-slate-600 text-[9px] font-medium border border-slate-200 shrink-0\">Neaktīvs</span>")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 33, "<span class=\"text-[10px] font-medium uppercase tracking-wider text-neutral-400 shrink-0\">Neaktīvs</span>")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
@@ -432,14 +419,14 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 					return templ_7745c5c3_Err
 				}
 				if mandate != nil && mandate.Note != "" && !mp.IsActive {
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "<div class=\"text-[10px] text-slate-400 truncate italic max-w-xs sm:max-w-md\" title=\"")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 35, "<div class=\"text-xs text-neutral-400 truncate max-w-xs sm:max-w-md\" title=\"")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 					var templ_7745c5c3_Var24 string
 					templ_7745c5c3_Var24, templ_7745c5c3_Err = templ.ResolveAttributeValue(mandate.Note)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 212, Col: 110}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 192, Col: 100}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var24)
 					if templ_7745c5c3_Err != nil {
@@ -452,7 +439,7 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 					var templ_7745c5c3_Var25 string
 					templ_7745c5c3_Var25, templ_7745c5c3_Err = templ.JoinStringErrs(mandate.Note)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 213, Col: 28}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 193, Col: 27}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var25))
 					if templ_7745c5c3_Err != nil {
@@ -463,237 +450,224 @@ func MPDirectory(props MPDirectoryProps) templ.Component {
 						return templ_7745c5c3_Err
 					}
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "</div></a></td><!-- Faction Column --><td class=\"py-3 px-3.5 sm:px-4\"><div class=\"flex items-center gap-1.5 min-w-0\"><span class=\"inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold shadow-2xs shrink-0\" style=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 38, "</div></a></td><!-- Faction Column --><td class=\"py-3.5 px-2 sm:px-3\"><div class=\"flex items-baseline gap-2 min-w-0\"><span class=\"text-xs font-semibold text-neutral-900 shrink-0\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var26 string
-				templ_7745c5c3_Var26, templ_7745c5c3_Err = templruntime.SanitizeStyleAttributeValues(fmt.Sprintf("background-color: %s; color: %s;", color, textColor))
+				templ_7745c5c3_Var26, templ_7745c5c3_Err = templ.JoinStringErrs(fShort)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 225, Col: 85}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 204, Col: 19}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var26))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 39, "</span> <span class=\"hidden sm:inline text-xs text-neutral-500 truncate\" title=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var27 string
-				templ_7745c5c3_Var27, templ_7745c5c3_Err = templ.JoinStringErrs(fShort)
+				templ_7745c5c3_Var27, templ_7745c5c3_Err = templ.ResolveAttributeValue(fName)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 227, Col: 20}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 206, Col: 88}
 				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var27))
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var27)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "</span> <span class=\"hidden sm:inline text-xs text-slate-500 truncate\" title=\"")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 40, "\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var28 string
-				templ_7745c5c3_Var28, templ_7745c5c3_Err = templ.ResolveAttributeValue(fName)
+				templ_7745c5c3_Var28, templ_7745c5c3_Err = templ.JoinStringErrs(fName)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 229, Col: 87}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 207, Col: 18}
 				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var28)
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "\">")
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var28))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				var templ_7745c5c3_Var29 string
-				templ_7745c5c3_Var29, templ_7745c5c3_Err = templ.JoinStringErrs(fName)
-				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 230, Col: 19}
-				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var29))
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "</span></div></td><!-- Attendance Column --><td class=\"py-3 px-3.5 sm:px-4 text-right\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 41, "</span></div></td><!-- Attendance Column --><td class=\"py-3.5 px-2 sm:px-3 text-right tabular-nums\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				if item.Attendance.TotalEligibleVotes > 0 {
-					attColor := "text-slate-800"
+					attColor := "text-neutral-900"
 					if item.Attendance.PresentPct >= 85 {
-						attColor = "text-emerald-700"
+						attColor = "text-emerald-800"
 					} else if item.Attendance.PresentPct < 70 {
-						attColor = "text-rose-600"
+						attColor = "text-rose-800"
 					}
-					var templ_7745c5c3_Var30 = []any{fmt.Sprintf("font-mono text-xs sm:text-sm font-bold %s", attColor)}
-					templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var30...)
+					var templ_7745c5c3_Var29 = []any{fmt.Sprintf("text-sm font-semibold %s", attColor)}
+					templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var29...)
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "<div class=\"")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 42, "<div class=\"")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					var templ_7745c5c3_Var30 string
+					templ_7745c5c3_Var30, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.CSSClasses(templ_7745c5c3_Var29).String())
+					if templ_7745c5c3_Err != nil {
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 1, Col: 0}
+					}
+					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var30)
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 43, "\">")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 					var templ_7745c5c3_Var31 string
-					templ_7745c5c3_Var31, templ_7745c5c3_Err = templ.ResolveAttributeValue(templ.CSSClasses(templ_7745c5c3_Var30).String())
+					templ_7745c5c3_Var31, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.1f%%", item.Attendance.PresentPct))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 1, Col: 0}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 224, Col: 62}
 					}
-					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var31)
+					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var31))
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 44, "\">")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 44, "</div><div class=\"text-[11px] text-neutral-400\">")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 					var templ_7745c5c3_Var32 string
-					templ_7745c5c3_Var32, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.1f%%", item.Attendance.PresentPct))
+					templ_7745c5c3_Var32, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(item.Attendance.PresentCount))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 247, Col: 63}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 227, Col: 53}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var32))
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, "</div><div class=\"text-[10px] text-slate-400 font-mono\">")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 45, "/")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 					var templ_7745c5c3_Var33 string
-					templ_7745c5c3_Var33, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(item.Attendance.PresentCount))
+					templ_7745c5c3_Var33, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(item.Attendance.TotalEligibleVotes))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 250, Col: 54}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 227, Col: 104}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var33))
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, "/")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 46, "</div>")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+				} else {
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 47, "<span class=\"text-xs text-neutral-400\">—</span>")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 48, "</td><!-- Voting Alignment Column --><td class=\"py-3.5 px-2 sm:px-3 text-right tabular-nums\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				if !item.Cohesion.IsIndependent && item.Cohesion.CohesionPct != nil {
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 49, "<div class=\"text-sm font-semibold text-neutral-900\">")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 					var templ_7745c5c3_Var34 string
-					templ_7745c5c3_Var34, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(item.Attendance.TotalEligibleVotes))
+					templ_7745c5c3_Var34, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.1f%%", *item.Cohesion.CohesionPct))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 250, Col: 105}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 238, Col: 62}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var34))
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 47, "</div>")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 50, "</div>")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 				} else {
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 48, "<span class=\"font-mono text-xs text-slate-400\">—</span>")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 51, "<span class=\"text-xs text-neutral-400\" title=\"Pie frakcijām nepiederošs deputāts\">—</span>")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 49, "</td><!-- Voting Alignment Column --><td class=\"py-3 px-3.5 sm:px-4 text-right\">")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				if !item.Cohesion.IsIndependent && item.Cohesion.CohesionPct != nil {
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 50, "<div class=\"font-mono text-xs sm:text-sm font-bold text-slate-800\">")
-					if templ_7745c5c3_Err != nil {
-						return templ_7745c5c3_Err
-					}
-					var templ_7745c5c3_Var35 string
-					templ_7745c5c3_Var35, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.1f%%", *item.Cohesion.CohesionPct))
-					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 261, Col: 63}
-					}
-					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var35))
-					if templ_7745c5c3_Err != nil {
-						return templ_7745c5c3_Err
-					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 51, "</div>")
-					if templ_7745c5c3_Err != nil {
-						return templ_7745c5c3_Err
-					}
-				} else {
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 52, "<span class=\"font-mono text-xs text-slate-400\" title=\"Pie frakcijām nepiederošs deputāts\">—</span>")
-					if templ_7745c5c3_Err != nil {
-						return templ_7745c5c3_Err
-					}
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 53, "</td></tr>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 52, "</td></tr>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 54, "<tr id=\"mp-empty-row\" class=\"hidden\"><td colspan=\"4\" class=\"py-12 text-center text-slate-400 text-xs\">Nav atrasts neviens deputāts pēc izvēlētajiem filtriem.</td></tr></tbody></table></div></div><!-- Mandate Handover Note --><div class=\"rounded-xl border border-slate-200 bg-slate-50/80 p-3.5 flex items-start gap-3 text-xs text-slate-600\"><svg class=\"h-4 w-4 text-slate-500 flex-shrink-0 mt-0.5\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" y1=\"16\" x2=\"12\" y2=\"12\"></line><line x1=\"12\" y1=\"8\" x2=\"12.01\" y2=\"8\"></line></svg><div class=\"leading-relaxed\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 53, "<tr id=\"mp-empty-row\" class=\"hidden\"><td colspan=\"4\" class=\"py-12 text-center text-neutral-400 text-xs\">Nav atrasts neviens deputāts pēc izvēlētajiem filtriem.</td></tr></tbody></table></div><!-- Quiet Editorial Footnote --><p class=\"border-t border-neutral-200 pt-4 text-xs text-neutral-500 leading-relaxed max-w-3xl\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			if isActiveTerm {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 55, "<strong class=\"text-slate-800\">Par mandātu aizvietošanu:</strong> Saskaņā ar Saeimas kārtības rulli, deputātam kļūstot par Ministru prezidentu vai ministru, viņa Saeimas mandāts tiek apturēts, un tā vietā nāk nākamais attiecīgā vēlēšanu saraksta kandidāts («mīkstais mandāts»). Šeit uzrādīti gan ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 54, "<strong class=\"font-semibold text-neutral-800\">Par mandātu aizvietošanu:</strong> Saskaņā ar Saeimas kārtības rulli deputātam kļūstot par Ministru prezidentu vai ministru, viņa Saeimas mandāts tiek apturēts, un tā vietā nāk nākamais attiecīgā vēlēšanu saraksta kandidāts («mīkstais mandāts»). Sarakstā pieejami gan ")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var35 string
+				templ_7745c5c3_Var35, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(activeCount))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 258, Col: 372}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var35))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 55, " šobrīd aktīvie deputāti, gan mandātu nolikušie locekļi.")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			} else {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 56, "<strong class=\"font-semibold text-neutral-800\">Par sasaukuma arhīvu:</strong> ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var36 string
-				templ_7745c5c3_Var36, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(activeCount))
+				templ_7745c5c3_Var36, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d. Saeimas", ActiveTermNumber(props.LayoutProps)))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 284, Col: 356}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 260, Col: 149}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var36))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 56, " šobrīd aktīvie deputāti, gan mandātu nolikušie locekļi.")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-			} else {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 57, "<strong class=\"text-slate-800\">Par sasaukuma arhīvu un mandātu maiņu:</strong> ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 57, " pilnvaras ir noslēgušās. Sarakstā pieejami gan ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var37 string
-				templ_7745c5c3_Var37, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d. Saeimas", ActiveTermNumber(props.LayoutProps)))
+				templ_7745c5c3_Var37, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(activeCount))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 286, Col: 153}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 260, Col: 228}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var37))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 58, " pilnvaras ir noslēgušās. Šeit uzrādīti gan ")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 58, " noslēguma sastāva deputāti, gan visi pārējie sasaukuma gaitā strādājušie deputāti un ministri (kopā ")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var38 string
-				templ_7745c5c3_Var38, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(activeCount))
+				templ_7745c5c3_Var38, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(len(props.Items)))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 286, Col: 230}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 260, Col: 372}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var38))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 59, " noslēguma sastāva deputāti, gan visi pārējie sasaukuma gaitā strādājušie deputāti un ministri (kopā ")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				var templ_7745c5c3_Var39 string
-				templ_7745c5c3_Var39, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(len(props.Items)))
-				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `mp_directory.templ`, Line: 286, Col: 374}
-				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var39))
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 60, ").")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 59, ").")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 61, "</div></div><!-- MP Directory Filter & Sort Script --><script src=\"/assets/js/mp-filter.js\"></script></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 60, "</p><!-- MP Directory Filter & Sort Script --><script src=\"/assets/js/mp-filter.js\"></script></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
