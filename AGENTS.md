@@ -76,6 +76,7 @@ assets/
 - **Never compute domain logic in Templ:** All numbers must be pre-calculated in `internal/stats`.
 
 ### Single-Source UI, Clean URLs & Zero Redundant Indexes
+- **Design Direction & Council Goal:** All UI/layout work must follow `DESIGN_BRIEF.md` (and visual anchors in `docs/references/`): aim for an authoritative newspaper-of-record aesthetic (*NYTimes × BBC × LSM.lv*), never a cluttered BI dashboard or dated government portal.
 - **No `filter_index.json`:** Cards are pre-rendered into HTML by Templ with search data attributes (`data-title`, `data-category`, `data-faction-votes`, `data-stage`).
 - `filter.js` queries the DOM directly, toggling `hidden` and syncing URL search params.
 - **Clean ASCII URLs:**
