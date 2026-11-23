@@ -1,4 +1,4 @@
-// hemicycle-tooltip.js - Viewport-clamped floating tooltip, rollcall table hydration, interactive filters, search & keyboard-accessible sorting
+// hemicycle-tooltip.js - Fast vanilla JS floating tooltip, rollcall table hydration, interactive filters, search & column sorting for Saeima vote pages
 (function () {
   'use strict';
 
@@ -10,13 +10,12 @@
     NAV_REGISTRETS: 'NAV REĢISTRĒTS'
   };
 
-  // WCAG 2.1 AA compliant foreground colors on white (#FFFFFF)
   var DECISION_COLORS = {
-    PAR: '#047857',
-    PRET: '#be123c',
-    ATTURAS: '#b45309',
-    NEBALSO: '#525252',
-    NAV_REGISTRETS: '#525252'
+    PAR: '#059669',
+    PRET: '#e11d48',
+    ATTURAS: '#d97706',
+    NEBALSO: '#94a3b8',
+    NAV_REGISTRETS: '#94a3b8'
   };
 
   function normalizeText(str) {
@@ -27,6 +26,19 @@
       .replace(/ļ/g, 'l').replace(/ņ/g, 'n').replace(/š/g, 's')
       .replace(/ū/g, 'u').replace(/ž/g, 'z')
       .trim();
+  }
+
+  function avatarInitials(name) {
+    var parts = (name || '').trim().split(/\s+/).filter(Boolean);
+    if (parts.length >= 2) {
+      var a = Array.from(parts[0])[0] || '';
+      var b = Array.from(parts[parts.length - 1])[0] || '';
+      return (a + b).toUpperCase();
+    }
+    if (parts.length === 1) {
+      return (Array.from(parts[0])[0] || '').toUpperCase();
+    }
+    return '';
   }
 
   function parseFactionsMap(container) {
@@ -45,17 +57,17 @@
     var fMeta = factionsMap[fid];
     var fShort = seatEl.getAttribute('data-faction') || (fMeta ? fMeta[0] : fid);
     var fName = fMeta ? fMeta[1] : 'Pie frakcijām nepiederošs';
-    var fColor = seatEl.getAttribute('data-faction-color') || (fMeta ? fMeta[2] : '#475569');
+    var fColor = seatEl.getAttribute('data-faction-color') || (fMeta ? fMeta[2] : '#64748B');
     var fTextColor = seatEl.getAttribute('data-faction-text-color') || (fMeta ? fMeta[3] : '#FFFFFF');
 
     var decision = (seatEl.getAttribute('data-d') || seatEl.getAttribute('data-decision') || 'NEBALSO').toUpperCase();
     var decLabel = seatEl.getAttribute('data-decision-label') || DECISION_LABELS[decision] || 'NAV REĢISTRĒTS';
-    var decColor = seatEl.getAttribute('data-decision-color') || DECISION_COLORS[decision] || '#525252';
+    var decColor = seatEl.getAttribute('data-decision-color') || DECISION_COLORS[decision] || '#94a3b8';
 
     var name = seatEl.getAttribute('data-name') || '';
     if (!name) {
       var titleEl = seatEl.querySelector('title');
-      var titleText = titleEl ? (titleEl.textContent || '') : (seatEl.getAttribute('aria-label') || '');
+      var titleText = titleEl ? (titleEl.textContent || '') : '';
       var idx = titleText.lastIndexOf(' (');
       name = idx > 0 ? titleText.slice(0, idx) : titleText;
     }
@@ -78,14 +90,6 @@
     };
   }
 
-  function matchesDecisionFilter(decision, selectedDecision) {
-    if (selectedDecision === 'ALL') return true;
-    if (selectedDecision === 'NEBALSO') {
-      return decision === 'NEBALSO' || decision === 'NAV_REGISTRETS';
-    }
-    return decision === selectedDecision;
-  }
-
   function buildDeputyRow(info) {
     var tr = document.createElement('tr');
     tr.className = 'deputy-row rc-row';
@@ -94,7 +98,7 @@
     tr.setAttribute('data-faction', info.factionShort);
     tr.setAttribute('data-decision', info.decision);
 
-    // Col 1: Subtle faction dot + deputy name + optional deviation indicator
+    // Col 1: Deputy avatar + name + optional deviation badge
     var td1 = document.createElement('td');
     td1.className = 'rc-td';
 
@@ -102,22 +106,23 @@
     link.href = info.href;
     link.className = 'rc-link';
 
-    var dot = document.createElement('span');
-    dot.className = 'rc-dot';
-    dot.style.backgroundColor = info.factionColor;
-    dot.setAttribute('aria-hidden', 'true');
-    link.appendChild(dot);
+    var av = document.createElement('div');
+    av.className = 'rc-av fc-' + info.factionId;
+    av.style.backgroundColor = info.factionColor;
+    av.style.color = info.factionTextColor;
+    av.textContent = avatarInitials(info.name);
+    link.appendChild(av);
 
     var nm = document.createElement('div');
     nm.className = 'rc-nm';
     var nmSpan = document.createElement('span');
-    nmSpan.className = 'rc-nm-text truncate';
+    nmSpan.className = 'truncate';
     nmSpan.textContent = info.name;
     nm.appendChild(nmSpan);
 
     if (info.devLine) {
       var devSpan = document.createElement('span');
-      devSpan.className = 'text-[11px] font-medium text-amber-800 cursor-help shrink-0';
+      devSpan.className = 'inline-flex items-center px-1.5 py-0.2 rounded text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200 cursor-help shrink-0';
       devSpan.title = 'Balsojis pretēji frakcijas līnijai (' + info.devLine + ')';
       devSpan.textContent = '✦ Novirze';
       nm.appendChild(devSpan);
@@ -127,16 +132,18 @@
     td1.appendChild(link);
     tr.appendChild(td1);
 
-    // Col 2: Faction short + full name
+    // Col 2: Faction pill + full name
     var td2 = document.createElement('td');
     td2.className = 'rc-td';
     var facDiv = document.createElement('div');
     facDiv.className = 'rc-fac';
 
-    var fshort = document.createElement('span');
-    fshort.className = 'rc-fshort';
-    fshort.textContent = info.factionShort;
-    facDiv.appendChild(fshort);
+    var pill = document.createElement('span');
+    pill.className = 'rc-pill fc-' + info.factionId;
+    pill.style.backgroundColor = info.factionColor;
+    pill.style.color = info.factionTextColor;
+    pill.textContent = info.factionShort;
+    facDiv.appendChild(pill);
 
     var fname = document.createElement('span');
     fname.className = 'rc-fname';
@@ -146,7 +153,7 @@
     td2.appendChild(facDiv);
     tr.appendChild(td2);
 
-    // Col 3: Clean typographic decision label
+    // Col 3: Decision badge
     var td3 = document.createElement('td');
     td3.className = 'rc-td text-right';
     var badge = document.createElement('span');
@@ -173,7 +180,6 @@
       var nameEl = tooltip.querySelector('[data-tooltip-name]');
       var factionBadge = tooltip.querySelector('[data-tooltip-faction]');
       var decisionEl = tooltip.querySelector('[data-tooltip-decision]');
-      var caretEl = tooltip.querySelector('[data-tooltip-caret]');
 
       function showTooltip(info) {
         nameEl.textContent = info.name;
@@ -183,30 +189,16 @@
         decisionEl.textContent = info.decisionLabel;
         decisionEl.style.color = info.decisionColor;
 
-        // Calculate position relative to container and clamp inside container/viewport bounds
+        // Position tooltip relative to container
         var containerRect = hemicycleContainer.getBoundingClientRect();
         var seatRect = info.el.getBoundingClientRect();
-        var tooltipWidth = tooltip.offsetWidth || 170;
-        var halfWidth = tooltipWidth / 2;
-        var pad = 6;
 
+        // Calculate center of seat relative to container
         var seatCenterX = seatRect.left + seatRect.width / 2 - containerRect.left;
         var seatTopY = seatRect.top - containerRect.top;
 
-        var minLeft = halfWidth + pad;
-        var maxLeft = Math.max(minLeft, containerRect.width - halfWidth - pad);
-        var clampedLeft = Math.max(minLeft, Math.min(maxLeft, seatCenterX));
-
-        tooltip.style.left = clampedLeft + 'px';
+        tooltip.style.left = seatCenterX + 'px';
         tooltip.style.top = (seatTopY - 8) + 'px';
-
-        if (caretEl) {
-          var caretOffset = seatCenterX - clampedLeft;
-          var maxCaretShift = halfWidth - 14;
-          var clampedShift = Math.max(-maxCaretShift, Math.min(maxCaretShift, caretOffset));
-          caretEl.style.left = 'calc(50% + ' + clampedShift.toFixed(1) + 'px)';
-        }
-
         tooltip.classList.remove('opacity-0', 'pointer-events-none');
         tooltip.classList.add('opacity-100');
       }
@@ -228,11 +220,6 @@
       });
 
       hemicycleContainer.addEventListener('mouseleave', hideTooltip);
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-          hideTooltip();
-        }
-      });
     }
 
     // Hydrate rollcall table synchronously from pre-rendered SVG seats
@@ -260,7 +247,7 @@
     var selectedDecision = 'ALL';
     var selectedFaction = 'ALL';
     var searchQuery = '';
-    var currentSortKey = '';
+    var currentSortKey = 'name';
     var currentSortAsc = true;
 
     var searchInput = document.getElementById('deputy-search-input');
@@ -270,13 +257,12 @@
     var sortHeaders = document.querySelectorAll('th[data-sort]');
 
     function applyFilters() {
-      // 1. Update Hemicycle seats opacity (synced with decision, faction, AND search query)
+      // 1. Update Hemicycle seats opacity
       seatInfos.forEach(function (info) {
-        var matchSearch = (!searchQuery || info.nameNorm.indexOf(searchQuery) !== -1 || info.factionShort.toLowerCase().indexOf(searchQuery) !== -1);
-        var matchDec = matchesDecisionFilter(info.decision, selectedDecision);
+        var matchDec = (selectedDecision === 'ALL' || info.decision === selectedDecision);
         var matchFac = (selectedFaction === 'ALL' || info.factionShortUpper === selectedFaction);
 
-        if (matchSearch && matchDec && matchFac) {
+        if (matchDec && matchFac) {
           info.el.style.opacity = '1';
         } else {
           info.el.style.opacity = '0.15';
@@ -291,7 +277,7 @@
         var decision = (row.getAttribute('data-decision') || '').toUpperCase();
 
         var matchSearch = (!searchQuery || nameNorm.indexOf(searchQuery) !== -1 || faction.toLowerCase().indexOf(searchQuery) !== -1);
-        var matchDec = matchesDecisionFilter(decision, selectedDecision);
+        var matchDec = (selectedDecision === 'ALL' || decision === selectedDecision);
         var matchFac = (selectedFaction === 'ALL' || faction === selectedFaction);
 
         if (matchSearch && matchDec && matchFac) {
@@ -315,7 +301,7 @@
       }
     }
 
-    var decisionRank = { 'PAR': 1, 'PRET': 2, 'ATTURAS': 3, 'NEBALSO': 4, 'NAV_REGISTRETS': 5 };
+    var decisionRank = { 'PAR': 1, 'PRET': 2, 'ATTURAS': 3, 'NEBALSO': 4 };
 
     function sortTable(key, asc) {
       currentSortKey = key;
@@ -344,21 +330,17 @@
         }
       });
 
-      // Update aria-sort and neutral-palette header indicators
+      // Update header indicators
       sortHeaders.forEach(function (th) {
         var thKey = th.getAttribute('data-sort');
         var icon = th.querySelector('.sort-icon');
-        if (thKey === key) {
-          th.setAttribute('aria-sort', asc ? 'ascending' : 'descending');
-          if (icon) {
+        if (icon) {
+          if (thKey === key) {
             icon.textContent = asc ? '↑' : '↓';
-            icon.className = 'sort-icon text-neutral-950 font-mono text-[11px] font-bold';
-          }
-        } else {
-          th.setAttribute('aria-sort', 'none');
-          if (icon) {
+            icon.className = 'sort-icon text-slate-900 font-mono text-[11px] font-bold';
+          } else {
             icon.textContent = '↕';
-            icon.className = 'sort-icon text-neutral-500 font-mono text-[10px]';
+            icon.className = 'sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]';
           }
         }
       });
@@ -377,29 +359,26 @@
       }
     }
 
-    // Connect keyboard-accessible sort headers
+    // Connect sort headers
     sortHeaders.forEach(function (header) {
-      var trigger = header.querySelector('button') || header;
-      trigger.addEventListener('click', function () {
+      header.addEventListener('click', function () {
         var key = header.getAttribute('data-sort');
         var asc = (currentSortKey === key) ? !currentSortAsc : true;
         sortTable(key, asc);
       });
     });
 
-    // Connect decision buttons with aria-pressed sync
+    // Connect decision buttons
     filterBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var dec = btn.getAttribute('data-filter-decision') || 'ALL';
         selectedDecision = dec;
 
         filterBtns.forEach(function (b) {
-          var isSelected = (b === btn);
-          b.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
-          if (isSelected) {
-            b.className = 'px-2.5 py-1 font-semibold text-xs transition border border-neutral-950 bg-neutral-950 text-white inline-flex items-center gap-1.5 cursor-pointer tabular-nums';
+          if (b === btn) {
+            b.className = 'px-2.5 py-1 rounded-md font-bold text-xs transition bg-slate-900 text-white shadow-2xs flex items-center gap-1.5 cursor-pointer';
           } else {
-            b.className = 'px-2.5 py-1 font-medium text-xs text-neutral-700 bg-white border border-neutral-200 hover:border-neutral-950 transition inline-flex items-center gap-1.5 cursor-pointer tabular-nums';
+            b.className = 'px-2.5 py-1 rounded-md font-medium text-xs text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition shadow-2xs flex items-center gap-1.5 cursor-pointer';
           }
         });
 
@@ -421,44 +400,18 @@
       });
     }
 
-    // Copy link button with clipboard fallback & timer reset
+    // Copy link button
     var copyBtn = document.getElementById('copy-link-btn');
     var copyText = document.getElementById('copy-link-text');
-    var copyTimer = null;
     if (copyBtn) {
-      function showCopiedFeedback() {
-        if (!copyText) return;
-        copyText.textContent = '✓ Saite nokopēta!';
-        clearTimeout(copyTimer);
-        copyTimer = setTimeout(function () {
-          copyText.textContent = 'Kopēt saiti';
-        }, 2000);
-      }
-
-      function fallbackCopy(text) {
-        try {
-          var ta = document.createElement('textarea');
-          ta.value = text;
-          ta.setAttribute('readonly', '');
-          ta.style.position = 'fixed';
-          ta.style.opacity = '0';
-          document.body.appendChild(ta);
-          ta.select();
-          var ok = document.execCommand('copy');
-          document.body.removeChild(ta);
-          if (ok) showCopiedFeedback();
-        } catch (_) {}
-      }
-
       copyBtn.addEventListener('click', function () {
-        var href = window.location.href;
-        if (!href) return;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(href).then(showCopiedFeedback).catch(function () {
-            fallbackCopy(href);
-          });
-        } else {
-          fallbackCopy(href);
+        if (navigator.clipboard && window.location.href) {
+          navigator.clipboard.writeText(window.location.href).then(function () {
+            if (copyText) copyText.textContent = '✓ Saite nokopēta!';
+            setTimeout(function () {
+              if (copyText) copyText.textContent = 'Kopēt saiti';
+            }, 2000);
+          }).catch(function () {});
         }
       });
     }

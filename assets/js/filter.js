@@ -1,4 +1,4 @@
-// Zero-latency client-side DOM filter, URL parameter synchronization,
+// Zero-latency client-side DOM filter, sticky header offset sync, URL parameter synchronization,
 // and on-demand cross-page archive search via the official open-data /data/votes.json bundle.
 (function() {
   'use strict';
@@ -13,27 +13,20 @@
       .trim();
   }
 
-  function isLvSingular(n) {
-    return n % 10 === 1 && n % 100 !== 11;
-  }
-
-  function formatFoundCount(shown, total, isFiltered, isArchive) {
-    var suffix = isArchive ? ' (visā sasaukumā)' : '';
-    if (!isFiltered && shown >= total) {
-      return total + (isLvSingular(total) ? ' balsojums' : ' balsojumi');
+  function syncStickyHeaderOffset() {
+    var header = document.getElementById('site-header');
+    if (!header) return;
+    function update() {
+      var h = Math.ceil(header.getBoundingClientRect().height);
+      if (h > 0) {
+        document.documentElement.style.setProperty('--header-h', (h + 8) + 'px');
+      }
     }
-    if (shown < total) {
-      var shownVerb = isLvSingular(shown) ? 'Rādīts ' : 'Rādīti ';
-      var totalNoun = isLvSingular(total) ? ' balsojuma' : ' balsojumiem';
-      return shownVerb + shown + ' no ' + total + totalNoun + suffix;
+    update();
+    window.addEventListener('resize', update);
+    if (typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(update).observe(header);
     }
-    var foundVerb = isLvSingular(total) ? 'Atrasts ' : 'Atrasti ';
-    var noun = isLvSingular(total) ? ' balsojums' : ' balsojumi';
-    return foundVerb + total + noun + suffix;
-  }
-
-  function formatRemaining(n) {
-    return (isLvSingular(n) ? 'atlicis ' : 'atlikuši ') + n;
   }
 
   function cleanVoteTitle(raw) {
@@ -62,15 +55,6 @@
       .replace(/^-+|-+$/g, '');
   }
 
-  function displayReadingStage(v) {
-    var stage = (v && v.readingStage ? v.readingStage : '').trim();
-    if (!stage) return '';
-    if (stage.toLowerCase() === 'likuma pieņemšana' && (v.billNumber || '').toLowerCase().indexOf('/lm') !== -1) {
-      return 'Saeimas lēmums';
-    }
-    return stage;
-  }
-
   function meaningfulPurpose(purpose) {
     var s = (purpose || '').trim();
     if (!s) return '';
@@ -95,13 +79,18 @@
     return res || '';
   }
 
-  function decisionLabel(dec) {
-    var d = (dec || '').toUpperCase().trim();
-    if (d === 'PAR') return 'PAR';
-    if (d === 'PRET') return 'PRET';
-    if (d === 'ATTURAS') return 'ATTURAS';
-    if (d === 'NEBALSO') return 'NEBALSOJA';
-    return 'NAV REĢISTRĒTS';
+  function resultBadgeClass(res) {
+    if (res === 'PIENEMTS') return 'border-emerald-300 bg-emerald-50 text-emerald-800';
+    if (res === 'NAV_KVORUMA') return 'border-amber-300 bg-amber-50 text-amber-900';
+    if (res === 'NORAIDITS') return 'border-rose-300 bg-rose-50 text-rose-800';
+    return 'border-slate-300 bg-slate-50 text-slate-800';
+  }
+
+  function decisionBadgeClass(dec) {
+    if (dec === 'PAR') return 'bg-emerald-50 text-emerald-700 border-emerald-200';
+    if (dec === 'PRET') return 'bg-rose-50 text-rose-700 border-rose-200';
+    if (dec === 'ATTURAS') return 'bg-amber-50 text-amber-700 border-amber-200';
+    return 'bg-slate-50 text-slate-600 border-slate-200';
   }
 
   function termUrl(basePath, path) {
@@ -111,6 +100,33 @@
     return bp + (path.charAt(0) === '/' ? path : '/' + path);
   }
 
+  function groupFactionDecisions(breakdowns) {
+    var buckets = { PAR: [], PRET: [], ATTURAS: [], NEBALSOJA: [] };
+    (breakdowns || []).forEach(function(fb) {
+      var votes = fb.votes || {};
+      var p = votes.par || 0;
+      var pr = votes.pret || 0;
+      var a = votes.atturas || 0;
+      var n = votes.nebalso || 0;
+      var maxActive = p;
+      var best = 'PAR';
+      if (pr > maxActive) { maxActive = pr; best = 'PRET'; }
+      if (a > maxActive) { maxActive = a; best = 'ATTURAS'; }
+      if (maxActive > 0) {
+        buckets[best].push({ shortName: fb.shortName || fb.factionId, count: maxActive });
+      } else if (n > 0) {
+        buckets.NEBALSOJA.push({ shortName: fb.shortName || fb.factionId, count: n });
+      }
+    });
+    var groups = [];
+    ['PAR', 'PRET', 'ATTURAS', 'NEBALSOJA'].forEach(function(key) {
+      if (buckets[key].length > 0) {
+        groups.push({ decision: key, factions: buckets[key] });
+      }
+    });
+    return groups;
+  }
+
   function el(tag, className, text) {
     var node = document.createElement(tag);
     if (className) node.className = className;
@@ -118,183 +134,96 @@
     return node;
   }
 
-  var LV_MONTHS = ['', 'janv.', 'febr.', 'marts', 'apr.', 'maijs', 'jūn.', 'jūl.', 'aug.', 'sept.', 'okt.', 'nov.', 'dec.'];
-  function formatLatvianDate(raw) {
-    var s = (raw || '').trim();
-    var m = s.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
-    if (m) {
-      var mo = parseInt(m[2], 10);
-      if (mo >= 1 && mo <= 12) return parseInt(m[1], 10) + '. ' + LV_MONTHS[mo] + ' ' + m[3];
-    }
-    var m2 = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
-    if (m2) {
-      var mo2 = parseInt(m2[2], 10);
-      if (mo2 >= 1 && mo2 <= 12) return parseInt(m2[3], 10) + '. ' + LV_MONTHS[mo2] + ' ' + m2[1];
-    }
-    return s;
-  }
-
-  function resultTextClass(res) {
-    if (res === 'PIENEMTS') return 'text-emerald-800';
-    if (res === 'NAV_KVORUMA') return 'text-amber-800';
-    if (res === 'NORAIDITS') return 'text-rose-800';
-    return 'text-neutral-700';
-  }
-
-  function selectHasValue(selectEl, value) {
-    if (!selectEl || value === null || value === undefined) return false;
-    for (var i = 0; i < selectEl.options.length; i++) {
-      if (selectEl.options[i].value === value) return true;
-    }
-    return false;
-  }
-
-  function buildProportionalBar(par, pret, att, neb, total, heightClass, withTitles) {
-    var bar = el('div', 'w-full ' + heightClass + ' bg-neutral-100 overflow-hidden flex');
-    if (par > 0) {
-      var s1 = el('div', 'bg-emerald-700 h-full');
-      s1.style.width = (par * 100 / total).toFixed(1) + '%';
-      if (withTitles) s1.title = 'Par: ' + par;
-      bar.appendChild(s1);
-    }
-    if (pret > 0) {
-      var s2 = el('div', 'bg-rose-700 h-full');
-      s2.style.width = (pret * 100 / total).toFixed(1) + '%';
-      if (withTitles) s2.title = 'Pret: ' + pret;
-      bar.appendChild(s2);
-    }
-    if (att > 0) {
-      var s3 = el('div', 'bg-amber-600 h-full');
-      s3.style.width = (att * 100 / total).toFixed(1) + '%';
-      if (withTitles) s3.title = 'Atturas: ' + att;
-      bar.appendChild(s3);
-    }
-    if (neb > 0) {
-      var s4 = el('div', 'bg-neutral-300 h-full');
-      s4.style.width = (neb * 100 / total).toFixed(1) + '%';
-      if (withTitles) s4.title = 'Nebalsoja: ' + neb;
-      bar.appendChild(s4);
-    }
-    return bar;
-  }
-
   function buildArchiveCard(v, basePath) {
-    var counts = v.counts || {};
-    var par = counts.par || 0;
-    var pret = counts.pret || 0;
-    var att = counts.atturas || 0;
-    var neb = counts.nebalso || 0;
-    var total = par + pret + att + neb || 100;
-    var voteHref = termUrl(basePath, '/balsojumi/' + v.id + '/');
-    var stageLabel = displayReadingStage(v);
+    var article = el('article', 'rounded-xl border border-slate-200 bg-white p-4 shadow-2xs transition hover:border-slate-300 hover:shadow-xs space-y-2.5');
 
-    var article = el('article', 'grid grid-cols-1 md:grid-cols-[120px_1fr_176px] gap-y-2 md:gap-x-7 py-6 transition');
+    // Eyebrow metadata
+    var eyebrow = el('div', 'flex flex-wrap items-center gap-1.5 text-[11px] text-slate-400 font-medium tracking-wide');
+    eyebrow.appendChild(el('span', 'font-mono text-slate-500', v.sittingDate || ''));
 
-    // Left column: date + desktop status tags + mobile outcome
-    var left = el('div', 'flex items-center justify-between md:flex-col md:items-start md:justify-start md:pt-1 gap-2');
-    left.appendChild(el('time', 'text-xs text-neutral-600 tabular-nums whitespace-nowrap', formatLatvianDate(v.sittingDate)));
-    var mobRes = el('div', 'flex md:hidden items-center gap-2 text-xs tabular-nums');
-    mobRes.appendChild(el('span', 'font-semibold uppercase tracking-wider text-[11px] ' + resultTextClass(v.result), resultLabel(v.result)));
-    if (par > 0 || pret > 0) {
-      mobRes.appendChild(el('span', 'text-neutral-800 font-semibold', par + ' : ' + pret));
-    }
-    left.appendChild(mobRes);
-    if (v.isUrgent) {
-      left.appendChild(el('span', 'hidden md:inline-block text-[10px] font-semibold uppercase tracking-wider text-amber-800 mt-1', 'Steidzams'));
-    }
-    if (v.isSecret) {
-      left.appendChild(el('span', 'hidden md:inline-block text-[10px] font-medium text-neutral-600 mt-1', 'Aizklāts balsojums'));
-    }
-    article.appendChild(left);
-
-    // Center column: eyebrow + serif title + summary + deviations + mobile bar
-    var center = el('div', 'min-w-0 space-y-2');
-    var eyebrow = el('div', 'flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-[11px] text-neutral-600');
-    if (stageLabel) {
-      var isProcedural = (stageLabel === 'Darba kārtība' || stageLabel === 'Procedūra');
-      eyebrow.appendChild(el('span', isProcedural ? 'font-medium uppercase tracking-wider text-neutral-600' : 'font-semibold uppercase tracking-wider text-neutral-900', stageLabel));
-    }
-    if (v.category && v.category.label) {
-      eyebrow.appendChild(el('span', 'whitespace-nowrap', v.category.label));
+    if (v.readingStage && v.readingStage !== 'Darba kārtība' && v.readingStage !== 'Procedūra') {
+      eyebrow.appendChild(el('span', '', '·'));
+      eyebrow.appendChild(el('span', 'uppercase tracking-wider text-slate-600 text-[10px] font-semibold', v.readingStage));
     }
     if (v.billNumber) {
-      var billLink = el('a', 'tabular-nums whitespace-nowrap hover:text-neutral-950 hover:underline underline-offset-2 transition', 'Nr. ' + cleanBillNr(v.billNumber));
+      eyebrow.appendChild(el('span', '', '·'));
+      var billLink = el('a', 'font-mono text-slate-500 hover:text-emerald-700 hover:underline', 'Nr. ' + cleanBillNr(v.billNumber));
       billLink.href = termUrl(basePath, '/likumprojekti/' + cleanBillSlug(v.billNumber) + '/');
       billLink.title = 'Skatīt likumprojekta gaitu';
       eyebrow.appendChild(billLink);
     }
+    if (v.category && v.category.label) {
+      eyebrow.appendChild(el('span', '', '·'));
+      eyebrow.appendChild(el('span', 'text-slate-500', v.category.label));
+    }
     if (v.isUrgent) {
-      eyebrow.appendChild(el('span', 'md:hidden font-semibold uppercase tracking-wider text-amber-800 whitespace-nowrap', 'Steidzams'));
+      eyebrow.appendChild(el('span', '', '·'));
+      eyebrow.appendChild(el('span', 'font-semibold text-amber-700 uppercase tracking-wider text-[10px]', 'Steidzams'));
     }
-    if (v.isSecret) {
-      eyebrow.appendChild(el('span', 'md:hidden font-medium text-neutral-600 whitespace-nowrap', 'Aizklāts'));
-    }
-    center.appendChild(eyebrow);
+    article.appendChild(eyebrow);
 
-    var h2 = el('h2', 'font-serif text-[20px] sm:text-[22px] font-semibold leading-[1.26] tracking-[-0.01em] text-neutral-950');
-    var titleLink = el('a', 'hover:underline decoration-1 underline-offset-4 decoration-neutral-400 transition', cleanVoteTitle(v.simplifiedTitle || v.officialTitle || v.id));
+    // Title + outcome badge
+    var header = el('div', 'flex items-start justify-between gap-3');
+    var h3 = el('h3', 'text-base sm:text-lg font-bold leading-snug text-slate-900');
+    var voteHref = termUrl(basePath, '/balsojumi/' + v.id + '/');
+    var titleLink = el('a', 'hover:text-emerald-700 transition', cleanVoteTitle(v.simplifiedTitle || v.officialTitle || v.id));
     titleLink.href = voteHref;
-    h2.appendChild(titleLink);
-    center.appendChild(h2);
+    h3.appendChild(titleLink);
+    header.appendChild(h3);
 
+    var badge = el('span', 'inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold shadow-2xs whitespace-nowrap shrink-0 ' + resultBadgeClass(v.result));
+    badge.appendChild(document.createTextNode(resultLabel(v.result)));
+    var counts = v.counts || {};
+    if ((counts.par || 0) > 0 || (counts.pret || 0) > 0) {
+      badge.appendChild(el('span', 'font-mono ml-2 text-[11px] font-semibold opacity-90 tabular-nums', (counts.par || 0) + ' : ' + (counts.pret || 0)));
+    }
+    header.appendChild(badge);
+    article.appendChild(header);
+
+    // Purpose context
     var ctx = meaningfulPurpose(v.purpose);
     if (ctx) {
-      center.appendChild(el('p', 'text-sm text-neutral-600 leading-relaxed line-clamp-2', ctx));
+      article.appendChild(el('p', 'text-xs sm:text-[13px] text-slate-600 leading-relaxed border-l-2 border-slate-300 pl-3 py-0.5', ctx));
     }
 
-    // Deviations line (matching SSR overview.templ)
-    var devItems = [];
-    (v.factionBreakdown || []).forEach(function(fb) {
-      (fb.deviatingMps || []).forEach(function(d) {
-        devItems.push({ mp: d, fShort: fb.shortName || fb.factionId || '' });
+    // Faction stance breakdown
+    var stanceGroups = groupFactionDecisions(v.factionBreakdown);
+    if (stanceGroups.length > 0 && !v.isSecret) {
+      var fbWrap = el('div', 'pt-2 border-t border-slate-100');
+      var grid = el('div', 'text-xs ' + (stanceGroups.length > 1 ? 'grid grid-cols-1 sm:grid-cols-2 gap-2.5' : 'w-full'));
+      stanceGroups.forEach(function(sg) {
+        var row = el('div', 'flex items-start gap-2 min-w-0');
+        row.appendChild(el('span', 'inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold border tracking-wider min-w-[50px] justify-center shrink-0 mt-0.5 ' + decisionBadgeClass(sg.decision), sg.decision));
+        var list = el('div', 'flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-xs leading-relaxed min-w-0');
+        sg.factions.forEach(function(f, idx) {
+          var item = el('span', 'text-slate-800 font-medium whitespace-nowrap');
+          item.appendChild(document.createTextNode(f.shortName + ' '));
+          item.appendChild(el('span', 'text-slate-500 font-mono text-[11px]', '(' + f.count + ')'));
+          list.appendChild(item);
+          if (idx < sg.factions.length - 1) {
+            list.appendChild(el('span', 'text-slate-300', '·'));
+          }
+        });
+        row.appendChild(list);
+        grid.appendChild(row);
       });
-    });
-    if (devItems.length > 0) {
-      var devDiv = el('div', 'pt-0.5 text-xs text-neutral-600');
-      devDiv.appendChild(el('span', 'font-medium text-neutral-800', '✦ Novirzes no frakcijas (' + devItems.length + '): '));
-      devItems.forEach(function(item, idx) {
-        var mpLink = el('a', 'text-neutral-900 underline underline-offset-2 decoration-neutral-400 hover:decoration-neutral-950 transition', item.mp.name || item.mp.mpId);
-        mpLink.href = termUrl(basePath, '/deputati/' + (item.mp.slug || item.mp.mpId) + '/');
-        devDiv.appendChild(mpLink);
-        devDiv.appendChild(el('span', 'text-neutral-600', ' (' + item.fShort + ' ' + decisionLabel(item.mp.decision).toLowerCase() + ')'));
-        if (idx < devItems.length - 1) {
-          var sep = el('span', 'text-neutral-400', ' · ');
-          sep.setAttribute('aria-hidden', 'true');
-          devDiv.appendChild(sep);
-        }
-      });
-      center.appendChild(devDiv);
+      fbWrap.appendChild(grid);
+      article.appendChild(fbWrap);
     }
 
-    // Mobile slim proportional bar (matching SSR overview.templ)
-    var mobBarWrap = el('div', 'md:hidden pt-1');
-    mobBarWrap.appendChild(buildProportionalBar(par, pret, att, neb, total, 'h-1', false));
-    center.appendChild(mobBarWrap);
-
-    article.appendChild(center);
-
-    // Right column: outcome + tally + bar + CTA
-    var right = el('div', 'hidden md:flex flex-col justify-start gap-2.5 pt-1 pl-4 border-l border-neutral-100');
-    var rTop = el('div', 'space-y-2');
-    var rRow = el('div', 'flex items-baseline justify-between gap-2');
-    rRow.appendChild(el('span', 'text-[11px] font-bold uppercase tracking-wider ' + resultTextClass(v.result), resultLabel(v.result)));
-    if (par > 0 || pret > 0) {
-      rRow.appendChild(el('span', 'text-sm font-semibold text-neutral-950 tabular-nums', par + ' : ' + pret));
-    }
-    rTop.appendChild(rRow);
-    rTop.appendChild(buildProportionalBar(par, pret, att, neb, total, 'h-1.5', true));
-    rTop.appendChild(el('div', 'text-[11px] text-neutral-600 tabular-nums', par + ' par · ' + pret + ' pret' + (att > 0 ? ' · ' + att + ' att.' : '')));
-    right.appendChild(rTop);
-
-    var detailLink = el('a', 'text-xs font-medium text-neutral-600 hover:text-neutral-950 transition pt-1', 'Skatīt balsojumu →');
+    // Footer action link
+    var footer = el('div', 'pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs');
+    var detailLink = el('a', 'inline-flex items-center gap-1.5 font-semibold text-emerald-800 hover:text-emerald-950 transition', 'Skatīt sēžu zāli un likumprojekta gaitu →');
     detailLink.href = voteHref;
-    right.appendChild(detailLink);
-    article.appendChild(right);
+    footer.appendChild(detailLink);
+    article.appendChild(footer);
 
     return article;
   }
 
   function initFilter() {
+    syncStickyHeaderOffset();
+
     var root = document.getElementById('overview-feed-root');
     var basePath = root ? (root.getAttribute('data-base-path') || '') : '';
     var totalPages = root ? (parseInt(root.getAttribute('data-total-pages') || '1', 10) || 1) : 1;
@@ -325,7 +254,6 @@
 
     var PAGE_SIZE = 50;
     var visibleLimit = PAGE_SIZE;
-    var searchDebounceTimer = null;
 
     // On-demand full-archive cache for multi-page terms (uses official /data/votes.json, no redundant index)
     var archiveVotes = null;
@@ -341,15 +269,14 @@
         return;
       }
       archiveStatusEl.textContent = msg;
-      archiveStatusEl.classList.remove('hidden', 'text-emerald-800', 'text-amber-800');
-      archiveStatusEl.classList.add(isError ? 'text-amber-800' : 'text-emerald-800');
+      archiveStatusEl.classList.remove('hidden', 'text-emerald-700', 'text-amber-700');
+      archiveStatusEl.classList.add(isError ? 'text-amber-700' : 'text-emerald-700');
     }
 
     function ensureArchiveLoaded() {
       if (archiveVotes !== null || archiveLoading || archiveFailed || totalPages <= 1) return;
       archiveLoading = true;
-      setArchiveStatus('Ielādē un meklē visos ' + totalVotes + ' sasaukuma balsojumos...', false);
-      if (emptyState) emptyState.classList.add('hidden');
+      setArchiveStatus('Meklē visos ' + totalVotes + ' sasaukuma balsojumos...', false);
       var url = termUrl(basePath, '/data/votes.json');
       fetch(url)
         .then(function(resp) {
@@ -361,7 +288,6 @@
           if (!Array.isArray(list)) {
             archiveFailed = true;
             setArchiveStatus('Meklēts tikai šajā lapā (' + cards.length + ' no ' + totalVotes + ' balsojumiem)', true);
-            applyFilter(true);
             return;
           }
           // Pre-normalize search text once per vote for instant subsequent keystrokes
@@ -381,7 +307,6 @@
           archiveLoading = false;
           archiveFailed = true;
           setArchiveStatus('Meklēts tikai šajā lapā (' + cards.length + ' no ' + totalVotes + ' balsojumiem)', true);
-          applyFilter(true);
         });
     }
 
@@ -399,14 +324,19 @@
       if (staticPaginationEl) staticPaginationEl.classList.add('hidden');
 
       if (countEl) {
-        countEl.textContent = formatFoundCount(shown, matches.length, true, true);
+        var suffix = (matches.length % 10 === 1 && matches.length % 100 !== 11 ? 'balsojums' : 'balsojumi');
+        if (shown < matches.length) {
+          countEl.textContent = 'Rādīti ' + shown + ' no ' + matches.length + ' ' + suffix + ' (visā sasaukumā)';
+        } else {
+          countEl.textContent = 'Atrasti ' + matches.length + ' ' + suffix + ' (visā sasaukumā)';
+        }
       }
 
       if (loadMoreWrap && loadMoreText) {
         var remaining = matches.length - shown;
         if (remaining > 0) {
           var nextBatch = Math.min(PAGE_SIZE, remaining);
-          loadMoreText.textContent = 'Rādīt vēl ' + nextBatch + ' (' + formatRemaining(remaining) + ')';
+          loadMoreText.textContent = 'Rādīt vēl ' + nextBatch + ' (atlikuši ' + remaining + ')';
           loadMoreWrap.classList.remove('hidden');
         } else {
           loadMoreWrap.classList.add('hidden');
@@ -452,11 +382,9 @@
 
       if (toggleBtn) {
         if (activeDrawerFilters > 0) {
-          toggleBtn.classList.add('border-neutral-950', 'bg-neutral-100', 'font-semibold');
-          toggleBtn.classList.remove('border-neutral-300', 'bg-white', 'font-medium');
+          toggleBtn.classList.add('border-slate-800', 'bg-slate-100', 'font-semibold');
         } else {
-          toggleBtn.classList.remove('border-neutral-950', 'bg-neutral-100', 'font-semibold');
-          toggleBtn.classList.add('border-neutral-300', 'bg-white', 'font-medium');
+          toggleBtn.classList.remove('border-slate-800', 'bg-slate-100', 'font-semibold');
         }
       }
 
@@ -468,14 +396,14 @@
         }
       }
 
-      // Sync URL query params without reloading (preserving hash)
+      // Sync URL query params without reloading
       var params = new URLSearchParams();
       if (query) params.set('q', searchInput.value);
       if (stage !== 'ALL') params.set('stage', stage);
       if (category !== 'ALL') params.set('category', category);
       if (outcome !== 'ALL') params.set('outcome', outcome);
       if (tier1) params.set('tier1', '1');
-      var newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '') + (window.location.hash || '');
+      var newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
       window.history.replaceState(null, '', newUrl);
 
       // Multi-page full archive search path when any filter/query is active
@@ -497,11 +425,6 @@
           return;
         } else if (!archiveFailed) {
           ensureArchiveLoaded();
-          // While archive loads, avoid flashing a premature empty state
-          if (staticPaginationEl) staticPaginationEl.classList.add('hidden');
-          if (loadMoreWrap) loadMoreWrap.classList.add('hidden');
-          if (emptyState) emptyState.classList.add('hidden');
-          return;
         } else {
           setArchiveStatus('Meklēts tikai šajā lapā (' + cards.length + ' no ' + totalVotes + ' balsojumiem)', true);
         }
@@ -516,10 +439,9 @@
         if (staticPaginationEl) staticPaginationEl.classList.remove('hidden');
       }
 
-      // Fast DOM-only filter path (single-page terms, unfiltered browsing, or fallback)
+      // Fast DOM-only filter path (all single-page terms, unfiltered pagination browsing, or while archive JSON loads)
       var matched = 0;
       var shown = 0;
-      var useClientLimit = (totalPages <= 1);
       for (var i = 0; i < cards.length; i++) {
         var card = cards[i];
         var cardTitle = normalizeText(card.getAttribute('data-title') || '');
@@ -536,7 +458,7 @@
 
         if (matchQuery && matchStage && matchCat && matchOutcome && matchTier1) {
           matched++;
-          if (!useClientLimit || shown < visibleLimit) {
+          if (shown < visibleLimit) {
             card.classList.remove('hidden');
             shown++;
           } else {
@@ -548,14 +470,19 @@
       }
 
       if (countEl) {
-        countEl.textContent = formatFoundCount(shown, matched, hasAnyFilter, false);
+        var suffix = (matched % 10 === 1 && matched % 100 !== 11 ? 'balsojums' : 'balsojumi');
+        if (shown < matched) {
+          countEl.textContent = 'Rādīti ' + shown + ' no ' + matched + ' ' + suffix;
+        } else {
+          countEl.textContent = 'Atrasti ' + matched + ' ' + suffix;
+        }
       }
 
       if (loadMoreWrap && loadMoreText) {
         var remaining = matched - shown;
-        if (useClientLimit && remaining > 0) {
+        if (remaining > 0) {
           var nextBatch = Math.min(PAGE_SIZE, remaining);
-          loadMoreText.textContent = 'Rādīt vēl ' + nextBatch + ' (' + formatRemaining(remaining) + ')';
+          loadMoreText.textContent = 'Rādīt vēl ' + nextBatch + ' (atlikuši ' + remaining + ')';
           loadMoreWrap.classList.remove('hidden');
         } else {
           loadMoreWrap.classList.add('hidden');
@@ -563,7 +490,7 @@
       }
 
       if (emptyState) {
-        if (matched === 0 && !archiveLoading) {
+        if (matched === 0) {
           emptyState.classList.remove('hidden');
         } else {
           emptyState.classList.add('hidden');
@@ -574,13 +501,12 @@
     function setTier1State(active) {
       if (!tier1Toggle) return;
       tier1Toggle.setAttribute('data-active', active ? 'true' : 'false');
-      tier1Toggle.setAttribute('aria-pressed', active ? 'true' : 'false');
       if (active) {
-        tier1Toggle.classList.add('bg-neutral-950', 'text-white', 'border-neutral-950');
-        tier1Toggle.classList.remove('bg-white', 'text-neutral-700', 'border-neutral-300');
+        tier1Toggle.classList.add('bg-slate-900', 'text-white');
+        tier1Toggle.classList.remove('bg-white', 'text-slate-700', 'hover:text-slate-900');
       } else {
-        tier1Toggle.classList.remove('bg-neutral-950', 'text-white', 'border-neutral-950');
-        tier1Toggle.classList.add('bg-white', 'text-neutral-700', 'border-neutral-300');
+        tier1Toggle.classList.remove('bg-slate-900', 'text-white');
+        tier1Toggle.classList.add('bg-white', 'text-slate-700', 'hover:text-slate-900');
       }
     }
 
@@ -593,12 +519,12 @@
       applyFilter(true);
     }
 
-    // Restore from URL parameters (validating <select> values against actual options)
+    // Restore from URL parameters
     var urlParams = new URLSearchParams(window.location.search);
     if (searchInput && urlParams.get('q')) searchInput.value = urlParams.get('q');
-    if (stageSelect && selectHasValue(stageSelect, urlParams.get('stage'))) stageSelect.value = urlParams.get('stage');
-    if (categorySelect && selectHasValue(categorySelect, urlParams.get('category'))) categorySelect.value = urlParams.get('category');
-    if (outcomeSelect && selectHasValue(outcomeSelect, urlParams.get('outcome'))) outcomeSelect.value = urlParams.get('outcome');
+    if (stageSelect && urlParams.get('stage')) stageSelect.value = urlParams.get('stage');
+    if (categorySelect && urlParams.get('category')) categorySelect.value = urlParams.get('category');
+    if (outcomeSelect && urlParams.get('outcome')) outcomeSelect.value = urlParams.get('outcome');
     if (tier1Toggle && urlParams.get('tier1') === '1') {
       setTier1State(true);
     }
@@ -622,14 +548,7 @@
       });
     }
 
-    if (searchInput) {
-      searchInput.addEventListener('input', function() {
-        clearTimeout(searchDebounceTimer);
-        searchDebounceTimer = setTimeout(function() {
-          applyFilter(true);
-        }, 150);
-      });
-    }
+    if (searchInput) searchInput.addEventListener('input', function() { applyFilter(true); });
     if (stageSelect) stageSelect.addEventListener('change', function() { applyFilter(true); });
     if (categorySelect) categorySelect.addEventListener('change', function() { applyFilter(true); });
     if (outcomeSelect) outcomeSelect.addEventListener('change', function() { applyFilter(true); });

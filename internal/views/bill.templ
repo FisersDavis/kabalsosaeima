@@ -6,129 +6,109 @@ import (
 
 templ Bill(props BillProps) {
 	@Layout(props.LayoutProps) {
-		{{ isDecision := IsDecisionProject(props.Timeline.BillNumber) }}
-		<article class="max-w-3xl mx-auto space-y-8">
+		<div class="space-y-6">
 			<!-- Breadcrumb Navigation -->
-			<nav class="flex flex-wrap items-center gap-1.5 text-xs text-neutral-600" aria-label="Navigācijas ceļš">
-				<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, "/")) } class="hover:text-neutral-950 hover:underline underline-offset-2 transition">← Visi balsojumi</a>
-				<span class="text-neutral-400" aria-hidden="true">/</span>
-				if isDecision {
-					<span>Lēmuma projekti</span>
-				} else {
-					<span>Likumprojekti</span>
-				}
-				<span class="text-neutral-400" aria-hidden="true">/</span>
-				<span class="text-neutral-900 font-medium tabular-nums">Nr. { CleanBillNr(props.Timeline.BillNumber) }</span>
+			<nav class="flex items-center gap-2 text-xs text-slate-500">
+				<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, "/")) } class="hover:text-slate-900 hover:underline transition">← Visi balsojumi</a>
+				<span>/</span>
+				<span class="font-mono text-slate-700">Likumprojekti</span>
+				<span>/</span>
+				<span class="font-mono text-slate-900 font-semibold">Nr. { CleanBillNr(props.Timeline.BillNumber) }</span>
 			</nav>
 
-			<!-- Bill Article Header -->
-			<header class="space-y-4 border-b border-neutral-200 pb-6">
-				<div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-neutral-600 tabular-nums">
-					<span class="font-semibold uppercase tracking-wider text-neutral-900 text-[11px]">
-						if isDecision {
-							Lēmuma projekts Nr. { CleanBillNr(props.Timeline.BillNumber) }
-						} else {
-							Likumprojekts Nr. { CleanBillNr(props.Timeline.BillNumber) }
-						}
+			<!-- Bill Header -->
+			<section class="rounded-xl border border-slate-200 bg-white p-5 sm:p-6 shadow-2xs space-y-3">
+				<div class="flex flex-wrap items-center gap-2">
+					<span class="rounded bg-slate-100 px-2 py-0.5 font-mono text-xs font-bold text-slate-800">
+						Nr. { CleanBillNr(props.Timeline.BillNumber) }
 					</span>
-					<span class="text-neutral-300" aria-hidden="true">|</span>
-					<span>Kopā { FormatVotesCount(props.Timeline.TotalVotes) }</span>
+					<span class="text-xs text-slate-500">
+						Kopā { fmt.Sprint(props.Timeline.TotalVotes) } { "balsojumi" }
+					</span>
 				</div>
 
-				<h1 class="font-serif text-3xl sm:text-[38px] font-semibold tracking-[-0.015em] text-neutral-950 leading-[1.16]">
+				<h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 leading-snug">
 					{ props.Timeline.Title }
 				</h1>
 
-				<p class="text-base text-neutral-700 leading-relaxed">
-					if isDecision {
-						Lēmuma projekta parlamentārā virzība un plenārsēžu balsojumi { fmt.Sprintf("%d. Saeimā.", ActiveTermNumber(props.LayoutProps)) }
-					} else {
-						Likumprojekta parlamentārā virzība cauri lasījumiem un plenārsēžu balsojumiem { fmt.Sprintf("%d. Saeimā.", ActiveTermNumber(props.LayoutProps)) }
-					}
-					Oficiālais teksts un iesniedzēji pieejami
-					<a
-						href={ templ.SafeURL(BillDirectURL(props.Timeline, ActiveTermNumber(props.LayoutProps))) }
-						target="_blank"
-						rel="noopener noreferrer"
-						class="text-neutral-900 underline underline-offset-2 decoration-neutral-400 hover:decoration-neutral-950 transition ml-1"
-					>
-						Saeimas likumdošanas datubāzē ↗
-					</a>.
+				<p class="text-xs text-slate-500 leading-relaxed">
+					Likumprojekta parlamentārā virzība cauri lasījumiem un sēžu balsojumiem { fmt.Sprintf("%d. Saeimā.", ActiveTermNumber(props.LayoutProps)) }
 				</p>
 
-				<!-- Quiet Collapsible Parliamentary Note -->
-				<details class="group text-xs text-neutral-600 pt-1">
-					<summary class="cursor-pointer select-none font-medium text-neutral-600 hover:text-neutral-950 transition list-none inline-flex items-center gap-1.5">
-						<span>Kā lasīt priekšlikumu numurus un balsojumus?</span>
-						<span class="text-[10px] text-neutral-500 group-open:rotate-180 transition-transform" aria-hidden="true">▾</span>
-					</summary>
-					<p class="mt-2 text-xs text-neutral-600 leading-relaxed pl-3 border-l-2 border-neutral-200">
-						Saskaņā ar Saeimas kārtības rulli plenārsēdē ar balsošanas pogām balso <em>tikai par tiem priekšlikumiem</em>, par kuriem deputāti vai frakcijas pieprasa atsevišķu balsojumu (piemēram, strīdīgiem opozīcijas priekšlikumiem). Priekšlikumi, par kuriem iebildumu nav, tiek pieņemti vienbalsīgi bez elektroniska balsojuma, tāpēc sarakstā redzami tikai tie numuri, par kuriem notikusi balsošana zālē.
-					</p>
-				</details>
-			</header>
+				<!-- Educational Note on Parliamentary Voting for Newcomers -->
+				<div class="rounded-lg bg-slate-50 p-3 sm:p-4 border border-slate-200 text-xs text-slate-600 leading-relaxed flex items-start gap-2.5">
+					<span class="text-base leading-none shrink-0 mt-0.5">ℹ️</span>
+					<div>
+						<strong class="font-semibold text-slate-900">Kā lasīt priekšlikumu numurus un balsojumus:</strong>
+						<p class="mt-0.5">
+							Saskaņā ar Saeimas kārtības rulli plenārsēdē ar balsošanas pogām balso <em>tikai par tiem priekšlikumiem</em>, par kuriem deputāti vai frakcijas pieprasa atsevišķu balsojumu (piemēram, strīdīgiem opozīcijas priekšlikumiem). Priekšlikumi, par kuriem iebildumu nav, tiek pieņemti vienbalsīgi bez elektroniska balsojuma, tāpēc sarakstā redzami tikai tie numuri, par kuriem notikusi balsošana zālē.
+						</p>
+					</div>
+				</div>
+			</section>
 
 			<!-- Chronological Stages Timeline -->
-			<section class="space-y-8">
+			<section class="space-y-6">
 				for _, stage := range props.Timeline.Stages {
-					<div class="space-y-2">
+					<div class="rounded-xl border border-slate-200 bg-white overflow-hidden shadow-2xs space-y-0">
 						<!-- Stage Header -->
-						<div class="flex flex-wrap items-baseline justify-between gap-2 pb-2 border-b border-neutral-950">
-							<div class="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
-								<h2 class="font-serif text-xl font-semibold text-neutral-950">
+						<div class="px-5 py-3.5 bg-slate-50/90 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2">
+							<div class="flex items-center gap-2.5">
+								<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-900 text-white font-mono text-xs font-bold shadow-2xs">
+									<span>📅 { stage.SittingDate }</span>
+								</span>
+								<h2 class="text-sm font-bold text-slate-900">
 									{ stage.StageName }
 								</h2>
-								<time class="text-xs text-neutral-600 tabular-nums">
-									{ FormatLatvianDateLong(stage.SittingDate) }
-								</time>
 							</div>
-							<span class="text-xs text-neutral-600 tabular-nums">
-								{ FormatVotesCount(len(stage.Votes)) } sēdē
+							<span class="text-xs font-mono text-slate-500">
+								{ fmt.Sprint(len(stage.Votes)) } { "balsojumi sēdē" }
 							</span>
 						</div>
 
 						<!-- Stage Votes List -->
-						<div class="divide-y divide-neutral-200">
+						<div class="divide-y divide-slate-100">
 							for _, v := range stage.Votes {
-								<div class="py-4 flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-6">
-									<div class="min-w-0 flex-1 space-y-1.5">
-										<div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-neutral-600 tabular-nums">
+								<div class="p-4 sm:p-5 hover:bg-slate-50/60 transition space-y-2">
+									<div class="flex flex-wrap items-start justify-between gap-2">
+										<div class="flex items-center gap-2">
 											if v.VoteType == "priekslikums" {
-												<span class="font-semibold uppercase tracking-wider text-amber-800">Priekšlikums</span>
+												<span class="rounded bg-amber-50 border border-amber-200 px-1.5 py-0.5 font-mono text-[11px] font-bold text-amber-800">
+													Priekšlikums
+												</span>
 											} else {
-												<span class="font-semibold uppercase tracking-wider text-neutral-900">Likuma balsojums</span>
+												<span class="rounded bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 font-mono text-[11px] font-bold text-emerald-800">
+													Likuma balsojums
+												</span>
 											}
-											if v.SittingTime != "" {
-												<span class="text-neutral-300" aria-hidden="true">|</span>
-												<span>plkst. { v.SittingTime }</span>
-											}
+											<h3 class="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+												<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/balsojumi/%s/", v.ID))) } class="hover:text-emerald-700 transition">
+													{ CleanVoteTitle(v.SimplifiedTitle) }
+												</a>
+											</h3>
 										</div>
-										<h3 class="font-serif text-lg font-semibold text-neutral-950 leading-snug">
-											<a
-												href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/balsojumi/%s/", v.ID))) }
-												class="hover:underline decoration-1 underline-offset-4 decoration-neutral-400 transition"
-											>
-												{ VoteHeadline(*v) }
-											</a>
-										</h3>
-										<div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-neutral-600 tabular-nums">
-											<span class="text-emerald-800 font-medium">{ fmt.Sprint(v.Counts.Par) } Par</span>
-											<span class="text-neutral-300" aria-hidden="true">·</span>
-											<span class="text-rose-800 font-medium">{ fmt.Sprint(v.Counts.Pret) } Pret</span>
-											<span class="text-neutral-300" aria-hidden="true">·</span>
-											<span class="text-amber-800 font-medium">{ fmt.Sprint(v.Counts.Atturas) } Atturas</span>
-											<span class="text-neutral-300" aria-hidden="true">·</span>
-											<span>{ fmt.Sprint(v.Counts.Nebalso) } Nebalsoja</span>
-										</div>
-									</div>
-
-									<div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-2 shrink-0 pt-0.5">
-										<span class={ "text-[11px] font-bold uppercase tracking-wider " + ResultTextClass(v.Result) }>
+										<span class={ "rounded px-2 py-0.5 text-xs font-semibold shadow-2xs shrink-0 " + ResultBadgeClass(v.Result) }>
 											{ ResultLabel(v.Result) }
 										</span>
+									</div>
+
+									<!-- Vote Tally and Time -->
+									<div class="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500 font-mono">
+										<div class="flex items-center gap-2 sm:gap-3">
+											<span>plkst. { v.SittingTime }</span>
+											<span class="text-slate-300">·</span>
+											<span class="text-emerald-700 font-bold">{ fmt.Sprint(v.Counts.Par) } Par</span>
+											<span class="text-slate-300">·</span>
+											<span class="text-rose-700 font-bold">{ fmt.Sprint(v.Counts.Pret) } Pret</span>
+											<span class="text-slate-300">·</span>
+											<span class="text-amber-700 font-bold">{ fmt.Sprint(v.Counts.Atturas) } Atturas</span>
+											<span class="text-slate-300">·</span>
+											<span class="text-slate-400 font-bold">{ fmt.Sprint(v.Counts.Nebalso) } Nebalsoja</span>
+										</div>
+
 										<a
 											href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/balsojumi/%s/", v.ID))) }
-											class="text-xs font-medium text-neutral-600 hover:text-neutral-950 transition"
+											class="text-emerald-800 hover:text-emerald-950 font-semibold font-sans transition"
 										>
 											Sēžu zāle →
 										</a>
@@ -139,6 +119,6 @@ templ Bill(props BillProps) {
 					</div>
 				}
 			</section>
-		</article>
+		</div>
 	}
 }
