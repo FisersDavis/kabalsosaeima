@@ -53,15 +53,13 @@ body {
 }
 
 /* Editorial Hemicycle SVG & Rollcall Table */
-.hc a,
-.hc-seat {
+.hc a {
   cursor: pointer;
   outline: none;
   transition: opacity 150ms ease;
 }
-.hc circle,
-.hc-dot {
-  fill: #a3a3a3;
+.hc circle {
+  fill: #737373;
   stroke: #ffffff;
   stroke-width: 1.5;
   transition: all 150ms ease;
@@ -69,13 +67,12 @@ body {
 .hc a[data-d="PAR"] circle { fill: #047857; }
 .hc a[data-d="PRET"] circle { fill: #be123c; }
 .hc a[data-d="ATTURAS"] circle { fill: #b45309; }
-.hc circle:hover,
-.hc-dot:hover {
+.hc circle:hover {
   stroke: #111111;
   r: 9px;
 }
 .hc a:focus circle,
-.hc-seat:focus .hc-dot {
+.hc a:focus-visible circle {
   stroke: #111111;
   stroke-width: 2.5px;
   r: 9px;
@@ -83,19 +80,19 @@ body {
 
 .fc-jv { background: #00529B; color: #fff; }
 .fc-zzs { background: #1B5E20; color: #fff; }
-.fc-pro { background: #EA580C; color: #fff; }
+.fc-pro { background: #C2410C; color: #fff; }
 .fc-as { background: #EAB308; color: #713F12; }
 .fc-na { background: #831843; color: #fff; }
 .fc-lpv { background: #E11D48; color: #fff; }
 .fc-sv_aj { background: #4C1D95; color: #fff; }
 .fc-st { background: #475569; color: #fff; }
-.fc-ind { background: #94A3B8; color: #fff; }
+.fc-ind { background: #475569; color: #fff; }
 
 .dc-PAR { color: #047857; }
 .dc-PRET { color: #be123c; }
 .dc-ATTURAS { color: #b45309; }
-.dc-NEBALSO { color: #737373; }
-.dc-NAV_REGISTRETS { color: #737373; }
+.dc-NEBALSO { color: #525252; }
+.dc-NAV_REGISTRETS { color: #525252; }
 
 .rc-row {
   transition: background-color 120ms ease;

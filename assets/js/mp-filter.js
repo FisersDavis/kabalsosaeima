@@ -1,5 +1,7 @@
-// Zero-latency client-side MP table filter, column sorting and URL parameter synchronization
+// Zero-latency client-side MP table filter, keyboard-accessible column sorting, and URL parameter synchronization
 (function() {
+  'use strict';
+
   function normalizeText(str) {
     if (!str) return '';
     return str.toLowerCase()
@@ -10,6 +12,18 @@
       .trim();
   }
 
+  function isLvSingular(n) {
+    return n % 10 === 1 && n % 100 !== 11;
+  }
+
+  function selectHasValue(selectEl, value) {
+    if (!selectEl || value === null || value === undefined) return false;
+    for (var i = 0; i < selectEl.options.length; i++) {
+      if (selectEl.options[i].value === value) return true;
+    }
+    return false;
+  }
+
   function initMpFilter() {
     var dirRoot = document.getElementById('mp-directory-root');
     var isActiveTerm = !dirRoot || dirRoot.getAttribute('data-term-active') !== 'false';
@@ -18,7 +32,6 @@
     var activeToggle = document.getElementById('mp-filter-active');
     var resetBtn = document.getElementById('mp-filter-reset');
     var countEl = document.getElementById('mp-filter-count');
-    var emptyState = document.getElementById('mp-empty-state');
     var tbody = document.getElementById('mp-tbody');
     var rows = Array.prototype.slice.call(document.querySelectorAll('.mp-row'));
     var sortHeaders = document.querySelectorAll('th[data-sort]');
@@ -27,6 +40,19 @@
 
     var currentSortKey = 'name';
     var currentSortAsc = true;
+
+    function setActiveToggleUI(active) {
+      if (!activeToggle) return;
+      activeToggle.setAttribute('data-active', active ? 'true' : 'false');
+      activeToggle.setAttribute('aria-pressed', active ? 'true' : 'false');
+      if (active) {
+        activeToggle.classList.add('bg-neutral-950', 'text-white', 'border-neutral-950');
+        activeToggle.classList.remove('bg-white', 'text-neutral-700', 'border-neutral-300');
+      } else {
+        activeToggle.classList.remove('bg-neutral-950', 'text-white', 'border-neutral-950');
+        activeToggle.classList.add('bg-white', 'text-neutral-700', 'border-neutral-300');
+      }
+    }
 
     function applyFilter() {
       var query = searchInput ? normalizeText(searchInput.value) : '';
@@ -53,7 +79,7 @@
       }
 
       if (countEl) {
-        var isSingular = (visible % 10 === 1 && visible % 100 !== 11);
+        var isSingular = isLvSingular(visible);
         if (activeOnly && isActiveTerm) {
           countEl.textContent = visible + (isSingular ? ' aktīvs deputāts' : ' aktīvi deputāti');
         } else if (activeOnly && !isActiveTerm) {
@@ -72,14 +98,6 @@
         }
       }
 
-      if (emptyState) {
-        if (visible === 0) {
-          emptyState.classList.remove('hidden');
-        } else {
-          emptyState.classList.add('hidden');
-        }
-      }
-
       if (resetBtn) {
         var isDefault = (!query && faction === 'ALL' && activeOnly === true);
         if (isDefault) {
@@ -89,13 +107,13 @@
         }
       }
 
-      // Sync URL query params without reloading
+      // Keep default URL clean (/deputati/); emit ?active=0 only when showing all MPs
       var params = new URLSearchParams();
       if (query) params.set('q', searchInput.value);
       if (faction !== 'ALL') params.set('faction', faction);
-      if (activeOnly) params.set('active', '1');
+      if (!activeOnly) params.set('active', '0');
 
-      var newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+      var newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '') + (window.location.hash || '');
       window.history.replaceState(null, '', newUrl);
     }
 
@@ -114,7 +132,6 @@
           valB = (b.getAttribute('data-faction') || '').trim();
           var cmp = valA.localeCompare(valB, 'lv');
           if (cmp !== 0) return asc ? cmp : -cmp;
-          // Tie-break by name
           var nameA = (a.getAttribute('data-name') || '').trim();
           var nameB = (b.getAttribute('data-name') || '').trim();
           return nameA.localeCompare(nameB, 'lv');
@@ -126,32 +143,44 @@
         }
       });
 
-      // Update sort indicators on headers
+      // Update aria-sort and neutral-palette sort indicators on headers
       for (var i = 0; i < sortHeaders.length; i++) {
         var th = sortHeaders[i];
         var thKey = th.getAttribute('data-sort');
         var icon = th.querySelector('.sort-icon');
-        if (icon) {
-          if (thKey === key) {
+        if (thKey === key) {
+          th.setAttribute('aria-sort', asc ? 'ascending' : 'descending');
+          if (icon) {
             icon.textContent = asc ? '↑' : '↓';
-            icon.className = 'sort-icon text-slate-900 font-mono text-[11px] font-bold';
-          } else {
+            icon.className = 'sort-icon text-neutral-950 font-mono text-[11px] font-bold';
+          }
+        } else {
+          th.setAttribute('aria-sort', 'none');
+          if (icon) {
             icon.textContent = '↕';
-            icon.className = 'sort-icon text-slate-400 group-hover:text-slate-700 font-mono text-[10px]';
+            icon.className = 'sort-icon text-neutral-500 font-mono text-[10px]';
           }
         }
       }
 
       // Re-append sorted rows
+      var emptyRow = document.getElementById('mp-empty-row');
+      var frag = document.createDocumentFragment();
       for (var j = 0; j < rows.length; j++) {
-        tbody.appendChild(rows[j]);
+        frag.appendChild(rows[j]);
+      }
+      if (emptyRow) {
+        tbody.insertBefore(frag, emptyRow);
+      } else {
+        tbody.appendChild(frag);
       }
     }
 
-    // Set up column sort handlers
+    // Set up keyboard-accessible column sort handlers
     for (var h = 0; h < sortHeaders.length; h++) {
       (function(header) {
-        header.addEventListener('click', function() {
+        var trigger = header.querySelector('button') || header;
+        trigger.addEventListener('click', function() {
           var key = header.getAttribute('data-sort');
           var asc = (currentSortKey === key) ? !currentSortAsc : (key === 'name' || key === 'faction');
           sortTable(key, asc);
@@ -162,17 +191,10 @@
     // Restore from URL parameters
     var urlParams = new URLSearchParams(window.location.search);
     if (searchInput && urlParams.get('q')) searchInput.value = urlParams.get('q');
-    if (factionSelect && urlParams.get('faction')) factionSelect.value = urlParams.get('faction');
+    if (factionSelect && selectHasValue(factionSelect, urlParams.get('faction'))) factionSelect.value = urlParams.get('faction');
     if (activeToggle && urlParams.get('active') !== null) {
-      var isActive = urlParams.get('active') === '1';
-      activeToggle.setAttribute('data-active', isActive ? 'true' : 'false');
-      if (isActive) {
-        activeToggle.classList.add('bg-neutral-950', 'text-white', 'border-neutral-950');
-        activeToggle.classList.remove('bg-white', 'text-neutral-700', 'border-neutral-300');
-      } else {
-        activeToggle.classList.remove('bg-neutral-950', 'text-white', 'border-neutral-950');
-        activeToggle.classList.add('bg-white', 'text-neutral-700', 'border-neutral-300');
-      }
+      var isActive = urlParams.get('active') !== '0';
+      setActiveToggleUI(isActive);
     }
 
     if (searchInput) searchInput.addEventListener('input', applyFilter);
@@ -181,14 +203,7 @@
     if (activeToggle) {
       activeToggle.addEventListener('click', function() {
         var active = activeToggle.getAttribute('data-active') === 'true';
-        activeToggle.setAttribute('data-active', active ? 'false' : 'true');
-        if (!active) {
-          activeToggle.classList.add('bg-neutral-950', 'text-white', 'border-neutral-950');
-          activeToggle.classList.remove('bg-white', 'text-neutral-700', 'border-neutral-300');
-        } else {
-          activeToggle.classList.remove('bg-neutral-950', 'text-white', 'border-neutral-950');
-          activeToggle.classList.add('bg-white', 'text-neutral-700', 'border-neutral-300');
-        }
+        setActiveToggleUI(!active);
         applyFilter();
       });
     }
@@ -197,11 +212,7 @@
       resetBtn.addEventListener('click', function() {
         if (searchInput) searchInput.value = '';
         if (factionSelect) factionSelect.value = 'ALL';
-        if (activeToggle) {
-          activeToggle.setAttribute('data-active', 'true');
-          activeToggle.classList.add('bg-neutral-950', 'text-white', 'border-neutral-950');
-          activeToggle.classList.remove('bg-white', 'text-neutral-700', 'border-neutral-300');
-        }
+        setActiveToggleUI(true);
         applyFilter();
       });
     }
@@ -215,12 +226,17 @@
     var searchInput = document.getElementById('mp-history-search');
     var decisionSelect = document.getElementById('mp-history-decision');
     var emptyEl = document.getElementById('mp-history-empty');
+    var countEl = document.getElementById('mp-history-count');
     var rows = document.querySelectorAll('.mp-history-row');
     if (!rows.length || (!searchInput && !decisionSelect)) return;
+
+    var totalAll = countEl ? parseInt(countEl.getAttribute('data-total') || String(rows.length), 10) : rows.length;
+    var renderedAll = countEl ? parseInt(countEl.getAttribute('data-rendered') || String(rows.length), 10) : rows.length;
 
     function applyHistoryFilter() {
       var q = searchInput ? normalizeText(searchInput.value) : '';
       var dec = decisionSelect ? decisionSelect.value : 'ALL';
+      var isFiltered = Boolean(q) || dec !== 'ALL';
       var visible = 0;
 
       for (var i = 0; i < rows.length; i++) {
@@ -229,13 +245,25 @@
         var rowDec = (row.getAttribute('data-decision') || '').toUpperCase();
 
         var matchQ = !q || title.indexOf(q) !== -1;
-        var matchDec = (dec === 'ALL' || rowDec === dec);
+        var matchDec = (dec === 'ALL' || rowDec === dec || (dec === 'NEBALSO' && rowDec === 'NAV_REGISTRETS'));
 
         if (matchQ && matchDec) {
           row.classList.remove('hidden');
           visible++;
         } else {
           row.classList.add('hidden');
+        }
+      }
+
+      if (countEl) {
+        if (isFiltered) {
+          var verb = isLvSingular(visible) ? 'Atrasts ' : 'Atrasti ';
+          var noun = isLvSingular(visible) ? ' balsojums' : ' balsojumi';
+          var scope = totalAll > renderedAll ? ' (no jaunākajiem ' + renderedAll + ')' : '';
+          countEl.textContent = verb + visible + noun + scope;
+        } else {
+          var base = totalAll + (isLvSingular(totalAll) ? ' balsojums' : ' balsojumi');
+          countEl.textContent = totalAll > renderedAll ? base + ' · jaunākie ' + renderedAll : base;
         }
       }
 

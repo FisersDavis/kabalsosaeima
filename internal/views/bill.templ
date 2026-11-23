@@ -6,23 +6,32 @@ import (
 
 templ Bill(props BillProps) {
 	@Layout(props.LayoutProps) {
+		{{ isDecision := IsDecisionProject(props.Timeline.BillNumber) }}
 		<article class="max-w-3xl mx-auto space-y-8">
 			<!-- Breadcrumb Navigation -->
-			<nav class="flex flex-wrap items-center gap-1.5 text-xs text-neutral-500">
+			<nav class="flex flex-wrap items-center gap-1.5 text-xs text-neutral-600" aria-label="Navigācijas ceļš">
 				<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, "/")) } class="hover:text-neutral-950 hover:underline underline-offset-2 transition">← Visi balsojumi</a>
-				<span class="text-neutral-300">/</span>
-				<span>Likumprojekti</span>
-				<span class="text-neutral-300">/</span>
+				<span class="text-neutral-400" aria-hidden="true">/</span>
+				if isDecision {
+					<span>Lēmuma projekti</span>
+				} else {
+					<span>Likumprojekti</span>
+				}
+				<span class="text-neutral-400" aria-hidden="true">/</span>
 				<span class="text-neutral-900 font-medium tabular-nums">Nr. { CleanBillNr(props.Timeline.BillNumber) }</span>
 			</nav>
 
 			<!-- Bill Article Header -->
 			<header class="space-y-4 border-b border-neutral-200 pb-6">
-				<div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-neutral-500 tabular-nums">
+				<div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-neutral-600 tabular-nums">
 					<span class="font-semibold uppercase tracking-wider text-neutral-900 text-[11px]">
-						Likumprojekts Nr. { CleanBillNr(props.Timeline.BillNumber) }
+						if isDecision {
+							Lēmuma projekts Nr. { CleanBillNr(props.Timeline.BillNumber) }
+						} else {
+							Likumprojekts Nr. { CleanBillNr(props.Timeline.BillNumber) }
+						}
 					</span>
-					<span class="text-neutral-300">|</span>
+					<span class="text-neutral-300" aria-hidden="true">|</span>
 					<span>Kopā { FormatVotesCount(props.Timeline.TotalVotes) }</span>
 				</div>
 
@@ -31,23 +40,27 @@ templ Bill(props BillProps) {
 				</h1>
 
 				<p class="text-base text-neutral-700 leading-relaxed">
-					Likumprojekta parlamentārā virzība cauri lasījumiem un plenārsēžu balsojumiem { fmt.Sprintf("%d. Saeimā.", ActiveTermNumber(props.LayoutProps)) }
+					if isDecision {
+						Lēmuma projekta parlamentārā virzība un plenārsēžu balsojumi { fmt.Sprintf("%d. Saeimā.", ActiveTermNumber(props.LayoutProps)) }
+					} else {
+						Likumprojekta parlamentārā virzība cauri lasījumiem un plenārsēžu balsojumiem { fmt.Sprintf("%d. Saeimā.", ActiveTermNumber(props.LayoutProps)) }
+					}
 					Oficiālais teksts un iesniedzēji pieejami
 					<a
-						href={ templ.SafeURL(SaeimaBillSearchURLForTerm(ActiveTermNumber(props.LayoutProps), props.Timeline.BillNumber)) }
+						href={ templ.SafeURL(BillDirectURL(props.Timeline, ActiveTermNumber(props.LayoutProps))) }
 						target="_blank"
 						rel="noopener noreferrer"
 						class="text-neutral-900 underline underline-offset-2 decoration-neutral-400 hover:decoration-neutral-950 transition ml-1"
 					>
 						Saeimas likumdošanas datubāzē ↗
-					</a>
+					</a>.
 				</p>
 
 				<!-- Quiet Collapsible Parliamentary Note -->
 				<details class="group text-xs text-neutral-600 pt-1">
-					<summary class="cursor-pointer select-none font-medium text-neutral-500 hover:text-neutral-950 transition list-none inline-flex items-center gap-1.5">
+					<summary class="cursor-pointer select-none font-medium text-neutral-600 hover:text-neutral-950 transition list-none inline-flex items-center gap-1.5">
 						<span>Kā lasīt priekšlikumu numurus un balsojumus?</span>
-						<span class="text-[10px] text-neutral-400 group-open:rotate-180 transition-transform">▾</span>
+						<span class="text-[10px] text-neutral-500 group-open:rotate-180 transition-transform" aria-hidden="true">▾</span>
 					</summary>
 					<p class="mt-2 text-xs text-neutral-600 leading-relaxed pl-3 border-l-2 border-neutral-200">
 						Saskaņā ar Saeimas kārtības rulli plenārsēdē ar balsošanas pogām balso <em>tikai par tiem priekšlikumiem</em>, par kuriem deputāti vai frakcijas pieprasa atsevišķu balsojumu (piemēram, strīdīgiem opozīcijas priekšlikumiem). Priekšlikumi, par kuriem iebildumu nav, tiek pieņemti vienbalsīgi bez elektroniska balsojuma, tāpēc sarakstā redzami tikai tie numuri, par kuriem notikusi balsošana zālē.
@@ -65,11 +78,11 @@ templ Bill(props BillProps) {
 								<h2 class="font-serif text-xl font-semibold text-neutral-950">
 									{ stage.StageName }
 								</h2>
-								<time class="text-xs text-neutral-500 tabular-nums">
+								<time class="text-xs text-neutral-600 tabular-nums">
 									{ FormatLatvianDateLong(stage.SittingDate) }
 								</time>
 							</div>
-							<span class="text-xs text-neutral-500 tabular-nums">
+							<span class="text-xs text-neutral-600 tabular-nums">
 								{ FormatVotesCount(len(stage.Votes)) } sēdē
 							</span>
 						</div>
@@ -79,14 +92,14 @@ templ Bill(props BillProps) {
 							for _, v := range stage.Votes {
 								<div class="py-4 flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-6">
 									<div class="min-w-0 flex-1 space-y-1.5">
-										<div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-neutral-500 tabular-nums">
+										<div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-neutral-600 tabular-nums">
 											if v.VoteType == "priekslikums" {
 												<span class="font-semibold uppercase tracking-wider text-amber-800">Priekšlikums</span>
 											} else {
-												<span class="font-semibold uppercase tracking-wider text-neutral-800">Likuma balsojums</span>
+												<span class="font-semibold uppercase tracking-wider text-neutral-900">Likuma balsojums</span>
 											}
 											if v.SittingTime != "" {
-												<span class="text-neutral-300">|</span>
+												<span class="text-neutral-300" aria-hidden="true">|</span>
 												<span>plkst. { v.SittingTime }</span>
 											}
 										</div>
@@ -95,16 +108,16 @@ templ Bill(props BillProps) {
 												href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/balsojumi/%s/", v.ID))) }
 												class="hover:underline decoration-1 underline-offset-4 decoration-neutral-400 transition"
 											>
-												{ CleanVoteTitle(v.SimplifiedTitle) }
+												{ VoteHeadline(*v) }
 											</a>
 										</h3>
-										<div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-neutral-500 tabular-nums">
+										<div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-neutral-600 tabular-nums">
 											<span class="text-emerald-800 font-medium">{ fmt.Sprint(v.Counts.Par) } Par</span>
-											<span class="text-neutral-300">·</span>
+											<span class="text-neutral-300" aria-hidden="true">·</span>
 											<span class="text-rose-800 font-medium">{ fmt.Sprint(v.Counts.Pret) } Pret</span>
-											<span class="text-neutral-300">·</span>
+											<span class="text-neutral-300" aria-hidden="true">·</span>
 											<span class="text-amber-800 font-medium">{ fmt.Sprint(v.Counts.Atturas) } Atturas</span>
-											<span class="text-neutral-300">·</span>
+											<span class="text-neutral-300" aria-hidden="true">·</span>
 											<span>{ fmt.Sprint(v.Counts.Nebalso) } Nebalsoja</span>
 										</div>
 									</div>
@@ -115,7 +128,7 @@ templ Bill(props BillProps) {
 										</span>
 										<a
 											href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/balsojumi/%s/", v.ID))) }
-											class="text-xs font-medium text-neutral-500 hover:text-neutral-950 transition"
+											class="text-xs font-medium text-neutral-600 hover:text-neutral-950 transition"
 										>
 											Sēžu zāle →
 										</a>

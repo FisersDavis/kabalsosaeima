@@ -17,21 +17,27 @@ templ Overview(props OverviewProps) {
 			data-total-votes={ fmt.Sprint(props.TotalVotes) }
 			data-current-page={ fmt.Sprint(props.CurrentPage) }
 		>
+			<h1 class="sr-only">
+				{ fmt.Sprintf("%d. Saeimas balsojumu arhīvs", ActiveTermNumber(props.LayoutProps)) }
+			</h1>
+
 			<!-- Editorial Search & Filter Strip (NYTimes-style, hairline separated) -->
 			<section class="border-b border-neutral-200 pb-4 space-y-3">
 				<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
 					<div class="relative flex-1 max-w-xl">
-						<svg class="absolute left-0 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+						<svg class="absolute left-0 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-500" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+						<label for="filter-search" class="sr-only">Meklēt likumu, tēmu vai atslēgvārdu</label>
 						<input
 							type="text"
 							id="filter-search"
+							aria-label="Meklēt likumu, tēmu vai atslēgvārdu"
 							placeholder="Meklēt likumu, tēmu vai atslēgvārdu..."
-							class="w-full border-0 border-b border-neutral-300 bg-transparent py-2 pl-6 pr-2 text-sm text-neutral-950 placeholder:text-neutral-400 focus:border-neutral-950 focus:outline-none transition"
+							class="w-full border-0 border-b border-neutral-300 bg-transparent py-2 pl-6 pr-2 text-sm text-neutral-950 placeholder:text-neutral-500 focus:border-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950 transition"
 						/>
 					</div>
 
 					<div class="flex items-center justify-between sm:justify-end gap-3 text-xs">
-						<span id="filter-count" class="text-neutral-500 tabular-nums">
+						<span id="filter-count" aria-live="polite" class="text-neutral-600 tabular-nums">
 							{ FormatVotesCount(len(props.Votes)) }
 						</span>
 
@@ -44,13 +50,13 @@ templ Overview(props OverviewProps) {
 								class="inline-flex items-center gap-1.5 border border-neutral-300 bg-white hover:border-neutral-950 px-3 py-1.5 text-xs font-medium text-neutral-800 transition cursor-pointer shrink-0"
 							>
 								<span>Filtri</span>
-								<span id="filter-badge" class="hidden rounded-full bg-neutral-950 px-1.5 py-0.2 text-[10px] font-semibold text-white">0</span>
+								<span id="filter-badge" class="hidden rounded-full bg-neutral-950 px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white">0</span>
 							</button>
 
 							<button
 								type="button"
 								id="filter-reset"
-								class="hidden text-xs font-medium text-neutral-500 hover:text-neutral-950 underline underline-offset-4 transition cursor-pointer whitespace-nowrap shrink-0"
+								class="hidden text-xs font-medium text-neutral-600 hover:text-neutral-950 underline underline-offset-4 transition cursor-pointer whitespace-nowrap shrink-0"
 							>
 								Notīrīt
 							</button>
@@ -64,6 +70,7 @@ templ Overview(props OverviewProps) {
 						type="button"
 						id="filter-tier1"
 						data-active="false"
+						aria-pressed="false"
 						class="border border-neutral-300 bg-white px-3 py-1.5 text-xs font-medium text-neutral-700 hover:border-neutral-950 hover:text-neutral-950 transition cursor-pointer shrink-0"
 					>
 						Gala lēmumi (3. lasījums)
@@ -71,7 +78,8 @@ templ Overview(props OverviewProps) {
 
 					<select
 						id="filter-stage"
-						class="border border-neutral-300 bg-white py-1.5 px-2.5 text-xs text-neutral-800 focus:border-neutral-950 focus:outline-none cursor-pointer"
+						aria-label="Filtrēt pēc balsojuma veida"
+						class="border border-neutral-300 bg-white py-1.5 px-2.5 text-xs text-neutral-800 focus:border-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950 cursor-pointer"
 					>
 						<option value="ALL">Visi balsojumi</option>
 						<option value="likums">Likumu pieņemšana</option>
@@ -81,7 +89,8 @@ templ Overview(props OverviewProps) {
 
 					<select
 						id="filter-category"
-						class="border border-neutral-300 bg-white py-1.5 px-2.5 text-xs text-neutral-800 focus:border-neutral-950 focus:outline-none cursor-pointer"
+						aria-label="Filtrēt pēc temata"
+						class="border border-neutral-300 bg-white py-1.5 px-2.5 text-xs text-neutral-800 focus:border-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950 cursor-pointer"
 					>
 						<option value="ALL">Visi temati</option>
 						for _, cat := range props.Categories {
@@ -91,7 +100,8 @@ templ Overview(props OverviewProps) {
 
 					<select
 						id="filter-outcome"
-						class="border border-neutral-300 bg-white py-1.5 px-2.5 text-xs text-neutral-800 focus:border-neutral-950 focus:outline-none cursor-pointer"
+						aria-label="Filtrēt pēc rezultāta"
+						class="border border-neutral-300 bg-white py-1.5 px-2.5 text-xs text-neutral-800 focus:border-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950 cursor-pointer"
 					>
 						<option value="ALL">Visi rezultāti</option>
 						<option value="PIENEMTS">Pieņemtie</option>
@@ -100,7 +110,7 @@ templ Overview(props OverviewProps) {
 					</select>
 				</div>
 
-				<div id="filter-archive-status" class="hidden text-xs font-medium text-emerald-800"></div>
+				<div id="filter-archive-status" aria-live="polite" class="hidden text-xs font-medium text-emerald-800"></div>
 			</section>
 
 			<!-- Cross-page Full Archive Search Results -->
@@ -120,6 +130,20 @@ templ Overview(props OverviewProps) {
 						nebPct := float64(v.Counts.Nebalso) * 100.0 / float64(totalCast)
 
 						meaningfulContext := MeaningfulVotePurpose(v.Purpose)
+						stageLabel := DisplayReadingStage(v)
+						searchParts := []string{v.SimplifiedTitle}
+						if !IsSameTitle(v.OfficialTitle, v.SimplifiedTitle) {
+							searchParts = append(searchParts, v.OfficialTitle)
+						}
+						if v.BillNumber != "" {
+							searchParts = append(searchParts, v.BillNumber)
+						}
+						if meaningfulContext != "" {
+							searchParts = append(searchParts, meaningfulContext)
+						} else if v.Summary != "" {
+							searchParts = append(searchParts, v.Summary)
+						}
+						searchBlob := strings.ToLower(strings.Join(searchParts, " "))
 
 						type devItem struct {
 							mp     data.DeviatingMP
@@ -134,7 +158,7 @@ templ Overview(props OverviewProps) {
 					}}
 					<article
 						class="vote-card grid grid-cols-1 md:grid-cols-[120px_1fr_176px] gap-y-2 md:gap-x-7 py-6 transition"
-						data-title={ strings.ToLower(fmt.Sprintf("%s %s %s %s", v.SimplifiedTitle, v.OfficialTitle, v.BillNumber, v.Summary)) }
+						data-title={ searchBlob }
 						data-category={ v.Category.ID }
 						data-stage={ v.VoteType }
 						data-outcome={ v.Result }
@@ -142,7 +166,7 @@ templ Overview(props OverviewProps) {
 					>
 						<!-- Left Column: Date (Desktop) & Compact Date+Outcome Header (Mobile) -->
 						<div class="flex items-center justify-between md:flex-col md:items-start md:justify-start md:pt-1 gap-2">
-							<time class="text-xs text-neutral-500 tabular-nums whitespace-nowrap">
+							<time class="text-xs text-neutral-600 tabular-nums whitespace-nowrap">
 								{ FormatLatvianDate(v.SittingDate) }
 							</time>
 							<!-- Mobile-only compact outcome + tally -->
@@ -151,7 +175,7 @@ templ Overview(props OverviewProps) {
 									{ ResultLabel(v.Result) }
 								</span>
 								if v.Counts.Par > 0 || v.Counts.Pret > 0 {
-									<span class="text-neutral-700 font-semibold">{ fmt.Sprint(v.Counts.Par) } : { fmt.Sprint(v.Counts.Pret) }</span>
+									<span class="text-neutral-800 font-semibold">{ fmt.Sprint(v.Counts.Par) } : { fmt.Sprint(v.Counts.Pret) }</span>
 								}
 							</div>
 							if v.IsUrgent {
@@ -160,7 +184,7 @@ templ Overview(props OverviewProps) {
 								</span>
 							}
 							if v.IsSecret {
-								<span class="hidden md:inline-block text-[10px] font-medium text-neutral-400 mt-1">
+								<span class="hidden md:inline-block text-[10px] font-medium text-neutral-600 mt-1">
 									Aizklāts balsojums
 								</span>
 							}
@@ -168,35 +192,29 @@ templ Overview(props OverviewProps) {
 
 						<!-- Center Column: Eyebrow + Serif Headline + 2-Line Summary -->
 						<div class="min-w-0 space-y-2">
-							<div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] text-neutral-500">
-								if v.ReadingStage != "" && v.ReadingStage != "Darba kārtība" && v.ReadingStage != "Procedūra" {
-									<span class="font-semibold uppercase tracking-wider text-neutral-800">{ v.ReadingStage }</span>
-								} else if v.ReadingStage != "" {
-									<span class="font-medium uppercase tracking-wider text-neutral-500">{ v.ReadingStage }</span>
+							<div class="flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-[11px] text-neutral-600">
+								if stageLabel != "" && stageLabel != "Darba kārtība" && stageLabel != "Procedūra" {
+									<span class="font-semibold uppercase tracking-wider text-neutral-900">{ stageLabel }</span>
+								} else if stageLabel != "" {
+									<span class="font-medium uppercase tracking-wider text-neutral-600">{ stageLabel }</span>
 								}
 								if v.Category.Label != "" {
-									<span class="inline-flex items-center gap-2 whitespace-nowrap">
-										<span class="text-neutral-300" aria-hidden="true">·</span>
-										<span>{ v.Category.Label }</span>
-									</span>
+									<span class="whitespace-nowrap">{ v.Category.Label }</span>
 								}
 								if v.BillNumber != "" {
-									<span class="inline-flex items-center gap-2 whitespace-nowrap">
-										<span class="text-neutral-300" aria-hidden="true">·</span>
-										<a
-											href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/likumprojekti/%s/", stats.CleanBillSlug(v.BillNumber)))) }
-											class="tabular-nums hover:text-neutral-950 hover:underline underline-offset-2 transition"
-											title="Skatīt likumprojekta gaitu"
-										>
-											Nr. { CleanBillNr(v.BillNumber) }
-										</a>
-									</span>
+									<a
+										href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/likumprojekti/%s/", stats.CleanBillSlug(v.BillNumber)))) }
+										class="tabular-nums whitespace-nowrap hover:text-neutral-950 hover:underline underline-offset-2 transition"
+										title="Skatīt likumprojekta gaitu"
+									>
+										Nr. { CleanBillNr(v.BillNumber) }
+									</a>
 								}
 								if v.IsUrgent {
-									<span class="md:hidden inline-flex items-center gap-2 whitespace-nowrap">
-										<span class="text-neutral-300" aria-hidden="true">·</span>
-										<span class="font-semibold uppercase tracking-wider text-amber-800">Steidzams</span>
-									</span>
+									<span class="md:hidden font-semibold uppercase tracking-wider text-amber-800 whitespace-nowrap">Steidzams</span>
+								}
+								if v.IsSecret {
+									<span class="md:hidden font-medium text-neutral-600 whitespace-nowrap">Aizklāts</span>
 								}
 							</div>
 
@@ -205,7 +223,7 @@ templ Overview(props OverviewProps) {
 									href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/balsojumi/%s/", v.ID))) }
 									class="hover:underline decoration-1 underline-offset-4 decoration-neutral-400 transition"
 								>
-									{ CleanVoteTitle(v.SimplifiedTitle) }
+									{ VoteHeadline(v) }
 								</a>
 							</h2>
 
@@ -216,18 +234,18 @@ templ Overview(props OverviewProps) {
 							}
 
 							if len(devItems) > 0 {
-								<div class="pt-0.5 text-xs text-neutral-500">
-									<span class="font-medium text-neutral-700">✦ Novirzes no frakcijas ({ fmt.Sprint(len(devItems)) }): </span>
+								<div class="pt-0.5 text-xs text-neutral-600">
+									<span class="font-medium text-neutral-800">✦ Novirzes no frakcijas ({ fmt.Sprint(len(devItems)) }): </span>
 									for i, item := range devItems {
 										<a
 											href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/deputati/%s/", ResolveMPSlug(props.Store, item.mp.MpID)))) }
-											class="text-neutral-800 underline underline-offset-2 decoration-neutral-300 hover:decoration-neutral-950 transition"
+											class="text-neutral-900 underline underline-offset-2 decoration-neutral-400 hover:decoration-neutral-950 transition"
 										>
 											{ item.mp.Name }
 										</a>
-										<span class="text-neutral-400"> ({ item.fShort } { strings.ToLower(DecisionLabel(item.mp.Decision)) })</span>
+										<span class="text-neutral-600"> ({ item.fShort } { strings.ToLower(DecisionLabel(item.mp.Decision)) })</span>
 										if i < len(devItems)-1 {
-											<span class="text-neutral-300"> · </span>
+											<span class="text-neutral-400" aria-hidden="true"> · </span>
 										}
 									}
 								</div>
@@ -281,7 +299,7 @@ templ Overview(props OverviewProps) {
 									}
 								</div>
 
-								<div class="text-[11px] text-neutral-400 tabular-nums">
+								<div class="text-[11px] text-neutral-600 tabular-nums">
 									{ fmt.Sprint(v.Counts.Par) } par · { fmt.Sprint(v.Counts.Pret) } pret
 									if v.Counts.Atturas > 0 {
 										<span> · { fmt.Sprint(v.Counts.Atturas) } att.</span>
@@ -291,7 +309,7 @@ templ Overview(props OverviewProps) {
 
 							<a
 								href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/balsojumi/%s/", v.ID))) }
-								class="text-xs font-medium text-neutral-500 hover:text-neutral-950 transition pt-1"
+								class="text-xs font-medium text-neutral-600 hover:text-neutral-950 transition pt-1"
 							>
 								Skatīt balsojumu →
 							</a>
@@ -300,7 +318,7 @@ templ Overview(props OverviewProps) {
 				}
 			</section>
 
-			<!-- Progressive Load More Button (managed by filter.js) -->
+			<!-- Progressive Load More Button (used for active search results in filter.js) -->
 			<div id="filter-load-more-wrap" class="hidden pt-6 text-center">
 				<button
 					type="button"
@@ -314,7 +332,7 @@ templ Overview(props OverviewProps) {
 			<!-- Static Archive Pagination -->
 			if props.TotalPages > 1 {
 				<nav id="static-pagination" class="flex flex-wrap items-center justify-between gap-3 border-t border-neutral-200 pt-6 mt-4 text-xs" aria-label="Arhīva lapas">
-					<div class="text-neutral-500 tabular-nums">
+					<div class="text-neutral-600 tabular-nums">
 						Lapa <strong class="text-neutral-950">{ fmt.Sprint(props.CurrentPage) }</strong> no <strong class="text-neutral-950">{ fmt.Sprint(props.TotalPages) }</strong> · Kopā { FormatVotesCount(props.TotalVotes) }
 					</div>
 					<div class="flex flex-wrap items-center gap-1">
@@ -328,7 +346,7 @@ templ Overview(props OverviewProps) {
 						}
 						for _, p := range PaginationWindow(props.CurrentPage, props.TotalPages) {
 							if p == 0 {
-								<span class="px-1.5 text-neutral-400">…</span>
+								<span class="px-1.5 text-neutral-500" aria-hidden="true">…</span>
 							} else if p == props.CurrentPage {
 								<span aria-current="page" class="inline-flex items-center bg-neutral-950 px-2.5 py-1.5 font-semibold text-white tabular-nums">
 									{ fmt.Sprint(p) }
@@ -357,7 +375,7 @@ templ Overview(props OverviewProps) {
 			<!-- Empty State -->
 			<div id="filter-empty-state" class="hidden border-y border-neutral-200 py-14 text-center text-neutral-600">
 				<p class="font-serif text-lg font-semibold text-neutral-950">Nav atrasts neviens balsojums</p>
-				<p class="text-xs text-neutral-500 mt-1.5">
+				<p class="text-xs text-neutral-600 mt-1.5">
 					Pamēģiniet mainīt meklēšanas vārdu vai noņemt kādu no filtriem.
 				</p>
 				<button

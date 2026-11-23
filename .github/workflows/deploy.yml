@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -33,21 +35,33 @@ jobs:
           curl -fsSL -o bin/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/download/v4.3.3/tailwindcss-linux-x64
           chmod +x bin/tailwindcss
 
-      - name: Run tests
-        run: go test ./...
+      - name: Verify templ codegen parity
+        run: |
+          go generate ./...
+          git diff --exit-code
+
+      - name: Vet and test
+        run: |
+          go vet ./...
+          go test ./...
 
       - name: Build production static site
-        run: go run ./cmd/build
+        run: |
+          go run ./cmd/build
+          du -sh dist
 
       - name: Setup Pages
+        if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v4
 
       - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
+    if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

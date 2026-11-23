@@ -8,6 +8,8 @@ package views
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
+import "fmt"
+
 func NotFound(props NotFoundProps) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
@@ -41,7 +43,96 @@ func NotFound(props NotFoundProps) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<section class=\"mx-auto max-w-xl py-16 sm:py-24 text-center space-y-5\"><div class=\"text-xs font-semibold uppercase tracking-widest text-neutral-400\">HTTP 404</div><h1 class=\"font-serif text-3xl sm:text-4xl font-semibold tracking-tight text-neutral-950\">Lapa netika atrasta</h1><p class=\"text-sm text-neutral-600 leading-relaxed\">Pieprasītā adrese neeksistē vai ir pārvietota uz citu Saeimas sasaukuma arhīva sadaļu. Izmantojiet saites zemāk, lai atgrieztos balsojumu vai deputātu sarakstā.</p><div class=\"flex flex-wrap items-center justify-center gap-3 pt-3\"><a href=\"/\" class=\"inline-flex items-center bg-neutral-950 px-5 py-2.5 text-xs font-semibold text-white hover:bg-neutral-800 transition\">15. Saeimas balsojumi</a> <a href=\"/14-saeima/\" class=\"inline-flex items-center border border-neutral-300 bg-white px-5 py-2.5 text-xs font-semibold text-neutral-800 hover:border-neutral-950 transition\">14. Saeimas arhīvs</a> <a href=\"/deputati/\" class=\"inline-flex items-center border border-neutral-300 bg-white px-5 py-2.5 text-xs font-semibold text-neutral-800 hover:border-neutral-950 transition\">Partijas un deputāti</a></div></section>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<section class=\"mx-auto max-w-xl py-16 sm:py-24 text-center space-y-5\"><div class=\"text-xs font-semibold uppercase tracking-widest text-neutral-600\">HTTP 404</div><h1 class=\"font-serif text-3xl sm:text-4xl font-semibold tracking-tight text-neutral-950\">Lapa netika atrasta</h1><p class=\"text-sm text-neutral-600 leading-relaxed\">Pieprasītā adrese neeksistē vai ir pārvietota uz citu Saeimas sasaukuma arhīva sadaļu. Izmantojiet saites zemāk, lai atgrieztos balsojumu vai deputātu sarakstā.</p><div class=\"flex flex-wrap items-center justify-center gap-3 pt-3\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			if len(props.LayoutProps.Terms) > 0 {
+				for i, t := range props.LayoutProps.Terms {
+					if i == 0 {
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<a href=\"")
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						var templ_7745c5c3_Var3 templ.SafeURL
+						templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(t.BasePath, "/")))
+						if templ_7745c5c3_Err != nil {
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `not_found.templ`, Line: 23, Col: 54}
+						}
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" class=\"inline-flex items-center bg-neutral-950 px-5 py-2.5 text-xs font-semibold text-white hover:bg-neutral-800 transition\">")
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						var templ_7745c5c3_Var4 string
+						templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d. Saeimas balsojumi", t.Term))
+						if templ_7745c5c3_Err != nil {
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `not_found.templ`, Line: 26, Col: 54}
+						}
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</a> ")
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+					} else {
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<a href=\"")
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						var templ_7745c5c3_Var5 templ.SafeURL
+						templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinURLErrs(templ.SafeURL(TermURL(t.BasePath, "/")))
+						if templ_7745c5c3_Err != nil {
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `not_found.templ`, Line: 30, Col: 54}
+						}
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\" class=\"inline-flex items-center border border-neutral-300 bg-white px-5 py-2.5 text-xs font-semibold text-neutral-800 hover:border-neutral-950 transition\">")
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						var templ_7745c5c3_Var6 string
+						templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d. Saeimas arhīvs", t.Term))
+						if templ_7745c5c3_Err != nil {
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `not_found.templ`, Line: 33, Col: 52}
+						}
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</a> ")
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+					}
+				}
+			} else {
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<a href=\"/\" class=\"inline-flex items-center bg-neutral-950 px-5 py-2.5 text-xs font-semibold text-white hover:bg-neutral-800 transition\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var7 string
+				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d. Saeimas balsojumi", ActiveTermNumber(props.LayoutProps)))
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `not_found.templ`, Line: 42, Col: 81}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</a> <a href=\"/14-saeima/\" class=\"inline-flex items-center border border-neutral-300 bg-white px-5 py-2.5 text-xs font-semibold text-neutral-800 hover:border-neutral-950 transition\">14. Saeimas arhīvs</a> ")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<a href=\"/deputati/\" class=\"inline-flex items-center border border-neutral-300 bg-white px-5 py-2.5 text-xs font-semibold text-neutral-800 hover:border-neutral-950 transition\">Partijas un deputāti</a></div></section>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

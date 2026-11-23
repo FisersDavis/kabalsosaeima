@@ -10,6 +10,9 @@ templ Layout(props LayoutProps) {
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			<title>{ props.Title }</title>
 			<meta name="description" content={ props.Description }/>
+			if props.NoIndex {
+				<meta name="robots" content="noindex"/>
+			}
 			<meta property="og:title" content={ props.Title }/>
 			<meta property="og:description" content={ props.Description }/>
 			<meta property="og:type" content="website"/>
@@ -28,19 +31,26 @@ templ Layout(props LayoutProps) {
 			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet"/>
 			<link rel="stylesheet" href="/assets/styles.css"/>
 			<script src="/assets/js/redirect.js"></script>
-			<script src="/assets/js/debates.js"></script>
+			<script src="/assets/js/debates.js" defer></script>
 		</head>
 		<body class="min-h-full flex flex-col font-sans bg-white text-neutral-950">
+			<a
+				href="#main-content"
+				class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-neutral-950 focus:text-white focus:px-4 focus:py-2 focus:text-xs focus:font-semibold"
+			>
+				Pāriet uz saturu
+			</a>
+
 			<!-- Newspaper Masthead -->
 			<header id="site-header" class="w-full bg-white">
 				<!-- Top Utility Bar -->
 				<div class="border-b border-neutral-200">
-					<div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-2 px-4 py-2 sm:px-6 lg:px-8 text-xs text-neutral-500">
+					<div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-2 px-4 py-2 sm:px-6 lg:px-8 text-xs text-neutral-600">
 						<div class="flex items-center gap-2">
 							<span class="hidden sm:inline">Latvijas Republikas Saeimas balsojumu arhīvs</span>
 							<span class="sm:hidden">Saeimas balsojumu arhīvs</span>
 							if props.Metadata.LatestSittingDate != "" {
-								<span class="text-neutral-300">|</span>
+								<span class="text-neutral-300" aria-hidden="true">|</span>
 								<span class="tabular-nums">Pēdējā sēde: { FormatLatvianDate(props.Metadata.LatestSittingDate) }</span>
 							}
 						</div>
@@ -72,8 +82,8 @@ templ Layout(props LayoutProps) {
 										} else {
 											<a
 												href={ templ.SafeURL(href) }
-												class="text-neutral-500 hover:text-neutral-950 transition"
-												title={ fmt.Sprintf("Pārslēgt uz %s (%s)", t.Label, t.Years) }
+												class="text-neutral-600 hover:text-neutral-950 transition"
+												title={ fmt.Sprintf("Skatīt %d. Saeimas arhīvu (%s)", t.Term, t.Years) }
 											>
 												{ t.Label }
 											</a>
@@ -86,12 +96,12 @@ templ Layout(props LayoutProps) {
 								</span>
 							}
 
-							<span class="hidden sm:inline text-neutral-300">|</span>
+							<span class="hidden sm:inline text-neutral-300" aria-hidden="true">|</span>
 							<a
 								href={ templ.SafeURL(SaeimaDeputiesRegistryURL(ActiveTermNumber(props))) }
 								target="_blank"
 								rel="noopener noreferrer"
-								class="hidden sm:inline-flex items-center gap-1 text-neutral-500 hover:text-neutral-950 transition"
+								class="hidden sm:inline-flex items-center gap-1 text-neutral-600 hover:text-neutral-950 transition"
 								title="Oficiālais Saeimas portāls"
 							>
 								<span>saeima.lv</span>
@@ -116,7 +126,7 @@ templ Layout(props LayoutProps) {
 								Kā Balso Saeima
 							</span>
 						</a>
-						<span class="hidden md:inline text-xs text-neutral-500">
+						<span class="hidden md:inline text-xs text-neutral-600">
 							{ fmt.Sprintf("%d. Saeima · %s", ActiveTermNumber(props), ActiveTermYears(props)) }
 						</span>
 					</div>
@@ -127,21 +137,27 @@ templ Layout(props LayoutProps) {
 							<a
 								href={ templ.SafeURL(TermURL(props.BasePath, "/")) }
 								class={ NavLinkClass(props.ActiveNav == "votes") }
+								if props.ActiveNav == "votes" {
+									aria-current="page"
+								}
 							>
 								<span>Balsojumi</span>
 								if props.Metadata.TotalVotes > 0 {
-									<span class="text-xs font-normal text-neutral-400 tabular-nums">{ fmt.Sprint(props.Metadata.TotalVotes) }</span>
+									<span class="text-xs font-normal text-neutral-500 tabular-nums">{ fmt.Sprint(props.Metadata.TotalVotes) }</span>
 								}
 							</a>
 							<a
 								href={ templ.SafeURL(TermURL(props.BasePath, "/deputati/")) }
 								class={ NavLinkClass(props.ActiveNav == "mps") }
+								if props.ActiveNav == "mps" {
+									aria-current="page"
+								}
 							>
 								<span>Partijas un deputāti</span>
-								<span class="text-xs font-normal text-neutral-400 tabular-nums">{ fmt.Sprint(EffectiveActiveMPCount(props)) }</span>
+								<span class="text-xs font-normal text-neutral-500 tabular-nums">{ fmt.Sprint(EffectiveActiveMPCount(props)) }</span>
 							</a>
 						</nav>
-						<div class="hidden sm:block pb-2.5 text-xs text-neutral-400">
+						<div class="hidden sm:block pb-2.5 text-xs text-neutral-500">
 							Neitrāls atvērtā parlamenta reģistrs
 						</div>
 					</div>
@@ -149,7 +165,7 @@ templ Layout(props LayoutProps) {
 			</header>
 
 			<!-- Main Content -->
-			<main class="flex-1 mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+			<main id="main-content" class="flex-1 mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
 				{ children... }
 			</main>
 
@@ -185,25 +201,25 @@ templ Layout(props LayoutProps) {
 							<div class="font-semibold uppercase tracking-wider text-[11px] text-neutral-950">Avoti un atvērtie dati</div>
 							<ul class="space-y-1.5">
 								<li>
-									<a href="https://www.saeima.lv" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-neutral-300 hover:decoration-neutral-950 hover:text-neutral-950 transition">
+									<a href="https://www.saeima.lv" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-neutral-400 hover:decoration-neutral-950 hover:text-neutral-950 transition">
 										Saeimas sēžu protokoli (saeima.lv) ↗
 									</a>
 								</li>
 								<li>
-									<a href="https://data.gov.lv" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-neutral-300 hover:decoration-neutral-950 hover:text-neutral-950 transition">
+									<a href="https://data.gov.lv" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-neutral-400 hover:decoration-neutral-950 hover:text-neutral-950 transition">
 										Atvērto datu portāls (data.gov.lv) ↗
 									</a>
 								</li>
 								<li>
-									<a href="https://github.com/FisersDavis/kabalsosaeima" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-neutral-300 hover:decoration-neutral-950 hover:text-neutral-950 transition">
+									<a href="https://github.com/FisersDavis/kabalsosaeima" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-neutral-400 hover:decoration-neutral-950 hover:text-neutral-950 transition">
 										Pirmkods GitHub ↗
 									</a>
 								</li>
 								<li class="pt-1 text-neutral-500">
 									JSON:
-									<a href={ templ.SafeURL(TermURL(props.BasePath, "/data/votes.json")) } class="underline underline-offset-2 decoration-neutral-300 hover:text-neutral-950 ml-1">votes.json</a>,
-									<a href={ templ.SafeURL(TermURL(props.BasePath, "/data/mps.json")) } class="underline underline-offset-2 decoration-neutral-300 hover:text-neutral-950 ml-1">mps.json</a>,
-									<a href={ templ.SafeURL(TermURL(props.BasePath, "/data/mandates.json")) } class="underline underline-offset-2 decoration-neutral-300 hover:text-neutral-950 ml-1">mandates.json</a>
+									<a href={ templ.SafeURL(TermURL(props.BasePath, "/data/votes.json")) } class="underline underline-offset-2 decoration-neutral-400 hover:text-neutral-950 ml-1">votes.json</a>,
+									<a href={ templ.SafeURL(TermURL(props.BasePath, "/data/mps.json")) } class="underline underline-offset-2 decoration-neutral-400 hover:text-neutral-950 ml-1">mps.json</a>,
+									<a href={ templ.SafeURL(TermURL(props.BasePath, "/data/mandates.json")) } class="underline underline-offset-2 decoration-neutral-400 hover:text-neutral-950 ml-1">mandates.json</a>
 								</li>
 							</ul>
 						</div>
@@ -217,7 +233,7 @@ templ Layout(props LayoutProps) {
 						</div>
 					</div>
 
-					<div class="border-t border-neutral-200 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-neutral-400">
+					<div class="border-t border-neutral-200 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-neutral-500">
 						<p>© 2026 kābalsosaeima.lv · Atvērtā koda pilsoniskā iniciatīva</p>
 						<span>Veidots sabiedrības informēšanai un parlamenta atklātībai</span>
 					</div>

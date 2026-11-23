@@ -21,15 +21,15 @@ templ MPDirectory(props MPDirectoryProps) {
 						Pārskats par deputātu frakciju piederību, sēžu klātbūtni aktīvā mandāta laikā un balsojumu sakritību ar partiju.
 					</p>
 				</div>
-				<div class="text-xs text-neutral-500 tabular-nums shrink-0">
+				<div class="text-xs text-neutral-600 tabular-nums shrink-0">
 					if isActiveTerm {
-						<span class="font-semibold text-neutral-900">{ fmt.Sprint(activeCount) } aktīvi mandāti</span>
-						<span class="mx-1.5 text-neutral-300">·</span>
+						<span class="font-semibold text-neutral-900">{ FormatActiveMandatesCount(activeCount) }</span>
+						<span class="mx-1.5 text-neutral-300" aria-hidden="true">·</span>
 						<span>kopā { fmt.Sprint(len(props.Items)) } sasaukumā</span>
 					} else {
 						<span class="font-semibold text-neutral-900">Arhīvs</span>
-						<span class="mx-1.5 text-neutral-300">·</span>
-						<span>{ fmt.Sprint(len(props.Items)) } deputāti sasaukumā</span>
+						<span class="mx-1.5 text-neutral-300" aria-hidden="true">·</span>
+						<span>{ FormatDeputiesCount(len(props.Items)) } sasaukumā</span>
 					}
 				</div>
 			</header>
@@ -38,18 +38,21 @@ templ MPDirectory(props MPDirectoryProps) {
 			<section class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
 				<div class="flex flex-wrap items-center gap-2.5 flex-1">
 					<div class="relative flex-1 min-w-[200px] sm:max-w-xs">
-						<svg class="absolute left-0 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+						<svg class="absolute left-0 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-500" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+						<label for="mp-filter-search" class="sr-only">Meklēt deputātu pēc vārda</label>
 						<input
 							type="text"
 							id="mp-filter-search"
+							aria-label="Meklēt deputātu pēc vārda"
 							placeholder="Meklēt deputātu..."
-							class="w-full border-0 border-b border-neutral-300 bg-transparent py-1.5 pl-6 pr-2 text-sm text-neutral-950 placeholder:text-neutral-400 focus:border-neutral-950 focus:outline-none transition"
+							class="w-full border-0 border-b border-neutral-300 bg-transparent py-1.5 pl-6 pr-2 text-sm text-neutral-950 placeholder:text-neutral-500 focus:border-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950 transition"
 						/>
 					</div>
 
 					<select
 						id="mp-filter-faction"
-						class="border border-neutral-300 bg-white py-1.5 px-2.5 text-xs text-neutral-800 focus:border-neutral-950 focus:outline-none cursor-pointer max-w-[240px]"
+						aria-label="Filtrēt deputātus pēc frakcijas"
+						class="border border-neutral-300 bg-white py-1.5 px-2.5 text-xs text-neutral-800 focus:border-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950 cursor-pointer max-w-[240px]"
 					>
 						<option value="ALL">Visas frakcijas</option>
 						for _, f := range props.Factions {
@@ -61,6 +64,7 @@ templ MPDirectory(props MPDirectoryProps) {
 						type="button"
 						id="mp-filter-active"
 						data-active="true"
+						aria-pressed="true"
 						class="border border-neutral-950 bg-neutral-950 px-3 py-1.5 text-xs font-medium text-white transition cursor-pointer shrink-0 tabular-nums"
 					>
 						if isActiveTerm {
@@ -73,17 +77,17 @@ templ MPDirectory(props MPDirectoryProps) {
 					<button
 						type="button"
 						id="mp-filter-reset"
-						class="hidden text-xs font-medium text-neutral-500 hover:text-neutral-950 underline underline-offset-4 transition cursor-pointer whitespace-nowrap shrink-0"
+						class="hidden text-xs font-medium text-neutral-600 hover:text-neutral-950 underline underline-offset-4 transition cursor-pointer whitespace-nowrap shrink-0"
 						title="Atiestatīt meklēšanu un filtrus"
 					>
 						Notīrīt
 					</button>
 				</div>
 
-				<div class="text-xs text-neutral-500 tabular-nums shrink-0">
-					<span id="mp-filter-count">
+				<div class="text-xs text-neutral-600 tabular-nums shrink-0">
+					<span id="mp-filter-count" aria-live="polite">
 						if isActiveTerm {
-							{ fmt.Sprint(activeCount) } aktīvi deputāti
+							{ FormatActiveDeputiesCount(activeCount) }
 						} else {
 							{ fmt.Sprint(activeCount) } noslēguma sastāvā
 						}
@@ -95,37 +99,38 @@ templ MPDirectory(props MPDirectoryProps) {
 			<div class="overflow-x-auto border-t border-neutral-950">
 				<table class="w-full text-left text-sm border-collapse table-fixed">
 					<colgroup>
-						<col class="w-[40%] sm:w-[36%]"/>
-						<col class="w-[26%] sm:w-[34%]"/>
-						<col class="w-[17%] sm:w-[15%]"/>
-						<col class="w-[17%] sm:w-[15%]"/>
+						<col class="w-[40%] sm:w-[35%]"/>
+						<col class="w-[16%] sm:w-[28%]"/>
+						<col class="w-[22%] sm:w-[15%]"/>
+						<col class="w-[22%] sm:w-[22%]"/>
 					</colgroup>
-					<thead class="border-b border-neutral-200 bg-white text-[11px] font-semibold uppercase tracking-wider text-neutral-500">
+					<thead class="border-b border-neutral-200 bg-white text-[10px] sm:text-[11px] font-semibold uppercase tracking-normal sm:tracking-wider text-neutral-600">
 						<tr>
-							<th scope="col" class="py-3 px-2 sm:px-3 cursor-pointer hover:text-neutral-950 group select-none transition" data-sort="name" title="Kārtot pēc vārda">
-								<div class="flex items-center gap-1">
+							<th scope="col" class="py-3 px-1.5 sm:px-3" data-sort="name" aria-sort="ascending">
+								<button type="button" class="inline-flex items-center gap-0.5 sm:gap-1 uppercase font-semibold text-neutral-600 hover:text-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950 cursor-pointer select-none transition whitespace-nowrap">
 									<span>Deputāts</span>
-									<span class="sort-icon text-neutral-400 text-[10px]">↕</span>
-								</div>
+									<span class="sort-icon text-neutral-950 text-[10px]" aria-hidden="true">↑</span>
+								</button>
 							</th>
-							<th scope="col" class="py-3 px-2 sm:px-3 cursor-pointer hover:text-neutral-950 group select-none transition" data-sort="faction" title="Kārtot pēc frakcijas">
-								<div class="flex items-center gap-1">
-									<span>Frakcija</span>
-									<span class="sort-icon text-neutral-400 text-[10px]">↕</span>
-								</div>
+							<th scope="col" class="py-3 px-1 sm:px-3" data-sort="faction" aria-sort="none">
+								<button type="button" class="inline-flex items-center gap-0.5 sm:gap-1 uppercase font-semibold text-neutral-600 hover:text-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950 cursor-pointer select-none transition whitespace-nowrap">
+									<span class="hidden sm:inline">Frakcija</span>
+									<abbr title="Frakcija" class="sm:hidden no-underline">Frakc.</abbr>
+									<span class="sort-icon text-neutral-500 text-[10px]" aria-hidden="true">↕</span>
+								</button>
 							</th>
-							<th scope="col" class="py-3 px-2 sm:px-3 text-right cursor-pointer hover:text-neutral-950 group select-none transition" data-sort="attendance" title="Kārtot pēc klātbūtnes">
-								<div class="flex items-center justify-end gap-1">
+							<th scope="col" class="py-3 px-1 sm:px-3 text-right" data-sort="attendance" aria-sort="none">
+								<button type="button" class="inline-flex items-center justify-end gap-0.5 sm:gap-1 uppercase font-semibold text-neutral-600 hover:text-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950 cursor-pointer select-none transition whitespace-nowrap ml-auto">
 									<span>Klātbūtne</span>
-									<span class="sort-icon text-neutral-400 text-[10px]">↕</span>
-								</div>
+									<span class="sort-icon text-neutral-500 text-[10px]" aria-hidden="true">↕</span>
+								</button>
 							</th>
-							<th scope="col" class="py-3 px-2 sm:px-3 text-right cursor-pointer hover:text-neutral-950 group select-none transition" data-sort="cohesion" title="Kārtot pēc balsojumu sakritības">
-								<div class="flex items-center justify-end gap-1">
-									<span class="hidden sm:inline">Sakritība ar partiju</span>
-									<span class="sm:hidden">Sakritība</span>
-									<span class="sort-icon text-neutral-400 text-[10px]">↕</span>
-								</div>
+							<th scope="col" class="py-3 px-1.5 sm:px-3 text-right" data-sort="cohesion" aria-sort="none">
+								<button type="button" class="inline-flex items-center justify-end gap-0.5 sm:gap-1 uppercase font-semibold text-neutral-600 hover:text-neutral-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950 cursor-pointer select-none transition whitespace-nowrap ml-auto">
+									<span class="hidden md:inline">Sakritība ar partiju</span>
+									<span class="md:hidden">Sakritība</span>
+									<span class="sort-icon text-neutral-500 text-[10px]" aria-hidden="true">↕</span>
+								</button>
 							</th>
 						</tr>
 					</thead>
@@ -140,7 +145,7 @@ templ MPDirectory(props MPDirectoryProps) {
 									slug = mp.ID
 								}
 
-								color := "#737373"
+								color := "#525252"
 								fShort := mp.FactionID
 								fName := "Pie frakcijām nepiederošs"
 								if faction != nil {
@@ -176,20 +181,20 @@ templ MPDirectory(props MPDirectoryProps) {
 								data-cohesion={ fmt.Sprintf("%.2f", cohesionVal) }
 							>
 								<!-- Deputāts Column -->
-								<td class="py-3.5 px-2 sm:px-3">
-									<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/deputati/%s/", slug))) } class="flex items-center gap-2.5 min-w-0">
-										<span class="w-2 h-2 rounded-full shrink-0" style={ fmt.Sprintf("background-color: %s;", color) }></span>
+								<td class="py-3.5 px-1.5 sm:px-3">
+									<a href={ templ.SafeURL(TermURL(props.LayoutProps.BasePath, fmt.Sprintf("/deputati/%s/", slug))) } class="flex items-center gap-2 sm:gap-2.5 min-w-0">
+										<span class="w-2 h-2 rounded-full shrink-0" style={ fmt.Sprintf("background-color: %s;", color) } aria-hidden="true"></span>
 										<div class="min-w-0">
-											<div class="font-medium text-neutral-950 group-hover:underline underline-offset-2 flex items-center gap-2 flex-wrap">
+											<div class="font-medium text-neutral-950 group-hover:underline underline-offset-2 flex items-center gap-1.5 sm:gap-2 flex-wrap">
 												<span class="truncate">{ mp.Name }</span>
 												if !mp.IsActive {
-													<span class="text-[10px] font-medium uppercase tracking-wider text-neutral-400 shrink-0">
+													<span class="text-[10px] font-medium uppercase tracking-wider text-neutral-600 shrink-0">
 														Neaktīvs
 													</span>
 												}
 											</div>
 											if mandate != nil && mandate.Note != "" && !mp.IsActive {
-												<div class="text-xs text-neutral-400 truncate max-w-xs sm:max-w-md" title={ mandate.Note }>
+												<div class="text-xs text-neutral-600 truncate max-w-xs sm:max-w-md" title={ mandate.Note }>
 													{ mandate.Note }
 												</div>
 											}
@@ -198,19 +203,19 @@ templ MPDirectory(props MPDirectoryProps) {
 								</td>
 
 								<!-- Faction Column -->
-								<td class="py-3.5 px-2 sm:px-3">
+								<td class="py-3.5 px-1 sm:px-3">
 									<div class="flex items-baseline gap-2 min-w-0">
 										<span class="text-xs font-semibold text-neutral-900 shrink-0">
 											{ fShort }
 										</span>
-										<span class="hidden sm:inline text-xs text-neutral-500 truncate" title={ fName }>
+										<span class="hidden sm:inline text-xs text-neutral-600 truncate" title={ fName }>
 											{ fName }
 										</span>
 									</div>
 								</td>
 
 								<!-- Attendance Column -->
-								<td class="py-3.5 px-2 sm:px-3 text-right tabular-nums">
+								<td class="py-3.5 px-1 sm:px-3 text-right tabular-nums">
 									if item.Attendance.TotalEligibleVotes > 0 {
 										{{
 											attColor := "text-neutral-900"
@@ -223,28 +228,28 @@ templ MPDirectory(props MPDirectoryProps) {
 										<div class={ fmt.Sprintf("text-sm font-semibold %s", attColor) }>
 											{ fmt.Sprintf("%.1f%%", item.Attendance.PresentPct) }
 										</div>
-										<div class="text-[11px] text-neutral-400">
+										<div class="text-[11px] text-neutral-600">
 											{ fmt.Sprint(item.Attendance.PresentCount) }/{ fmt.Sprint(item.Attendance.TotalEligibleVotes) }
 										</div>
 									} else {
-										<span class="text-xs text-neutral-400">—</span>
+										<span class="text-xs text-neutral-600">—</span>
 									}
 								</td>
 
 								<!-- Voting Alignment Column -->
-								<td class="py-3.5 px-2 sm:px-3 text-right tabular-nums">
+								<td class="py-3.5 px-1.5 sm:px-3 text-right tabular-nums">
 									if !item.Cohesion.IsIndependent && item.Cohesion.CohesionPct != nil {
 										<div class="text-sm font-semibold text-neutral-900">
 											{ fmt.Sprintf("%.1f%%", *item.Cohesion.CohesionPct) }
 										</div>
 									} else {
-										<span class="text-xs text-neutral-400" title="Pie frakcijām nepiederošs deputāts">—</span>
+										<span class="text-xs text-neutral-600" title="Pie frakcijām nepiederošs deputāts">—</span>
 									}
 								</td>
 							</tr>
 						}
 						<tr id="mp-empty-row" class="hidden">
-							<td colspan="4" class="py-12 text-center text-neutral-400 text-xs">
+							<td colspan="4" class="py-12 text-center text-neutral-600 text-xs">
 								Nav atrasts neviens deputāts pēc izvēlētajiem filtriem.
 							</td>
 						</tr>
@@ -253,9 +258,9 @@ templ MPDirectory(props MPDirectoryProps) {
 			</div>
 
 			<!-- Quiet Editorial Footnote -->
-			<p class="border-t border-neutral-200 pt-4 text-xs text-neutral-500 leading-relaxed max-w-3xl">
+			<p class="border-t border-neutral-200 pt-4 text-xs text-neutral-600 leading-relaxed max-w-3xl">
 				if isActiveTerm {
-					<strong class="font-semibold text-neutral-800">Par mandātu aizvietošanu:</strong> Saskaņā ar Saeimas kārtības rulli deputātam kļūstot par Ministru prezidentu vai ministru, viņa Saeimas mandāts tiek apturēts, un tā vietā nāk nākamais attiecīgā vēlēšanu saraksta kandidāts («mīkstais mandāts»). Sarakstā pieejami gan { fmt.Sprint(activeCount) } šobrīd aktīvie deputāti, gan mandātu nolikušie locekļi.
+					<strong class="font-semibold text-neutral-800">Par mandātu aizvietošanu:</strong> Saskaņā ar Saeimas kārtības rulli deputātam kļūstot par Ministru prezidentu vai ministru, viņa Saeimas mandāts tiek apturēts, un tā vietā nāk nākamais attiecīgā vēlēšanu saraksta kandidāts („mīkstais mandāts“). Sarakstā pieejami gan { fmt.Sprint(activeCount) } šobrīd aktīvie deputāti, gan mandātu nolikušie locekļi.
 				} else {
 					<strong class="font-semibold text-neutral-800">Par sasaukuma arhīvu:</strong> { fmt.Sprintf("%d. Saeimas", ActiveTermNumber(props.LayoutProps)) } pilnvaras ir noslēgušās. Sarakstā pieejami gan { fmt.Sprint(activeCount) } noslēguma sastāva deputāti, gan visi pārējie sasaukuma gaitā strādājušie deputāti un ministri (kopā { fmt.Sprint(len(props.Items)) }).
 				}
