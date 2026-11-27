@@ -618,7 +618,7 @@
   {
     "id": "mp-57",
     "name": "Jānis Liepiņš",
-    "factionId": "ind",
+    "factionId": "as",
     "seatNumber": 57,
     "row": 1,
     "col": 7,
@@ -772,7 +772,7 @@
   {
     "id": "mp-71",
     "name": "Lauris Gruntmanis",
-    "factionId": "ind",
+    "factionId": "as",
     "seatNumber": 71,
     "row": 3,
     "col": 21,
@@ -849,7 +849,7 @@
   {
     "id": "mp-78",
     "name": "Luīze Utāne",
-    "factionId": "ind",
+    "factionId": "as",
     "seatNumber": 78,
     "row": 2,
     "col": 3,
@@ -882,7 +882,7 @@
   {
     "id": "mp-81",
     "name": "Māris Dadzis",
-    "factionId": "ind",
+    "factionId": "as",
     "seatNumber": 81,
     "row": 1,
     "col": 6,
@@ -915,7 +915,7 @@
   {
     "id": "mp-84",
     "name": "Māris Trušelis",
-    "factionId": "ind",
+    "factionId": "as",
     "seatNumber": 84,
     "row": 4,
     "col": 9,
@@ -1157,7 +1157,7 @@
   {
     "id": "mp-106",
     "name": "Valters Bolevics",
-    "factionId": "ind",
+    "factionId": "as",
     "seatNumber": 106,
     "row": 2,
     "col": 6,

@@ -124,18 +124,18 @@
   "sittings_by_dk": {
     "ee5cf0d3-b6b3-412c-b7b0-eb7ddcb38232": {
       "sittingUrl": "https://www.saeima.lv/lv/sasaukumi/15-saeima/saeimas-sedes/saeimas-2026-gada-20-novembra-arkartas-sede/",
-      "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-20-110125/",
-      "stenogramType": "live"
+      "stenogramUrl": "https://www.saeima.lv/lv/sasaukumi/15-saeima/stenogrammas/latvijas-republikas-saeimas-2026-gada-20-novembra-arkartas-sede/",
+      "stenogramType": "edited"
     },
     "25552831-b992-409a-942e-51075d920c2c": {
       "sittingUrl": "https://www.saeima.lv/lv/sasaukumi/15-saeima/saeimas-sedes/saeimas-2026-gada-17-novembra-arkartas-sede/",
-      "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-17-145950/",
-      "stenogramType": "live"
+      "stenogramUrl": "https://www.saeima.lv/lv/sasaukumi/15-saeima/stenogrammas/latvijas-republikas-saeimas-2026-gada-17-novembra-arkartas-sede/",
+      "stenogramType": "edited"
     },
     "20cb79eb-5609-4668-adfd-5338bcb16550": {
       "sittingUrl": "https://www.saeima.lv/lv/sasaukumi/15-saeima/saeimas-sedes/saeimas-2026-gada-20-novembra-arkartas-sede-2/",
-      "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-20-124132/",
-      "stenogramType": "live"
+      "stenogramUrl": "https://www.saeima.lv/lv/sasaukumi/15-saeima/stenogrammas/latvijas-republikas-saeimas-2026-gada-20-novembra-otra-arkartas-sede/",
+      "stenogramType": "edited"
     },
     "b248591b-882f-4308-8cce-8530dadc37aa": {
       "sittingUrl": "https://www.saeima.lv/lv/sasaukumi/15-saeima/saeimas-sedes/saeimas-2026-gada-3-novembra-arkartas-sede-2/",
@@ -151,6 +151,11 @@
       "sittingUrl": "https://www.saeima.lv/lv/sasaukumi/15-saeima/saeimas-sedes/saeimas-2026-gada-3-novembra-arkartas-sede/",
       "stenogramUrl": "https://www.saeima.lv/lv/sasaukumi/15-saeima/stenogrammas/latvijas-republikas-saeimas-2026-gada-3-novembra-arkartas-sede/",
       "stenogramType": "edited"
+    },
+    "0cfbb76e-7f7b-416b-b201-336d5aa08b7e": {
+      "sittingUrl": "https://www.saeima.lv/lv/sasaukumi/15-saeima/saeimas-sedes/saeimas-2026-gada-26-novembra-karteja-sede/",
+      "stenogramUrl": "https://www.saeima.lv/lv/neredigeta-stenogramma/2026-11-26-090115/",
+      "stenogramType": "live"
     }
   },
   "slug_to_dk": {
@@ -159,6 +164,7 @@
     "saeimas-2026-gada-20-novembra-arkartas-sede-2": "20cb79eb-5609-4668-adfd-5338bcb16550",
     "saeimas-2026-gada-3-novembra-arkartas-sede-2": "b248591b-882f-4308-8cce-8530dadc37aa",
     "saeimas-2026-gada-3-novembra-karteja-sede-2": "e68d84a3-9d0f-4f47-9394-90648283751d",
-    "saeimas-2026-gada-3-novembra-arkartas-sede": "3fbd8f22-8bac-4ed9-a986-f93931ad83dd"
+    "saeimas-2026-gada-3-novembra-arkartas-sede": "3fbd8f22-8bac-4ed9-a986-f93931ad83dd",
+    "saeimas-2026-gada-26-novembra-karteja-sede": "0cfbb76e-7f7b-416b-b201-336d5aa08b7e"
   }
 }
